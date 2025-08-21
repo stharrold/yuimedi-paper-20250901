@@ -104,7 +104,22 @@ class YuiQueryGitHubSync:
             description = re.sub(r'<!--\s*status:\s*\w+\s*-->', '', description, flags=re.IGNORECASE)
             description = description.strip()
             if not description:
-                description = f"GitHub issue #{issue['number']}: {issue['title']}"
+            issue_number = issue.get('number')
+            if isinstance(issue_number, int) and issue_number > 0:
+                fallback_desc = f"GitHub issue #{issue_number}"
+            else:
+                fallback_desc = "GitHub issue (number unknown)"
+            description = issue.get('body', '') or fallback_desc
+            # Remove only metadata HTML comments (priority, depends-on, status)
+            description = re.sub(r'<!--\s*priority:\s*P\d\s*-->', '', description, flags=re.IGNORECASE)
+            description = re.sub(r'<!--\s*depends-on:\s*[\d,\s#]+\s*-->', '', description, flags=re.IGNORECASE)
+            description = re.sub(r'<!--\s*status:\s*\w+\s*-->', '', description, flags=re.IGNORECASE)
+            description = description.strip()
+            if not description:
+                if isinstance(issue_number, int) and issue_number > 0:
+                    description = f"GitHub issue #{issue_number}: {issue.get('title', 'No title')}"
+                else:
+                    description = f"GitHub issue (number unknown): {issue.get('title', 'No title')}"
             
             task = {
                 'id': f"gh-{issue['number']}",
