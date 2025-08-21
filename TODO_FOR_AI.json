@@ -1,0 +1,136 @@
+{
+  "project": "YuiQuery Healthcare Analytics Research",
+  "version": "1.0.0",
+  "type": "Academic research documentation",
+  "focus": "Natural language to SQL in healthcare",
+  "updated": "2025-08-21T04:08:33.749013+00:00",
+  "last_sync": "2025-08-21T04:08:33.749017+00:00",
+  "sync_source": "github_bidirectional_sync",
+  "sync_metadata": {
+    "github_repo": "yuimedi/yuimedi-research",
+    "sync_direction": "bidirectional",
+    "last_github_fetch": "2025-08-21T04:08:33.749020+00:00",
+    "total_github_issues": 6,
+    "total_tasks": 6,
+    "sync_conflicts": [],
+    "validation_status": "synced"
+  },
+  "tasks": [
+    {
+      "id": "gh-1",
+      "github_issue_number": 1,
+      "title": "Generate final PDF/HTML versions of research paper",
+      "description": "<!-- priority: medium -->\n\n\nGenerate final PDF/HTML versions of research paper\n\n**Created**: 2025-08-21",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-08-21T03:00:26Z",
+      "updated_at": "2025-08-21T03:00:26Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-08-21T04:08:33.748641+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-2",
+      "github_issue_number": 2,
+      "title": "Review merged paper for citation consistency and academic formatting",
+      "description": "<!-- priority: low -->\n\n\nReview merged paper for citation consistency and academic formatting\n\n**Created**: 2025-08-21",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-08-21T03:00:27Z",
+      "updated_at": "2025-08-21T03:00:27Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-08-21T04:08:33.748622+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-3",
+      "github_issue_number": 3,
+      "title": "Consider submission to healthcare informatics journals",
+      "description": "<!-- priority: low -->\n\n\nConsider submission to healthcare informatics journals\n\n**Created**: 2025-08-21",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-08-21T03:00:28Z",
+      "updated_at": "2025-08-21T03:00:28Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-08-21T04:08:33.748603+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-4",
+      "github_issue_number": 4,
+      "title": "Generate final PDF/HTML versions of research paper using pandoc",
+      "description": "<!-- priority: medium -->\n\n\nGenerate final PDF/HTML versions of research paper using pandoc\n\n**Created**: 2025-08-21",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-08-21T04:08:33Z",
+      "updated_at": "2025-08-21T04:08:33Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-08-21T04:08:33.748580+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-5",
+      "github_issue_number": 5,
+      "title": "Review merged paper for citation consistency and academic formatting",
+      "description": "<!-- priority: low -->\n\n\nReview merged paper for citation consistency and academic formatting\n\n**Created**: 2025-08-21",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-08-21T04:08:34Z",
+      "updated_at": "2025-08-21T04:08:34Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-08-21T04:08:33.748550+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-6",
+      "github_issue_number": 6,
+      "title": "Consider submission to healthcare informatics journals",
+      "description": "<!-- priority: low -->\n\n\nConsider submission to healthcare informatics journals\n\n**Created**: 2025-08-21",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-08-21T04:08:35Z",
+      "updated_at": "2025-08-21T04:08:35Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-08-21T04:08:33.747717+00:00",
+        "issue_state": "OPEN"
+      }
+    }
+  ],
+  "priority_distribution": {
+    "P2": 6
+  },
+  "status_distribution": {
+    "todo": 6
+  },
+  "ai_workflow_integration": {},
+  "github_sync_instructions": {}
+}

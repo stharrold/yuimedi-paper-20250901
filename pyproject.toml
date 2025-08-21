@@ -1,0 +1,128 @@
+[project]
+name = "yuiquery-research"
+version = "1.0.0"
+description = "YuiQuery Healthcare Analytics Research - Natural Language to SQL in Healthcare"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+authors = [
+    {name = "YuiQuery Research Team", email = "research@yuimedi.com"}
+]
+keywords = [
+    "healthcare-analytics", 
+    "natural-language-processing", 
+    "sql-generation", 
+    "conversational-ai",
+    "academic-research"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing :: Linguistic",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+# No runtime dependencies - scripts use only Python standard library
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "flake8>=6.0.0", 
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0"
+]
+
+docs = [
+    "pandoc-include-code>=1.0.0",
+    "pandoc-xnos>=2.5.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/yuimedi-20250901"
+Repository = "https://github.com/yourusername/yuimedi-20250901"
+Issues = "https://github.com/yourusername/yuimedi-20250901/issues"
+Documentation = "https://github.com/yourusername/yuimedi-20250901/blob/main/README.md"
+
+[project.scripts]
+sync-todos = "scripts.sync_github_todos:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0"
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.flake8]
+max-line-length = 100
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    ".eggs",
+    "*.egg",
+    "build",
+    "dist"
+]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.github",
+    "/.todo_backups",
+    "/docs",
+    "/.venv"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["scripts"]

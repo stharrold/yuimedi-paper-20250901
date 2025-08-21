@@ -1,0 +1,212 @@
+{
+  "decision_log": [
+    {
+      "id": "001",
+      "date": "2025-08-21",
+      "title": "Repository Structure for Research Documentation",
+      "description": "Decided to organize the repository as a documentation-only project focused on YuiQuery research rather than executable code",
+      "decision": "Structure repository with research documents, bibliography, literature review, and supporting images",
+      "rationale": "This is an academic research project documenting a whitepaper on natural language to SQL in healthcare",
+      "alternatives_considered": [
+        "Mixed code and documentation repository",
+        "Separate repositories for code and research"
+      ],
+      "status": "implemented",
+      "impact": "high",
+      "stakeholders": ["research team", "academic reviewers"],
+      "tags": ["architecture", "research", "documentation"]
+    },
+    {
+      "id": "002",
+      "date": "2025-08-21", 
+      "title": "Documentation Format Selection",
+      "description": "Selected Markdown format for all research documentation",
+      "decision": "Use Markdown (.md) files for all research documents including bibliography and literature review",
+      "rationale": "Markdown provides good readability, version control compatibility, and academic formatting capabilities",
+      "alternatives_considered": [
+        "LaTeX for academic formatting",
+        "Microsoft Word documents",
+        "Google Docs for collaboration"
+      ],
+      "status": "implemented",
+      "impact": "medium",
+      "stakeholders": ["research team", "collaborators"],
+      "tags": ["documentation", "format", "markdown"]
+    },
+    {
+      "id": "003",
+      "date": "2025-08-21",
+      "title": "License Selection",
+      "description": "Selected MIT License for open research sharing",
+      "decision": "Apply MIT License to research materials",
+      "rationale": "Promotes open access to healthcare research while maintaining attribution requirements",
+      "alternatives_considered": [
+        "Creative Commons licenses",
+        "Academic-specific licenses",
+        "No license/all rights reserved"
+      ],
+      "status": "implemented", 
+      "impact": "medium",
+      "stakeholders": ["research team", "academic community"],
+      "tags": ["legal", "licensing", "open-source"]
+    },
+    {
+      "id": "2025-08-21-004",
+      "date": "2025-08-21",
+      "category": "architecture",
+      "decision": "Merge separate YuiQuery research documents into single comprehensive paper.md",
+      "rationale": "Consolidating bibliography, literature review, and research findings into a single academic paper improves coherence, citation management, and publication readiness",
+      "alternatives": [
+        "Keep separate research documents with cross-references",
+        "Create multiple specialized papers for different audiences",
+        "Maintain modular structure with master document"
+      ],
+      "tradeoffs": "Gained: coherent narrative, easier citation management, publication-ready format. Lost: modular flexibility for reusing individual sections",
+      "impact": "paper.md (comprehensive merge), removed 20250810T235500Z_YuiQuery-*.md files",
+      "reversible": false,
+      "revisitDate": null
+    },
+    {
+      "id": "2025-08-21-005",
+      "date": "2025-08-21",
+      "category": "implementation", 
+      "decision": "Transform generic whitepaper template into healthcare analytics research paper",
+      "rationale": "Existing paper.md template provided good academic structure but needed healthcare-specific content and evidence-based approach",
+      "alternatives": [
+        "Start with blank document",
+        "Use LaTeX academic template", 
+        "Adapt from healthcare journal templates"
+      ],
+      "tradeoffs": "Gained: professional academic structure, pandoc compatibility. Lost: some template content that wasn't relevant to research focus",
+      "impact": "paper.md front matter, structure, and build commands updated for research context",
+      "reversible": true,
+      "revisitDate": "2025-12-21"
+    },
+    {
+      "id": "2025-08-21-006",
+      "date": "2025-08-21",
+      "category": "implementation",
+      "decision": "Preserve comprehensive 111-source bibliography with academic and industry citations",
+      "rationale": "Strong evidence base requires both peer-reviewed academic sources and real-world industry implementations to support conversational AI adoption arguments",
+      "alternatives": [
+        "Focus only on peer-reviewed academic sources",
+        "Separate academic and industry citations into different sections",
+        "Reduce citation count for brevity"
+      ],
+      "tradeoffs": "Gained: comprehensive evidence base, credibility. Lost: some document brevity and focus",
+      "impact": "References section spans 111 sources across academic and industry categories",
+      "reversible": true,
+      "revisitDate": null
+    },
+    {
+      "id": "2025-08-21-007",
+      "date": "2025-08-21",
+      "category": "architecture",
+      "decision": "REVERSED: Adopt UV environment for YuiQuery research project",
+      "rationale": "Python 3.6 compatibility issue encountered when user ran scripts with anaconda Python 3.6 (subprocess.run text=True parameter not available). UV environment ensures Python 3.8+ compatibility and provides development consistency. While scripts have zero external dependencies, environment isolation prevents Python version compatibility issues.",
+      "alternatives": [
+        "Continue with system Python and document Python 3.8+ requirement",
+        "Use requirements.txt with traditional venv", 
+        "Add Python version checks to scripts"
+      ],
+      "tradeoffs": "Gained: Python version consistency, development environment isolation, future-proof for package additions, resolved compatibility issues. Lost: some setup complexity, requires UV installation",
+      "impact": "Created pyproject.toml, .venv environment, updated scripts to use UV environment, documentation updated for UV setup",
+      "reversible": true,
+      "revisitDate": "2026-01-01"
+    },
+    {
+      "id": "2025-08-21-008", 
+      "date": "2025-08-21",
+      "category": "implementation",
+      "decision": "Reverse decision 2025-08-21-007 and implement UV environment",
+      "rationale": "Real-world compatibility issue discovered when user encountered Python 3.6 error: 'TypeError: __init__() got an unexpected keyword argument text'. UV environment with Python 3.8+ required for subprocess.run(text=True) parameter. Practical issue overrides theoretical simplicity preference.",
+      "alternatives": [
+        "Add Python version compatibility layer to scripts",
+        "Document Python 3.8+ system requirement",
+        "Use conditional subprocess calls based on Python version"
+      ],
+      "tradeoffs": "Gained: immediate problem resolution, future-proof Python compatibility, development tool integration. Lost: initial simplicity ideal",
+      "impact": "Fixed Python 3.6 compatibility error, scripts now work reliably across environments, established development environment foundation",
+      "reversible": false,
+      "revisitDate": null
+    },
+    {
+      "id": "2025-08-21-009",
+      "date": "2025-08-21",
+      "category": "implementation",
+      "decision": "Implement bidirectional GitHub Issues ↔ TODO synchronization",
+      "rationale": "Original sync script was unidirectional (GitHub → TODO only) and failed with empty repositories. Bidirectional sync enables creating GitHub Issues from existing TODO tasks and maintains consistency between local and remote task management. Essential for academic project workflow where tasks may originate in either system.",
+      "alternatives": [
+        "Keep unidirectional sync and manually create GitHub Issues",
+        "Use separate tools for GitHub Issue creation and TODO management",
+        "Implement GitHub Issues → TODO only with manual issue creation workflow"
+      ],
+      "tradeoffs": "Gained: automatic GitHub Issue creation, true bidirectional consistency, works with empty repositories, seamless workflow. Lost: simpler unidirectional logic, slightly more complex error handling",
+      "impact": "Added load_existing_todo(), create_github_issue(), sync_to_github() methods, updated main() workflow, created 3 GitHub Issues from existing TODO tasks",
+      "reversible": true,
+      "revisitDate": null
+    },
+    {
+      "id": "2025-08-21-010",
+      "date": "2025-08-21",
+      "category": "architecture",
+      "decision": "Adopt UV package manager over traditional pip/venv for Python environment",
+      "rationale": "UV provides faster, more reliable Python environment management with better dependency resolution. Integrates well with modern Python development practices and provides consistent environments across team members. Supports both runtime and development dependencies with clear separation.",
+      "alternatives": [
+        "Traditional pip + virtualenv approach",
+        "Poetry for dependency management",
+        "Conda environment management",
+        "System Python with requirements.txt"
+      ],
+      "tradeoffs": "Gained: faster installation, better dependency resolution, modern tooling, team consistency. Lost: familiarity with traditional pip/venv, additional tool requirement",
+      "impact": "Created pyproject.toml, established .venv with UV, updated scripts for UV environment usage, documentation updated with UV setup instructions",
+      "reversible": true,
+      "revisitDate": "2026-02-01"
+    }
+  ],
+  "patterns": {
+    "established": [
+      "Academic citation format: [A#] for academic sources, [I#] for industry sources",
+      "Comprehensive evidence synthesis from multiple source types",
+      "Systematic literature review methodology with empirical validation",
+      "Healthcare-specific terminology and domain knowledge integration",
+      "Professional academic paper structure with pandoc compatibility",
+      "UV environment for Python version consistency and development tool integration",
+      "Bidirectional GitHub Issues ↔ TODO synchronization for project management",
+      "Metadata-driven GitHub Issue creation with priority and status tracking",
+      "Automatic backup creation before any sync operations",
+      "Comprehensive documentation with multiple levels (README, detailed guides)"
+    ],
+    "rejected": [
+      "Separate modular documents - chose unified paper for coherence",
+      "LaTeX formatting - chose Markdown for accessibility and version control",
+      "Academic-only citations - included industry sources for real-world validation",
+      "Generic technical whitepaper format - specialized for healthcare research",
+      "System Python usage - chose UV environment for compatibility and consistency",
+      "Unidirectional sync - chose bidirectional for complete workflow integration",
+      "Manual GitHub Issue creation - chose automated creation from TODO tasks"
+    ]
+  },
+  "metadata": {
+    "version": "2.0",
+    "created": "2025-08-21",
+    "last_updated": "2025-08-21",
+    "project": "YuiQuery Healthcare Analytics Research",
+    "maintainer": "Research Team"
+  },
+  "schema": {
+    "decision_fields": {
+      "id": "Unique identifier for the decision",
+      "date": "Date decision was made (YYYY-MM-DD)",
+      "title": "Brief title of the decision",
+      "description": "Detailed description of what was decided",
+      "decision": "The actual decision made",
+      "rationale": "Why this decision was made",
+      "alternatives_considered": "Other options that were evaluated",
+      "status": "Current status (proposed, approved, implemented, deprecated)",
+      "impact": "Expected impact level (low, medium, high)",
+      "stakeholders": "People or groups affected by this decision",
+      "tags": "Categories for filtering and organization"
+    }
+  }
+}
