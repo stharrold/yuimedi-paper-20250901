@@ -54,7 +54,8 @@ fi
 # Verify we're in the correct repository (optional safety check)
 REPO_NAME=$(gh repo view --json name --jq .name 2>/dev/null || echo "unknown")
 if [[ "$REPO_NAME" != "yuimedi-20250901" ]]; then
-    echo -e "${YELLOW}Warning: Repository name '$REPO_NAME' doesn't match expected 'yuimedi-20250901'${NC}"
+if [[ "$REPO_NAME" != "$EXPECTED_REPO_NAME" ]]; then
+    echo -e "${YELLOW}Warning: Repository name '$REPO_NAME' doesn't match expected '$EXPECTED_REPO_NAME'${NC}"
     read -p "Continue anyway? (y/N): " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
