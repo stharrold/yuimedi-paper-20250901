@@ -93,7 +93,11 @@ echo -e "${BLUE}Running GitHub <-> TODO synchronization...${NC}"
 
 # Check if UV environment exists
 if [[ ! -d "$REPO_ROOT/.venv" ]]; then
-    echo -e "${YELLOW}UV environment not found. Please run 'uv venv' and 'uv pip install -e .' first${NC}"
+    echo -e "${YELLOW}UV environment not found.${NC}"
+    echo "   To set up the environment, run:"
+    echo "      uv venv"
+    echo "      source .venv/bin/activate"
+    echo "      uv pip install -e ."
     exit 1
 fi
 
