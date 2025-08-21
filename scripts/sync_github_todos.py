@@ -501,7 +501,7 @@ class YuiQueryGitHubSync:
             if task.get('assignee'):
                 cmd.extend(['--assignee', task['assignee']])
             
-            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
+            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True, timeout=60)
             
             # Extract issue number from output (format: "https://github.com/user/repo/issues/123")
             issue_url = result.stdout.strip()
