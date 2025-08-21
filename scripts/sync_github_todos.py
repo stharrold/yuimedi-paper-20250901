@@ -173,7 +173,7 @@ class YuiQueryGitHubSync:
                 'last_sync': datetime.now(timezone.utc).isoformat(),
                 'sync_source': 'github_bidirectional_sync',
                 'sync_metadata': {
-                    'github_repo': 'yuimedi/yuimedi-research',
+                    'github_repo': self.github_repo,
                     'sync_direction': 'bidirectional',
                     'last_github_fetch': datetime.now(timezone.utc).isoformat(),
                     'total_github_issues': len(github_tasks),
