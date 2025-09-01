@@ -47,10 +47,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/yuimedi-20250901"
-Repository = "https://github.com/yourusername/yuimedi-20250901"
-Issues = "https://github.com/yourusername/yuimedi-20250901/issues"
-Documentation = "https://github.com/yourusername/yuimedi-20250901/blob/main/README.md"
+Homepage = "https://github.com/yourusername/yuimedi-paper-20250901"
+Repository = "https://github.com/yourusername/yuimedi-paper-20250901"
+Issues = "https://github.com/yourusername/yuimedi-paper-20250901/issues"
+Documentation = "https://github.com/yourusername/yuimedi-paper-20250901/blob/main/README.md"
 
 [project.scripts]
 sync-todos = "scripts.sync_github_todos:main"

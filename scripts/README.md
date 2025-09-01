@@ -133,7 +133,7 @@ The sync system recognizes these HTML comments in GitHub issue descriptions:
 ```
 
 ### Repository Settings
-Default configuration expects repository name `yuimedi-20250901`. To customize:
+Default configuration expects repository name `yuimedi-paper-20250901`. To customize:
 
 1. Edit `sync_todos.sh` line 56:
    ```bash
