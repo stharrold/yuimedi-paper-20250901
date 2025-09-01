@@ -1,0 +1,9 @@
+risk,probability,impact,mitigation,owner,review_date
+DSH_unavailable,high,critical,backup_assigned,YLT,weekly
+data_access_fails,medium,high,synthetic_data_ready,DSH,2025-10-15
+budget_overrun,medium,medium,phased_approval,YLT,monthly
+conference_deadline,low,medium,abstracts_ready_early,DSH,2025-09-15
+single_author_bottleneck,high,high,co_authors_identified,YLT,2025-09-06
+scope_creep,medium,medium,strict_deliverable_limits,DSH,weekly
+technical_complexity,low,high,AI_tools_available,DSH,2025-10-01
+review_delays,medium,low,early_SME_scheduling,YLT,2025-11-01

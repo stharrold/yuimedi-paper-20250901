@@ -1,0 +1,92 @@
+{
+  "project": "YuiQuery Healthcare Analytics Whitepapers",
+  "version": "3.0-REMEDIATED",
+  "date": "2025-09-01",
+  "currency": "USD",
+  
+  "primary_work": {
+    "description": "Primary developer (DSH) - 3 papers",
+    "hours": 210,
+    "rate": 75,
+    "total": 15750,
+    "breakdown": {
+      "paper_1": 70,
+      "paper_2": 70,
+      "paper_3": 70
+    }
+  },
+  
+  "backup_coverage": {
+    "description": "Backup developer for risk mitigation",
+    "hours": 100,
+    "rate": 75,
+    "total": 7500,
+    "justification": "Critical risk mitigation for single point of failure"
+  },
+  
+  "sme_reviews": {
+    "description": "Subject Matter Expert reviews",
+    "hours": 18,
+    "rate": 150,
+    "total": 2700,
+    "breakdown": {
+      "healthcare_it_expert": 6,
+      "data_science_expert": 6,
+      "fhir_standards_expert": 6
+    }
+  },
+  
+  "publication_fees": {
+    "description": "Journal submission and conference fees",
+    "total": 3500,
+    "breakdown": {
+      "journal_submission": 2000,
+      "conference_abstracts": 1000,
+      "open_access_fees": 500
+    }
+  },
+  
+  "tools_and_infrastructure": {
+    "description": "Software, cloud services, data storage",
+    "total": 1000,
+    "breakdown": {
+      "cloud_compute": 300,
+      "data_storage": 200,
+      "software_licenses": 500
+    }
+  },
+  
+  "subtotal": 30450,
+  "contingency_10_percent": 3045,
+  "grand_total": 33495,
+  
+  "comparison_to_original": {
+    "original_budget": 2700,
+    "increase_factor": 12.4,
+    "justification": "Original budget only included SME reviews, missing all development and infrastructure costs"
+  },
+  
+  "payment_schedule": {
+    "phase_1": {
+      "date": "2025-09-30",
+      "amount": 11165,
+      "deliverable": "Paper 1 complete"
+    },
+    "phase_2": {
+      "date": "2025-12-20",
+      "amount": 11165,
+      "deliverable": "Paper 2 complete"
+    },
+    "phase_3": {
+      "date": "2026-03-15",
+      "amount": 11165,
+      "deliverable": "Paper 3 complete"
+    }
+  },
+  
+  "risk_provisions": {
+    "backup_developer_critical": "Must be assigned by 2025-09-06",
+    "budget_approval_required": "Executive approval needed for 10x increase",
+    "phased_approval_option": "Can approve per paper to reduce upfront commitment"
+  }
+}

@@ -1,21 +1,129 @@
 {
   "project": "YuiQuery Healthcare Analytics Research",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "Academic research documentation",
   "focus": "Natural language to SQL in healthcare",
-  "updated": "2025-08-21T04:08:33.749013+00:00",
-  "last_sync": "2025-08-21T04:08:33.749017+00:00",
-  "sync_source": "github_bidirectional_sync",
+  "updated": "2025-09-01T20:00:00.000000+00:00",
+  "last_sync": "2025-09-01T20:00:00.000000+00:00",
+  "sync_source": "manual_update",
   "sync_metadata": {
     "github_repo": "yuimedi/yuimedi-research",
     "sync_direction": "bidirectional",
     "last_github_fetch": "2025-08-21T04:08:33.749020+00:00",
     "total_github_issues": 6,
-    "total_tasks": 6,
+    "total_tasks": 13,
     "sync_conflicts": [],
-    "validation_status": "synced"
+    "validation_status": "pending_sync"
   },
   "tasks": [
+    {
+      "id": "risk-1",
+      "github_issue_number": null,
+      "title": "Document Risk Assessment Methodology",
+      "description": "Create comprehensive documentation for success probability calculation methodology with verified references to PMI PMBOK, ISO 31000, and other authoritative sources",
+      "priority": "P0",
+      "status": "in_progress",
+      "dependencies": [],
+      "labels": ["documentation", "methodology", "risk-management"],
+      "assignee": "DSH",
+      "created_at": "2025-09-01T20:00:00Z",
+      "updated_at": "2025-09-01T20:00:00Z",
+      "implementation_notes": {
+        "file_path": "project-management/risk-assessment-methodology.md",
+        "references": [
+          "https://www.pmi.org/pmbok-guide-standards/foundational/pmbok",
+          "https://www.iso.org/iso-31000-risk-management.html",
+          "https://www.fairinstitute.org/what-is-fair",
+          "https://ntrs.nasa.gov/citations/20120000033"
+        ]
+      }
+    },
+    {
+      "id": "risk-2",
+      "github_issue_number": null,
+      "title": "Create Risk Scoring Matrix",
+      "description": "Develop 5x5 probability-impact matrix with numerical scoring for all identified risks",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": ["risk-1"],
+      "labels": ["documentation", "risk-management"],
+      "assignee": "DSH",
+      "created_at": "2025-09-01T20:00:00Z",
+      "updated_at": "2025-09-01T20:00:00Z",
+      "implementation_notes": {
+        "file_path": "project-management/risk-scoring-matrix.csv",
+        "scoring_range": "1-25",
+        "categories": ["technical", "resource", "schedule", "budget"]
+      }
+    },
+    {
+      "id": "risk-3",
+      "github_issue_number": null,
+      "title": "Document Probability Calculations",
+      "description": "Create detailed documentation showing how 20% and 60% success probabilities were calculated",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": ["risk-2"],
+      "labels": ["documentation", "calculations"],
+      "assignee": "DSH",
+      "created_at": "2025-09-01T20:00:00Z",
+      "updated_at": "2025-09-01T20:00:00Z",
+      "implementation_notes": {
+        "file_path": "project-management/probability-calculation.md",
+        "formula": "Success = 100% - (Σ Weighted Risk Scores / Max Score) × Mitigation Factor"
+      }
+    },
+    {
+      "id": "risk-4",
+      "github_issue_number": null,
+      "title": "Update Risk Register with Numerical Scores",
+      "description": "Add probability_score and impact_score columns to existing risk register",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": ["risk-2"],
+      "labels": ["documentation", "risk-management"],
+      "assignee": "DSH",
+      "created_at": "2025-09-01T20:00:00Z",
+      "updated_at": "2025-09-01T20:00:00Z",
+      "implementation_notes": {
+        "file_path": "project-management/risks/risk-register-v2.csv",
+        "new_columns": ["probability_score", "impact_score", "risk_score", "weighted_score"]
+      }
+    },
+    {
+      "id": "risk-5",
+      "github_issue_number": null,
+      "title": "Create Methodology Validation Checklist",
+      "description": "Develop checklist to verify all URLs, references, and calculations",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": ["risk-1", "risk-3"],
+      "labels": ["documentation", "validation"],
+      "assignee": "DSH",
+      "created_at": "2025-09-01T20:00:00Z",
+      "updated_at": "2025-09-01T20:00:00Z",
+      "implementation_notes": {
+        "file_path": "project-management/risk-methodology-validation.md",
+        "validation_items": ["URL verification", "reference authority", "calculation accuracy", "reproducibility"]
+      }
+    },
+    {
+      "id": "risk-6",
+      "github_issue_number": null,
+      "title": "Add Healthcare-Specific Risk Factors",
+      "description": "Include HIMSS project management standards for healthcare IT projects",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": ["risk-1"],
+      "labels": ["documentation", "healthcare"],
+      "assignee": "DSH",
+      "created_at": "2025-09-01T20:00:00Z",
+      "updated_at": "2025-09-01T20:00:00Z",
+      "implementation_notes": {
+        "reference": "https://www.himss.org/resources/project-management-healthcare",
+        "specific_risks": ["regulatory_compliance", "clinical_workflow_disruption", "patient_safety"]
+      }
+    },
     {
       "id": "gh-1",
       "github_issue_number": 1,
@@ -126,11 +234,22 @@
     }
   ],
   "priority_distribution": {
-    "P2": 6
+    "P0": 3,
+    "P1": 2,
+    "P2": 8
   },
   "status_distribution": {
-    "todo": 6
+    "in_progress": 1,
+    "todo": 12
   },
-  "ai_workflow_integration": {},
-  "github_sync_instructions": {}
+  "ai_workflow_integration": {
+    "risk_methodology_documentation": {
+      "status": "in_progress",
+      "started": "2025-09-01T20:00:00Z",
+      "description": "Documenting success probability calculation methodology with authoritative references"
+    }
+  },
+  "github_sync_instructions": {
+    "note": "New risk methodology tasks (risk-1 through risk-6) need to be created as GitHub issues on next sync"
+  }
 }
