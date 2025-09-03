@@ -162,6 +162,28 @@
       "impact": "Created pyproject.toml, established .venv with UV, updated scripts for UV environment usage, documentation updated with UV setup instructions",
       "reversible": true,
       "revisitDate": "2026-02-01"
+    },
+    {
+      "id": "2025-09-03-011",
+      "date": "2025-09-03",
+      "category": "project-management",
+      "title": "GitHub Issues Deduplication and Sync System Optimization",
+      "description": "Closed 50+ duplicate GitHub issues created by bidirectional sync system to establish clean task tracking",
+      "decision": "Systematically closed duplicate issues for completed work and consolidated remaining tasks to single issues each",
+      "rationale": "Bidirectional sync was creating 4+ duplicates per task, cluttering project management dashboard. Clean tracking essential for September 30 Paper 1 deadline and executive reporting.",
+      "alternatives_considered": [
+        "Keep all duplicate issues and manage manually",
+        "Disable bidirectional sync entirely", 
+        "Create separate tracking systems for different task types",
+        "Rebuild entire issue tracking from scratch"
+      ],
+      "tradeoffs": "Gained: clean project dashboard, accurate task counts, clear executive reporting, focused team attention. Lost: some historical tracking granularity, need to re-sync TODO files",
+      "impact": "Closed issues #15-35, #47-99 duplicates, established 20 genuine remaining tasks, improved project management clarity",
+      "reversible": false,
+      "revisitDate": null,
+      "status": "implemented",
+      "stakeholders": ["project team", "executives", "GitHub users"],
+      "tags": ["deduplication", "project-management", "github", "task-tracking"]
     }
   ],
   "patterns": {
@@ -190,7 +212,7 @@
   "metadata": {
     "version": "2.0",
     "created": "2025-08-21",
-    "last_updated": "2025-08-21",
+    "last_updated": "2025-09-03",
     "project": "YuiQuery Healthcare Analytics Research",
     "maintainer": "Research Team"
   },
