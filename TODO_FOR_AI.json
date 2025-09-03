@@ -22,7 +22,7 @@
       "title": "Create Backup Developer Documentation",
       "description": "Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, critical, roles",
       "priority": "P0",
-      "status": "todo",
+      "status": "completed",
       "dependencies": [],
       "labels": [],
       "assignee": null,
@@ -112,7 +112,7 @@
       "title": "Create Backup Developer Documentation",
       "description": "Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, critical, roles",
       "priority": "P0",
-      "status": "todo",
+      "status": "completed",
       "dependencies": [],
       "labels": [],
       "assignee": null,
@@ -202,7 +202,7 @@
       "title": "Create Backup Developer Documentation",
       "description": "Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6",
       "priority": "P0",
-      "status": "todo",
+      "status": "completed",
       "dependencies": [],
       "labels": [
         "documentation",
@@ -951,8 +951,8 @@
     "P2": 17
   },
   "status_distribution": {
-    "todo": 43,
-    "completed": 4
+    "todo": 40,
+    "completed": 7
   },
   "ai_workflow_integration": {
     "risk_methodology_documentation": {
