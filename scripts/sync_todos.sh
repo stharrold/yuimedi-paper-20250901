@@ -164,19 +164,12 @@ chore: sync TODO files with GitHub issues
 Bidirectional synchronization between GitHub issues and local TODO files:
 - Updated TODO_FOR_AI.json with research task metadata and priorities  
 - Regenerated TODO_FOR_HUMAN.md with current research status
-    COMMIT_MESSAGE=$(cat <<COMMIT_MSG
-chore: sync TODO files with GitHub issues
 
-Bidirectional synchronization between GitHub issues and local TODO files:
-- Updated TODO_FOR_AI.json with research task metadata and priorities  
-- Regenerated TODO_FOR_HUMAN.md with current research status
-- Aligned with ${PROJECT_NAME} ${WORKFLOW_NAME}
-
-Generated with [Claude Code](https://claude.ai/code)
+🤖 Generated with [Claude Code](https://claude.ai/code)
 
 Co-Authored-By: Claude <noreply@anthropic.com>
 COMMIT_MSG
-    )
+)
     
     if git commit -m "$COMMIT_MESSAGE"; then
         echo -e "${GREEN}Changes committed successfully${NC}"

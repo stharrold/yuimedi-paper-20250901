@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "type": "Academic research documentation",
   "focus": "Natural language to SQL in healthcare",
-  "updated": "2025-09-03T05:30:32.654774+00:00",
-  "last_sync": "2025-09-03T05:30:32.654785+00:00",
+  "updated": "2025-09-03T07:05:33.359772+00:00",
+  "last_sync": "2025-09-03T07:05:33.359777+00:00",
   "sync_source": "github_bidirectional_sync",
   "sync_metadata": {
     "github_repo": "stharrold/yuimedi-paper-20250901",
     "sync_direction": "bidirectional",
-    "last_github_fetch": "2025-09-03T05:30:32.654788+00:00",
-    "total_github_issues": 35,
-    "total_tasks": 47,
+    "last_github_fetch": "2025-09-03T07:05:33.359780+00:00",
+    "total_github_issues": 76,
+    "total_tasks": 88,
     "sync_conflicts": [],
     "validation_status": "synced"
   },
@@ -22,7 +22,7 @@
       "title": "Create Backup Developer Documentation",
       "description": "Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, critical, roles",
       "priority": "P0",
-      "status": "completed",
+      "status": "todo",
       "dependencies": [],
       "labels": [],
       "assignee": null,
@@ -30,7 +30,7 @@
       "updated_at": "2025-09-03T05:29:30Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653128+00:00",
+        "last_sync": "2025-09-03T07:05:33.358773+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -48,7 +48,7 @@
       "updated_at": "2025-09-03T05:29:35Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653061+00:00",
+        "last_sync": "2025-09-03T07:05:33.358717+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -66,7 +66,7 @@
       "updated_at": "2025-09-03T05:29:36Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653032+00:00",
+        "last_sync": "2025-09-03T07:05:33.358706+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -84,7 +84,7 @@
       "updated_at": "2025-09-03T05:29:37Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653013+00:00",
+        "last_sync": "2025-09-03T07:05:33.358691+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -102,7 +102,7 @@
       "updated_at": "2025-09-03T05:29:38Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652999+00:00",
+        "last_sync": "2025-09-03T07:05:33.358678+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -112,7 +112,7 @@
       "title": "Create Backup Developer Documentation",
       "description": "Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, critical, roles",
       "priority": "P0",
-      "status": "completed",
+      "status": "todo",
       "dependencies": [],
       "labels": [],
       "assignee": null,
@@ -120,7 +120,7 @@
       "updated_at": "2025-09-03T05:30:20Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652944+00:00",
+        "last_sync": "2025-09-03T07:05:33.358615+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -138,7 +138,7 @@
       "updated_at": "2025-09-03T05:30:25Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652869+00:00",
+        "last_sync": "2025-09-03T07:05:33.358557+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -156,7 +156,7 @@
       "updated_at": "2025-09-03T05:30:26Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652855+00:00",
+        "last_sync": "2025-09-03T07:05:33.358546+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -174,7 +174,7 @@
       "updated_at": "2025-09-03T05:30:27Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652840+00:00",
+        "last_sync": "2025-09-03T07:05:33.358534+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -192,7 +192,277 @@
       "updated_at": "2025-09-03T05:30:28Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652823+00:00",
+        "last_sync": "2025-09-03T07:05:33.358522+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-47",
+      "github_issue_number": 47,
+      "title": "Create Backup Developer Documentation",
+      "description": "Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, critical, roles",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:35Z",
+      "updated_at": "2025-09-03T06:40:35Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358411+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-48",
+      "github_issue_number": 48,
+      "title": "Update Publication Strategy with Portals",
+      "description": "Document validated submission portals for whitepapers\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, publication",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:36Z",
+      "updated_at": "2025-09-03T06:40:36Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358400+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-49",
+      "github_issue_number": 49,
+      "title": "Document Risk Assessment Methodology",
+      "description": "Create comprehensive documentation for success probability calculation methodology with verified references to PMI PMBOK, ISO 31000, and other authoritative sources\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, methodology, risk-management",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:37Z",
+      "updated_at": "2025-09-03T06:40:37Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358388+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-50",
+      "github_issue_number": 50,
+      "title": "Create Risk Scoring Matrix",
+      "description": "<!-- depends-on: risk-1 -->\n\nDevelop 5x5 probability-impact matrix with numerical scoring for all identified risks\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, risk-management",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:38Z",
+      "updated_at": "2025-09-03T06:40:38Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358376+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-51",
+      "github_issue_number": 51,
+      "title": "Document Probability Calculations",
+      "description": "<!-- depends-on: risk-2 -->\n\nCreate detailed documentation showing how 20% and 60% success probabilities were calculated\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, calculations",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:39Z",
+      "updated_at": "2025-09-03T06:40:39Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358363+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-59",
+      "github_issue_number": 59,
+      "title": "Create Backup Developer Documentation",
+      "description": "Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, critical, roles",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:47:52Z",
+      "updated_at": "2025-09-03T06:47:52Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358254+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-60",
+      "github_issue_number": 60,
+      "title": "Update Publication Strategy with Portals",
+      "description": "Document validated submission portals for whitepapers\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, publication",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:47:53Z",
+      "updated_at": "2025-09-03T06:47:53Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358215+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-61",
+      "github_issue_number": 61,
+      "title": "Document Risk Assessment Methodology",
+      "description": "Create comprehensive documentation for success probability calculation methodology with verified references to PMI PMBOK, ISO 31000, and other authoritative sources\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, methodology, risk-management",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:47:54Z",
+      "updated_at": "2025-09-03T06:47:54Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358198+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-62",
+      "github_issue_number": 62,
+      "title": "Create Risk Scoring Matrix",
+      "description": "<!-- depends-on: risk-1 -->\n\nDevelop 5x5 probability-impact matrix with numerical scoring for all identified risks\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, risk-management",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:47:55Z",
+      "updated_at": "2025-09-03T06:47:55Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358157+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-63",
+      "github_issue_number": 63,
+      "title": "Document Probability Calculations",
+      "description": "<!-- depends-on: risk-2 -->\n\nCreate detailed documentation showing how 20% and 60% success probabilities were calculated\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, calculations",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:47:56Z",
+      "updated_at": "2025-09-03T06:47:56Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358100+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-71",
+      "github_issue_number": 71,
+      "title": "Create Backup Developer Documentation",
+      "description": "Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, critical, roles",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:20Z",
+      "updated_at": "2025-09-03T07:05:20Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357931+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-72",
+      "github_issue_number": 72,
+      "title": "Update Publication Strategy with Portals",
+      "description": "Document validated submission portals for whitepapers\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, publication",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:22Z",
+      "updated_at": "2025-09-03T07:05:22Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357919+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-73",
+      "github_issue_number": 73,
+      "title": "Document Risk Assessment Methodology",
+      "description": "Create comprehensive documentation for success probability calculation methodology with verified references to PMI PMBOK, ISO 31000, and other authoritative sources\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, methodology, risk-management",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:23Z",
+      "updated_at": "2025-09-03T07:05:23Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357908+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-74",
+      "github_issue_number": 74,
+      "title": "Create Risk Scoring Matrix",
+      "description": "<!-- depends-on: risk-1 -->\n\nDevelop 5x5 probability-impact matrix with numerical scoring for all identified risks\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, risk-management",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:24Z",
+      "updated_at": "2025-09-03T07:05:24Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357894+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-75",
+      "github_issue_number": 75,
+      "title": "Document Probability Calculations",
+      "description": "<!-- depends-on: risk-2 -->\n\nCreate detailed documentation showing how 20% and 60% success probabilities were calculated\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, calculations",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:25Z",
+      "updated_at": "2025-09-03T07:05:25Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357882+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -329,7 +599,7 @@
       "title": "Setup Complete Directory Structure",
       "description": "Create missing project directories for papers, source code, and data\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: setup, infrastructure",
       "priority": "P1",
-      "status": "completed",
+      "status": "todo",
       "dependencies": [],
       "labels": [],
       "assignee": null,
@@ -337,7 +607,7 @@
       "updated_at": "2025-09-03T05:29:31Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653116+00:00",
+        "last_sync": "2025-09-03T07:05:33.358762+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -355,7 +625,7 @@
       "updated_at": "2025-09-03T05:29:32Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653104+00:00",
+        "last_sync": "2025-09-03T07:05:33.358751+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -370,11 +640,11 @@
       "labels": [],
       "assignee": null,
       "created_at": "2025-09-03T05:29:33Z",
-      "updated_at": "2025-09-03T05:29:33Z",
+      "updated_at": "2025-09-03T06:48:35Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653090+00:00",
-        "issue_state": "OPEN"
+        "last_sync": "2025-09-03T07:05:33.358739+00:00",
+        "issue_state": "CLOSED"
       }
     },
     {
@@ -391,7 +661,7 @@
       "updated_at": "2025-09-03T05:29:39Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652985+00:00",
+        "last_sync": "2025-09-03T07:05:33.358666+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -409,7 +679,7 @@
       "updated_at": "2025-09-03T05:29:40Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652971+00:00",
+        "last_sync": "2025-09-03T07:05:33.358651+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -419,7 +689,7 @@
       "title": "Setup Complete Directory Structure",
       "description": "Create missing project directories for papers, source code, and data\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: setup, infrastructure",
       "priority": "P1",
-      "status": "completed",
+      "status": "todo",
       "dependencies": [],
       "labels": [],
       "assignee": null,
@@ -427,7 +697,7 @@
       "updated_at": "2025-09-03T05:30:21Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652929+00:00",
+        "last_sync": "2025-09-03T07:05:33.358604+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -445,7 +715,7 @@
       "updated_at": "2025-09-03T05:30:22Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652916+00:00",
+        "last_sync": "2025-09-03T07:05:33.358593+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -460,11 +730,11 @@
       "labels": [],
       "assignee": null,
       "created_at": "2025-09-03T05:30:23Z",
-      "updated_at": "2025-09-03T05:30:23Z",
+      "updated_at": "2025-09-03T06:48:31Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652900+00:00",
-        "issue_state": "OPEN"
+        "last_sync": "2025-09-03T07:05:33.358581+00:00",
+        "issue_state": "CLOSED"
       }
     },
     {
@@ -481,7 +751,7 @@
       "updated_at": "2025-09-03T05:30:29Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652806+00:00",
+        "last_sync": "2025-09-03T07:05:33.358509+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -499,7 +769,277 @@
       "updated_at": "2025-09-03T05:30:30Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652787+00:00",
+        "last_sync": "2025-09-03T07:05:33.358497+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-52",
+      "github_issue_number": 52,
+      "title": "Setup Complete Directory Structure",
+      "description": "Create missing project directories for papers, source code, and data\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: setup, infrastructure",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:40Z",
+      "updated_at": "2025-09-03T06:40:40Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358351+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-53",
+      "github_issue_number": 53,
+      "title": "Setup Synthetic Data with Synthea",
+      "description": "<!-- depends-on: impl-2 -->\n\nClone Synthea repository and generate 100 synthetic patients as backup data source\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: data, setup, risk-mitigation",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:42Z",
+      "updated_at": "2025-09-03T06:40:42Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358339+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-54",
+      "github_issue_number": 54,
+      "title": "Create GitHub Milestones",
+      "description": "Setup GitHub milestones for all 3 papers with deadlines\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: github, project-management",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:43Z",
+      "updated_at": "2025-09-03T06:48:26Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358326+00:00",
+        "issue_state": "CLOSED"
+      }
+    },
+    {
+      "id": "gh-55",
+      "github_issue_number": 55,
+      "title": "Update Risk Register with Numerical Scores",
+      "description": "<!-- depends-on: risk-2 -->\n\nAdd probability_score and impact_score columns to existing risk register\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, risk-management",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:44Z",
+      "updated_at": "2025-09-03T06:40:44Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358315+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-56",
+      "github_issue_number": 56,
+      "title": "Create Methodology Validation Checklist",
+      "description": "<!-- depends-on: risk-1, risk-3 -->\n\nDevelop checklist to verify all URLs, references, and calculations\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, validation",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:45Z",
+      "updated_at": "2025-09-03T06:40:45Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358302+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-64",
+      "github_issue_number": 64,
+      "title": "Setup Complete Directory Structure",
+      "description": "Create missing project directories for papers, source code, and data\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: setup, infrastructure",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:47:57Z",
+      "updated_at": "2025-09-03T06:47:57Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358087+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-65",
+      "github_issue_number": 65,
+      "title": "Setup Synthetic Data with Synthea",
+      "description": "<!-- depends-on: impl-2 -->\n\nClone Synthea repository and generate 100 synthetic patients as backup data source\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: data, setup, risk-mitigation",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:47:58Z",
+      "updated_at": "2025-09-03T06:47:58Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358075+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-66",
+      "github_issue_number": 66,
+      "title": "Create GitHub Milestones",
+      "description": "Setup GitHub milestones for all 3 papers with deadlines\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: github, project-management",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:47:59Z",
+      "updated_at": "2025-09-03T06:48:20Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358061+00:00",
+        "issue_state": "CLOSED"
+      }
+    },
+    {
+      "id": "gh-67",
+      "github_issue_number": 67,
+      "title": "Update Risk Register with Numerical Scores",
+      "description": "<!-- depends-on: risk-2 -->\n\nAdd probability_score and impact_score columns to existing risk register\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, risk-management",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:48:00Z",
+      "updated_at": "2025-09-03T06:48:00Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357980+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-68",
+      "github_issue_number": 68,
+      "title": "Create Methodology Validation Checklist",
+      "description": "<!-- depends-on: risk-1, risk-3 -->\n\nDevelop checklist to verify all URLs, references, and calculations\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, validation",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:48:01Z",
+      "updated_at": "2025-09-03T06:48:01Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357967+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-76",
+      "github_issue_number": 76,
+      "title": "Setup Complete Directory Structure",
+      "description": "Create missing project directories for papers, source code, and data\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: setup, infrastructure",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:26Z",
+      "updated_at": "2025-09-03T07:05:26Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357869+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-77",
+      "github_issue_number": 77,
+      "title": "Setup Synthetic Data with Synthea",
+      "description": "<!-- depends-on: impl-2 -->\n\nClone Synthea repository and generate 100 synthetic patients as backup data source\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: data, setup, risk-mitigation",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:27Z",
+      "updated_at": "2025-09-03T07:05:27Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357857+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-78",
+      "github_issue_number": 78,
+      "title": "Create GitHub Milestones",
+      "description": "Setup GitHub milestones for all 3 papers with deadlines\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: github, project-management",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:28Z",
+      "updated_at": "2025-09-03T07:05:28Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357843+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-79",
+      "github_issue_number": 79,
+      "title": "Update Risk Register with Numerical Scores",
+      "description": "<!-- depends-on: risk-2 -->\n\nAdd probability_score and impact_score columns to existing risk register\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, risk-management",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:29Z",
+      "updated_at": "2025-09-03T07:05:29Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357830+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-80",
+      "github_issue_number": 80,
+      "title": "Create Methodology Validation Checklist",
+      "description": "<!-- depends-on: risk-1, risk-3 -->\n\nDevelop checklist to verify all URLs, references, and calculations\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, validation",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:30Z",
+      "updated_at": "2025-09-03T07:05:30Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357816+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -556,7 +1096,7 @@
       "title": "Create GitHub Milestones",
       "description": "Setup GitHub milestones for all 3 papers with deadlines",
       "priority": "P1",
-      "status": "todo",
+      "status": "completed",
       "dependencies": [],
       "labels": [
         "github",
@@ -642,7 +1182,7 @@
       "updated_at": "2025-08-21T03:00:26Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653364+00:00",
+        "last_sync": "2025-09-03T07:05:33.359007+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -660,7 +1200,7 @@
       "updated_at": "2025-08-21T03:00:27Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653352+00:00",
+        "last_sync": "2025-09-03T07:05:33.358996+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -678,7 +1218,7 @@
       "updated_at": "2025-08-21T03:00:28Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653340+00:00",
+        "last_sync": "2025-09-03T07:05:33.358985+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -696,7 +1236,7 @@
       "updated_at": "2025-08-21T04:08:33Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653329+00:00",
+        "last_sync": "2025-09-03T07:05:33.358974+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -714,7 +1254,7 @@
       "updated_at": "2025-08-21T04:08:34Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653317+00:00",
+        "last_sync": "2025-09-03T07:05:33.358962+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -732,7 +1272,7 @@
       "updated_at": "2025-08-21T04:08:35Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653304+00:00",
+        "last_sync": "2025-09-03T07:05:33.358951+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -750,7 +1290,7 @@
       "updated_at": "2025-09-01T02:41:46Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653291+00:00",
+        "last_sync": "2025-09-03T07:05:33.358938+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -768,7 +1308,7 @@
       "updated_at": "2025-09-01T03:28:49Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653239+00:00",
+        "last_sync": "2025-09-03T07:05:33.358885+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -786,7 +1326,7 @@
       "updated_at": "2025-09-01T03:35:16Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653203+00:00",
+        "last_sync": "2025-09-03T07:05:33.358849+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -804,7 +1344,7 @@
       "updated_at": "2025-09-01T03:48:54Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653170+00:00",
+        "last_sync": "2025-09-03T07:05:33.358820+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -822,7 +1362,7 @@
       "updated_at": "2025-09-01T04:12:57Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653153+00:00",
+        "last_sync": "2025-09-03T07:05:33.358802+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -840,7 +1380,7 @@
       "updated_at": "2025-09-03T05:29:34Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.653076+00:00",
+        "last_sync": "2025-09-03T07:05:33.358727+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -858,7 +1398,7 @@
       "updated_at": "2025-09-03T05:29:41Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652958+00:00",
+        "last_sync": "2025-09-03T07:05:33.358638+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -876,7 +1416,7 @@
       "updated_at": "2025-09-03T05:30:24Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652883+00:00",
+        "last_sync": "2025-09-03T07:05:33.358568+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -894,7 +1434,205 @@
       "updated_at": "2025-09-03T05:30:31Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-03T05:30:32.652191+00:00",
+        "last_sync": "2025-09-03T07:05:33.358485+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-40",
+      "github_issue_number": 40,
+      "title": "The JSON contains shell variable expansion syntax `${references.salary_data}` which will not work in JSON context. This should either be a literal URL or use a different templating approach.",
+      "description": "The JSON contains shell variable expansion syntax `${references.salary_data}` which will not work in JSON context. This should either be a literal URL or use a different templating approach.\r\n```suggestion\r\n          \"echo '# Backup Developer Role\\n\\n## Requirements\\n- Healthcare data experience\\n- Python/SQL proficiency\\n- 10 hours/week availability\\n\\n## Budget: $15,000-20,000\\n\\nReference: https://www.glassdoor.com/Salaries/healthcare-data-analyst-salary-SRCH_KO0,23.htm' > ./project-managemen...",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T05:56:40Z",
+      "updated_at": "2025-09-03T05:56:40Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358471+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-41",
+      "github_issue_number": 41,
+      "title": "The increase_factor of 12.4 is mathematically incorrect. $33,495 \u00f7 $2,700 = 12.4, but the grand_total is $33,495 while the subtotal before contingency is $30,450. The factor should be calculated against the appropriate base amount.",
+      "description": "The increase_factor of 12.4 is mathematically incorrect. $33,495 \u00f7 $2,700 = 12.4, but the grand_total is $33,495 while the subtotal before contingency is $30,450. The factor should be calculated against the appropriate base amount.\r\n```suggestion\r\n    \"increase_factor\": 11.28,\r\n```\r\n\r\n_Originally posted by @Copilot in https://github.com/stharrold/yuimedi-paper-20250901/pull/39#discussion_r2317819690_",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T05:57:01Z",
+      "updated_at": "2025-09-03T05:57:01Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358460+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-42",
+      "github_issue_number": 42,
+      "title": "This creates duplicate if statements checking different repository names. The second condition will never be reached because both conditions are checking the same variable in sequence without proper logic flow.",
+      "description": "This creates duplicate if statements checking different repository names. The second condition will never be reached because both conditions are checking the same variable in sequence without proper logic flow.\r\n```suggestion\r\n# List of allowed repository names\r\nALLOWED_REPOS=(\"yuimedi-paper-20250901\")\r\n\r\nREPO_MATCHED=false\r\nfor allowed in \"${ALLOWED_REPOS[@]}\"; do\r\n    if [[ \"$REPO_NAME\" == \"$allowed\" ]]; then\r\n        REPO_MATCHED=true\r\n        break\r\n    fi\r\ndone\r\n\r\nif [[ \"$REPO_MATCHED\" != \"...",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T05:57:13Z",
+      "updated_at": "2025-09-03T05:57:13Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358449+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-43",
+      "github_issue_number": 43,
+      "title": "[nitpick] The GitHub repository name is hardcoded in the class constructor. This should be configurable through environment variables or constructor parameters to improve reusability across different projects.",
+      "description": "[nitpick] The GitHub repository name is hardcoded in the class constructor. This should be configurable through environment variables or constructor parameters to improve reusability across different projects.\r\n\r\n_Originally posted by @Copilot in https://github.com/stharrold/yuimedi-paper-20250901/pull/39#discussion_r2317819703_",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T05:57:28Z",
+      "updated_at": "2025-09-03T05:57:28Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358436+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-46",
+      "github_issue_number": 46,
+      "title": "[nitpick] The deadline of December 20, 2025 appears very close to the holiday period, which may impact review processes and availability of collaborators. Consider moving the deadline to mid-December or early January to avoid potential delays.",
+      "description": "[nitpick] The deadline of December 20, 2025 appears very close to the holiday period, which may impact review processes and availability of collaborators. Consider moving the deadline to mid-December or early January to avoid potential delays.\r\n```suggestion\r\nJanuary 10, 2026\r\n```\r\n\r\n_Originally posted by @Copilot in https://github.com/stharrold/yuimedi-paper-20250901/pull/45#discussion_r2317891947_",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:28:29Z",
+      "updated_at": "2025-09-03T06:28:29Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358426+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-57",
+      "github_issue_number": 57,
+      "title": "Create GitHub Actions Workflow",
+      "description": "Setup automated project tracking with GitHub Actions\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: automation, github",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:46Z",
+      "updated_at": "2025-09-03T06:40:46Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358289+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-58",
+      "github_issue_number": 58,
+      "title": "Add Healthcare-Specific Risk Factors",
+      "description": "<!-- depends-on: risk-1 -->\n\nInclude HIMSS project management standards for healthcare IT projects\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, healthcare",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:40:47Z",
+      "updated_at": "2025-09-03T06:40:47Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.358275+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-69",
+      "github_issue_number": 69,
+      "title": "Create GitHub Actions Workflow",
+      "description": "Setup automated project tracking with GitHub Actions\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: automation, github",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:48:03Z",
+      "updated_at": "2025-09-03T06:48:03Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357955+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-70",
+      "github_issue_number": 70,
+      "title": "Add Healthcare-Specific Risk Factors",
+      "description": "<!-- depends-on: risk-1 -->\n\nInclude HIMSS project management standards for healthcare IT projects\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, healthcare",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T06:48:04Z",
+      "updated_at": "2025-09-03T06:48:04Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357944+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-81",
+      "github_issue_number": 81,
+      "title": "Create GitHub Actions Workflow",
+      "description": "Setup automated project tracking with GitHub Actions\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: automation, github",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:31Z",
+      "updated_at": "2025-09-03T07:05:31Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357797+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-82",
+      "github_issue_number": 82,
+      "title": "Add Healthcare-Specific Risk Factors",
+      "description": "<!-- depends-on: risk-1 -->\n\nInclude HIMSS project management standards for healthcare IT projects\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, healthcare",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-03T07:05:32Z",
+      "updated_at": "2025-09-03T07:05:32Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-03T07:05:33.357088+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -946,13 +1684,13 @@
     }
   ],
   "priority_distribution": {
-    "P0": 15,
-    "P1": 15,
-    "P2": 17
+    "P0": 30,
+    "P1": 30,
+    "P2": 28
   },
   "status_distribution": {
-    "todo": 37,
-    "completed": 10
+    "todo": 81,
+    "completed": 7
   },
   "ai_workflow_integration": {
     "risk_methodology_documentation": {
