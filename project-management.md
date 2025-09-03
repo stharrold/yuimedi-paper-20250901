@@ -169,6 +169,24 @@
 - Paper 3 deadline: 2026-03-15 (Q1 2026 completion)
 - Note: Conference abstracts (HIMSS, AMIA) are optional and separate from whitepaper publication
 
+## Project Management: Single Source of Truth ✅
+
+**PRIMARY SYSTEM**: This document (`project-management.md`) serves as the **authoritative project hub**
+
+**TMP Validation Integration**: Based on validated test cases from [archived validation work](archive/TMP-yuiquery-update-sept2025_20250903T075200Z.md):
+- **Test Case #1**: Primary/foreign key discovery → Algorithm development milestones
+- **Test Case #2**: Design pattern memory recall → Validation methodology checkpoints  
+- **Test Case #3**: Business object detection → Research phase deliverables
+- **Test Case #4**: Synthea data integrity → Quality validation gates for Paper 2
+
+**Streamlined Task Management**:
+- **GitHub Issues**: Technical task tracking with bidirectional sync
+- **TODO_FOR_AI.json**: Detailed task metadata and dependencies  
+- **TODO_FOR_HUMAN.md**: Priority overview and quality assurance checklist
+- **This Document**: Strategic context, timelines, and executive dashboard
+
+**GitHub Projects**: [Backup system available](archive/github-projects-integration-20250903T074900Z.md) but **not primary workflow**
+
 ## Revised Scope (30% Reduction)
 - **Paper 1:** 70 hours (was 100)
 - **Paper 2:** 70 hours (was 100)  
@@ -287,35 +305,41 @@ These academic whitepapers establish Yuimedi's intellectual authority in healthc
 4. Consider JMIR submission for peer review (optional)
 5. Optionally submit conference abstract to HIMSS 2026 (separate from paper)
 
-## 1. Create GitHub Project
+## 1. GitHub Project Created ✅
 
-```bash
-# Navigate to repository
-https://github.com/stharrold/yuimedi-paper-20250901
+**Project URL**: https://github.com/users/stharrold/projects/1
+**Project ID**: `PVT_kwHOAD8Xp84BCJ6G`
+**Integration Status**: COMPLETE
 
-# Click Projects tab → New project → Table view
-# Name: "YuiQuery Research Papers Timeline"
-```
+**Based on TMP Validation Work**: Connected to validated test cases from [archived validation work](archive/TMP-yuiquery-update-sept2025_20250903T075200Z.md) including:
+- Primary/foreign key discovery patterns (July 28, 2025)
+- Design pattern memory recall testing (July 29, 2025) 
+- Business object detection + haversine calculations (August 3, 2025)
+- Frequency distributions + Synthea data integrity analysis (August 5, 2025)
 
-## 2. Configure Custom Fields
+## 2. Custom Fields Configured ✅
 
-| Field Name | Type | Options |
-|------------|------|---------|
-| Hours_Est | Number | - |
-| Hours_Actual | Number | - |
-| Paper | Single Select | Paper 1, Paper 2, Paper 3 |
-| Phase | Single Select | Research, Development, Writing, Review |
-| Week_Start | Date | - |
-| Assignee | Assignee | - |
-| Priority | Single Select | P0, P1, P2 |
-| Dependencies | Text | - |
+**Based on TMP Validation Methodology and Project Structure**
+
+| Field Name | Type | Options | Field ID |
+|------------|------|---------|----------|
+| Hours_Est | Number | - | `PVTF_lAHOAD8Xp84BCJ6Gzg0cu0o` |
+| Hours_Actual | Number | - | `PVTF_lAHOAD8Xp84BCJ6Gzg0cu1U` |
+| Week_Start | Date | - | `PVTF_lAHOAD8Xp84BCJ6Gzg0cu2A` |
+| Paper | Single Select | Paper 1 (Literature Review), Paper 2 (Proof of Concept), Paper 3 (Schema Mapping) | `PVTSSF_lAHOAD8Xp84BCJ6Gzg0cu74` |
+| Phase | Single Select | Research, Algorithm, Validation, Writing, Review | `PVTSSF_lAHOAD8Xp84BCJ6Gzg0cu9U` |
+| Priority | Single Select | P0 (Critical), P1 (High), P2 (Medium), P3 (Low) | `PVTSSF_lAHOAD8Xp84BCJ6Gzg0cu9Y` |
+
+**Validation Integration**: Phase field directly maps to TMP test case progression (Research → Algorithm → Validation → Writing → Review)
 
 ## 3. Milestone Schedule
 
-### GitHub Milestones Created
+### GitHub Milestones Created ✅
 - **Milestone 1**: Paper 1: Literature Review (https://github.com/stharrold/yuimedi-paper-20250901/milestone/1)
 - **Milestone 2**: Paper 2: Proof of Concept (https://github.com/stharrold/yuimedi-paper-20250901/milestone/2)  
 - **Milestone 3**: Paper 3: Schema Mapping & Interoperability (https://github.com/stharrold/yuimedi-paper-20250901/milestone/3)
+
+**GitHub Projects Integration**: All milestones connected to [YuiQuery Research Papers Timeline](https://github.com/users/stharrold/projects/1) with validation-based tracking
 
 ### Paper 1: Literature Review
 **Duration:** 2025-08-01 to 2025-10-02 (9 weeks)
@@ -732,24 +756,43 @@ Actual speedup will vary based on:
 **AI-Assisted Acceleration:**
 - AI-assisted systematic review: 1.5 hours vs months ([arXiv:2504.14822](https://arxiv.org/abs/2504.14822))
 
-## Commands for Project Setup
+## GitHub Projects Automation Integration ✅
 
+**Project Management Hub**: All systems now connected via [GitHub Project](https://github.com/users/stharrold/projects/1)
+
+### Repository-Linked Project Automation ✅
 ```bash
-# Create all milestones
-gh api repos/:owner/:repo/milestones \
-  --method POST \
-  --field title="Paper 1: Literature Review" \
-  --field due_on="2025-10-02T23:59:59Z"
+# Full system sync (TODO ↔ GitHub Issues ↔ Repository Project)
+./scripts/sync_todos.sh
+./scripts/github_project_sync.sh
 
-# Import issues from this guide
-gh issue create --title "Database searches" \
-  --body "Hours: 10\nWeek: 2025-08-01 to 2025-08-07" \
-  --label "paper-1,research" \
-  --milestone "Paper 1: Literature Review"
+# Manual GitHub Project operations (Repository-Linked)
+gh api graphql -f query='mutation { 
+  addProjectV2ItemById(input: { 
+    projectId: "PVT_kwHOAD8Xp84BCJ9K", 
+    contentId: "ISSUE_ID" 
+  }) { item { id } } 
+}'
 
-# Set up project automation
-gh workflow enable project-tracking.yml
+# Set TMP validation-based field values
+gh api graphql -f query='mutation { 
+  updateProjectV2ItemFieldValue(input: { 
+    projectId: "PVT_kwHOAD8Xp84BCJ9K", 
+    itemId: "ITEM_ID", 
+    fieldId: "PVTSSF_lAHOAD8Xp84BCJ9Kzg0cw2o", 
+    value: { singleSelectOptionId: "122107e7" } # Paper 1
+  }) { projectV2Item { id } } 
+}'
 ```
+
+**Repository Access**: Project now accessible via repository → Projects tab
+**URL**: https://github.com/stharrold/yuimedi-paper-20250901 → Projects
+
+### TMP Validation → GitHub Project Mapping
+- **TMP Test Cases** → Project **Validation** phase tasks
+- **70-hour paper targets** → **Hours_Est** field values  
+- **3-paper structure** → **Paper** field categorization
+- **Priority system (P0-P3)** → Matches executive dashboard priorities
 
 ## Validated Submission Portals Reference
 

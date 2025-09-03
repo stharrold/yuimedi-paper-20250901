@@ -184,6 +184,28 @@
       "status": "implemented",
       "stakeholders": ["project team", "executives", "GitHub users"],
       "tags": ["deduplication", "project-management", "github", "task-tracking"]
+    },
+    {
+      "id": "2025-09-03-012",
+      "date": "2025-09-03",
+      "category": "project-management",
+      "title": "GitHub Projects Integration and TMP Validation Archive",
+      "description": "Created GitHub Projects V2 integration based on TMP validation work, then simplified to focus on project-management.md as single source of truth",
+      "decision": "Archive TMP-yuiquery-update-sept2025.md and GitHub Projects setup, focus on project-management.md as primary project hub",
+      "rationale": "TMP validation work (July-August 2025 test cases) successfully integrated into project structure. GitHub Projects adds complexity without strategic value given comprehensive project-management.md. Single source of truth better serves executive decision-making.",
+      "alternatives_considered": [
+        "Maintain 3-system sync (TODO ↔ GitHub Issues ↔ GitHub Projects)",
+        "Use GitHub Projects as primary project management system",
+        "Keep TMP file permanently in repository root",
+        "Create separate validation tracking system"
+      ],
+      "tradeoffs": "Gained: simplified project management, reduced maintenance overhead, preserved validation methodology, clear strategic focus. Lost: visual GitHub Projects interface, some automation possibilities",
+      "impact": "Archived TMP-yuiquery-update-sept2025.md to archive/, created GitHub Projects backup at archive/github-projects-integration-20250903T074900Z.md, established project-management.md as authoritative hub",
+      "reversible": true,
+      "revisitDate": "2026-01-01",
+      "status": "implemented",
+      "stakeholders": ["project team", "executives", "validation team"],
+      "tags": ["tmp-validation", "github-projects", "archive", "single-source-truth"]
     }
   ],
   "patterns": {
