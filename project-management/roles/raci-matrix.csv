@@ -1,0 +1,74 @@
+Task/Activity,DSH,Backup_Developer,YLT,YMT,YTT,SME_Reviewers
+Project Planning,C,I,A,I,C,-
+Budget Approval,I,I,A,I,I,-
+Risk Management,R,C,A,I,I,-
+Backup Developer Hiring,C,I,A,I,C,-
+Paper 1: Literature Review,,,,,,-
+Database Searches,R/A,C,I,-,C,-
+Industry Report Analysis,R/A,C,C,-,-,-
+Synthesis and Gap Analysis,R/A,C,C,-,C,-
+Draft Writing,R/A,C,I,-,I,-
+Figures and Tables,R/A,R,I,-,C,-
+Conference Abstract (HIMSS/AMIA),R/A,C,I,C,-,-
+Internal Review Coordination,A,C,C,-,R,-
+SME Review Coordination,R/A,I,I,-,-,C
+Paper 2: Proof of Concept,,,,,,-
+Data Acquisition,R/A,C,I,-,C,-
+Algorithm Design,R/A,C,I,-,C,-
+Implementation,R/A,R,I,-,C,-
+Testing and Debugging,A,R,I,-,R,-
+Experiments and Metrics,R/A,C,I,-,C,-
+Statistical Analysis,R/A,C,I,-,C,-
+Methodology Documentation,R/A,C,I,-,I,-
+Results Writing,R/A,C,I,-,I,-
+Technical Validation,A,R,I,-,R,C
+Paper 3: Schema Mapping,,,,,,-
+FHIR/OMOP Documentation Review,R/A,C,I,-,C,-
+Mapping Architecture Design,R/A,C,C,-,C,-
+Implementation,R/A,R,I,-,C,-
+Query Translation Development,R/A,R,I,-,C,-
+Testing and Validation,A,R,I,-,R,-
+Documentation,R/A,C,I,-,I,-
+Interoperability Review,A,C,I,-,C,R
+Publication and Distribution,,,,,,-
+Preprint Submission (medRxiv/arXiv),R/A,C,I,I,-,-
+Journal Submission,R/A,C,A,I,-,-
+Repository Upload (ResearchGate/Zenodo),R/A,R,I,C,-,-
+Yuimedi Website Publication,C,I,A,R,C,-
+Conference Presentation Prep,R/A,C,I,R,C,-
+Marketing Content Development,,,,,,-
+Blog Posts (500 words),C/A,I,I,R,C,-
+Webinar Materials,C,I,A,R,C,-
+Executive Summaries,R/A,C,A,C,I,-
+Social Media Content,I,I,C,R,I,-
+Technical Infrastructure,,,,,,-
+GitHub Repository Management,R/A,R,I,-,C,-
+Development Environment Setup,R/A,R,I,-,C,-
+CI/CD Pipeline,C,C,I,-,R/A,-
+Code Reviews,A,R,I,-,C,-
+Testing Framework,A,R,I,-,R,-
+Documentation System,R/A,R,I,-,C,-
+Quality Assurance,,,,,,-
+Code Quality Standards,A,R,I,-,R,-
+Test Coverage (80%+),A,R,I,-,R,-
+Security Reviews,C,C,A,-,R,-
+Performance Testing,A,R,I,-,R,-
+Documentation Review,R/A,R,C,C,C,-
+Knowledge Management,,,,,,-
+Weekly Sync Meetings,R,R,I,-,I,-
+Knowledge Transfer Sessions,R,R,C,-,I,-
+Technical Decision Documentation,R/A,C,I,-,I,-
+Research Notes Management,R/A,R,I,-,I,-
+Onboarding Documentation,A,R,C,-,C,-
+Emergency Procedures,,,,,,-
+Primary Developer Unavailable,-,R/A,C,I,C,-
+Critical Bug Resolution,A,R,C,-,R,-
+Deadline Risk Mitigation,C,R,A,I,C,-
+Data Access Issues,R,R,A,-,C,-
+Technical Escalation,C,R,A,-,R,-
+Administrative,,,,,,-
+Time Tracking,R,R,C,-,I,-
+Invoice Processing,R,R,A,-,C,-
+Contract Management,I,I,A,-,C,-
+Performance Reviews,C,C,A,-,C,-
+Status Reporting,R,C,A,I,I,-
