@@ -225,8 +225,8 @@ echo "=================================================="
 if [[ -f "TODO_FOR_AI.json" ]]; then
     echo -e "${BLUE}Current task summary:${NC}"
     
-    # Extract summary using Python one-liner
-    python3 -c "
+    # Extract summary using Python  
+    python3 << 'EOF'
 import json
 try:
     with open('TODO_FOR_AI.json', 'r') as f:
@@ -239,14 +239,14 @@ try:
     
     print(f'   Total tasks: {total}')
     print(f'   GitHub issues: {github_issues}')
-    print(f'   Critical (P0): {priority_dist.get(\"P0\", 0)}')
-    print(f'   High priority (P1): {priority_dist.get(\"P1\", 0)}')
-    print(f'   In progress: {status_dist.get(\"in_progress\", 0)}')
-    print(f'   Blocked: {status_dist.get(\"blocked\", 0)}')
+    print(f'   Critical (P0): {priority_dist.get("P0", 0)}')
+    print(f'   High priority (P1): {priority_dist.get("P1", 0)}')
+    print(f'   In progress: {status_dist.get("in_progress", 0)}')
+    print(f'   Blocked: {status_dist.get("blocked", 0)}')
     
 except Exception as e:
     print(f'   Error reading summary: {e}')
-"
+EOF
 fi
 
 echo
