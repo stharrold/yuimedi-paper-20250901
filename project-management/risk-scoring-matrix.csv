@@ -1,0 +1,14 @@
+risk_id,risk_name,category,probability_score,impact_score,risk_score,weight,weighted_score,mitigation_status,residual_score
+DSH-001,DSH_unavailable,resource,5,5,25,0.30,7.50,partial,3.60
+DSH-002,single_author_bottleneck,resource,5,4,20,0.30,6.00,partial,3.00
+BUD-001,budget_overrun,budget,3,3,9,0.20,1.80,mitigated,0.80
+BUD-002,unrealistic_budget,budget,5,4,20,0.20,4.00,mitigated,0.80
+SCH-001,conference_deadline_miss,schedule,2,3,6,0.25,1.50,mitigated,0.50
+SCH-002,timeline_misalignment,schedule,4,3,12,0.25,3.00,mitigated,0.50
+TEC-001,data_access_fails,technical,3,4,12,0.25,3.00,partial,1.50
+TEC-002,technical_complexity,technical,2,4,8,0.25,2.00,mitigated,1.00
+TEC-003,no_quality_gates,technical,4,4,16,0.25,4.00,mitigated,1.00
+SCP-001,scope_creep,schedule,3,3,9,0.25,2.25,partial,1.50
+SCP-002,scope_too_large,resource,5,3,15,0.30,4.50,mitigated,1.50
+REV-001,review_delays,schedule,3,2,6,0.25,1.50,unmitigated,1.50
+TOTAL,,,,,143,,41.05,,15.20

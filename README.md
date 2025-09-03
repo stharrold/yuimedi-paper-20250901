@@ -13,8 +13,8 @@ Research whitepaper on natural language to SQL in healthcare - a comprehensive a
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/yuimedi-20250901.git
-cd yuimedi-20250901
+git clone https://github.com/yourusername/yuimedi-paper-20250901.git
+cd yuimedi-paper-20250901
 
 # View main research documents
 open whitepaper.md
@@ -68,8 +68,8 @@ This repository contains research documentation for YuiQuery, a conversational A
 
 ```bash
 # Fork and clone
-git clone https://github.com/yourusername/yuimedi-20250901.git
-cd yuimedi-20250901
+git clone https://github.com/yourusername/yuimedi-paper-20250901.git
+cd yuimedi-paper-20250901
 
 # Create research branch
 git checkout -b research/your-contribution
@@ -127,8 +127,8 @@ This licensing approach promotes open access to healthcare research while ensuri
 ## 📮 Contact
 
 **Research Team**: YuiQuery Healthcare Analytics Project  
-**Repository**: [https://github.com/yourusername/yuimedi-20250901](https://github.com/yourusername/yuimedi-20250901)  
-**Discussions**: [GitHub Discussions](https://github.com/yourusername/yuimedi-20250901/discussions)
+**Repository**: [https://github.com/yourusername/yuimedi-paper-20250901](https://github.com/yourusername/yuimedi-paper-20250901)  
+**Discussions**: [GitHub Discussions](https://github.com/yourusername/yuimedi-paper-20250901/discussions)
 
 ## 📈 Citation
 
@@ -139,7 +139,7 @@ This licensing approach promotes open access to healthcare research while ensuri
   month = {8},
   institution = {YuiQuery Research Team},
   type = {Technical Whitepaper},
-  url = {https://github.com/yourusername/yuimedi-20250901},
+  url = {https://github.com/yourusername/yuimedi-paper-20250901},
   note = {Research on conversational AI platforms addressing healthcare analytics challenges}
 }
 ```
