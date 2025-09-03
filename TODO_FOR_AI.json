@@ -329,7 +329,7 @@
       "title": "Setup Complete Directory Structure",
       "description": "Create missing project directories for papers, source code, and data\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: setup, infrastructure",
       "priority": "P1",
-      "status": "todo",
+      "status": "completed",
       "dependencies": [],
       "labels": [],
       "assignee": null,
@@ -419,7 +419,7 @@
       "title": "Setup Complete Directory Structure",
       "description": "Create missing project directories for papers, source code, and data\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: setup, infrastructure",
       "priority": "P1",
-      "status": "todo",
+      "status": "completed",
       "dependencies": [],
       "labels": [],
       "assignee": null,
@@ -509,7 +509,7 @@
       "title": "Setup Complete Directory Structure",
       "description": "Create missing project directories for papers, source code, and data",
       "priority": "P1",
-      "status": "todo",
+      "status": "completed",
       "dependencies": [],
       "labels": [
         "setup",
@@ -951,8 +951,8 @@
     "P2": 17
   },
   "status_distribution": {
-    "todo": 40,
-    "completed": 7
+    "todo": 37,
+    "completed": 10
   },
   "ai_workflow_integration": {
     "risk_methodology_documentation": {
