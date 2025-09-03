@@ -162,6 +162,50 @@
       "impact": "Created pyproject.toml, established .venv with UV, updated scripts for UV environment usage, documentation updated with UV setup instructions",
       "reversible": true,
       "revisitDate": "2026-02-01"
+    },
+    {
+      "id": "2025-09-03-011",
+      "date": "2025-09-03",
+      "category": "project-management",
+      "title": "GitHub Issues Deduplication and Sync System Optimization",
+      "description": "Closed 50+ duplicate GitHub issues created by bidirectional sync system to establish clean task tracking",
+      "decision": "Systematically closed duplicate issues for completed work and consolidated remaining tasks to single issues each",
+      "rationale": "Bidirectional sync was creating 4+ duplicates per task, cluttering project management dashboard. Clean tracking essential for September 30 Paper 1 deadline and executive reporting.",
+      "alternatives_considered": [
+        "Keep all duplicate issues and manage manually",
+        "Disable bidirectional sync entirely", 
+        "Create separate tracking systems for different task types",
+        "Rebuild entire issue tracking from scratch"
+      ],
+      "tradeoffs": "Gained: clean project dashboard, accurate task counts, clear executive reporting, focused team attention. Lost: some historical tracking granularity, need to re-sync TODO files",
+      "impact": "Closed issues #15-35, #47-99 duplicates, established 20 genuine remaining tasks, improved project management clarity",
+      "reversible": false,
+      "revisitDate": null,
+      "status": "implemented",
+      "stakeholders": ["project team", "executives", "GitHub users"],
+      "tags": ["deduplication", "project-management", "github", "task-tracking"]
+    },
+    {
+      "id": "2025-09-03-012",
+      "date": "2025-09-03",
+      "category": "project-management",
+      "title": "GitHub Projects Integration and TMP Validation Archive",
+      "description": "Created GitHub Projects V2 integration based on TMP validation work, then simplified to focus on project-management.md as single source of truth",
+      "decision": "Archive TMP-yuiquery-update-sept2025.md and GitHub Projects setup, focus on project-management.md as primary project hub",
+      "rationale": "TMP validation work (July-August 2025 test cases) successfully integrated into project structure. GitHub Projects adds complexity without strategic value given comprehensive project-management.md. Single source of truth better serves executive decision-making.",
+      "alternatives_considered": [
+        "Maintain 3-system sync (TODO ↔ GitHub Issues ↔ GitHub Projects)",
+        "Use GitHub Projects as primary project management system",
+        "Keep TMP file permanently in repository root",
+        "Create separate validation tracking system"
+      ],
+      "tradeoffs": "Gained: simplified project management, reduced maintenance overhead, preserved validation methodology, clear strategic focus. Lost: visual GitHub Projects interface, some automation possibilities",
+      "impact": "Archived TMP-yuiquery-update-sept2025.md to archive/, created GitHub Projects backup at archive/github-projects-integration-20250903T074900Z.md, established project-management.md as authoritative hub",
+      "reversible": true,
+      "revisitDate": "2026-01-01",
+      "status": "implemented",
+      "stakeholders": ["project team", "executives", "validation team"],
+      "tags": ["tmp-validation", "github-projects", "archive", "single-source-truth"]
     }
   ],
   "patterns": {
@@ -190,7 +234,7 @@
   "metadata": {
     "version": "2.0",
     "created": "2025-08-21",
-    "last_updated": "2025-08-21",
+    "last_updated": "2025-09-03",
     "project": "YuiQuery Healthcare Analytics Research",
     "maintainer": "Research Team"
   },

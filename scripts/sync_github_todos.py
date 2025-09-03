@@ -24,6 +24,7 @@ class YuiQueryGitHubSync:
         self.repo_root = Path(__file__).parent.parent
         self.todo_ai_path = self.repo_root / "TODO_FOR_AI.json"
         self.todo_human_path = self.repo_root / "TODO_FOR_HUMAN.md"
+        self.github_repo = "stharrold/yuimedi-paper-20250901"
         self.project_info = {
             "type": "academic_research",
             "focus": "natural_language_sql_healthcare",
@@ -104,22 +105,12 @@ class YuiQueryGitHubSync:
             description = re.sub(r'<!--\s*status:\s*\w+\s*-->', '', description, flags=re.IGNORECASE)
             description = description.strip()
             if not description:
-            issue_number = issue.get('number')
-            if isinstance(issue_number, int) and issue_number > 0:
-                fallback_desc = f"GitHub issue #{issue_number}"
-            else:
-                fallback_desc = "GitHub issue (number unknown)"
-            description = issue.get('body', '') or fallback_desc
-            # Remove only metadata HTML comments (priority, depends-on, status)
-            description = re.sub(r'<!--\s*priority:\s*P\d\s*-->', '', description, flags=re.IGNORECASE)
-            description = re.sub(r'<!--\s*depends-on:\s*[\d,\s#]+\s*-->', '', description, flags=re.IGNORECASE)
-            description = re.sub(r'<!--\s*status:\s*\w+\s*-->', '', description, flags=re.IGNORECASE)
-            description = description.strip()
-            if not description:
+                issue_number = issue.get('number')
                 if isinstance(issue_number, int) and issue_number > 0:
-                    description = f"GitHub issue #{issue_number}: {issue.get('title', 'No title')}"
+                    fallback_desc = f"GitHub issue #{issue_number}"
                 else:
-                    description = f"GitHub issue (number unknown): {issue.get('title', 'No title')}"
+                    fallback_desc = "GitHub issue (number unknown)"
+                description = fallback_desc
             
             task = {
                 'id': f"gh-{issue['number']}",
@@ -166,7 +157,7 @@ class YuiQueryGitHubSync:
             priority_order = {'P0': 0, 'P1': 1, 'P2': 2, 'P3': 3}
             all_tasks.sort(key=lambda x: (
                 priority_order.get(x['priority'], 4),
-                x.get('github_issue_number', 9999)
+                x.get('github_issue_number') or 9999
             ))
             
             # Calculate status distribution
@@ -497,9 +488,10 @@ class YuiQueryGitHubSync:
             # Add labels if present (skip if they don't exist in repo)
             # Note: Labels will be ignored if they don't exist in the repository
             
-            # Add assignee if present
-            if task.get('assignee'):
-                cmd.extend(['--assignee', task['assignee']])
+            # Add assignee if present and it looks like a GitHub username (not DSH)
+            assignee = task.get('assignee')
+            if assignee and assignee != 'DSH' and not assignee.startswith('YLT'):
+                cmd.extend(['--assignee', assignee])
             
             result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True, timeout=60)
             

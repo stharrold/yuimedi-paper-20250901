@@ -29,7 +29,7 @@ python3 --version
 ### First-Time Setup
 ```bash
 # Navigate to repository root
-cd /Users/stharrold/Documents/GitHub/yuimedi-20250901
+cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901
 
 # Install UV if needed
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -289,7 +289,7 @@ gh repo view
 
 #### Repository Name Mismatch
 ```
-Warning: Repository name 'actual-name' doesn't match expected 'yuimedi-20250901'
+Warning: Repository name 'actual-name' doesn't match expected 'yuimedi-paper-20250901'
 Continue anyway? (y/N):
 ```
 

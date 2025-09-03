@@ -53,7 +53,7 @@ fi
 
 # Verify we're in the correct repository (optional safety check)
 REPO_NAME=$(gh repo view --json name --jq .name 2>/dev/null || echo "unknown")
-if [[ "$REPO_NAME" != "yuimedi-20250901" ]]; then
+if [[ "$REPO_NAME" != "yuimedi-paper-20250901" ]]; then
 if [[ "$REPO_NAME" != "$EXPECTED_REPO_NAME" ]]; then
     echo -e "${YELLOW}Warning: Repository name '$REPO_NAME' doesn't match expected '$EXPECTED_REPO_NAME'${NC}"
     read -p "Continue anyway? (y/N): " -n 1 -r
@@ -164,19 +164,12 @@ chore: sync TODO files with GitHub issues
 Bidirectional synchronization between GitHub issues and local TODO files:
 - Updated TODO_FOR_AI.json with research task metadata and priorities  
 - Regenerated TODO_FOR_HUMAN.md with current research status
-    COMMIT_MESSAGE=$(cat <<COMMIT_MSG
-chore: sync TODO files with GitHub issues
 
-Bidirectional synchronization between GitHub issues and local TODO files:
-- Updated TODO_FOR_AI.json with research task metadata and priorities  
-- Regenerated TODO_FOR_HUMAN.md with current research status
-- Aligned with ${PROJECT_NAME} ${WORKFLOW_NAME}
-
-Generated with [Claude Code](https://claude.ai/code)
+🤖 Generated with [Claude Code](https://claude.ai/code)
 
 Co-Authored-By: Claude <noreply@anthropic.com>
 COMMIT_MSG
-    )
+)
     
     if git commit -m "$COMMIT_MESSAGE"; then
         echo -e "${GREEN}Changes committed successfully${NC}"
@@ -232,8 +225,8 @@ echo "=================================================="
 if [[ -f "TODO_FOR_AI.json" ]]; then
     echo -e "${BLUE}Current task summary:${NC}"
     
-    # Extract summary using Python one-liner
-    python3 -c "
+    # Extract summary using Python  
+    python3 << 'EOF'
 import json
 try:
     with open('TODO_FOR_AI.json', 'r') as f:
@@ -246,14 +239,14 @@ try:
     
     print(f'   Total tasks: {total}')
     print(f'   GitHub issues: {github_issues}')
-    print(f'   Critical (P0): {priority_dist.get(\"P0\", 0)}')
-    print(f'   High priority (P1): {priority_dist.get(\"P1\", 0)}')
-    print(f'   In progress: {status_dist.get(\"in_progress\", 0)}')
-    print(f'   Blocked: {status_dist.get(\"blocked\", 0)}')
+    print(f'   Critical (P0): {priority_dist.get("P0", 0)}')
+    print(f'   High priority (P1): {priority_dist.get("P1", 0)}')
+    print(f'   In progress: {status_dist.get("in_progress", 0)}')
+    print(f'   Blocked: {status_dist.get("blocked", 0)}')
     
 except Exception as e:
     print(f'   Error reading summary: {e}')
-"
+EOF
 fi
 
 echo

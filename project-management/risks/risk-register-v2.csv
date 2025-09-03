@@ -1,0 +1,13 @@
+risk,category,probability,probability_score,impact,impact_score,risk_score,mitigation,owner,review_date,status
+DSH_unavailable,resource,high,5,critical,5,25,backup_assigned,YLT,weekly,partial
+data_access_fails,technical,medium,3,high,4,12,synthetic_data_ready,DSH,2025-10-15,partial
+budget_overrun,budget,medium,3,medium,3,9,phased_approval,YLT,monthly,mitigated
+conference_deadline,schedule,low,2,medium,3,6,abstracts_ready_early,DSH,2025-09-15,mitigated
+single_author_bottleneck,resource,high,5,high,4,20,co_authors_identified,YLT,2025-09-06,partial
+scope_creep,schedule,medium,3,medium,3,9,strict_deliverable_limits,DSH,weekly,partial
+technical_complexity,technical,low,2,high,4,8,AI_tools_available,DSH,2025-10-01,mitigated
+review_delays,schedule,medium,3,low,2,6,early_SME_scheduling,YLT,2025-11-01,unmitigated
+no_quality_gates,technical,high,4,high,4,16,gates_defined,DSH,2025-09-30,mitigated
+unrealistic_budget,budget,high,5,high,4,20,budget_increased_12x,YLT,2025-09-06,mitigated
+timeline_misalignment,schedule,high,4,medium,3,12,conference_dates_adjusted,DSH,2025-09-02,mitigated
+scope_too_large,resource,high,5,medium,3,15,30_percent_reduction,DSH,2025-09-02,mitigated
