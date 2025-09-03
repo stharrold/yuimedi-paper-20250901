@@ -6,7 +6,7 @@
 
 # TODO for Human Review
 
-Last Sync: 2025-09-03T07:05:33.359777+00:00
+Last Sync: 2025-09-03T07:17:25.120735+00:00
 
 ## Priority 0 - Critical
 > **CRITICAL**: Essential research tasks blocking publication progress
@@ -151,6 +151,35 @@ Create detailed documentation showing how 20% and 60% success probabili...
 Develop 5x5 probability-impact matrix with numerical scoring for all id...
 
 - [ ] **[#75]** Document Probability Calculations
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-2 -->
+
+Create detailed documentation showing how 20% and 60% success probabili...
+
+- [ ] **[#88]** Create Backup Developer Documentation
+  - Status: `todo`
+  - Details: Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6
+
+**Created**: 2...
+
+- [ ] **[#89]** Update Publication Strategy with Portals
+  - Status: `todo`
+  - Details: Document validated submission portals for whitepapers
+
+**Created**: 2025-09-03T00:00:00Z
+**Labels**:...
+
+- [ ] **[#90]** Document Risk Assessment Methodology
+  - Status: `todo`
+  - Details: Create comprehensive documentation for success probability calculation methodology with verified ref...
+
+- [ ] **[#91]** Create Risk Scoring Matrix
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-1 -->
+
+Develop 5x5 probability-impact matrix with numerical scoring for all id...
+
+- [ ] **[#92]** Document Probability Calculations
   - Status: `todo`
   - Details: <!-- depends-on: risk-2 -->
 
@@ -331,6 +360,37 @@ Clone Synthea repository and generate 100 synthetic patients as backup ...
 Add probability_score and impact_score columns to existing risk registe...
 
 - [ ] **[#80]** Create Methodology Validation Checklist
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-1, risk-3 -->
+
+Develop checklist to verify all URLs, references, and calculati...
+
+- [ ] **[#93]** Setup Complete Directory Structure
+  - Status: `todo`
+  - Details: Create missing project directories for papers, source code, and data
+
+**Created**: 2025-09-03T00:00:...
+
+- [ ] **[#94]** Setup Synthetic Data with Synthea
+  - Status: `todo`
+  - Details: <!-- depends-on: impl-2 -->
+
+Clone Synthea repository and generate 100 synthetic patients as backup ...
+
+- [ ] **[#95]** Create GitHub Milestones
+  - Status: `todo`
+  - Details: Setup GitHub milestones for all 3 papers with deadlines
+
+**Created**: 2025-09-03T00:00:00Z
+**Labels*...
+
+- [ ] **[#96]** Update Risk Register with Numerical Scores
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-2 -->
+
+Add probability_score and impact_score columns to existing risk registe...
+
+- [ ] **[#97]** Create Methodology Validation Checklist
   - Status: `todo`
   - Details: <!-- depends-on: risk-1, risk-3 -->
 
@@ -541,6 +601,37 @@ Include HIMSS project management standards for healthcare IT projects
 
 ...
 
+- [ ] **[#84]** Multiple duplicate GitHub issues are being displayed with the same titles and descriptions (e.g., #47, #59, #71 all for "Create Backup Developer Documentation"). This indicates a synchronization issue where the same tasks are being created multiple times instead of being properly deduplicated.
+  - Status: `todo`
+  - Details: Multiple duplicate GitHub issues are being displayed with the same titles and descriptions (e.g., #4...
+
+- [ ] **[#85]** The task status is inconsistent between different entries. The same task "Create Backup Developer Documentation" appears with status "todo" in some entries and "completed" in others, indicating a synchronization conflict or improper status tracking.
+  - Status: `todo`
+  - Details: The task status is inconsistent between different entries. The same task "Create Backup Developer Do...
+
+- [ ] **[#86]** The significant increase in GitHub issues (from 35 to 76) and total tasks (from 47 to 88) suggests the synchronization process is creating duplicates rather than properly managing existing tasks. This will lead to confusion and make the task tracking system unreliable.
+  - Status: `todo`
+  - Details: The significant increase in GitHub issues (from 35 to 76) and total tasks (from 47 to 88) suggests t...
+
+- [ ] **[#87]** [nitpick] The deadline change reference to "issue #46" is unclear without context. Consider adding a brief explanation of why the deadline was moved or link to the specific issue for transparency.
+  - Status: `todo`
+  - Details: [nitpick] The deadline change reference to "issue #46" is unclear without context. Consider adding a...
+
+- [ ] **[#98]** Create GitHub Actions Workflow
+  - Status: `todo`
+  - Details: Setup automated project tracking with GitHub Actions
+
+**Created**: 2025-09-03T00:00:00Z
+**Labels**: ...
+
+- [ ] **[#99]** Add Healthcare-Specific Risk Factors
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-1 -->
+
+Include HIMSS project management standards for healthcare IT projects
+
+...
+
 - [ ] **(Internal Task)** Create GitHub Actions Workflow
   - Status: `todo`
   - Details: Setup automated project tracking with GitHub Actions
@@ -555,10 +646,10 @@ Include HIMSS project management standards for healthcare IT projects
 {
   "version": "1.0.0",
   "last_sync_source": "github_bidirectional_sync",
-  "github_issues_total": 76,
-  "total_tasks": 88,
-  "critical_tasks": 30,
-  "high_priority_tasks": 30,
+  "github_issues_total": 92,
+  "total_tasks": 104,
+  "critical_tasks": 35,
+  "high_priority_tasks": 35,
   "blocked_tasks": 0,
   "completed_tasks": 0
 }
