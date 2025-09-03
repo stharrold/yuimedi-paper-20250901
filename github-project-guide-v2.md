@@ -36,9 +36,20 @@
   - Option A: Yuimedi copyright (competitive advantage)
   - Option B: Creative Commons (maximum reach/citations)
 
-• **Publication Venue**: Determine distribution strategy
-  - Option A: Yuimedi website exclusively (control timing/message)
-  - Option B: Submit to peer-reviewed journals (enhanced credibility, 3-6 month delay)
+• **Publication Venue**: Validated submission strategy
+  - Option A: Fast-track preprints (24-72hr review, immediate visibility)
+    * medRxiv (healthcare focused) - https://www.medrxiv.org/submit-a-manuscript
+    * arXiv (technical audience) - https://arxiv.org/submit (requires endorsement)
+    * SSRN (social science angle) - https://www.ssrn.com/
+  - Option B: Peer-reviewed journals (2-8 week review, enhanced credibility)
+    * AHIMA Journal - https://journal.ahima.org/submission-guidelines
+    * JMIR Publications - https://www.jmir.org/author-instructions (viewpoint articles)
+  - Option C: Direct repository (immediate publication)
+    * ResearchGate - direct upload after registration
+    * Zenodo - https://zenodo.org/ (CERN-operated, DOI provided)
+    * Yuimedi website - full control over timing/message
+  
+  Note: Conference presentations (HIMSS, AMIA) are separate from whitepaper publication
 
 • **Decision Authority**: Designate go/no-go approver
   - Recommendation: YLT member for each paper milestone
@@ -65,9 +76,10 @@
 **Total Duration:** 28 weeks
 
 **CRITICAL CHANGES:**
-- Paper 1 deadline: 2025-09-30 (for HIMSS abstract Oct 15)
+- Paper 1 deadline: 2025-09-30 (allows October publication)
 - Paper 2 deadline: 2025-12-20 (holiday buffer added)
-- Paper 3 deadline: 2026-03-15 (for AMIA abstract Mar 1)
+- Paper 3 deadline: 2026-03-15 (Q1 2026 completion)
+- Note: Conference abstracts (HIMSS, AMIA) are optional and separate from whitepaper publication
 
 ## Revised Scope (30% Reduction)
 - **Paper 1:** 70 hours (was 100)
@@ -139,6 +151,54 @@ These academic whitepapers establish Yuimedi's intellectual authority in healthc
 - Demonstrates query portability across systems
 - Shows 70%+ reduction in integration time
 
+## Publication Strategy & Submission Portals
+
+### Phased Release Strategy
+
+**Phase 1: Preprint Servers (Immediate Visibility)**
+- **Timeline**: 24-72 hour review
+- **Primary**: medRxiv (healthcare/medical focus)
+- **Secondary**: arXiv (technical/CS audience) 
+- **Tertiary**: SSRN (social science/health policy angle)
+- **Cost**: FREE
+- **Benefits**: Establish priority, immediate DOI, citeable
+
+**Phase 2: Professional Journals (Credibility)**
+- **Timeline**: 2-8 week review
+- **Options**:
+  - AHIMA Journal (health information management)
+  - JMIR Publications (medical informatics, ~$3,000 if accepted)
+- **Benefits**: Peer review validation, indexed in PubMed
+
+**Phase 3: Direct Distribution (Control)**
+- **Timeline**: Immediate
+- **Platforms**:
+  - ResearchGate (academic network)
+  - Zenodo (permanent DOI, CERN-backed)
+  - Yuimedi website (marketing control)
+- **Cost**: FREE
+- **Benefits**: Full control, immediate access, network effects
+
+### Important Clarifications
+
+**What HIMSS/AMIA Are NOT:**
+- They do NOT publish whitepapers
+- They accept conference presentation proposals only
+- Conference abstracts ≠ whitepaper publication
+- These are separate tracks with different purposes
+
+**Not Accepting External Submissions:**
+- McKinsey, Deloitte, Accenture (internal only)
+- World Economic Forum (invitation/partnership only)
+- Most consulting firms don't accept unsolicited papers
+
+### Recommended Approach
+1. Complete Paper 1 by Sept 30, 2025
+2. Submit immediately to medRxiv (24-72hr publication)
+3. Upload to ResearchGate same day
+4. Consider JMIR submission for peer review (optional)
+5. Optionally submit conference abstract to HIMSS 2026 (separate from paper)
+
 ## 1. Create GitHub Project
 
 ```bash
@@ -175,8 +235,12 @@ Week 7-8 (2025-09-12 to 2025-09-25): Draft writing, figures [20h]
   Reference: 40h benchmark for paper (https://www.researchgate.net/post/As_a_researcher_what_is_the_time_in_days_or_weeks_you_need_to_write_your_paper_noting_that_you_have_the_experimental_data_but_without_analyzing)
   **CRITICAL WEEK: Consider 2 days PTO for 20h total**
   Deliverable: Draft conference abstract for HIMSS/AMIA
-Week 9 (2025-09-26 to 2025-10-02): Revisions, formatting [10h]
-  Deliverables: Executive blog post (500 words), webinar slides (10-15 slides)
+Week 9 (2025-09-26 to 2025-10-02): Revisions, formatting, submission [10h]
+  Deliverables: 
+  - Submit to medRxiv for rapid publication (24-72hr review)
+  - Upload to ResearchGate for immediate visibility
+  - Consider AHIMA Journal submission for peer review
+  - Optional: Prepare conference abstract if pursuing HIMSS 2026
 ```
 
 ### Paper 2: Proof of Concept
@@ -476,6 +540,14 @@ Total PTO needed: 10 days across 30 weeks
 - Feminist Review: £130 (~$165) per review ([Feminist Review](https://femrev.wordpress.com/2022/05/24/feminist-review-peer-review-honorariums/))
 - **Budget if using academic rates: $450-600 total** (3 reviews × $150-200)
 
+**Publication & Distribution Costs:**
+- Preprint servers (arXiv, medRxiv, SSRN): **$0**
+- ResearchGate, Zenodo uploads: **$0**
+- JMIR publication fee (if accepted): **~$3,000**
+- AHIMA Journal submission: **$0** (possible page charges if accepted)
+- Conference registrations (optional): **$500-1,000** per conference
+- **Realistic publication budget: $0-4,000** (depending on journal selection)
+
 Note: Samuel Harrold self-funds Claude subscription ($200/month)
 
 ### Review Checkpoints
@@ -568,6 +640,61 @@ gh issue create --title "Database searches" \
 gh workflow enable project-tracking.yml
 ```
 
+## Validated Submission Portals Reference
+
+### Open Access/Preprint Repositories
+- **arXiv** (Computer Science/Health Informatics)
+  - Register: https://arxiv.org/user/register
+  - Submit: https://arxiv.org/submit (requires endorsement for new users)
+  - Timeline: 24-72 hours
+  - Cost: FREE
+
+- **medRxiv** (Health Sciences Preprints)  
+  - Submit: https://www.medrxiv.org/submit-a-manuscript
+  - Timeline: 24-72 hours
+  - Cost: FREE
+  - Best for: Healthcare-focused research
+
+- **SSRN** (Social Science Research Network)
+  - Register/Submit: https://www.ssrn.com/
+  - Timeline: 24-72 hours  
+  - Cost: FREE
+  - Best for: Health policy angle
+
+### Professional Journals
+- **AHIMA Journal** (Health Information Management)
+  - Submission: https://journal.ahima.org/submission-guidelines
+  - Research journal: https://ahisp.ahima.org/
+  - Timeline: 2-8 weeks review
+  - Cost: FREE submission
+
+- **JMIR Publications** (Medical Informatics)
+  - Instructions: https://www.jmir.org/author-instructions
+  - Accepts viewpoint/perspective articles
+  - Timeline: 4-8 weeks
+  - Cost: ~$3,000 if accepted
+
+### Direct Repositories
+- **ResearchGate**
+  - Direct upload after registration
+  - Timeline: Immediate
+  - Cost: FREE
+  - Benefits: Academic network visibility
+
+- **Zenodo** (CERN-operated)
+  - Submit: https://zenodo.org/
+  - Timeline: Immediate with DOI
+  - Cost: FREE
+  - Benefits: Permanent archival, DOI provided
+
+### Conference Presentations (NOT Whitepapers)
+- **HIMSS**: Global Proposal Portal for conference presentations only
+- **AMIA**: Conference abstracts only, not whitepapers
+
+### Not Available for External Submissions
+- McKinsey, Deloitte, Accenture (internal research only)
+- World Economic Forum (by invitation/partnership only)
+
 ---
-*Last Updated: 2025-08-01*  
-*Next Review: 2025-08-08*
+*Last Updated: 2025-09-03*  
+*Next Review: 2025-09-08*
