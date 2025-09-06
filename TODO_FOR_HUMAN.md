@@ -6,7 +6,7 @@
 
 # TODO for Human Review
 
-Last Sync: 2025-09-06T14:23:09.176346+00:00
+Last Sync: 2025-09-06T14:47:09.351181+00:00
 
 ## Priority 0 - Critical
 > **CRITICAL**: Essential research tasks blocking publication progress
@@ -209,6 +209,35 @@ Create detailed documentation showing how 20% and 60% success probabili...
 Develop 5x5 probability-impact matrix with numerical scoring for all id...
 
 - [ ] **[#118]** Document Probability Calculations
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-2 -->
+
+Create detailed documentation showing how 20% and 60% success probabili...
+
+- [ ] **[#127]** Create Backup Developer Documentation
+  - Status: `todo`
+  - Details: Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6
+
+**Created**: 2...
+
+- [ ] **[#128]** Update Publication Strategy with Portals
+  - Status: `todo`
+  - Details: Document validated submission portals for whitepapers
+
+**Created**: 2025-09-03T00:00:00Z
+**Labels**:...
+
+- [ ] **[#129]** Document Risk Assessment Methodology
+  - Status: `todo`
+  - Details: Create comprehensive documentation for success probability calculation methodology with verified ref...
+
+- [ ] **[#130]** Create Risk Scoring Matrix
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-1 -->
+
+Develop 5x5 probability-impact matrix with numerical scoring for all id...
+
+- [ ] **[#131]** Document Probability Calculations
   - Status: `todo`
   - Details: <!-- depends-on: risk-2 -->
 
@@ -460,6 +489,45 @@ Develop checklist to verify all URLs, references, and calculati...
   - Status: `todo`
   - Details: Add citation for '20250905_Anthropic_Code-Modernization-Playbook.pdf' from https://resources.anthrop...
 
+- [ ] **[#132]** Setup Complete Directory Structure
+  - Status: `todo`
+  - Details: Create missing project directories for papers, source code, and data
+
+**Created**: 2025-09-03T00:00:...
+
+- [ ] **[#133]** Setup Synthetic Data with Synthea
+  - Status: `todo`
+  - Details: <!-- depends-on: impl-2 -->
+
+Clone Synthea repository and generate 100 synthetic patients as backup ...
+
+- [ ] **[#134]** Create GitHub Milestones
+  - Status: `todo`
+  - Details: Setup GitHub milestones for all 3 papers with deadlines
+
+**Created**: 2025-09-03T00:00:00Z
+**Labels*...
+
+- [ ] **[#135]** Update Risk Register with Numerical Scores
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-2 -->
+
+Add probability_score and impact_score columns to existing risk registe...
+
+- [ ] **[#136]** Create Methodology Validation Checklist
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-1, risk-3 -->
+
+Develop checklist to verify all URLs, references, and calculati...
+
+- [ ] **[#137]** Cite Anthropic Code Modernization Playbook in paper.md
+  - Status: `todo`
+  - Details: Add citation for '20250905_Anthropic_Code-Modernization-Playbook.pdf' from https://resources.anthrop...
+
+- [ ] **[#140]** Add Anthropic Teams Claude Code best practices to project planning docs
+  - Status: `todo`
+  - Details: Incorporate insights from 'How Anthropic Teams Use Claude Code' (https://www.anthropic.com/news/how-...
+
 - [ ] **(Internal Task)** Setup Complete Directory Structure
   - Status: `completed`
   - Details: Create missing project directories for papers, source code, and data
@@ -486,6 +554,10 @@ Develop checklist to verify all URLs, references, and calculati...
 - [ ] **(Internal Task)** Cite Anthropic Code Modernization Playbook in paper.md
   - Status: `todo`
   - Details: Add citation for '20250905_Anthropic_Code-Modernization-Playbook.pdf' from https://resources.anthrop...
+
+- [ ] **(Internal Task)** Add Anthropic Teams Claude Code best practices to project planning docs
+  - Status: `todo`
+  - Details: Incorporate insights from 'How Anthropic Teams Use Claude Code' (https://www.anthropic.com/news/how-...
 
 ## Priority 2 - Medium
 > **MEDIUM**: Supporting research and documentation improvements
@@ -751,6 +823,21 @@ Include HIMSS project management standards for healthcare IT projects
 
 ...
 
+- [ ] **[#138]** Create GitHub Actions Workflow
+  - Status: `todo`
+  - Details: Setup automated project tracking with GitHub Actions
+
+**Created**: 2025-09-03T00:00:00Z
+**Labels**: ...
+
+- [ ] **[#139]** Add Healthcare-Specific Risk Factors
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-1 -->
+
+Include HIMSS project management standards for healthcare IT projects
+
+...
+
 - [ ] **(Internal Task)** Create GitHub Actions Workflow
   - Status: `todo`
   - Details: Setup automated project tracking with GitHub Actions
@@ -765,10 +852,10 @@ Include HIMSS project management standards for healthcare IT projects
 {
   "version": "1.0.0",
   "last_sync_source": "github_bidirectional_sync",
-  "github_issues_total": 113,
-  "total_tasks": 126,
-  "critical_tasks": 40,
-  "high_priority_tasks": 42,
+  "github_issues_total": 127,
+  "total_tasks": 141,
+  "critical_tasks": 45,
+  "high_priority_tasks": 50,
   "blocked_tasks": 0,
   "completed_tasks": 0
 }

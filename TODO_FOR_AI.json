@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "type": "Academic research documentation",
   "focus": "Natural language to SQL in healthcare",
-  "updated": "2025-09-06T14:23:09.176340+00:00",
-  "last_sync": "2025-09-06T14:23:09.176346+00:00",
+  "updated": "2025-09-06T14:47:09.351174+00:00",
+  "last_sync": "2025-09-06T14:47:09.351181+00:00",
   "sync_source": "github_bidirectional_sync",
   "sync_metadata": {
     "github_repo": "stharrold/yuimedi-paper-20250901",
     "sync_direction": "bidirectional",
-    "last_github_fetch": "2025-09-06T14:23:09.176348+00:00",
-    "total_github_issues": 113,
-    "total_tasks": 126,
+    "last_github_fetch": "2025-09-06T14:47:09.351184+00:00",
+    "total_github_issues": 127,
+    "total_tasks": 141,
     "sync_conflicts": [],
     "validation_status": "synced"
   },
@@ -30,7 +30,7 @@
       "updated_at": "2025-09-03T07:15:32Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175073+00:00",
+        "last_sync": "2025-09-06T14:47:09.349803+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -48,7 +48,7 @@
       "updated_at": "2025-09-03T07:15:38Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175004+00:00",
+        "last_sync": "2025-09-06T14:47:09.349743+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -66,7 +66,7 @@
       "updated_at": "2025-09-03T07:15:44Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174990+00:00",
+        "last_sync": "2025-09-06T14:47:09.349729+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -84,7 +84,7 @@
       "updated_at": "2025-09-03T07:15:50Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174976+00:00",
+        "last_sync": "2025-09-06T14:47:09.349717+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -102,7 +102,7 @@
       "updated_at": "2025-09-03T07:15:56Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174956+00:00",
+        "last_sync": "2025-09-06T14:47:09.349705+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -120,7 +120,7 @@
       "updated_at": "2025-09-03T07:14:20Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174890+00:00",
+        "last_sync": "2025-09-06T14:47:09.349658+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -138,7 +138,7 @@
       "updated_at": "2025-09-03T07:14:28Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174816+00:00",
+        "last_sync": "2025-09-06T14:47:09.349561+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -156,7 +156,7 @@
       "updated_at": "2025-09-03T07:14:35Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174802+00:00",
+        "last_sync": "2025-09-06T14:47:09.349550+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -174,7 +174,7 @@
       "updated_at": "2025-09-03T07:14:42Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174786+00:00",
+        "last_sync": "2025-09-06T14:47:09.349539+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -192,7 +192,7 @@
       "updated_at": "2025-09-03T07:14:49Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174771+00:00",
+        "last_sync": "2025-09-06T14:47:09.349527+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -210,7 +210,7 @@
       "updated_at": "2025-09-03T07:10:30Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174638+00:00",
+        "last_sync": "2025-09-06T14:47:09.349419+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -228,7 +228,7 @@
       "updated_at": "2025-09-03T07:10:51Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174617+00:00",
+        "last_sync": "2025-09-06T14:47:09.349407+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -246,7 +246,7 @@
       "updated_at": "2025-09-03T07:11:11Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174604+00:00",
+        "last_sync": "2025-09-06T14:47:09.349396+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -264,7 +264,7 @@
       "updated_at": "2025-09-03T07:11:32Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174589+00:00",
+        "last_sync": "2025-09-06T14:47:09.349385+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -282,7 +282,7 @@
       "updated_at": "2025-09-03T07:11:51Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174574+00:00",
+        "last_sync": "2025-09-06T14:47:09.349373+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -300,7 +300,7 @@
       "updated_at": "2025-09-03T07:10:36Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174453+00:00",
+        "last_sync": "2025-09-06T14:47:09.349274+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -318,7 +318,7 @@
       "updated_at": "2025-09-03T07:10:57Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174440+00:00",
+        "last_sync": "2025-09-06T14:47:09.349257+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -336,7 +336,7 @@
       "updated_at": "2025-09-03T07:11:18Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174426+00:00",
+        "last_sync": "2025-09-06T14:47:09.349246+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -354,7 +354,7 @@
       "updated_at": "2025-09-03T07:11:38Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174411+00:00",
+        "last_sync": "2025-09-06T14:47:09.349233+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -372,7 +372,7 @@
       "updated_at": "2025-09-03T07:11:58Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174397+00:00",
+        "last_sync": "2025-09-06T14:47:09.349221+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -390,7 +390,7 @@
       "updated_at": "2025-09-03T07:10:42Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174281+00:00",
+        "last_sync": "2025-09-06T14:47:09.349123+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -408,7 +408,7 @@
       "updated_at": "2025-09-03T07:11:04Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174265+00:00",
+        "last_sync": "2025-09-06T14:47:09.349111+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -426,7 +426,7 @@
       "updated_at": "2025-09-03T07:11:25Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174251+00:00",
+        "last_sync": "2025-09-06T14:47:09.349098+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -444,7 +444,7 @@
       "updated_at": "2025-09-03T07:11:44Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174235+00:00",
+        "last_sync": "2025-09-06T14:47:09.349084+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -462,7 +462,7 @@
       "updated_at": "2025-09-03T07:12:05Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174220+00:00",
+        "last_sync": "2025-09-06T14:47:09.349069+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -480,7 +480,7 @@
       "updated_at": "2025-09-03T07:17:40Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174048+00:00",
+        "last_sync": "2025-09-06T14:47:09.348901+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -498,7 +498,7 @@
       "updated_at": "2025-09-03T07:17:42Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174028+00:00",
+        "last_sync": "2025-09-06T14:47:09.348887+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -516,7 +516,7 @@
       "updated_at": "2025-09-03T07:17:44Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174013+00:00",
+        "last_sync": "2025-09-06T14:47:09.348874+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -534,7 +534,7 @@
       "updated_at": "2025-09-03T07:17:46Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173999+00:00",
+        "last_sync": "2025-09-06T14:47:09.348859+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -552,7 +552,7 @@
       "updated_at": "2025-09-03T07:17:47Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173984+00:00",
+        "last_sync": "2025-09-06T14:47:09.348844+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -570,7 +570,7 @@
       "updated_at": "2025-09-06T14:22:55Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173701+00:00",
+        "last_sync": "2025-09-06T14:47:09.348584+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -588,7 +588,7 @@
       "updated_at": "2025-09-06T14:22:56Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173686+00:00",
+        "last_sync": "2025-09-06T14:47:09.348571+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -606,7 +606,7 @@
       "updated_at": "2025-09-06T14:22:57Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173671+00:00",
+        "last_sync": "2025-09-06T14:47:09.348553+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -624,7 +624,7 @@
       "updated_at": "2025-09-06T14:22:58Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173655+00:00",
+        "last_sync": "2025-09-06T14:47:09.348539+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -642,7 +642,97 @@
       "updated_at": "2025-09-06T14:22:59Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173639+00:00",
+        "last_sync": "2025-09-06T14:47:09.348525+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-127",
+      "github_issue_number": 127,
+      "title": "Create Backup Developer Documentation",
+      "description": "Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, critical, roles",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:46:54Z",
+      "updated_at": "2025-09-06T14:46:54Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348389+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-128",
+      "github_issue_number": 128,
+      "title": "Update Publication Strategy with Portals",
+      "description": "Document validated submission portals for whitepapers\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: documentation, publication",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:46:55Z",
+      "updated_at": "2025-09-06T14:46:55Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348375+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-129",
+      "github_issue_number": 129,
+      "title": "Document Risk Assessment Methodology",
+      "description": "Create comprehensive documentation for success probability calculation methodology with verified references to PMI PMBOK, ISO 31000, and other authoritative sources\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, methodology, risk-management",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:46:56Z",
+      "updated_at": "2025-09-06T14:46:56Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348361+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-130",
+      "github_issue_number": 130,
+      "title": "Create Risk Scoring Matrix",
+      "description": "<!-- depends-on: risk-1 -->\n\nDevelop 5x5 probability-impact matrix with numerical scoring for all identified risks\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, risk-management",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:46:57Z",
+      "updated_at": "2025-09-06T14:46:57Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348346+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-131",
+      "github_issue_number": 131,
+      "title": "Document Probability Calculations",
+      "description": "<!-- depends-on: risk-2 -->\n\nCreate detailed documentation showing how 20% and 60% success probabilities were calculated\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, calculations",
+      "priority": "P0",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:46:59Z",
+      "updated_at": "2025-09-06T14:46:59Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348331+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -787,7 +877,7 @@
       "updated_at": "2025-09-03T07:16:30Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175059+00:00",
+        "last_sync": "2025-09-06T14:47:09.349791+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -805,7 +895,7 @@
       "updated_at": "2025-09-03T07:16:04Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175046+00:00",
+        "last_sync": "2025-09-06T14:47:09.349781+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -823,7 +913,7 @@
       "updated_at": "2025-09-03T06:48:35Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175031+00:00",
+        "last_sync": "2025-09-06T14:47:09.349769+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -841,7 +931,7 @@
       "updated_at": "2025-09-03T07:16:49Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174941+00:00",
+        "last_sync": "2025-09-06T14:47:09.349693+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -859,7 +949,7 @@
       "updated_at": "2025-09-03T07:16:42Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174923+00:00",
+        "last_sync": "2025-09-06T14:47:09.349682+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -877,7 +967,7 @@
       "updated_at": "2025-09-03T07:14:56Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174875+00:00",
+        "last_sync": "2025-09-06T14:47:09.349647+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -895,7 +985,7 @@
       "updated_at": "2025-09-03T07:12:33Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174858+00:00",
+        "last_sync": "2025-09-06T14:47:09.349635+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -913,7 +1003,7 @@
       "updated_at": "2025-09-03T06:48:31Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174843+00:00",
+        "last_sync": "2025-09-06T14:47:09.349587+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -931,7 +1021,7 @@
       "updated_at": "2025-09-03T05:30:29Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174756+00:00",
+        "last_sync": "2025-09-06T14:47:09.349514+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -949,7 +1039,7 @@
       "updated_at": "2025-09-03T05:30:30Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174742+00:00",
+        "last_sync": "2025-09-06T14:47:09.349500+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -967,7 +1057,7 @@
       "updated_at": "2025-09-03T07:12:12Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174559+00:00",
+        "last_sync": "2025-09-06T14:47:09.349360+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -985,7 +1075,7 @@
       "updated_at": "2025-09-03T07:12:39Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174545+00:00",
+        "last_sync": "2025-09-06T14:47:09.349345+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1003,7 +1093,7 @@
       "updated_at": "2025-09-03T06:48:26Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174528+00:00",
+        "last_sync": "2025-09-06T14:47:09.349333+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1021,7 +1111,7 @@
       "updated_at": "2025-09-03T07:13:36Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174514+00:00",
+        "last_sync": "2025-09-06T14:47:09.349322+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1039,7 +1129,7 @@
       "updated_at": "2025-09-03T07:13:57Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174500+00:00",
+        "last_sync": "2025-09-06T14:47:09.349310+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1057,7 +1147,7 @@
       "updated_at": "2025-09-03T07:12:18Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174382+00:00",
+        "last_sync": "2025-09-06T14:47:09.349209+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1075,7 +1165,7 @@
       "updated_at": "2025-09-03T07:12:45Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174368+00:00",
+        "last_sync": "2025-09-06T14:47:09.349198+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1093,7 +1183,7 @@
       "updated_at": "2025-09-03T06:48:20Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174353+00:00",
+        "last_sync": "2025-09-06T14:47:09.349186+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1111,7 +1201,7 @@
       "updated_at": "2025-09-03T07:13:43Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174339+00:00",
+        "last_sync": "2025-09-06T14:47:09.349170+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1129,7 +1219,7 @@
       "updated_at": "2025-09-03T07:14:03Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174324+00:00",
+        "last_sync": "2025-09-06T14:47:09.349158+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1147,7 +1237,7 @@
       "updated_at": "2025-09-03T07:12:25Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174205+00:00",
+        "last_sync": "2025-09-06T14:47:09.349054+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1165,7 +1255,7 @@
       "updated_at": "2025-09-03T07:12:52Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174191+00:00",
+        "last_sync": "2025-09-06T14:47:09.349041+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1183,7 +1273,7 @@
       "updated_at": "2025-09-03T07:15:04Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174176+00:00",
+        "last_sync": "2025-09-06T14:47:09.349027+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1201,7 +1291,7 @@
       "updated_at": "2025-09-03T07:13:50Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174162+00:00",
+        "last_sync": "2025-09-06T14:47:09.349014+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1219,7 +1309,7 @@
       "updated_at": "2025-09-03T07:14:09Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174147+00:00",
+        "last_sync": "2025-09-06T14:47:09.349000+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1237,7 +1327,7 @@
       "updated_at": "2025-09-03T07:17:49Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173969+00:00",
+        "last_sync": "2025-09-06T14:47:09.348829+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1255,7 +1345,7 @@
       "updated_at": "2025-09-03T07:17:50Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173955+00:00",
+        "last_sync": "2025-09-06T14:47:09.348816+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1273,7 +1363,7 @@
       "updated_at": "2025-09-03T07:17:52Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173939+00:00",
+        "last_sync": "2025-09-06T14:47:09.348801+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1291,7 +1381,7 @@
       "updated_at": "2025-09-03T07:17:54Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173925+00:00",
+        "last_sync": "2025-09-06T14:47:09.348788+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1309,7 +1399,7 @@
       "updated_at": "2025-09-03T07:17:55Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173910+00:00",
+        "last_sync": "2025-09-06T14:47:09.348774+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1327,7 +1417,7 @@
       "updated_at": "2025-09-06T14:23:00Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173624+00:00",
+        "last_sync": "2025-09-06T14:47:09.348510+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1345,7 +1435,7 @@
       "updated_at": "2025-09-06T14:23:01Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173610+00:00",
+        "last_sync": "2025-09-06T14:47:09.348492+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1363,7 +1453,7 @@
       "updated_at": "2025-09-06T14:23:02Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173593+00:00",
+        "last_sync": "2025-09-06T14:47:09.348478+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1381,7 +1471,7 @@
       "updated_at": "2025-09-06T14:23:03Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173578+00:00",
+        "last_sync": "2025-09-06T14:47:09.348464+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1399,7 +1489,7 @@
       "updated_at": "2025-09-06T14:23:04Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173561+00:00",
+        "last_sync": "2025-09-06T14:47:09.348450+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1417,7 +1507,133 @@
       "updated_at": "2025-09-06T14:23:07Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173089+00:00",
+        "last_sync": "2025-09-06T14:47:09.348407+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-132",
+      "github_issue_number": 132,
+      "title": "Setup Complete Directory Structure",
+      "description": "Create missing project directories for papers, source code, and data\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: setup, infrastructure",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:46:59Z",
+      "updated_at": "2025-09-06T14:46:59Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348316+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-133",
+      "github_issue_number": 133,
+      "title": "Setup Synthetic Data with Synthea",
+      "description": "<!-- depends-on: impl-2 -->\n\nClone Synthea repository and generate 100 synthetic patients as backup data source\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: data, setup, risk-mitigation",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:47:00Z",
+      "updated_at": "2025-09-06T14:47:00Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348302+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-134",
+      "github_issue_number": 134,
+      "title": "Create GitHub Milestones",
+      "description": "Setup GitHub milestones for all 3 papers with deadlines\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: github, project-management",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:47:01Z",
+      "updated_at": "2025-09-06T14:47:01Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348286+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-135",
+      "github_issue_number": 135,
+      "title": "Update Risk Register with Numerical Scores",
+      "description": "<!-- depends-on: risk-2 -->\n\nAdd probability_score and impact_score columns to existing risk register\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, risk-management",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:47:02Z",
+      "updated_at": "2025-09-06T14:47:02Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348266+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-136",
+      "github_issue_number": 136,
+      "title": "Create Methodology Validation Checklist",
+      "description": "<!-- depends-on: risk-1, risk-3 -->\n\nDevelop checklist to verify all URLs, references, and calculations\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, validation",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:47:03Z",
+      "updated_at": "2025-09-06T14:47:03Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348251+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-137",
+      "github_issue_number": 137,
+      "title": "Cite Anthropic Code Modernization Playbook in paper.md",
+      "description": "Add citation for '20250905_Anthropic_Code-Modernization-Playbook.pdf' from https://resources.anthropic.com/code-modernization-playbook to strengthen discussion of technical barriers and healthcare IT modernization challenges. Key relevance: (1) Healthcare/pharma legacy systems section explicitly addresses challenges similar to YuiQuery context, (2) Technical debt statistics showing 70% of organizations blocked by legacy systems, (3) Real-world code modernization use cases including COBOL-to-Java...",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:47:04Z",
+      "updated_at": "2025-09-06T14:47:04Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348233+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-140",
+      "github_issue_number": 140,
+      "title": "Add Anthropic Teams Claude Code best practices to project planning docs",
+      "description": "Incorporate insights from 'How Anthropic Teams Use Claude Code' (https://www.anthropic.com/news/how-anthropic-teams-use-claude-code) into project planning documentation. Key areas to document: (1) Codebase navigation techniques for complex healthcare systems, (2) Testing and code review automation workflows, (3) Debugging acceleration strategies achieving 3x faster resolution, (4) Prototyping approaches enabling non-technical team members to build solutions, (5) Documentation and workflow optimi...",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:47:07Z",
+      "updated_at": "2025-09-06T14:47:07Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.347747+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1574,6 +1790,41 @@
       }
     },
     {
+      "id": "doc-2",
+      "github_issue_number": null,
+      "title": "Add Anthropic Teams Claude Code best practices to project planning docs",
+      "description": "Incorporate insights from 'How Anthropic Teams Use Claude Code' (https://www.anthropic.com/news/how-anthropic-teams-use-claude-code) into project planning documentation. Key areas to document: (1) Codebase navigation techniques for complex healthcare systems, (2) Testing and code review automation workflows, (3) Debugging acceleration strategies achieving 3x faster resolution, (4) Prototyping approaches enabling non-technical team members to build solutions, (5) Documentation and workflow optimization methods. This reference demonstrates how Claude Code 'dissolves the boundary between technical and non-technical work' and provides concrete evidence for the 79% automation rate cited in project-management.md. Should be integrated into the Operational Implementation Guide section and potentially create new 'AI-Assisted Development Workflows' section.",
+      "priority": "P1",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [
+        "documentation",
+        "best-practices",
+        "implementation-guide"
+      ],
+      "assignee": "DSH",
+      "created_at": "2025-09-06T00:00:00Z",
+      "updated_at": "2025-09-06T00:00:00Z",
+      "implementation_notes": {
+        "url": "https://www.anthropic.com/news/how-anthropic-teams-use-claude-code",
+        "target_documents": [
+          "project-management.md",
+          "CLAUDE.md"
+        ],
+        "key_insights": [
+          "codebase_navigation",
+          "testing_automation",
+          "debugging_3x_faster",
+          "prototyping_for_non_technical",
+          "documentation_workflow_optimization"
+        ],
+        "integration_sections": {
+          "project_management_md": "Operational Implementation Guide (line 557+)",
+          "claude_md": "Best Practices section"
+        }
+      }
+    },
+    {
       "id": "gh-1",
       "github_issue_number": 1,
       "title": "Generate final PDF/HTML versions of research paper",
@@ -1587,7 +1838,7 @@
       "updated_at": "2025-08-21T03:00:26Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175352+00:00",
+        "last_sync": "2025-09-06T14:47:09.350036+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1605,7 +1856,7 @@
       "updated_at": "2025-08-21T03:00:27Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175341+00:00",
+        "last_sync": "2025-09-06T14:47:09.350025+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1623,7 +1874,7 @@
       "updated_at": "2025-08-21T03:00:28Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175322+00:00",
+        "last_sync": "2025-09-06T14:47:09.350014+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1641,7 +1892,7 @@
       "updated_at": "2025-08-21T04:08:33Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175308+00:00",
+        "last_sync": "2025-09-06T14:47:09.349997+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1659,7 +1910,7 @@
       "updated_at": "2025-08-21T04:08:34Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175294+00:00",
+        "last_sync": "2025-09-06T14:47:09.349986+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1677,7 +1928,7 @@
       "updated_at": "2025-08-21T04:08:35Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175280+00:00",
+        "last_sync": "2025-09-06T14:47:09.349975+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1695,7 +1946,7 @@
       "updated_at": "2025-09-01T02:41:46Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175265+00:00",
+        "last_sync": "2025-09-06T14:47:09.349963+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1713,7 +1964,7 @@
       "updated_at": "2025-09-01T03:28:49Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175201+00:00",
+        "last_sync": "2025-09-06T14:47:09.349910+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1731,7 +1982,7 @@
       "updated_at": "2025-09-01T03:35:16Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175160+00:00",
+        "last_sync": "2025-09-06T14:47:09.349873+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1749,7 +2000,7 @@
       "updated_at": "2025-09-01T03:48:54Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175125+00:00",
+        "last_sync": "2025-09-06T14:47:09.349845+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1767,7 +2018,7 @@
       "updated_at": "2025-09-01T04:12:57Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175104+00:00",
+        "last_sync": "2025-09-06T14:47:09.349827+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1785,7 +2036,7 @@
       "updated_at": "2025-09-03T07:16:55Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.175018+00:00",
+        "last_sync": "2025-09-06T14:47:09.349757+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1803,7 +2054,7 @@
       "updated_at": "2025-09-03T07:16:36Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174904+00:00",
+        "last_sync": "2025-09-06T14:47:09.349670+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1821,7 +2072,7 @@
       "updated_at": "2025-09-03T05:30:24Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174830+00:00",
+        "last_sync": "2025-09-06T14:47:09.349576+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1839,7 +2090,7 @@
       "updated_at": "2025-09-03T05:30:31Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174726+00:00",
+        "last_sync": "2025-09-06T14:47:09.349486+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1857,7 +2108,7 @@
       "updated_at": "2025-09-03T05:56:40Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174709+00:00",
+        "last_sync": "2025-09-06T14:47:09.349474+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1875,7 +2126,7 @@
       "updated_at": "2025-09-03T05:57:01Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174692+00:00",
+        "last_sync": "2025-09-06T14:47:09.349463+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1893,7 +2144,7 @@
       "updated_at": "2025-09-03T05:57:13Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174679+00:00",
+        "last_sync": "2025-09-06T14:47:09.349453+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1911,7 +2162,7 @@
       "updated_at": "2025-09-03T05:57:28Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174665+00:00",
+        "last_sync": "2025-09-06T14:47:09.349440+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1929,7 +2180,7 @@
       "updated_at": "2025-09-03T06:28:29Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174651+00:00",
+        "last_sync": "2025-09-06T14:47:09.349429+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -1947,7 +2198,7 @@
       "updated_at": "2025-09-03T07:12:59Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174485+00:00",
+        "last_sync": "2025-09-06T14:47:09.349297+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1965,7 +2216,7 @@
       "updated_at": "2025-09-03T07:13:18Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174471+00:00",
+        "last_sync": "2025-09-06T14:47:09.349286+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -1983,7 +2234,7 @@
       "updated_at": "2025-09-03T07:13:06Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174309+00:00",
+        "last_sync": "2025-09-06T14:47:09.349146+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -2001,7 +2252,7 @@
       "updated_at": "2025-09-03T07:13:23Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174295+00:00",
+        "last_sync": "2025-09-06T14:47:09.349135+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -2019,7 +2270,7 @@
       "updated_at": "2025-09-03T07:13:11Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174129+00:00",
+        "last_sync": "2025-09-06T14:47:09.348985+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -2037,7 +2288,7 @@
       "updated_at": "2025-09-03T07:13:30Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174115+00:00",
+        "last_sync": "2025-09-06T14:47:09.348971+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -2055,7 +2306,7 @@
       "updated_at": "2025-09-03T07:15:18Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174100+00:00",
+        "last_sync": "2025-09-06T14:47:09.348953+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -2073,7 +2324,7 @@
       "updated_at": "2025-09-03T07:15:25Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174087+00:00",
+        "last_sync": "2025-09-06T14:47:09.348942+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -2091,7 +2342,7 @@
       "updated_at": "2025-09-03T07:16:17Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174074+00:00",
+        "last_sync": "2025-09-06T14:47:09.348930+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -2109,7 +2360,7 @@
       "updated_at": "2025-09-03T07:16:23Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.174062+00:00",
+        "last_sync": "2025-09-06T14:47:09.348917+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -2127,7 +2378,7 @@
       "updated_at": "2025-09-03T07:17:57Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173895+00:00",
+        "last_sync": "2025-09-06T14:47:09.348759+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -2145,7 +2396,7 @@
       "updated_at": "2025-09-03T07:17:58Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173880+00:00",
+        "last_sync": "2025-09-06T14:47:09.348745+00:00",
         "issue_state": "CLOSED"
       }
     },
@@ -2163,7 +2414,7 @@
       "updated_at": "2025-09-03T07:23:36Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173856+00:00",
+        "last_sync": "2025-09-06T14:47:09.348729+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -2181,7 +2432,7 @@
       "updated_at": "2025-09-03T07:23:54Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173844+00:00",
+        "last_sync": "2025-09-06T14:47:09.348717+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -2199,7 +2450,7 @@
       "updated_at": "2025-09-03T07:24:06Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173831+00:00",
+        "last_sync": "2025-09-06T14:47:09.348704+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -2217,7 +2468,7 @@
       "updated_at": "2025-09-03T08:07:52Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173817+00:00",
+        "last_sync": "2025-09-06T14:47:09.348692+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -2235,7 +2486,7 @@
       "updated_at": "2025-09-03T08:08:07Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173805+00:00",
+        "last_sync": "2025-09-06T14:47:09.348680+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -2253,7 +2504,7 @@
       "updated_at": "2025-09-03T08:08:17Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173793+00:00",
+        "last_sync": "2025-09-06T14:47:09.348669+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -2271,7 +2522,7 @@
       "updated_at": "2025-09-03T08:08:36Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173780+00:00",
+        "last_sync": "2025-09-06T14:47:09.348656+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -2289,7 +2540,7 @@
       "updated_at": "2025-09-03T08:17:49Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173736+00:00",
+        "last_sync": "2025-09-06T14:47:09.348620+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -2307,7 +2558,7 @@
       "updated_at": "2025-09-06T14:23:05Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173543+00:00",
+        "last_sync": "2025-09-06T14:47:09.348435+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -2325,7 +2576,43 @@
       "updated_at": "2025-09-06T14:23:06Z",
       "implementation_notes": {
         "github_sync": true,
-        "last_sync": "2025-09-06T14:23:09.173520+00:00",
+        "last_sync": "2025-09-06T14:47:09.348422+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-138",
+      "github_issue_number": 138,
+      "title": "Create GitHub Actions Workflow",
+      "description": "Setup automated project tracking with GitHub Actions\n\n**Created**: 2025-09-03T00:00:00Z\n**Labels**: automation, github",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:47:05Z",
+      "updated_at": "2025-09-06T14:47:05Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348208+00:00",
+        "issue_state": "OPEN"
+      }
+    },
+    {
+      "id": "gh-139",
+      "github_issue_number": 139,
+      "title": "Add Healthcare-Specific Risk Factors",
+      "description": "<!-- depends-on: risk-1 -->\n\nInclude HIMSS project management standards for healthcare IT projects\n\n**Created**: 2025-09-01T20:00:00Z\n**Labels**: documentation, healthcare",
+      "priority": "P2",
+      "status": "todo",
+      "dependencies": [],
+      "labels": [],
+      "assignee": null,
+      "created_at": "2025-09-06T14:47:06Z",
+      "updated_at": "2025-09-06T14:47:06Z",
+      "implementation_notes": {
+        "github_sync": true,
+        "last_sync": "2025-09-06T14:47:09.348185+00:00",
         "issue_state": "OPEN"
       }
     },
@@ -2377,12 +2664,12 @@
     }
   ],
   "priority_distribution": {
-    "P0": 40,
-    "P1": 42,
-    "P2": 44
+    "P0": 45,
+    "P1": 50,
+    "P2": 46
   },
   "status_distribution": {
-    "todo": 118,
+    "todo": 133,
     "completed": 7,
     "not_needed": 1
   },
