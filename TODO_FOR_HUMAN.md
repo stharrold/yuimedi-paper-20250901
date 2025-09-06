@@ -2,11 +2,11 @@
 # Project: YuiQuery Healthcare Analytics Research
 # Type: Academic research documentation
 # Focus: Natural language to SQL in healthcare
-# Updated: 2025-09-03
+# Updated: 2025-09-06
 
 # TODO for Human Review
 
-Last Sync: 2025-09-03T07:17:25.120735+00:00
+Last Sync: 2025-09-06T14:23:09.176346+00:00
 
 ## Priority 0 - Critical
 > **CRITICAL**: Essential research tasks blocking publication progress
@@ -180,6 +180,35 @@ Create detailed documentation showing how 20% and 60% success probabili...
 Develop 5x5 probability-impact matrix with numerical scoring for all id...
 
 - [ ] **[#92]** Document Probability Calculations
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-2 -->
+
+Create detailed documentation showing how 20% and 60% success probabili...
+
+- [ ] **[#114]** Create Backup Developer Documentation
+  - Status: `todo`
+  - Details: Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6
+
+**Created**: 2...
+
+- [ ] **[#115]** Update Publication Strategy with Portals
+  - Status: `todo`
+  - Details: Document validated submission portals for whitepapers
+
+**Created**: 2025-09-03T00:00:00Z
+**Labels**:...
+
+- [ ] **[#116]** Document Risk Assessment Methodology
+  - Status: `todo`
+  - Details: Create comprehensive documentation for success probability calculation methodology with verified ref...
+
+- [ ] **[#117]** Create Risk Scoring Matrix
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-1 -->
+
+Develop 5x5 probability-impact matrix with numerical scoring for all id...
+
+- [ ] **[#118]** Document Probability Calculations
   - Status: `todo`
   - Details: <!-- depends-on: risk-2 -->
 
@@ -396,13 +425,48 @@ Add probability_score and impact_score columns to existing risk registe...
 
 Develop checklist to verify all URLs, references, and calculati...
 
+- [ ] **[#119]** Setup Complete Directory Structure
+  - Status: `todo`
+  - Details: Create missing project directories for papers, source code, and data
+
+**Created**: 2025-09-03T00:00:...
+
+- [ ] **[#120]** Setup Synthetic Data with Synthea
+  - Status: `todo`
+  - Details: <!-- depends-on: impl-2 -->
+
+Clone Synthea repository and generate 100 synthetic patients as backup ...
+
+- [ ] **[#121]** Create GitHub Milestones
+  - Status: `todo`
+  - Details: Setup GitHub milestones for all 3 papers with deadlines
+
+**Created**: 2025-09-03T00:00:00Z
+**Labels*...
+
+- [ ] **[#122]** Update Risk Register with Numerical Scores
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-2 -->
+
+Add probability_score and impact_score columns to existing risk registe...
+
+- [ ] **[#123]** Create Methodology Validation Checklist
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-1, risk-3 -->
+
+Develop checklist to verify all URLs, references, and calculati...
+
+- [ ] **[#126]** Cite Anthropic Code Modernization Playbook in paper.md
+  - Status: `todo`
+  - Details: Add citation for '20250905_Anthropic_Code-Modernization-Playbook.pdf' from https://resources.anthrop...
+
 - [ ] **(Internal Task)** Setup Complete Directory Structure
   - Status: `completed`
   - Details: Create missing project directories for papers, source code, and data
 
 - [ ] **(Internal Task)** Setup Synthetic Data with Synthea
   - Dependencies: impl-2
-  - Status: `todo`
+  - Status: `not_needed`
   - Details: Clone Synthea repository and generate 100 synthetic patients as backup data source
 
 - [ ] **(Internal Task)** Create GitHub Milestones
@@ -418,6 +482,10 @@ Develop checklist to verify all URLs, references, and calculati...
   - Dependencies: risk-1, risk-3
   - Status: `todo`
   - Details: Develop checklist to verify all URLs, references, and calculations
+
+- [ ] **(Internal Task)** Cite Anthropic Code Modernization Playbook in paper.md
+  - Status: `todo`
+  - Details: Add citation for '20250905_Anthropic_Code-Modernization-Playbook.pdf' from https://resources.anthrop...
 
 ## Priority 2 - Medium
 > **MEDIUM**: Supporting research and documentation improvements
@@ -632,6 +700,57 @@ Include HIMSS project management standards for healthcare IT projects
 
 ...
 
+- [ ] **[#101]** The task counts appear inconsistent with the PR's stated goal of reducing issues from 92 to 20. These metadata counts show an increase rather than the expected decrease after deduplication.
+  - Status: `todo`
+  - Details: The task counts appear inconsistent with the PR's stated goal of reducing issues from 92 to 20. Thes...
+
+- [ ] **[#102]** The status change to 'not_needed' for the Synthea task should be documented with a reason comment explaining why this task is no longer required, especially since the description mentions it's available at yuiquery.yuimedi.com/chats/v3/.
+  - Status: `todo`
+  - Details: The status change to 'not_needed' for the Synthea task should be documented with a reason comment ex...
+
+- [ ] **[#103]** The status distribution shows 96 todo tasks, which contradicts the PR description claiming to reduce active issues to 20. This suggests the deduplication may not be fully reflected in the metadata counts.
+  - Status: `todo`
+  - Details: The status distribution shows 96 todo tasks, which contradicts the PR description claiming to reduce...
+
+- [ ] **[#108]** Line 56 appears to be orphaned code that should be removed. Line 57 correctly uses the EXPECTED_REPO_NAME variable while line 56 is a hardcoded check that will never execute.
+  - Status: `todo`
+  - Details: Line 56 appears to be orphaned code that should be removed. Line 57 correctly uses the EXPECTED_REPO...
+
+- [ ] **[#109]** [nitpick] The code removes all description processing logic but doesn't explain why. The removed regex patterns suggest there was metadata handling that might be needed elsewhere. Consider documenting why this simplification was made.
+  - Status: `todo`
+  - Details: [nitpick] The code removes all description processing logic but doesn't explain why. The removed reg...
+
+- [ ] **[#110]** [nitpick] The hardcoded strings 'DSH' and 'YLT' should be moved to configuration constants at the module level for better maintainability. Consider defining EXCLUDED_ASSIGNEES = ['DSH'] and EXCLUDED_ASSIGNEE_PREFIXES = ['YLT'].
+  - Status: `todo`
+  - Details: [nitpick] The hardcoded strings 'DSH' and 'YLT' should be moved to configuration constants at the mo...
+
+- [ ] **[#111]** ## Code Quality Review: GitHub Projects Integration with TMP Validation
+  - Status: `todo`
+  - Details: ## Code Quality Review: GitHub Projects Integration with TMP Validation
+
+### Overall Assessment: A...
+
+- [ ] **[#113]** ## Pull Request Review: GitHub Projects Integration with TMP Validation Archive
+  - Status: `todo`
+  - Details: ## Pull Request Review: GitHub Projects Integration with TMP Validation Archive
+
+### ✅ **Strengths...
+
+- [ ] **[#124]** Create GitHub Actions Workflow
+  - Status: `todo`
+  - Details: Setup automated project tracking with GitHub Actions
+
+**Created**: 2025-09-03T00:00:00Z
+**Labels**: ...
+
+- [ ] **[#125]** Add Healthcare-Specific Risk Factors
+  - Status: `todo`
+  - Details: <!-- depends-on: risk-1 -->
+
+Include HIMSS project management standards for healthcare IT projects
+
+...
+
 - [ ] **(Internal Task)** Create GitHub Actions Workflow
   - Status: `todo`
   - Details: Setup automated project tracking with GitHub Actions
@@ -646,10 +765,10 @@ Include HIMSS project management standards for healthcare IT projects
 {
   "version": "1.0.0",
   "last_sync_source": "github_bidirectional_sync",
-  "github_issues_total": 92,
-  "total_tasks": 104,
-  "critical_tasks": 35,
-  "high_priority_tasks": 35,
+  "github_issues_total": 113,
+  "total_tasks": 126,
+  "critical_tasks": 40,
+  "high_priority_tasks": 42,
   "blocked_tasks": 0,
   "completed_tasks": 0
 }
@@ -657,6 +776,6 @@ Include HIMSS project management standards for healthcare IT projects
 
 ---
 
-*Last updated: 2025-09-03*
+*Last updated: 2025-09-06*
 *Sync status: GitHub bidirectional sync*
 *For technical details, see: TODO_FOR_AI.json*
