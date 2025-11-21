@@ -381,6 +381,86 @@ pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf \
 pandoc paper.md -o output.html --standalone --toc --self-contained
 ```
 
+## Workflow Skills and Automation
+
+### Available Skills (9 Total)
+
+This repository includes a comprehensive workflow automation system adapted from german-workflow v1.15.1. Skills provide specialized capabilities for project management, git operations, and quality assurance.
+
+**Core Workflow Skills:**
+- **workflow-orchestrator** - Main coordinator for multi-phase workflows
+- **git-workflow-manager** - Git operations (worktree, branches, commits, PRs, semantic versioning)
+- **workflow-utilities** - Shared utilities (archive management, directory structure, version validation)
+- **initialize-repository** - Repository initialization and setup
+
+**Planning and Specification Skills:**
+- **bmad-planner** - BMAD planning framework (requirements, architecture, epics)
+- **speckit-author** - SpecKit specifications (spec and plan generation)
+
+**Quality and Technical Skills:**
+- **quality-enforcer** - Quality gates (test coverage, linting, validation)
+- **tech-stack-adapter** - Technology stack detection (Python/uv/Podman)
+- **agentdb-state-manager** - DuckDB state management and synchronization
+
+**Usage:** Skills are invoked by name when needed. Claude Code will load relevant skills based on context and task requirements.
+
+### Available Commands (3 Slash Commands)
+
+Progressive disclosure workflow commands for complex tasks:
+
+- **/plan** - Execute implementation planning workflow
+  - Loads plan template
+  - Generates design artifacts
+  - Creates tasks from implementation plan
+
+- **/specify** - Create or update feature specifications
+  - Generates feature specification from natural language
+  - Uses spec template structure
+  - Prepares for implementation phase
+
+- **/tasks** - Generate dependency-ordered task lists
+  - Analyzes design documents
+  - Creates actionable tasks
+  - Identifies parallel vs sequential work
+
+**Usage:** Type `/plan`, `/specify`, or `/tasks` in the conversation to invoke these workflows.
+
+### Workflow Application to This Repository
+
+While this is a documentation-focused repository, the workflow system provides valuable capabilities:
+
+**Git Workflow Management:**
+- Daily rebase of contrib branch onto main
+- Semantic versioning for documentation releases
+- PR creation and management for major changes
+- Release tagging for published versions
+
+**Quality Enforcement:**
+- Documentation validation (already using `./validate_documentation.sh`)
+- Python code quality (Ruff, MyPy for automation scripts)
+- Test coverage for workflow utilities
+
+**Project Organization:**
+- Archive management for deprecated documentation
+- Directory structure validation
+- Version consistency checking
+
+**Planning Integration:**
+- BMAD planning for major documentation updates
+- SpecKit for new feature documentation
+- Task generation for complex research integration
+
+**When to Use:**
+- **Git operations:** Use git-workflow-manager for complex branch operations
+- **Documentation releases:** Use semantic versioning and release workflow
+- **Large updates:** Use BMAD planning before major paper revisions
+- **Validation:** Quality-enforcer already integrated with validation scripts
+
+**When NOT to Use:**
+- Simple documentation edits (use direct editing)
+- Minor citation updates (no workflow overhead needed)
+- Day-to-day paper writing (workflows are for releases/major changes)
+
 ## Enhanced API Contracts & Data Formats
 
 ### GitHub Issue Metadata Format
