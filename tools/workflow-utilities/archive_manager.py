@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path
 
 
-def list_archives(archived_dir='ARCHIVED'):
+def list_archives(archived_dir="ARCHIVED"):
     """List all archives with timestamps."""
 
     archived_path = Path(archived_dir)
@@ -15,7 +15,7 @@ def list_archives(archived_dir='ARCHIVED'):
         print(f"No {archived_dir} directory found")
         return []
 
-    archives = sorted(archived_path.glob('*.zip'))
+    archives = sorted(archived_path.glob("*.zip"))
 
     if not archives:
         print(f"No archives found in {archived_dir}/")
@@ -27,18 +27,18 @@ def list_archives(archived_dir='ARCHIVED'):
     for archive in archives:
         # Parse timestamp from filename: YYYYMMDDTHHMMSSZ_description.zip
         name = archive.stem
-        parts = name.split('_', 1)
+        parts = name.split("_", 1)
 
         if len(parts) == 2:
             timestamp_str, description = parts
             try:
                 # Parse timestamp
-                timestamp = datetime.strptime(timestamp_str, '%Y%m%dT%H%M%SZ')
+                timestamp = datetime.strptime(timestamp_str, "%Y%m%dT%H%M%SZ")
                 print(f"{timestamp.strftime('%Y-%m-%d %H:%M:%S')} - {description}")
                 print(f"  File: {archive.name}")
 
                 # List contents
-                with zipfile.ZipFile(archive, 'r') as zipf:
+                with zipfile.ZipFile(archive, "r") as zipf:
                     files = zipf.namelist()
                     print(f"  Contains: {', '.join(files)}")
 
@@ -51,7 +51,8 @@ def list_archives(archived_dir='ARCHIVED'):
 
     return archives
 
-def extract_archive(archive_path, output_dir='.'):
+
+def extract_archive(archive_path, output_dir="."):
     """Extract archive to specified directory."""
 
     archive = Path(archive_path)
@@ -64,7 +65,7 @@ def extract_archive(archive_path, output_dir='.'):
 
     print(f"Extracting {archive.name} to {output}/")
 
-    with zipfile.ZipFile(archive, 'r') as zipf:
+    with zipfile.ZipFile(archive, "r") as zipf:
         zipf.extractall(output)
         print("✓ Extracted files:")
         for name in zipf.namelist():
@@ -72,7 +73,8 @@ def extract_archive(archive_path, output_dir='.'):
 
     print("\n✓ Extraction complete")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: archive_manager.py <list|extract> [args]")
         print()
@@ -88,17 +90,17 @@ if __name__ == '__main__':
 
     command = sys.argv[1]
 
-    if command == 'list':
-        archived_dir = sys.argv[2] if len(sys.argv) > 2 else 'ARCHIVED'
+    if command == "list":
+        archived_dir = sys.argv[2] if len(sys.argv) > 2 else "ARCHIVED"
         list_archives(archived_dir)
 
-    elif command == 'extract':
+    elif command == "extract":
         if len(sys.argv) < 3:
             print("Usage: archive_manager.py extract <archive_path> [output_dir]")
             sys.exit(1)
 
         archive_path = sys.argv[2]
-        output_dir = sys.argv[3] if len(sys.argv) > 3 else '.'
+        output_dir = sys.argv[3] if len(sys.argv) > 3 else "."
         extract_archive(archive_path, output_dir)
 
     else:
