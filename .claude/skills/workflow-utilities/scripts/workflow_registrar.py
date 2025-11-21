@@ -93,7 +93,7 @@ def load_todo_md() -> tuple[Dict[str, Any], str]:
     try:
         frontmatter = yaml.safe_load(parts[1])
     except yaml.YAMLError as e:
-        error_exit(f"Invalid YAML in TODO.md: {e}")
+        error_exit(f"Invalid YAML in {TODO_MD_PATH}: {e}")
 
     return frontmatter, content
 

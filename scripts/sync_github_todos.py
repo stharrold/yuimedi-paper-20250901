@@ -621,6 +621,23 @@ class YuiQueryGitHubSync:
 
     def main(self):
         """Main bidirectional sync function"""
+        print("=" * 70)
+        print("⚠️  DEPRECATION WARNING")
+        print("=" * 70)
+        print("This bidirectional sync workflow is DEPRECATED as of v1.3.0.")
+        print("")
+        print("GitHub Issues are now the single source of truth for task management.")
+        print("Local TODO_FOR_AI.json files have been archived to ARCHIVED/TODO/.")
+        print("")
+        print("Please use GitHub Issues directly:")
+        print("  - View tasks: gh issue list")
+        print("  - Create task: gh issue create")
+        print("  - View task: gh issue view <number>")
+        print("  - Close task: gh issue close <number>")
+        print("")
+        print("See TODO.md for migration details and new workflow.")
+        print("=" * 70)
+        print("")
         print("YuiQuery Healthcare Research GitHub <-> TODO Sync")
         print("=" * 50)
 
