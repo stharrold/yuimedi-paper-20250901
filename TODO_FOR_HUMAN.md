@@ -6,7 +6,7 @@
 
 # TODO for Human Review
 
-Last Sync: 2025-11-21T02:56:05.358012+00:00
+Last Sync: 2025-11-21T03:08:04.493412+00:00
 
 ## Priority 0 - Critical
 > **CRITICAL**: Essential research tasks blocking publication progress
@@ -97,57 +97,6 @@ Develop 5x5 probability-impact matrix with numerical scoring for all id...
   - Details: <!-- depends-on: risk-2 -->
 
 Create detailed documentation showing how 20% and 60% success probabili...
-
-- [ ] **[#169]** Create Backup Developer Documentation
-  - Status: `todo`
-  - Details: Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6
-
-**Created**: 2...
-
-- [ ] **[#170]** Update Publication Strategy with Portals
-  - Status: `todo`
-  - Details: Document validated submission portals for whitepapers
-
-**Created**: 2025-09-03T00:00:00Z
-**Labels**:...
-
-- [ ] **[#171]** Document Risk Assessment Methodology
-  - Status: `todo`
-  - Details: Create comprehensive documentation for success probability calculation methodology with verified ref...
-
-- [ ] **[#172]** Create Risk Scoring Matrix
-  - Status: `todo`
-  - Details: <!-- depends-on: risk-1 -->
-
-Develop 5x5 probability-impact matrix with numerical scoring for all id...
-
-- [ ] **[#173]** Document Probability Calculations
-  - Status: `todo`
-  - Details: <!-- depends-on: risk-2 -->
-
-Create detailed documentation showing how 20% and 60% success probabili...
-
-- [ ] **(Internal Task)** Create Backup Developer Documentation
-  - Status: `completed`
-  - Details: Create backup developer role requirements and RACI matrix - CRITICAL deadline Sept 6
-
-- [ ] **(Internal Task)** Update Publication Strategy with Portals
-  - Status: `completed`
-  - Details: Document validated submission portals for whitepapers
-
-- [ ] **(Internal Task)** Document Risk Assessment Methodology
-  - Status: `completed`
-  - Details: Create comprehensive documentation for success probability calculation methodology with verified ref...
-
-- [ ] **(Internal Task)** Create Risk Scoring Matrix
-  - Dependencies: risk-1
-  - Status: `completed`
-  - Details: Develop 5x5 probability-impact matrix with numerical scoring for all identified risks
-
-- [ ] **(Internal Task)** Document Probability Calculations
-  - Dependencies: risk-2
-  - Status: `completed`
-  - Details: Create detailed documentation showing how 20% and 60% success probabilities were calculated
 
 ## Priority 1 - High
 > **HIGH**: Important research components for whitepaper completion
@@ -274,76 +223,6 @@ Develop checklist to verify all URLs, references, and calculati...
   - Details: Add citation for '20250905_Anthropic_Code-Modernization-Playbook.pdf' from https://resources.anthrop...
 
 - [ ] **[#152]** Add Anthropic Teams Claude Code best practices to project planning docs
-  - Status: `todo`
-  - Details: Incorporate insights from 'How Anthropic Teams Use Claude Code' (https://www.anthropic.com/news/how-...
-
-- [ ] **[#174]** Setup Complete Directory Structure
-  - Status: `todo`
-  - Details: Create missing project directories for papers, source code, and data
-
-**Created**: 2025-09-03T00:00:...
-
-- [ ] **[#175]** Setup Synthetic Data with Synthea
-  - Status: `todo`
-  - Details: <!-- depends-on: impl-2 -->
-
-Clone Synthea repository and generate 100 synthetic patients as backup ...
-
-- [ ] **[#176]** Create GitHub Milestones
-  - Status: `todo`
-  - Details: Setup GitHub milestones for all 3 papers with deadlines
-
-**Created**: 2025-09-03T00:00:00Z
-**Labels*...
-
-- [ ] **[#177]** Update Risk Register with Numerical Scores
-  - Status: `todo`
-  - Details: <!-- depends-on: risk-2 -->
-
-Add probability_score and impact_score columns to existing risk registe...
-
-- [ ] **[#178]** Create Methodology Validation Checklist
-  - Status: `todo`
-  - Details: <!-- depends-on: risk-1, risk-3 -->
-
-Develop checklist to verify all URLs, references, and calculati...
-
-- [ ] **[#179]** Cite Anthropic Code Modernization Playbook in paper.md
-  - Status: `todo`
-  - Details: Add citation for '20250905_Anthropic_Code-Modernization-Playbook.pdf' from https://resources.anthrop...
-
-- [ ] **[#180]** Add Anthropic Teams Claude Code best practices to project planning docs
-  - Status: `todo`
-  - Details: Incorporate insights from 'How Anthropic Teams Use Claude Code' (https://www.anthropic.com/news/how-...
-
-- [ ] **(Internal Task)** Setup Complete Directory Structure
-  - Status: `completed`
-  - Details: Create missing project directories for papers, source code, and data
-
-- [ ] **(Internal Task)** Setup Synthetic Data with Synthea
-  - Dependencies: impl-2
-  - Status: `not_needed`
-  - Details: Clone Synthea repository and generate 100 synthetic patients as backup data source
-
-- [ ] **(Internal Task)** Create GitHub Milestones
-  - Status: `completed`
-  - Details: Setup GitHub milestones for all 3 papers with deadlines
-
-- [ ] **(Internal Task)** Update Risk Register with Numerical Scores
-  - Dependencies: risk-2
-  - Status: `todo`
-  - Details: Add probability_score and impact_score columns to existing risk register
-
-- [ ] **(Internal Task)** Create Methodology Validation Checklist
-  - Dependencies: risk-1, risk-3
-  - Status: `todo`
-  - Details: Develop checklist to verify all URLs, references, and calculations
-
-- [ ] **(Internal Task)** Cite Anthropic Code Modernization Playbook in paper.md
-  - Status: `todo`
-  - Details: Add citation for '20250905_Anthropic_Code-Modernization-Playbook.pdf' from https://resources.anthrop...
-
-- [ ] **(Internal Task)** Add Anthropic Teams Claude Code best practices to project planning docs
   - Status: `todo`
   - Details: Incorporate insights from 'How Anthropic Teams Use Claude Code' (https://www.anthropic.com/news/how-...
 
@@ -550,53 +429,29 @@ Include HIMSS project management standards for healthcare IT projects
 
 ...
 
-- [ ] **[#181]** Create GitHub Actions Workflow
-  - Status: `todo`
-  - Details: Setup automated project tracking with GitHub Actions
-
-**Created**: 2025-09-03T00:00:00Z
-**Labels**: ...
-
-- [ ] **[#182]** Add Healthcare-Specific Risk Factors
-  - Status: `todo`
-  - Details: <!-- depends-on: risk-1 -->
-
-Include HIMSS project management standards for healthcare IT projects
-
-...
-
-- [ ] **(Internal Task)** Create GitHub Actions Workflow
-  - Status: `todo`
-  - Details: Setup automated project tracking with GitHub Actions
-
-- [ ] **(Internal Task)** Add Healthcare-Specific Risk Factors
-  - Dependencies: risk-1
-  - Status: `todo`
-  - Details: Include HIMSS project management standards for healthcare IT projects
-
 ## Recently Completed
 > **DONE**: Recently finished tasks for reference
 
-- [x] **[#168]** Add Healthcare-Specific Risk Factors (2025-11-21)
-  - <!-- depends-on: risk-1 -->
+- [x] **[#173]** Document Probability Calculations (2025-11-21)
+  - <!-- depends-on: risk-2 -->
 
-Include HIMSS project management standards for heal...
+Create detailed documentation showing how 20% and 6...
 
-- [x] **[#167]** Create GitHub Actions Workflow (2025-11-21)
-  - Setup automated project tracking with GitHub Actions
+- [x] **[#169]** Create Backup Developer Documentation (2025-11-21)
+  - Create backup developer role requirements and RACI matrix - CRITICAL deadline Se...
 
-**Created**: 2025-09-03T00...
+- [x] **[#170]** Update Publication Strategy with Portals (2025-11-21)
+  - Document validated submission portals for whitepapers
 
-- [x] **[#166]** Add Anthropic Teams Claude Code best practices to project planning docs (2025-11-21)
-  - Incorporate insights from 'How Anthropic Teams Use Claude Code' (https://www.ant...
+**Created**: 2025-09-03T0...
 
-- [x] **[#165]** Cite Anthropic Code Modernization Playbook in paper.md (2025-11-21)
-  - Add citation for '20250905_Anthropic_Code-Modernization-Playbook.pdf' from https...
+- [x] **[#171]** Document Risk Assessment Methodology (2025-11-21)
+  - Create comprehensive documentation for success probability calculation methodolo...
 
-- [x] **[#164]** Create Methodology Validation Checklist (2025-11-21)
-  - <!-- depends-on: risk-1, risk-3 -->
+- [x] **[#174]** Setup Complete Directory Structure (2025-11-21)
+  - Create missing project directories for papers, source code, and data
 
-Develop checklist to verify all URLs, refer...
+**Created*...
 
 ## Sync Metadata
 ```json
@@ -604,11 +459,11 @@ Develop checklist to verify all URLs, refer...
   "version": "1.0.0",
   "last_sync_source": "github_bidirectional_sync",
   "github_issues_total": 169,
-  "total_tasks": 183,
-  "critical_tasks": 60,
-  "high_priority_tasks": 71,
+  "total_tasks": 169,
+  "critical_tasks": 55,
+  "high_priority_tasks": 64,
   "blocked_tasks": 0,
-  "completed_tasks": 86
+  "completed_tasks": 100
 }
 ```
 
