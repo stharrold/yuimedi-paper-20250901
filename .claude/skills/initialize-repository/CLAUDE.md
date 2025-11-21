@@ -64,12 +64,12 @@ python .claude/skills/initialize-repository/scripts/initialize_repository.py \
 
 # From absolute paths
 python .claude/skills/initialize-repository/scripts/initialize_repository.py \
-  /Users/stharrold/Documents/GitHub/german \
+  /Users/stharrold/Documents/GitHub/standard \
   /Users/stharrold/Documents/GitHub/my-cli-tool
 
 # From relative paths
 python .claude/skills/initialize-repository/scripts/initialize_repository.py \
-  ~/Code/german ~/Code/fastapi-backend
+  ~/Code/standard ~/Code/fastapi-backend
 ```
 
 **What it does:**
@@ -317,7 +317,7 @@ cp -r ~/Code/my-existing-repo ~/Code/my-existing-repo-test
 
 # 2. Run initialization on test copy
 python .claude/skills/initialize-repository/scripts/initialize_repository.py \
-  ~/Code/german ~/Code/my-existing-repo-test
+  ~/Code/standard ~/Code/my-existing-repo-test
 
 # 3. Review changes in test copy
 cd ~/Code/my-existing-repo-test
@@ -340,7 +340,7 @@ git commit -m "chore: backup before workflow initialization"
 
 # 3. Run initialization (overwrites files)
 python .claude/skills/initialize-repository/scripts/initialize_repository.py \
-  ~/Code/german ~/Code/my-existing-repo
+  ~/Code/standard ~/Code/my-existing-repo
 
 # 4. Review changes, revert if needed
 git diff HEAD~1
@@ -350,11 +350,11 @@ git reset --hard HEAD~1  # if you want to revert
 **Option 3: Manual selective copy (MOST CONTROL)**
 ```bash
 # Copy only .claude/skills/ directory
-cp -r ~/Code/german/.claude ~/Code/my-existing-repo/
+cp -r ~/Code/standard/.claude ~/Code/my-existing-repo/
 
 # Copy WORKFLOW.md, CONTRIBUTING.md
-cp ~/Code/german/WORKFLOW.md ~/Code/my-existing-repo/
-cp ~/Code/german/CONTRIBUTING.md ~/Code/my-existing-repo/
+cp ~/Code/standard/WORKFLOW.md ~/Code/my-existing-repo/
+cp ~/Code/standard/CONTRIBUTING.md ~/Code/my-existing-repo/
 
 # Manually integrate pyproject.toml, README.md, CLAUDE.md
 # (don't overwrite - merge manually)
@@ -703,15 +703,15 @@ Remote (if remote_url provided):
 ### Complete Interactive Session
 
 ```bash
-# User has 'german' repository with workflow system
+# User has 'standard' repository with workflow system
 # User wants 'fastapi-backend' repository with same workflow
 
 $ python .claude/skills/initialize-repository/scripts/initialize_repository.py \
-    ~/Code/german ~/Code/fastapi-backend
+    ~/Code/standard ~/Code/fastapi-backend
 
 === Repository Initialization ===
 
-Source repository: /Users/stharrold/Code/german
+Source repository: /Users/stharrold/Code/standard
 Target repository: /Users/stharrold/Code/fastapi-backend
 
 ✓ Source repository validated (9 skills found)
@@ -867,7 +867,7 @@ Remote: https://github.com/stharrold/fastapi-backend.git
 # Create test copy, run initialization, review changes
 cp -r ~/Code/my-repo ~/Code/my-repo-test
 python .claude/skills/initialize-repository/scripts/initialize_repository.py \
-  ~/Code/german ~/Code/my-repo-test
+  ~/Code/standard ~/Code/my-repo-test
 # Review: cd ~/Code/my-repo-test && git status
 # If good: manually copy specific files to original
 ```
@@ -878,7 +878,7 @@ python .claude/skills/initialize-repository/scripts/initialize_repository.py \
 cp -r ~/Code/my-repo ~/Code/my-repo-backup-$(date +%Y%m%d)
 cd ~/Code/my-repo && git add . && git commit -m "backup"
 python .claude/skills/initialize-repository/scripts/initialize_repository.py \
-  ~/Code/german ~/Code/my-repo
+  ~/Code/standard ~/Code/my-repo
 # Review: git diff HEAD~1
 # Revert if needed: git reset --hard HEAD~1
 ```
@@ -886,8 +886,8 @@ python .claude/skills/initialize-repository/scripts/initialize_repository.py \
 **Option 3: Manual selective copy (MOST CONTROL)**
 ```bash
 # Copy only specific components
-cp -r ~/Code/german/.claude ~/Code/my-repo/
-cp ~/Code/german/WORKFLOW.md ~/Code/my-repo/
+cp -r ~/Code/standard/.claude ~/Code/my-repo/
+cp ~/Code/standard/WORKFLOW.md ~/Code/my-repo/
 # Merge pyproject.toml, README.md manually (don't overwrite)
 ```
 

@@ -390,5 +390,5 @@ Phase 3 must:
 ## Contact
 
 For questions about Phase 2 integration:
-- Issue #160: https://github.com/stharrold/german/issues/160
-- Issue #161: https://github.com/stharrold/german/issues/161 (Phase 3)
+- Issue #160: https://github.com/stharrold/standard/issues/160
+- Issue #161: https://github.com/stharrold/standard/issues/161 (Phase 3)

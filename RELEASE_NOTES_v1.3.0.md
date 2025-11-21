@@ -12,7 +12,7 @@ Version 1.3.0 represents a significant upgrade to the project infrastructure, in
 
 ### 🚀 New Features
 
-**Workflow Automation System (german-workflow v1.15.1)**
+**Workflow Automation System (standard-workflow v1.15.1)**
 - Integrated 9 specialized workflow skills for project management
 - Added 3 slash commands for progressive disclosure workflows
 - Implemented structured planning and specification frameworks
@@ -53,7 +53,7 @@ Version 1.3.0 represents a significant upgrade to the project infrastructure, in
 - **feat: Integrate complete workflow automation system** (f742c90)
   - 9 skills: workflow-orchestrator, git-workflow-manager, workflow-utilities, initialize-repository, bmad-planner, speckit-author, quality-enforcer, tech-stack-adapter, agentdb-state-manager
   - 3 commands: /plan, /specify, /tasks
-  - Full german-workflow v1.15.1 integration
+  - Full standard-workflow v1.15.1 integration
   - Zero runtime dependencies maintained
 
 ### Refactoring

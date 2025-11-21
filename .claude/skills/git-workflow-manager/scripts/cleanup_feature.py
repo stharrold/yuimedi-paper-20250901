@@ -12,7 +12,7 @@ Constants:
 
 Usage:
     python cleanup_feature.py <slug> --summary "..." --version "X.Y.Z"
-    python cleanup_feature.py <slug> --summary "..." --version "X.Y.Z" --project-name german
+    python cleanup_feature.py <slug> --summary "..." --version "X.Y.Z" --project-name standard
 
 Created: 2025-11-18
 Issue: Workflow enforcement - ensure TODO archival before worktree deletion
@@ -73,7 +73,7 @@ def find_worktree(slug: str, project_name: str = None) -> Path:
 
     Args:
         slug: Feature slug
-        project_name: Optional project name (e.g., 'german'). If None, uses generic pattern.
+        project_name: Optional project name (e.g., 'standard'). If None, uses generic pattern.
 
     Returns:
         Path to worktree directory, or None if not found
@@ -321,7 +321,7 @@ Examples:
   python cleanup_feature.py auth-system \\
     --summary "Implemented user authentication" \\
     --version "1.5.0" \\
-    --project-name german
+    --project-name standard
 
   # Cleanup issue fix
   python cleanup_feature.py issue-243-todo-status \\

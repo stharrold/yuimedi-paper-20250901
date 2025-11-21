@@ -176,12 +176,12 @@ SpecKit is part of the 5-phase workflow:
 ## Example Session
 
 ```bash
-$ cd /Users/user/german_feature_my-feature
+$ cd /Users/user/standard_feature_my-feature
 
 $ python .claude/skills/speckit-author/scripts/create_specifications.py \
     feature my-feature stharrold
 
-Working in worktree: /Users/user/german_feature_my-feature
+Working in worktree: /Users/user/standard_feature_my-feature
 Branch: feature/20251024T143000Z_my-feature
 ✓ Auto-detected TODO file: ../TODO_feature_20251024_my-feature.md
 

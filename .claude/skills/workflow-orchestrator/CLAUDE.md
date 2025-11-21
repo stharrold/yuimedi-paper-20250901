@@ -319,7 +319,7 @@ context = detect_context()
 if planning_exists() and not context['is_worktree']:
     load_skill('git-workflow-manager')
     create_worktree(slug, base_branch='contrib/stharrold')
-    # Guide user to: cd ../german_feature_<slug>
+    # Guide user to: cd ../standard_feature_<slug>
 ```
 
 **Phase 2 → Phase 3:**
@@ -396,7 +396,7 @@ Phase 1: Planning (main repo, contrib branch)
 Phase 2: Implementation (worktree)
 ├── 2.1: Load: git-workflow-manager
 │   └── Action: Create worktree
-├── 2.2: User: cd ../german_feature_<slug>
+├── 2.2: User: cd ../standard_feature_<slug>
 ├── 2.3: Load: speckit-author
 │   └── Action: Create specs/ documents
 └── 2.4: User: Implement feature

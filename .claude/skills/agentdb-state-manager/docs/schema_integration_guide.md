@@ -284,7 +284,7 @@ conn.execute("""
 """, [
     sync_id,
     'agent-001',
-    '../german_feature_auth',
+    '../standard_feature_auth',
     'file_update',
     '../TODO_feature_20251116_auth.md',
     'worktree/TODO_feature_20251116_auth.md',
@@ -319,7 +319,7 @@ conn.execute("""
     }),
     json.dumps({
         "sync_pattern": "todo_bidirectional",
-        "worktree": "../german_feature_auth"
+        "worktree": "../standard_feature_auth"
     })
 ])
 ```

@@ -168,7 +168,7 @@ Fix type annotations before PR.
 
 ```bash
 # After implementation complete in feature worktree
-cd ../german_feature_auth-system
+cd ../standard_feature_auth-system
 
 # Run quality gates
 python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
@@ -235,7 +235,7 @@ TOTAL                     107     9    92%
 ✓ Coverage: 92% (≥80% required)
 
 Checking build...
-Successfully built german-1.5.0.tar.gz and german-1.5.0-py3-none-any.whl
+Successfully built standard-1.5.0.tar.gz and german-1.5.0-py3-none-any.whl
 ✓ Build successful
 
 Checking linting...
@@ -441,4 +441,4 @@ This skill is part of the workflow system. To update:
 
 ## License
 
-Part of the german repository workflow system.
+Part of the standard repository workflow system.

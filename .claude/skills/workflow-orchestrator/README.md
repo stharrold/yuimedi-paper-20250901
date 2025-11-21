@@ -168,7 +168,7 @@ Phase 1: Planning (main repo, contrib branch)
 
 Phase 2: Implementation (worktree)
 ├── 2.1: Load: git-workflow-manager → Create worktree
-├── 2.2: User: cd ../german_feature_<slug>
+├── 2.2: User: cd ../standard_feature_<slug>
 ├── 2.3: Load: speckit-author → Create specs
 └── 2.4: User: Implement feature
 
@@ -285,4 +285,4 @@ This skill is part of the workflow system. To update:
 
 ## License
 
-Part of the german repository workflow system.
+Part of the standard repository workflow system.

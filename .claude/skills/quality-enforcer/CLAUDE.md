@@ -317,7 +317,7 @@ Fix type annotations before PR.
 **Phase 3 sequence:**
 ```python
 # 1. Implementation complete in feature worktree
-cd ../german_feature_auth-system
+cd ../standard_feature_auth-system
 
 # 2. Run quality gates
 python .claude/skills/quality-enforcer/scripts/run_quality_gates.py

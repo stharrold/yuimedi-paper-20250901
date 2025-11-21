@@ -333,7 +333,7 @@ def test_sample_inserts(conn: duckdb.DuckDBPyConnection, results: TestResult, ve
                 sync_id, agent_id, worktree_path, sync_type, source_location,
                 target_location, pattern, status, created_by, metadata
             ) VALUES (
-                ?, 'agent-001', '../german_feature_test',
+                ?, 'agent-001', '../standard_feature_test',
                 'file_update', '../TODO_feature_test.md',
                 'worktree/TODO_feature_test.md', 'todo_bidirectional',
                 'pending', 'claude-code', '{"priority": "high"}'

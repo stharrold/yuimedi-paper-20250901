@@ -26,7 +26,7 @@ This is a research project focused on natural language to SQL in healthcare, spe
   - `scripts/` - GitHub sync automation (Python, uses stdlib only)
   - `tools/validation/` - Documentation quality validation scripts (bash)
   - `tools/workflow-utilities/` - Archive management and version checking
-  - `.claude/skills/` - Workflow automation skills (9 skills, german-workflow v1.15.1)
+  - `.claude/skills/` - Workflow automation skills (9 skills, standard-workflow v1.15.1)
   - `.claude/commands/` - Slash commands (/plan, /specify, /tasks)
 
 - **Research Supporting Materials**:
@@ -160,7 +160,7 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 
 **Run before all commits affecting documentation.**
 
-### Workflow Skills System (german-workflow v1.15.1)
+### Workflow Skills System (standard-workflow v1.15.1)
 
 **9 Skills Available in `.claude/skills/`:**
 

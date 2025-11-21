@@ -135,7 +135,7 @@ python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py \
   auth-system \
   --summary "Implemented user authentication" \
   --version "1.5.0" \
-  --project-name german
+  --project-name standard
 ```
 
 **What it does:**

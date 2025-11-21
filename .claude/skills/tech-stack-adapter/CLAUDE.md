@@ -58,8 +58,8 @@ python .claude/skills/tech-stack-adapter/scripts/detect_stack.py
 {
   "stack": "python",
   "package_manager": "uv",
-  "project_name": "german",
-  "repo_root": "/Users/stharrold/Documents/GitHub/german",
+  "project_name": "standard",
+  "repo_root": "/Users/stharrold/Documents/GitHub/standard",
 
   "install_cmd": "uv sync",
   "test_cmd": "uv run pytest",
@@ -278,7 +278,7 @@ testpaths = ["tests"]
 **pyproject.toml:**
 ```toml
 [project]
-name = "german"
+name = "standard"
 dependencies = [
     "pydantic>=2.12.3",
     "sqlalchemy>=2.0.0",

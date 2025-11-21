@@ -158,7 +158,7 @@ python .claude/skills/git-workflow-manager/scripts/tag_release.py \
 ✓ Created annotated tag: v1.1.0
   Message: "Release v1.1.0: Production release with vocabulary modules"
 ✓ Pushed tag to origin
-✓ GitHub release created: https://github.com/user/german/releases/tag/v1.1.0
+✓ GitHub release created: https://github.com/user/standard/releases/tag/v1.1.0
 ```
 
 ### backmerge_release.py
@@ -193,7 +193,7 @@ python .claude/skills/git-workflow-manager/scripts/backmerge_release.py \
 **Output (with conflicts):**
 ```
 ⚠ Merge conflicts detected
-✓ Created PR: https://github.com/user/german/pull/46
+✓ Created PR: https://github.com/user/standard/pull/46
   Title: "chore(release): back-merge v1.1.0 to develop"
 
 Please resolve conflicts in GitHub UI and merge.

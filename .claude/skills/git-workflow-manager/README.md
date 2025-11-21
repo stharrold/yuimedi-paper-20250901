@@ -45,12 +45,12 @@ python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
   feature auth-system contrib/stharrold
 
 # Output:
-# ✓ Created worktree: ../german_feature_auth-system
+# ✓ Created worktree: ../standard_feature_auth-system
 # ✓ Created branch: feature/20251103T143000Z_auth-system
 # ✓ Created TODO file: TODO_feature_20251103T143000Z_auth-system.md
 #
 # Next steps:
-#   cd ../german_feature_auth-system
+#   cd ../standard_feature_auth-system
 #   python .claude/skills/speckit-author/scripts/create_specifications.py \
 #     feature auth-system stharrold --todo-file ../TODO_feature_*.md
 ```
@@ -160,7 +160,7 @@ python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
   hotfix security-patch main
 
 # Output:
-# ✓ Created worktree: ../german_hotfix_security-patch
+# ✓ Created worktree: ../standard_hotfix_security-patch
 # ✓ Created branch: hotfix/20251103T150000Z_security-patch
 # ✓ Created TODO file: TODO_hotfix_20251103T150000Z_security-patch.md
 ```
@@ -173,7 +173,7 @@ python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
   release v1.6.0 develop
 
 # Output:
-# ✓ Created worktree: ../german_release_v1.6.0
+# ✓ Created worktree: ../standard_release_v1.6.0
 # ✓ Created branch: release/v1.6.0
 # ✓ Created TODO file: TODO_release_20251103T160000Z_v1.6.0.md
 ```
@@ -228,14 +228,14 @@ python .claude/skills/git-workflow-manager/scripts/semantic_version.py \
 
 ```bash
 # Create feature worktree after BMAD planning
-cd ~/Code/german  # main repo
+cd ~/Code/standard  # main repo
 git checkout contrib/stharrold
 
 python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
   feature auth-system contrib/stharrold
 
 # Move to worktree
-cd ../german_feature_auth-system
+cd ../standard_feature_auth-system
 
 # Create specifications
 python .claude/skills/speckit-author/scripts/create_specifications.py \
@@ -390,4 +390,4 @@ This skill is part of the workflow system. To update:
 
 ## License
 
-Part of the german repository workflow system.
+Part of the standard repository workflow system.

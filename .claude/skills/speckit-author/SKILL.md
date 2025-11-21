@@ -50,7 +50,7 @@ python .claude/skills/speckit-author/scripts/create_specifications.py \
 **Example:**
 ```bash
 # In feature worktree
-cd /Users/user/german_feature_my-feature
+cd /Users/user/standard_feature_my-feature
 
 python .claude/skills/speckit-author/scripts/create_specifications.py \
   feature my-feature stharrold \
@@ -63,7 +63,7 @@ python .claude/skills/speckit-author/scripts/create_specifications.py \
 
 **Session output:**
 ```
-Working in worktree: /Users/user/german_feature_my-feature
+Working in worktree: /Users/user/standard_feature_my-feature
 Branch: feature/20251024T143000Z_my-feature
 ✓ Auto-detected TODO file: ../TODO_feature_20251024T143000Z_my-feature.md
 
@@ -562,7 +562,7 @@ After implementation completes and PR is merged to contrib branch, SpecKit outpu
 **Process:**
 ```bash
 # After PR merge, back in main repo
-cd /Users/user/Documents/GitHub/german
+cd /Users/user/Documents/GitHub/standard
 git checkout contrib/stharrold
 git pull origin contrib/stharrold
 

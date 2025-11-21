@@ -238,4 +238,4 @@ This skill is part of the workflow system. To update:
 
 ## License
 
-Part of the german repository workflow system.
+Part of the standard repository workflow system.

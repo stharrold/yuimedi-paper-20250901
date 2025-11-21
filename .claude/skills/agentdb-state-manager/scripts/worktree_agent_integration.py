@@ -73,7 +73,7 @@ class FlowTokenManager:
         """Detect current workflow context and generate appropriate flow token.
 
         Detection Order:
-        1. Check if in worktree (directory name pattern: german_feature_*)
+        1. Check if in worktree (directory name pattern: standard_feature_*)
         2. Check git branch (contrib/* pattern)
         3. Fallback to ad-hoc UUID
 
@@ -82,17 +82,17 @@ class FlowTokenManager:
         """
         cwd = Path.cwd()
 
-        # Check if in worktree (directory name pattern: german_feature_*)
-        if cwd.name.startswith("german_feature_"):
+        # Check if in worktree (directory name pattern: standard_feature_*)
+        if cwd.name.startswith("standard_feature_"):
             # Extract branch name from worktree directory
-            # Example: german_feature_20251117T024349Z_phase-3-integration
+            # Example: standard_feature_20251117T024349Z_phase-3-integration
             #   → feature/20251117T024349Z_phase-3-integration
             parts = cwd.name.split("_", 2)  # ["german", "feature", "20251117T024349Z_phase-3-integration"]
             if len(parts) >= 3:
                 return f"feature/{parts[2]}"
 
-        # Check if in hotfix worktree (directory name pattern: german_hotfix_*)
-        if cwd.name.startswith("german_hotfix_"):
+        # Check if in hotfix worktree (directory name pattern: standard_hotfix_*)
+        if cwd.name.startswith("standard_hotfix_"):
             parts = cwd.name.split("_", 2)
             if len(parts) >= 3:
                 return f"hotfix/{parts[2]}"
