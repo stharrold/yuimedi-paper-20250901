@@ -723,6 +723,75 @@ Actual speedup will vary based on:
 - Complexity of research domain
 - Institution's acceptance of AI-assisted work
 
+## Claude Code Best Practices for Healthcare Research
+
+Based on Anthropic's internal team practices ([How Anthropic Teams Use Claude Code](https://claude.com/blog/how-anthropic-teams-use-claude-code)), the following strategies are recommended for this project:
+
+### Codebase Navigation & Onboarding
+- **First Stop for Code Understanding**: Use Claude Code as the primary tool for identifying file dependencies and explaining data pipeline architecture
+- **Healthcare Context**: Feed CLAUDE.md along with relevant healthcare data standards (FHIR, HL7, OMOP) to help Claude understand the healthcare-specific codebase structure
+- **Data Catalog Replacement**: Leverage Claude to document data flows and dependencies, reducing need for separate data catalog tools
+
+**Application to this project:**
+- New team members can use Claude Code to quickly understand the three-paper structure and YuiQuery system architecture
+- Automated documentation of healthcare data mappings and schema relationships
+- Rapid familiarization with 111+ academic citations and research methodology
+
+### Testing & Code Review Automation
+- **Test-Driven Development**: Shift from "design → code → skip tests" to TDD with Claude generating comprehensive unit tests
+- **Cross-Language Testing**: Use Claude to translate tests across programming languages (Python, SQL, etc.)
+- **PR Automation**: Integrate GitHub Actions workflows with Claude for automated PR formatting and review
+
+**Application to this project:**
+- Automated test generation for algorithm implementations (Paper 2)
+- Cross-validation of schema mapping code (Paper 3)
+- Continuous integration testing for data processing pipelines
+
+### Debugging Acceleration (3x Faster Resolution)
+- **Production Issue Speed**: Claude reduced diagnostic time from "10-15 minutes of manual scanning" to 3x faster resolution
+- **Infrastructure Diagnostics**: During outages, Claude can diagnose issues and suggest fixes (example: Kubernetes pod IP exhaustion resolved in 20 minutes)
+- **Healthcare-Specific**: Apply to complex healthcare data quality issues and FHIR/OMOP validation errors
+
+**Application to this project:**
+- Rapid diagnosis of NL2SQL query translation errors
+- Healthcare data validation debugging (ICD-10, CPT code verification)
+- Performance optimization for large healthcare datasets
+
+### Rapid Prototyping for Non-Technical Team Members
+- **Enable Non-Developers**: Data scientists without TypeScript fluency can build React applications for data visualization
+- **Autonomous Development Loops**: Claude writes code, runs tests, and iterates continuously without manual intervention
+- **Design Validation**: Product teams can validate concepts through working prototypes
+
+**Application to this project:**
+- Healthcare analysts can prototype query interfaces without deep SQL knowledge
+- YLT members can validate visualization approaches for research papers
+- SME reviewers can experiment with data representations
+
+### Documentation & Workflow Optimization
+- **Automated Documentation**: Claude generates comprehensive documentation alongside code development
+- **Knowledge Transfer**: Create self-documenting systems that reduce onboarding friction
+- **Custom Tool Building**: Departments build specialized tools independently (example: Legal built "phone tree" systems; Growth Marketing built ad analysis agents)
+
+**Application to this project:**
+- Automated generation of algorithm documentation (Paper 2)
+- Self-documenting FHIR/OMOP schema mappings (Paper 3)
+- Custom validation tools for research methodology
+- Workflow automation for literature review synthesis (Paper 1)
+
+### Healthcare-Specific Workflow Integration
+**Recommended Implementation:**
+1. **Literature Review Automation** (Paper 1): Use Claude to process hundreds of academic sources, identify themes, and synthesize findings
+2. **Algorithm Development** (Paper 2): Test-driven development with Claude generating edge cases specific to healthcare queries
+3. **Schema Mapping** (Paper 3): Automated documentation of complex FHIR/OMOP relationships
+4. **Quality Assurance**: Continuous validation of healthcare compliance (HIPAA, data governance)
+5. **Knowledge Management**: Maintain up-to-date project documentation with minimal manual effort
+
+**Metrics to Track:**
+- Time reduction in literature synthesis (target: 50% based on conservative assumptions)
+- Test coverage increase (target: 80%+ automated test coverage)
+- Documentation completeness score (target: 90%+)
+- Onboarding time for backup developer (target: <2 weeks to full productivity)
+
 ## References
 
 ### Validated Time Estimates with URLs
