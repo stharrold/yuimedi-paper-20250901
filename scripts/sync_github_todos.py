@@ -93,8 +93,8 @@ class YuiQueryGitHubSync:
         for issue in issues:
             metadata = self.parse_issue_metadata(issue.get('body', ''))
             
-            # Determine status from GitHub state
-            if issue['state'] == 'closed':
+            # Determine status from GitHub state (case-insensitive)
+            if issue['state'].upper() == 'CLOSED':
                 metadata['status'] = 'done'
             
             # Clean description (remove metadata comments)

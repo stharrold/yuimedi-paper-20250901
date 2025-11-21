@@ -7,7 +7,7 @@ Research whitepaper on natural language to SQL in healthcare - a comprehensive a
 
 ## 📄 Research Documents
 
-**[Main Whitepaper](whitepaper.md)** | **[Literature Review](20250810T235500Z_YuiQuery-LIterature-Review.md)** | **[Bibliography](20250810T235500Z_YuiQuery-Bibliography.md)**
+**[Main Research Paper](paper.md)** - Comprehensive academic research paper on YuiQuery healthcare analytics with 111+ citations
 
 ## 🚀 Quick Access
 
@@ -16,10 +16,12 @@ Research whitepaper on natural language to SQL in healthcare - a comprehensive a
 git clone https://github.com/yourusername/yuimedi-paper-20250901.git
 cd yuimedi-paper-20250901
 
-# View main research documents
-open whitepaper.md
-open 20250810T235500Z_YuiQuery-LIterature-Review.md
-open 20250810T235500Z_YuiQuery-Bibliography.md
+# View main research document
+open paper.md
+
+# Setup development environment
+uv sync
+./validate_documentation.sh
 ```
 
 ## 📋 Project Overview
@@ -34,17 +36,35 @@ This repository contains research documentation for YuiQuery, a conversational A
 
 ```
 .
-├── whitepaper.md                                    # Main research document
-├── 20250810T235500Z_YuiQuery-Literature-Review.md  # Comprehensive literature review
-├── 20250810T235500Z_YuiQuery-Bibliography.md       # Academic and industry sources
-├── README.md                                        # This file
-├── LICENSE                                          # MIT License
-├── CLAUDE.md                                        # AI assistant instructions
-├── DECISION_LOG.json                               # Project decision tracking
-├── TODO_FOR_AI.json                               # AI task tracking
-├── TODO_FOR_HUMAN.md                              # Human-readable task list
-├── images/                                         # Research diagrams and visuals
-└── scripts/                                        # Data analysis and processing scripts
+├── paper.md                    # Main research document (comprehensive whitepaper)
+├── README.md                   # Project overview and quick start guide
+├── CLAUDE.md                   # AI assistant instructions and project context
+├── CONTRIBUTING.md             # Contribution guidelines
+├── LICENSE                     # MIT License (code) / CC BY 4.0 (research content)
+│
+├── project-management/         # Project management documentation
+│   ├── risks/                  # Risk assessment and mitigation
+│   ├── roles/                  # Team roles and responsibilities
+│   ├── budget/                 # Budget tracking
+│   └── compliance/             # Compliance requirements
+├── project-management.md       # Project management overview
+│
+├── TODO_FOR_AI.json           # Structured task tracking (AI-optimized)
+├── TODO_FOR_HUMAN.md          # Human-readable task list
+├── DECISION_LOG.json          # Project decision history and rationale
+│
+├── scripts/                    # Workflow automation and GitHub sync
+│   ├── sync_todos.sh          # Bidirectional TODO ↔ GitHub Issues sync
+│   ├── sync_github_todos.py   # Python sync engine
+│   └── README.md              # Scripts documentation
+│
+├── images/                     # Research diagrams and YuiQuery feature screenshots
+├── docs/                       # Additional documentation (paper versions)
+├── src/                        # Source code for analysis and algorithms
+├── config/                     # Configuration files
+├── compliance/                 # IRB and compliance documentation
+├── tools/                      # Workflow utilities
+└── archive/                    # Historical files and backups
 ```
 
 ## 📖 Research Focus Areas
