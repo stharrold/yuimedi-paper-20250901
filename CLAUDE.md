@@ -17,10 +17,10 @@ This is a research project focused on natural language to SQL in healthcare, spe
 - **Project Management**:
   - `README.md` - Project overview and quick start guide
   - `CLAUDE.md` - AI assistant instructions (this file)
-  - `TODO_FOR_AI.json` - Structured task tracking (synced with GitHub Issues)
-  - `TODO_FOR_HUMAN.md` - Human-readable task list
+  - `TODO.md` - Task management documentation (points to GitHub Issues)
   - `DECISION_LOG.json` - Project decision history
   - `project-management/` - Detailed PM artifacts (budget, risks, roles, quality gates)
+  - `ARCHIVED/TODO/` - Historical TODO files (deprecated, now using GitHub Issues)
 
 - **Code & Automation**:
   - `scripts/` - GitHub sync automation (Python, uses stdlib only)
@@ -88,10 +88,14 @@ uv run ruff check --fix .            # Lint and auto-fix
 uv run mypy scripts/                 # Type checking
 ```
 
-### GitHub Integration
+### Task Management (GitHub Issues)
 ```bash
-./scripts/sync_todos.sh              # Bidirectional TODO ↔ GitHub Issues sync
-gh issue list                        # View GitHub Issues
+gh issue list                        # View all open issues
+gh issue list --label "P0"          # Critical priority tasks
+gh issue list --label "P1"          # High priority tasks
+gh issue view <number>               # View specific issue details
+gh issue comment <number> --body "Update..."  # Add progress update
+gh issue close <number> --comment "Done"      # Close completed task
 ```
 
 ### Validation Tests
@@ -118,29 +122,30 @@ pandoc paper.md -o output.html --standalone --toc --self-contained
 
 ## Key Architectural Systems
 
-### GitHub Issues Bidirectional Sync
+### Task Management with GitHub Issues
 
-**Script:** `scripts/sync_github_todos.py` (pure stdlib)
-**Wrapper:** `scripts/sync_todos.sh`
+**Current System (as of 2025-11-21):** GitHub Issues are the single source of truth for all tasks.
 
-**Sync Flow (5 Phases):**
-1. **Backup Phase:** Creates timestamped backup in `.todo_backups/`
-2. **Fetch Phase:** Retrieves all GitHub Issues via `gh` CLI
-3. **Sync to GitHub:** Creates missing Issues from `TODO_FOR_AI.json` tasks
-4. **Sync from GitHub:** Updates `TODO_FOR_AI.json` from Issue states
-5. **Generate Human-Readable:** Creates `TODO_FOR_HUMAN.md`
+**Task Workflow:**
+1. **Find tasks:** `gh issue list --state open`
+2. **View details:** `gh issue view <number>`
+3. **Work on task:** Follow instructions in issue body (includes Claude Code context)
+4. **Update progress:** `gh issue comment <number> --body "Progress: ..."`
+5. **Complete task:** `gh issue close <number> --comment "Completed: <summary>"`
 
-**Critical Implementation Detail:**
-- Uses `issue['state'].upper()` for case-insensitive comparison (line 97)
-- GitHub returns 'CLOSED' (uppercase), not 'closed'
-- Fixed bug where closed issues weren't marked as done
+**Priority Labels:**
+- `P0` - Critical (immediate attention)
+- `P1` - High (next sprint)
+- `P2` - Medium (backlog)
 
-**Metadata Format:**
-```html
-<!-- priority: P0|P1|P2|P3 -->
-<!-- status: todo|in_progress|blocked|done -->
-<!-- research_type: literature_review|citation_management|technical_analysis -->
-```
+**Task Context:**
+Each GitHub Issue includes comprehensive context for Claude Code:
+- Full task description
+- Repository patterns and validation requirements
+- Expected deliverables
+- Development workflow instructions
+
+**Historical Note:** Previously used `TODO_FOR_AI.json` with bidirectional sync (`scripts/sync_github_todos.py`). This workflow was deprecated on 2025-11-21 due to duplicate task entries (47.8% deduplication achieved). Old TODO files archived in `ARCHIVED/TODO/` for reference.
 
 ### Documentation Validation Architecture
 
@@ -213,12 +218,10 @@ See individual `SKILL.md` files in `.claude/skills/` for detailed usage.
 - Transitional sections connecting evidence domains
 - Consistent terminology throughout
 
-### GitHub Sync Issues
-**Known Fixes:**
-- **Empty repo:** Handles gracefully, creates Issues from TODO tasks
-- **Missing labels:** Labels optional, focuses on core functionality
-- **Case sensitivity:** Uses `.upper()` for state comparison
-- **Python version:** Requires 3.9+ via UV environment
+### Task Management
+**Current Approach:** Direct GitHub Issues management (no sync needed)
+**Migration Note:** Previous bidirectional sync (TODO_FOR_AI.json ↔ GitHub Issues) deprecated 2025-11-21
+**Reference:** See `TODO.md` for migration details and archived files
 
 ## Project Requirements
 
@@ -293,20 +296,11 @@ uv add --dev <package>           # Add dev dependency
 **Solution**: Migrated to Ruff (10-100x faster, Black-compatible)
 **Prevention**: Use modern, unified tooling from the start
 
-### Empty Repository Sync
-**Issue**: Script treated empty GitHub Issues as failure
-**Solution**: Modified to handle empty issues as valid state, bidirectional sync
-**Prevention**: Design systems to handle empty initial states
-
-### GitHub Label Dependencies
-**Issue**: Issue creation failed with non-existent labels
-**Solution**: Made labels optional, focused on core functionality
-**Prevention**: Make external dependencies (labels, assignees) optional
-
-### State Case Sensitivity
-**Issue**: Closed issues not marked as "done"
-**Solution**: Use `issue['state'].upper()` for comparison (line 97)
-**Prevention**: Always use case-insensitive comparison for external APIs
+### TODO Management Migration (2025-11-21)
+**Issue**: Duplicate tasks in TODO_FOR_AI.json (69 items, 33 duplicates)
+**Solution**: Migrated to GitHub Issues as single source of truth (36 unique issues)
+**Benefits**: 47.8% deduplication, better collaboration, comprehensive Claude Code context
+**Reference**: See `TODO.md` and commit 285de29 for migration details
 
 ## Citation Reference Format
 
@@ -316,6 +310,13 @@ uv add --dev <package>           # Add dev dependency
 
 ## Data Structures
 
-- **TODO_FOR_AI.json**: Structured task tracking with priority, effort, technical context
+- **GitHub Issues**: Primary task tracking (replaces TODO_FOR_AI.json as of 2025-11-21)
+  - Priority labels: P0 (critical), P1 (high), P2 (medium)
+  - Each issue includes comprehensive Claude Code context
+  - View: `gh issue list` or https://github.com/stharrold/yuimedi-paper-20250901/issues
+- **TODO.md**: Task management documentation (points to GitHub Issues, includes migration details)
 - **DECISION_LOG.json**: Decision history with rationale, alternatives, tradeoffs
-- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, etc.)
+- **ARCHIVED/TODO/**: Historical TODO files (deprecated 2025-11-21)
+  - `20251121T095620Z_TODO_FOR_AI.json` - 169 tasks (100 done, 69 migrated)
+  - `20251121T095620Z_TODO_FOR_HUMAN.md` - Human-readable version
+- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, etc.)
