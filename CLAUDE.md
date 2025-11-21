@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a research project focused on natural language to SQL in healthcare, specifically a whitepaper demonstrating the YuiQuery system. The repository contains academic documentation and research materials rather than executable code.
 
+**Critical Context:** This is a documentation-only repository (no source code to compile/run). All "development" is documentation writing, validation, and workflow automation.
+
 ## Repository Structure
 
 - **Primary Research Document**:
@@ -157,8 +159,9 @@ pandoc paper.md -o output.pdf \
 ```bash
 uv sync                          # Install/sync all dependencies
 uv run python script.py          # Run script in UV environment
-uv run ruff check .              # Lint code
-uv run ruff format .             # Format code
+uv run ruff format .             # Format code (Black-compatible)
+uv run ruff check .              # Lint code (replaces flake8 + isort)
+uv run ruff check --fix .        # Auto-fix linting issues
 uv run mypy scripts/             # Type checking
 uv add --dev <package>           # Add dev dependency
 ```
@@ -168,6 +171,16 @@ uv add --dev <package>           # Add dev dependency
 - **Metadata-Driven Issues**: GitHub Issues include structured metadata comments for priority and status
 - **Automatic Backup**: System creates timestamped backups before any sync operations
 - **Error Recovery**: Automatic restoration of backups if sync operations fail
+
+**Sync Architecture:**
+```python
+# scripts/sync_github_todos.py implements YuiQueryGitHubSync class
+# Key methods:
+# - fetch_github_issues() → Fetch all issues via gh CLI
+# - sync_from_github() → GitHub Issues → TODO_FOR_AI.json
+# - sync_to_github() → TODO_FOR_AI.json → GitHub Issues
+# - generate_human_readable() → TODO_FOR_AI.json → TODO_FOR_HUMAN.md
+```
 
 ## Advanced Issues & Solutions Discovered
 
@@ -255,6 +268,76 @@ uv run python --version
 - **Error Resilience**: Handle empty repositories, missing labels, and authentication failures gracefully
 - **Validation Consistency**: Verify bidirectional sync maintains data integrity across GitHub and local files
 
+## Common Development Tasks
+
+### Documentation Validation
+```bash
+# Run all 5 validation tests (orchestrator)
+./validate_documentation.sh
+
+# Individual tests
+./test_file_size.sh                # Check 30KB limit on modular docs
+./test_cross_references.sh         # Validate internal markdown links
+./test_content_duplication.sh      # Detect duplicate sections
+./test_command_syntax.sh           # Validate bash code blocks
+./test_yaml_structure.sh           # Check JSON structure
+```
+
+### GitHub Issue Sync
+```bash
+# Full bidirectional sync (recommended)
+./scripts/sync_todos.sh
+
+# Direct Python execution
+uv run python scripts/sync_github_todos.py
+
+# Verify results
+gh issue list
+cat TODO_FOR_HUMAN.md
+```
+
+### Code Quality Checks
+```bash
+# Format Python code
+uv run ruff format scripts/ tools/
+
+# Lint and auto-fix
+uv run ruff check --fix scripts/ tools/
+
+# Type checking
+uv run mypy scripts/ tools/
+```
+
+### Workflow Utilities
+```bash
+# Archive old files
+uv run python tools/workflow-utilities/archive_manager.py list
+uv run python tools/workflow-utilities/archive_manager.py create <file>
+
+# Validate directory structure (requires CLAUDE.md, README.md, ARCHIVED/)
+uv run python tools/workflow-utilities/directory_structure.py <dir>
+
+# Check version consistency across files
+uv run python tools/workflow-utilities/validate_versions.py
+```
+
+### Document Generation (Pandoc)
+```bash
+# Basic PDF
+pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf
+
+# Professional PDF (requires Eisvogel template)
+pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf \
+  --template=eisvogel \
+  --pdf-engine=xelatex \
+  --listings \
+  --toc \
+  --number-sections
+
+# HTML for web
+pandoc paper.md -o output.html --standalone --toc --self-contained
+```
+
 ## Enhanced API Contracts & Data Formats
 
 ### GitHub Issue Metadata Format
@@ -284,15 +367,22 @@ uv pip install -r requirements.txt  # Install from requirements
 ```bash
 # Complete sync workflow
 ./scripts/sync_todos.sh      # Run full bidirectional sync
-                             # Phase 0: Load existing TODO_FOR_AI.json
-                             # Phase 1: Create GitHub Issues from TODO tasks
-                             # Phase 2: Sync GitHub Issues → TODO files
-                             # Phase 3: Validate consistency
+                             # Phase 0: Backup existing TODO files
+                             # Phase 1: Fetch GitHub Issues → TODO_FOR_AI.json
+                             # Phase 2: Create missing GitHub Issues from TODO tasks
+                             # Phase 3: Generate TODO_FOR_HUMAN.md
+                             # Phase 4: Validate consistency
 
 # Manual sync components
-python scripts/sync_github_todos.py  # Run sync directly
-gh issue list                        # Verify GitHub Issues exist
-cat TODO_FOR_HUMAN.md               # Review human-readable summary
+uv run python scripts/sync_github_todos.py  # Run sync directly (requires UV)
+gh issue list --limit 100                    # Verify GitHub Issues exist
+cat TODO_FOR_HUMAN.md                        # Review human-readable summary
+
+# Sync uses YuiQueryGitHubSync class (scripts/sync_github_todos.py:19)
+# Metadata format in GitHub Issues:
+# <!-- priority: P0|P1|P2|P3 -->
+# <!-- status: todo|in_progress|blocked|done -->
+# <!-- research_type: literature_review|citation_management|technical_analysis -->
 ```
 
 ### Document Generation Workflow
