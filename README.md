@@ -62,6 +62,63 @@ This repository contains research documentation for YuiQuery, a conversational A
 - Analysis of technical barriers in healthcare data access
 - Framework for conversational AI in clinical settings
 
+## 🛠️ Development Setup
+
+### Prerequisites
+
+- **UV Package Manager** (recommended): Fast Python package management
+  ```bash
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+  ```
+- **Git**: Version control
+- **GitHub CLI** (optional): For PR management
+  ```bash
+  brew install gh  # macOS
+  ```
+
+### Quick Start
+
+```bash
+# Clone repository
+git clone https://github.com/yourusername/yuimedi-paper-20250901.git
+cd yuimedi-paper-20250901
+
+# Setup UV environment (automatic .venv creation)
+uv sync
+
+# Run validation tests
+./validate_documentation.sh
+
+# Verify setup
+uv run python --version
+```
+
+### Development Workflow
+
+```bash
+# Format code
+uv run black .
+
+# Type checking
+uv run mypy scripts/
+
+# Run validation
+./validate_documentation.sh
+```
+
+### Workflow Utilities
+
+```bash
+# Archive management
+uv run python tools/workflow-utilities/archive_manager.py list
+
+# Directory structure validation
+uv run python tools/workflow-utilities/directory_structure.py docs/
+
+# Version consistency checking
+uv run python tools/workflow-utilities/validate_versions.py
+```
+
 ## 🤝 Contributing
 
 ### Academic Collaboration
@@ -70,6 +127,9 @@ This repository contains research documentation for YuiQuery, a conversational A
 # Fork and clone
 git clone https://github.com/yourusername/yuimedi-paper-20250901.git
 cd yuimedi-paper-20250901
+
+# Setup development environment
+uv sync
 
 # Create research branch
 git checkout -b research/your-contribution
@@ -91,12 +151,15 @@ open 20250810T235500Z_YuiQuery-Bibliography.md
    - Include proper citations and references
    - Maintain consistent formatting
    - Update bibliography for new sources
+   - Run `./validate_documentation.sh` before committing
 
 3. **Review Process**
    - Submit pull requests with detailed descriptions
    - Include rationale for research additions
    - Ensure consistency with existing analysis
    - Request review from research team
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## 📊 Research Methodology
 

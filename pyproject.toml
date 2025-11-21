@@ -4,7 +4,7 @@ version = "1.0.0"
 description = "YuiQuery Healthcare Analytics Research - Natural Language to SQL in Healthcare"
 readme = "README.md"
 license = {file = "LICENSE"}
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 authors = [
     {name = "YuiQuery Research Team", email = "research@yuimedi.com"}
 ]
@@ -36,15 +36,13 @@ dependencies = []
 [project.optional-dependencies]
 dev = [
     "black>=23.0.0",
-    "flake8>=6.0.0", 
+    "flake8>=6.0.0",
     "mypy>=1.0.0",
     "pre-commit>=3.0.0"
 ]
 
-docs = [
-    "pandoc-include-code>=1.0.0",
-    "pandoc-xnos>=2.5.0"
-]
+# Note: pandoc filters (pandoc-include-code, pandoc-xnos) are installed via pandoc,
+# not pip/uv. Install pandoc separately: brew install pandoc (macOS)
 
 [project.urls]
 Homepage = "https://github.com/yourusername/yuimedi-paper-20250901"
@@ -69,7 +67,7 @@ dev-dependencies = [
 
 [tool.black]
 line-length = 100
-target-version = ['py38']
+target-version = ['py39']
 include = '\.pyi?$'
 extend-exclude = '''
 /(
@@ -99,7 +97,7 @@ exclude = [
 ]
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.9"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true

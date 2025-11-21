@@ -28,14 +28,19 @@ Ensure you have the required tools installed:
 
 ```bash
 # Required
-python3 --version     # Python 3.8+ (for workflow utilities)
+uv --version          # UV package manager (Python 3.8+, for workflow utilities)
 git --version         # Version control
 gh --version          # GitHub CLI (for PR management)
 
-# Optional but recommended
-uv --version          # Python package manager (for dev tools)
+# Optional
 pandoc --version      # Document generation
 ```
+
+**Why UV?**
+- Fast, reliable Python package management
+- Consistent environment across team members
+- Automatic Python version management
+- Zero-config virtual environment handling
 
 ### Initial Setup
 
@@ -45,14 +50,22 @@ pandoc --version      # Document generation
    cd yuimedi-paper-20250901
    ```
 
-2. **Install development dependencies (optional):**
+2. **Set up UV environment:**
    ```bash
+   # UV automatically creates .venv on first use
    uv sync  # Installs black, flake8, mypy, pre-commit
    ```
 
 3. **Run validation scripts:**
    ```bash
    ./validate_documentation.sh
+   ```
+
+4. **Verify setup:**
+   ```bash
+   # UV automatically uses .venv when running commands
+   uv run python --version
+   uv run black --version
    ```
 
 ## Development Workflow
@@ -227,9 +240,9 @@ git push origin --delete feat/my-feature
 - **System Python**: Use `/usr/bin/python3` in scripts
 - **Error handling**: Comprehensive try/except with clear messages
 
-**Development Tools (optional):**
+**Development Tools:**
 ```bash
-# Linting
+# Format code
 uv run black .
 
 # Type checking
@@ -237,6 +250,24 @@ uv run mypy scripts/
 
 # Code quality
 uv run flake8 scripts/
+
+# Run pre-commit hooks
+uv run pre-commit run --all-files
+```
+
+**UV Environment Management:**
+```bash
+# Sync dependencies
+uv sync
+
+# Add new dev dependency
+uv add --dev pytest
+
+# Update dependencies
+uv sync --upgrade
+
+# Show installed packages
+uv pip list
 ```
 
 ### Workflow Utilities
@@ -244,16 +275,16 @@ uv run flake8 scripts/
 **Archive Management:**
 ```bash
 # List archives
-python3 tools/workflow-utilities/archive_manager.py list
+uv run python tools/workflow-utilities/archive_manager.py list
 
 # Create archive
-python3 tools/workflow-utilities/archive_manager.py create path/to/file
+uv run python tools/workflow-utilities/archive_manager.py create path/to/file
 ```
 
 **Directory Structure:**
 ```bash
 # Validate directory structure
-python3 tools/workflow-utilities/directory_structure.py docs/
+uv run python tools/workflow-utilities/directory_structure.py docs/
 
 # Every directory should have:
 # - CLAUDE.md (AI context)
@@ -264,7 +295,7 @@ python3 tools/workflow-utilities/directory_structure.py docs/
 **Version Validation:**
 ```bash
 # Check version consistency
-python3 tools/workflow-utilities/validate_versions.py
+uv run python tools/workflow-utilities/validate_versions.py
 ```
 
 ## Document Generation

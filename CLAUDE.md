@@ -146,11 +146,21 @@ pandoc paper.md -o output.pdf \
 
 ## Development Environment Patterns
 
-### UV Environment Management
+### UV Environment Management (Required)
 - **Python Version Control**: Use UV to ensure Python 3.8+ compatibility across team members
 - **Dependency Isolation**: Zero runtime dependencies, optional dev dependencies for code quality
-- **Environment Activation**: Scripts automatically activate UV environment before execution
+- **Automatic Virtual Environments**: UV creates and manages .venv automatically
 - **Development Tools**: Black, Flake8, MyPy, Pre-commit hooks for code quality
+- **Command Pattern**: Always use `uv run python <script>` instead of bare `python3`
+
+**Key UV Commands:**
+```bash
+uv sync                          # Install/sync all dependencies
+uv run python script.py          # Run script in UV environment
+uv run black .                   # Format code
+uv run mypy scripts/             # Type checking
+uv add --dev <package>           # Add dev dependency
+```
 
 ### GitHub Integration Workflow
 - **Bidirectional Sync**: `./scripts/sync_todos.sh` creates GitHub Issues from TODO tasks and syncs back
@@ -196,10 +206,30 @@ pandoc paper.md -o output.pdf \
 ## Updated Project-Specific Requirements
 
 ### Development Environment Requirements
-- **UV Package Manager**: Required for Python environment management and team consistency
-- **Python 3.8+**: Minimum version for modern subprocess and asyncio features
+- **UV Package Manager**: Required for Python environment management (replaces pip/venv/pyenv)
+  - Install: `curl -LsSf https://astral.sh/uv/install.sh | sh`
+  - Manages Python versions automatically
+  - Creates .venv on first `uv sync`
+- **Python 3.8+**: Minimum version (UV handles installation if needed)
 - **GitHub CLI**: Required for automated issue creation and bidirectional sync
 - **Git Repository**: Must be connected to GitHub remote for sync functionality
+
+**First-Time Setup:**
+```bash
+# Install UV (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone repository
+git clone <repo-url>
+cd yuimedi-paper-20250901
+
+# Setup environment (creates .venv automatically)
+uv sync
+
+# Verify installation
+uv run python --version
+./validate_documentation.sh
+```
 
 ### Academic Research Workflow Requirements
 - **Systematic Methodology**: All research claims must be supported by systematic literature review evidence
