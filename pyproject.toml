@@ -1,6 +1,6 @@
 [project]
 name = "yuiquery-research"
-version = "1.2.0"
+version = "1.3.0"
 description = "YuiQuery Healthcare Analytics Research - Natural Language to SQL in Healthcare"
 readme = "README.md"
 license = {file = "LICENSE"}
