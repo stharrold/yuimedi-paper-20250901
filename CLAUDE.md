@@ -147,17 +147,18 @@ pandoc paper.md -o output.pdf \
 ## Development Environment Patterns
 
 ### UV Environment Management (Required)
-- **Python Version Control**: Use UV to ensure Python 3.8+ compatibility across team members
+- **Python Version Control**: Use UV to ensure Python 3.9+ compatibility across team members
 - **Dependency Isolation**: Zero runtime dependencies, optional dev dependencies for code quality
 - **Automatic Virtual Environments**: UV creates and manages .venv automatically
-- **Development Tools**: Black, Flake8, MyPy, Pre-commit hooks for code quality
+- **Development Tools**: Ruff (formatting + linting), MyPy (type checking), Pre-commit hooks
 - **Command Pattern**: Always use `uv run python <script>` instead of bare `python3`
 
 **Key UV Commands:**
 ```bash
 uv sync                          # Install/sync all dependencies
 uv run python script.py          # Run script in UV environment
-uv run black .                   # Format code
+uv run ruff check .              # Lint code
+uv run ruff format .             # Format code
 uv run mypy scripts/             # Type checking
 uv add --dev <package>           # Add dev dependency
 ```
@@ -180,6 +181,17 @@ uv add --dev <package>           # Add dev dependency
 - Documented UV setup process in all guides
 
 **Prevention**: Always specify minimum Python version requirements in pyproject.toml
+
+### Python Tooling Migration
+**Issue**: Black + Flake8 provided separate formatting and linting with slower performance
+**Root Cause**: Multiple tools doing similar work, legacy Python tooling choices
+**Solution**:
+- Migrated to Ruff for both formatting and linting (10-100x faster)
+- Configured Ruff with Black-compatible formatting rules
+- Enabled comprehensive linting rules (pycodestyle, pyflakes, isort, naming, etc.)
+- Maintained line-length = 100 for consistency
+
+**Prevention**: Use modern, unified tooling (Ruff) from the start
 
 ### Empty Repository Sync Failures
 **Issue**: Sync script treated empty GitHub Issues repository as failure condition

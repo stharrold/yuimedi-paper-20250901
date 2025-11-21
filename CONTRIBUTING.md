@@ -53,7 +53,7 @@ pandoc --version      # Document generation
 2. **Set up UV environment:**
    ```bash
    # UV automatically creates .venv on first use
-   uv sync  # Installs black, flake8, mypy, pre-commit
+   uv sync  # Installs ruff, mypy, pre-commit
    ```
 
 3. **Run validation scripts:**
@@ -65,7 +65,8 @@ pandoc --version      # Document generation
    ```bash
    # UV automatically uses .venv when running commands
    uv run python --version
-   uv run black --version
+   uv run ruff --version
+   uv run mypy --version
    ```
 
 ## Development Workflow
@@ -237,19 +238,25 @@ git push origin --delete feat/my-feature
 **Core Principles:**
 - **Stdlib only**: No external dependencies for core tools
 - **Cross-platform**: Works on macOS, Linux, Windows
-- **System Python**: Use `/usr/bin/python3` in scripts
+- **Modern tooling**: Use Ruff for fast formatting and linting
 - **Error handling**: Comprehensive try/except with clear messages
 
 **Development Tools:**
 ```bash
-# Format code
-uv run black .
+# Format code (Ruff formatter, Black-compatible)
+uv run ruff format .
+
+# Lint code (replaces flake8 + isort + more)
+uv run ruff check .
+
+# Auto-fix linting issues
+uv run ruff check --fix .
 
 # Type checking
 uv run mypy scripts/
 
-# Code quality
-uv run flake8 scripts/
+# Run all checks
+uv run ruff format . && uv run ruff check . && uv run mypy scripts/
 
 # Run pre-commit hooks
 uv run pre-commit run --all-files
@@ -269,6 +276,13 @@ uv sync --upgrade
 # Show installed packages
 uv pip list
 ```
+
+**Why Ruff?**
+- 10-100x faster than Black + Flake8 combined
+- Single tool for formatting and linting
+- Black-compatible formatting
+- Hundreds of linting rules (pycodestyle, pyflakes, isort, naming, etc.)
+- Written in Rust for maximum performance
 
 ### Workflow Utilities
 

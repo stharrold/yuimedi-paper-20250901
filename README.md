@@ -96,8 +96,11 @@ uv run python --version
 ### Development Workflow
 
 ```bash
-# Format code
-uv run black .
+# Format code (Ruff - Black-compatible, 10-100x faster)
+uv run ruff format .
+
+# Lint code (replaces flake8, isort, and more)
+uv run ruff check .
 
 # Type checking
 uv run mypy scripts/
