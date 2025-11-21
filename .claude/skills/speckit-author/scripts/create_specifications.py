@@ -28,7 +28,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Optional
 
 # Constants with documented rationale
 TIMESTAMP_FORMAT = "%Y-%m-%d"  # Human-readable date for documentation
@@ -44,7 +44,7 @@ def error_exit(message: str, code: int = 1) -> None:
     sys.exit(code)
 
 
-def run_command(cmd: List[str], capture=True, check=True) -> Optional[str]:
+def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
     """Run command and return output or None on error."""
     try:
         if capture:
@@ -61,7 +61,7 @@ def run_command(cmd: List[str], capture=True, check=True) -> Optional[str]:
         error_exit(f"Command not found: {cmd[0]}")
 
 
-def detect_context() -> Dict[str, any]:
+def detect_context() -> dict[str, any]:
     """Detect current worktree context and BMAD planning availability."""
 
     # Get repository root
@@ -88,7 +88,7 @@ def detect_context() -> Dict[str, any]:
     }
 
 
-def find_bmad_planning(slug: str) -> Optional[Dict[str, Path]]:
+def find_bmad_planning(slug: str) -> Optional[dict[str, Path]]:
     """Check for BMAD planning documents in ../planning/<slug>/."""
 
     planning_dir = Path("..") / "planning" / slug
@@ -115,7 +115,7 @@ def find_bmad_planning(slug: str) -> Optional[Dict[str, Path]]:
 
 
 def ask_question(
-    prompt: str, options: Optional[List[str]] = None, default: Optional[str] = None
+    prompt: str, options: Optional[list[str]] = None, default: Optional[str] = None
 ) -> str:
     """Ask user a question and return response."""
 
@@ -165,7 +165,7 @@ def ask_yes_no(prompt: str, default: bool = True) -> bool:
     return response in ["y", "yes"]
 
 
-def interactive_qa_with_bmad(bmad_docs: Dict[str, Path], slug: str) -> Dict[str, any]:
+def interactive_qa_with_bmad(bmad_docs: dict[str, Path], slug: str) -> dict[str, any]:
     """Conduct interactive Q&A when BMAD planning exists."""
 
     print("\n" + "=" * 70)
@@ -252,7 +252,7 @@ def interactive_qa_with_bmad(bmad_docs: Dict[str, Path], slug: str) -> Dict[str,
     return responses
 
 
-def interactive_qa_without_bmad(slug: str) -> Dict[str, any]:
+def interactive_qa_without_bmad(slug: str) -> dict[str, any]:
     """Conduct interactive Q&A when no BMAD planning exists."""
 
     print("\n" + "=" * 70)
@@ -342,8 +342,8 @@ def generate_spec_md(
     workflow_type: str,
     gh_user: str,
     date: str,
-    qa_responses: Dict[str, any],
-    bmad_docs: Optional[Dict[str, Path]],
+    qa_responses: dict[str, any],
+    bmad_docs: Optional[dict[str, Path]],
 ) -> str:
     """Generate spec.md from template."""
 
@@ -383,8 +383,8 @@ def generate_plan_md(
     slug: str,
     workflow_type: str,
     date: str,
-    qa_responses: Dict[str, any],
-    bmad_docs: Optional[Dict[str, Path]],
+    qa_responses: dict[str, any],
+    bmad_docs: Optional[dict[str, Path]],
 ) -> str:
     """Generate plan.md from template with example tasks."""
 
@@ -406,7 +406,7 @@ def generate_plan_md(
     return plan
 
 
-def parse_tasks_from_plan(plan_md: str) -> List[Dict[str, str]]:
+def parse_tasks_from_plan(plan_md: str) -> list[dict[str, str]]:
     """Parse task IDs and descriptions from plan.md."""
 
     tasks = []
@@ -430,7 +430,7 @@ def parse_tasks_from_plan(plan_md: str) -> List[Dict[str, str]]:
     return tasks
 
 
-def update_todo_file(todo_path: Path, tasks: List[Dict[str, str]]) -> None:
+def update_todo_file(todo_path: Path, tasks: list[dict[str, str]]) -> None:
     """Update TODO_*.md frontmatter with tasks from plan.md."""
 
     try:

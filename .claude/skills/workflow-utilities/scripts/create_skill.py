@@ -35,7 +35,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Optional
 
 # Constants with documented rationale
 OFFICIAL_DOCS_URLS = {
@@ -128,7 +128,7 @@ def warning(message: str) -> None:
 
 
 def ask_question(
-    prompt: str, options: Optional[List[str]] = None, default: Optional[str] = None
+    prompt: str, options: Optional[list[str]] = None, default: Optional[str] = None
 ) -> str:
     """Ask user a question with optional choices.
 
@@ -191,7 +191,7 @@ class SkillConfig:
         self.phase: str = ""
         self.has_scripts: bool = False
         self.has_templates: bool = False
-        self.triggers: List[str] = []
+        self.triggers: list[str] = []
 
 
 class Discrepancy:
@@ -214,7 +214,7 @@ class Discrepancy:
         self.rationale = rationale
 
 
-def fetch_official_docs() -> Dict[str, str]:
+def fetch_official_docs() -> dict[str, str]:
     """Fetch official Claude Code documentation using WebFetch.
 
     Note: This function simulates WebFetch. In actual Claude Code execution,
@@ -264,7 +264,7 @@ Best Practices from Official Docs (Simulated):
     return official_docs
 
 
-def compare_with_official(official_docs: Dict[str, str]) -> List[Discrepancy]:
+def compare_with_official(official_docs: dict[str, str]) -> list[Discrepancy]:
     """Compare local workflow patterns with official best practices.
 
     Args:
@@ -342,7 +342,7 @@ structure conventions.
     return discrepancies
 
 
-def alert_user_discrepancies(discrepancies: List[Discrepancy]) -> bool:
+def alert_user_discrepancies(discrepancies: list[Discrepancy]) -> bool:
     """Alert user about discrepancies and get confirmation.
 
     Args:
@@ -441,7 +441,7 @@ def phase1_configuration(skill_name: str) -> SkillConfig:
     return config
 
 
-def phase2_official_docs_review() -> Tuple[Dict[str, str], List[Discrepancy]]:
+def phase2_official_docs_review() -> tuple[dict[str, str], list[Discrepancy]]:
     """Phase 2: Fetch and compare official documentation.
 
     Returns:
@@ -493,7 +493,7 @@ def create_skill_directory(skill_path: Path, config: SkillConfig) -> None:
 
 
 def generate_skill_md(
-    skill_path: Path, config: SkillConfig, discrepancies: List[Discrepancy]
+    skill_path: Path, config: SkillConfig, discrepancies: list[Discrepancy]
 ) -> None:
     """Generate SKILL.md file.
 
@@ -865,7 +865,7 @@ __version__ = "1.0.0"
 
 
 def phase3_file_generation(
-    skill_path: Path, config: SkillConfig, discrepancies: List[Discrepancy]
+    skill_path: Path, config: SkillConfig, discrepancies: list[Discrepancy]
 ) -> None:
     """Phase 3: Generate all skill files.
 

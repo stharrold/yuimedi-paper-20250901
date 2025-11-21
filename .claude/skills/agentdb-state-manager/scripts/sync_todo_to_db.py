@@ -16,7 +16,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 import yaml
 
@@ -42,7 +42,7 @@ def info(msg: str) -> None:
     print(f"{Colors.BLUE}ℹ {msg}{Colors.END}")
 
 
-def parse_todo_file(file_path: Path) -> Optional[Dict[str, Any]]:
+def parse_todo_file(file_path: Path) -> Optional[dict[str, Any]]:
     """Parse TODO file and extract YAML frontmatter.
 
     Args:
@@ -67,7 +67,7 @@ def parse_todo_file(file_path: Path) -> Optional[Dict[str, Any]]:
         return None
 
 
-def convert_to_records(frontmatter: Dict[str, Any], file_name: str) -> List[Dict[str, Any]]:
+def convert_to_records(frontmatter: dict[str, Any], file_name: str) -> list[dict[str, Any]]:
     """Convert TODO frontmatter to AgentDB records.
 
     Args:
@@ -167,7 +167,7 @@ def convert_to_records(frontmatter: Dict[str, Any], file_name: str) -> List[Dict
     return records
 
 
-def sync_to_agentdb(records: List[Dict[str, Any]], session_id: str) -> bool:
+def sync_to_agentdb(records: list[dict[str, Any]], session_id: str) -> bool:
     """Insert records into AgentDB.
 
     Args:

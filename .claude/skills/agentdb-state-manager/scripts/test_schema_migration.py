@@ -30,7 +30,6 @@ import sys
 import tempfile
 import uuid
 from pathlib import Path
-from typing import List
 
 try:
     import duckdb
@@ -87,7 +86,7 @@ class TestResult:
         self.total = 0
         self.passed = 0
         self.failed = 0
-        self.errors: List[str] = []
+        self.errors: list[str] = []
 
     def add_pass(self, test_name: str, verbose: bool = False):
         """Record a passing test."""
