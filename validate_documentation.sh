@@ -1,0 +1,1 @@
+tools/validation/validate_documentation.sh

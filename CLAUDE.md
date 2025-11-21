@@ -6,269 +6,327 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a research project focused on natural language to SQL in healthcare, specifically a whitepaper demonstrating the YuiQuery system. The repository contains academic documentation and research materials rather than executable code.
 
+**Critical Context:** This is a documentation-only repository (no source code to compile/run). All "development" is documentation writing, validation, and workflow automation.
+
 ## Repository Structure
 
 - **Primary Research Document**:
-  - `paper.md` - Comprehensive academic research paper on YuiQuery healthcare analytics (merged from multiple sources)
+  - `paper.md` - Comprehensive academic research paper on YuiQuery healthcare analytics
   - Contains: literature review, empirical validation, case studies, 111 academic and industry citations
 
-- **Project Management Documents**:
-  - `README.md` - Project overview and repository guide  
-  - `CLAUDE.md` - AI assistant instructions and project context
-  - `TODO_FOR_AI.json` - Structured task tracking for AI assistants
-  - `TODO_FOR_HUMAN.md` - Human-readable task list and quality assurance checklist
-  - `DECISION_LOG.json` - Project decision history and rationale documentation
+- **Project Management**:
+  - `README.md` - Project overview and quick start guide
+  - `CLAUDE.md` - AI assistant instructions (this file)
+  - `TODO.md` - Task management documentation (points to GitHub Issues)
+  - `DECISION_LOG.json` - Project decision history
+  - `project-management/` - Detailed PM artifacts (budget, risks, roles, quality gates)
+  - `ARCHIVED/TODO/` - Historical TODO files (deprecated, now using GitHub Issues)
 
-- **Supporting Materials**: 
-  - `images/` - Visual documentation and diagrams related to YuiQuery features
-  - `scripts/` - Utilities and data processing scripts
-  - `LICENSE` - MIT License
+- **Code & Automation**:
+  - `scripts/` - GitHub sync automation (Python, uses stdlib only)
+  - `tools/validation/` - Documentation quality validation scripts (bash)
+  - `tools/workflow-utilities/` - Archive management and version checking
+  - `.claude/skills/` - Workflow automation skills (9 skills, standard-workflow v1.15.1)
+  - `.claude/commands/` - Slash commands (/plan, /specify, /tasks)
+
+- **Research Supporting Materials**:
+  - `src/` - Algorithms, analysis code, and schema mapping
+  - `docs/` - Paper versions, figures, and reference materials
+  - `images/` - YuiQuery feature diagrams and screenshots
+  - `compliance/` - IRB determinations and HIPAA documentation
+  - `config/` - Database and query configuration
+  - `archive/` - Historical files and backups
 
 ## Project Context
 
 This repository documents research on YuiQuery, a conversational AI platform for healthcare analytics that addresses three key challenges:
-1. Low healthcare analytics maturity 
+1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
 
 The literature review synthesizes findings from systematic reviews, peer-reviewed journals, and industry sources to provide evidence for implementing conversational AI platforms in healthcare settings.
 
-## Development Notes
+## Zero Runtime Dependencies Architecture
 
-This is a documentation-only repository without traditional software development workflows. There are no:
-- Build systems or package managers
-- Test frameworks
-- Linting or type checking tools
-- Source code directories
+**Design Principle:** Automation scripts (`scripts/`, `tools/`) use **Python stdlib only**. Workflow skills (`.claude/skills/`) may require optional dependencies.
 
-When working with this repository, focus on:
-- Maintaining academic citation formatting
-- Preserving document structure and organization
-- Ensuring consistency in research documentation standards
+**Core Scripts (Zero Dependencies):**
+- `scripts/sync_github_todos.py` - GitHub Issues sync
+- `tools/validation/*` - Documentation validation tests
+- All scripts in `scripts/`, `tools/` directories
 
-## Project Patterns Discovered
+**Workflow Skills (Optional Dependencies):**
+- `.claude/skills/agentdb-state-manager/` - Requires `duckdb>=0.9.0`
+- Install workflow dependencies: `uv sync --extra workflow`
+- Most workflow operations work without these dependencies
+
+**Rationale:**
+- Core automation runs on any Python 3.9+ installation
+- Advanced workflow features are opt-in
+- Reduces mandatory dependency footprint
+
+**Development Tools (Optional):**
+- Ruff (formatting + linting) - via UV
+- MyPy (type checking) - via UV
+- Pandoc (document generation) - system install
+
+**When adding new automation scripts:** Use `import sys, os, subprocess, json, pathlib` etc. NO external packages.
+
+## Branch Strategy
+
+**Active Branch:** `contrib/stharrold` (default for development)
+**Integration Branch:** `main`
+**Release Management:** Semantic versioning via git tags
+
+**Workflow:**
+- Daily work: `contrib/stharrold`
+- Major releases: Create PR to `main`, tag after merge
+- Use git-workflow-manager for complex operations
+
+## Common Development Commands
+
+### Setup
+```bash
+uv sync                              # Install dev dependencies
+./validate_documentation.sh          # Verify documentation quality
+```
+
+### Code Quality
+```bash
+uv run ruff format .                 # Format Python (Black-compatible)
+uv run ruff check --fix .            # Lint and auto-fix
+uv run mypy scripts/                 # Type checking
+```
+
+### Task Management (GitHub Issues)
+```bash
+gh issue list                        # View all open issues
+gh issue list --label "P0"          # Critical priority tasks
+gh issue list --label "P1"          # High priority tasks
+gh issue view <number>               # View specific issue details
+gh issue comment <number> --body "Update..."  # Add progress update
+gh issue close <number> --comment "Done"      # Close completed task
+```
+
+### Validation Tests
+```bash
+tools/validation/test_file_size.sh              # Check 30KB limit
+tools/validation/test_cross_references.sh       # Validate markdown links
+tools/validation/test_content_duplication.sh    # Detect duplicates
+tools/validation/test_command_syntax.sh         # Validate bash blocks
+tools/validation/test_yaml_structure.sh         # Check JSON structure
+./validate_documentation.sh                     # Run all 5 tests
+```
+
+### Document Generation
+```bash
+# Basic PDF
+pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf
+
+# Professional PDF (requires Eisvogel template)
+pandoc paper.md -o output.pdf --template=eisvogel --pdf-engine=xelatex --listings --toc --number-sections
+
+# HTML for web
+pandoc paper.md -o output.html --standalone --toc --self-contained
+```
+
+## Key Architectural Systems
+
+### Task Management with GitHub Issues
+
+**Current System (as of 2025-11-21):** GitHub Issues are the single source of truth for all tasks.
+
+**Task Workflow:**
+1. **Find tasks:** `gh issue list --state open`
+2. **View details:** `gh issue view <number>`
+3. **Work on task:** Follow instructions in issue body (includes Claude Code context)
+4. **Update progress:** `gh issue comment <number> --body "Progress: ..."`
+5. **Complete task:** `gh issue close <number> --comment "Completed: <summary>"`
+
+**Priority Labels:**
+- `P0` - Critical (immediate attention)
+- `P1` - High (next sprint)
+- `P2` - Medium (backlog)
+
+**Task Context:**
+Each GitHub Issue includes comprehensive context for Claude Code:
+- Full task description
+- Repository patterns and validation requirements
+- Expected deliverables
+- Development workflow instructions
+
+**Historical Note:** Previously used `TODO_FOR_AI.json` with bidirectional sync (`scripts/sync_github_todos.py`). This workflow was deprecated on 2025-11-21 due to duplicate task entries (47.8% deduplication achieved). Old TODO files archived in `ARCHIVED/TODO/` for reference.
+
+### Documentation Validation Architecture
+
+**Orchestrator:** `./validate_documentation.sh` (symlink to `tools/validation/validate_documentation.sh`)
+
+**5 Validation Tests:**
+1. **test_file_size.sh** - Enforces 30KB limit on modular docs (AI context optimization)
+2. **test_cross_references.sh** - Validates internal markdown links
+3. **test_content_duplication.sh** - Detects duplicate sections
+4. **test_command_syntax.sh** - Validates bash code blocks
+5. **test_yaml_structure.sh** - Checks JSON/YAML structure
+
+**Run before all commits affecting documentation.**
+
+### Workflow Skills System (standard-workflow v1.15.1)
+
+**9 Skills Available in `.claude/skills/`:**
+
+**Core:** workflow-orchestrator, git-workflow-manager, workflow-utilities, initialize-repository
+**Planning:** bmad-planner (requirements/architecture/epics), speckit-author (specifications)
+**Quality:** quality-enforcer (gates), tech-stack-adapter (stack detection), agentdb-state-manager (state sync)
+
+**3 Slash Commands:**
+- `/plan` - Implementation planning workflow
+- `/specify` - Feature specifications
+- `/tasks` - Dependency-ordered task generation
+
+**When to Use:**
+- Major releases and complex git operations
+- Semantic versioning for documentation releases
+- Structured planning for major paper revisions
+- Quality gates integration
+
+**When NOT to Use:**
+- Daily paper edits, minor citation updates, routine documentation
+
+See individual `SKILL.md` files in `.claude/skills/` for detailed usage.
+
+## Project Patterns
 
 ### File Naming Conventions
-- **Research Documents**: Use descriptive names with `.md` extension (`paper.md`, not `whitepaper.md`)
-- **Timestamp Format**: Historical research files used `YYYYMMDDTHHMMSSZ_` prefix (now consolidated)
-- **Project Management**: Descriptive uppercase names (`TODO_FOR_AI.json`, `DECISION_LOG.json`)
+- **Research Documents**: Descriptive names with `.md` extension (`paper.md`)
+- **Timestamp Format**: `YYYYMMDDTHHMMSSZ_` prefix for historical files
+- **Project Management**: Uppercase names (`TODO_FOR_AI.json`, `DECISION_LOG.json`)
 
-### Document Organization Patterns
-- **Academic Structure**: Follow standard academic paper format (abstract, introduction, literature review, methods, results, discussion, conclusion)
-- **Citation Format**: Use `[A#]` for academic sources, `[I#]` for industry sources throughout text
-- **Evidence Integration**: Combine peer-reviewed research with real-world case studies for comprehensive validation
-- **Appendices**: Include domain-specific glossaries and practical examples
+### Document Organization
+- **Academic Structure**: Standard format (abstract, intro, lit review, methods, results, discussion, conclusion)
+- **Citation Format**: `[A#]` for academic, `[I#]` for industry sources
+- **Evidence Integration**: Combine peer-reviewed research with real-world case studies
+- **Directory README Pattern**: Every major directory has README.md explaining contents
 
-### Content Development Approach
-- **Systematic Methodology**: Use systematic literature review approach with PRISMA guidelines
-- **Evidence Synthesis**: Integrate multiple source types (academic journals, industry reports, case studies)
-- **Quantitative Validation**: Include specific metrics and statistical significance (83% reduction, p<0.001)
-- **Healthcare Context**: Always frame findings within healthcare-specific challenges and terminology
+### Content Development
+- **Systematic Methodology**: PRISMA guidelines for literature reviews
+- **Evidence Synthesis**: Multiple source types (journals, industry reports, case studies)
+- **Quantitative Validation**: Specific metrics with statistical significance (83% reduction, p<0.001)
+- **Healthcare Context**: Frame findings within healthcare-specific challenges
 
 ## Common Issues & Solutions
 
-### Citation Management Challenges
+### Citation Management
 **Issue**: Managing 111+ sources across academic and industry categories
-**Root Cause**: Large evidence base with mixed source types and formats
-**Solution**: 
-- Separate academic `[A#]` and industry `[I#]` citation systems
-- Maintain consistent formatting within each category
-- Use structured bibliography with DOI links where available
-
-### Document Coherence During Merge
-**Issue**: Maintaining narrative flow when consolidating separate research documents
-**Root Cause**: Different writing styles and focus areas in original documents
 **Solution**:
-- Create overarching framework (three-pillar challenge model)
-- Use transitional sections to connect different evidence domains
-- Maintain consistent terminology throughout merged document
+- Separate `[A#]` and `[I#]` citation systems
+- Structured bibliography with DOI links
 
-### Academic vs. Industry Evidence Balance
-**Issue**: Balancing peer-reviewed research with real-world implementation evidence
-**Root Cause**: Academic sources provide rigor, industry sources provide practical validation
+### Document Coherence
+**Issue**: Maintaining narrative flow when merging documents
 **Solution**:
-- Use academic sources for theoretical foundation and methodology
-- Use industry sources for case studies and ROI validation
-- Clearly distinguish between empirical research findings and practitioner reports
+- Use three-pillar framework (maturity, turnover, technical barriers)
+- Transitional sections connecting evidence domains
+- Consistent terminology throughout
 
-## Project-Specific Requirements
+### Task Management
+**Current Approach:** Direct GitHub Issues management (no sync needed)
+**Migration Note:** Previous bidirectional sync (TODO_FOR_AI.json ↔ GitHub Issues) deprecated 2025-11-21
+**Reference:** See `TODO.md` for migration details and archived files
+
+## Project Requirements
 
 ### Healthcare Domain Knowledge
-- **Medical Terminology**: Must accurately use ICD-10, CPT, SNOMED, RxNorm vocabularies
-- **Healthcare IT Standards**: Reference HIMSS AMAM, HL7, FHIR standards appropriately
-- **Clinical Workflows**: Understand and accurately represent clinical decision-making processes
-- **Regulatory Context**: Account for HIPAA, data governance, and healthcare compliance requirements
+- **Medical Terminology**: ICD-10, CPT, SNOMED, RxNorm vocabularies
+- **Healthcare IT Standards**: HIMSS AMAM, HL7, FHIR
+- **Clinical Workflows**: Clinical decision-making processes
+- **Regulatory Context**: HIPAA, data governance, compliance
 
 ### Academic Quality Standards
-- **Systematic Review Methodology**: Follow established guidelines for literature reviews
-- **Statistical Reporting**: Include confidence intervals, p-values, and effect sizes where appropriate
-- **Evidence Hierarchy**: Prioritize randomized controlled trials and systematic reviews
-- **Conflict of Interest**: Clearly identify any potential conflicts with YuiQuery platform
+- **Systematic Review**: Follow established guidelines
+- **Statistical Reporting**: Include confidence intervals, p-values, effect sizes
+- **Evidence Hierarchy**: Prioritize RCTs and systematic reviews
+- **Conflict of Interest**: Clearly identify potential conflicts
 
-### Technical Accuracy Requirements
-- **NL2SQL Technology**: Accurately represent current state of natural language to SQL generation
-- **Healthcare Analytics Maturity**: Correctly describe HIMSS AMAM stages and organizational capabilities
-- **Implementation Complexity**: Realistically portray challenges and timelines for conversational AI adoption
-- **ROI Calculations**: Ensure financial projections are based on documented case studies
+### Technical Accuracy
+- **NL2SQL Technology**: Current state of natural language to SQL
+- **Healthcare Analytics Maturity**: HIMSS AMAM stages correctly
+- **Implementation Complexity**: Realistic challenges and timelines
+- **ROI Calculations**: Based on documented case studies
 
 ### Business Logic Constraints
-- **Three-Pillar Framework**: All arguments must connect to core challenges (maturity, turnover, technical barriers)
-- **Evidence-Based Claims**: Every recommendation must be supported by cited research
-- **Healthcare Focus**: Maintain focus on healthcare-specific applications rather than general AI
-- **Practical Implementation**: Balance theoretical research with actionable recommendations
+- **Three-Pillar Framework**: Connect to core challenges (maturity, turnover, barriers)
+- **Evidence-Based Claims**: Support with cited research
+- **Healthcare Focus**: Maintain healthcare-specific focus
+- **Practical Implementation**: Balance theory with actionable recommendations
 
-## API Contracts & Data Formats
+## Development Environment Setup
 
-### Document Generation (Pandoc)
+### Prerequisites
+- **UV Package Manager** (required): `curl -LsSf https://astral.sh/uv/install.sh | sh`
+- **Python 3.9+**: Minimum version (UV handles installation)
+- **GitHub CLI**: `brew install gh` + `gh auth login`
+- **Pandoc** (optional): For PDF/HTML generation
+
+### First-Time Setup
 ```bash
-# Basic PDF generation
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf
+# Install UV
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Professional academic formatting
-pandoc paper.md -o output.pdf \
-  --template=eisvogel \
-  --pdf-engine=xelatex \
-  --listings \
-  --toc \
-  --number-sections
+# Clone and setup
+git clone <repo-url>
+cd yuimedi-paper-20250901
+uv sync
+
+# Verify
+uv run python --version
+./validate_documentation.sh
 ```
-
-### Citation Reference Format
-- **Academic Sources**: `[A1]`, `[A2]`, etc. in text, with full citations in References > Academic Sources
-- **Industry Sources**: `[I1]`, `[I2]`, etc. in text, with full citations in References > Industry Sources
-- **Internal References**: Section numbers and page references for cross-document navigation
-
-### Project Management Data Structures
-- **TODO_FOR_AI.json**: Structured task tracking with priority, effort estimates, and technical context
-- **DECISION_LOG.json**: Decision history with rationale, alternatives, tradeoffs, and reversibility
-- **GitHub Issues Integration**: Bidirectional sync between local TODO files and GitHub Issues
-- **Version Control**: Use semantic versioning for major document releases (v1.0, v1.1, etc.)
-
-## Development Environment Patterns
 
 ### UV Environment Management
-- **Python Version Control**: Use UV to ensure Python 3.8+ compatibility across team members
-- **Dependency Isolation**: Zero runtime dependencies, optional dev dependencies for code quality
-- **Environment Activation**: Scripts automatically activate UV environment before execution
-- **Development Tools**: Black, Flake8, MyPy, Pre-commit hooks for code quality
-
-### GitHub Integration Workflow
-- **Bidirectional Sync**: `./scripts/sync_todos.sh` creates GitHub Issues from TODO tasks and syncs back
-- **Metadata-Driven Issues**: GitHub Issues include structured metadata comments for priority and status
-- **Automatic Backup**: System creates timestamped backups before any sync operations
-- **Error Recovery**: Automatic restoration of backups if sync operations fail
-
-## Advanced Issues & Solutions Discovered
-
-### Python Version Compatibility Challenges
-**Issue**: Python 3.6 compatibility error with `subprocess.run(text=True)` parameter
-**Root Cause**: User environment had anaconda Python 3.6, but scripts required Python 3.7+ features
-**Solution**: 
-- Implemented UV environment with Python 3.8+ requirement in pyproject.toml
-- Updated scripts to use UV environment automatically
-- Added environment validation to sync scripts
-- Documented UV setup process in all guides
-
-**Prevention**: Always specify minimum Python version requirements in pyproject.toml
-
-### Empty Repository Sync Failures
-**Issue**: Sync script treated empty GitHub Issues repository as failure condition
-**Root Cause**: Original script design assumed existing GitHub Issues as source of truth
-**Solution**:
-- Modified `fetch_github_issues()` to distinguish between errors (None) and empty lists ([])
-- Updated `sync_from_github()` to handle empty issues as valid state
-- Implemented `sync_to_github()` to create GitHub Issues from existing TODO tasks
-- Added bidirectional workflow: TODO → GitHub → TODO sync
-
-**Prevention**: Design sync systems to handle empty initial states gracefully
-
-### GitHub Repository Label Dependencies
-**Issue**: GitHub Issue creation failed when trying to add non-existent labels
-**Root Cause**: Scripts attempted to add 'research' and 'documentation' labels that didn't exist in repository
-**Solution**:
-- Removed automatic label assignment from GitHub Issue creation
-- Made labels optional in issue creation workflow
-- Documented label creation as optional setup step
-- Focused on core functionality (title, body, metadata) for reliable operation
-
-**Prevention**: Always make external dependencies (labels, assignees) optional in automated workflows
-
-## Updated Project-Specific Requirements
-
-### Development Environment Requirements
-- **UV Package Manager**: Required for Python environment management and team consistency
-- **Python 3.8+**: Minimum version for modern subprocess and asyncio features
-- **GitHub CLI**: Required for automated issue creation and bidirectional sync
-- **Git Repository**: Must be connected to GitHub remote for sync functionality
-
-### Academic Research Workflow Requirements
-- **Systematic Methodology**: All research claims must be supported by systematic literature review evidence
-- **Empirical Validation**: Include quantitative results from peer-reviewed studies and case studies
-- **Healthcare Context**: Frame all technical solutions within healthcare-specific challenges and constraints
-- **Publication Readiness**: Maintain academic paper structure suitable for peer review and journal submission
-
-### Bidirectional Sync System Requirements
-- **Metadata Preservation**: GitHub Issues must include priority, status, and dependency metadata in comments
-- **Backup Strategy**: Always create timestamped backups before sync operations
-- **Error Resilience**: Handle empty repositories, missing labels, and authentication failures gracefully
-- **Validation Consistency**: Verify bidirectional sync maintains data integrity across GitHub and local files
-
-## Enhanced API Contracts & Data Formats
-
-### GitHub Issue Metadata Format
-GitHub Issues must include structured metadata in HTML comments:
-```markdown
-<!-- priority: P0|P1|P2|P3 -->
-<!-- status: todo|in_progress|blocked|done -->
-<!-- depends-on: #123, #456 -->
-
-Issue description content here...
-```
-
-### UV Environment Commands
 ```bash
-# Environment setup
-uv venv                      # Create virtual environment
-uv pip install -e ".[dev]"  # Install project with dev dependencies
-source .venv/bin/activate    # Activate environment
-
-# Development workflow
-uv pip install <package>     # Add new dependency
-uv pip freeze > requirements.txt  # Export for reference
-uv pip install -r requirements.txt  # Install from requirements
+uv sync                          # Install/sync dependencies
+uv run python script.py          # Run script in UV environment
+uv run ruff format .             # Format code
+uv run ruff check --fix .        # Lint and auto-fix
+uv run mypy scripts/             # Type checking
+uv add --dev <package>           # Add dev dependency
 ```
 
-### Bidirectional Sync Workflow
-```bash
-# Complete sync workflow
-./scripts/sync_todos.sh      # Run full bidirectional sync
-                             # Phase 0: Load existing TODO_FOR_AI.json
-                             # Phase 1: Create GitHub Issues from TODO tasks
-                             # Phase 2: Sync GitHub Issues → TODO files
-                             # Phase 3: Validate consistency
+**Command Pattern:** Always use `uv run python <script>` instead of bare `python3`
 
-# Manual sync components
-python scripts/sync_github_todos.py  # Run sync directly
-gh issue list                        # Verify GitHub Issues exist
-cat TODO_FOR_HUMAN.md               # Review human-readable summary
-```
+## Advanced Issues Discovered
 
-### Document Generation Workflow
-```bash
-# Basic PDF generation
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf
+### Python Version Compatibility
+**Issue**: Python 3.6 compatibility errors
+**Solution**: Implemented UV environment with Python 3.9+ requirement
+**Prevention**: Always specify minimum Python version in pyproject.toml
 
-# Professional academic PDF (requires Eisvogel template)
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf \
-  --template=eisvogel \
-  --pdf-engine=xelatex \
-  --listings \
-  --toc \
-  --number-sections
+### Python Tooling Migration
+**Issue**: Black + Flake8 slower performance
+**Solution**: Migrated to Ruff (10-100x faster, Black-compatible)
+**Prevention**: Use modern, unified tooling from the start
 
-# HTML for web sharing
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.html \
-  --standalone \
-  --toc \
-  --self-contained
-```
+### TODO Management Migration (2025-11-21)
+**Issue**: Duplicate tasks in TODO_FOR_AI.json (69 items, 33 duplicates)
+**Solution**: Migrated to GitHub Issues as single source of truth (36 unique issues)
+**Benefits**: 47.8% deduplication, better collaboration, comprehensive Claude Code context
+**Reference**: See `TODO.md` and commit 285de29 for migration details
+
+## Citation Reference Format
+
+- **Academic Sources**: `[A1]`, `[A2]`, etc. → References > Academic Sources
+- **Industry Sources**: `[I1]`, `[I2]`, etc. → References > Industry Sources
+- **Internal References**: Section numbers for cross-document navigation
+
+## Data Structures
+
+- **GitHub Issues**: Primary task tracking (replaces TODO_FOR_AI.json as of 2025-11-21)
+  - Priority labels: P0 (critical), P1 (high), P2 (medium)
+  - Each issue includes comprehensive Claude Code context
+  - View: `gh issue list` or https://github.com/stharrold/yuimedi-paper-20250901/issues
+- **TODO.md**: Task management documentation (points to GitHub Issues, includes migration details)
+- **DECISION_LOG.json**: Decision history with rationale, alternatives, tradeoffs
+- **ARCHIVED/TODO/**: Historical TODO files (deprecated 2025-11-21)
+  - `20251121T095620Z_TODO_FOR_AI.json` - 169 tasks (100 done, 69 migrated)
+  - `20251121T095620Z_TODO_FOR_HUMAN.md` - Human-readable version
+- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, etc.)
