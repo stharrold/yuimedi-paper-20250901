@@ -34,19 +34,19 @@ from typing import Dict, List, Optional, Tuple
 
 # Constants with documented rationale
 SKILL_DIRS = [
-    'workflow-orchestrator',
-    'tech-stack-adapter',
-    'git-workflow-manager',
-    'bmad-planner',
-    'speckit-author',
-    'quality-enforcer',
-    'workflow-utilities',
-    'initialize-repository',
-    'agentdb-state-manager',
+    "workflow-orchestrator",
+    "tech-stack-adapter",
+    "git-workflow-manager",
+    "bmad-planner",
+    "speckit-author",
+    "quality-enforcer",
+    "workflow-utilities",
+    "initialize-repository",
+    "agentdb-state-manager",
 ]  # Expected skills to validate
 
-VERSION_PATTERN = re.compile(r'^(\d+)\.(\d+)\.(\d+)$')  # Semantic versioning: MAJOR.MINOR.PATCH
-YAML_FRONTMATTER_PATTERN = re.compile(r'^---\n(.*?)\n---', re.DOTALL | re.MULTILINE)
+VERSION_PATTERN = re.compile(r"^(\d+)\.(\d+)\.(\d+)$")  # Semantic versioning: MAJOR.MINOR.PATCH
+YAML_FRONTMATTER_PATTERN = re.compile(r"^---\n(.*?)\n---", re.DOTALL | re.MULTILINE)
 
 
 class ValidationError:
@@ -78,11 +78,11 @@ class VersionValidator:
 
     def add_error(self, file: str, message: str):
         """Add validation error."""
-        self.errors.append(ValidationError('ERROR', file, message))
+        self.errors.append(ValidationError("ERROR", file, message))
 
     def add_warning(self, file: str, message: str):
         """Add validation warning."""
-        self.warnings.append(ValidationError('WARNING', file, message))
+        self.warnings.append(ValidationError("WARNING", file, message))
 
     def parse_version(self, version_str: str) -> Optional[Tuple[int, int, int]]:
         """Parse semantic version string into (major, minor, patch) tuple.
@@ -115,9 +115,9 @@ class VersionValidator:
             return None
 
         frontmatter = {}
-        for line in match.group(1).split('\n'):
-            if ':' in line:
-                key, value = line.split(':', 1)
+        for line in match.group(1).split("\n"):
+            if ":" in line:
+                key, value = line.split(":", 1)
                 frontmatter[key.strip()] = value.strip()
 
         return frontmatter
@@ -132,7 +132,7 @@ class VersionValidator:
         Returns:
             True if validation passed, False otherwise
         """
-        skill_md = skill_dir / 'SKILL.md'
+        skill_md = skill_dir / "SKILL.md"
 
         if not skill_md.exists():
             self.add_error(str(skill_md), "SKILL.md file not found")
@@ -147,30 +147,29 @@ class VersionValidator:
             return False
 
         # Check for required fields
-        if 'name' not in frontmatter:
+        if "name" not in frontmatter:
             self.add_error(str(skill_md), "Missing 'name' field in frontmatter")
             return False
 
-        if 'version' not in frontmatter:
+        if "version" not in frontmatter:
             self.add_error(str(skill_md), "Missing 'version' field in frontmatter")
             return False
 
         # Validate name matches directory
         expected_name = skill_name
-        actual_name = frontmatter['name']
+        actual_name = frontmatter["name"]
         if actual_name != expected_name:
             self.add_warning(
                 str(skill_md),
-                f"Name mismatch: frontmatter has '{actual_name}', expected '{expected_name}'"
+                f"Name mismatch: frontmatter has '{actual_name}', expected '{expected_name}'",
             )
 
         # Validate version format
-        version = frontmatter['version']
+        version = frontmatter["version"]
         parsed_version = self.parse_version(version)
         if not parsed_version:
             self.add_error(
-                str(skill_md),
-                f"Invalid version format: '{version}' (expected MAJOR.MINOR.PATCH)"
+                str(skill_md), f"Invalid version format: '{version}' (expected MAJOR.MINOR.PATCH)"
             )
             return False
 
@@ -190,7 +189,7 @@ class VersionValidator:
         self.log("\nValidating skill SKILL.md files...")
         self.log("-" * 70)
 
-        skills_dir = self.repo_root / '.claude' / 'skills'
+        skills_dir = self.repo_root / ".claude" / "skills"
         if not skills_dir.exists():
             self.add_error(str(skills_dir), "Skills directory not found")
             return False
@@ -217,7 +216,7 @@ class VersionValidator:
         self.log("\nValidating WORKFLOW.md...")
         self.log("-" * 70)
 
-        workflow_md = self.repo_root / 'WORKFLOW.md'
+        workflow_md = self.repo_root / "WORKFLOW.md"
         if not workflow_md.exists():
             self.add_error(str(workflow_md), "WORKFLOW.md not found")
             return False
@@ -225,7 +224,7 @@ class VersionValidator:
         content = workflow_md.read_text()
 
         # Extract version from line 3: **Version:** X.Y.Z
-        version_match = re.search(r'\*\*Version:\*\*\s+(\d+\.\d+\.\d+)', content)
+        version_match = re.search(r"\*\*Version:\*\*\s+(\d+\.\d+\.\d+)", content)
         if not version_match:
             self.add_error(str(workflow_md), "Version number not found (expected on line 3)")
             return False
@@ -235,7 +234,7 @@ class VersionValidator:
         if not parsed_version:
             self.add_error(
                 str(workflow_md),
-                f"Invalid version format: '{workflow_version}' (expected MAJOR.MINOR.PATCH)"
+                f"Invalid version format: '{workflow_version}' (expected MAJOR.MINOR.PATCH)",
             )
             return False
 
@@ -243,7 +242,7 @@ class VersionValidator:
 
         # Check for skill references in phase sections
         # Look for patterns like: [bmad-planner](/.claude/skills/bmad-planner/SKILL.md)
-        skill_ref_pattern = re.compile(r'\[([a-z-]+)\]\(/\.claude/skills/\1/SKILL\.md\)')
+        skill_ref_pattern = re.compile(r"\[([a-z-]+)\]\(/\.claude/skills/\1/SKILL\.md\)")
         skill_refs = skill_ref_pattern.findall(content)
 
         self.log(f"  Found {len(skill_refs)} skill references in WORKFLOW.md")
@@ -251,8 +250,7 @@ class VersionValidator:
         for skill_name in skill_refs:
             if skill_name not in self.skill_versions:
                 self.add_warning(
-                    str(workflow_md),
-                    f"Referenced skill '{skill_name}' not found or not validated"
+                    str(workflow_md), f"Referenced skill '{skill_name}' not found or not validated"
                 )
 
         return True
@@ -266,7 +264,7 @@ class VersionValidator:
         self.log("\nValidating TODO.md manifest...")
         self.log("-" * 70)
 
-        todo_md = self.repo_root / 'TODO.md'
+        todo_md = self.repo_root / "TODO.md"
         if not todo_md.exists():
             self.add_warning(str(todo_md), "TODO.md not found (optional)")
             return True
@@ -280,13 +278,13 @@ class VersionValidator:
             return True
 
         # Check for version field
-        if 'version' in frontmatter:
-            version = frontmatter['version']
+        if "version" in frontmatter:
+            version = frontmatter["version"]
             parsed_version = self.parse_version(version)
             if not parsed_version:
                 self.add_warning(
                     str(todo_md),
-                    f"Invalid version format: '{version}' (expected MAJOR.MINOR.PATCH)"
+                    f"Invalid version format: '{version}' (expected MAJOR.MINOR.PATCH)",
                 )
                 return False
 
@@ -305,7 +303,7 @@ class VersionValidator:
         self.log("\nValidating root CLAUDE.md...")
         self.log("-" * 70)
 
-        claude_md = self.repo_root / 'CLAUDE.md'
+        claude_md = self.repo_root / "CLAUDE.md"
         if not claude_md.exists():
             self.add_error(str(claude_md), "CLAUDE.md not found")
             return False
@@ -314,7 +312,7 @@ class VersionValidator:
 
         # Look for skill version references
         # Pattern: **current_version:** v1.X.Y
-        version_ref_pattern = re.compile(r'\*\*[Cc]urrent[_ ]version:\*\*\s+v?(\d+\.\d+\.\d+)')
+        version_ref_pattern = re.compile(r"\*\*[Cc]urrent[_ ]version:\*\*\s+v?(\d+\.\d+\.\d+)")
         version_refs = version_ref_pattern.findall(content)
 
         if version_refs:
@@ -322,8 +320,7 @@ class VersionValidator:
                 parsed = self.parse_version(version)
                 if not parsed:
                     self.add_warning(
-                        str(claude_md),
-                        f"Invalid version format in reference: '{version}'"
+                        str(claude_md), f"Invalid version format in reference: '{version}'"
                     )
 
             self.log(f"✓ CLAUDE.md: found {len(version_refs)} version references")
@@ -403,17 +400,13 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(
-        description='Validate version consistency across WORKFLOW.md and SKILL.md files'
+        description="Validate version consistency across WORKFLOW.md and SKILL.md files"
     )
+    parser.add_argument("--verbose", action="store_true", help="Show detailed version information")
     parser.add_argument(
-        '--verbose',
-        action='store_true',
-        help='Show detailed version information'
-    )
-    parser.add_argument(
-        '--fix',
-        action='store_true',
-        help='Attempt to auto-fix minor inconsistencies (NOT IMPLEMENTED YET)'
+        "--fix",
+        action="store_true",
+        help="Attempt to auto-fix minor inconsistencies (NOT IMPLEMENTED YET)",
     )
 
     args = parser.parse_args()
@@ -425,11 +418,9 @@ def main():
     # Determine repository root
     try:
         import subprocess
+
         result = subprocess.run(
-            ['git', 'rev-parse', '--show-toplevel'],
-            check=True,
-            capture_output=True,
-            text=True
+            ["git", "rev-parse", "--show-toplevel"], check=True, capture_output=True, text=True
         )
         repo_root = Path(result.stdout.strip())
     except subprocess.CalledProcessError:
@@ -455,5 +446,5 @@ def main():
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

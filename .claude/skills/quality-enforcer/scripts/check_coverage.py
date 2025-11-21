@@ -20,19 +20,19 @@ def check_coverage(threshold=80):
     try:
         # Run pytest with coverage
         subprocess.run(
-            ['uv', 'run', 'pytest', '--cov=src', '--cov-report=term', '--cov-report=json'],
+            ["uv", "run", "pytest", "--cov=src", "--cov-report=term", "--cov-report=json"],
             capture_output=True,
             text=True,
-            check=False
+            check=False,
         )
 
         # Parse coverage from JSON report
-        coverage_json = Path('coverage.json')
+        coverage_json = Path("coverage.json")
         if coverage_json.exists():
             with open(coverage_json) as f:
                 coverage_data = json.load(f)
 
-            total_coverage = coverage_data['totals']['percent_covered']
+            total_coverage = coverage_data["totals"]["percent_covered"]
         else:
             # Fallback: try to parse from stdout
             print("Warning: coverage.json not found, parsing stdout", file=sys.stderr)
@@ -56,7 +56,8 @@ def check_coverage(threshold=80):
         print(f"Error checking coverage: {e}", file=sys.stderr)
         return False, 0.0
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     threshold = int(sys.argv[1]) if len(sys.argv) > 1 else 80
     passed, coverage = check_coverage(threshold)
     sys.exit(0 if passed else 1)

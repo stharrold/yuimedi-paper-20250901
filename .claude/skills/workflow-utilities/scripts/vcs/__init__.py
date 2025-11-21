@@ -21,11 +21,11 @@ from .github_adapter import GitHubAdapter
 from .provider import VCSProvider, detect_provider, extract_azure_repo_from_remote
 
 __all__ = [
-    'BaseVCSAdapter',
-    'GitHubAdapter',
-    'AzureDevOpsAdapter',
-    'VCSProvider',
-    'get_vcs_adapter',
+    "BaseVCSAdapter",
+    "GitHubAdapter",
+    "AzureDevOpsAdapter",
+    "VCSProvider",
+    "get_vcs_adapter",
 ]
 
 
@@ -46,18 +46,18 @@ def get_vcs_adapter() -> BaseVCSAdapter:
     # Try loading explicit configuration
     config = load_vcs_config()
     if config:
-        provider = config.get('vcs_provider')
-        if provider == 'github':
+        provider = config.get("vcs_provider")
+        if provider == "github":
             return GitHubAdapter()
-        elif provider == 'azure_devops':
-            azure_config = config.get('azure_devops', {})
-            org = azure_config.get('organization')
-            project = azure_config.get('project')
+        elif provider == "azure_devops":
+            azure_config = config.get("azure_devops", {})
+            org = azure_config.get("organization")
+            project = azure_config.get("project")
             if not org or not project:
                 raise ValueError("Azure DevOps requires 'organization' and 'project' in config")
 
             # Get repository from config or extract from git remote
-            repository = azure_config.get('repository')
+            repository = azure_config.get("repository")
             if not repository:
                 repository = extract_azure_repo_from_remote()
                 if not repository:
@@ -68,8 +68,8 @@ def get_vcs_adapter() -> BaseVCSAdapter:
                         f"   If your Azure DevOps repository name differs from project name,\n"
                         f"   add 'repository' to .vcs_config.yaml:\n"
                         f"     azure_devops:\n"
-                        f"       repository: \"YourRepoName\"",
-                        file=sys.stderr
+                        f'       repository: "YourRepoName"',
+                        file=sys.stderr,
                     )
 
             return AzureDevOpsAdapter(organization=org, project=project, repository=repository)

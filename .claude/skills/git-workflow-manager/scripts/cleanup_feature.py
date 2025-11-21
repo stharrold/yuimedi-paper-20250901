@@ -25,7 +25,7 @@ import sys
 from pathlib import Path
 
 # Add workflow-utilities to path for archiver
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / 'workflow-utilities' / 'scripts'))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"))
 
 
 def find_todo_file(slug: str) -> Path:
@@ -42,11 +42,11 @@ def find_todo_file(slug: str) -> Path:
         ValueError: If multiple TODO files match pattern
     """
     # Get repository root
-    repo_root = Path(subprocess.check_output(
-        ['git', 'rev-parse', '--show-toplevel'],
-        text=True,
-        stderr=subprocess.PIPE
-    ).strip())
+    repo_root = Path(
+        subprocess.check_output(
+            ["git", "rev-parse", "--show-toplevel"], text=True, stderr=subprocess.PIPE
+        ).strip()
+    )
 
     # Search for TODO file matching pattern
     pattern = str(repo_root / f"TODO_feature_*_{slug}.md")
@@ -61,8 +61,8 @@ def find_todo_file(slug: str) -> Path:
 
     if len(matches) > 1:
         raise ValueError(
-            f"Multiple TODO files found for slug '{slug}':\n" +
-            "\n".join(f"  - {m}" for m in matches)
+            f"Multiple TODO files found for slug '{slug}':\n"
+            + "\n".join(f"  - {m}" for m in matches)
         )
 
     return Path(matches[0])
@@ -79,11 +79,11 @@ def find_worktree(slug: str, project_name: str = None) -> Path:
         Path to worktree directory, or None if not found
     """
     # Get repository root
-    repo_root = Path(subprocess.check_output(
-        ['git', 'rev-parse', '--show-toplevel'],
-        text=True,
-        stderr=subprocess.PIPE
-    ).strip())
+    repo_root = Path(
+        subprocess.check_output(
+            ["git", "rev-parse", "--show-toplevel"], text=True, stderr=subprocess.PIPE
+        ).strip()
+    )
 
     # Try both project-specific and generic patterns
     patterns = []
@@ -112,24 +112,18 @@ def find_branch(slug: str) -> str:
     """
     # List all local branches matching pattern
     result = subprocess.run(
-        ['git', 'branch', '--list', f'feature/*_{slug}'],
-        capture_output=True,
-        text=True,
-        check=True
+        ["git", "branch", "--list", f"feature/*_{slug}"], capture_output=True, text=True, check=True
     )
 
-    branches = [b.strip().lstrip('* ') for b in result.stdout.strip().split('\n') if b.strip()]
+    branches = [b.strip().lstrip("* ") for b in result.stdout.strip().split("\n") if b.strip()]
 
     if not branches:
-        raise ValueError(
-            f"No branch found for slug '{slug}'\n"
-            f"Expected pattern: feature/*_{slug}"
-        )
+        raise ValueError(f"No branch found for slug '{slug}'\nExpected pattern: feature/*_{slug}")
 
     if len(branches) > 1:
         raise ValueError(
-            f"Multiple branches found for slug '{slug}':\n" +
-            "\n".join(f"  - {b}" for b in branches)
+            f"Multiple branches found for slug '{slug}':\n"
+            + "\n".join(f"  - {b}" for b in branches)
         )
 
     return branches[0]
@@ -146,7 +140,12 @@ def archive_todo(todo_file: Path, summary: str, version: str):
     Raises:
         subprocess.CalledProcessError: If archiver fails
     """
-    archiver_script = Path(__file__).parent.parent.parent / 'workflow-utilities' / 'scripts' / 'workflow_archiver.py'
+    archiver_script = (
+        Path(__file__).parent.parent.parent
+        / "workflow-utilities"
+        / "scripts"
+        / "workflow_archiver.py"
+    )
 
     print(f"📦 Archiving TODO: {todo_file.name}")
     subprocess.run(
@@ -154,10 +153,12 @@ def archive_todo(todo_file: Path, summary: str, version: str):
             sys.executable,
             str(archiver_script),
             str(todo_file),
-            '--summary', summary,
-            '--version', version
+            "--summary",
+            summary,
+            "--version",
+            version,
         ],
-        check=True
+        check=True,
     )
     print(f"✓ TODO archived to ARCHIVED/{todo_file.name}")
 
@@ -172,10 +173,7 @@ def delete_worktree(worktree_path: Path):
         subprocess.CalledProcessError: If git worktree remove fails
     """
     print(f"🗑️  Removing worktree: {worktree_path}")
-    subprocess.run(
-        ['git', 'worktree', 'remove', str(worktree_path)],
-        check=True
-    )
+    subprocess.run(["git", "worktree", "remove", str(worktree_path)], check=True)
     print(f"✓ Worktree removed: {worktree_path}")
 
 
@@ -190,18 +188,13 @@ def delete_branch(branch_name: str):
     """
     # Delete local branch
     print(f"🗑️  Deleting local branch: {branch_name}")
-    subprocess.run(
-        ['git', 'branch', '-D', branch_name],
-        check=True
-    )
+    subprocess.run(["git", "branch", "-D", branch_name], check=True)
     print(f"✓ Local branch deleted: {branch_name}")
 
     # Delete remote branch (if exists)
     print(f"🗑️  Deleting remote branch: origin/{branch_name}")
     result = subprocess.run(
-        ['git', 'push', 'origin', '--delete', branch_name],
-        capture_output=True,
-        text=True
+        ["git", "push", "origin", "--delete", branch_name], capture_output=True, text=True
     )
 
     if result.returncode == 0:
@@ -237,7 +230,9 @@ def cleanup_feature(slug: str, summary: str, version: str, project_name: str = N
     except FileNotFoundError as e:
         print(f"\n❌ ERROR: {e}", file=sys.stderr)
         print("\nℹ️  TODO file must exist before cleanup.", file=sys.stderr)
-        print("   If TODO was already archived, this feature is already cleaned up.", file=sys.stderr)
+        print(
+            "   If TODO was already archived, this feature is already cleaned up.", file=sys.stderr
+        )
         sys.exit(1)
 
     # Step 2: Find worktree (optional - may not exist)
@@ -308,7 +303,7 @@ def cleanup_feature(slug: str, summary: str, version: str, project_name: str = N
 def main():
     """Parse arguments and execute cleanup."""
     parser = argparse.ArgumentParser(
-        description='Atomically cleanup feature: archive TODO, delete worktree, delete branches',
+        description="Atomically cleanup feature: archive TODO, delete worktree, delete branches",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -334,27 +329,16 @@ Notes:
   - Worktree pattern: ../feature_{slug}/ or ../{project}_feature_{slug}/
   - Branch pattern: feature/*_{slug}
   - Operations are atomic: if TODO archive fails, nothing is deleted
-"""
+""",
     )
 
+    parser.add_argument("slug", help="Feature slug (e.g., auth-system, issue-243-todo-status)")
+    parser.add_argument("--summary", required=True, help="Completion summary for archive")
+    parser.add_argument("--version", required=True, help="Semantic version (e.g., 1.5.0, 1.13.0)")
     parser.add_argument(
-        'slug',
-        help='Feature slug (e.g., auth-system, issue-243-todo-status)'
-    )
-    parser.add_argument(
-        '--summary',
-        required=True,
-        help='Completion summary for archive'
-    )
-    parser.add_argument(
-        '--version',
-        required=True,
-        help='Semantic version (e.g., 1.5.0, 1.13.0)'
-    )
-    parser.add_argument(
-        '--project-name',
+        "--project-name",
         default=None,
-        help='Project name for worktree pattern (e.g., german). If not provided, uses generic pattern.'
+        help="Project name for worktree pattern (e.g., german). If not provided, uses generic pattern.",
     )
 
     args = parser.parse_args()
@@ -364,14 +348,15 @@ Notes:
             slug=args.slug,
             summary=args.summary,
             version=args.version,
-            project_name=args.project_name
+            project_name=args.project_name,
         )
     except Exception as e:
         print(f"\n❌ Unexpected error: {e}", file=sys.stderr)
         import traceback
+
         traceback.print_exc()
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

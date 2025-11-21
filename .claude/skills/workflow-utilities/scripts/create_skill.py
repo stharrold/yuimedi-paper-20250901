@@ -39,52 +39,54 @@ from typing import Dict, List, Optional, Tuple
 
 # Constants with documented rationale
 OFFICIAL_DOCS_URLS = {
-    'agent_skills': 'https://docs.claude.com/en/docs/agents-and-tools/agent-skills',
-    'building_agents': 'https://docs.claude.com/en/docs/agents-and-tools/building-agents',
-    'getting_started': 'https://docs.claude.com/en/docs/claude-code/getting-started',
+    "agent_skills": "https://docs.claude.com/en/docs/agents-and-tools/agent-skills",
+    "building_agents": "https://docs.claude.com/en/docs/agents-and-tools/building-agents",
+    "getting_started": "https://docs.claude.com/en/docs/claude-code/getting-started",
 }  # Official Claude Code documentation sources
 
 LOCAL_SKILL_STRUCTURE = {
-    'files': [
-        'SKILL.md',
-        'CLAUDE.md',
-        'README.md',
-        'CHANGELOG.md',
-        'scripts/__init__.py',
-        'ARCHIVED/CLAUDE.md',
-        'ARCHIVED/README.md',
+    "files": [
+        "SKILL.md",
+        "CLAUDE.md",
+        "README.md",
+        "CHANGELOG.md",
+        "scripts/__init__.py",
+        "ARCHIVED/CLAUDE.md",
+        "ARCHIVED/README.md",
     ],
-    'frontmatter_fields': ['name', 'version', 'description'],
-    'optional_dirs': ['templates/', 'scripts/'],
+    "frontmatter_fields": ["name", "version", "description"],
+    "optional_dirs": ["templates/", "scripts/"],
 }  # Local workflow system skill structure
 
 REQUIRED_FILES = [
-    'SKILL.md',
-    'CLAUDE.md',
-    'README.md',
-    'CHANGELOG.md',
+    "SKILL.md",
+    "CLAUDE.md",
+    "README.md",
+    "CHANGELOG.md",
 ]  # Minimum files required for every skill
 
 WORKFLOW_PHASES = [
-    'Phase 0 (Setup)',
-    'Phase 1 (Planning)',
-    'Phase 2 (Development)',
-    'Phase 3 (Quality)',
-    'Phase 4 (Integration)',
-    'Phase 5 (Release)',
-    'Phase 6 (Hotfix)',
-    'Cross-phase (Utilities)',
+    "Phase 0 (Setup)",
+    "Phase 1 (Planning)",
+    "Phase 2 (Development)",
+    "Phase 3 (Quality)",
+    "Phase 4 (Integration)",
+    "Phase 5 (Release)",
+    "Phase 6 (Hotfix)",
+    "Cross-phase (Utilities)",
 ]  # Workflow phases for skill integration
+
 
 # ANSI color codes
 class Colors:
     """ANSI color codes for terminal output."""
-    BLUE = '\033[94m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    BOLD = '\033[1m'
-    END = '\033[0m'
+
+    BLUE = "\033[94m"
+    GREEN = "\033[92m"
+    YELLOW = "\033[93m"
+    RED = "\033[91m"
+    BOLD = "\033[1m"
+    END = "\033[0m"
 
 
 def error_exit(message: str, code: int = 1) -> None:
@@ -125,8 +127,9 @@ def warning(message: str) -> None:
     print(f"{Colors.YELLOW}⚠{Colors.END} {message}")
 
 
-def ask_question(prompt: str, options: Optional[List[str]] = None,
-                 default: Optional[str] = None) -> str:
+def ask_question(
+    prompt: str, options: Optional[List[str]] = None, default: Optional[str] = None
+) -> str:
     """Ask user a question with optional choices.
 
     Args:
@@ -156,7 +159,9 @@ def ask_question(prompt: str, options: Optional[List[str]] = None,
                 idx = int(response) - 1
                 if 0 <= idx < len(options):
                     return options[idx]
-            print(f"{Colors.RED}Invalid selection. Please enter a number 1-{len(options)}.{Colors.END}")
+            print(
+                f"{Colors.RED}Invalid selection. Please enter a number 1-{len(options)}.{Colors.END}"
+            )
         else:
             return response
 
@@ -173,7 +178,7 @@ def ask_yes_no(prompt: str, default: bool = True) -> bool:
     """
     default_str = "Y/n" if default else "y/N"
     response = ask_question(f"{prompt} ({default_str})", default="y" if default else "n")
-    return response.lower() in ['y', 'yes']
+    return response.lower() in ["y", "yes"]
 
 
 class SkillConfig:
@@ -192,8 +197,15 @@ class SkillConfig:
 class Discrepancy:
     """Represents a discrepancy between local and official patterns."""
 
-    def __init__(self, disc_type: str, local: str, official: str,
-                 citation: str, severity: str, rationale: str):
+    def __init__(
+        self,
+        disc_type: str,
+        local: str,
+        official: str,
+        citation: str,
+        severity: str,
+        rationale: str,
+    ):
         self.type = disc_type
         self.local = local
         self.official = official
@@ -217,7 +229,7 @@ def fetch_official_docs() -> Dict[str, str]:
     # For now, we document what would be fetched
 
     official_docs = {
-        'agent_skills': """
+        "agent_skills": """
 Official Claude Code Skill Specification (Simulated):
 
 File Structure:
@@ -233,7 +245,7 @@ description: Brief description
 The official specification recommends a simpler structure focused on
 the skill definition in a single skill.md file with minimal frontmatter.
 """,
-        'best_practices': """
+        "best_practices": """
 Best Practices from Official Docs (Simulated):
 
 1. Keep skills focused on single responsibility
@@ -241,7 +253,7 @@ Best Practices from Official Docs (Simulated):
 3. Document inputs and outputs
 4. Provide examples in README
 5. Keep skill files self-contained
-"""
+""",
     }
 
     success("Official documentation fetched (simulated)")
@@ -266,13 +278,14 @@ def compare_with_official(official_docs: Dict[str, str]) -> List[Discrepancy]:
     discrepancies = []
 
     # File structure discrepancy
-    discrepancies.append(Discrepancy(
-        disc_type='file_structure',
-        local="['SKILL.md', 'CLAUDE.md', 'README.md', 'CHANGELOG.md', 'ARCHIVED/']",
-        official="['skill.md', 'README.md']",
-        citation=OFFICIAL_DOCS_URLS['agent_skills'],
-        severity='info',
-        rationale="""
+    discrepancies.append(
+        Discrepancy(
+            disc_type="file_structure",
+            local="['SKILL.md', 'CLAUDE.md', 'README.md', 'CHANGELOG.md', 'ARCHIVED/']",
+            official="['skill.md', 'README.md']",
+            citation=OFFICIAL_DOCS_URLS["agent_skills"],
+            severity="info",
+            rationale="""
 Local pattern provides additional context files for workflow integration:
 - SKILL.md (uppercase): Consistent with other workflow docs (CLAUDE.md, WORKFLOW.md)
 - CLAUDE.md: Claude Code-specific context and usage patterns
@@ -281,17 +294,19 @@ Local pattern provides additional context files for workflow integration:
 
 This extended structure supports the multi-phase workflow system while
 maintaining compatibility with core skill concepts from official docs.
-"""
-    ))
+""",
+        )
+    )
 
     # Frontmatter discrepancy
-    discrepancies.append(Discrepancy(
-        disc_type='frontmatter',
-        local="YAML with 'name', 'version', 'description' fields",
-        official="YAML with 'name', 'description' fields only",
-        citation=OFFICIAL_DOCS_URLS['agent_skills'],
-        severity='info',
-        rationale="""
+    discrepancies.append(
+        Discrepancy(
+            disc_type="frontmatter",
+            local="YAML with 'name', 'version', 'description' fields",
+            official="YAML with 'name', 'description' fields only",
+            citation=OFFICIAL_DOCS_URLS["agent_skills"],
+            severity="info",
+            rationale="""
 Local pattern includes 'version' field for semantic versioning:
 - Enables skill version tracking across updates
 - Integrates with validate_versions.py for consistency checks
@@ -300,17 +315,19 @@ Local pattern includes 'version' field for semantic versioning:
 
 The 'version' field is critical for maintaining documentation consistency
 in the workflow system.
-"""
-    ))
+""",
+        )
+    )
 
     # Directory organization discrepancy
-    discrepancies.append(Discrepancy(
-        disc_type='directory_organization',
-        local="scripts/, templates/ subdirectories",
-        official="Flat structure with skill.md",
-        citation=OFFICIAL_DOCS_URLS['agent_skills'],
-        severity='info',
-        rationale="""
+    discrepancies.append(
+        Discrepancy(
+            disc_type="directory_organization",
+            local="scripts/, templates/ subdirectories",
+            official="Flat structure with skill.md",
+            citation=OFFICIAL_DOCS_URLS["agent_skills"],
+            severity="info",
+            rationale="""
 Local pattern separates code from documentation:
 - scripts/: Python scripts for interactive tools (BMAD, SpecKit, etc.)
 - templates/: Markdown templates for document generation
@@ -318,8 +335,9 @@ Local pattern separates code from documentation:
 
 This separation improves maintainability and follows common Python package
 structure conventions.
-"""
-    ))
+""",
+        )
+    )
 
     return discrepancies
 
@@ -346,9 +364,9 @@ def alert_user_discrepancies(discrepancies: List[Discrepancy]) -> bool:
 
     for i, disc in enumerate(discrepancies, 1):
         severity_color = {
-            'error': Colors.RED,
-            'warning': Colors.YELLOW,
-            'info': Colors.BLUE,
+            "error": Colors.RED,
+            "warning": Colors.YELLOW,
+            "info": Colors.BLUE,
         }.get(disc.severity, Colors.BLUE)
 
         print(f"{severity_color}[{disc.severity.upper()}]{Colors.END} {i}. {disc.type}")
@@ -390,39 +408,34 @@ def phase1_configuration(skill_name: str) -> SkillConfig:
             "Code generation and transformation",
             "Quality assurance and validation",
             "Documentation generation",
-            "Other"
-        ]
+            "Other",
+        ],
     )
 
     # Description
-    config.description = ask_question(
-        "Brief description of the skill (one line):"
-    )
+    config.description = ask_question("Brief description of the skill (one line):")
 
     # Phase integration
     config.phase = ask_question(
-        "Which workflow phase does this skill support?",
-        options=WORKFLOW_PHASES
+        "Which workflow phase does this skill support?", options=WORKFLOW_PHASES
     )
 
     # Scripts
     config.has_scripts = ask_yes_no(
-        "Will this skill have Python scripts (interactive tools)?",
-        default=True
+        "Will this skill have Python scripts (interactive tools)?", default=True
     )
 
     # Templates
     if config.has_scripts:
         config.has_templates = ask_yes_no(
-            "Will this skill generate documents from templates?",
-            default=False
+            "Will this skill generate documents from templates?", default=False
         )
 
     # Triggers
     triggers_input = ask_question(
         "Trigger keywords (comma-separated, e.g., 'create plan, generate spec'):"
     )
-    config.triggers = [t.strip() for t in triggers_input.split(',') if t.strip()]
+    config.triggers = [t.strip() for t in triggers_input.split(",") if t.strip()]
 
     success("Configuration complete")
     return config
@@ -463,24 +476,25 @@ def create_skill_directory(skill_path: Path, config: SkillConfig) -> None:
     skill_path.mkdir(parents=True, exist_ok=True)
 
     # Create ARCHIVED subdirectory
-    archived_path = skill_path / 'ARCHIVED'
+    archived_path = skill_path / "ARCHIVED"
     archived_path.mkdir(exist_ok=True)
 
     # Create scripts directory if needed
     if config.has_scripts:
-        scripts_path = skill_path / 'scripts'
+        scripts_path = skill_path / "scripts"
         scripts_path.mkdir(exist_ok=True)
 
     # Create templates directory if needed
     if config.has_templates:
-        templates_path = skill_path / 'templates'
+        templates_path = skill_path / "templates"
         templates_path.mkdir(exist_ok=True)
 
     success("Created directory structure")
 
 
-def generate_skill_md(skill_path: Path, config: SkillConfig,
-                      discrepancies: List[Discrepancy]) -> None:
+def generate_skill_md(
+    skill_path: Path, config: SkillConfig, discrepancies: List[Discrepancy]
+) -> None:
     """Generate SKILL.md file.
 
     Args:
@@ -503,7 +517,7 @@ description: |
   Triggers: {triggers_str}
 ---
 
-# {config.name.replace('-', ' ').title()} Skill
+# {config.name.replace("-", " ").title()} Skill
 
 ## Purpose
 
@@ -520,7 +534,7 @@ Use this skill when:
 - [Condition 2]
 - [Condition 3]
 
-**Triggered by keywords:** {', '.join(config.triggers)}
+**Triggered by keywords:** {", ".join(config.triggers)}
 
 ## Integration with Workflow
 
@@ -534,8 +548,8 @@ This skill follows the local workflow system patterns which extend official
 Claude Code skill specifications:
 
 **Official Claude Code Skills:**
-- Specification: {OFFICIAL_DOCS_URLS['agent_skills']}
-- Building Agents: {OFFICIAL_DOCS_URLS['building_agents']}
+- Specification: {OFFICIAL_DOCS_URLS["agent_skills"]}
+- Building Agents: {OFFICIAL_DOCS_URLS["building_agents"]}
 
 **Local Pattern Extensions:**
 
@@ -572,7 +586,7 @@ compatibility with core Claude Code concepts.
 [List related skills and their integration points]
 """
 
-    skill_md_path = skill_path / 'SKILL.md'
+    skill_md_path = skill_path / "SKILL.md"
     skill_md_path.write_text(content)
     success("Generated SKILL.md")
 
@@ -664,10 +678,10 @@ def generate_claude_md(skill_path: Path, config: SkillConfig) -> None:
         config.triggers[0] if config.triggers else "use this skill",
         config.triggers[1] if len(config.triggers) > 1 else "invoke skill",
         config.triggers[2] if len(config.triggers) > 2 else "run skill",
-        config.phase
+        config.phase,
     )
 
-    claude_md_path = skill_path / 'CLAUDE.md'
+    claude_md_path = skill_path / "CLAUDE.md"
     claude_md_path.write_text(content)
     success("Generated CLAUDE.md")
 
@@ -681,7 +695,7 @@ def generate_readme(skill_path: Path, config: SkillConfig) -> None:
     """
     info("Generating README.md...")
 
-    content = f"""# {config.name.replace('-', ' ').title()} Skill
+    content = f"""# {config.name.replace("-", " ").title()} Skill
 
 {config.description}
 
@@ -706,7 +720,7 @@ def generate_readme(skill_path: Path, config: SkillConfig) -> None:
 v1.0.0 - Initial release
 """
 
-    readme_path = skill_path / 'README.md'
+    readme_path = skill_path / "README.md"
     readme_path.write_text(content)
     success("Generated README.md")
 
@@ -720,11 +734,11 @@ def generate_changelog(skill_path: Path, config: SkillConfig) -> None:
     """
     info("Generating CHANGELOG.md...")
 
-    today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     content = f"""# Changelog - {config.name}
 
-All notable changes to the {config.name.replace('-', ' ').title()} skill will be documented in this file.
+All notable changes to the {config.name.replace("-", " ").title()} skill will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -758,7 +772,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **[README.md](README.md)** - Human-readable overview
 """
 
-    changelog_path = skill_path / 'CHANGELOG.md'
+    changelog_path = skill_path / "CHANGELOG.md"
     changelog_path.write_text(content)
     success("Generated CHANGELOG.md")
 
@@ -772,10 +786,10 @@ def generate_archived_files(skill_path: Path, config: SkillConfig) -> None:
     """
     info("Generating ARCHIVED/ files...")
 
-    archived_path = skill_path / 'ARCHIVED'
+    archived_path = skill_path / "ARCHIVED"
 
     # ARCHIVED/CLAUDE.md
-    archived_claude = archived_path / 'CLAUDE.md'
+    archived_claude = archived_path / "CLAUDE.md"
     archived_claude.write_text(f"""# Claude Code Context: {config.name}/ARCHIVED
 
 Archived files from {config.name} skill
@@ -792,14 +806,14 @@ been superseded by newer versions but are preserved for reference.
 """)
 
     # ARCHIVED/README.md
-    archived_readme = archived_path / 'README.md'
+    archived_readme = archived_path / "README.md"
     archived_readme.write_text(f"""# {config.name}/ARCHIVED
 
 Archived files from {config.name} skill
 
 ## Purpose
 
-This directory contains deprecated files from the {config.name.replace('-', ' ').title()}
+This directory contains deprecated files from the {config.name.replace("-", " ").title()}
 skill that have been superseded by newer versions. Files are archived (not deleted)
 to preserve history and allow comparison with current implementations.
 
@@ -839,10 +853,10 @@ def generate_script_init(skill_path: Path, config: SkillConfig) -> None:
 
     info("Generating scripts/__init__.py...")
 
-    scripts_path = skill_path / 'scripts'
-    init_path = scripts_path / '__init__.py'
+    scripts_path = skill_path / "scripts"
+    init_path = scripts_path / "__init__.py"
 
-    init_path.write_text(f'''"""{config.name.replace('-', ' ').title()} skill scripts package."""
+    init_path.write_text(f'''"""{config.name.replace("-", " ").title()} skill scripts package."""
 
 __version__ = "1.0.0"
 ''')
@@ -850,8 +864,9 @@ __version__ = "1.0.0"
     success("Generated scripts/__init__.py")
 
 
-def phase3_file_generation(skill_path: Path, config: SkillConfig,
-                           discrepancies: List[Discrepancy]) -> None:
+def phase3_file_generation(
+    skill_path: Path, config: SkillConfig, discrepancies: List[Discrepancy]
+) -> None:
     """Phase 3: Generate all skill files.
 
     Args:
@@ -890,7 +905,7 @@ def phase4_git_commit(skill_path: Path, config: SkillConfig) -> None:
 
     # Stage files
     info("Staging files...")
-    subprocess.run(['git', 'add', str(skill_path)], check=True)
+    subprocess.run(["git", "add", str(skill_path)], check=True)
 
     # Create commit
     info("Creating commit...")
@@ -925,7 +940,7 @@ Refs: .claude/skills/{config.name}/CHANGELOG.md
 Co-Authored-By: Claude <noreply@anthropic.com>
 """
 
-    subprocess.run(['git', 'commit', '-m', commit_msg], check=True)
+    subprocess.run(["git", "commit", "-m", commit_msg], check=True)
     success("Committed changes")
 
 
@@ -975,7 +990,7 @@ def print_summary(skill_path: Path, config: SkillConfig) -> None:
 def main() -> None:
     """Main entry point for skill creation."""
     parser = argparse.ArgumentParser(
-        description='Create a new workflow skill with official documentation validation',
+        description="Create a new workflow skill with official documentation validation",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -987,11 +1002,10 @@ Examples:
   # - Official documentation review
   # - File generation
   # - Git commit
-"""
+""",
     )
 
-    parser.add_argument('skill_name', type=str,
-                       help='Name of the skill to create (kebab-case)')
+    parser.add_argument("skill_name", type=str, help="Name of the skill to create (kebab-case)")
 
     args = parser.parse_args()
 
@@ -1000,14 +1014,16 @@ Examples:
     print(f"{Colors.BOLD}{'=' * 70}{Colors.END}\n")
 
     # Validate skill name
-    if not args.skill_name.replace('-', '').isalnum():
+    if not args.skill_name.replace("-", "").isalnum():
         error_exit("Skill name must be kebab-case (lowercase with hyphens)")
 
     # Determine skill path
-    repo_root = Path(subprocess.run(['git', 'rev-parse', '--show-toplevel'],
-                                   capture_output=True, text=True,
-                                   check=True).stdout.strip())
-    skill_path = repo_root / '.claude' / 'skills' / args.skill_name
+    repo_root = Path(
+        subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"], capture_output=True, text=True, check=True
+        ).stdout.strip()
+    )
+    skill_path = repo_root / ".claude" / "skills" / args.skill_name
 
     # Check if skill already exists
     if skill_path.exists():
@@ -1029,5 +1045,5 @@ Examples:
     print_summary(skill_path, config)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -33,21 +33,21 @@ jobs:
             if (body.includes('p0') || body.includes('critical')) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['P0']
               });
             } else if (body.includes('p1') || body.includes('high priority')) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['P1']
               });
             } else if (body.includes('p2') || body.includes('medium priority')) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['P2']
               });
@@ -57,7 +57,7 @@ jobs:
             if (title.includes('doc') || body.includes('documentation')) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['documentation']
               });
@@ -66,7 +66,7 @@ jobs:
             if (title.includes('bug') || title.includes('fix')) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['bug']
               });
@@ -75,7 +75,7 @@ jobs:
             if (title.includes('feat') || title.includes('feature') || title.includes('enhancement')) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['enhancement']
               });
@@ -85,21 +85,21 @@ jobs:
             if (body.includes('paper 1') || body.includes('literature review')) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['paper-1']
               });
             } else if (body.includes('paper 2') || body.includes('proof of concept')) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['paper-2']
               });
             } else if (body.includes('paper 3') || body.includes('schema mapping')) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['paper-3']
               });
@@ -123,7 +123,7 @@ jobs:
             // Check if this is their first issue
             const issues = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
-              repo: context.repo.name,
+              repo: context.repo.repo,
               creator: issue.user.login,
               state: 'all'
             });
@@ -131,7 +131,7 @@ jobs:
             if (issues.data.length === 1) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: issue.number,
                 body: `👋 Welcome @${issue.user.login}! Thank you for opening your first issue in this repository.
 
@@ -151,7 +151,7 @@ jobs:
             // Check if this is their first PR
             const prs = await github.rest.pulls.list({
               owner: context.repo.owner,
-              repo: context.repo.name,
+              repo: context.repo.repo,
               state: 'all'
             });
 
@@ -160,7 +160,7 @@ jobs:
             if (authorPRs.length === 1) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
-                repo: context.repo.name,
+                repo: context.repo.repo,
                 issue_number: pr.number,
                 body: `🎉 Congratulations @${pr.user.login} on your first pull request!
 

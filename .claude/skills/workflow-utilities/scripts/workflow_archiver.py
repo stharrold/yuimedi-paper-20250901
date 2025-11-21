@@ -32,26 +32,31 @@ except ImportError:
     sys.exit(1)
 
 # Constants
-TODO_MD_PATH = Path.cwd() / 'TODO.md'
-ARCHIVED_DIR = Path.cwd() / 'ARCHIVED'
+TODO_MD_PATH = Path.cwd() / "TODO.md"
+ARCHIVED_DIR = Path.cwd() / "ARCHIVED"
+
 
 # ANSI colors
 class Colors:
-    GREEN = '\033[92m'
-    BLUE = '\033[94m'
-    RED = '\033[91m'
-    YELLOW = '\033[93m'
-    END = '\033[0m'
+    GREEN = "\033[92m"
+    BLUE = "\033[94m"
+    RED = "\033[91m"
+    YELLOW = "\033[93m"
+    END = "\033[0m"
+
 
 def error_exit(msg: str) -> None:
     print(f"{Colors.RED}✗ Error:{Colors.END} {msg}", file=sys.stderr)
     sys.exit(1)
 
+
 def success(msg: str) -> None:
     print(f"{Colors.GREEN}✓{Colors.END} {msg}")
 
+
 def info(msg: str) -> None:
     print(f"{Colors.BLUE}ℹ{Colors.END} {msg}")
+
 
 def warning(msg: str) -> None:
     print(f"{Colors.YELLOW}⚠{Colors.END} {msg}")
@@ -66,7 +71,7 @@ def extract_slug_from_filename(filename: str) -> Optional[str]:
     Returns:
         Slug (e.g., "auth") or None
     """
-    match = re.search(r'TODO_\w+_\d{8}T\d{6}Z_(.+)\.md', filename)
+    match = re.search(r"TODO_\w+_\d{8}T\d{6}Z_(.+)\.md", filename)
     return match.group(1) if match else None
 
 
@@ -79,12 +84,12 @@ def load_todo_md() -> tuple[Dict[str, Any], str]:
     if not TODO_MD_PATH.exists():
         error_exit(f"TODO.md not found: {TODO_MD_PATH}")
 
-    content = TODO_MD_PATH.read_text(encoding='utf-8')
+    content = TODO_MD_PATH.read_text(encoding="utf-8")
 
-    if not content.startswith('---'):
+    if not content.startswith("---"):
         error_exit("TODO.md missing YAML frontmatter")
 
-    parts = content.split('---', 2)
+    parts = content.split("---", 2)
     if len(parts) < 3:
         error_exit("Invalid TODO.md format")
 
@@ -103,11 +108,11 @@ def save_todo_md(frontmatter: Dict[str, Any], content: str) -> None:
         frontmatter: Updated frontmatter dict
         content: Original full content
     """
-    parts = content.split('---', 2)
+    parts = content.split("---", 2)
     new_yaml = yaml.dump(frontmatter, default_flow_style=False, sort_keys=False)
     new_content = f"---\n{new_yaml}---{parts[2]}"
 
-    TODO_MD_PATH.write_text(new_content, encoding='utf-8')
+    TODO_MD_PATH.write_text(new_content, encoding="utf-8")
 
 
 def load_workflow_file(todo_file: Path) -> Dict[str, Any]:
@@ -119,12 +124,12 @@ def load_workflow_file(todo_file: Path) -> Dict[str, Any]:
     Returns:
         Dictionary with workflow metadata
     """
-    content = todo_file.read_text(encoding='utf-8')
+    content = todo_file.read_text(encoding="utf-8")
 
-    if not content.startswith('---'):
+    if not content.startswith("---"):
         error_exit(f"{todo_file.name} missing YAML frontmatter")
 
-    parts = content.split('---', 2)
+    parts = content.split("---", 2)
     if len(parts) < 3:
         error_exit(f"Invalid format in {todo_file.name}")
 
@@ -136,8 +141,9 @@ def load_workflow_file(todo_file: Path) -> Dict[str, Any]:
     return frontmatter
 
 
-def archive_workflow(todo_file: Path, summary: Optional[str] = None,
-                     version: Optional[str] = None) -> None:
+def archive_workflow(
+    todo_file: Path, summary: Optional[str] = None, version: Optional[str] = None
+) -> None:
     """Archive workflow: move file and update TODO.md.
 
     Args:
@@ -166,7 +172,7 @@ def archive_workflow(todo_file: Path, summary: Optional[str] = None,
     if archived_path.exists():
         warning(f"File already exists in ARCHIVED/: {archived_path.name}")
         response = input("Overwrite? (y/N): ")
-        if response.lower() != 'y':
+        if response.lower() != "y":
             error_exit("Archival cancelled")
 
     shutil.move(str(todo_file), str(archived_path))
@@ -176,55 +182,55 @@ def archive_workflow(todo_file: Path, summary: Optional[str] = None,
     frontmatter, content = load_todo_md()
 
     # Ensure workflows structure exists
-    if 'workflows' not in frontmatter:
-        frontmatter['workflows'] = {'active': [], 'archived': []}
-    if 'active' not in frontmatter['workflows']:
-        frontmatter['workflows']['active'] = []
-    if 'archived' not in frontmatter['workflows']:
-        frontmatter['workflows']['archived'] = []
+    if "workflows" not in frontmatter:
+        frontmatter["workflows"] = {"active": [], "archived": []}
+    if "active" not in frontmatter["workflows"]:
+        frontmatter["workflows"]["active"] = []
+    if "archived" not in frontmatter["workflows"]:
+        frontmatter["workflows"]["archived"] = []
 
     # Find workflow in active list
     workflow_entry = None
-    for i, workflow in enumerate(frontmatter['workflows']['active']):
-        if workflow.get('slug') == slug:
-            workflow_entry = frontmatter['workflows']['active'].pop(i)
+    for i, workflow in enumerate(frontmatter["workflows"]["active"]):
+        if workflow.get("slug") == slug:
+            workflow_entry = frontmatter["workflows"]["active"].pop(i)
             break
 
     if not workflow_entry:
         warning(f"Workflow '{slug}' not found in active list (creating new entry)")
         workflow_entry = {
-            'slug': slug,
-            'timestamp': workflow_data.get('timestamp', 'unknown'),
-            'title': workflow_data.get('slug', slug),
-            'file': todo_file.name
+            "slug": slug,
+            "timestamp": workflow_data.get("timestamp", "unknown"),
+            "title": workflow_data.get("slug", slug),
+            "file": todo_file.name,
         }
 
     # Update workflow entry for archival
-    workflow_entry['status'] = 'completed'
-    workflow_entry['completed_at'] = datetime.now(timezone.utc).isoformat()
-    workflow_entry['file'] = f"ARCHIVED/{todo_file.name}"
+    workflow_entry["status"] = "completed"
+    workflow_entry["completed_at"] = datetime.now(timezone.utc).isoformat()
+    workflow_entry["file"] = f"ARCHIVED/{todo_file.name}"
 
     if summary:
-        workflow_entry['summary'] = summary
+        workflow_entry["summary"] = summary
 
     if version:
-        workflow_entry['semantic_version'] = version
-    elif 'quality_gates' in workflow_data and 'semantic_version' in workflow_data['quality_gates']:
-        workflow_entry['semantic_version'] = workflow_data['quality_gates']['semantic_version']
+        workflow_entry["semantic_version"] = version
+    elif "quality_gates" in workflow_data and "semantic_version" in workflow_data["quality_gates"]:
+        workflow_entry["semantic_version"] = workflow_data["quality_gates"]["semantic_version"]
 
     # Add to archived list
-    frontmatter['workflows']['archived'].append(workflow_entry)
+    frontmatter["workflows"]["archived"].append(workflow_entry)
 
     # Update statistics
-    if 'context_stats' not in frontmatter:
-        frontmatter['context_stats'] = {}
+    if "context_stats" not in frontmatter:
+        frontmatter["context_stats"] = {}
 
-    total_completed = frontmatter['context_stats'].get('total_workflows_completed', 0)
-    frontmatter['context_stats']['total_workflows_completed'] = total_completed + 1
-    frontmatter['context_stats']['last_checkpoint'] = datetime.now(timezone.utc).isoformat()
+    total_completed = frontmatter["context_stats"].get("total_workflows_completed", 0)
+    frontmatter["context_stats"]["total_workflows_completed"] = total_completed + 1
+    frontmatter["context_stats"]["last_checkpoint"] = datetime.now(timezone.utc).isoformat()
 
     # Update last_update timestamp
-    frontmatter['last_update'] = datetime.now(timezone.utc).isoformat()
+    frontmatter["last_update"] = datetime.now(timezone.utc).isoformat()
 
     # Save
     save_todo_md(frontmatter, content)
@@ -237,7 +243,7 @@ def archive_workflow(todo_file: Path, summary: Optional[str] = None,
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description='Archive workflow and update TODO.md manifest',
+        description="Archive workflow and update TODO.md manifest",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -252,13 +258,12 @@ Examples:
 Usage at Phase 4.3:
   After PR merged to contrib branch, archive the workflow before
   creating the next PR to develop.
-"""
+""",
     )
 
-    parser.add_argument('todo_file', type=Path,
-                       help='Path to TODO_*.md file to archive')
-    parser.add_argument('--summary', help='Summary of what was completed')
-    parser.add_argument('--version', help='Semantic version for this workflow (e.g., 1.5.0)')
+    parser.add_argument("todo_file", type=Path, help="Path to TODO_*.md file to archive")
+    parser.add_argument("--summary", help="Summary of what was completed")
+    parser.add_argument("--version", help="Semantic version for this workflow (e.g., 1.5.0)")
 
     args = parser.parse_args()
 
@@ -268,5 +273,5 @@ Usage at Phase 4.3:
         error_exit(str(e))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -34,27 +34,32 @@ except ImportError:
     sys.exit(1)
 
 # Constants
-TODO_MD_PATH = Path.cwd() / 'TODO.md'
-ARCHIVED_DIR = Path.cwd() / 'ARCHIVED'
-TODO_PATTERN = re.compile(r'TODO_(\w+)_(\d{8}T\d{6}Z)_(.+)\.md')
+TODO_MD_PATH = Path.cwd() / "TODO.md"
+ARCHIVED_DIR = Path.cwd() / "ARCHIVED"
+TODO_PATTERN = re.compile(r"TODO_(\w+)_(\d{8}T\d{6}Z)_(.+)\.md")
+
 
 # ANSI colors
 class Colors:
-    GREEN = '\033[92m'
-    BLUE = '\033[94m'
-    RED = '\033[91m'
-    YELLOW = '\033[93m'
-    END = '\033[0m'
+    GREEN = "\033[92m"
+    BLUE = "\033[94m"
+    RED = "\033[91m"
+    YELLOW = "\033[93m"
+    END = "\033[0m"
+
 
 def error_exit(msg: str) -> None:
     print(f"{Colors.RED}✗ Error:{Colors.END} {msg}", file=sys.stderr)
     sys.exit(1)
 
+
 def success(msg: str) -> None:
     print(f"{Colors.GREEN}✓{Colors.END} {msg}")
 
+
 def info(msg: str) -> None:
     print(f"{Colors.BLUE}ℹ{Colors.END} {msg}")
+
 
 def warning(msg: str) -> None:
     print(f"{Colors.YELLOW}⚠{Colors.END} {msg}")
@@ -76,14 +81,16 @@ def parse_todo_filename(filename: str) -> Optional[Dict[str, str]]:
     workflow_type, timestamp, slug = match.groups()
 
     # Convert timestamp to ISO8601
-    iso_timestamp = f"{timestamp[0:4]}-{timestamp[4:6]}-{timestamp[6:8]}T" \
-                   f"{timestamp[9:11]}:{timestamp[11:13]}:{timestamp[13:15]}Z"
+    iso_timestamp = (
+        f"{timestamp[0:4]}-{timestamp[4:6]}-{timestamp[6:8]}T"
+        f"{timestamp[9:11]}:{timestamp[11:13]}:{timestamp[13:15]}Z"
+    )
 
     return {
-        'workflow_type': workflow_type,
-        'timestamp': timestamp,
-        'iso_timestamp': iso_timestamp,
-        'slug': slug
+        "workflow_type": workflow_type,
+        "timestamp": timestamp,
+        "iso_timestamp": iso_timestamp,
+        "slug": slug,
     }
 
 
@@ -97,13 +104,13 @@ def load_workflow_metadata(todo_file: Path) -> Optional[Dict[str, Any]]:
         Dictionary with metadata or None if invalid
     """
     try:
-        content = todo_file.read_text(encoding='utf-8')
+        content = todo_file.read_text(encoding="utf-8")
 
-        if not content.startswith('---'):
+        if not content.startswith("---"):
             warning(f"Skipping {todo_file.name}: missing YAML frontmatter")
             return None
 
-        parts = content.split('---', 2)
+        parts = content.split("---", 2)
         if len(parts) < 3:
             warning(f"Skipping {todo_file.name}: invalid format")
             return None
@@ -126,8 +133,8 @@ def scan_filesystem() -> tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
     archived_workflows = []
 
     # Scan current directory for active workflows
-    for todo_file in Path.cwd().glob('TODO_*.md'):
-        if todo_file.name == 'TODO.md':
+    for todo_file in Path.cwd().glob("TODO_*.md"):
+        if todo_file.name == "TODO.md":
             continue  # Skip master manifest
 
         parsed = parse_todo_filename(todo_file.name)
@@ -138,18 +145,18 @@ def scan_filesystem() -> tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
         metadata = load_workflow_metadata(todo_file)
 
         workflow_entry = {
-            'slug': parsed['slug'],
-            'timestamp': parsed['timestamp'],
-            'title': metadata.get('slug', parsed['slug']) if metadata else parsed['slug'],
-            'status': 'in_progress',
-            'file': todo_file.name
+            "slug": parsed["slug"],
+            "timestamp": parsed["timestamp"],
+            "title": metadata.get("slug", parsed["slug"]) if metadata else parsed["slug"],
+            "status": "in_progress",
+            "file": todo_file.name,
         }
 
         active_workflows.append(workflow_entry)
 
     # Scan ARCHIVED/ for archived workflows
     if ARCHIVED_DIR.exists():
-        for todo_file in ARCHIVED_DIR.glob('TODO_*.md'):
+        for todo_file in ARCHIVED_DIR.glob("TODO_*.md"):
             parsed = parse_todo_filename(todo_file.name)
             if not parsed:
                 warning(f"Skipping {todo_file.name}: unrecognized format")
@@ -158,19 +165,21 @@ def scan_filesystem() -> tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
             metadata = load_workflow_metadata(todo_file)
 
             workflow_entry = {
-                'slug': parsed['slug'],
-                'timestamp': parsed['timestamp'],
-                'title': metadata.get('slug', parsed['slug']) if metadata else parsed['slug'],
-                'status': 'completed',
-                'file': f"ARCHIVED/{todo_file.name}"
+                "slug": parsed["slug"],
+                "timestamp": parsed["timestamp"],
+                "title": metadata.get("slug", parsed["slug"]) if metadata else parsed["slug"],
+                "status": "completed",
+                "file": f"ARCHIVED/{todo_file.name}",
             }
 
             # Try to get completion metadata
             if metadata:
-                if 'completed_at' in metadata:
-                    workflow_entry['completed_at'] = metadata['completed_at']
-                if 'quality_gates' in metadata and 'semantic_version' in metadata['quality_gates']:
-                    workflow_entry['semantic_version'] = metadata['quality_gates']['semantic_version']
+                if "completed_at" in metadata:
+                    workflow_entry["completed_at"] = metadata["completed_at"]
+                if "quality_gates" in metadata and "semantic_version" in metadata["quality_gates"]:
+                    workflow_entry["semantic_version"] = metadata["quality_gates"][
+                        "semantic_version"
+                    ]
 
             archived_workflows.append(workflow_entry)
 
@@ -186,12 +195,12 @@ def load_todo_md() -> tuple[Dict[str, Any], str]:
     if not TODO_MD_PATH.exists():
         error_exit(f"TODO.md not found: {TODO_MD_PATH}")
 
-    content = TODO_MD_PATH.read_text(encoding='utf-8')
+    content = TODO_MD_PATH.read_text(encoding="utf-8")
 
-    if not content.startswith('---'):
+    if not content.startswith("---"):
         error_exit("TODO.md missing YAML frontmatter")
 
-    parts = content.split('---', 2)
+    parts = content.split("---", 2)
     if len(parts) < 3:
         error_exit("Invalid TODO.md format")
 
@@ -210,11 +219,11 @@ def save_todo_md(frontmatter: Dict[str, Any], content: str) -> None:
         frontmatter: Updated frontmatter dict
         content: Original full content
     """
-    parts = content.split('---', 2)
+    parts = content.split("---", 2)
     new_yaml = yaml.dump(frontmatter, default_flow_style=False, sort_keys=False)
     new_content = f"---\n{new_yaml}---{parts[2]}"
 
-    TODO_MD_PATH.write_text(new_content, encoding='utf-8')
+    TODO_MD_PATH.write_text(new_content, encoding="utf-8")
 
 
 def sync_manifest(dry_run: bool = False) -> None:
@@ -235,21 +244,21 @@ def sync_manifest(dry_run: bool = False) -> None:
     frontmatter, content = load_todo_md()
 
     # Update workflows
-    if 'workflows' not in frontmatter:
-        frontmatter['workflows'] = {}
+    if "workflows" not in frontmatter:
+        frontmatter["workflows"] = {}
 
-    old_active_count = len(frontmatter.get('workflows', {}).get('active', []))
-    old_archived_count = len(frontmatter.get('workflows', {}).get('archived', []))
+    old_active_count = len(frontmatter.get("workflows", {}).get("active", []))
+    old_archived_count = len(frontmatter.get("workflows", {}).get("archived", []))
 
-    frontmatter['workflows']['active'] = active_workflows
-    frontmatter['workflows']['archived'] = archived_workflows
+    frontmatter["workflows"]["active"] = active_workflows
+    frontmatter["workflows"]["archived"] = archived_workflows
 
     # Update statistics
-    if 'context_stats' not in frontmatter:
-        frontmatter['context_stats'] = {}
+    if "context_stats" not in frontmatter:
+        frontmatter["context_stats"] = {}
 
-    frontmatter['context_stats']['total_workflows_completed'] = len(archived_workflows)
-    frontmatter['last_update'] = datetime.now(timezone.utc).isoformat()
+    frontmatter["context_stats"]["total_workflows_completed"] = len(archived_workflows)
+    frontmatter["last_update"] = datetime.now(timezone.utc).isoformat()
 
     # Display changes
     print(f"\n{Colors.BLUE}Changes to be made:{Colors.END}")
@@ -270,7 +279,7 @@ def sync_manifest(dry_run: bool = False) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description='Synchronize TODO.md manifest with filesystem state',
+        description="Synchronize TODO.md manifest with filesystem state",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -288,11 +297,12 @@ Usage:
 Warning:
   This script replaces the active/archived lists in TODO.md with what it
   finds on the filesystem. Manual edits to TODO.md metadata may be lost.
-"""
+""",
     )
 
-    parser.add_argument('--dry-run', action='store_true',
-                       help='Preview changes without modifying TODO.md')
+    parser.add_argument(
+        "--dry-run", action="store_true", help="Preview changes without modifying TODO.md"
+    )
 
     args = parser.parse_args()
 
@@ -302,5 +312,5 @@ Warning:
         error_exit(str(e))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
