@@ -48,19 +48,29 @@ The literature review synthesizes findings from systematic reviews, peer-reviewe
 
 ## Zero Runtime Dependencies Architecture
 
-**Design Principle:** All automation scripts (`scripts/`, `tools/`) use **Python stdlib only**.
+**Design Principle:** Automation scripts (`scripts/`, `tools/`) use **Python stdlib only**. Workflow skills (`.claude/skills/`) may require optional dependencies.
+
+**Core Scripts (Zero Dependencies):**
+- `scripts/sync_github_todos.py` - GitHub Issues sync
+- `tools/validation/*` - Documentation validation tests
+- All scripts in `scripts/`, `tools/` directories
+
+**Workflow Skills (Optional Dependencies):**
+- `.claude/skills/agentdb-state-manager/` - Requires `duckdb>=0.9.0`
+- Install workflow dependencies: `uv sync --extra workflow`
+- Most workflow operations work without these dependencies
 
 **Rationale:**
-- Ensures scripts run on any Python 3.9+ installation
-- No dependency management for automation utilities
-- Reduces maintenance burden and security surface
+- Core automation runs on any Python 3.9+ installation
+- Advanced workflow features are opt-in
+- Reduces mandatory dependency footprint
 
 **Development Tools (Optional):**
 - Ruff (formatting + linting) - via UV
 - MyPy (type checking) - via UV
 - Pandoc (document generation) - system install
 
-**When adding new scripts:** Use `import sys, os, subprocess, json, pathlib` etc. NO external packages.
+**When adding new automation scripts:** Use `import sys, os, subprocess, json, pathlib` etc. NO external packages.
 
 ## Branch Strategy
 

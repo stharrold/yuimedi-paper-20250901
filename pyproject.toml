@@ -23,14 +23,14 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
 
-# No runtime dependencies - scripts use only Python standard library
+# No runtime dependencies for automation scripts (scripts/, tools/)
+# Workflow skills (.claude/skills/) may require optional dependencies
 dependencies = []
 
 [project.optional-dependencies]
@@ -38,6 +38,9 @@ dev = [
     "ruff>=0.8.0",
     "mypy>=1.0.0",
     "pre-commit>=3.0.0"
+]
+workflow = [
+    "duckdb>=0.9.0"  # Required for agentdb-state-manager workflow skill
 ]
 
 # Note: pandoc filters (pandoc-include-code, pandoc-xnos) are installed via pandoc,
