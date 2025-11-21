@@ -11,20 +11,30 @@ This is a research project focused on natural language to SQL in healthcare, spe
 ## Repository Structure
 
 - **Primary Research Document**:
-  - `paper.md` - Comprehensive academic research paper on YuiQuery healthcare analytics (merged from multiple sources)
+  - `paper.md` - Comprehensive academic research paper on YuiQuery healthcare analytics
   - Contains: literature review, empirical validation, case studies, 111 academic and industry citations
 
-- **Project Management Documents**:
-  - `README.md` - Project overview and repository guide  
-  - `CLAUDE.md` - AI assistant instructions and project context
-  - `TODO_FOR_AI.json` - Structured task tracking for AI assistants
-  - `TODO_FOR_HUMAN.md` - Human-readable task list and quality assurance checklist
-  - `DECISION_LOG.json` - Project decision history and rationale documentation
+- **Project Management**:
+  - `README.md` - Project overview and quick start guide
+  - `CLAUDE.md` - AI assistant instructions (this file)
+  - `TODO_FOR_AI.json` - Structured task tracking (synced with GitHub Issues)
+  - `TODO_FOR_HUMAN.md` - Human-readable task list
+  - `DECISION_LOG.json` - Project decision history
+  - `project-management/` - Detailed PM artifacts (budget, risks, roles, quality gates)
+  - `project-management.md` - Executive summary and strategic overview
 
-- **Supporting Materials**: 
-  - `images/` - Visual documentation and diagrams related to YuiQuery features
-  - `scripts/` - Utilities and data processing scripts
-  - `LICENSE` - MIT License
+- **Code & Automation**:
+  - `scripts/` - GitHub sync automation (Python, uses stdlib only)
+  - `tools/validation/` - Documentation quality validation scripts (bash)
+  - `tools/workflow-utilities/` - Archive management and version checking
+
+- **Research Supporting Materials**:
+  - `src/` - Algorithms, analysis code, and schema mapping
+  - `docs/` - Paper versions, figures, and reference materials
+  - `images/` - YuiQuery feature diagrams and screenshots
+  - `compliance/` - IRB determinations and HIPAA documentation
+  - `config/` - Database and query configuration
+  - `archive/` - Historical files and backups
 
 ## Project Context
 
@@ -37,16 +47,13 @@ The literature review synthesizes findings from systematic reviews, peer-reviewe
 
 ## Development Notes
 
-This is a documentation-only repository without traditional software development workflows. There are no:
-- Build systems or package managers
-- Test frameworks
-- Linting or type checking tools
-- Source code directories
+**Key Architectural Decision**: This is primarily a documentation repository. Python automation scripts (`scripts/`, `tools/`) use **only Python standard library** - no external dependencies. Development tools (Ruff, MyPy) are optional and managed via UV.
 
 When working with this repository, focus on:
-- Maintaining academic citation formatting
+- Maintaining academic citation formatting (`[A#]` for academic, `[I#]` for industry sources)
 - Preserving document structure and organization
-- Ensuring consistency in research documentation standards
+- Running validation scripts before commits
+- Using UV for all Python script execution: `uv run python script.py`
 
 ## Project Patterns Discovered
 
@@ -60,6 +67,19 @@ When working with this repository, focus on:
 - **Citation Format**: Use `[A#]` for academic sources, `[I#]` for industry sources throughout text
 - **Evidence Integration**: Combine peer-reviewed research with real-world case studies for comprehensive validation
 - **Appendices**: Include domain-specific glossaries and practical examples
+
+### Directory README Pattern
+**Every major directory contains a README.md** explaining its purpose and contents:
+- `src/README.md` - Development environment, algorithms overview, healthcare adaptations
+- `docs/README.md` - Paper management, submission targets, version control
+- `compliance/README.md` - IRB status, HIPAA compliance, regulatory requirements
+- `config/README.md` - Database configuration, security requirements, data sources
+- `archive/README.md` - Retention policy, file recovery, historical tracking
+- `project-management/README.md` - PM methodology, artifact relationships
+- `tools/validation/README.md` - Validation test descriptions and usage
+- `docs/references/README.md` - Citation management and reference tracking
+
+This pattern ensures every directory is self-documenting and navigable.
 
 ### Content Development Approach
 - **Systematic Methodology**: Use systematic literature review approach with PRISMA guidelines
@@ -172,14 +192,21 @@ uv add --dev <package>           # Add dev dependency
 - **Automatic Backup**: System creates timestamped backups before any sync operations
 - **Error Recovery**: Automatic restoration of backups if sync operations fail
 
-**Sync Architecture:**
+**Sync Architecture** (`scripts/sync_github_todos.py`):
 ```python
-# scripts/sync_github_todos.py implements YuiQueryGitHubSync class
-# Key methods:
-# - fetch_github_issues() → Fetch all issues via gh CLI
-# - sync_from_github() → GitHub Issues → TODO_FOR_AI.json
-# - sync_to_github() → TODO_FOR_AI.json → GitHub Issues
-# - generate_human_readable() → TODO_FOR_AI.json → TODO_FOR_HUMAN.md
+# YuiQueryGitHubSync class - Pure Python stdlib implementation
+# Sync Flow (5 phases):
+#   Phase 0: Backup existing TODO files to .todo_backups/
+#   Phase 1: fetch_github_issues() → Fetch all issues via gh CLI
+#   Phase 2: sync_to_github() → Create missing GitHub Issues from TODO tasks
+#   Phase 3: sync_from_github() → GitHub Issues → TODO_FOR_AI.json
+#   Phase 4: generate_human_readable() → TODO_FOR_AI.json → TODO_FOR_HUMAN.md
+#   Phase 5: Validate consistency between GitHub and local files
+
+# Critical Implementation Detail:
+# - Uses issue['state'].upper() for case-insensitive comparison
+# - GitHub returns 'CLOSED', not 'closed' (previously caused sync bugs)
+# - Line 97: if issue['state'].upper() == 'CLOSED': metadata['status'] = 'done'
 ```
 
 ## Advanced Issues & Solutions Discovered
@@ -187,13 +214,13 @@ uv add --dev <package>           # Add dev dependency
 ### Python Version Compatibility Challenges
 **Issue**: Python 3.6 compatibility error with `subprocess.run(text=True)` parameter
 **Root Cause**: User environment had anaconda Python 3.6, but scripts required Python 3.7+ features
-**Solution**: 
-- Implemented UV environment with Python 3.8+ requirement in pyproject.toml
+**Solution**:
+- Implemented UV environment with Python 3.9+ requirement in pyproject.toml
 - Updated scripts to use UV environment automatically
 - Added environment validation to sync scripts
 - Documented UV setup process in all guides
 
-**Prevention**: Always specify minimum Python version requirements in pyproject.toml
+**Prevention**: Always specify minimum Python version in pyproject.toml (currently 3.9+)
 
 ### Python Tooling Migration
 **Issue**: Black + Flake8 provided separate formatting and linting with slower performance
@@ -228,6 +255,16 @@ uv add --dev <package>           # Add dev dependency
 
 **Prevention**: Always make external dependencies (labels, assignees) optional in automated workflows
 
+### GitHub Issue State Case Sensitivity Bug
+**Issue**: Sync script wasn't marking closed GitHub Issues as "done" status in TODO files
+**Root Cause**: Code used `issue['state'] == 'closed'` but GitHub API returns `'CLOSED'` (uppercase)
+**Solution**:
+- Updated line 97 in sync_github_todos.py to use case-insensitive comparison
+- Changed to: `if issue['state'].upper() == 'CLOSED': metadata['status'] = 'done'`
+- Re-ran sync to correctly mark 86 closed issues as done (previously showed as todo)
+
+**Prevention**: Always use case-insensitive comparison for external API data
+
 ## Updated Project-Specific Requirements
 
 ### Development Environment Requirements
@@ -235,9 +272,12 @@ uv add --dev <package>           # Add dev dependency
   - Install: `curl -LsSf https://astral.sh/uv/install.sh | sh`
   - Manages Python versions automatically
   - Creates .venv on first `uv sync`
-- **Python 3.8+**: Minimum version (UV handles installation if needed)
-- **GitHub CLI**: Required for automated issue creation and bidirectional sync
+- **Python 3.9+**: Minimum version per pyproject.toml (UV handles installation if needed)
+- **GitHub CLI (gh)**: Required for automated issue creation and bidirectional sync
+  - Install: `brew install gh` (macOS) or see https://cli.github.com/
+  - Must be authenticated: `gh auth login`
 - **Git Repository**: Must be connected to GitHub remote for sync functionality
+- **Pandoc** (optional): For PDF/HTML generation from paper.md
 
 **First-Time Setup:**
 ```bash
@@ -273,14 +313,17 @@ uv run python --version
 ### Documentation Validation
 ```bash
 # Run all 5 validation tests (orchestrator)
-./validate_documentation.sh
+./validate_documentation.sh        # Symlink to tools/validation/validate_documentation.sh
 
-# Individual tests
-./test_file_size.sh                # Check 30KB limit on modular docs
-./test_cross_references.sh         # Validate internal markdown links
-./test_content_duplication.sh      # Detect duplicate sections
-./test_command_syntax.sh           # Validate bash code blocks
-./test_yaml_structure.sh           # Check JSON structure
+# Individual tests (now in tools/validation/)
+tools/validation/test_file_size.sh                # Check 30KB limit on modular docs
+tools/validation/test_cross_references.sh         # Validate internal markdown links
+tools/validation/test_content_duplication.sh      # Detect duplicate sections
+tools/validation/test_command_syntax.sh           # Validate bash code blocks
+tools/validation/test_yaml_structure.sh           # Check JSON structure
+
+# Note: Root-level symlink maintained for backward compatibility
+# Actual scripts located in tools/validation/ directory
 ```
 
 ### GitHub Issue Sync
