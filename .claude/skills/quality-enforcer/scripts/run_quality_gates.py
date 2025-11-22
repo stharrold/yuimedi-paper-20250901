@@ -1,15 +1,41 @@
 #!/usr/bin/env python3
-"""Run all quality gates and report results."""
+"""Run all quality gates and report results.
 
+Supports two execution modes:
+- Container mode: podman-compose run --rm dev uv run python <script>
+- Local mode: uv run python <script>
+
+The script detects the environment and uses appropriate commands.
+"""
+
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 
+def is_container_env():
+    """Check if running inside a container."""
+    return os.path.exists("/.dockerenv") or os.path.exists("/run/.containerenv")
+
+
+def get_command_prefix():
+    """Get command prefix based on environment.
+
+    Inside container: use 'uv run' directly
+    Outside container: use 'podman-compose run --rm dev uv run'
+    """
+    if is_container_env():
+        return ["uv", "run"]
+    else:
+        return ["podman-compose", "run", "--rm", "dev", "uv", "run"]
+
+
 def run_tests():
     """Run all tests and verify they pass."""
     print("Running tests...")
-    result = subprocess.run(["uv", "run", "pytest", "-v"], capture_output=True, text=True)
+    cmd = get_command_prefix() + ["pytest", "-v"]
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     passed = result.returncode == 0
 
@@ -29,9 +55,13 @@ def check_coverage(threshold=80):
 
     # Call check_coverage.py script
     script_path = Path(__file__).parent / "check_coverage.py"
-    result = subprocess.run(
-        ["python", str(script_path), str(threshold)], capture_output=True, text=True
-    )
+
+    if is_container_env():
+        cmd = ["python", str(script_path), str(threshold)]
+    else:
+        cmd = ["podman-compose", "run", "--rm", "dev", "python", str(script_path), str(threshold)]
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     passed = result.returncode == 0
     print(result.stdout)
@@ -42,7 +72,13 @@ def check_coverage(threshold=80):
 def check_build():
     """Verify package builds successfully."""
     print("Checking build...")
-    result = subprocess.run(["uv", "build"], capture_output=True, text=True)
+
+    if is_container_env():
+        cmd = ["uv", "build"]
+    else:
+        cmd = ["podman-compose", "run", "--rm", "dev", "uv", "build"]
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     passed = result.returncode == 0
 
@@ -60,15 +96,15 @@ def check_linting():
     print("Checking linting...")
 
     # Check if ruff is available
-    check_ruff = subprocess.run(["uv", "run", "ruff", "--version"], capture_output=True, text=True)
+    cmd_check = get_command_prefix() + ["ruff", "--version"]
+    check_ruff = subprocess.run(cmd_check, capture_output=True, text=True)
 
     if check_ruff.returncode != 0:
         print("⚠️  ruff not installed, skipping linting")
         return True  # Don't fail if ruff not available
 
-    result = subprocess.run(
-        ["uv", "run", "ruff", "check", "src/", "tests/"], capture_output=True, text=True
-    )
+    cmd = get_command_prefix() + ["ruff", "check", "."]
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     passed = result.returncode == 0
 
@@ -86,13 +122,15 @@ def check_types():
     print("Checking types...")
 
     # Check if mypy is available
-    check_mypy = subprocess.run(["uv", "run", "mypy", "--version"], capture_output=True, text=True)
+    cmd_check = get_command_prefix() + ["mypy", "--version"]
+    check_mypy = subprocess.run(cmd_check, capture_output=True, text=True)
 
     if check_mypy.returncode != 0:
         print("⚠️  mypy not installed, skipping type checking")
         return True  # Don't fail if mypy not available
 
-    result = subprocess.run(["uv", "run", "mypy", "src/"], capture_output=True, text=True)
+    cmd = get_command_prefix() + ["mypy", "scripts/"]
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     passed = result.returncode == 0
 
@@ -101,6 +139,29 @@ def check_types():
     else:
         print("✗ Type checking failed")
         print(result.stdout)
+
+    return passed
+
+
+def check_documentation():
+    """Run documentation validation tests."""
+    print("Checking documentation...")
+
+    if is_container_env():
+        cmd = ["./validate_documentation.sh"]
+    else:
+        cmd = ["podman-compose", "run", "--rm", "dev", "./validate_documentation.sh"]
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
+
+    passed = result.returncode == 0
+
+    if passed:
+        print("✓ Documentation validation passed")
+    else:
+        print("✗ Documentation validation failed")
+        print(result.stdout)
+        print(result.stderr)
 
     return passed
 
@@ -119,34 +180,43 @@ def run_all_quality_gates(coverage_threshold=80):
     print("QUALITY GATES")
     print("=" * 60)
 
-    # Gate 1: Test Coverage
-    print("\n[1/5] Test Coverage...")
-    passed = check_coverage(coverage_threshold)
-    results["coverage"] = {"passed": passed}
+    env_type = "container" if is_container_env() else "host (using podman-compose)"
+    print(f"Environment: {env_type}")
+
+    # Gate 1: Documentation Validation
+    print("\n[1/6] Documentation Validation...")
+    passed = check_documentation()
+    results["documentation"] = {"passed": passed}
     all_passed &= passed
 
-    # Gate 2: Tests Passing
-    print("\n[2/5] Running Tests...")
-    passed = run_tests()
-    results["tests"] = {"passed": passed}
-    all_passed &= passed
-
-    # Gate 3: Build
-    print("\n[3/5] Build Check...")
-    passed = check_build()
-    results["build"] = {"passed": passed}
-    all_passed &= passed
-
-    # Gate 4: Linting
-    print("\n[4/5] Linting...")
+    # Gate 2: Linting
+    print("\n[2/6] Linting...")
     passed = check_linting()
     results["linting"] = {"passed": passed}
     all_passed &= passed
 
-    # Gate 5: Type Checking
-    print("\n[5/5] Type Checking...")
+    # Gate 3: Type Checking
+    print("\n[3/6] Type Checking...")
     passed = check_types()
     results["types"] = {"passed": passed}
+    all_passed &= passed
+
+    # Gate 4: Test Coverage
+    print("\n[4/6] Test Coverage...")
+    passed = check_coverage(coverage_threshold)
+    results["coverage"] = {"passed": passed}
+    all_passed &= passed
+
+    # Gate 5: Tests Passing
+    print("\n[5/6] Running Tests...")
+    passed = run_tests()
+    results["tests"] = {"passed": passed}
+    all_passed &= passed
+
+    # Gate 6: Build
+    print("\n[6/6] Build Check...")
+    passed = check_build()
+    results["build"] = {"passed": passed}
     all_passed &= passed
 
     # Summary
@@ -174,6 +244,7 @@ def run_all_quality_gates(coverage_threshold=80):
                 action="test_complete",
                 state_snapshot={
                     "all_passed": all_passed,
+                    "documentation_passed": results.get("documentation", {}).get("passed", False),
                     "coverage_passed": results.get("coverage", {}).get("passed", False),
                     "tests_passed": results.get("tests", {}).get("passed", False),
                     "build_passed": results.get("build", {}).get("passed", False),

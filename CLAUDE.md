@@ -83,7 +83,44 @@ The literature review synthesizes findings from systematic reviews, peer-reviewe
 - Major releases: Create PR to `main`, tag after merge
 - Use git-workflow-manager for complex operations
 
-## Common Development Commands
+## Containerized Development (Recommended)
+
+**Key Principle**: All development uses `podman-compose run --rm dev <command>`. One way to run everything.
+
+### Setup
+```bash
+# Build container (once)
+podman-compose build
+
+# Verify setup
+podman-compose run --rm dev uv --version
+podman-compose run --rm dev ./validate_documentation.sh
+```
+
+### Code Quality
+```bash
+podman-compose run --rm dev uv run ruff format .      # Format Python
+podman-compose run --rm dev uv run ruff check --fix . # Lint and auto-fix
+podman-compose run --rm dev uv run mypy scripts/      # Type checking
+```
+
+### Quality Gates (6 gates, all must pass before PR)
+```bash
+podman-compose run --rm dev python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
+```
+
+| Gate | Description |
+|------|-------------|
+| 1. Documentation | All validation tests pass |
+| 2. Linting | `ruff check .` clean |
+| 3. Types | `mypy scripts/` passes |
+| 4. Coverage | ≥80% test coverage |
+| 5. Tests | All pytest tests pass |
+| 6. Build | `uv build` succeeds |
+
+## Local Development (Alternative)
+
+If you prefer running without containers:
 
 ### Setup
 ```bash
@@ -262,12 +299,31 @@ See individual `SKILL.md` files in `.claude/skills/` for detailed usage.
 ## Development Environment Setup
 
 ### Prerequisites
-- **UV Package Manager** (required): `curl -LsSf https://astral.sh/uv/install.sh | sh`
+- **Podman** (recommended): Container runtime - `brew install podman && podman machine init && podman machine start`
+- **podman-compose**: `pip install podman-compose`
+- **UV Package Manager** (alternative): `curl -LsSf https://astral.sh/uv/install.sh | sh`
 - **Python 3.9+**: Minimum version (UV handles installation)
 - **GitHub CLI**: `brew install gh` + `gh auth login`
 - **Pandoc** (optional): For PDF/HTML generation
 
-### First-Time Setup
+### First-Time Setup (Container - Recommended)
+```bash
+# Clone repository
+git clone <repo-url>
+cd yuimedi-paper-20250901
+
+# Build container (once)
+podman-compose build
+
+# Verify setup
+podman-compose run --rm dev uv --version
+podman-compose run --rm dev ./validate_documentation.sh
+
+# Run any command
+podman-compose run --rm dev <command>
+```
+
+### First-Time Setup (Local - Alternative)
 ```bash
 # Install UV
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -282,7 +338,20 @@ uv run python --version
 ./validate_documentation.sh
 ```
 
-### UV Environment Management
+### Container Command Patterns
+```bash
+# All development through container
+podman-compose run --rm dev uv run pytest              # Run tests
+podman-compose run --rm dev uv run ruff format .       # Format code
+podman-compose run --rm dev uv run ruff check --fix .  # Lint
+podman-compose run --rm dev uv run mypy scripts/       # Type check
+podman-compose run --rm dev ./validate_documentation.sh # Doc validation
+
+# Interactive shell
+podman-compose run --rm dev bash
+```
+
+### UV Environment Management (Local)
 ```bash
 uv sync                          # Install/sync dependencies
 uv run python script.py          # Run script in UV environment
@@ -292,7 +361,7 @@ uv run mypy scripts/             # Type checking
 uv add --dev <package>           # Add dev dependency
 ```
 
-**Command Pattern:** Always use `uv run python <script>` instead of bare `python3`
+**Command Pattern:** Use `podman-compose run --rm dev <command>` (container) or `uv run <command>` (local)
 
 ## Advanced Issues Discovered
 
