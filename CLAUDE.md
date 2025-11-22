@@ -218,10 +218,11 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 **Planning:** bmad-planner (requirements/architecture/epics), speckit-author (specifications)
 **Quality:** quality-enforcer (gates), tech-stack-adapter (stack detection), agentdb-state-manager (state sync)
 
-**3 Slash Commands:**
+**4 Slash Commands:**
 - `/plan` - Implementation planning workflow
 - `/specify` - Feature specifications
 - `/tasks` - Dependency-ordered task generation
+- `/workflow` - Complete workflow orchestration
 
 **When to Use:**
 - Major releases and complex git operations
@@ -412,7 +413,7 @@ The repository maintains parallel AI configuration directories:
 
 **Sync after changes:**
 ```bash
-rsync -av --delete --exclude=".DS_Store" .claude/skills/ .agents/
-rsync -av --delete --exclude=".DS_Store" .claude/commands/ .agents/commands/
+rsync -av --delete --exclude=".DS_Store" --exclude="__pycache__" .claude/skills/ .agents/
+rsync -av --delete --exclude=".DS_Store" --exclude="__pycache__" .claude/commands/ .agents/commands/
 cp CLAUDE.md AGENTS.md
 ```
