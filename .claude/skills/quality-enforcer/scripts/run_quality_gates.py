@@ -19,16 +19,33 @@ def is_container_env():
     return os.path.exists("/.dockerenv") or os.path.exists("/run/.containerenv")
 
 
+def has_podman_compose():
+    """Check if podman-compose is available."""
+    try:
+        result = subprocess.run(
+            ["podman-compose", "--version"],
+            capture_output=True,
+            text=True,
+        )
+        return result.returncode == 0
+    except FileNotFoundError:
+        return False
+
+
 def get_command_prefix():
     """Get command prefix based on environment.
 
     Inside container: use 'uv run' directly
-    Outside container: use 'podman-compose run --rm dev uv run'
+    Outside container with podman-compose: use 'podman-compose run --rm dev uv run'
+    Outside container without podman-compose: use 'uv run' directly (fallback)
     """
     if is_container_env():
         return ["uv", "run"]
-    else:
+    elif has_podman_compose():
         return ["podman-compose", "run", "--rm", "dev", "uv", "run"]
+    else:
+        # Fallback to local uv run
+        return ["uv", "run"]
 
 
 def run_tests():
@@ -58,8 +75,19 @@ def check_coverage(threshold=80):
 
     if is_container_env():
         cmd = ["python", str(script_path), str(threshold)]
+    elif has_podman_compose():
+        cmd = [
+            "podman-compose",
+            "run",
+            "--rm",
+            "dev",
+            "python",
+            str(script_path),
+            str(threshold),
+        ]
     else:
-        cmd = ["podman-compose", "run", "--rm", "dev", "python", str(script_path), str(threshold)]
+        # Fallback to local python
+        cmd = ["python", str(script_path), str(threshold)]
 
     result = subprocess.run(cmd, capture_output=True, text=True)
 
@@ -75,8 +103,11 @@ def check_build():
 
     if is_container_env():
         cmd = ["uv", "build"]
-    else:
+    elif has_podman_compose():
         cmd = ["podman-compose", "run", "--rm", "dev", "uv", "build"]
+    else:
+        # Fallback to local uv
+        cmd = ["uv", "build"]
 
     result = subprocess.run(cmd, capture_output=True, text=True)
 
@@ -149,8 +180,11 @@ def check_documentation():
 
     if is_container_env():
         cmd = ["./validate_documentation.sh"]
-    else:
+    elif has_podman_compose():
         cmd = ["podman-compose", "run", "--rm", "dev", "./validate_documentation.sh"]
+    else:
+        # Fallback to local script
+        cmd = ["./validate_documentation.sh"]
 
     result = subprocess.run(cmd, capture_output=True, text=True)
 
@@ -180,7 +214,12 @@ def run_all_quality_gates(coverage_threshold=80):
     print("QUALITY GATES")
     print("=" * 60)
 
-    env_type = "container" if is_container_env() else "host (using podman-compose)"
+    if is_container_env():
+        env_type = "container"
+    elif has_podman_compose():
+        env_type = "host (using podman-compose)"
+    else:
+        env_type = "host (using local uv)"
     print(f"Environment: {env_type}")
 
     # Gate 1: Documentation Validation
