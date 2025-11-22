@@ -293,9 +293,11 @@ def run_all_quality_gates(coverage_threshold=80):
                 context={},
             )
         )
-    except Exception:
+    except Exception as e:
         # Graceful degradation: don't fail if sync unavailable
-        pass
+        # Log at debug level for troubleshooting
+        if os.environ.get("DEBUG"):
+            print(f"[DEBUG] Sync integration unavailable: {e}")
 
     return all_passed, results
 

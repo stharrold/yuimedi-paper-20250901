@@ -88,8 +88,15 @@ def generate_session_id() -> str:
 
     Rationale: Timestamp-based IDs are reproducible within a timeframe,
     providing a balance between uniqueness and consistency.
+
+    Security Note: MD5 is used here for non-cryptographic purposes only
+    (generating a short, deterministic identifier from a timestamp).
+    This is NOT used for password hashing, signature verification, or
+    any security-sensitive operation. MD5's collision resistance
+    weaknesses are irrelevant for this use case.
     """
     current_time = datetime.now(timezone.utc).isoformat()
+    # MD5 used for non-cryptographic ID generation only (see docstring)
     return hashlib.md5(current_time.encode()).hexdigest()[:16]
 
 
