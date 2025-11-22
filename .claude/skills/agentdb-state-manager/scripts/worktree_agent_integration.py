@@ -33,7 +33,7 @@ import subprocess
 import sys
 from enum import Enum
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 from uuid import uuid4
 
 logger = logging.getLogger(__name__)
@@ -87,7 +87,9 @@ class FlowTokenManager:
             # Extract branch name from worktree directory
             # Example: standard_feature_20251117T024349Z_phase-3-integration
             #   → feature/20251117T024349Z_phase-3-integration
-            parts = cwd.name.split("_", 2)  # ["german", "feature", "20251117T024349Z_phase-3-integration"]
+            parts = cwd.name.split(
+                "_", 2
+            )  # ["german", "feature", "20251117T024349Z_phase-3-integration"]
             if len(parts) >= 3:
                 return f"feature/{parts[2]}"
 
@@ -104,7 +106,7 @@ class FlowTokenManager:
                 capture_output=True,
                 text=True,
                 check=True,
-                timeout=5
+                timeout=5,
             )
             branch = result.stdout.strip()
             if branch.startswith("contrib/"):
@@ -134,7 +136,7 @@ class FlowTokenManager:
             Issue number or None
         """
         # Pattern: issue-123 or feature/timestamp_issue-123-description
-        match = re.search(r'issue-(\d+)', flow_token)
+        match = re.search(r"issue-(\d+)", flow_token)
         if match:
             return int(match.group(1))
         return None
@@ -163,39 +165,39 @@ class PHIDetector:
 
     # PHI field name patterns (case-insensitive)
     PHI_FIELD_PATTERNS = [
-        r'patient_?id',
-        r'mrn',
-        r'medical_?record',
-        r'ssn',
-        r'social_?security',
-        r'dob',
-        r'date_?of_?birth',
-        r'diagnosis',
-        r'treatment',
-        r'prescription',
-        r'icd_?code',
-        r'health_?record',
-        r'medical_?history',
-        r'patient_?name',
-        r'provider_?name',
-        r'insurance',
-        r'claim_?number'
+        r"patient_?id",
+        r"mrn",
+        r"medical_?record",
+        r"ssn",
+        r"social_?security",
+        r"dob",
+        r"date_?of_?birth",
+        r"diagnosis",
+        r"treatment",
+        r"prescription",
+        r"icd_?code",
+        r"health_?record",
+        r"medical_?history",
+        r"patient_?name",
+        r"provider_?name",
+        r"insurance",
+        r"claim_?number",
     ]
 
     # PHI path patterns
     PHI_PATH_PATTERNS = [
-        r'/data/protected/',
-        r'/phi/',
-        r'/medical/',
-        r'/patient/',
-        r'/health_?records?/'
+        r"/data/protected/",
+        r"/phi/",
+        r"/medical/",
+        r"/patient/",
+        r"/health_?records?/",
     ]
 
     # SSN regex: 123-45-6789 or 123456789
-    SSN_PATTERN = r'\b\d{3}-?\d{2}-?\d{4}\b'
+    SSN_PATTERN = r"\b\d{3}-?\d{2}-?\d{4}\b"
 
     @classmethod
-    def detect_phi(cls, state_snapshot: Dict[str, Any]) -> bool:
+    def detect_phi(cls, state_snapshot: dict[str, Any]) -> bool:
         """Detect if state snapshot contains PHI.
 
         Args:
@@ -223,7 +225,9 @@ class PHIDetector:
         for field_name in state_snapshot.keys():
             for pattern in cls.PHI_FIELD_PATTERNS:
                 if re.search(pattern, field_name, re.IGNORECASE):
-                    logger.info(f"PHI detected: field name '{field_name}' matches pattern '{pattern}'")
+                    logger.info(
+                        f"PHI detected: field name '{field_name}' matches pattern '{pattern}'"
+                    )
                     return True
 
         # Check for SSN in string values
@@ -238,13 +242,15 @@ class PHIDetector:
             if isinstance(value, str):
                 for pattern in cls.PHI_PATH_PATTERNS:
                     if re.search(pattern, value, re.IGNORECASE):
-                        logger.info(f"PHI detected: path in field '{key}' matches pattern '{pattern}'")
+                        logger.info(
+                            f"PHI detected: path in field '{key}' matches pattern '{pattern}'"
+                        )
                         return True
 
         return False
 
     @classmethod
-    def extract_justification(cls, context: Dict[str, Any]) -> str:
+    def extract_justification(cls, context: dict[str, Any]) -> str:
         """Extract or generate access justification from workflow context.
 
         Priority:
@@ -314,9 +320,9 @@ class ComplianceWrapper:
         agent_id: str,
         action: str,
         flow_token: str,
-        state_snapshot: Dict[str, Any],
-        context: Optional[Dict[str, Any]] = None
-    ) -> List[str]:
+        state_snapshot: dict[str, Any],
+        context: Optional[dict[str, Any]] = None,
+    ) -> list[str]:
         """Wrapped version of sync_engine.on_agent_action_complete with compliance logging.
 
         This method:
@@ -356,8 +362,7 @@ class ComplianceWrapper:
         if phi_detected:
             phi_justification = PHIDetector.extract_justification(context)
             logger.warning(
-                f"PHI detected in sync: agent={agent_id}, action={action}, "
-                f"flow_token={flow_token}"
+                f"PHI detected in sync: agent={agent_id}, action={action}, flow_token={flow_token}"
             )
             logger.info(f"PHI justification: {phi_justification}")
 
@@ -375,7 +380,7 @@ class ComplianceWrapper:
                 agent_id=agent_id,
                 action=action,
                 flow_token=flow_token,
-                state_snapshot=state_snapshot
+                state_snapshot=state_snapshot,
             )
 
             # Additional compliance check: PHI without explicit justification
@@ -406,7 +411,7 @@ class SyncEngineFactory:
     - AGENTDB_PATH: Path to DuckDB database (default: "agentdb.duckdb")
     """
 
-    _instances: Dict[str, ComplianceWrapper] = {}
+    _instances: dict[str, ComplianceWrapper] = {}
 
     @classmethod
     def create_sync_engine(cls, db_path: Optional[str] = None) -> Optional[ComplianceWrapper]:
@@ -484,9 +489,9 @@ class SyncEngineFactory:
 async def trigger_sync_completion(
     agent_id: str,
     action: str,
-    state_snapshot: Dict[str, Any],
-    context: Optional[Dict[str, Any]] = None,
-    sync_engine: Optional[ComplianceWrapper] = None
+    state_snapshot: dict[str, Any],
+    context: Optional[dict[str, Any]] = None,
+    sync_engine: Optional[ComplianceWrapper] = None,
 ) -> bool:
     """Trigger sync engine after agent action completes.
 
@@ -567,7 +572,7 @@ async def trigger_sync_completion(
             action=action,
             flow_token=flow_token,
             state_snapshot=state_snapshot,
-            context=context
+            context=context,
         )
 
         logger.info(
@@ -584,8 +589,7 @@ async def trigger_sync_completion(
 
     except Exception as e:
         logger.error(
-            f"Sync trigger failed: agent={agent_id}, action={action}, error={e}",
-            exc_info=True
+            f"Sync trigger failed: agent={agent_id}, action={action}, error={e}", exc_info=True
         )
         # Graceful degradation: don't crash the agent
         return False

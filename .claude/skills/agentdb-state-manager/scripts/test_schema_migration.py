@@ -30,7 +30,6 @@ import sys
 import tempfile
 import uuid
 from pathlib import Path
-from typing import List
 
 try:
     import duckdb
@@ -45,7 +44,7 @@ REQUIRED_TABLES = [
     "schema_metadata",
     "agent_synchronizations",
     "sync_executions",
-    "sync_audit_trail"
+    "sync_audit_trail",
 ]
 REQUIRED_INDEXES = [
     "idx_sync_agent",
@@ -58,24 +57,26 @@ REQUIRED_INDEXES = [
     "idx_audit_sync",
     "idx_audit_event",
     "idx_audit_timestamp",
-    "idx_audit_phi"
+    "idx_audit_phi",
 ]
 REQUIRED_VIEWS = [
     "v_current_sync_status",
     "v_phi_access_audit",
     "v_sync_performance",
-    "v_failed_operations"
+    "v_failed_operations",
 ]
+
 
 # ANSI color codes for output
 class Colors:
     """ANSI color codes for terminal output."""
-    BLUE = '\033[94m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    BOLD = '\033[1m'
-    END = '\033[0m'
+
+    BLUE = "\033[94m"
+    GREEN = "\033[92m"
+    YELLOW = "\033[93m"
+    RED = "\033[91m"
+    BOLD = "\033[1m"
+    END = "\033[0m"
 
 
 class TestResult:
@@ -85,7 +86,7 @@ class TestResult:
         self.total = 0
         self.passed = 0
         self.failed = 0
-        self.errors: List[str] = []
+        self.errors: list[str] = []
 
     def add_pass(self, test_name: str, verbose: bool = False):
         """Record a passing test."""
@@ -147,8 +148,7 @@ def test_tables_exist(conn: duckdb.DuckDBPyConnection, results: TestResult, verb
         test_name = f"Table exists: {table_name}"
         try:
             result = conn.execute(
-                "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = ?",
-                [table_name]
+                "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = ?", [table_name]
             ).fetchone()
 
             if result[0] == 1:
@@ -189,8 +189,7 @@ def test_views_exist(conn: duckdb.DuckDBPyConnection, results: TestResult, verbo
         test_name = f"View exists: {view_name}"
         try:
             result = conn.execute(
-                "SELECT COUNT(*) FROM information_schema.views WHERE table_name = ?",
-                [view_name]
+                "SELECT COUNT(*) FROM information_schema.views WHERE table_name = ?", [view_name]
             ).fetchone()
 
             if result[0] == 1:
@@ -212,12 +211,15 @@ def test_foreign_keys(conn: duckdb.DuckDBPyConnection, results: TestResult, verb
         fake_exec_id = generate_uuid()
 
         try:
-            conn.execute("""
+            conn.execute(
+                """
                 INSERT INTO sync_executions (
                     execution_id, sync_id, execution_order, operation_type,
                     operation_result, started_at
                 ) VALUES (?, ?, 1, 'read', 'success', CURRENT_TIMESTAMP)
-            """, [fake_exec_id, fake_sync_id])
+            """,
+                [fake_exec_id, fake_sync_id],
+            )
 
             # If we got here, foreign key constraint didn't work
             results.add_fail(test_name, "Foreign key constraint not enforced")
@@ -233,13 +235,16 @@ def test_foreign_keys(conn: duckdb.DuckDBPyConnection, results: TestResult, verb
         fake_audit_id = generate_uuid()
 
         try:
-            conn.execute("""
+            conn.execute(
+                """
                 INSERT INTO sync_audit_trail (
                     audit_id, sync_id, event_type, actor, actor_role,
                     timestamp, compliance_context, event_details
                 ) VALUES (?, ?, 'sync_initiated', 'test', 'system',
                          CURRENT_TIMESTAMP, '{}', '{}')
-            """, [fake_audit_id, fake_sync_id])
+            """,
+                [fake_audit_id, fake_sync_id],
+            )
 
             results.add_fail(test_name, "Foreign key constraint not enforced")
         except duckdb.ConstraintException:
@@ -257,13 +262,16 @@ def test_check_constraints(conn: duckdb.DuckDBPyConnection, results: TestResult,
         sync_id = generate_uuid()
 
         try:
-            conn.execute("""
+            conn.execute(
+                """
                 INSERT INTO agent_synchronizations (
                     sync_id, agent_id, sync_type, source_location,
                     target_location, pattern, status, created_by
                 ) VALUES (?, 'test-agent', 'file_update', '/source', '/target',
                          'test_pattern', 'invalid_status', 'test')
-            """, [sync_id])
+            """,
+                [sync_id],
+            )
 
             results.add_fail(test_name, "CHECK constraint not enforced")
         except duckdb.ConstraintException:
@@ -276,22 +284,28 @@ def test_check_constraints(conn: duckdb.DuckDBPyConnection, results: TestResult,
     try:
         # First create a valid sync
         sync_id = generate_uuid()
-        conn.execute("""
+        conn.execute(
+            """
             INSERT INTO agent_synchronizations (
                 sync_id, agent_id, sync_type, source_location,
                 target_location, pattern, status, created_by
             ) VALUES (?, 'test-agent', 'file_update', '/source', '/target',
                      'test_pattern', 'pending', 'test')
-        """, [sync_id])
+        """,
+            [sync_id],
+        )
 
         exec_id = generate_uuid()
         try:
-            conn.execute("""
+            conn.execute(
+                """
                 INSERT INTO sync_executions (
                     execution_id, sync_id, execution_order, operation_type,
                     operation_result, started_at
                 ) VALUES (?, ?, 1, 'invalid_operation', 'success', CURRENT_TIMESTAMP)
-            """, [exec_id, sync_id])
+            """,
+                [exec_id, sync_id],
+            )
 
             results.add_fail(test_name, "CHECK constraint not enforced")
         except duckdb.ConstraintException:
@@ -306,13 +320,16 @@ def test_check_constraints(conn: duckdb.DuckDBPyConnection, results: TestResult,
         audit_id = generate_uuid()
 
         try:
-            conn.execute("""
+            conn.execute(
+                """
                 INSERT INTO sync_audit_trail (
                     audit_id, sync_id, event_type, actor, actor_role,
                     timestamp, compliance_context, event_details
                 ) VALUES (?, ?, 'invalid_event', 'test', 'system',
                          CURRENT_TIMESTAMP, '{}', '{}')
-            """, [audit_id, sync_id])
+            """,
+                [audit_id, sync_id],
+            )
 
             results.add_fail(test_name, "CHECK constraint not enforced")
         except duckdb.ConstraintException:
@@ -328,7 +345,8 @@ def test_sample_inserts(conn: duckdb.DuckDBPyConnection, results: TestResult, ve
     test_name = "Sample insert: agent_synchronizations"
     try:
         sync_id = generate_uuid()
-        conn.execute("""
+        conn.execute(
+            """
             INSERT INTO agent_synchronizations (
                 sync_id, agent_id, worktree_path, sync_type, source_location,
                 target_location, pattern, status, created_by, metadata
@@ -338,7 +356,9 @@ def test_sample_inserts(conn: duckdb.DuckDBPyConnection, results: TestResult, ve
                 'worktree/TODO_feature_test.md', 'todo_bidirectional',
                 'pending', 'claude-code', '{"priority": "high"}'
             )
-        """, [sync_id])
+        """,
+            [sync_id],
+        )
         results.add_pass(test_name, verbose)
 
         # Store sync_id for subsequent tests
@@ -352,7 +372,8 @@ def test_sample_inserts(conn: duckdb.DuckDBPyConnection, results: TestResult, ve
     test_name = "Sample insert: sync_executions"
     try:
         exec_id = generate_uuid()
-        conn.execute("""
+        conn.execute(
+            """
             INSERT INTO sync_executions (
                 execution_id, sync_id, execution_order, operation_type,
                 file_path, phi_accessed, phi_justification, operation_result,
@@ -365,7 +386,9 @@ def test_sample_inserts(conn: duckdb.DuckDBPyConnection, results: TestResult, ve
                 'sha256:abc123...', 'sha256:abc123...',
                 '{"line_count": 250}'
             )
-        """, [exec_id, sync_id])
+        """,
+            [exec_id, sync_id],
+        )
         results.add_pass(test_name, verbose)
 
         # Store exec_id for audit trail test
@@ -378,20 +401,22 @@ def test_sample_inserts(conn: duckdb.DuckDBPyConnection, results: TestResult, ve
     test_name = "Sample insert: sync_audit_trail"
     try:
         audit_id = generate_uuid()
-        compliance_context = json.dumps({
-            "purpose": "Synchronize workflow state for development",
-            "legal_basis": "Normal development operations",
-            "data_minimization": "No PHI involved"
-        })
-        event_details = json.dumps({
-            "files_changed": ["TODO_feature_test.md"],
-            "sync_pattern": "todo_bidirectional"
-        })
+        compliance_context = json.dumps(
+            {
+                "purpose": "Synchronize workflow state for development",
+                "legal_basis": "Normal development operations",
+                "data_minimization": "No PHI involved",
+            }
+        )
+        event_details = json.dumps(
+            {"files_changed": ["TODO_feature_test.md"], "sync_pattern": "todo_bidirectional"}
+        )
 
         exec_id_result = conn.execute("SELECT execution_id FROM test_ids").fetchone()
         exec_id = exec_id_result[0] if exec_id_result else None
 
-        conn.execute("""
+        conn.execute(
+            """
             INSERT INTO sync_audit_trail (
                 audit_id, sync_id, execution_id, event_type, actor, actor_role,
                 timestamp, phi_involved, compliance_context, event_details,
@@ -401,7 +426,9 @@ def test_sample_inserts(conn: duckdb.DuckDBPyConnection, results: TestResult, ve
                 CURRENT_TIMESTAMP, FALSE, ?, ?,
                 '127.0.0.1', 'session-001'
             )
-        """, [audit_id, sync_id, exec_id, compliance_context, event_details])
+        """,
+            [audit_id, sync_id, exec_id, compliance_context, event_details],
+        )
         results.add_pass(test_name, verbose)
     except Exception as e:
         results.add_fail(test_name, str(e))
@@ -456,7 +483,7 @@ def test_json_fields(conn: duckdb.DuckDBPyConnection, results: TestResult, verbo
             LIMIT 1
         """).fetchone()
 
-        if result and result[0] == 'high':
+        if result and result[0] == "high":
             results.add_pass(test_name, verbose)
         else:
             results.add_fail(test_name, f"Expected 'high', got {result}")
@@ -471,7 +498,7 @@ def test_json_fields(conn: duckdb.DuckDBPyConnection, results: TestResult, verbo
             LIMIT 1
         """).fetchone()
 
-        if result and 'workflow state' in result[0]:
+        if result and "workflow state" in result[0]:
             results.add_pass(test_name, verbose)
         else:
             results.add_fail(test_name, "Could not extract JSON field")
@@ -479,7 +506,9 @@ def test_json_fields(conn: duckdb.DuckDBPyConnection, results: TestResult, verbo
         results.add_fail(test_name, str(e))
 
 
-def test_append_only_audit_trail(conn: duckdb.DuckDBPyConnection, results: TestResult, verbose: bool):
+def test_append_only_audit_trail(
+    conn: duckdb.DuckDBPyConnection, results: TestResult, verbose: bool
+):
     """Test 10: APPEND-ONLY behavior on sync_audit_trail (application-level enforcement).
 
     CRITICAL COMPLIANCE REQUIREMENT:
@@ -531,11 +560,14 @@ def test_append_only_audit_trail(conn: duckdb.DuckDBPyConnection, results: TestR
 
         # Verify UPDATE works (but should be forbidden in production)
         # Use a valid event_type to avoid CHECK constraint failure
-        conn.execute("""
+        conn.execute(
+            """
             UPDATE sync_audit_trail
             SET event_type = 'sync_completed'
             WHERE audit_id = ?
-        """, [audit_id])
+        """,
+            [audit_id],
+        )
 
         # Rollback to preserve audit integrity
         conn.rollback()
@@ -546,10 +578,12 @@ def test_append_only_audit_trail(conn: duckdb.DuckDBPyConnection, results: TestR
         if final_count == initial_count:
             results.add_pass(
                 test_name + " (NOTE: Application MUST enforce - DuckDB allows UPDATE/DELETE)",
-                verbose
+                verbose,
             )
         else:
-            results.add_fail(test_name, f"Record count changed after rollback: {initial_count} → {final_count}")
+            results.add_fail(
+                test_name, f"Record count changed after rollback: {initial_count} → {final_count}"
+            )
 
     except Exception as e:
         results.add_fail(test_name, str(e))
@@ -579,26 +613,31 @@ def test_cascade_delete(conn: duckdb.DuckDBPyConnection, results: TestResult, ve
     try:
         # Create a new sync with executions
         sync_id = generate_uuid()
-        conn.execute("""
+        conn.execute(
+            """
             INSERT INTO agent_synchronizations (
                 sync_id, agent_id, sync_type, source_location,
                 target_location, pattern, status, created_by
             ) VALUES (?, 'test-fk', 'file_update', '/src', '/tgt',
                      'test', 'completed', 'test')
-        """, [sync_id])
+        """,
+            [sync_id],
+        )
 
         exec_id = generate_uuid()
-        conn.execute("""
+        conn.execute(
+            """
             INSERT INTO sync_executions (
                 execution_id, sync_id, execution_order, operation_type,
                 operation_result, started_at
             ) VALUES (?, ?, 1, 'read', 'success', CURRENT_TIMESTAMP)
-        """, [exec_id, sync_id])
+        """,
+            [exec_id, sync_id],
+        )
 
         # Verify execution exists
         exec_count_before = conn.execute(
-            "SELECT COUNT(*) FROM sync_executions WHERE sync_id = ?",
-            [sync_id]
+            "SELECT COUNT(*) FROM sync_executions WHERE sync_id = ?", [sync_id]
         ).fetchone()[0]
 
         if exec_count_before == 0:
@@ -625,22 +664,28 @@ def test_restrict_delete(conn: duckdb.DuckDBPyConnection, results: TestResult, v
     try:
         # Create sync with audit trail
         sync_id = generate_uuid()
-        conn.execute("""
+        conn.execute(
+            """
             INSERT INTO agent_synchronizations (
                 sync_id, agent_id, sync_type, source_location,
                 target_location, pattern, status, created_by
             ) VALUES (?, 'test-restrict', 'file_update', '/src', '/tgt',
                      'test', 'completed', 'test')
-        """, [sync_id])
+        """,
+            [sync_id],
+        )
 
         audit_id = generate_uuid()
-        conn.execute("""
+        conn.execute(
+            """
             INSERT INTO sync_audit_trail (
                 audit_id, sync_id, event_type, actor, actor_role,
                 timestamp, compliance_context, event_details
             ) VALUES (?, ?, 'sync_initiated', 'test', 'system',
                      CURRENT_TIMESTAMP, '{}', '{}')
-        """, [audit_id, sync_id])
+        """,
+            [audit_id, sync_id],
+        )
 
         # Try to delete sync (should fail due to RESTRICT)
         try:
@@ -673,13 +718,13 @@ def test_phase2_migration(conn: duckdb.DuckDBPyConnection, results: TestResult, 
 
     # Test agent_synchronizations Phase 2 fields
     phase2_sync_fields = [
-        'trigger_agent_id',
-        'trigger_action',
-        'trigger_pattern',
-        'target_agent_id',
-        'target_action',
-        'priority',
-        'enabled'
+        "trigger_agent_id",
+        "trigger_action",
+        "trigger_pattern",
+        "target_agent_id",
+        "target_action",
+        "priority",
+        "enabled",
     ]
 
     for field_name in phase2_sync_fields:
@@ -688,7 +733,7 @@ def test_phase2_migration(conn: duckdb.DuckDBPyConnection, results: TestResult, 
             result = conn.execute(
                 """SELECT COUNT(*) FROM information_schema.columns
                    WHERE table_name = 'agent_synchronizations' AND column_name = ?""",
-                [field_name]
+                [field_name],
             ).fetchone()
 
             if result[0] == 1:
@@ -699,11 +744,7 @@ def test_phase2_migration(conn: duckdb.DuckDBPyConnection, results: TestResult, 
             results.add_fail(test_name, str(e))
 
     # Test sync_executions Phase 2 fields
-    phase2_exec_fields = [
-        'provenance_hash',
-        'trigger_state_snapshot',
-        'exec_status'
-    ]
+    phase2_exec_fields = ["provenance_hash", "trigger_state_snapshot", "exec_status"]
 
     for field_name in phase2_exec_fields:
         test_name = f"Phase 2 field exists: sync_executions.{field_name}"
@@ -711,7 +752,7 @@ def test_phase2_migration(conn: duckdb.DuckDBPyConnection, results: TestResult, 
             result = conn.execute(
                 """SELECT COUNT(*) FROM information_schema.columns
                    WHERE table_name = 'sync_executions' AND column_name = ?""",
-                [field_name]
+                [field_name],
             ).fetchone()
 
             if result[0] == 1:
@@ -726,7 +767,8 @@ def test_phase2_migration(conn: duckdb.DuckDBPyConnection, results: TestResult, 
     try:
         # Create test sync
         sync_id = generate_uuid()
-        conn.execute("""
+        conn.execute(
+            """
             INSERT INTO agent_synchronizations (
                 sync_id, agent_id, sync_type, source_location,
                 target_location, pattern, status, created_by,
@@ -734,27 +776,35 @@ def test_phase2_migration(conn: duckdb.DuckDBPyConnection, results: TestResult, 
             ) VALUES (?, 'develop', 'agent_sync', '/src', '/tgt',
                      'test_pattern', 'pending', 'test',
                      'develop', 'commit_complete', 'assess', 'run_tests')
-        """, [sync_id])
+        """,
+            [sync_id],
+        )
 
         # Insert execution with provenance hash
         exec_id_1 = generate_uuid()
-        prov_hash = 'test_hash_' + ('0' * 54)  # 64 chars total
-        conn.execute("""
+        prov_hash = "test_hash_" + ("0" * 54)  # 64 chars total
+        conn.execute(
+            """
             INSERT INTO sync_executions (
                 execution_id, sync_id, execution_order, operation_type,
                 operation_result, provenance_hash, exec_status
             ) VALUES (?, ?, 1, 'read', 'success', ?, 'pending')
-        """, [exec_id_1, sync_id, prov_hash])
+        """,
+            [exec_id_1, sync_id, prov_hash],
+        )
 
         # Try duplicate provenance_hash (should fail)
         exec_id_2 = generate_uuid()
         try:
-            conn.execute("""
+            conn.execute(
+                """
                 INSERT INTO sync_executions (
                     execution_id, sync_id, execution_order, operation_type,
                     operation_result, provenance_hash, exec_status
                 ) VALUES (?, ?, 2, 'read', 'success', ?, 'pending')
-            """, [exec_id_2, sync_id, prov_hash])
+            """,
+                [exec_id_2, sync_id, prov_hash],
+            )
 
             results.add_fail(test_name, "Duplicate provenance_hash should have failed")
         except duckdb.ConstraintException:
@@ -767,7 +817,8 @@ def test_phase2_migration(conn: duckdb.DuckDBPyConnection, results: TestResult, 
     test_name = "Phase 2: Insert sync with trigger/target fields"
     try:
         sync_id = generate_uuid()
-        conn.execute("""
+        conn.execute(
+            """
             INSERT INTO agent_synchronizations (
                 sync_id, agent_id, sync_type, source_location,
                 target_location, pattern, status, created_by,
@@ -779,7 +830,9 @@ def test_phase2_migration(conn: duckdb.DuckDBPyConnection, results: TestResult, 
                 'develop', 'commit_complete', '{"lint_status": "pass"}',
                 'assess', 'run_tests', 100, TRUE
             )
-        """, [sync_id])
+        """,
+            [sync_id],
+        )
         results.add_pass(test_name, verbose)
     except Exception as e:
         results.add_fail(test_name, str(e))
@@ -789,7 +842,9 @@ def main():
     """Main test execution."""
     parser = argparse.ArgumentParser(description="Test agentdb_sync_schema migration")
     parser.add_argument("--verbose", action="store_true", help="Show all test results")
-    parser.add_argument("--keep-db", action="store_true", help="Keep test database after completion")
+    parser.add_argument(
+        "--keep-db", action="store_true", help="Keep test database after completion"
+    )
     args = parser.parse_args()
 
     print(f"{Colors.BOLD}AgentDB Sync Schema Migration Test{Colors.END}")

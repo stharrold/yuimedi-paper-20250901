@@ -21,7 +21,7 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 try:
     import yaml
@@ -30,26 +30,31 @@ except ImportError:
     sys.exit(1)
 
 # Constants
-VALID_WORKFLOW_TYPES = ['feature', 'release', 'hotfix']
-TODO_MD_PATH = Path.cwd() / 'TODO.md'
+VALID_WORKFLOW_TYPES = ["feature", "release", "hotfix"]
+TODO_MD_PATH = Path.cwd() / "TODO.md"
+
 
 # ANSI colors
 class Colors:
-    GREEN = '\033[92m'
-    BLUE = '\033[94m'
-    RED = '\033[91m'
-    YELLOW = '\033[93m'
-    END = '\033[0m'
+    GREEN = "\033[92m"
+    BLUE = "\033[94m"
+    RED = "\033[91m"
+    YELLOW = "\033[93m"
+    END = "\033[0m"
+
 
 def error_exit(msg: str) -> None:
     print(f"{Colors.RED}✗ Error:{Colors.END} {msg}", file=sys.stderr)
     sys.exit(1)
 
+
 def success(msg: str) -> None:
     print(f"{Colors.GREEN}✓{Colors.END} {msg}")
 
+
 def info(msg: str) -> None:
     print(f"{Colors.BLUE}ℹ{Colors.END} {msg}")
+
 
 def warning(msg: str) -> None:
     print(f"{Colors.YELLOW}⚠{Colors.END} {msg}")
@@ -64,7 +69,7 @@ def extract_timestamp_from_filename(filename: str) -> Optional[str]:
     Returns:
         ISO8601 timestamp or None
     """
-    match = re.search(r'(\d{8}T\d{6}Z)', filename)
+    match = re.search(r"(\d{8}T\d{6}Z)", filename)
     if match:
         ts = match.group(1)
         # Convert to ISO8601: 20251103T143000Z → 2025-11-03T14:30:00Z
@@ -72,7 +77,7 @@ def extract_timestamp_from_filename(filename: str) -> Optional[str]:
     return None
 
 
-def load_todo_md() -> tuple[Dict[str, Any], str]:
+def load_todo_md() -> tuple[dict[str, Any], str]:
     """Load TODO.md and parse YAML frontmatter.
 
     Returns:
@@ -81,12 +86,12 @@ def load_todo_md() -> tuple[Dict[str, Any], str]:
     if not TODO_MD_PATH.exists():
         error_exit(f"TODO.md not found: {TODO_MD_PATH}")
 
-    content = TODO_MD_PATH.read_text(encoding='utf-8')
+    content = TODO_MD_PATH.read_text(encoding="utf-8")
 
-    if not content.startswith('---'):
+    if not content.startswith("---"):
         error_exit("TODO.md missing YAML frontmatter")
 
-    parts = content.split('---', 2)
+    parts = content.split("---", 2)
     if len(parts) < 3:
         error_exit("Invalid TODO.md format")
 
@@ -98,22 +103,23 @@ def load_todo_md() -> tuple[Dict[str, Any], str]:
     return frontmatter, content
 
 
-def save_todo_md(frontmatter: Dict[str, Any], content: str) -> None:
+def save_todo_md(frontmatter: dict[str, Any], content: str) -> None:
     """Save updated TODO.md with new frontmatter.
 
     Args:
         frontmatter: Updated frontmatter dict
         content: Original full content
     """
-    parts = content.split('---', 2)
+    parts = content.split("---", 2)
     new_yaml = yaml.dump(frontmatter, default_flow_style=False, sort_keys=False)
     new_content = f"---\n{new_yaml}---{parts[2]}"
 
-    TODO_MD_PATH.write_text(new_content, encoding='utf-8')
+    TODO_MD_PATH.write_text(new_content, encoding="utf-8")
 
 
-def register_workflow(todo_file: Path, workflow_type: str, slug: str,
-                     title: Optional[str] = None) -> None:
+def register_workflow(
+    todo_file: Path, workflow_type: str, slug: str, title: Optional[str] = None
+) -> None:
     """Register workflow in TODO.md active list.
 
     Args:
@@ -123,7 +129,9 @@ def register_workflow(todo_file: Path, workflow_type: str, slug: str,
         title: Optional workflow title
     """
     if workflow_type not in VALID_WORKFLOW_TYPES:
-        error_exit(f"Invalid workflow type: {workflow_type}. Must be one of: {VALID_WORKFLOW_TYPES}")
+        error_exit(
+            f"Invalid workflow type: {workflow_type}. Must be one of: {VALID_WORKFLOW_TYPES}"
+        )
 
     if not todo_file.exists():
         error_exit(f"TODO file not found: {todo_file}")
@@ -140,34 +148,34 @@ def register_workflow(todo_file: Path, workflow_type: str, slug: str,
         timestamp = datetime.now(timezone.utc).isoformat()
 
     # Ensure workflows structure exists
-    if 'workflows' not in frontmatter:
-        frontmatter['workflows'] = {}
-    if 'active' not in frontmatter['workflows']:
-        frontmatter['workflows']['active'] = []
-    if 'archived' not in frontmatter['workflows']:
-        frontmatter['workflows']['archived'] = []
+    if "workflows" not in frontmatter:
+        frontmatter["workflows"] = {}
+    if "active" not in frontmatter["workflows"]:
+        frontmatter["workflows"]["active"] = []
+    if "archived" not in frontmatter["workflows"]:
+        frontmatter["workflows"]["archived"] = []
 
     # Check if already registered
-    for workflow in frontmatter['workflows']['active']:
-        if workflow.get('slug') == slug:
+    for workflow in frontmatter["workflows"]["active"]:
+        if workflow.get("slug") == slug:
             warning(f"Workflow '{slug}' already registered in active list")
             return
 
     # Create workflow entry
     workflow_entry = {
-        'slug': slug,
-        'timestamp': extract_timestamp_from_filename(todo_file.name) or
-                    datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),
-        'title': title or f"{workflow_type.title()}: {slug}",
-        'status': 'in_progress',
-        'file': todo_file.name
+        "slug": slug,
+        "timestamp": extract_timestamp_from_filename(todo_file.name)
+        or datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
+        "title": title or f"{workflow_type.title()}: {slug}",
+        "status": "in_progress",
+        "file": todo_file.name,
     }
 
     # Add to active list
-    frontmatter['workflows']['active'].append(workflow_entry)
+    frontmatter["workflows"]["active"].append(workflow_entry)
 
     # Update last_update timestamp
-    frontmatter['last_update'] = datetime.now(timezone.utc).isoformat()
+    frontmatter["last_update"] = datetime.now(timezone.utc).isoformat()
 
     # Save
     save_todo_md(frontmatter, content)
@@ -180,7 +188,7 @@ def register_workflow(todo_file: Path, workflow_type: str, slug: str,
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description='Register workflow in TODO.md master manifest',
+        description="Register workflow in TODO.md master manifest",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -191,14 +199,13 @@ Examples:
   # Register hotfix workflow
   python workflow_registrar.py TODO_hotfix_20251103_csrf.md hotfix csrf \\
       --title "CSRF Protection Fix"
-"""
+""",
     )
 
-    parser.add_argument('todo_file', type=Path, help='Path to TODO_*.md file')
-    parser.add_argument('workflow_type', choices=VALID_WORKFLOW_TYPES,
-                       help='Workflow type')
-    parser.add_argument('slug', help='Workflow slug')
-    parser.add_argument('--title', help='Workflow title (auto-generated if not provided)')
+    parser.add_argument("todo_file", type=Path, help="Path to TODO_*.md file")
+    parser.add_argument("workflow_type", choices=VALID_WORKFLOW_TYPES, help="Workflow type")
+    parser.add_argument("slug", help="Workflow slug")
+    parser.add_argument("--title", help="Workflow title (auto-generated if not provided)")
 
     args = parser.parse_args()
 
@@ -208,5 +215,5 @@ Examples:
         error_exit(str(e))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -11,7 +11,7 @@ Constants:
 """
 
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 try:
     import yaml
@@ -20,11 +20,11 @@ except ImportError:
 
 
 # Constants
-CONFIG_FILE_NAME = '.vcs_config.yaml'
-VALID_PROVIDERS = ['github', 'azure_devops']
+CONFIG_FILE_NAME = ".vcs_config.yaml"
+VALID_PROVIDERS = ["github", "azure_devops"]
 
 
-def load_vcs_config(config_path: Optional[Path] = None) -> Optional[Dict[str, Any]]:
+def load_vcs_config(config_path: Optional[Path] = None) -> Optional[dict[str, Any]]:
     """Load VCS configuration from .vcs_config.yaml.
 
     Args:
@@ -46,8 +46,7 @@ def load_vcs_config(config_path: Optional[Path] = None) -> Optional[Dict[str, An
     """
     if yaml is None:
         raise ImportError(
-            "PyYAML is required to load VCS configuration. "
-            "Install it with: pip install pyyaml"
+            "PyYAML is required to load VCS configuration. Install it with: pip install pyyaml"
         )
 
     if config_path is None:
@@ -57,7 +56,7 @@ def load_vcs_config(config_path: Optional[Path] = None) -> Optional[Dict[str, An
         return None
 
     try:
-        with open(config_path, 'r', encoding='utf-8') as f:
+        with open(config_path, encoding="utf-8") as f:
             config = yaml.safe_load(f)
 
         if not config:
@@ -73,7 +72,7 @@ def load_vcs_config(config_path: Optional[Path] = None) -> Optional[Dict[str, An
         raise ValueError(f"Error loading config from {config_path}: {e}")
 
 
-def validate_config(config: Dict[str, Any]) -> None:
+def validate_config(config: dict[str, Any]) -> None:
     """Validate VCS configuration.
 
     Args:
@@ -82,21 +81,19 @@ def validate_config(config: Dict[str, Any]) -> None:
     Raises:
         ValueError: If configuration is invalid
     """
-    if 'vcs_provider' not in config:
+    if "vcs_provider" not in config:
         raise ValueError("Missing required field: vcs_provider")
 
-    provider = config['vcs_provider']
+    provider = config["vcs_provider"]
     if provider not in VALID_PROVIDERS:
-        raise ValueError(
-            f"Invalid vcs_provider: {provider}. Must be one of: {VALID_PROVIDERS}"
-        )
+        raise ValueError(f"Invalid vcs_provider: {provider}. Must be one of: {VALID_PROVIDERS}")
 
     # Validate provider-specific requirements
-    if provider == 'azure_devops':
+    if provider == "azure_devops":
         validate_azure_devops_config(config)
 
 
-def validate_azure_devops_config(config: Dict[str, Any]) -> None:
+def validate_azure_devops_config(config: dict[str, Any]) -> None:
     """Validate Azure DevOps-specific configuration.
 
     Args:
@@ -105,26 +102,26 @@ def validate_azure_devops_config(config: Dict[str, Any]) -> None:
     Raises:
         ValueError: If Azure DevOps configuration is invalid
     """
-    if 'azure_devops' not in config:
+    if "azure_devops" not in config:
         raise ValueError("azure_devops configuration required when vcs_provider is azure_devops")
 
-    azure_config = config['azure_devops']
+    azure_config = config["azure_devops"]
 
     if not isinstance(azure_config, dict):
         raise ValueError("azure_devops must be a dictionary")
 
-    if 'organization' not in azure_config:
+    if "organization" not in azure_config:
         raise ValueError("azure_devops.organization is required")
 
-    if 'project' not in azure_config:
+    if "project" not in azure_config:
         raise ValueError("azure_devops.project is required")
 
     # Validate organization URL format
-    org = azure_config['organization']
+    org = azure_config["organization"]
     if not isinstance(org, str) or not org.strip():
         raise ValueError("azure_devops.organization must be a non-empty string")
 
     # Validate project name
-    project = azure_config['project']
+    project = azure_config["project"]
     if not isinstance(project, str) or not project.strip():
         raise ValueError("azure_devops.project must be a non-empty string")

@@ -24,7 +24,7 @@ import sys
 from pathlib import Path
 
 # Constants with documented rationale
-VERSION_PATTERN = r'^v\d+\.\d+\.\d+$'
+VERSION_PATTERN = r"^v\d+\.\d+\.\d+$"
 # Rationale: Enforce semantic versioning (vMAJOR.MINOR.PATCH) for consistency
 
 TAG_MESSAGE_TEMPLATE = "Release {version}: {summary}"
@@ -43,8 +43,7 @@ def validate_version_format(version):
     """
     if not re.match(VERSION_PATTERN, version):
         raise ValueError(
-            f"Invalid version format '{version}'. "
-            f"Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
+            f"Invalid version format '{version}'. Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
         )
 
 
@@ -60,9 +59,7 @@ def verify_branch_exists(branch_name):
     """
     try:
         subprocess.run(
-            ['git', 'rev-parse', '--verify', branch_name],
-            capture_output=True,
-            check=True
+            ["git", "rev-parse", "--verify", branch_name], capture_output=True, check=True
         )
     except subprocess.CalledProcessError:
         raise ValueError(
@@ -84,30 +81,24 @@ def verify_tag_not_exists(version):
     # Check local tags
     try:
         result = subprocess.run(
-            ['git', 'tag', '-l', version],
-            capture_output=True,
-            text=True,
-            check=True
+            ["git", "tag", "-l", version], capture_output=True, text=True, check=True
         )
 
         if result.stdout.strip():
             raise ValueError(
-                f"Tag '{version}' already exists locally. "
-                f"Use 'git tag -l' to list existing tags."
+                f"Tag '{version}' already exists locally. Use 'git tag -l' to list existing tags."
             )
 
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(
-            f"Failed to check local git tags: {e.stderr.strip()}"
-        ) from e
+        raise RuntimeError(f"Failed to check local git tags: {e.stderr.strip()}") from e
 
     # Check remote tags
     try:
         result = subprocess.run(
-            ['git', 'ls-remote', '--tags', 'origin', version],
+            ["git", "ls-remote", "--tags", "origin", version],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
         )
 
         if result.stdout.strip():
@@ -117,9 +108,7 @@ def verify_tag_not_exists(version):
             )
 
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(
-            f"Failed to check remote git tags: {e.stderr.strip()}"
-        ) from e
+        raise RuntimeError(f"Failed to check remote git tags: {e.stderr.strip()}") from e
 
 
 def checkout_and_pull_branch(branch_name):
@@ -137,34 +126,21 @@ def checkout_and_pull_branch(branch_name):
     """
     try:
         # Checkout branch
-        subprocess.run(
-            ['git', 'checkout', branch_name],
-            capture_output=True,
-            check=True
-        )
+        subprocess.run(["git", "checkout", branch_name], capture_output=True, check=True)
 
         # Pull latest
-        subprocess.run(
-            ['git', 'pull', 'origin', branch_name],
-            capture_output=True,
-            check=True
-        )
+        subprocess.run(["git", "pull", "origin", branch_name], capture_output=True, check=True)
 
         # Get commit SHA
         result = subprocess.run(
-            ['git', 'rev-parse', '--short', 'HEAD'],
-            capture_output=True,
-            text=True,
-            check=True
+            ["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, check=True
         )
 
         return result.stdout.strip()
 
     except subprocess.CalledProcessError as e:
-        error_msg = e.stderr.decode() if e.stderr else 'Unknown error'
-        raise RuntimeError(
-            f"Failed to checkout/pull branch '{branch_name}': {error_msg}"
-        ) from e
+        error_msg = e.stderr.decode() if e.stderr else "Unknown error"
+        raise RuntimeError(f"Failed to checkout/pull branch '{branch_name}': {error_msg}") from e
 
 
 def verify_branch_up_to_date(branch_name):
@@ -179,18 +155,14 @@ def verify_branch_up_to_date(branch_name):
     """
     try:
         # Fetch remote refs
-        subprocess.run(
-            ['git', 'fetch', 'origin'],
-            capture_output=True,
-            check=True
-        )
+        subprocess.run(["git", "fetch", "origin"], capture_output=True, check=True)
 
         # Compare local and remote
         result = subprocess.run(
-            ['git', 'rev-list', '--count', f'{branch_name}..origin/{branch_name}'],
+            ["git", "rev-list", "--count", f"{branch_name}..origin/{branch_name}"],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
         )
 
         behind_count = int(result.stdout.strip())
@@ -202,9 +174,7 @@ def verify_branch_up_to_date(branch_name):
             )
 
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(
-            f"Failed to verify branch status: {e.stderr.strip()}"
-        ) from e
+        raise RuntimeError(f"Failed to verify branch status: {e.stderr.strip()}") from e
 
 
 def extract_release_summary(version):
@@ -218,19 +188,19 @@ def extract_release_summary(version):
         One-line summary string
     """
     # Try to extract from CHANGELOG.md first
-    changelog_path = Path('CHANGELOG.md')
+    changelog_path = Path("CHANGELOG.md")
 
     if changelog_path.exists():
         try:
             content = changelog_path.read_text()
             # Look for version header in CHANGELOG
-            lines = content.split('\n')
+            lines = content.split("\n")
             for i, line in enumerate(lines):
                 if version in line and i + 1 < len(lines):
                     # Get first non-empty line after version header
                     for j in range(i + 1, min(i + 10, len(lines))):
-                        summary = lines[j].strip().lstrip('-').strip()
-                        if summary and not summary.startswith('#'):
+                        summary = lines[j].strip().lstrip("-").strip()
+                        if summary and not summary.startswith("#"):
                             return summary
         except Exception:
             pass  # Fall through to git log method
@@ -238,10 +208,7 @@ def extract_release_summary(version):
     # Fallback: use most recent commit message
     try:
         result = subprocess.run(
-            ['git', 'log', '-1', '--pretty=%s'],
-            capture_output=True,
-            text=True,
-            check=True
+            ["git", "log", "-1", "--pretty=%s"], capture_output=True, text=True, check=True
         )
 
         summary = result.stdout.strip()
@@ -275,9 +242,7 @@ def create_annotated_tag(version, commit_sha):
     try:
         # Create annotated tag
         subprocess.run(
-            ['git', 'tag', '-a', version, '-m', tag_message],
-            capture_output=True,
-            check=True
+            ["git", "tag", "-a", version, "-m", tag_message], capture_output=True, check=True
         )
 
         return tag_message
@@ -299,20 +264,12 @@ def push_tag_to_remote(version):
         RuntimeError: If push fails
     """
     try:
-        subprocess.run(
-            ['git', 'push', 'origin', version],
-            capture_output=True,
-            check=True
-        )
+        subprocess.run(["git", "push", "origin", version], capture_output=True, check=True)
 
     except subprocess.CalledProcessError as e:
         # Cleanup: delete local tag on push failure
         print("ERROR: Failed to push tag to remote, cleaning up...", file=sys.stderr)
-        subprocess.run(
-            ['git', 'tag', '-d', version],
-            capture_output=True,
-            check=False
-        )
+        subprocess.run(["git", "tag", "-d", version], capture_output=True, check=False)
 
         raise RuntimeError(
             f"Failed to push tag to remote: {e.stderr.decode() if e.stderr else 'Unknown error'}"
@@ -331,22 +288,19 @@ def verify_tag_pushed(version):
     """
     try:
         result = subprocess.run(
-            ['git', 'ls-remote', '--tags', 'origin', version],
+            ["git", "ls-remote", "--tags", "origin", version],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
         )
 
         if not result.stdout.strip():
             raise RuntimeError(
-                f"Tag '{version}' not found on remote after push. "
-                f"Push may have failed silently."
+                f"Tag '{version}' not found on remote after push. Push may have failed silently."
             )
 
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(
-            f"Failed to verify tag on remote: {e.stderr.strip()}"
-        ) from e
+        raise RuntimeError(f"Failed to verify tag on remote: {e.stderr.strip()}") from e
 
 
 def create_github_release(version):
@@ -361,11 +315,7 @@ def create_github_release(version):
     """
     # Check if gh CLI is available
     try:
-        subprocess.run(
-            ['gh', '--version'],
-            capture_output=True,
-            check=True
-        )
+        subprocess.run(["gh", "--version"], capture_output=True, check=True)
     except (subprocess.CalledProcessError, FileNotFoundError):
         print("Note: gh CLI not available, skipping GitHub release creation", file=sys.stderr)
         return None
@@ -373,10 +323,10 @@ def create_github_release(version):
     # Create GitHub release
     try:
         result = subprocess.run(
-            ['gh', 'release', 'create', version, '--generate-notes'],
+            ["gh", "release", "create", version, "--generate-notes"],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
         )
 
         # Extract URL from output
@@ -385,7 +335,10 @@ def create_github_release(version):
 
     except subprocess.CalledProcessError as e:
         print(f"Warning: Failed to create GitHub release: {e.stderr.strip()}", file=sys.stderr)
-        print(f"You can create it manually: gh release create {version} --generate-notes", file=sys.stderr)
+        print(
+            f"You can create it manually: gh release create {version} --generate-notes",
+            file=sys.stderr,
+        )
         return None
 
 
@@ -432,7 +385,7 @@ def main():
         print(f"\n✓ Checked out {branch} branch")
         print(f"✓ Pulled latest changes (commit {commit_sha})")
         print(f"✓ Created annotated tag: {version}")
-        print(f"  Message: \"{tag_message}\"")
+        print(f'  Message: "{tag_message}"')
         print("✓ Pushed tag to origin")
 
         if release_url:
@@ -441,8 +394,12 @@ def main():
             print("  GitHub release: skipped (gh CLI not available or failed)")
 
         print("\nNext steps:")
-        print(f"  1. Back-merge to develop: python .claude/skills/git-workflow-manager/scripts/backmerge_release.py {version} develop")
-        print(f"  2. Cleanup release branch: python .claude/skills/git-workflow-manager/scripts/cleanup_release.py {version}")
+        print(
+            f"  1. Back-merge to develop: python .claude/skills/git-workflow-manager/scripts/backmerge_release.py {version} develop"
+        )
+        print(
+            f"  2. Cleanup release branch: python .claude/skills/git-workflow-manager/scripts/cleanup_release.py {version}"
+        )
 
     except (ValueError, RuntimeError) as e:
         print(f"ERROR: {e}", file=sys.stderr)
@@ -455,5 +412,5 @@ def main():
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

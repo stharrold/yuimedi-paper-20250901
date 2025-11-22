@@ -7,4 +7,4 @@ Scripts:
 - update_asbuilt.py: Update BMAD planning with as-built implementation details
 """
 
-__version__ = '5.0.0'
+__version__ = "5.0.0"

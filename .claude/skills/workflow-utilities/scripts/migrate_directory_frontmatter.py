@@ -4,7 +4,7 @@
 import re
 import sys
 from pathlib import Path
-from typing import List, Optional
+from typing import Optional
 
 
 def has_yaml_frontmatter(content: str) -> bool:
@@ -17,7 +17,7 @@ def has_yaml_frontmatter(content: str) -> bool:
     Returns:
         True if content starts with YAML frontmatter
     """
-    return content.strip().startswith('---')
+    return content.strip().startswith("---")
 
 
 def extract_frontmatter(content: str) -> tuple[Optional[str], str]:
@@ -34,14 +34,14 @@ def extract_frontmatter(content: str) -> tuple[Optional[str], str]:
         return None, content
 
     # Match frontmatter pattern: ---\n...content...\n---\n
-    match = re.match(r'^---\n(.*?)\n---\n(.*)$', content, re.DOTALL)
+    match = re.match(r"^---\n(.*?)\n---\n(.*)$", content, re.DOTALL)
     if match:
         return match.group(1), match.group(2)
 
     return None, content
 
 
-def get_child_directories(dir_path: Path) -> List[str]:
+def get_child_directories(dir_path: Path) -> list[str]:
     """
     Get list of child directories that have CLAUDE.md files.
 
@@ -56,13 +56,13 @@ def get_child_directories(dir_path: Path) -> List[str]:
         return children
 
     for child in sorted(dir_path.iterdir()):
-        if child.is_dir() and (child / 'CLAUDE.md').exists():
+        if child.is_dir() and (child / "CLAUDE.md").exists():
             children.append(f"{child.name}/CLAUDE.md")
 
     return children
 
 
-def format_yaml_list(items: List[str], indent: int = 2) -> str:
+def format_yaml_list(items: list[str], indent: int = 2) -> str:
     """
     Format list items for YAML frontmatter.
 
@@ -96,17 +96,17 @@ def infer_purpose_from_content(content: str, dir_name: str, is_archived: bool) -
         return f"Archive of deprecated files from {dir_name}"
 
     # Try to extract from existing "## Purpose" section
-    purpose_match = re.search(r'## Purpose\n\n(.+?)(?:\n\n##|\Z)', content, re.DOTALL)
+    purpose_match = re.search(r"## Purpose\n\n(.+?)(?:\n\n##|\Z)", content, re.DOTALL)
     if purpose_match:
         purpose = purpose_match.group(1).strip()
         # Clean up template text
-        if not purpose.startswith('['):
+        if not purpose.startswith("["):
             return purpose
 
     return f"Context-specific guidance for {dir_name}"
 
 
-def infer_related_skills(content: str, is_archived: bool) -> List[str]:
+def infer_related_skills(content: str, is_archived: bool) -> list[str]:
     """
     Infer related skills from existing content.
 
@@ -121,15 +121,15 @@ def infer_related_skills(content: str, is_archived: bool) -> List[str]:
         return ["workflow-utilities"]
 
     # Try to extract from existing "## Related Skills" section
-    skills_match = re.search(r'## Related Skills\n\n(.+?)(?:\n\n##|\Z)', content, re.DOTALL)
+    skills_match = re.search(r"## Related Skills\n\n(.+?)(?:\n\n##|\Z)", content, re.DOTALL)
     if skills_match:
         skills_text = skills_match.group(1).strip()
         # Extract skill names (lines starting with -)
         skills = []
-        for line in skills_text.split('\n'):
+        for line in skills_text.split("\n"):
             line = line.strip()
-            if line.startswith('-'):
-                skill = line.lstrip('- ').strip()
+            if line.startswith("-"):
+                skill = line.lstrip("- ").strip()
                 if skill:
                     skills.append(skill)
         if skills:
@@ -165,7 +165,7 @@ def migrate_claude_md(file_path: Path, dry_run: bool = False) -> bool:
     try:
         repo_root = dir_path
         while repo_root.parent != repo_root:
-            if (repo_root / '.git').exists():
+            if (repo_root / ".git").exists():
                 break
             repo_root = repo_root.parent
         relative_dir = dir_path.relative_to(repo_root)
@@ -176,14 +176,20 @@ def migrate_claude_md(file_path: Path, dry_run: bool = False) -> bool:
     is_archived = dir_path.name == "ARCHIVED"
 
     # Determine parent
-    parent_claude = "../CLAUDE.md" if dir_path.parent != dir_path and (dir_path.parent / 'CLAUDE.md').exists() else None
+    parent_claude = (
+        "../CLAUDE.md"
+        if dir_path.parent != dir_path and (dir_path.parent / "CLAUDE.md").exists()
+        else None
+    )
 
     # Get children
     child_dirs = get_child_directories(dir_path)
     children_yaml = format_yaml_list(child_dirs) if child_dirs else " []"
 
     # Infer purpose and related skills from content
-    purpose = infer_purpose_from_content(content, dir_path.parent.name if is_archived else dir_path.name, is_archived)
+    purpose = infer_purpose_from_content(
+        content, dir_path.parent.name if is_archived else dir_path.name, is_archived
+    )
     related_skills = infer_related_skills(content, is_archived)
     skills_yaml = format_yaml_list(related_skills)
 
@@ -209,9 +215,20 @@ related_skills:{skills_yaml}
                 """## Related Documentation
 
 - **[README.md](README.md)** - Human-readable documentation for this directory
-""" + (f"- **[{parent_claude}]({parent_claude})** - Parent directory\n\n" if parent_claude else "\n") +
-                ("**Child Directories:**\n" + "\n".join(f"- **[{child}]({child})**" for child in child_dirs) + "\n\n" if child_dirs else "") +
-                "## Related Skills"
+"""
+                + (
+                    f"- **[{parent_claude}]({parent_claude})** - Parent directory\n\n"
+                    if parent_claude
+                    else "\n"
+                )
+                + (
+                    "**Child Directories:**\n"
+                    + "\n".join(f"- **[{child}]({child})**" for child in child_dirs)
+                    + "\n\n"
+                    if child_dirs
+                    else ""
+                )
+                + "## Related Skills",
             )
         else:
             # Add at the end
@@ -219,7 +236,11 @@ related_skills:{skills_yaml}
             if parent_claude:
                 related_doc += f"- **[{parent_claude}]({parent_claude})** - Parent directory\n"
             if child_dirs:
-                related_doc += "\n**Child Directories:**\n" + "\n".join(f"- **[{child}]({child})**" for child in child_dirs) + "\n"
+                related_doc += (
+                    "\n**Child Directories:**\n"
+                    + "\n".join(f"- **[{child}]({child})**" for child in child_dirs)
+                    + "\n"
+                )
             content += related_doc
 
     new_content = frontmatter + content
@@ -260,7 +281,7 @@ def migrate_readme_md(file_path: Path, dry_run: bool = False) -> bool:
     try:
         repo_root = dir_path
         while repo_root.parent != repo_root:
-            if (repo_root / '.git').exists():
+            if (repo_root / ".git").exists():
                 break
             repo_root = repo_root.parent
         relative_dir = dir_path.relative_to(repo_root)
@@ -271,14 +292,22 @@ def migrate_readme_md(file_path: Path, dry_run: bool = False) -> bool:
     is_archived = dir_path.name == "ARCHIVED"
 
     # Extract title from first # heading
-    title_match = re.match(r'^# (.+)$', content, re.MULTILINE)
+    title_match = re.match(r"^# (.+)$", content, re.MULTILINE)
     if title_match:
         title = title_match.group(1).strip()
     else:
-        title = "Archived Files" if is_archived else dir_path.name.replace('-', ' ').replace('_', ' ').title()
+        title = (
+            "Archived Files"
+            if is_archived
+            else dir_path.name.replace("-", " ").replace("_", " ").title()
+        )
 
     # Determine parent
-    parent_readme = "../README.md" if dir_path.parent != dir_path and (dir_path.parent / 'README.md').exists() else None
+    parent_readme = (
+        "../README.md"
+        if dir_path.parent != dir_path and (dir_path.parent / "README.md").exists()
+        else None
+    )
 
     # Get children
     child_dirs = get_child_directories(dir_path)
@@ -299,9 +328,13 @@ children:{children_readme_yaml}
 
     # Update "Related Documentation" section if it doesn't exist
     if "## Related Documentation" not in content:
-        related_doc = "\n## Related Documentation\n\n- **[CLAUDE.md](CLAUDE.md)** - Context for Claude Code\n"
+        related_doc = (
+            "\n## Related Documentation\n\n- **[CLAUDE.md](CLAUDE.md)** - Context for Claude Code\n"
+        )
         if parent_readme:
-            related_doc += f"- **[{parent_readme}]({parent_readme})** - Parent directory documentation\n"
+            related_doc += (
+                f"- **[{parent_readme}]({parent_readme})** - Parent directory documentation\n"
+            )
         content += related_doc
 
     new_content = frontmatter + content
@@ -351,9 +384,9 @@ def migrate_directory(directory: Path, dry_run: bool = False) -> tuple[int, int]
     return migrated, skipped
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Parse arguments
-    dry_run = '--dry-run' in sys.argv
+    dry_run = "--dry-run" in sys.argv
     directory = Path.cwd()
 
     if dry_run:

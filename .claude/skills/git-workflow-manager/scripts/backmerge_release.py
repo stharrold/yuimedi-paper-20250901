@@ -45,13 +45,13 @@ import subprocess
 import sys
 
 # Constants with documented rationale
-VERSION_PATTERN = r'^v\d+\.\d+\.\d+$'
+VERSION_PATTERN = r"^v\d+\.\d+\.\d+$"
 # Rationale: Enforce semantic versioning (vMAJOR.MINOR.PATCH) for consistency
 
-RELEASE_BRANCH_PREFIX = 'release/'
+RELEASE_BRANCH_PREFIX = "release/"
 # Rationale: git-flow release branch naming convention
 
-MERGE_STRATEGY = '--no-ff'
+MERGE_STRATEGY = "--no-ff"
 # Rationale: Preserves release branch history in develop, easier to track releases
 
 
@@ -67,8 +67,7 @@ def validate_version_format(version):
     """
     if not re.match(VERSION_PATTERN, version):
         raise ValueError(
-            f"Invalid version format '{version}'. "
-            f"Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
+            f"Invalid version format '{version}'. Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
         )
 
 
@@ -84,9 +83,7 @@ def verify_branch_exists(branch_name):
     """
     try:
         subprocess.run(
-            ['git', 'rev-parse', '--verify', branch_name],
-            capture_output=True,
-            check=True
+            ["git", "rev-parse", "--verify", branch_name], capture_output=True, check=True
         )
     except subprocess.CalledProcessError:
         raise ValueError(
@@ -107,10 +104,7 @@ def verify_tag_exists(version):
     """
     try:
         result = subprocess.run(
-            ['git', 'tag', '-l', version],
-            capture_output=True,
-            text=True,
-            check=True
+            ["git", "tag", "-l", version], capture_output=True, text=True, check=True
         )
 
         if not result.stdout.strip():
@@ -121,9 +115,7 @@ def verify_tag_exists(version):
             )
 
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(
-            f"Failed to check git tags: {e.stderr.strip()}"
-        ) from e
+        raise RuntimeError(f"Failed to check git tags: {e.stderr.strip()}") from e
 
 
 def check_working_directory_clean():
@@ -135,10 +127,7 @@ def check_working_directory_clean():
     """
     try:
         result = subprocess.run(
-            ['git', 'status', '--porcelain'],
-            capture_output=True,
-            text=True,
-            check=True
+            ["git", "status", "--porcelain"], capture_output=True, text=True, check=True
         )
 
         if result.stdout.strip():
@@ -148,9 +137,7 @@ def check_working_directory_clean():
             )
 
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(
-            f"Failed to check git status: {e.stderr.strip()}"
-        ) from e
+        raise RuntimeError(f"Failed to check git status: {e.stderr.strip()}") from e
 
 
 def rebase_release_branch(release_branch, target_branch):
@@ -171,42 +158,35 @@ def rebase_release_branch(release_branch, target_branch):
     try:
         # Fetch latest target and release branches (Issue #137)
         subprocess.run(
-            ['git', 'fetch', 'origin', target_branch, release_branch],
+            ["git", "fetch", "origin", target_branch, release_branch],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
         )
 
         # Checkout release branch
         subprocess.run(
-            ['git', 'checkout', release_branch],
-            capture_output=True,
-            text=True,
-            check=True
+            ["git", "checkout", release_branch], capture_output=True, text=True, check=True
         )
 
         # Rebase onto target branch
         result = subprocess.run(
-            ['git', 'rebase', f'origin/{target_branch}'],
+            ["git", "rebase", f"origin/{target_branch}"],
             capture_output=True,
             text=True,
-            check=False  # Don't raise on conflict
+            check=False,  # Don't raise on conflict
         )
 
         if result.returncode != 0:
             # Rebase failed - abort and provide helpful error (Issue #136)
-            subprocess.run(
-                ['git', 'rebase', '--abort'],
-                capture_output=True,
-                check=False
-            )
+            subprocess.run(["git", "rebase", "--abort"], capture_output=True, check=False)
             # Check both stderr and stdout to distinguish conflict from other failures (Issue #140, #146)
             # Extract error parts with intermediate variables for clarity (Issue #152)
-            stderr_part = result.stderr or ''
-            stdout_part = result.stdout or ''
-            separator = '\n' if stderr_part and stdout_part else ''
+            stderr_part = result.stderr or ""
+            stdout_part = result.stdout or ""
+            separator = "\n" if stderr_part and stdout_part else ""
             error_output = stderr_part + separator + stdout_part
-            if 'CONFLICT' in error_output or 'conflict' in error_output.lower():
+            if "CONFLICT" in error_output or "conflict" in error_output.lower():
                 error_type = "Rebase conflict"
             else:
                 error_type = "Rebase failed"
@@ -225,10 +205,10 @@ def rebase_release_branch(release_branch, target_branch):
 
         # Force push rebased branch
         subprocess.run(
-            ['git', 'push', '--force-with-lease', 'origin', release_branch],
+            ["git", "push", "--force-with-lease", "origin", release_branch],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
         )
 
     except subprocess.CalledProcessError as e:
@@ -243,9 +223,7 @@ def rebase_release_branch(release_branch, target_branch):
         else:
             # e.cmd check is safe: empty lists are falsy in Python (Issue #147)
             operation = f"git command ({e.cmd[0] if e.cmd else 'unknown'})"
-        raise RuntimeError(
-            f"Failed to {operation} during rebase operation: {error_msg}"
-        ) from e
+        raise RuntimeError(f"Failed to {operation} during rebase operation: {error_msg}") from e
 
 
 def create_pr(version, target_branch):
@@ -268,15 +246,10 @@ def create_pr(version, target_branch):
     """
     # Check if gh CLI is available
     try:
-        subprocess.run(
-            ['gh', '--version'],
-            capture_output=True,
-            check=True
-        )
+        subprocess.run(["gh", "--version"], capture_output=True, check=True)
     except (subprocess.CalledProcessError, FileNotFoundError):
         raise RuntimeError(
-            "gh CLI not available. Cannot create PR. "
-            "Install gh CLI: https://cli.github.com/"
+            "gh CLI not available. Cannot create PR. Install gh CLI: https://cli.github.com/"
         )
 
     release_branch = f"{RELEASE_BRANCH_PREFIX}{version}"
@@ -287,10 +260,10 @@ def create_pr(version, target_branch):
     # Get tag URL
     try:
         result = subprocess.run(
-            ['gh', 'repo', 'view', '--json', 'url', '--jq', '.url'],
+            ["gh", "repo", "view", "--json", "url", "--jq", ".url"],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
         )
         repo_url = result.stdout.strip()
         tag_url = f"{repo_url}/releases/tag/{version}"
@@ -335,23 +308,29 @@ python .claude/skills/git-workflow-manager/scripts/cleanup_release.py {version}
     try:
         # Create PR
         result = subprocess.run(
-            ['gh', 'pr', 'create',
-             '--base', target_branch,
-             '--head', release_branch,
-             '--title', pr_title,
-             '--body', pr_body],
+            [
+                "gh",
+                "pr",
+                "create",
+                "--base",
+                target_branch,
+                "--head",
+                release_branch,
+                "--title",
+                pr_title,
+                "--body",
+                pr_body,
+            ],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
         )
 
         pr_url = result.stdout.strip()
         return pr_url
 
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(
-            f"Failed to create PR: {e.stderr.strip()}"
-        ) from e
+        raise RuntimeError(f"Failed to create PR: {e.stderr.strip()}") from e
 
 
 def main():
@@ -388,12 +367,14 @@ def main():
 
         # Output
         print(f"\n✓ Created PR: {pr_url}")
-        print(f"  Title: \"chore(release): back-merge {version} to {target_branch}\"")
+        print(f'  Title: "chore(release): back-merge {version} to {target_branch}"')
         print("\n📋 Next steps:")
         print("  1. Review PR in GitHub/Azure DevOps portal")
         print("  2. Wait for CI checks to pass")
         print("  3. Merge through portal when ready")
-        print(f"  4. Run cleanup: python .claude/skills/git-workflow-manager/scripts/cleanup_release.py {version}")
+        print(
+            f"  4. Run cleanup: python .claude/skills/git-workflow-manager/scripts/cleanup_release.py {version}"
+        )
 
     except (ValueError, RuntimeError) as e:
         print(f"ERROR: {e}", file=sys.stderr)
@@ -406,5 +387,5 @@ def main():
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

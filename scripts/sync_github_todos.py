@@ -47,9 +47,7 @@ class YuiQueryGitHubSync:
                 "--state",
                 "all",  # Include both open and closed issues
             ]
-            result = subprocess.run(
-                cmd, capture_output=True, text=True, check=True
-            )
+            result = subprocess.run(cmd, capture_output=True, text=True, check=True)
             return json.loads(result.stdout)
         except subprocess.CalledProcessError as e:
             print(f"Error fetching GitHub issues: {e}")

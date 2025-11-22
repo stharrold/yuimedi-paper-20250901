@@ -30,11 +30,11 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Optional
 
 # Constants with documented rationale
-TIMESTAMP_FORMAT = '%Y-%m-%d'  # Human-readable date for documentation
-CONTRIB_BRANCH_PREFIX = 'contrib/'  # Must be on contrib branch
+TIMESTAMP_FORMAT = "%Y-%m-%d"  # Human-readable date for documentation
+CONTRIB_BRANCH_PREFIX = "contrib/"  # Must be on contrib branch
 
 
 def error_exit(message: str, code: int = 1) -> None:
@@ -43,13 +43,11 @@ def error_exit(message: str, code: int = 1) -> None:
     sys.exit(code)
 
 
-def run_command(cmd: List[str], capture=True, check=True) -> Optional[str]:
+def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
     """Run command and return output or None on error."""
     try:
         if capture:
-            result = subprocess.run(
-                cmd, check=check, capture_output=True, text=True
-            )
+            result = subprocess.run(cmd, check=check, capture_output=True, text=True)
             return result.stdout.strip()
         else:
             subprocess.run(cmd, check=check)
@@ -62,13 +60,13 @@ def run_command(cmd: List[str], capture=True, check=True) -> Optional[str]:
         error_exit(f"Command not found: {cmd[0]}")
 
 
-def detect_context() -> Dict[str, any]:
+def detect_context() -> dict[str, any]:
     """Detect current repository context and validate for BMAD planning."""
 
     # Get repository root
-    repo_root = Path(run_command(['git', 'rev-parse', '--show-toplevel']))
+    repo_root = Path(run_command(["git", "rev-parse", "--show-toplevel"]))
     current_dir = Path.cwd()
-    current_branch = run_command(['git', 'branch', '--show-current'])
+    current_branch = run_command(["git", "branch", "--show-current"])
 
     # Determine if in main repo (not worktree)
     is_main_repo = current_dir == repo_root
@@ -90,14 +88,16 @@ def detect_context() -> Dict[str, any]:
         )
 
     return {
-        'repo_root': repo_root,
-        'current_dir': current_dir,
-        'current_branch': current_branch,
-        'is_main_repo': is_main_repo,
+        "repo_root": repo_root,
+        "current_dir": current_dir,
+        "current_branch": current_branch,
+        "is_main_repo": is_main_repo,
     }
 
 
-def ask_question(prompt: str, options: Optional[List[str]] = None, default: Optional[str] = None) -> str:
+def ask_question(
+    prompt: str, options: Optional[list[str]] = None, default: Optional[str] = None
+) -> str:
     """Ask user a question and return response."""
 
     if options:
@@ -143,10 +143,10 @@ def ask_yes_no(prompt: str, default: bool = True) -> bool:
     if not response:
         return default
 
-    return response in ['y', 'yes']
+    return response in ["y", "yes"]
 
 
-def interactive_qa_analyst() -> Dict[str, any]:
+def interactive_qa_analyst() -> dict[str, any]:
     """Conduct 🧠 BMAD Analyst persona Q&A for requirements gathering."""
 
     print("\n" + "=" * 70)
@@ -158,15 +158,11 @@ def interactive_qa_analyst() -> Dict[str, any]:
     data = {}
 
     # Business context
-    data['problem_statement'] = ask_question(
-        "What problem does this feature solve?"
-    )
+    data["problem_statement"] = ask_question("What problem does this feature solve?")
 
-    data['primary_users'] = ask_question(
-        "Who are the primary users of this feature?"
-    )
+    data["primary_users"] = ask_question("Who are the primary users of this feature?")
 
-    data['success_criteria'] = ask_question(
+    data["success_criteria"] = ask_question(
         "How will we measure success? (e.g., 'Users can search 100+ words/sec')"
     )
 
@@ -175,26 +171,21 @@ def interactive_qa_analyst() -> Dict[str, any]:
     print("Functional Requirements (FR-001, FR-002, ...)")
     print("-" * 70)
 
-    data['functional_requirements'] = []
+    data["functional_requirements"] = []
     fr_num = 1
 
     while True:
         fr_name = ask_question(
-            f"FR-{fr_num:03d} requirement name (or press Enter to finish):",
-            default=""
+            f"FR-{fr_num:03d} requirement name (or press Enter to finish):", default=""
         )
 
         if not fr_name:
             break
 
-        fr_desc = ask_question(
-            f"FR-{fr_num:03d} description:"
-        )
+        fr_desc = ask_question(f"FR-{fr_num:03d} description:")
 
         fr_priority = ask_question(
-            f"FR-{fr_num:03d} priority?",
-            options=["High", "Medium", "Low"],
-            default="Medium"
+            f"FR-{fr_num:03d} priority?", options=["High", "Medium", "Low"], default="Medium"
         )
 
         # Acceptance criteria
@@ -202,22 +193,21 @@ def interactive_qa_analyst() -> Dict[str, any]:
         acceptance_criteria = []
         ac_num = 1
         while True:
-            ac = ask_question(
-                f"  AC {ac_num} (or press Enter to finish):",
-                default=""
-            )
+            ac = ask_question(f"  AC {ac_num} (or press Enter to finish):", default="")
             if not ac:
                 break
             acceptance_criteria.append(ac)
             ac_num += 1
 
-        data['functional_requirements'].append({
-            'id': f'FR-{fr_num:03d}',
-            'name': fr_name,
-            'description': fr_desc,
-            'priority': fr_priority,
-            'acceptance_criteria': acceptance_criteria
-        })
+        data["functional_requirements"].append(
+            {
+                "id": f"FR-{fr_num:03d}",
+                "name": fr_name,
+                "description": fr_desc,
+                "priority": fr_priority,
+                "acceptance_criteria": acceptance_criteria,
+            }
+        )
 
         fr_num += 1
 
@@ -226,30 +216,25 @@ def interactive_qa_analyst() -> Dict[str, any]:
     print("Non-Functional Requirements (NFR)")
     print("-" * 70)
 
-    data['performance_requirements'] = ask_question(
+    data["performance_requirements"] = ask_question(
         "Performance requirements? (e.g., '<200ms response', 'not critical')",
-        default="Standard performance expectations"
+        default="Standard performance expectations",
     )
 
-    data['security_requirements'] = ask_question(
-        "Security requirements? (e.g., 'authentication', 'encryption', 'none')",
-        default="none"
+    data["security_requirements"] = ask_question(
+        "Security requirements? (e.g., 'authentication', 'encryption', 'none')", default="none"
     )
 
-    data['scalability_requirements'] = ask_question(
+    data["scalability_requirements"] = ask_question(
         "Scalability requirements? (e.g., '1000 concurrent users', 'not critical')",
-        default="Standard scalability"
+        default="Standard scalability",
     )
 
     # Constraints and assumptions
-    data['constraints'] = ask_question(
-        "Any constraints or limitations?",
-        default="None identified"
-    )
+    data["constraints"] = ask_question("Any constraints or limitations?", default="None identified")
 
-    data['assumptions'] = ask_question(
-        "Any assumptions being made?",
-        default="Standard development environment and tooling"
+    data["assumptions"] = ask_question(
+        "Any assumptions being made?", default="Standard development environment and tooling"
     )
 
     print("\n✓ Requirements gathering complete!")
@@ -257,7 +242,7 @@ def interactive_qa_analyst() -> Dict[str, any]:
     return data
 
 
-def interactive_qa_architect(requirements_data: Dict[str, any]) -> Dict[str, any]:
+def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any]:
     """Conduct 🏗️ BMAD Architect persona Q&A for architecture design."""
 
     print("\n" + "=" * 70)
@@ -271,107 +256,97 @@ def interactive_qa_architect(requirements_data: Dict[str, any]) -> Dict[str, any
     # Technology stack
     print("\nTechnology Stack:")
 
-    data['web_framework'] = ask_question(
+    data["web_framework"] = ask_question(
         "Web framework (if applicable)?",
         options=["FastAPI", "Flask", "Django", "None"],
-        default="None"
+        default="None",
     )
 
-    data['database'] = ask_question(
-        "Database?",
-        options=["SQLite (dev)", "PostgreSQL", "MySQL", "None"],
-        default="SQLite (dev)"
+    data["database"] = ask_question(
+        "Database?", options=["SQLite (dev)", "PostgreSQL", "MySQL", "None"], default="SQLite (dev)"
     )
 
-    if data['database'] != "None":
-        data['database_migration'] = ask_question(
+    if data["database"] != "None":
+        data["database_migration"] = ask_question(
             "Database migration strategy?",
             options=["Alembic", "Manual SQL", "None"],
-            default="Alembic"
+            default="Alembic",
         )
     else:
-        data['database_migration'] = "None"
+        data["database_migration"] = "None"
 
-    data['testing_framework'] = ask_question(
+    data["testing_framework"] = ask_question(
         "Testing framework?",
         options=["pytest (recommended)", "unittest", "other"],
-        default="pytest (recommended)"
+        default="pytest (recommended)",
     )
 
     # Container strategy
-    data['use_containers'] = ask_yes_no(
-        "Use containerization (Podman)?",
-        default=True
-    )
+    data["use_containers"] = ask_yes_no("Use containerization (Podman)?", default=True)
 
-    if data['use_containers']:
-        data['container_strategy'] = ask_question(
+    if data["use_containers"]:
+        data["container_strategy"] = ask_question(
             "Container strategy?",
             options=["Single container", "Multi-container (podman-compose)", "Custom"],
-            default="Single container"
+            default="Single container",
         )
     else:
-        data['container_strategy'] = "None"
+        data["container_strategy"] = "None"
 
     # Architecture patterns
-    data['architecture_pattern'] = ask_question(
+    data["architecture_pattern"] = ask_question(
         "Architecture pattern?",
         options=["Layered (data/service/API)", "Modular", "Monolithic", "Other"],
-        default="Layered (data/service/API)"
+        default="Layered (data/service/API)",
     )
 
     # API design (if web framework selected)
-    if data['web_framework'] != "None":
-        data['api_style'] = ask_question(
-            "API style?",
-            options=["REST", "GraphQL", "RPC", "Other"],
-            default="REST"
+    if data["web_framework"] != "None":
+        data["api_style"] = ask_question(
+            "API style?", options=["REST", "GraphQL", "RPC", "Other"], default="REST"
         )
 
-        data['api_versioning'] = ask_yes_no(
-            "Include API versioning?",
-            default=False
-        )
+        data["api_versioning"] = ask_yes_no("Include API versioning?", default=False)
     else:
-        data['api_style'] = "Not applicable"
-        data['api_versioning'] = False
+        data["api_style"] = "Not applicable"
+        data["api_versioning"] = False
 
     # Security architecture
-    if requirements_data.get('security_requirements', 'none').lower() != 'none':
-        data['authentication_method'] = ask_question(
+    if requirements_data.get("security_requirements", "none").lower() != "none":
+        data["authentication_method"] = ask_question(
             "Authentication method?",
             options=["JWT", "OAuth2", "API Key", "Session-based", "Other"],
-            default="JWT"
+            default="JWT",
         )
 
-        data['authorization_method'] = ask_question(
+        data["authorization_method"] = ask_question(
             "Authorization method?",
             options=["RBAC (Role-based)", "ABAC (Attribute-based)", "Simple permissions", "None"],
-            default="Simple permissions"
+            default="Simple permissions",
         )
     else:
-        data['authentication_method'] = "None"
-        data['authorization_method'] = "None"
+        data["authentication_method"] = "None"
+        data["authorization_method"] = "None"
 
     # Error handling strategy
-    data['error_handling'] = ask_question(
+    data["error_handling"] = ask_question(
         "Error handling strategy?",
         options=["Structured exceptions", "Error codes", "Standard Python exceptions", "Custom"],
-        default="Structured exceptions"
+        default="Structured exceptions",
     )
 
     # Logging and observability
-    data['logging_level'] = ask_question(
+    data["logging_level"] = ask_question(
         "Logging approach?",
         options=["Standard Python logging", "Structured logging (JSON)", "Custom", "Minimal"],
-        default="Standard Python logging"
+        default="Standard Python logging",
     )
 
     # Deployment considerations
-    data['deployment_target'] = ask_question(
+    data["deployment_target"] = ask_question(
         "Deployment target?",
         options=["Local development only", "Server deployment", "Cloud (AWS/GCP/Azure)", "Other"],
-        default="Local development only"
+        default="Local development only",
     )
 
     print("\n✓ Architecture design complete!")
@@ -379,7 +354,9 @@ def interactive_qa_architect(requirements_data: Dict[str, any]) -> Dict[str, any
     return data
 
 
-def generate_epic_breakdown(requirements_data: Dict[str, any], architecture_data: Dict[str, any]) -> List[Dict[str, any]]:
+def generate_epic_breakdown(
+    requirements_data: dict[str, any], architecture_data: dict[str, any]
+) -> list[dict[str, any]]:
     """Generate 📋 BMAD PM epic breakdown automatically based on requirements and architecture."""
 
     print("\n" + "=" * 70)
@@ -392,271 +369,288 @@ def generate_epic_breakdown(requirements_data: Dict[str, any], architecture_data
     epic_num = 1
 
     # Epic 1: Data layer (if database is used)
-    if architecture_data.get('database', 'None') != 'None':
-        epics.append({
-            'id': f'E-{epic_num:03d}',
-            'name': 'Data Layer Foundation',
-            'description': 'Implement database schema, models, and data access layer',
-            'complexity': 'Medium',
-            'complexity_reasoning': 'Database setup and ORM configuration is well-understood but requires careful schema design',
-            'priority': 'P0',
-            'priority_reasoning': 'Foundation for all other features - must be completed first',
-            'dependencies': 'None',
-            'estimated_effort': '2-3 days',
-            'deliverables': [
-                'Database schema design',
-                'ORM models (SQLAlchemy)',
-                'Database migrations',
-                'Data access patterns',
-                'Unit tests for data layer'
-            ]
-        })
+    if architecture_data.get("database", "None") != "None":
+        epics.append(
+            {
+                "id": f"E-{epic_num:03d}",
+                "name": "Data Layer Foundation",
+                "description": "Implement database schema, models, and data access layer",
+                "complexity": "Medium",
+                "complexity_reasoning": "Database setup and ORM configuration is well-understood but requires careful schema design",
+                "priority": "P0",
+                "priority_reasoning": "Foundation for all other features - must be completed first",
+                "dependencies": "None",
+                "estimated_effort": "2-3 days",
+                "deliverables": [
+                    "Database schema design",
+                    "ORM models (SQLAlchemy)",
+                    "Database migrations",
+                    "Data access patterns",
+                    "Unit tests for data layer",
+                ],
+            }
+        )
         epic_num += 1
 
     # Epic 2: Core business logic / Service layer
-    if len(requirements_data.get('functional_requirements', [])) > 0:
-        dependencies = 'E-001' if len(epics) > 0 else 'None'
-        epics.append({
-            'id': f'E-{epic_num:03d}',
-            'name': 'Core Business Logic',
-            'description': 'Implement core functionality and business rules',
-            'complexity': 'High' if len(requirements_data['functional_requirements']) > 3 else 'Medium',
-            'complexity_reasoning': f"Implements {len(requirements_data['functional_requirements'])} functional requirements with business logic",
-            'priority': 'P0',
-            'priority_reasoning': 'Core functionality - primary value delivery',
-            'dependencies': dependencies,
-            'estimated_effort': f"{len(requirements_data['functional_requirements']) * 1}-{len(requirements_data['functional_requirements']) * 1.5} days",
-            'deliverables': [
-                f'Implementation of {fr["id"]}' for fr in requirements_data['functional_requirements'][:5]
-            ] + ['Unit tests for business logic', 'Integration tests']
-        })
+    if len(requirements_data.get("functional_requirements", [])) > 0:
+        dependencies = "E-001" if len(epics) > 0 else "None"
+        epics.append(
+            {
+                "id": f"E-{epic_num:03d}",
+                "name": "Core Business Logic",
+                "description": "Implement core functionality and business rules",
+                "complexity": "High"
+                if len(requirements_data["functional_requirements"]) > 3
+                else "Medium",
+                "complexity_reasoning": f"Implements {len(requirements_data['functional_requirements'])} functional requirements with business logic",
+                "priority": "P0",
+                "priority_reasoning": "Core functionality - primary value delivery",
+                "dependencies": dependencies,
+                "estimated_effort": f"{len(requirements_data['functional_requirements']) * 1}-{len(requirements_data['functional_requirements']) * 1.5} days",
+                "deliverables": [
+                    f"Implementation of {fr['id']}"
+                    for fr in requirements_data["functional_requirements"][:5]
+                ]
+                + ["Unit tests for business logic", "Integration tests"],
+            }
+        )
         epic_num += 1
 
     # Epic 3: API layer (if web framework is used)
-    if architecture_data.get('web_framework', 'None') != 'None':
-        dependencies = f'E-{epic_num - 1:03d}' if len(epics) > 0 else 'None'
-        epics.append({
-            'id': f'E-{epic_num:03d}',
-            'name': 'API Layer',
-            'description': f'Implement {architecture_data["web_framework"]} API endpoints and request/response handling',
-            'complexity': 'Medium',
-            'complexity_reasoning': f'{architecture_data["web_framework"]} API development is straightforward but requires careful contract design',
-            'priority': 'P0',
-            'priority_reasoning': 'Required for external system integration',
-            'dependencies': dependencies,
-            'estimated_effort': '2-3 days',
-            'deliverables': [
-                f'{architecture_data["api_style"]} API endpoints',
-                'Request validation',
-                'Response serialization',
-                'API documentation (OpenAPI)',
-                'API integration tests'
-            ]
-        })
+    if architecture_data.get("web_framework", "None") != "None":
+        dependencies = f"E-{epic_num - 1:03d}" if len(epics) > 0 else "None"
+        epics.append(
+            {
+                "id": f"E-{epic_num:03d}",
+                "name": "API Layer",
+                "description": f"Implement {architecture_data['web_framework']} API endpoints and request/response handling",
+                "complexity": "Medium",
+                "complexity_reasoning": f"{architecture_data['web_framework']} API development is straightforward but requires careful contract design",
+                "priority": "P0",
+                "priority_reasoning": "Required for external system integration",
+                "dependencies": dependencies,
+                "estimated_effort": "2-3 days",
+                "deliverables": [
+                    f"{architecture_data['api_style']} API endpoints",
+                    "Request validation",
+                    "Response serialization",
+                    "API documentation (OpenAPI)",
+                    "API integration tests",
+                ],
+            }
+        )
         epic_num += 1
 
     # Epic 4: Testing & Quality Assurance (always include)
-    dependencies = f'E-{epic_num - 1:03d}' if len(epics) > 0 else 'None'
-    epics.append({
-        'id': f'E-{epic_num:03d}',
-        'name': 'Testing & Quality Assurance',
-        'description': 'Comprehensive testing coverage and quality gates',
-        'complexity': 'Medium',
-        'complexity_reasoning': 'Testing requires thorough coverage but is well-structured with pytest',
-        'priority': 'P1',
-        'priority_reasoning': 'Critical for production readiness but can overlap with implementation',
-        'dependencies': dependencies,
-        'estimated_effort': '1-2 days',
-        'deliverables': [
-            'Test coverage ≥80%',
-            'All tests passing',
-            'Linting clean (ruff)',
-            'Type checking clean (mypy)',
-            'Documentation complete'
-        ]
-    })
+    dependencies = f"E-{epic_num - 1:03d}" if len(epics) > 0 else "None"
+    epics.append(
+        {
+            "id": f"E-{epic_num:03d}",
+            "name": "Testing & Quality Assurance",
+            "description": "Comprehensive testing coverage and quality gates",
+            "complexity": "Medium",
+            "complexity_reasoning": "Testing requires thorough coverage but is well-structured with pytest",
+            "priority": "P1",
+            "priority_reasoning": "Critical for production readiness but can overlap with implementation",
+            "dependencies": dependencies,
+            "estimated_effort": "1-2 days",
+            "deliverables": [
+                "Test coverage ≥80%",
+                "All tests passing",
+                "Linting clean (ruff)",
+                "Type checking clean (mypy)",
+                "Documentation complete",
+            ],
+        }
+    )
 
     # Epic 5: Container & Deployment (if containers are used)
-    if architecture_data.get('use_containers', False):
+    if architecture_data.get("use_containers", False):
         epic_num += 1
-        epics.append({
-            'id': f'E-{epic_num:03d}',
-            'name': 'Containerization & Deployment',
-            'description': 'Container setup and deployment configuration',
-            'complexity': 'Low',
-            'complexity_reasoning': 'Standard Podman containerization with existing patterns',
-            'priority': 'P2',
-            'priority_reasoning': 'Important for production but not blocking development',
-            'dependencies': 'E-001',
-            'estimated_effort': '1 day',
-            'deliverables': [
-                'Containerfile',
-                'podman-compose.yml (if multi-container)',
-                'Container build successful',
-                'Container tests passing'
-            ]
-        })
+        epics.append(
+            {
+                "id": f"E-{epic_num:03d}",
+                "name": "Containerization & Deployment",
+                "description": "Container setup and deployment configuration",
+                "complexity": "Low",
+                "complexity_reasoning": "Standard Podman containerization with existing patterns",
+                "priority": "P2",
+                "priority_reasoning": "Important for production but not blocking development",
+                "dependencies": "E-001",
+                "estimated_effort": "1 day",
+                "deliverables": [
+                    "Containerfile",
+                    "podman-compose.yml (if multi-container)",
+                    "Container build successful",
+                    "Container tests passing",
+                ],
+            }
+        )
 
     print(f"\n✓ Identified {len(epics)} epics:")
     for epic in epics:
-        print(f"  - {epic['id']}: {epic['name']} (Priority: {epic['priority']}, {epic['complexity']} complexity)")
+        print(
+            f"  - {epic['id']}: {epic['name']} (Priority: {epic['priority']}, {epic['complexity']} complexity)"
+        )
 
     print("\n✓ Epic breakdown complete!")
 
     return epics
 
 
-def process_requirements_template(template_path: Path, analyst_data: Dict[str, any], slug: str, gh_user: str) -> str:
+def process_requirements_template(
+    template_path: Path, analyst_data: dict[str, any], slug: str, gh_user: str
+) -> str:
     """Process requirements.md template with analyst data."""
 
     template = template_path.read_text()
     date = datetime.now(timezone.utc).strftime(TIMESTAMP_FORMAT)
-    title = slug.replace('-', ' ').replace('_', ' ').title()
+    title = slug.replace("-", " ").replace("_", " ").title()
 
     # Replace basic placeholders
-    content = template.replace('{{TITLE}}', title)
-    content = content.replace('{{DATE}}', date)
-    content = content.replace('{{GH_USER}}', gh_user)
+    content = template.replace("{{TITLE}}", title)
+    content = content.replace("{{DATE}}", date)
+    content = content.replace("{{GH_USER}}", gh_user)
 
     # Build functional requirements section
     fr_section = ""
-    for fr in analyst_data.get('functional_requirements', []):
+    for fr in analyst_data.get("functional_requirements", []):
         fr_section += f"\n### {fr['id']}: {fr['name']}\n\n"
         fr_section += f"**Priority:** {fr['priority']}\n"
         fr_section += f"**Description:** {fr['description']}\n\n"
         fr_section += "**Acceptance Criteria:**\n"
-        for ac in fr['acceptance_criteria']:
+        for ac in fr["acceptance_criteria"]:
             fr_section += f"- [ ] {ac}\n"
         fr_section += "\n"
 
     # Replace template sections with actual content
     content = re.sub(
-        r'\[What problem does this solve\? Why is this feature needed\?\]',
-        analyst_data.get('problem_statement', 'TBD'),
-        content
+        r"\[What problem does this solve\? Why is this feature needed\?\]",
+        analyst_data.get("problem_statement", "TBD"),
+        content,
     )
 
     content = re.sub(
-        r'\*\*Primary:\*\* \[Who is this for\?.*?\]',
+        r"\*\*Primary:\*\* \[Who is this for\?.*?\]",
         f"**Primary:** {analyst_data.get('primary_users', 'TBD')}",
-        content
+        content,
     )
 
     content = re.sub(
-        r'- \[ \] Criterion 1:.*?\n- \[ \] Criterion 2:.*?\n- \[ \] Criterion 3:.*?\n',
+        r"- \[ \] Criterion 1:.*?\n- \[ \] Criterion 2:.*?\n- \[ \] Criterion 3:.*?\n",
         f"- [ ] {analyst_data.get('success_criteria', 'TBD')}\n",
-        content
+        content,
     )
 
     # Insert functional requirements
     if fr_section:
         content = re.sub(
-            r'### FR-001:.*?(?=\n## Non-Functional Requirements|\Z)',
+            r"### FR-001:.*?(?=\n## Non-Functional Requirements|\Z)",
             fr_section,
             content,
-            flags=re.DOTALL
+            flags=re.DOTALL,
         )
 
     # Update non-functional requirements
     content = re.sub(
-        r'- Response time:.*?\n- Throughput:.*?\n',
+        r"- Response time:.*?\n- Throughput:.*?\n",
         f"- Performance: {analyst_data.get('performance_requirements', 'Standard')}\n",
-        content
+        content,
     )
 
     return content
 
 
-def process_architecture_template(template_path: Path, architect_data: Dict[str, any], slug: str, gh_user: str) -> str:
+def process_architecture_template(
+    template_path: Path, architect_data: dict[str, any], slug: str, gh_user: str
+) -> str:
     """Process architecture.md template with architect data."""
 
     template = template_path.read_text()
     date = datetime.now(timezone.utc).strftime(TIMESTAMP_FORMAT)
-    title = slug.replace('-', ' ').replace('_', ' ').title()
+    title = slug.replace("-", " ").replace("_", " ").title()
 
     # Replace basic placeholders
-    content = template.replace('{{TITLE}}', title)
-    content = content.replace('{{DATE}}', date)
-    content = content.replace('{{GH_USER}}', gh_user)
+    content = template.replace("{{TITLE}}", title)
+    content = content.replace("{{DATE}}", date)
+    content = content.replace("{{GH_USER}}", gh_user)
 
     # Update technology stack section
     framework_line = f"- **Framework:** {architect_data.get('web_framework', 'None')}\n"
     database_line = f"- **Database:** {architect_data.get('database', 'None')}\n"
     testing_line = f"- **Testing:** {architect_data.get('testing_framework', 'pytest')}\n"
 
-    content = re.sub(
-        r'- \*\*Framework:\*\*.*?\n',
-        framework_line,
-        content
-    )
+    content = re.sub(r"- \*\*Framework:\*\*.*?\n", framework_line, content)
 
-    content = re.sub(
-        r'- \*\*Database:\*\*.*?\n',
-        database_line,
-        content
-    )
+    content = re.sub(r"- \*\*Database:\*\*.*?\n", database_line, content)
 
-    content = re.sub(
-        r'- \*\*Testing:\*\*.*?\n',
-        testing_line,
-        content
-    )
+    content = re.sub(r"- \*\*Testing:\*\*.*?\n", testing_line, content)
 
     # Add architecture notes section
     arch_notes = "\n## Architecture Notes\n\n"
-    arch_notes += f"**Architecture Pattern:** {architect_data.get('architecture_pattern', 'Layered')}\n\n"
+    arch_notes += (
+        f"**Architecture Pattern:** {architect_data.get('architecture_pattern', 'Layered')}\n\n"
+    )
 
-    if architect_data.get('web_framework', 'None') != 'None':
+    if architect_data.get("web_framework", "None") != "None":
         arch_notes += f"**API Style:** {architect_data.get('api_style', 'REST')}\n"
         arch_notes += f"**API Versioning:** {'Yes' if architect_data.get('api_versioning', False) else 'No'}\n\n"
 
-    if architect_data.get('use_containers', False):
+    if architect_data.get("use_containers", False):
         arch_notes += f"**Container Strategy:** {architect_data.get('container_strategy', 'Single container')}\n\n"
 
-    arch_notes += f"**Error Handling:** {architect_data.get('error_handling', 'Standard exceptions')}\n"
+    arch_notes += (
+        f"**Error Handling:** {architect_data.get('error_handling', 'Standard exceptions')}\n"
+    )
     arch_notes += f"**Logging:** {architect_data.get('logging_level', 'Standard Python logging')}\n"
-    arch_notes += f"**Deployment Target:** {architect_data.get('deployment_target', 'Local development')}\n"
+    arch_notes += (
+        f"**Deployment Target:** {architect_data.get('deployment_target', 'Local development')}\n"
+    )
 
     # Append architecture notes before any "## Related Documentation" section or at end
     if "## Related Documentation" in content:
-        content = content.replace("## Related Documentation", arch_notes + "\n## Related Documentation")
+        content = content.replace(
+            "## Related Documentation", arch_notes + "\n## Related Documentation"
+        )
     else:
         content += "\n" + arch_notes
 
     return content
 
 
-def process_epics_template(template_path: Path, epics: List[Dict[str, any]], slug: str, gh_user: str) -> str:
+def process_epics_template(
+    template_path: Path, epics: list[dict[str, any]], slug: str, gh_user: str
+) -> str:
     """Process epics.md template with generated epic data."""
 
     template = template_path.read_text()
     date = datetime.now(timezone.utc).strftime(TIMESTAMP_FORMAT)
-    title = slug.replace('-', ' ').replace('_', ' ').title()
+    title = slug.replace("-", " ").replace("_", " ").title()
 
     # Replace basic placeholders
-    content = template.replace('{{TITLE}}', title)
-    content = content.replace('{{DATE}}', date)
-    content = content.replace('{{GH_USER}}', gh_user)
+    content = template.replace("{{TITLE}}", title)
+    content = content.replace("{{DATE}}", date)
+    content = content.replace("{{GH_USER}}", gh_user)
 
     # Build epic summary table
     summary_table = "| Epic ID | Name | Complexity | Priority | Dependencies | Estimated Effort |\n"
-    summary_table += "|---------|------|------------|----------|--------------|------------------|\n"
+    summary_table += (
+        "|---------|------|------------|----------|--------------|------------------|\n"
+    )
     for epic in epics:
         summary_table += f"| {epic['id']} | {epic['name']} | {epic['complexity']} | {epic['priority']} | {epic['dependencies']} | {epic['estimated_effort']} |\n"
 
     # Calculate total effort
-    total_days = sum(
-        float(epic['estimated_effort'].split('-')[0].split()[0])
-        for epic in epics
-    )
+    total_days = sum(float(epic["estimated_effort"].split("-")[0].split()[0]) for epic in epics)
     summary_table += f"\n**Total Estimated Effort:** {total_days:.0f}+ days\n"
 
     # Replace template table
     content = re.sub(
-        r'\| Epic ID \| Name.*?\n\*\*Total Estimated Effort:\*\*.*?\n',
+        r"\| Epic ID \| Name.*?\n\*\*Total Estimated Effort:\*\*.*?\n",
         summary_table,
         content,
-        flags=re.DOTALL
+        flags=re.DOTALL,
     )
 
     # Build epic definitions
@@ -666,7 +660,7 @@ def process_epics_template(template_path: Path, epics: List[Dict[str, any]], slu
         epic_definitions += f"**Description:**\n{epic['description']}\n\n"
         epic_definitions += "**Scope:**\n"
         epic_definitions += "**Deliverables:**\n"
-        for deliverable in epic['deliverables']:
+        for deliverable in epic["deliverables"]:
             epic_definitions += f"  - [ ] {deliverable}\n"
         epic_definitions += f"\n**Complexity:** {epic['complexity']}\n\n"
         epic_definitions += "**Complexity Reasoning:**\n"
@@ -678,12 +672,7 @@ def process_epics_template(template_path: Path, epics: List[Dict[str, any]], slu
         epic_definitions += f"**Estimated Effort:** {epic['estimated_effort']}\n\n"
 
     # Replace template epic definitions
-    content = re.sub(
-        r'### E-001:.*?(?=\n## |\Z)',
-        epic_definitions,
-        content,
-        flags=re.DOTALL
-    )
+    content = re.sub(r"### E-001:.*?(?=\n## |\Z)", epic_definitions, content, flags=re.DOTALL)
 
     return content
 
@@ -694,7 +683,7 @@ def create_directory_structure(planning_dir: Path, slug: str) -> None:
     planning_dir.mkdir(parents=True, exist_ok=True)
 
     # Create CLAUDE.md
-    claude_md = planning_dir / 'CLAUDE.md'
+    claude_md = planning_dir / "CLAUDE.md"
     if not claude_md.exists():
         claude_content = f"""# Claude Code Context: {slug} Planning
 
@@ -772,9 +761,9 @@ These planning documents are used as input context by SpecKit (Phase 2) when cre
         print(f"  ✓ Created {claude_md}")
 
     # Create README.md
-    readme_md = planning_dir / 'README.md'
+    readme_md = planning_dir / "README.md"
     if not readme_md.exists():
-        title = slug.replace('-', ' ').replace('_', ' ').title()
+        title = slug.replace("-", " ").replace("_", " ").title()
         readme_content = f"""# {title} - Planning Documentation
 
 ## Overview
@@ -823,10 +812,10 @@ Epic breakdown created through BMAD PM persona:
         print(f"  ✓ Created {readme_md}")
 
     # Create ARCHIVED subdirectory
-    archived_dir = planning_dir / 'ARCHIVED'
+    archived_dir = planning_dir / "ARCHIVED"
     archived_dir.mkdir(exist_ok=True)
 
-    archived_claude = archived_dir / 'CLAUDE.md'
+    archived_claude = archived_dir / "CLAUDE.md"
     if not archived_claude.exists():
         archived_claude.write_text(f"""# Claude Code Context: Archived Planning
 
@@ -844,7 +833,7 @@ This directory contains previous versions of planning documents that have been s
 """)
         print(f"  ✓ Created {archived_claude}")
 
-    archived_readme = archived_dir / 'README.md'
+    archived_readme = archived_dir / "README.md"
     if not archived_readme.exists():
         archived_readme.write_text("""# Archived Planning Documents
 
@@ -865,12 +854,12 @@ def commit_planning_docs(planning_dir: Path, slug: str) -> None:
     print("\nCommitting planning documents...")
 
     # Stage planning directory
-    run_command(['git', 'add', str(planning_dir)], capture=False)
+    run_command(["git", "add", str(planning_dir)], capture=False)
 
     # Create commit message
     # Convert slug to human-readable title for commit message
     # e.g., "protect-main-develop" → "Protect Main Develop"
-    title = slug.replace('-', ' ').replace('_', ' ').title()
+    title = slug.replace("-", " ").replace("_", " ").title()
     commit_msg = f"""docs(planning): add BMAD planning for {title}
 
 BMAD planning session completed via interactive tool:
@@ -888,7 +877,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 """
 
     # Commit
-    run_command(['git', 'commit', '-m', commit_msg], capture=False)
+    run_command(["git", "commit", "-m", commit_msg], capture=False)
 
     print(f"✓ Committed planning documents for {slug}")
 
@@ -897,11 +886,11 @@ def main():
     """Main entry point for BMAD planning tool."""
 
     parser = argparse.ArgumentParser(
-        description='Interactive BMAD planning tool - creates requirements, architecture, epics'
+        description="Interactive BMAD planning tool - creates requirements, architecture, epics"
     )
-    parser.add_argument('slug', help='Feature slug (e.g., my-feature)')
-    parser.add_argument('gh_user', help='GitHub username')
-    parser.add_argument('--no-commit', action='store_true', help='Skip git commit (for testing)')
+    parser.add_argument("slug", help="Feature slug (e.g., my-feature)")
+    parser.add_argument("gh_user", help="GitHub username")
+    parser.add_argument("--no-commit", action="store_true", help="Skip git commit (for testing)")
 
     args = parser.parse_args()
 
@@ -911,11 +900,10 @@ def main():
     print(f"Branch: {context['current_branch']}")
 
     # Check if planning directory already exists
-    planning_dir = Path('planning') / args.slug
+    planning_dir = Path("planning") / args.slug
     if planning_dir.exists():
         overwrite = ask_yes_no(
-            f"Planning directory already exists: {planning_dir}\nOverwrite?",
-            default=False
+            f"Planning directory already exists: {planning_dir}\nOverwrite?", default=False
         )
         if not overwrite:
             print("Aborted.")
@@ -942,40 +930,31 @@ def main():
     print("Generating Planning Documents")
     print("=" * 70)
 
-    templates_dir = Path(__file__).parent.parent / 'templates'
+    templates_dir = Path(__file__).parent.parent / "templates"
 
     requirements_content = process_requirements_template(
-        templates_dir / 'requirements.md.template',
-        analyst_data,
-        args.slug,
-        args.gh_user
+        templates_dir / "requirements.md.template", analyst_data, args.slug, args.gh_user
     )
 
     architecture_content = process_architecture_template(
-        templates_dir / 'architecture.md.template',
-        architect_data,
-        args.slug,
-        args.gh_user
+        templates_dir / "architecture.md.template", architect_data, args.slug, args.gh_user
     )
 
     epics_content = process_epics_template(
-        templates_dir / 'epics.md.template',
-        epics,
-        args.slug,
-        args.gh_user
+        templates_dir / "epics.md.template", epics, args.slug, args.gh_user
     )
 
     # Create directory structure
     create_directory_structure(planning_dir, args.slug)
 
     # Write planning documents
-    (planning_dir / 'requirements.md').write_text(requirements_content)
+    (planning_dir / "requirements.md").write_text(requirements_content)
     print(f"  ✓ Created {planning_dir / 'requirements.md'}")
 
-    (planning_dir / 'architecture.md').write_text(architecture_content)
+    (planning_dir / "architecture.md").write_text(architecture_content)
     print(f"  ✓ Created {planning_dir / 'architecture.md'}")
 
-    (planning_dir / 'epics.md').write_text(epics_content)
+    (planning_dir / "epics.md").write_text(epics_content)
     print(f"  ✓ Created {planning_dir / 'epics.md'}")
 
     # Commit changes
@@ -987,23 +966,26 @@ def main():
     # Trigger sync engine (Phase 3 integration)
     try:
         import asyncio
+
         integration_path = Path(__file__).parent.parent.parent / "agentdb-state-manager" / "scripts"
         if str(integration_path) not in sys.path:
             sys.path.insert(0, str(integration_path))
         from worktree_agent_integration import trigger_sync_completion
 
-        asyncio.run(trigger_sync_completion(
-            agent_id="orchestrate",
-            action="planning_complete",
-            state_snapshot={
-                "slug": args.slug,
-                "planning_dir": str(planning_dir),
-                "requirements_generated": True,
-                "architecture_generated": True,
-                "epics_generated": True
-            },
-            context={"user": args.gh_user}
-        ))
+        asyncio.run(
+            trigger_sync_completion(
+                agent_id="orchestrate",
+                action="planning_complete",
+                state_snapshot={
+                    "slug": args.slug,
+                    "planning_dir": str(planning_dir),
+                    "requirements_generated": True,
+                    "architecture_generated": True,
+                    "epics_generated": True,
+                },
+                context={"user": args.gh_user},
+            )
+        )
     except Exception:
         # Graceful degradation: don't fail if sync unavailable
         pass
@@ -1023,10 +1005,12 @@ def main():
 
     print("\nNext steps:")
     print(f"  1. Review planning documents in {planning_dir}")
-    print("  2. Create feature worktree: python .claude/skills/git-workflow-manager/scripts/create_worktree.py feature {args.slug} {context['current_branch']}")
+    print(
+        "  2. Create feature worktree: python .claude/skills/git-workflow-manager/scripts/create_worktree.py feature {args.slug} {context['current_branch']}"
+    )
     print("  3. SpecKit will auto-detect and use these planning documents")
     print("  4. Token savings: ~1,700-2,700 tokens by reusing planning context")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

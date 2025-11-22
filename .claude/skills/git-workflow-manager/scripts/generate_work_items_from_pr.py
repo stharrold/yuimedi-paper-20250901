@@ -22,16 +22,15 @@ import json
 import subprocess
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
 
 # Add VCS module to path
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / 'workflow-utilities' / 'scripts'))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"))
 from vcs import get_vcs_adapter
 from vcs.azure_adapter import AzureDevOpsAdapter
 from vcs.github_adapter import GitHubAdapter
 
 # Constants with documented rationale
-GITHUB_GRAPHQL_TEMPLATE = '''
+GITHUB_GRAPHQL_TEMPLATE = """
 query($owner: String!, $repo: String!, $pr: Int!) {
   repository(owner: $owner, name: $repo) {
     pullRequest(number: $pr) {
@@ -62,9 +61,9 @@ query($owner: String!, $repo: String!, $pr: Int!) {
     }
   }
 }
-'''
+"""
 
-WORK_ITEM_SLUG_PATTERN = 'pr-{pr_number}-issue-{sequence}'  # e.g., pr-94-issue-1
+WORK_ITEM_SLUG_PATTERN = "pr-{pr_number}-issue-{sequence}"  # e.g., pr-94-issue-1
 
 
 class PRFeedbackWorkItemGenerator:
@@ -79,7 +78,7 @@ class PRFeedbackWorkItemGenerator:
         self.adapter = adapter
         self.provider_name = adapter.get_provider_name()
 
-    def fetch_unresolved_conversations(self, pr_number: int) -> List[Dict]:
+    def fetch_unresolved_conversations(self, pr_number: int) -> list[dict]:
         """Fetch unresolved PR conversations.
 
         Args:
@@ -105,7 +104,7 @@ class PRFeedbackWorkItemGenerator:
         else:
             raise RuntimeError(f"Unsupported VCS adapter: {type(self.adapter)}")
 
-    def _fetch_github_conversations(self, pr_number: int) -> List[Dict]:
+    def _fetch_github_conversations(self, pr_number: int) -> list[dict]:
         """Fetch unresolved GitHub PR review threads.
 
         Uses GitHub GraphQL API to fetch reviewThreads with isResolved status.
@@ -122,18 +121,16 @@ class PRFeedbackWorkItemGenerator:
         # Get repository owner and name from git remote
         try:
             remote_url = subprocess.check_output(
-                ['git', 'config', '--get', 'remote.origin.url'],
-                text=True,
-                stderr=subprocess.PIPE
+                ["git", "config", "--get", "remote.origin.url"], text=True, stderr=subprocess.PIPE
             ).strip()
 
             # Parse GitHub URL (supports both HTTPS and SSH formats)
             # HTTPS: https://github.com/owner/repo.git
             # SSH: git@github.com:owner/repo.git
-            if remote_url.startswith('https://'):
-                parts = remote_url.replace('https://github.com/', '').replace('.git', '').split('/')
-            elif remote_url.startswith('git@'):
-                parts = remote_url.replace('git@github.com:', '').replace('.git', '').split('/')
+            if remote_url.startswith("https://"):
+                parts = remote_url.replace("https://github.com/", "").replace(".git", "").split("/")
+            elif remote_url.startswith("git@"):
+                parts = remote_url.replace("git@github.com:", "").replace(".git", "").split("/")
             else:
                 raise ValueError(f"Unsupported remote URL format: {remote_url}")
 
@@ -146,15 +143,21 @@ class PRFeedbackWorkItemGenerator:
         try:
             result = subprocess.check_output(
                 [
-                    'gh', 'api', 'graphql',
-                    '-f', f'query={GITHUB_GRAPHQL_TEMPLATE}',
-                    '-f', f'owner={owner}',
-                    '-f', f'repo={repo}',
-                    '-F', f'pr={pr_number}'
+                    "gh",
+                    "api",
+                    "graphql",
+                    "-f",
+                    f"query={GITHUB_GRAPHQL_TEMPLATE}",
+                    "-f",
+                    f"owner={owner}",
+                    "-f",
+                    f"repo={repo}",
+                    "-F",
+                    f"pr={pr_number}",
                 ],
                 text=True,
                 stderr=subprocess.PIPE,
-                timeout=30
+                timeout=30,
             )
             data = json.loads(result)
 
@@ -170,37 +173,43 @@ class PRFeedbackWorkItemGenerator:
 
         # Parse response and extract unresolved threads
         try:
-            pr_data = data['data']['repository']['pullRequest']
-            review_threads = pr_data['reviewThreads']['nodes']
+            pr_data = data["data"]["repository"]["pullRequest"]
+            review_threads = pr_data["reviewThreads"]["nodes"]
 
             conversations = []
             for thread in review_threads:
                 # Filter: only unresolved threads
-                if thread['isResolved']:
+                if thread["isResolved"]:
                     continue
 
                 # Get first comment in thread
-                if not thread['comments']['nodes']:
+                if not thread["comments"]["nodes"]:
                     continue  # Skip empty threads
 
-                first_comment = thread['comments']['nodes'][0]
+                first_comment = thread["comments"]["nodes"][0]
 
-                conversations.append({
-                    'id': thread['id'],
-                    'url': first_comment.get('url', f"{pr_data['url']}#discussion_{thread['id']}"),
-                    'file': first_comment.get('path'),
-                    'line': first_comment.get('line'),
-                    'author': first_comment['author']['login'] if first_comment.get('author') else 'Unknown',
-                    'body': first_comment['body'],
-                    'created_at': first_comment['createdAt']
-                })
+                conversations.append(
+                    {
+                        "id": thread["id"],
+                        "url": first_comment.get(
+                            "url", f"{pr_data['url']}#discussion_{thread['id']}"
+                        ),
+                        "file": first_comment.get("path"),
+                        "line": first_comment.get("line"),
+                        "author": first_comment["author"]["login"]
+                        if first_comment.get("author")
+                        else "Unknown",
+                        "body": first_comment["body"],
+                        "created_at": first_comment["createdAt"],
+                    }
+                )
 
             return conversations
 
         except (KeyError, TypeError) as e:
             raise RuntimeError(f"Failed to parse GitHub review threads: {e}")
 
-    def _fetch_azure_conversations(self, pr_number: int) -> List[Dict]:
+    def _fetch_azure_conversations(self, pr_number: int) -> list[dict]:
         """Fetch unresolved Azure DevOps PR threads.
 
         Uses Azure CLI to fetch PR threads with status "active" or "pending".
@@ -217,22 +226,28 @@ class PRFeedbackWorkItemGenerator:
         try:
             result = subprocess.check_output(
                 [
-                    'az', 'repos', 'pr', 'show',
-                    '--id', str(pr_number),
-                    '--organization', self.adapter.organization,
-                    '--query', 'threads',
-                    '--output', 'json'
+                    "az",
+                    "repos",
+                    "pr",
+                    "show",
+                    "--id",
+                    str(pr_number),
+                    "--organization",
+                    self.adapter.organization,
+                    "--query",
+                    "threads",
+                    "--output",
+                    "json",
                 ],
                 text=True,
                 stderr=subprocess.PIPE,
-                timeout=30
+                timeout=30,
             )
             threads = json.loads(result)
 
         except FileNotFoundError:
             raise RuntimeError(
-                "'az' CLI not found. "
-                "Install from https://learn.microsoft.com/cli/azure/"
+                "'az' CLI not found. Install from https://learn.microsoft.com/cli/azure/"
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
@@ -246,42 +261,43 @@ class PRFeedbackWorkItemGenerator:
         conversations = []
         for thread in threads:
             # Filter: only active or pending status (unresolved)
-            status = thread.get('status', 'unknown').lower()
-            if status not in ['active', 'pending']:
+            status = thread.get("status", "unknown").lower()
+            if status not in ["active", "pending"]:
                 continue
 
             # Get first comment in thread
-            if not thread.get('comments'):
+            if not thread.get("comments"):
                 continue  # Skip empty threads
 
-            first_comment = thread['comments'][0]
+            first_comment = thread["comments"][0]
 
             # Extract file path and line number from threadContext
             file_path = None
             line_number = None
-            if thread.get('threadContext'):
-                file_path = thread['threadContext'].get('filePath')
-                if thread['threadContext'].get('rightFileStart'):
-                    line_number = thread['threadContext']['rightFileStart'].get('line')
+            if thread.get("threadContext"):
+                file_path = thread["threadContext"].get("filePath")
+                if thread["threadContext"].get("rightFileStart"):
+                    line_number = thread["threadContext"]["rightFileStart"].get("line")
 
-            conversations.append({
-                'id': thread['id'],
-                'url': f"https://dev.azure.com/{self.adapter.organization}/{self.adapter.project}/_git/{self.adapter.repository}/pullrequest/{pr_number}?_a=files&discussionId={thread['id']}",
-                'file': file_path,
-                'line': line_number,
-                'author': first_comment['author']['displayName'] if first_comment.get('author') else 'Unknown',
-                'body': first_comment.get('content', ''),
-                'created_at': first_comment.get('publishedDate', '')
-            })
+            conversations.append(
+                {
+                    "id": thread["id"],
+                    "url": f"https://dev.azure.com/{self.adapter.organization}/{self.adapter.project}/_git/{self.adapter.repository}/pullrequest/{pr_number}?_a=files&discussionId={thread['id']}",
+                    "file": file_path,
+                    "line": line_number,
+                    "author": first_comment["author"]["displayName"]
+                    if first_comment.get("author")
+                    else "Unknown",
+                    "body": first_comment.get("content", ""),
+                    "created_at": first_comment.get("publishedDate", ""),
+                }
+            )
 
         return conversations
 
     def create_work_item_from_conversation(
-        self,
-        pr_number: int,
-        conversation: Dict,
-        sequence: int
-    ) -> Tuple[str, str]:
+        self, pr_number: int, conversation: dict, sequence: int
+    ) -> tuple[str, str]:
         """Create work-item from conversation.
 
         Args:
@@ -303,11 +319,8 @@ class PRFeedbackWorkItemGenerator:
             raise RuntimeError(f"Unsupported VCS adapter: {type(self.adapter)}")
 
     def _create_github_issue(
-        self,
-        pr_number: int,
-        conversation: Dict,
-        sequence: int
-    ) -> Tuple[str, str]:
+        self, pr_number: int, conversation: dict, sequence: int
+    ) -> tuple[str, str]:
         """Create GitHub issue from conversation.
 
         Args:
@@ -325,9 +338,9 @@ class PRFeedbackWorkItemGenerator:
         slug = WORK_ITEM_SLUG_PATTERN.format(pr_number=pr_number, sequence=sequence)
 
         # Generate title (first 50 chars of comment body)
-        comment_preview = conversation['body'][:50]
-        if len(conversation['body']) > 50:
-            comment_preview += '...'
+        comment_preview = conversation["body"][:50]
+        if len(conversation["body"]) > 50:
+            comment_preview += "..."
         title = f"PR #{pr_number} feedback: {comment_preview}"
 
         # Generate body with conversation context
@@ -336,36 +349,43 @@ class PRFeedbackWorkItemGenerator:
             f"**Conversation:** {conversation['url']}",
         ]
 
-        if conversation.get('file'):
-            location = conversation['file']
-            if conversation.get('line'):
+        if conversation.get("file"):
+            location = conversation["file"]
+            if conversation.get("line"):
                 location += f":{conversation['line']}"
             body_parts.append(f"**Location:** {location}")
 
         body_parts.append(f"**Author:** {conversation['author']}")
         body_parts.append("")  # Blank line
-        body_parts.append(conversation['body'])
+        body_parts.append(conversation["body"])
         body_parts.append("")  # Blank line
         body_parts.append("---")
         body_parts.append(f"Related to PR #{pr_number}")
 
-        body = '\n'.join(body_parts)
+        body = "\n".join(body_parts)
 
         # Create issue (try with labels first, fall back to no labels if they don't exist)
         pr_label = f"pr-{pr_number}"
         try:
             issue_url = subprocess.check_output(
                 [
-                    'gh', 'issue', 'create',
-                    '--title', title,
-                    '--body', body,
-                    '--label', 'pr-feedback',
-                    '--label', pr_label,
-                    '--assignee', '@me'
+                    "gh",
+                    "issue",
+                    "create",
+                    "--title",
+                    title,
+                    "--body",
+                    body,
+                    "--label",
+                    "pr-feedback",
+                    "--label",
+                    pr_label,
+                    "--assignee",
+                    "@me",
                 ],
                 text=True,
                 stderr=subprocess.PIPE,
-                timeout=30
+                timeout=30,
             ).strip()
 
             return (issue_url, slug)
@@ -381,19 +401,26 @@ class PRFeedbackWorkItemGenerator:
                 try:
                     issue_url = subprocess.check_output(
                         [
-                            'gh', 'issue', 'create',
-                            '--title', title,
-                            '--body', body,
-                            '--assignee', '@me'
+                            "gh",
+                            "issue",
+                            "create",
+                            "--title",
+                            title,
+                            "--body",
+                            body,
+                            "--assignee",
+                            "@me",
                         ],
                         text=True,
                         stderr=subprocess.PIPE,
-                        timeout=30
+                        timeout=30,
                     ).strip()
 
                     return (issue_url, slug)
                 except subprocess.CalledProcessError as retry_error:
-                    retry_msg = retry_error.stderr.strip() if retry_error.stderr else str(retry_error)
+                    retry_msg = (
+                        retry_error.stderr.strip() if retry_error.stderr else str(retry_error)
+                    )
                     raise RuntimeError(f"Failed to create GitHub issue.\nError: {retry_msg}")
             else:
                 raise RuntimeError(f"Failed to create GitHub issue.\nError: {error_msg}")
@@ -401,11 +428,8 @@ class PRFeedbackWorkItemGenerator:
             raise RuntimeError("Timeout while creating GitHub issue")
 
     def _create_azure_work_item(
-        self,
-        pr_number: int,
-        conversation: Dict,
-        sequence: int
-    ) -> Tuple[str, str]:
+        self, pr_number: int, conversation: dict, sequence: int
+    ) -> tuple[str, str]:
         """Create Azure DevOps work-item from conversation.
 
         Args:
@@ -423,9 +447,9 @@ class PRFeedbackWorkItemGenerator:
         slug = WORK_ITEM_SLUG_PATTERN.format(pr_number=pr_number, sequence=sequence)
 
         # Generate title (first 50 chars of comment body)
-        comment_preview = conversation['body'][:50]
-        if len(conversation['body']) > 50:
-            comment_preview += '...'
+        comment_preview = conversation["body"][:50]
+        if len(conversation["body"]) > 50:
+            comment_preview += "..."
         title = f"PR #{pr_number} feedback: {comment_preview}"
 
         # Generate description with conversation context
@@ -434,46 +458,56 @@ class PRFeedbackWorkItemGenerator:
             f"<b>Thread ID:</b> {conversation['id']}<br/>",
         ]
 
-        if conversation.get('file'):
-            location = conversation['file']
-            if conversation.get('line'):
+        if conversation.get("file"):
+            location = conversation["file"]
+            if conversation.get("line"):
                 location += f":{conversation['line']}"
             description_parts.append(f"<b>Location:</b> {location}<br/>")
 
         description_parts.append(f"<b>Author:</b> {conversation['author']}<br/>")
         description_parts.append("<br/>")  # Blank line
-        description_parts.append(conversation['body'].replace('\n', '<br/>'))
+        description_parts.append(conversation["body"].replace("\n", "<br/>"))
 
-        description = ''.join(description_parts)
+        description = "".join(description_parts)
 
         # Create work-item
         try:
             result = subprocess.check_output(
                 [
-                    'az', 'boards', 'work-item', 'create',
-                    '--title', title,
-                    '--type', 'Task',
-                    '--description', description,
-                    '--assigned-to', '@me',
-                    '--organization', self.adapter.organization,
-                    '--project', self.adapter.project,
-                    '--fields', 'System.Tags=pr-feedback',
-                    '--output', 'json'
+                    "az",
+                    "boards",
+                    "work-item",
+                    "create",
+                    "--title",
+                    title,
+                    "--type",
+                    "Task",
+                    "--description",
+                    description,
+                    "--assigned-to",
+                    "@me",
+                    "--organization",
+                    self.adapter.organization,
+                    "--project",
+                    self.adapter.project,
+                    "--fields",
+                    "System.Tags=pr-feedback",
+                    "--output",
+                    "json",
                 ],
                 text=True,
                 stderr=subprocess.PIPE,
-                timeout=30
+                timeout=30,
             )
 
             work_item = json.loads(result)
-            work_item_url = work_item['url']
+            work_item_url = work_item["url"]
 
             return (work_item_url, slug)
 
         except FileNotFoundError:
             raise RuntimeError(
-                "'az' CLI not found. "
-                "Install from https://learn.microsoft.com/cli/azure/"
+                "'az' CLI not found. Install from https://learn.microsoft.com/cli/azure/"
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
@@ -483,7 +517,7 @@ class PRFeedbackWorkItemGenerator:
         except (json.JSONDecodeError, KeyError) as e:
             raise RuntimeError(f"Failed to parse Azure DevOps work-item response: {e}")
 
-    def display_conversations(self, conversations: List[Dict]) -> None:
+    def display_conversations(self, conversations: list[dict]) -> None:
         """Display unresolved conversations grouped by file.
 
         Args:
@@ -502,8 +536,8 @@ class PRFeedbackWorkItemGenerator:
         general_conversations = []
 
         for conv in conversations:
-            if conv.get('file'):
-                file_path = conv['file']
+            if conv.get("file"):
+                file_path = conv["file"]
                 if file_path not in file_groups:
                     file_groups[file_path] = []
                 file_groups[file_path].append(conv)
@@ -526,7 +560,7 @@ class PRFeedbackWorkItemGenerator:
             for file_path, file_convs in sorted(file_groups.items()):
                 print(f"\n  {file_path}")
                 for conv in file_convs:
-                    line_info = f" (line {conv['line']})" if conv.get('line') else ""
+                    line_info = f" (line {conv['line']})" if conv.get("line") else ""
                     print(f"    • {conv['author']}{line_info}:")
                     print(f"      {conv['body'][:100]}{'...' if len(conv['body']) > 100 else ''}")
                     print(f"      🔗 {conv['url']}")
@@ -591,9 +625,7 @@ def generate_work_items_from_pr(pr_number: int, dry_run: bool = False) -> int:
     for i, conversation in enumerate(conversations, 1):
         try:
             work_item_url, work_item_slug = generator.create_work_item_from_conversation(
-                pr_number,
-                conversation,
-                i
+                pr_number, conversation, i
             )
             created_work_items.append((work_item_url, work_item_slug))
             print(f"  ✓ Created {work_item_slug}: {work_item_url}")
@@ -607,7 +639,9 @@ def generate_work_items_from_pr(pr_number: int, dry_run: bool = False) -> int:
     print("\n" + "=" * 80)
     print("✅ WORK-ITEM GENERATION COMPLETE")
     print("=" * 80)
-    print(f"\nCreated {len(created_work_items)} work-items from {len(conversations)} conversations:")
+    print(
+        f"\nCreated {len(created_work_items)} work-items from {len(conversations)} conversations:"
+    )
     for url, slug in created_work_items:
         print(f"  • {slug}")
         print(f"    {url}")
@@ -616,7 +650,9 @@ def generate_work_items_from_pr(pr_number: int, dry_run: bool = False) -> int:
     print(f"  1. Review and approve PR #{pr_number} in web portal")
     print("  2. For each work-item, create feature worktree:")
     for _, slug in created_work_items:
-        print(f"     python .claude/skills/git-workflow-manager/scripts/create_worktree.py feature {slug} contrib/<user>")
+        print(
+            f"     python .claude/skills/git-workflow-manager/scripts/create_worktree.py feature {slug} contrib/<user>"
+        )
     print("  3. Implement fixes and create PRs for each work-item")
     print("  4. Repeat until no unresolved conversations\n")
 
@@ -626,7 +662,9 @@ def generate_work_items_from_pr(pr_number: int, dry_run: bool = False) -> int:
 def main():
     """Main entry point for script."""
     if len(sys.argv) < 2:
-        print("Usage: python generate_work_items_from_pr.py <pr-number> [--dry-run]", file=sys.stderr)
+        print(
+            "Usage: python generate_work_items_from_pr.py <pr-number> [--dry-run]", file=sys.stderr
+        )
         print("\nExamples:")
         print("  python generate_work_items_from_pr.py 94")
         print("  python generate_work_items_from_pr.py 94 --dry-run")
@@ -638,7 +676,7 @@ def main():
         print(f"ERROR: Invalid PR number '{sys.argv[1]}'. Must be an integer.", file=sys.stderr)
         sys.exit(1)
 
-    dry_run = '--dry-run' in sys.argv
+    dry_run = "--dry-run" in sys.argv
 
     try:
         exit_code = generate_work_items_from_pr(pr_number, dry_run)
@@ -646,9 +684,10 @@ def main():
     except Exception as e:
         print(f"\nERROR: {e}", file=sys.stderr)
         import traceback
+
         traceback.print_exc()
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

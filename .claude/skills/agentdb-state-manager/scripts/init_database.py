@@ -23,21 +23,23 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 # Constants with documented rationale
 SCHEMA_VERSION = "1.0.0"  # Current schema version for migrations
 WORKFLOW_STATES_PATH = Path(__file__).parent.parent / "templates" / "workflow-states.json"
 
+
 # ANSI color codes
 class Colors:
     """ANSI color codes for terminal output."""
-    BLUE = '\033[94m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    BOLD = '\033[1m'
-    END = '\033[0m'
+
+    BLUE = "\033[94m"
+    GREEN = "\033[92m"
+    YELLOW = "\033[93m"
+    RED = "\033[91m"
+    BOLD = "\033[1m"
+    END = "\033[0m"
 
 
 def error_exit(message: str, code: int = 1) -> None:
@@ -91,7 +93,7 @@ def generate_session_id() -> str:
     return hashlib.md5(current_time.encode()).hexdigest()[:16]
 
 
-def load_workflow_states() -> Dict[str, Any]:
+def load_workflow_states() -> dict[str, Any]:
     """Load canonical state definitions from workflow-states.json.
 
     Returns:
@@ -107,7 +109,7 @@ def load_workflow_states() -> Dict[str, Any]:
     info(f"Loading state definitions from {WORKFLOW_STATES_PATH.name}...")
 
     try:
-        with open(WORKFLOW_STATES_PATH, 'r', encoding='utf-8') as f:
+        with open(WORKFLOW_STATES_PATH, encoding="utf-8") as f:
             states = json.load(f)
         success(f"Loaded {len(states.get('states', {}))} object types")
         return states
@@ -117,7 +119,7 @@ def load_workflow_states() -> Dict[str, Any]:
         error_exit(f"Failed to load workflow-states.json: {e}")
 
 
-def create_schema(session_id: str, workflow_states: Dict[str, Any]) -> bool:
+def create_schema(session_id: str, workflow_states: dict[str, Any]) -> bool:
     """Create AgentDB schema with tables and indexes.
 
     Args:
@@ -144,7 +146,6 @@ def create_schema(session_id: str, workflow_states: Dict[str, Any]) -> bool:
             value VARCHAR
         );
         """,
-
         # Insert session metadata
         f"""
         INSERT INTO session_metadata (key, value)
@@ -155,7 +156,6 @@ def create_schema(session_id: str, workflow_states: Dict[str, Any]) -> bool:
             ('initialized_at', current_timestamp)
         ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value;
         """,
-
         # Immutable workflow records table (append-only)
         """
         CREATE TABLE IF NOT EXISTS workflow_records (
@@ -167,7 +167,6 @@ def create_schema(session_id: str, workflow_states: Dict[str, Any]) -> bool:
             object_metadata JSON
         );
         """,
-
         # Indexes for efficient queries
         """
         CREATE INDEX IF NOT EXISTS idx_records_object
@@ -181,7 +180,6 @@ def create_schema(session_id: str, workflow_states: Dict[str, Any]) -> bool:
         CREATE INDEX IF NOT EXISTS idx_records_timestamp
         ON workflow_records(record_datetimestamp);
         """,
-
         # State transitions view for analysis
         """
         CREATE OR REPLACE VIEW state_transitions AS
@@ -243,7 +241,7 @@ def validate_schema(session_id: str) -> bool:
     return True
 
 
-def print_summary(session_id: str, workflow_states: Dict[str, Any]) -> None:
+def print_summary(session_id: str, workflow_states: dict[str, Any]) -> None:
     """Print initialization summary.
 
     Args:
@@ -259,8 +257,8 @@ def print_summary(session_id: str, workflow_states: Dict[str, Any]) -> None:
     print(f"{Colors.BLUE}Workflow Version:{Colors.END} {workflow_states.get('version', 'unknown')}")
 
     print(f"\n{Colors.BOLD}Loaded State Definitions:{Colors.END}")
-    for obj_type, description in workflow_states.get('object_types', {}).items():
-        state_count = len(workflow_states.get('states', {}).get(obj_type, {}))
+    for obj_type, description in workflow_states.get("object_types", {}).items():
+        state_count = len(workflow_states.get("states", {}).get(obj_type, {}))
         print(f"  • {obj_type}: {state_count} states - {description}")
 
     print(f"\n{Colors.BOLD}Created Tables:{Colors.END}")
@@ -291,7 +289,7 @@ def print_summary(session_id: str, workflow_states: Dict[str, Any]) -> None:
 def main() -> None:
     """Main entry point for AgentDB initialization."""
     parser = argparse.ArgumentParser(
-        description='Initialize AgentDB schema for workflow state tracking',
+        description="Initialize AgentDB schema for workflow state tracking",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -305,13 +303,11 @@ Note:
   This script prepares SQL statements for AgentDB. In actual execution with
   Claude Code's AgentDB tool, these statements would be executed against the
   database.
-"""
+""",
     )
 
     parser.add_argument(
-        '--session-id',
-        type=str,
-        help='AgentDB session ID (auto-generated if not provided)'
+        "--session-id", type=str, help="AgentDB session ID (auto-generated if not provided)"
     )
 
     args = parser.parse_args()
@@ -342,5 +338,5 @@ Note:
     print_summary(session_id, workflow_states)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

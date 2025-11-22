@@ -9,10 +9,10 @@ import argparse
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description='Query workflow state from AgentDB')
-    parser.add_argument('--slug', help='Filter by workflow slug')
-    parser.add_argument('--dependencies', action='store_true', help='Show task dependencies')
-    parser.add_argument('--task', help='Show dependencies for specific task')
+    parser = argparse.ArgumentParser(description="Query workflow state from AgentDB")
+    parser.add_argument("--slug", help="Filter by workflow slug")
+    parser.add_argument("--dependencies", action="store_true", help="Show task dependencies")
+    parser.add_argument("--task", help="Show dependencies for specific task")
     args = parser.parse_args()
 
     # Query current state (latest record per object)
@@ -42,5 +42,6 @@ def main() -> None:
     print(query)
     print("\nNOTE: In actual execution, would query AgentDB and display results")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

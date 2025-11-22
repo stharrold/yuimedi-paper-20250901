@@ -22,15 +22,15 @@ def deprecate_files(todo_file, description, *files):
     # Extract timestamp from TODO file name
     todo_path = Path(todo_file)
     todo_name = todo_path.stem  # TODO_feature_20251022T143022Z_slug
-    parts = todo_name.split('_')
-    timestamp = parts[2] if len(parts) > 2 else datetime.utcnow().strftime('%Y%m%dT%H%M%SZ')
+    parts = todo_name.split("_")
+    timestamp = parts[2] if len(parts) > 2 else datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
 
     # Create ARCHIVED directory if needed
-    archived_dir = Path('ARCHIVED')
+    archived_dir = Path("ARCHIVED")
     archived_dir.mkdir(exist_ok=True)
 
     # Ensure ARCHIVED has standard files (if not already an ARCHIVED dir)
-    archived_claude = archived_dir / 'CLAUDE.md'
+    archived_claude = archived_dir / "CLAUDE.md"
     if not archived_claude.exists():
         archived_claude.write_text("""# Claude Code Context: Archived Content
 
@@ -47,7 +47,7 @@ Zip files containing deprecated code and resources.
 Use archive_manager.py to list and extract archived files.
 """)
 
-    archived_readme = archived_dir / 'README.md'
+    archived_readme = archived_dir / "README.md"
     if not archived_readme.exists():
         archived_readme.write_text("""# Archived Files
 
@@ -60,7 +60,7 @@ Files are stored in timestamped zip archives for potential recovery.
     zip_name = f"{timestamp}_{description}.zip"
     zip_path = archived_dir / zip_name
 
-    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
         for file in files:
             file_path = Path(file)
             if file_path.exists():
@@ -73,7 +73,8 @@ Files are stored in timestamped zip archives for potential recovery.
     print(f"✓ Created archive: {zip_path}")
     return str(zip_path)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     if len(sys.argv) < 4:
         print("Usage: deprecate_files.py <todo_file> <description> <file1> [file2 ...]")
         print("Example: deprecate_files.py TODO_feature_xxx.md old-impl src/old.py")

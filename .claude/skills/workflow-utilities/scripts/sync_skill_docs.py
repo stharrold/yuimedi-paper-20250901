@@ -35,21 +35,23 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import Optional
 
 # Constants
 SKILL_DIRS = [
-    'workflow-orchestrator',
-    'tech-stack-adapter',
-    'git-workflow-manager',
-    'bmad-planner',
-    'speckit-author',
-    'quality-enforcer',
-    'workflow-utilities',
+    "workflow-orchestrator",
+    "tech-stack-adapter",
+    "git-workflow-manager",
+    "bmad-planner",
+    "speckit-author",
+    "quality-enforcer",
+    "workflow-utilities",
 ]
 
-VERSION_PATTERN = re.compile(r'^(\d+)\.(\d+)\.(\d+)$')
-YAML_FRONTMATTER_PATTERN = re.compile(r'^(---\n.*?version:\s*)(\d+\.\d+\.\d+)(.*?\n---)', re.DOTALL | re.MULTILINE)
+VERSION_PATTERN = re.compile(r"^(\d+)\.(\d+)\.(\d+)$")
+YAML_FRONTMATTER_PATTERN = re.compile(
+    r"^(---\n.*?version:\s*)(\d+\.\d+\.\d+)(.*?\n---)", re.DOTALL | re.MULTILINE
+)
 
 
 def error_exit(message: str, code: int = 1) -> None:
@@ -58,7 +60,7 @@ def error_exit(message: str, code: int = 1) -> None:
     sys.exit(code)
 
 
-def run_command(cmd: List[str], capture=True, check=True) -> Optional[str]:
+def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
     """Run command and return output or None on error."""
     try:
         if capture:
@@ -75,7 +77,7 @@ def run_command(cmd: List[str], capture=True, check=True) -> Optional[str]:
         error_exit(f"Command not found: {cmd[0]}")
 
 
-def parse_version(version_str: str) -> Optional[Tuple[int, int, int]]:
+def parse_version(version_str: str) -> Optional[tuple[int, int, int]]:
     """Parse semantic version string."""
     match = VERSION_PATTERN.match(version_str)
     if not match:
@@ -89,14 +91,16 @@ def get_current_version(skill_md: Path) -> Optional[str]:
         return None
 
     content = skill_md.read_text()
-    match = re.search(r'version:\s*(\d+\.\d+\.\d+)', content)
+    match = re.search(r"version:\s*(\d+\.\d+\.\d+)", content)
     if not match:
         return None
 
     return match.group(1)
 
 
-def update_skill_md_version(skill_md: Path, old_version: str, new_version: str, dry_run: bool = False) -> bool:
+def update_skill_md_version(
+    skill_md: Path, old_version: str, new_version: str, dry_run: bool = False
+) -> bool:
     """Update version in SKILL.md frontmatter.
 
     Args:
@@ -112,10 +116,7 @@ def update_skill_md_version(skill_md: Path, old_version: str, new_version: str, 
 
     # Update version in frontmatter
     new_content = re.sub(
-        r'(version:\s*)' + re.escape(old_version),
-        r'\g<1>' + new_version,
-        content,
-        count=1
+        r"(version:\s*)" + re.escape(old_version), r"\g<1>" + new_version, content, count=1
     )
 
     if new_content == content:
@@ -157,14 +158,14 @@ def prompt_changelog_entry(skill_name: str, old_version: str, new_version: str) 
     lines = []
     while True:
         line = input()
-        if line.strip() == 'END':
+        if line.strip() == "END":
             break
         lines.append(line)
 
-    changelog_content = '\n'.join(lines)
+    changelog_content = "\n".join(lines)
 
     # Generate full CHANGELOG entry
-    today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     entry = f"""## [{new_version}] - {today}
 
 {changelog_content}
@@ -204,19 +205,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
         # Insert after [Unreleased] section
         # Find the line with ## [Unreleased]
-        unreleased_match = re.search(r'(## \[Unreleased\].*?\n\n)', content, re.DOTALL)
+        unreleased_match = re.search(r"(## \[Unreleased\].*?\n\n)", content, re.DOTALL)
 
         if unreleased_match:
             # Insert after [Unreleased] section
             insert_pos = unreleased_match.end()
-            content = content[:insert_pos] + entry + '\n' + content[insert_pos:]
+            content = content[:insert_pos] + entry + "\n" + content[insert_pos:]
         else:
             # No [Unreleased] section, insert at top after header
-            header_end = content.find('\n## ')
+            header_end = content.find("\n## ")
             if header_end != -1:
-                content = content[:header_end] + '\n' + entry + content[header_end:]
+                content = content[:header_end] + "\n" + entry + content[header_end:]
             else:
-                content = content + '\n' + entry
+                content = content + "\n" + entry
 
     if dry_run:
         print(f"  [DRY RUN] Would update {changelog_md}")
@@ -228,7 +229,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     return True
 
 
-def find_workflow_md_sections(workflow_md: Path, skill_name: str) -> List[str]:
+def find_workflow_md_sections(workflow_md: Path, skill_name: str) -> list[str]:
     """Find sections in WORKFLOW.md that reference the skill.
 
     Args:
@@ -245,16 +246,16 @@ def find_workflow_md_sections(workflow_md: Path, skill_name: str) -> List[str]:
     sections = []
 
     # Find all section headings (### or ##) followed by content mentioning skill
-    section_pattern = re.compile(r'^(#{2,3}) (.+?)$', re.MULTILINE)
+    section_pattern = re.compile(r"^(#{2,3}) (.+?)$", re.MULTILINE)
 
     current_section = None
     current_section_content = []
 
-    for line in content.split('\n'):
+    for line in content.split("\n"):
         section_match = section_pattern.match(line)
         if section_match:
             # Check previous section for skill reference
-            if current_section and skill_name in '\n'.join(current_section_content):
+            if current_section and skill_name in "\n".join(current_section_content):
                 sections.append(current_section)
 
             # Start new section
@@ -264,13 +265,15 @@ def find_workflow_md_sections(workflow_md: Path, skill_name: str) -> List[str]:
             current_section_content.append(line)
 
     # Check last section
-    if current_section and skill_name in '\n'.join(current_section_content):
+    if current_section and skill_name in "\n".join(current_section_content):
         sections.append(current_section)
 
     return sections
 
 
-def create_commit_message(skill_name: str, old_version: str, new_version: str, changelog_entry: str) -> str:
+def create_commit_message(
+    skill_name: str, old_version: str, new_version: str, changelog_entry: str
+) -> str:
     """Generate git commit message.
 
     Args:
@@ -294,8 +297,10 @@ def create_commit_message(skill_name: str, old_version: str, new_version: str, c
         commit_type = "fix"  # PATCH bug fix
 
     # Extract first line from changelog for summary
-    first_line = changelog_entry.split('\n')[2] if len(changelog_entry.split('\n')) > 2 else "update"
-    first_line = first_line.lstrip('- ').strip()
+    first_line = (
+        changelog_entry.split("\n")[2] if len(changelog_entry.split("\n")) > 2 else "update"
+    )
+    first_line = first_line.lstrip("- ").strip()
 
     commit_msg = f"""{commit_type}({skill_name}): {first_line}
 
@@ -328,7 +333,7 @@ def archive_previous_version(skill_md: Path, old_version: str, dry_run: bool = F
     Returns:
         True if archive successful, False otherwise
     """
-    archived_dir = skill_md.parent / 'ARCHIVED'
+    archived_dir = skill_md.parent / "ARCHIVED"
     archived_dir.mkdir(exist_ok=True)
 
     archive_file = archived_dir / f"SKILL_v{old_version.replace('.', '_')}.md"
@@ -339,6 +344,7 @@ def archive_previous_version(skill_md: Path, old_version: str, dry_run: bool = F
 
     # Copy current SKILL.md to archive
     import shutil
+
     shutil.copy2(skill_md, archive_file)
 
     print(f"  ✓ Archived previous version to {archive_file}")
@@ -348,13 +354,15 @@ def archive_previous_version(skill_md: Path, old_version: str, dry_run: bool = F
 def main():
     """Main entry point for sync tool."""
     parser = argparse.ArgumentParser(
-        description='Semi-automated documentation sync tool for skill updates'
+        description="Semi-automated documentation sync tool for skill updates"
     )
-    parser.add_argument('skill_name', help='Name of the skill (e.g., bmad-planner)')
-    parser.add_argument('new_version', help='New version number (e.g., 5.2.0)')
-    parser.add_argument('--archive', action='store_true', help='Archive previous SKILL.md version')
-    parser.add_argument('--dry-run', action='store_true', help='Show changes without making them')
-    parser.add_argument('--auto-commit', action='store_true', help='Skip commit message confirmation')
+    parser.add_argument("skill_name", help="Name of the skill (e.g., bmad-planner)")
+    parser.add_argument("new_version", help="New version number (e.g., 5.2.0)")
+    parser.add_argument("--archive", action="store_true", help="Archive previous SKILL.md version")
+    parser.add_argument("--dry-run", action="store_true", help="Show changes without making them")
+    parser.add_argument(
+        "--auto-commit", action="store_true", help="Skip commit message confirmation"
+    )
 
     args = parser.parse_args()
 
@@ -368,15 +376,15 @@ def main():
 
     # Get repository root
     try:
-        repo_root = Path(run_command(['git', 'rev-parse', '--show-toplevel']))
+        repo_root = Path(run_command(["git", "rev-parse", "--show-toplevel"]))
     except (subprocess.CalledProcessError, FileNotFoundError, TypeError):
         error_exit("Not in a git repository")
 
     # Paths
-    skill_dir = repo_root / '.claude' / 'skills' / args.skill_name
-    skill_md = skill_dir / 'SKILL.md'
-    changelog_md = skill_dir / 'CHANGELOG.md'
-    workflow_md = repo_root / 'WORKFLOW.md'
+    skill_dir = repo_root / ".claude" / "skills" / args.skill_name
+    skill_md = skill_dir / "SKILL.md"
+    changelog_md = skill_dir / "CHANGELOG.md"
+    workflow_md = repo_root / "WORKFLOW.md"
 
     # Verify skill directory exists
     if not skill_dir.exists():
@@ -437,7 +445,9 @@ def main():
         print("\nStep 6: Create git commit")
         print("-" * 70)
 
-        commit_msg = create_commit_message(args.skill_name, old_version, args.new_version, changelog_entry)
+        commit_msg = create_commit_message(
+            args.skill_name, old_version, args.new_version, changelog_entry
+        )
 
         print("Commit message:")
         print("-" * 70)
@@ -446,16 +456,16 @@ def main():
 
         if not args.auto_commit:
             confirm = input("\nCreate this commit? (Y/n) > ").strip().lower()
-            if confirm and confirm not in ['y', 'yes']:
+            if confirm and confirm not in ["y", "yes"]:
                 print("Aborted.")
                 sys.exit(0)
 
         # Stage files
-        run_command(['git', 'add', str(skill_md)], capture=False)
-        run_command(['git', 'add', str(changelog_md)], capture=False)
+        run_command(["git", "add", str(skill_md)], capture=False)
+        run_command(["git", "add", str(changelog_md)], capture=False)
 
         # Commit
-        run_command(['git', 'commit', '-m', commit_msg], capture=False)
+        run_command(["git", "commit", "-m", commit_msg], capture=False)
 
         print("\n✓ Commit created successfully!")
 
@@ -479,5 +489,5 @@ def main():
     print()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

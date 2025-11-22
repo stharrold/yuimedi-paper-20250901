@@ -16,19 +16,20 @@ from typing import Optional
 
 class VCSProvider(Enum):
     """Supported VCS providers."""
+
     GITHUB = "github"
     AZURE_DEVOPS = "azure_devops"
 
 
 # URL patterns for provider detection
 GITHUB_PATTERNS = [
-    r'github\.com[:/]',  # https://github.com/user/repo or git@github.com:user/repo
+    r"github\.com[:/]",  # https://github.com/user/repo or git@github.com:user/repo
 ]
 
 AZURE_DEVOPS_PATTERNS = [
-    r'dev\.azure\.com[/:]',  # https://dev.azure.com/org/project or git@ssh.dev.azure.com:v3
-    r'@vs-ssh\.visualstudio\.com',  # git@vs-ssh.visualstudio.com:v3/org/project/repo
-    r'\.visualstudio\.com/',  # https://org.visualstudio.com/project
+    r"dev\.azure\.com[/:]",  # https://dev.azure.com/org/project or git@ssh.dev.azure.com:v3
+    r"@vs-ssh\.visualstudio\.com",  # git@vs-ssh.visualstudio.com:v3/org/project/repo
+    r"\.visualstudio\.com/",  # https://org.visualstudio.com/project
 ]
 
 
@@ -49,11 +50,11 @@ def detect_from_remote() -> Optional[VCSProvider]:
     """
     try:
         result = subprocess.run(
-            ['git', 'remote', 'get-url', 'origin'],
+            ["git", "remote", "get-url", "origin"],
             capture_output=True,
             text=True,
             check=True,
-            timeout=5
+            timeout=5,
         )
         remote_url = result.stdout.strip()
 
@@ -86,21 +87,21 @@ def extract_azure_repo_from_remote() -> Optional[str]:
     """
     try:
         result = subprocess.run(
-            ['git', 'remote', 'get-url', 'origin'],
+            ["git", "remote", "get-url", "origin"],
             capture_output=True,
             text=True,
             check=True,
-            timeout=5
+            timeout=5,
         )
         remote_url = result.stdout.strip()
 
         # Pattern 1: https://dev.azure.com/org/project/_git/repo
-        match = re.search(r'/_git/([^/\s]+?)(?:\.git)?$', remote_url)
+        match = re.search(r"/_git/([^/\s]+?)(?:\.git)?$", remote_url)
         if match:
             return match.group(1)
 
         # Pattern 2: git@ssh.dev.azure.com:v3/org/project/repo
-        match = re.search(r':v3/[^/]+/[^/]+/([^/\s]+?)(?:\.git)?$', remote_url)
+        match = re.search(r":v3/[^/]+/[^/]+/([^/\s]+?)(?:\.git)?$", remote_url)
         if match:
             return match.group(1)
 
