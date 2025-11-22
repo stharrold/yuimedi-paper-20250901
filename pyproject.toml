@@ -74,7 +74,6 @@ target-version = "py39"
 # Enable pycodestyle (E, W), pyflakes (F), isort (I), naming (N), pyupgrade (UP)
 select = ["E", "F", "I", "N", "W", "UP"]
 # Ruff formatter handles line breaks and whitespace automatically
-# No manual ignores needed for formatter compatibility
 ignore = [
     "N999",  # Allow module names with hyphens (skill naming convention)
     "E501",  # Allow lines longer than 100 chars (SQL strings, long messages)
