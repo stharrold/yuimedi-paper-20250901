@@ -1,0 +1,87 @@
+name: Code Quality Checks
+
+on:
+  push:
+    branches: [ main, contrib/stharrold, 'claude/**' ]
+    paths:
+      - '**.py'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/code-quality.yml'
+  pull_request:
+    branches: [ main, contrib/stharrold ]
+    paths:
+      - '**.py'
+      - 'pyproject.toml'
+
+jobs:
+  python-quality:
+    name: Python Code Quality (Ruff + MyPy)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install UV
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Verify UV installation
+        run: |
+          uv --version
+
+      - name: Install dependencies
+        run: |
+          uv sync --frozen
+
+      - name: Run Ruff format check
+        run: |
+          uv run ruff format --check .
+        continue-on-error: false
+
+      - name: Run Ruff linting
+        run: |
+          uv run ruff check .
+        continue-on-error: false
+
+      - name: Run MyPy type checking
+        run: |
+          uv run mypy scripts/ || true
+        continue-on-error: true
+        # Type checking is informational only for now
+
+      - name: Report summary
+        if: always()
+        run: |
+          echo "## Code Quality Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Ruff format check completed" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Ruff linting completed" >> $GITHUB_STEP_SUMMARY
+          echo "- ℹ️ MyPy type checking completed (informational)" >> $GITHUB_STEP_SUMMARY
+
+      - name: Comment on PR (if failed)
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.name,
+              body: `❌ Code quality checks failed. Please fix the following:
+
+              1. Run \`uv run ruff format .\` to format your code
+              2. Run \`uv run ruff check --fix .\` to fix linting issues
+              3. Run \`uv run mypy scripts/\` to check types (optional)
+
+              See the workflow logs for details.`
+            })

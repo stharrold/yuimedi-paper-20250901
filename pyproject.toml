@@ -1,6 +1,6 @@
 [project]
 name = "yuiquery-research"
-version = "1.3.0"
+version = "1.4.0"
 description = "YuiQuery Healthcare Analytics Research - Natural Language to SQL in Healthcare"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -74,8 +74,10 @@ target-version = "py39"
 # Enable pycodestyle (E, W), pyflakes (F), isort (I), naming (N), pyupgrade (UP)
 select = ["E", "F", "I", "N", "W", "UP"]
 # Ruff formatter handles line breaks and whitespace automatically
-# No manual ignores needed for formatter compatibility
-ignore = []
+ignore = [
+    "N999",  # Allow module names with hyphens (skill naming convention)
+    "E501",  # Allow lines longer than 100 chars (SQL strings, long messages)
+]
 
 [tool.ruff.format]
 # Use Black-compatible formatting
