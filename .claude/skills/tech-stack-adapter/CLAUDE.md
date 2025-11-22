@@ -175,13 +175,6 @@ subprocess.run(SESSION_CONFIG['test_cmd'], shell=True, check=True)
 subprocess.run(SESSION_CONFIG['coverage_cmd'], shell=True, check=True)
 ```
 
-**Security Note:** The `shell=True` parameter is used because commands like
-`'uv run pytest --cov=src'` are single strings that require shell parsing.
-Commands come exclusively from detect_stack.py, which reads only from the
-trusted local pyproject.toml. Never pass user-provided or external input to
-these commands. If user input is needed, use list-based subprocess calls
-with explicit argument separation instead.
-
 ---
 
 ### Adaptive Command Usage

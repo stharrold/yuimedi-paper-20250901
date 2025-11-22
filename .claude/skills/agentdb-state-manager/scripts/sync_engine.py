@@ -23,7 +23,7 @@ import json
 import logging
 import re
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
 try:
@@ -67,7 +67,7 @@ class SynchronizationEngine:
         """
         self.db_path = db_path
         self.cache_ttl = cache_ttl
-        self._sync_cache: dict[str, Any] = {}
+        self._sync_cache: Dict[str, Any] = {}
         self._cache_invalidated_at: Optional[datetime] = None
 
         # Initialize database connection
@@ -75,7 +75,7 @@ class SynchronizationEngine:
         # For production, consider connection pooling
         self.conn = duckdb.connect(db_path, read_only=False)
 
-    def _compute_provenance_hash(self, sync_id: str, flow_token: str, state: dict[str, Any]) -> str:
+    def _compute_provenance_hash(self, sync_id: str, flow_token: str, state: Dict[str, Any]) -> str:
         """Compute SHA-256 content-addressed hash for idempotency.
 
         Performance Target: <1ms p99
@@ -115,7 +115,7 @@ class SynchronizationEngine:
         hash_bytes = hashlib.sha256(content.encode("utf-8")).digest()
         return hash_bytes.hex()
 
-    def _get_nested_value(self, obj: dict[str, Any], path: str) -> Any:
+    def _get_nested_value(self, obj: Dict[str, Any], path: str) -> Any:
         """Extract nested value from dict using dot-notation path.
 
         Args:
@@ -141,8 +141,8 @@ class SynchronizationEngine:
         return current
 
     def _resolve_params(
-        self, action_spec: dict[str, Any], trigger_state: dict[str, Any]
-    ) -> dict[str, Any]:
+        self, action_spec: Dict[str, Any], trigger_state: Dict[str, Any]
+    ) -> Dict[str, Any]:
         """Resolve ${trigger_state.path} placeholders in action spec.
 
         Template Syntax:
@@ -189,7 +189,7 @@ class SynchronizationEngine:
 
         return json.loads(resolved_json)
 
-    def _pattern_matches(self, pattern: dict[str, Any], state: dict[str, Any]) -> bool:
+    def _pattern_matches(self, pattern: Dict[str, Any], state: Dict[str, Any]) -> bool:
         """Check if state contains pattern (partial match).
 
         Pattern matching rules:
@@ -233,8 +233,8 @@ class SynchronizationEngine:
         return True
 
     def _find_matching_syncs(
-        self, agent_id: str, action: str, state: dict[str, Any]
-    ) -> list[dict[str, Any]]:
+        self, agent_id: str, action: str, state: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
         """Find synchronization rules matching current agent/action/state.
 
         Query Pattern (DuckDB):
@@ -311,7 +311,7 @@ class SynchronizationEngine:
 
         return matched_syncs
 
-    def _detect_phi(self, state: dict[str, Any]) -> bool:
+    def _detect_phi(self, state: Dict[str, Any]) -> bool:
         """Detect if state contains PHI (Protected Health Information).
 
         Heuristics:
@@ -337,7 +337,7 @@ class SynchronizationEngine:
         execution_id: str,
         event_type: str,
         phi_involved: bool,
-        event_details: dict[str, Any],
+        event_details: Dict[str, Any],
     ):
         """Log event to sync_audit_trail (APPEND-ONLY compliance log).
 
@@ -385,7 +385,7 @@ class SynchronizationEngine:
         )
 
     def _execute_sync(
-        self, sync: dict[str, Any], flow_token: str, trigger_state: dict[str, Any], prov_hash: str
+        self, sync: Dict[str, Any], flow_token: str, trigger_state: Dict[str, Any], prov_hash: str
     ) -> str:
         """Record sync execution and trigger target agent.
 
@@ -465,8 +465,8 @@ class SynchronizationEngine:
         return execution_id
 
     def on_agent_action_complete(
-        self, agent_id: str, action: str, flow_token: str, state_snapshot: dict[str, Any]
-    ) -> list[str]:
+        self, agent_id: str, action: str, flow_token: str, state_snapshot: Dict[str, Any]
+    ) -> List[str]:
         """Main entry point - called after any agent action completes.
 
         Performance Requirements:

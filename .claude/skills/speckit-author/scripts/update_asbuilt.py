@@ -29,7 +29,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Dict, List, Optional
 
 # Constants
 TIMESTAMP_FORMAT = "%Y-%m-%d"  # Human-readable date for documentation
@@ -41,7 +41,7 @@ def error_exit(message: str, code: int = 1) -> None:
     sys.exit(code)
 
 
-def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
+def run_command(cmd: List[str], capture=True, check=True) -> Optional[str]:
     """Run command and return output."""
     try:
         if capture:
@@ -83,7 +83,7 @@ def ask_multiline(prompt: str) -> str:
     return "\n".join(lines)
 
 
-def analyze_deviations(planning_dir: Path, specs_dir: Path) -> list[dict[str, str]]:
+def analyze_deviations(planning_dir: Path, specs_dir: Path) -> List[Dict[str, str]]:
     """Compare planning vs specs and identify deviations."""
 
     deviations = []
@@ -135,7 +135,7 @@ def analyze_deviations(planning_dir: Path, specs_dir: Path) -> list[dict[str, st
 
 def gather_as_built_info(
     planning_dir: Path, specs_dir: Path, todo_file: Optional[Path]
-) -> dict[str, any]:
+) -> Dict[str, any]:
     """Interactive Q&A to gather as-built information."""
 
     print("\n" + "=" * 70)
@@ -243,7 +243,7 @@ def gather_as_built_info(
     return info
 
 
-def update_requirements_md(req_path: Path, info: dict[str, any]) -> None:
+def update_requirements_md(req_path: Path, info: Dict[str, any]) -> None:
     """Append As-Built Notes section to requirements.md."""
 
     if not req_path.exists():
@@ -287,7 +287,7 @@ def update_requirements_md(req_path: Path, info: dict[str, any]) -> None:
     print(f"✓ Updated {req_path}")
 
 
-def update_architecture_md(arch_path: Path, info: dict[str, any]) -> None:
+def update_architecture_md(arch_path: Path, info: Dict[str, any]) -> None:
     """Append As-Built Architecture section to architecture.md."""
 
     if not arch_path.exists():
@@ -343,7 +343,7 @@ def update_architecture_md(arch_path: Path, info: dict[str, any]) -> None:
     print(f"✓ Updated {arch_path}")
 
 
-def update_epics_md(epics_path: Path, info: dict[str, any]) -> None:
+def update_epics_md(epics_path: Path, info: Dict[str, any]) -> None:
     """Append Epic Completion Status to epics.md."""
 
     if not epics_path.exists():

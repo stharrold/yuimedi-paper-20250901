@@ -35,7 +35,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
+from typing import List, Optional, Tuple
 
 # Constants
 SKILL_DIRS = [
@@ -60,7 +60,7 @@ def error_exit(message: str, code: int = 1) -> None:
     sys.exit(code)
 
 
-def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
+def run_command(cmd: List[str], capture=True, check=True) -> Optional[str]:
     """Run command and return output or None on error."""
     try:
         if capture:
@@ -77,7 +77,7 @@ def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
         error_exit(f"Command not found: {cmd[0]}")
 
 
-def parse_version(version_str: str) -> Optional[tuple[int, int, int]]:
+def parse_version(version_str: str) -> Optional[Tuple[int, int, int]]:
     """Parse semantic version string."""
     match = VERSION_PATTERN.match(version_str)
     if not match:
@@ -229,7 +229,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     return True
 
 
-def find_workflow_md_sections(workflow_md: Path, skill_name: str) -> list[str]:
+def find_workflow_md_sections(workflow_md: Path, skill_name: str) -> List[str]:
     """Find sections in WORKFLOW.md that reference the skill.
 
     Args:

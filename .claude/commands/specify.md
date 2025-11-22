@@ -1,5 +1,19 @@
 ---
 description: Create or update the feature specification from a natural language feature description.
+order: 1
+next: /plan
+---
+
+# /specify - Step 1 of 4
+
+**Workflow**: `/specify` → `/plan` → `/tasks` → *(implement)* → `/workflow`
+
+**Purpose**: Create feature branch and specification document from natural language description.
+
+**Prerequisites**: None (this is the starting point)
+
+**Outputs**: `specs/{feature}/spec.md`, new git branch
+
 ---
 
 Given the feature description provided as an argument, do this:

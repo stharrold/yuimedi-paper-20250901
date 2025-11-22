@@ -33,7 +33,7 @@ import subprocess
 import sys
 from enum import Enum
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
 logger = logging.getLogger(__name__)
@@ -197,7 +197,7 @@ class PHIDetector:
     SSN_PATTERN = r"\b\d{3}-?\d{2}-?\d{4}\b"
 
     @classmethod
-    def detect_phi(cls, state_snapshot: dict[str, Any]) -> bool:
+    def detect_phi(cls, state_snapshot: Dict[str, Any]) -> bool:
         """Detect if state snapshot contains PHI.
 
         Args:
@@ -250,7 +250,7 @@ class PHIDetector:
         return False
 
     @classmethod
-    def extract_justification(cls, context: dict[str, Any]) -> str:
+    def extract_justification(cls, context: Dict[str, Any]) -> str:
         """Extract or generate access justification from workflow context.
 
         Priority:
@@ -320,9 +320,9 @@ class ComplianceWrapper:
         agent_id: str,
         action: str,
         flow_token: str,
-        state_snapshot: dict[str, Any],
-        context: Optional[dict[str, Any]] = None,
-    ) -> list[str]:
+        state_snapshot: Dict[str, Any],
+        context: Optional[Dict[str, Any]] = None,
+    ) -> List[str]:
         """Wrapped version of sync_engine.on_agent_action_complete with compliance logging.
 
         This method:
@@ -411,7 +411,7 @@ class SyncEngineFactory:
     - AGENTDB_PATH: Path to DuckDB database (default: "agentdb.duckdb")
     """
 
-    _instances: dict[str, ComplianceWrapper] = {}
+    _instances: Dict[str, ComplianceWrapper] = {}
 
     @classmethod
     def create_sync_engine(cls, db_path: Optional[str] = None) -> Optional[ComplianceWrapper]:
@@ -489,8 +489,8 @@ class SyncEngineFactory:
 async def trigger_sync_completion(
     agent_id: str,
     action: str,
-    state_snapshot: dict[str, Any],
-    context: Optional[dict[str, Any]] = None,
+    state_snapshot: Dict[str, Any],
+    context: Optional[Dict[str, Any]] = None,
     sync_engine: Optional[ComplianceWrapper] = None,
 ) -> bool:
     """Trigger sync engine after agent action completes.

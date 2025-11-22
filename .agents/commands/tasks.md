@@ -1,5 +1,22 @@
 ---
 description: Generate an actionable, dependency-ordered tasks.md for the feature based on available design artifacts.
+order: 3
+prev: /plan
+next: /workflow
+---
+
+# /tasks - Step 3 of 4
+
+**Workflow**: `/specify` → `/plan` → `/tasks` → *(implement)* → `/workflow`
+
+**Purpose**: Generate ordered, executable task list from design artifacts.
+
+**Prerequisites**: `plan.md` must exist (created by `/plan`); optionally `data-model.md`, `contracts/`, `research.md`, `quickstart.md`
+
+**Outputs**: `tasks.md` with numbered tasks (T001, T002, etc.)
+
+**Next**: Manually implement tasks, then run `/workflow` to create PR
+
 ---
 
 Given the context provided as an argument, do this:

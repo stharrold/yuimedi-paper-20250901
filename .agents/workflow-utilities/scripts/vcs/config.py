@@ -11,7 +11,7 @@ Constants:
 """
 
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Dict, Optional
 
 try:
     import yaml
@@ -24,7 +24,7 @@ CONFIG_FILE_NAME = ".vcs_config.yaml"
 VALID_PROVIDERS = ["github", "azure_devops"]
 
 
-def load_vcs_config(config_path: Optional[Path] = None) -> Optional[dict[str, Any]]:
+def load_vcs_config(config_path: Optional[Path] = None) -> Optional[Dict[str, Any]]:
     """Load VCS configuration from .vcs_config.yaml.
 
     Args:
@@ -56,7 +56,7 @@ def load_vcs_config(config_path: Optional[Path] = None) -> Optional[dict[str, An
         return None
 
     try:
-        with open(config_path, encoding="utf-8") as f:
+        with open(config_path, "r", encoding="utf-8") as f:
             config = yaml.safe_load(f)
 
         if not config:
@@ -72,7 +72,7 @@ def load_vcs_config(config_path: Optional[Path] = None) -> Optional[dict[str, An
         raise ValueError(f"Error loading config from {config_path}: {e}")
 
 
-def validate_config(config: dict[str, Any]) -> None:
+def validate_config(config: Dict[str, Any]) -> None:
     """Validate VCS configuration.
 
     Args:
@@ -93,7 +93,7 @@ def validate_config(config: dict[str, Any]) -> None:
         validate_azure_devops_config(config)
 
 
-def validate_azure_devops_config(config: dict[str, Any]) -> None:
+def validate_azure_devops_config(config: Dict[str, Any]) -> None:
     """Validate Azure DevOps-specific configuration.
 
     Args:

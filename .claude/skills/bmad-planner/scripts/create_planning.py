@@ -30,7 +30,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Dict, List, Optional
 
 # Constants with documented rationale
 TIMESTAMP_FORMAT = "%Y-%m-%d"  # Human-readable date for documentation
@@ -43,7 +43,7 @@ def error_exit(message: str, code: int = 1) -> None:
     sys.exit(code)
 
 
-def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
+def run_command(cmd: List[str], capture=True, check=True) -> Optional[str]:
     """Run command and return output or None on error."""
     try:
         if capture:
@@ -60,7 +60,7 @@ def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
         error_exit(f"Command not found: {cmd[0]}")
 
 
-def detect_context() -> dict[str, any]:
+def detect_context() -> Dict[str, any]:
     """Detect current repository context and validate for BMAD planning."""
 
     # Get repository root
@@ -96,7 +96,7 @@ def detect_context() -> dict[str, any]:
 
 
 def ask_question(
-    prompt: str, options: Optional[list[str]] = None, default: Optional[str] = None
+    prompt: str, options: Optional[List[str]] = None, default: Optional[str] = None
 ) -> str:
     """Ask user a question and return response."""
 
@@ -146,7 +146,7 @@ def ask_yes_no(prompt: str, default: bool = True) -> bool:
     return response in ["y", "yes"]
 
 
-def interactive_qa_analyst() -> dict[str, any]:
+def interactive_qa_analyst() -> Dict[str, any]:
     """Conduct 🧠 BMAD Analyst persona Q&A for requirements gathering."""
 
     print("\n" + "=" * 70)
@@ -242,7 +242,7 @@ def interactive_qa_analyst() -> dict[str, any]:
     return data
 
 
-def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any]:
+def interactive_qa_architect(requirements_data: Dict[str, any]) -> Dict[str, any]:
     """Conduct 🏗️ BMAD Architect persona Q&A for architecture design."""
 
     print("\n" + "=" * 70)
@@ -355,8 +355,8 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
 
 
 def generate_epic_breakdown(
-    requirements_data: dict[str, any], architecture_data: dict[str, any]
-) -> list[dict[str, any]]:
+    requirements_data: Dict[str, any], architecture_data: Dict[str, any]
+) -> List[Dict[str, any]]:
     """Generate 📋 BMAD PM epic breakdown automatically based on requirements and architecture."""
 
     print("\n" + "=" * 70)
@@ -500,7 +500,7 @@ def generate_epic_breakdown(
 
 
 def process_requirements_template(
-    template_path: Path, analyst_data: dict[str, any], slug: str, gh_user: str
+    template_path: Path, analyst_data: Dict[str, any], slug: str, gh_user: str
 ) -> str:
     """Process requirements.md template with analyst data."""
 
@@ -563,7 +563,7 @@ def process_requirements_template(
 
 
 def process_architecture_template(
-    template_path: Path, architect_data: dict[str, any], slug: str, gh_user: str
+    template_path: Path, architect_data: Dict[str, any], slug: str, gh_user: str
 ) -> str:
     """Process architecture.md template with architect data."""
 
@@ -620,7 +620,7 @@ def process_architecture_template(
 
 
 def process_epics_template(
-    template_path: Path, epics: list[dict[str, any]], slug: str, gh_user: str
+    template_path: Path, epics: List[Dict[str, any]], slug: str, gh_user: str
 ) -> str:
     """Process epics.md template with generated epic data."""
 

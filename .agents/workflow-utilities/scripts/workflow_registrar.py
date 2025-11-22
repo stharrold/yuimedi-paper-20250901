@@ -21,7 +21,7 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Dict, Optional
 
 try:
     import yaml
@@ -77,7 +77,7 @@ def extract_timestamp_from_filename(filename: str) -> Optional[str]:
     return None
 
 
-def load_todo_md() -> tuple[dict[str, Any], str]:
+def load_todo_md() -> tuple[Dict[str, Any], str]:
     """Load TODO.md and parse YAML frontmatter.
 
     Returns:
@@ -103,7 +103,7 @@ def load_todo_md() -> tuple[dict[str, Any], str]:
     return frontmatter, content
 
 
-def save_todo_md(frontmatter: dict[str, Any], content: str) -> None:
+def save_todo_md(frontmatter: Dict[str, Any], content: str) -> None:
     """Save updated TODO.md with new frontmatter.
 
     Args:

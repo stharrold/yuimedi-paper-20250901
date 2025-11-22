@@ -23,7 +23,7 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict
 
 # Constants with documented rationale
 SCHEMA_VERSION = "1.0.0"  # Current schema version for migrations
@@ -88,19 +88,12 @@ def generate_session_id() -> str:
 
     Rationale: Timestamp-based IDs are reproducible within a timeframe,
     providing a balance between uniqueness and consistency.
-
-    Security Note: MD5 is used here for non-cryptographic purposes only
-    (generating a short, deterministic identifier from a timestamp).
-    This is NOT used for password hashing, signature verification, or
-    any security-sensitive operation. MD5's collision resistance
-    weaknesses are irrelevant for this use case.
     """
     current_time = datetime.now(timezone.utc).isoformat()
-    # MD5 used for non-cryptographic ID generation only (see docstring)
     return hashlib.md5(current_time.encode()).hexdigest()[:16]
 
 
-def load_workflow_states() -> dict[str, Any]:
+def load_workflow_states() -> Dict[str, Any]:
     """Load canonical state definitions from workflow-states.json.
 
     Returns:
@@ -126,7 +119,7 @@ def load_workflow_states() -> dict[str, Any]:
         error_exit(f"Failed to load workflow-states.json: {e}")
 
 
-def create_schema(session_id: str, workflow_states: dict[str, Any]) -> bool:
+def create_schema(session_id: str, workflow_states: Dict[str, Any]) -> bool:
     """Create AgentDB schema with tables and indexes.
 
     Args:
@@ -248,7 +241,7 @@ def validate_schema(session_id: str) -> bool:
     return True
 
 
-def print_summary(session_id: str, workflow_states: dict[str, Any]) -> None:
+def print_summary(session_id: str, workflow_states: Dict[str, Any]) -> None:
     """Print initialization summary.
 
     Args:

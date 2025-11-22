@@ -22,6 +22,7 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+from typing import Dict, List, Tuple
 
 # Add VCS module to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"))
@@ -78,7 +79,7 @@ class PRFeedbackWorkItemGenerator:
         self.adapter = adapter
         self.provider_name = adapter.get_provider_name()
 
-    def fetch_unresolved_conversations(self, pr_number: int) -> list[dict]:
+    def fetch_unresolved_conversations(self, pr_number: int) -> List[Dict]:
         """Fetch unresolved PR conversations.
 
         Args:
@@ -104,7 +105,7 @@ class PRFeedbackWorkItemGenerator:
         else:
             raise RuntimeError(f"Unsupported VCS adapter: {type(self.adapter)}")
 
-    def _fetch_github_conversations(self, pr_number: int) -> list[dict]:
+    def _fetch_github_conversations(self, pr_number: int) -> List[Dict]:
         """Fetch unresolved GitHub PR review threads.
 
         Uses GitHub GraphQL API to fetch reviewThreads with isResolved status.
@@ -209,7 +210,7 @@ class PRFeedbackWorkItemGenerator:
         except (KeyError, TypeError) as e:
             raise RuntimeError(f"Failed to parse GitHub review threads: {e}")
 
-    def _fetch_azure_conversations(self, pr_number: int) -> list[dict]:
+    def _fetch_azure_conversations(self, pr_number: int) -> List[Dict]:
         """Fetch unresolved Azure DevOps PR threads.
 
         Uses Azure CLI to fetch PR threads with status "active" or "pending".
@@ -296,8 +297,8 @@ class PRFeedbackWorkItemGenerator:
         return conversations
 
     def create_work_item_from_conversation(
-        self, pr_number: int, conversation: dict, sequence: int
-    ) -> tuple[str, str]:
+        self, pr_number: int, conversation: Dict, sequence: int
+    ) -> Tuple[str, str]:
         """Create work-item from conversation.
 
         Args:
@@ -319,8 +320,8 @@ class PRFeedbackWorkItemGenerator:
             raise RuntimeError(f"Unsupported VCS adapter: {type(self.adapter)}")
 
     def _create_github_issue(
-        self, pr_number: int, conversation: dict, sequence: int
-    ) -> tuple[str, str]:
+        self, pr_number: int, conversation: Dict, sequence: int
+    ) -> Tuple[str, str]:
         """Create GitHub issue from conversation.
 
         Args:
@@ -428,8 +429,8 @@ class PRFeedbackWorkItemGenerator:
             raise RuntimeError("Timeout while creating GitHub issue")
 
     def _create_azure_work_item(
-        self, pr_number: int, conversation: dict, sequence: int
-    ) -> tuple[str, str]:
+        self, pr_number: int, conversation: Dict, sequence: int
+    ) -> Tuple[str, str]:
         """Create Azure DevOps work-item from conversation.
 
         Args:
@@ -517,7 +518,7 @@ class PRFeedbackWorkItemGenerator:
         except (json.JSONDecodeError, KeyError) as e:
             raise RuntimeError(f"Failed to parse Azure DevOps work-item response: {e}")
 
-    def display_conversations(self, conversations: list[dict]) -> None:
+    def display_conversations(self, conversations: List[Dict]) -> None:
         """Display unresolved conversations grouped by file.
 
         Args:

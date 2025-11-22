@@ -25,7 +25,7 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 
 try:
     import yaml
@@ -65,7 +65,7 @@ def warning(msg: str) -> None:
     print(f"{Colors.YELLOW}⚠{Colors.END} {msg}")
 
 
-def parse_todo_filename(filename: str) -> Optional[dict[str, str]]:
+def parse_todo_filename(filename: str) -> Optional[Dict[str, str]]:
     """Parse TODO filename to extract metadata.
 
     Args:
@@ -94,7 +94,7 @@ def parse_todo_filename(filename: str) -> Optional[dict[str, str]]:
     }
 
 
-def load_workflow_metadata(todo_file: Path) -> Optional[dict[str, Any]]:
+def load_workflow_metadata(todo_file: Path) -> Optional[Dict[str, Any]]:
     """Load workflow file and extract metadata from frontmatter.
 
     Args:
@@ -123,7 +123,7 @@ def load_workflow_metadata(todo_file: Path) -> Optional[dict[str, Any]]:
         return None
 
 
-def scan_filesystem() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+def scan_filesystem() -> tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
     """Scan filesystem for TODO files.
 
     Returns:
@@ -186,7 +186,7 @@ def scan_filesystem() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     return active_workflows, archived_workflows
 
 
-def load_todo_md() -> tuple[dict[str, Any], str]:
+def load_todo_md() -> tuple[Dict[str, Any], str]:
     """Load TODO.md and parse YAML frontmatter.
 
     Returns:
@@ -212,7 +212,7 @@ def load_todo_md() -> tuple[dict[str, Any], str]:
     return frontmatter, content
 
 
-def save_todo_md(frontmatter: dict[str, Any], content: str) -> None:
+def save_todo_md(frontmatter: Dict[str, Any], content: str) -> None:
     """Save updated TODO.md with new frontmatter.
 
     Args:

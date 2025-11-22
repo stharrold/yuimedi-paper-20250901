@@ -40,7 +40,7 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
+from typing import List, Optional
 
 # Add VCS module to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"))
@@ -115,7 +115,7 @@ def warning(message: str) -> None:
 
 def ask_question(
     prompt: str,
-    options: Optional[list[str]] = None,
+    options: Optional[List[str]] = None,
     default: Optional[str] = None,
     allow_multiple: bool = False,
 ) -> str:
