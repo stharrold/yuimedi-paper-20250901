@@ -26,7 +26,8 @@ This is a research project focused on natural language to SQL in healthcare, spe
   - `scripts/` - GitHub sync automation (Python, uses stdlib only)
   - `tools/validation/` - Documentation quality validation scripts (bash)
   - `tools/workflow-utilities/` - Archive management and version checking
-  - `.claude/skills/` - Workflow automation skills (9 skills, standard-workflow v1.15.1)
+  - `.claude/skills/` - Workflow automation skills (9 skills, v1.4.0)
+  - `.agents/` - Mirror of .claude/skills/ for cross-tool compatibility
   - `.claude/commands/` - Slash commands (/plan, /specify, /tasks)
 
 - **Research Supporting Materials**:
@@ -114,9 +115,11 @@ podman-compose run --rm dev python .claude/skills/quality-enforcer/scripts/run_q
 | 1. Documentation | All validation tests pass |
 | 2. Linting | `ruff check .` clean |
 | 3. Types | `mypy scripts/` passes |
-| 4. Coverage | ≥80% test coverage |
-| 5. Tests | All pytest tests pass |
+| 4. Coverage | ≥80% test coverage (if tests exist) |
+| 5. Tests | All pytest tests pass (if tests exist) |
 | 6. Build | `uv build` succeeds |
+
+**Note:** This is a documentation-only repository. Gates 4-5 (coverage/tests) pass automatically when no test directory exists. The quality-enforcer script auto-detects if podman-compose is unavailable and falls back to local `uv run` commands.
 
 ## Local Development (Alternative)
 
@@ -207,7 +210,7 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 
 **Run before all commits affecting documentation.**
 
-### Workflow Skills System (standard-workflow v1.15.1)
+### Workflow Skills System (v1.4.0)
 
 **9 Skills Available in `.claude/skills/`:**
 
@@ -398,4 +401,18 @@ uv add --dev <package>           # Add dev dependency
 - **ARCHIVED/TODO/**: Historical TODO files (deprecated 2025-11-21)
   - `20251121T095620Z_TODO_FOR_AI.json` - 169 tasks (100 done, 69 migrated)
   - `20251121T095620Z_TODO_FOR_HUMAN.md` - Human-readable version
-- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, etc.)
+- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, v1.3, v1.4.0)
+
+## AI Config Sync
+
+The repository maintains parallel AI configuration directories:
+- `CLAUDE.md` → `AGENTS.md` (for cross-tool compatibility)
+- `.claude/skills/` → `.agents/` (mirror of workflow skills)
+- `.claude/commands/` → `.agents/commands/` (mirror of slash commands)
+
+**Sync after changes:**
+```bash
+rsync -av --delete --exclude=".DS_Store" .claude/skills/ .agents/
+rsync -av --delete --exclude=".DS_Store" .claude/commands/ .agents/commands/
+cp CLAUDE.md AGENTS.md
+```
