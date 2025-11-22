@@ -1,10 +1,10 @@
 [project]
 name = "yuiquery-research"
-version = "1.0.0"
+version = "1.4.0"
 description = "YuiQuery Healthcare Analytics Research - Natural Language to SQL in Healthcare"
 readme = "README.md"
 license = {file = "LICENSE"}
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 authors = [
     {name = "YuiQuery Research Team", email = "research@yuimedi.com"}
 ]
@@ -23,28 +23,28 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
 
-# No runtime dependencies - scripts use only Python standard library
+# No runtime dependencies for automation scripts (scripts/, tools/)
+# Workflow skills (.claude/skills/) may require optional dependencies
 dependencies = []
 
 [project.optional-dependencies]
 dev = [
-    "black>=23.0.0",
-    "flake8>=6.0.0", 
+    "ruff>=0.8.0",
     "mypy>=1.0.0",
     "pre-commit>=3.0.0"
 ]
-
-docs = [
-    "pandoc-include-code>=1.0.0",
-    "pandoc-xnos>=2.5.0"
+workflow = [
+    "duckdb>=0.9.0"  # Required for agentdb-state-manager workflow skill
 ]
+
+# Note: pandoc filters (pandoc-include-code, pandoc-xnos) are installed via pandoc,
+# not pip/uv. Install pandoc separately: brew install pandoc (macOS)
 
 [project.urls]
 Homepage = "https://github.com/yourusername/yuimedi-paper-20250901"
@@ -61,45 +61,37 @@ build-backend = "hatchling.build"
 
 [tool.uv]
 dev-dependencies = [
-    "black>=23.0.0",
-    "flake8>=6.0.0",
+    "ruff>=0.8.0",
     "mypy>=1.0.0",
     "pre-commit>=3.0.0"
 ]
 
-[tool.black]
+[tool.ruff]
 line-length = 100
-target-version = ['py38']
-include = '\.pyi?$'
-extend-exclude = '''
-/(
-  # directories
-  \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | build
-  | dist
-)/
-'''
+target-version = "py39"
 
-[tool.flake8]
-max-line-length = 100
-extend-ignore = ["E203", "W503"]
-exclude = [
-    ".git",
-    "__pycache__",
-    ".venv",
-    ".eggs",
-    "*.egg",
-    "build",
-    "dist"
+[tool.ruff.lint]
+# Enable pycodestyle (E, W), pyflakes (F), isort (I), naming (N), pyupgrade (UP)
+select = ["E", "F", "I", "N", "W", "UP"]
+# Ruff formatter handles line breaks and whitespace automatically
+ignore = [
+    "N999",  # Allow module names with hyphens (skill naming convention)
+    "E501",  # Allow lines longer than 100 chars (SQL strings, long messages)
 ]
 
+[tool.ruff.format]
+# Use Black-compatible formatting
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore import rules in __init__.py files
+"__init__.py" = ["F401"]
+
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.9"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true

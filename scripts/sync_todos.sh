@@ -258,3 +258,4 @@ echo "   • Use 'gh issue create' to add new tasks that will sync automatically
 
 echo
 echo -e "${GREEN}All done! Happy researching!${NC}"
+fi
