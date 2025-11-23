@@ -67,6 +67,24 @@ Files are archived when:
 - **Update this README** when adding new archive categories
 - **Reference DECISION_LOG.json** for context on archived decisions
 
+## 🐛 Known Issues in Archived Files
+
+### `implementation/yuiquery-implementation-json_20250903T065157Z.json`
+
+**Issue**: Contains shell variable expansion syntax `${references.salary_data}`, `${references.single_irb}`, etc. that doesn't work in JSON context.
+
+**Context**: This file was an early implementation template that referenced external URLs via a `references` object. The shell syntax was never intended to be executed directly - it served as documentation placeholders.
+
+**Status**: Preserved as historical artifact. Not fixed because:
+1. File is archived and not actively used
+2. Modifying archives would compromise audit trail integrity
+3. The `references` object at the top of the file contains the actual URLs
+
+**Reference URLs** (from the archived file's `references` object):
+- salary_data: `https://www.glassdoor.com/Salaries/healthcare-data-analyst-salary-SRCH_KO0,23.htm`
+- single_irb: `https://grants.nih.gov/policy/humansubjects/single-irb-policy-multi-site-research.htm`
+- hipaa_deidentification: `https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html`
+
 ## 📊 Statistics
 
 Last updated: 2025-09-03
