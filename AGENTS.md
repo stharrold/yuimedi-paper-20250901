@@ -28,7 +28,7 @@ This is a research project focused on natural language to SQL in healthcare, spe
   - `tools/workflow-utilities/` - Archive management and version checking
   - `.claude/skills/` - Workflow automation skills (9 skills, v1.4.0)
   - `.agents/` - Mirror of .claude/skills/ for cross-tool compatibility
-  - `.claude/commands/` - Slash commands (/plan, /specify, /tasks)
+  - `.claude/commands/workflow/` - Workflow slash commands (8 phase-based commands)
 
 - **Research Supporting Materials**:
   - `src/` - Algorithms, analysis code, and schema mapping
