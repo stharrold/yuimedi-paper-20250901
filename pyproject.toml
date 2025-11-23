@@ -1,6 +1,6 @@
 [project]
 name = "yuiquery-research"
-version = "1.4.0"
+version = "1.5.0"
 description = "YuiQuery Healthcare Analytics Research - Natural Language to SQL in Healthcare"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -47,10 +47,10 @@ workflow = [
 # not pip/uv. Install pandoc separately: brew install pandoc (macOS)
 
 [project.urls]
-Homepage = "https://github.com/yourusername/yuimedi-paper-20250901"
-Repository = "https://github.com/yourusername/yuimedi-paper-20250901"
-Issues = "https://github.com/yourusername/yuimedi-paper-20250901/issues"
-Documentation = "https://github.com/yourusername/yuimedi-paper-20250901/blob/main/README.md"
+Homepage = "https://github.com/stharrold/yuimedi-paper-20250901"
+Repository = "https://github.com/stharrold/yuimedi-paper-20250901"
+Issues = "https://github.com/stharrold/yuimedi-paper-20250901/issues"
+Documentation = "https://github.com/stharrold/yuimedi-paper-20250901/blob/main/README.md"
 
 [project.scripts]
 sync-todos = "scripts.sync_github_todos:main"
