@@ -183,7 +183,7 @@ gh issue close <number>
   - Academic journals (JAMIA, JMIR, BMC Medical Informatics)
   - Preprint servers (arXiv, medRxiv)
   - Industry publications (HIMSS, CHIME)
-  - Conference proceedings (AMIA, HIMS)
+  - Conference proceedings (AMIA, HIMSS)
 - Document submission requirements for each portal
 - Include deadlines, review processes, and open access options
 - Create or update `docs/publication-strategy.md` or similar
