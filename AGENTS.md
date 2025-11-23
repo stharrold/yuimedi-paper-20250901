@@ -75,13 +75,27 @@ The literature review synthesizes findings from systematic reviews, peer-reviewe
 
 ## Branch Strategy
 
-**Active Branch:** `contrib/stharrold` (default for development)
-**Integration Branch:** `main`
-**Release Management:** Semantic versioning via git tags
+### Branch Structure
+
+```
+main (production) ← develop (integration) ← contrib/stharrold (active) ← feature/*
+```
+
+**PR Flow**: `feature → contrib → develop → main`
+
+**Branch Editability:**
+| Branch | Editable | Direct Commits |
+|--------|----------|----------------|
+| `feature/*` | Yes | Yes |
+| `contrib/*` | Yes | Yes |
+| `develop` | No | PRs only |
+| `main` | No | PRs only |
+| `release/*` | Ephemeral | Deleted after merge |
 
 **Workflow:**
-- Daily work: `contrib/stharrold`
-- Major releases: Create PR to `main`, tag after merge
+- Daily work: `contrib/stharrold` (or `feature/*` branches)
+- Integration: PR `contrib/stharrold` → `develop`
+- Releases: PR `develop` → `main`, tag after merge
 - Use git-workflow-manager for complex operations
 
 ## Containerized Development (Recommended)
