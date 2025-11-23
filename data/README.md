@@ -16,7 +16,7 @@ Store research data files, synthetic datasets, and analysis outputs. Large files
 
 ### Primary Data
 Research data is available through the YuiQuery platform at:
-- `yuiquery.yuimedi.com/chats/v3/`
+- <https://yuiquery.yuimedi.com/chats/v3/>
 
 ### Synthetic Data (Status: Not Required)
 
@@ -25,7 +25,7 @@ Research data is available through the YuiQuery platform at:
 
 Synthea synthetic patient data generation was originally planned as a backup data source. This task was marked as `not_needed` because:
 
-1. **Primary data available**: Research data is accessible through `yuiquery.yuimedi.com/chats/v3/`
+1. **Primary data available**: Research data is accessible through <https://yuiquery.yuimedi.com/chats/v3/>
 2. **No backup required**: The YuiQuery platform provides reliable data access
 3. **Scope reduction**: Per project-management/scope documents, backup data generation was deprioritized
 

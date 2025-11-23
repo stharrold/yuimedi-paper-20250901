@@ -10,7 +10,7 @@ This directory contains figures, diagrams, and screenshots for the YuiQuery Heal
 |------|-------------|
 | `20250804_YuiQuery_Feature-Step01-Identify-Business-Logic.png` | Business logic identification interface |
 | `20250804_YuiQuery_Feature-Step02-Select-Tables-Join.png` | Table selection and join interface |
-| `20250804_YuiQuery_Feautre-Step02-Select-Tables-Join-2.png` | Additional table join examples |
+| `20250804_YuiQuery_Feature-Step02-Select-Tables-Join-2.png` | Additional table join examples |
 | `20250810_YuiQuery_Feature-Inspect-Common-Table-Expressions.png` | CTE inspection feature |
 
 ## Naming Convention
