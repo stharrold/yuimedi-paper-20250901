@@ -30,7 +30,7 @@ Constants:
 import re
 import sys
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Optional
 
 # Constants with documented rationale
 SKILL_DIRS = [
@@ -67,9 +67,9 @@ class VersionValidator:
     def __init__(self, repo_root: Path, verbose: bool = False):
         self.repo_root = repo_root
         self.verbose = verbose
-        self.errors: List[ValidationError] = []
-        self.warnings: List[ValidationError] = []
-        self.skill_versions: Dict[str, Tuple[str, Path]] = {}  # skill_name -> (version, path)
+        self.errors: list[ValidationError] = []
+        self.warnings: list[ValidationError] = []
+        self.skill_versions: dict[str, tuple[str, Path]] = {}  # skill_name -> (version, path)
 
     def log(self, message: str):
         """Print message if verbose mode enabled."""
@@ -84,7 +84,7 @@ class VersionValidator:
         """Add validation warning."""
         self.warnings.append(ValidationError("WARNING", file, message))
 
-    def parse_version(self, version_str: str) -> Optional[Tuple[int, int, int]]:
+    def parse_version(self, version_str: str) -> Optional[tuple[int, int, int]]:
         """Parse semantic version string into (major, minor, patch) tuple.
 
         Args:
@@ -101,7 +101,7 @@ class VersionValidator:
             return None
         return (int(match.group(1)), int(match.group(2)), int(match.group(3)))
 
-    def extract_yaml_frontmatter(self, content: str) -> Optional[Dict[str, str]]:
+    def extract_yaml_frontmatter(self, content: str) -> Optional[dict[str, str]]:
         """Extract YAML frontmatter from markdown file.
 
         Args:

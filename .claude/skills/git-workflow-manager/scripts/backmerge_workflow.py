@@ -106,7 +106,7 @@ def step_pr_develop(version: str = None) -> bool:
             "--title",
             f"Backmerge {release_branch} to develop",
             "--body",
-            f"Backmerge release changes to develop.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+            "Backmerge release changes to develop.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
         ],
         check=False,
     )
@@ -153,7 +153,7 @@ def step_rebase_contrib() -> bool:
     result = run_cmd(["git", "rebase", "origin/develop"], check=False)
 
     if result.returncode != 0:
-        print(f"⚠️  Rebase conflict detected!")
+        print("⚠️  Rebase conflict detected!")
         print("  Resolve conflicts manually, then run:")
         print("    git rebase --continue")
         print("    git push --force-with-lease")

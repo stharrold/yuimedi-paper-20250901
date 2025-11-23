@@ -23,7 +23,7 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 # Constants with documented rationale
 SCHEMA_VERSION = "1.0.0"  # Current schema version for migrations
@@ -93,7 +93,7 @@ def generate_session_id() -> str:
     return hashlib.md5(current_time.encode()).hexdigest()[:16]
 
 
-def load_workflow_states() -> Dict[str, Any]:
+def load_workflow_states() -> dict[str, Any]:
     """Load canonical state definitions from workflow-states.json.
 
     Returns:
@@ -109,7 +109,7 @@ def load_workflow_states() -> Dict[str, Any]:
     info(f"Loading state definitions from {WORKFLOW_STATES_PATH.name}...")
 
     try:
-        with open(WORKFLOW_STATES_PATH, "r", encoding="utf-8") as f:
+        with open(WORKFLOW_STATES_PATH, encoding="utf-8") as f:
             states = json.load(f)
         success(f"Loaded {len(states.get('states', {}))} object types")
         return states
@@ -119,7 +119,7 @@ def load_workflow_states() -> Dict[str, Any]:
         error_exit(f"Failed to load workflow-states.json: {e}")
 
 
-def create_schema(session_id: str, workflow_states: Dict[str, Any]) -> bool:
+def create_schema(session_id: str, workflow_states: dict[str, Any]) -> bool:
     """Create AgentDB schema with tables and indexes.
 
     Args:
@@ -241,7 +241,7 @@ def validate_schema(session_id: str) -> bool:
     return True
 
 
-def print_summary(session_id: str, workflow_states: Dict[str, Any]) -> None:
+def print_summary(session_id: str, workflow_states: dict[str, Any]) -> None:
     """Print initialization summary.
 
     Args:

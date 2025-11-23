@@ -128,7 +128,7 @@ def check_todo_frontmatter():
             else:
                 print(f"  ✓ {todo_file}: Valid frontmatter")
 
-        except (IOError, OSError, UnicodeDecodeError) as e:
+        except (OSError, UnicodeDecodeError) as e:
             print(f"✗ {todo_file}: Error reading file ({type(e).__name__}): {e}")
             all_valid = False
 

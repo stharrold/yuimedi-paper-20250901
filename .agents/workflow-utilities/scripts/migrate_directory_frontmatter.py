@@ -4,7 +4,7 @@
 import re
 import sys
 from pathlib import Path
-from typing import List, Optional
+from typing import Optional
 
 
 def has_yaml_frontmatter(content: str) -> bool:
@@ -41,7 +41,7 @@ def extract_frontmatter(content: str) -> tuple[Optional[str], str]:
     return None, content
 
 
-def get_child_directories(dir_path: Path) -> List[str]:
+def get_child_directories(dir_path: Path) -> list[str]:
     """
     Get list of child directories that have CLAUDE.md files.
 
@@ -62,7 +62,7 @@ def get_child_directories(dir_path: Path) -> List[str]:
     return children
 
 
-def format_yaml_list(items: List[str], indent: int = 2) -> str:
+def format_yaml_list(items: list[str], indent: int = 2) -> str:
     """
     Format list items for YAML frontmatter.
 
@@ -106,7 +106,7 @@ def infer_purpose_from_content(content: str, dir_name: str, is_archived: bool) -
     return f"Context-specific guidance for {dir_name}"
 
 
-def infer_related_skills(content: str, is_archived: bool) -> List[str]:
+def infer_related_skills(content: str, is_archived: bool) -> list[str]:
     """
     Infer related skills from existing content.
 

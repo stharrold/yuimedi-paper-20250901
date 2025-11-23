@@ -3,10 +3,9 @@
 
 import sys
 from pathlib import Path
-from typing import List
 
 
-def get_all_claude_files(root_dir: Path) -> List[Path]:
+def get_all_claude_files(root_dir: Path) -> list[Path]:
     """Find all CLAUDE.md files in the repository."""
     return sorted(root_dir.rglob("CLAUDE.md"))
 

@@ -144,7 +144,7 @@ def create_worktree(workflow_type, slug, base_branch):
             try:
                 with open(template_path) as f:
                     content = f.read()
-            except (IOError, PermissionError) as e:
+            except (OSError, PermissionError) as e:
                 print(f"ERROR: Cannot read template file: {template_path}", file=sys.stderr)
                 print(f"Error: {e}", file=sys.stderr)
                 raise
@@ -161,7 +161,7 @@ def create_worktree(workflow_type, slug, base_branch):
             try:
                 with open(todo_path, "w") as f:
                     f.write(content)
-            except (IOError, PermissionError) as e:
+            except (OSError, PermissionError) as e:
                 print(f"ERROR: Cannot write TODO file: {todo_path}", file=sys.stderr)
                 print(f"Error: {e}", file=sys.stderr)
                 raise
@@ -186,7 +186,7 @@ github_user: {gh_user}
 Workflow: {workflow_type}
 Created: {created_timestamp}
 """)
-            except (IOError, PermissionError) as e:
+            except (OSError, PermissionError) as e:
                 print(f"ERROR: Cannot write TODO file: {todo_path}", file=sys.stderr)
                 print(f"Error: {e}", file=sys.stderr)
                 raise
