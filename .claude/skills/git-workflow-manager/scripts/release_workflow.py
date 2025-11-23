@@ -20,6 +20,7 @@ import argparse
 import subprocess
 import sys
 from pathlib import Path
+from typing import Optional
 
 
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
@@ -96,7 +97,7 @@ def run_quality_gates() -> bool:
     return result.returncode == 0
 
 
-def step_create_release(version: str = None) -> bool:
+def step_create_release(version: Optional[str] = None) -> bool:
     """Create release branch from develop."""
     print("\n" + "=" * 60)
     print("STEP 1: Create Release Branch")
@@ -280,7 +281,7 @@ def show_status():
     return True
 
 
-def run_full_workflow(version: str = None):
+def run_full_workflow(version: Optional[str] = None):
     """Run all workflow steps in sequence."""
     print("\n" + "=" * 60)
     print("FULL RELEASE WORKFLOW")

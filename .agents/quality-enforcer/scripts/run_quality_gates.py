@@ -1,18 +1,60 @@
 #!/usr/bin/env python3
-"""Run all quality gates and report results."""
+"""Run all quality gates and report results.
 
+Supports multiple execution modes:
+- Container mode: Inside container, uses 'uv run' directly
+- Local mode with podman-compose: Uses 'podman-compose run --rm dev uv run'
+- Local mode without podman-compose: Falls back to 'uv run' directly
+
+The script auto-detects the environment and uses appropriate commands.
+"""
+
+import os
 import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 
+def is_container_env():
+    """Check if running inside a container."""
+    return os.path.exists("/.dockerenv") or os.path.exists("/run/.containerenv")
+
+
+def has_podman_compose():
+    """Check if podman-compose is available."""
+    try:
+        result = subprocess.run(
+            ["podman-compose", "--version"],
+            capture_output=True,
+            text=True,
+        )
+        return result.returncode == 0
+    except FileNotFoundError:
+        return False
+
+
+def get_command_prefix():
+    """Get command prefix based on environment.
+
+    Inside container: use 'uv run' directly
+    Outside container with podman-compose: use 'podman-compose run --rm dev uv run'
+    Outside container without podman-compose: use 'uv run' directly (fallback)
+    """
+    if is_container_env():
+        return ["uv", "run"]
+    elif has_podman_compose():
+        return ["podman-compose", "run", "--rm", "dev", "uv", "run"]
+    else:
+        # Fallback to local uv run
+        return ["uv", "run"]
+
+
 def run_tests():
     """Run all tests and verify they pass."""
     print("Running tests...")
-    result = subprocess.run(
-        ["podman-compose", "run", "--rm", "dev", "pytest", "-v"], capture_output=True, text=True
-    )
+    cmd = get_command_prefix() + ["pytest", "-v"]
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     passed = result.returncode == 0
 
@@ -32,11 +74,13 @@ def check_coverage(threshold=80):
 
     # Call check_coverage.py script using repo-relative path for container compatibility
     script_path = ".claude/skills/quality-enforcer/scripts/check_coverage.py"
-    result = subprocess.run(
-        ["podman-compose", "run", "--rm", "dev", "python", script_path, str(threshold)],
-        capture_output=True,
-        text=True,
-    )
+    prefix = get_command_prefix()
+    # Replace 'uv run' with 'python' for script execution
+    if prefix[-2:] == ["uv", "run"]:
+        cmd = prefix[:-2] + ["python", script_path, str(threshold)]
+    else:
+        cmd = ["python", script_path, str(threshold)]
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     passed = result.returncode == 0
     print(result.stdout)
@@ -47,9 +91,13 @@ def check_coverage(threshold=80):
 def check_build():
     """Verify package builds successfully."""
     print("Checking build...")
-    result = subprocess.run(
-        ["podman-compose", "run", "--rm", "dev", "uv", "build"], capture_output=True, text=True
-    )
+    prefix = get_command_prefix()
+    # For build, we need 'uv build' not 'uv run build'
+    if prefix[-2:] == ["uv", "run"]:
+        cmd = prefix[:-1] + ["build"]  # uv build
+    else:
+        cmd = ["uv", "build"]
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     passed = result.returncode == 0
 
@@ -66,11 +114,8 @@ def check_linting():
     """Run ruff linting."""
     print("Checking linting...")
 
-    result = subprocess.run(
-        ["podman-compose", "run", "--rm", "dev", "ruff", "check", "."],
-        capture_output=True,
-        text=True,
-    )
+    cmd = get_command_prefix() + ["ruff", "check", "."]
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     passed = result.returncode == 0
 

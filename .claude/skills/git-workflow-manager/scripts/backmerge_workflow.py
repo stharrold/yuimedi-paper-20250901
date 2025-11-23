@@ -70,7 +70,7 @@ def find_release_branch() -> Optional[str]:
     return None
 
 
-def step_pr_develop(version: str = None) -> bool:
+def step_pr_develop(version: Optional[str] = None) -> bool:
     """Create PR from release to develop."""
     print("\n" + "=" * 60)
     print("STEP 1: PR Release → Develop")
@@ -172,7 +172,7 @@ def step_rebase_contrib() -> bool:
     return True
 
 
-def step_cleanup_release(version: str = None) -> bool:
+def step_cleanup_release(version: Optional[str] = None) -> bool:
     """Delete release branch locally and remotely."""
     print("\n" + "=" * 60)
     print("STEP 3: Cleanup Release Branch")
@@ -255,7 +255,7 @@ def show_status():
     return True
 
 
-def run_full_workflow(version: str = None):
+def run_full_workflow(version: Optional[str] = None):
     """Run all workflow steps in sequence."""
     print("\n" + "=" * 60)
     print("FULL BACKMERGE WORKFLOW")
