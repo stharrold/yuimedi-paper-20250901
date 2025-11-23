@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Run all quality gates and report results."""
 
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -29,10 +30,10 @@ def check_coverage(threshold=80):
     """Check test coverage meets threshold."""
     print(f"Checking coverage (≥{threshold}%)...")
 
-    # Call check_coverage.py script
-    script_path = Path(__file__).parent / "check_coverage.py"
+    # Call check_coverage.py script using repo-relative path for container compatibility
+    script_path = ".claude/skills/quality-enforcer/scripts/check_coverage.py"
     result = subprocess.run(
-        ["podman-compose", "run", "--rm", "dev", "python", str(script_path), str(threshold)],
+        ["podman-compose", "run", "--rm", "dev", "python", script_path, str(threshold)],
         capture_output=True,
         text=True,
     )
@@ -127,8 +128,8 @@ def check_todo_frontmatter():
             else:
                 print(f"  ✓ {todo_file}: Valid frontmatter")
 
-        except Exception as e:
-            print(f"✗ {todo_file}: Error reading file: {e}")
+        except (IOError, OSError, UnicodeDecodeError) as e:
+            print(f"✗ {todo_file}: Error reading file ({type(e).__name__}): {e}")
             all_valid = False
 
     if all_valid:
@@ -141,11 +142,11 @@ def sync_ai_config():
     """Sync CLAUDE.md to cross-tool formats if modified."""
     print("Checking AI assistant configuration...")
 
-    # Check if CLAUDE.md or .claude/ was modified in this branch
+    # Check if CLAUDE.md or .claude/ was modified (uncommitted or staged changes)
     try:
-        # Get list of modified files compared to base branch
+        # Get list of uncommitted changes
         git_diff = subprocess.run(
-            ["git", "diff", "--name-only", "HEAD"], capture_output=True, text=True, check=False
+            ["git", "diff", "--name-only"], capture_output=True, text=True, check=False
         )
 
         # Also check staged files
@@ -166,8 +167,6 @@ def sync_ai_config():
 
         # Sync CLAUDE.md → AGENTS.md
         if Path("CLAUDE.md").exists():
-            import shutil
-
             shutil.copy("CLAUDE.md", "AGENTS.md")
             print("  ✓ Synced CLAUDE.md → AGENTS.md")
 

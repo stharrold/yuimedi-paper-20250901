@@ -109,7 +109,7 @@ def load_workflow_states() -> Dict[str, Any]:
     info(f"Loading state definitions from {WORKFLOW_STATES_PATH.name}...")
 
     try:
-        with open(WORKFLOW_STATES_PATH, encoding="utf-8") as f:
+        with open(WORKFLOW_STATES_PATH, "r", encoding="utf-8") as f:
             states = json.load(f)
         success(f"Loaded {len(states.get('states', {}))} object types")
         return states

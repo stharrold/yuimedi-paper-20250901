@@ -1,17 +1,17 @@
 ---
-description: Execute the implementation planning workflow using the plan template to generate design artifacts.
+description: "workflow/1_specify → workflow/2_plan → workflow/3_tasks | Generate design artifacts"
 order: 2
-prev: /specify
-next: /tasks
+prev: /1_specify
+next: /3_tasks
 ---
 
-# /plan - Step 2 of 4
+# /2_plan - Step 2 of 7
 
-**Workflow**: `/specify` → `/plan` → `/tasks` → *(implement)* → `/workflow`
+**Workflow**: `/1_specify` → `/2_plan` → `/3_tasks` → `/4_implement` → `/5_integrate` → `/6_release` → `/7_backmerge`
 
 **Purpose**: Generate design artifacts (research, data model, contracts, quickstart) from specification.
 
-**Prerequisites**: `specs/{feature}/spec.md` must exist (created by `/specify`)
+**Prerequisites**: `specs/{feature}/spec.md` must exist (created by `/1_specify`)
 
 **Outputs**: `research.md`, `data-model.md`, `contracts/`, `quickstart.md`, `plan.md`
 

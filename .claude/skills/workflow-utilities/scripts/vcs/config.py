@@ -56,7 +56,7 @@ def load_vcs_config(config_path: Optional[Path] = None) -> Optional[Dict[str, An
         return None
 
     try:
-        with open(config_path, encoding="utf-8") as f:
+        with open(config_path, "r", encoding="utf-8") as f:
             config = yaml.safe_load(f)
 
         if not config:

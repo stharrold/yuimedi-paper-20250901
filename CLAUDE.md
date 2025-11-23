@@ -218,11 +218,15 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 **Planning:** bmad-planner (requirements/architecture/epics), speckit-author (specifications)
 **Quality:** quality-enforcer (gates), tech-stack-adapter (stack detection), agentdb-state-manager (state sync)
 
-**4 Slash Commands:**
-- `/plan` - Implementation planning workflow
-- `/specify` - Feature specifications
-- `/tasks` - Dependency-ordered task generation
-- `/workflow` - Complete workflow orchestration
+**Workflow Commands** (`.claude/commands/workflow/`):
+- `/workflow/all` - Complete workflow orchestration (auto-detect state, continue)
+- `/workflow/1_specify` - Feature specification creation
+- `/workflow/2_plan` - Implementation planning
+- `/workflow/3_tasks` - Task breakdown generation
+- `/workflow/4_implement` - Implementation guidance
+- `/workflow/5_integrate` - Integration and PR creation
+- `/workflow/6_release` - Release branch workflow
+- `/workflow/7_backmerge` - Back-merge after release
 
 **When to Use:**
 - Major releases and complex git operations

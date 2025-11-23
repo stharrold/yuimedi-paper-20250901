@@ -21,9 +21,9 @@ Steps:
 """
 
 import argparse
-import shutil
 import subprocess
 import sys
+import shutil
 from datetime import datetime
 from pathlib import Path
 
@@ -106,7 +106,7 @@ def step_finish_feature() -> bool:
     # Validate we're on a feature branch
     if not current.startswith("feature/"):
         print(f"✗ Must be on a feature branch (current: {current})")
-        print("  Expected: feature/*")
+        print(f"  Expected: feature/*")
         return False
 
     # Run quality gates
@@ -132,7 +132,7 @@ def step_finish_feature() -> bool:
             contrib,
             "--fill",
             "--body",
-            "Feature PR created via workflow automation.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+            f"Feature PR created via workflow automation.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
         ],
         check=False,
     )
@@ -189,7 +189,7 @@ def step_archive_todo() -> bool:
             "git",
             "commit",
             "-m",
-            "chore: archive TODO files\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+            f"chore: archive TODO files\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
         ],
         check=False,
     )
@@ -197,7 +197,7 @@ def step_archive_todo() -> bool:
     if result.returncode != 0 and "nothing to commit" not in result.stdout:
         print(f"⚠️  Commit warning: {result.stderr}")
 
-    print("✓ Step 2 complete: TODO files archived")
+    print(f"✓ Step 2 complete: TODO files archived")
     print("\nNext: Run: pr_workflow.py sync-agents")
     return True
 
@@ -247,7 +247,7 @@ def step_sync_agents() -> bool:
             "git",
             "commit",
             "-m",
-            "chore: sync CLAUDE.md to cross-tool formats\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+            f"chore: sync CLAUDE.md to cross-tool formats\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
         ],
         check=False,
     )
@@ -255,7 +255,7 @@ def step_sync_agents() -> bool:
     if result.returncode != 0 and "nothing to commit" not in result.stdout:
         print(f"⚠️  Commit warning: {result.stderr}")
 
-    print("✓ Step 3 complete: AI config synced")
+    print(f"✓ Step 3 complete: AI config synced")
     print("\nNext: Run: pr_workflow.py start-develop")
     return True
 

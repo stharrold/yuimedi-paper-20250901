@@ -1,12 +1,12 @@
 ---
-description: Create or update the feature specification from a natural language feature description.
+description: "(start) → workflow/1_specify → workflow/2_plan | Create feature spec"
 order: 1
-next: /plan
+next: /2_plan
 ---
 
-# /specify - Step 1 of 4
+# /1_specify - Step 1 of 7
 
-**Workflow**: `/specify` → `/plan` → `/tasks` → *(implement)* → `/workflow`
+**Workflow**: `/1_specify` → `/2_plan` → `/3_tasks` → `/4_implement` → `/5_integrate` → `/6_release` → `/7_backmerge`
 
 **Purpose**: Create feature branch and specification document from natural language description.
 

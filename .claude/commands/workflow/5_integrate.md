@@ -1,22 +1,25 @@
 ---
-description: Execute PR workflow steps (finish-feature → archive-todo → sync-agents → start-develop)
-order: 4
-prev: /tasks
+description: "workflow/4_implement → workflow/5_integrate → workflow/6_release | Integrate feature to develop"
+order: 5
+prev: /4_implement
+next: /6_release
 ---
 
-# /workflow - Step 4 of 4
+# /5_integrate - Step 5 of 7
 
-**Workflow**: `/specify` → `/plan` → `/tasks` → *(implement)* → `/workflow`
+**Workflow**: `/1_specify` → `/2_plan` → `/3_tasks` → `/4_implement` → `/5_integrate` → `/6_release` → `/7_backmerge`
 
-**Purpose**: Create PRs and complete the feature lifecycle (PR to contrib, archive, sync, PR to develop).
+**Purpose**: Integrate completed feature work into shared branches (PR to contrib, archive, sync, PR to develop).
 
-**Prerequisites**: Implementation complete, all tasks done, on feature branch
+**Prerequisites**: Implementation complete, all tasks done, quality gates passed (from `/4_implement`)
 
 **Outputs**: PR created, TODO archived, configs synced
 
+**Next**: Run `/6_release` to release to production, then `/7_backmerge` to sync back
+
 ---
 
-# PR Workflow Command
+# Integration Workflow Command
 
 Execute the required PR workflow sequence.
 
