@@ -16,15 +16,23 @@ Steps:
 """
 
 import argparse
+import os
 import subprocess
 import sys
 from typing import Optional
 
 
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
-    """Run a command and return the result."""
+    """Run a command and return the result.
+
+    If check=False and the command fails, stderr is logged for debugging.
+    """
     print(f"  → {' '.join(cmd)}")
-    return subprocess.run(cmd, capture_output=True, text=True, check=check)
+    result = subprocess.run(cmd, capture_output=True, text=True, check=check)
+    # Log stderr on failure when not raising exception (PR #226 review feedback)
+    if not check and result.returncode != 0 and result.stderr:
+        print(f"    [debug] stderr: {result.stderr.strip()}")
+    return result
 
 
 def get_current_branch() -> str:
@@ -34,9 +42,33 @@ def get_current_branch() -> str:
 
 
 def get_contrib_branch() -> str:
-    """Get the contrib branch name (contrib/<username>)."""
+    """Get the contrib branch name (contrib/<username>).
+
+    Tries multiple sources for username (PR #226 review feedback):
+    1. GitHub CLI (gh api user)
+    2. Environment variable GITHUB_USERNAME
+    3. Git config user.name
+    4. Raises error if none available
+    """
+    # Try GitHub CLI first
     result = run_cmd(["gh", "api", "user", "-q", ".login"], check=False)
-    username = result.stdout.strip() or "stharrold"
+    username = result.stdout.strip()
+
+    # Fallback to environment variable
+    if not username:
+        username = os.environ.get("GITHUB_USERNAME", "")
+
+    # Fallback to git config
+    if not username:
+        result = run_cmd(["git", "config", "user.name"], check=False)
+        username = result.stdout.strip()
+
+    # Error if no username found
+    if not username:
+        print("✗ Could not determine GitHub username.")
+        print("  Fix: Run 'gh auth login' or set GITHUB_USERNAME env var")
+        sys.exit(1)
+
     return f"contrib/{username}"
 
 
@@ -217,7 +249,7 @@ def step_cleanup_release(version: Optional[str] = None) -> bool:
     return True
 
 
-def show_status():
+def show_status() -> bool:
     """Show current backmerge status."""
     print("\n" + "=" * 60)
     print("BACKMERGE STATUS")
@@ -255,7 +287,7 @@ def show_status():
     return True
 
 
-def run_full_workflow(version: Optional[str] = None):
+def run_full_workflow(version: Optional[str] = None) -> bool:
     """Run all workflow steps in sequence."""
     print("\n" + "=" * 60)
     print("FULL BACKMERGE WORKFLOW")
