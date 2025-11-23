@@ -3,17 +3,26 @@
   "version": "1.0.0",
   "type": "Academic research documentation",
   "focus": "Natural language to SQL in healthcare",
-  "updated": "2025-11-21T03:08:04.493408+00:00",
+  "updated": "2025-11-23T17:30:00.000000+00:00",
+  "deprecation_notice": {
+    "status": "DEPRECATED",
+    "deprecated_date": "2025-11-21",
+    "reason": "GitHub Issues is now the single source of truth for task management",
+    "migration_details": "47.8% duplicate tasks removed during migration (169 -> 36 unique active issues)",
+    "reference": "See TODO.md for current task management workflow",
+    "archived_copy": "ARCHIVED/TODO/20251121T095620Z_TODO_FOR_AI.json"
+  },
   "last_sync": "2025-11-21T03:08:04.493412+00:00",
-  "sync_source": "github_bidirectional_sync",
+  "sync_source": "github_bidirectional_sync_deprecated",
   "sync_metadata": {
     "github_repo": "stharrold/yuimedi-paper-20250901",
-    "sync_direction": "bidirectional",
+    "sync_direction": "read_only_historical",
     "last_github_fetch": "2025-11-21T03:08:04.493414+00:00",
+    "note": "These counts reflect pre-migration state with duplicates; actual unique issues: ~36",
     "total_github_issues": 169,
     "total_tasks": 169,
     "sync_conflicts": [],
-    "validation_status": "synced"
+    "validation_status": "deprecated"
   },
   "tasks": [
     {
@@ -3060,11 +3069,13 @@
     }
   ],
   "priority_distribution": {
+    "_note": "DEPRECATED: These counts include duplicates from pre-migration state",
     "P0": 55,
     "P1": 64,
     "P2": 50
   },
   "status_distribution": {
+    "_note": "DEPRECATED: Actual unique issues ~36 after deduplication; see GitHub Issues for current state",
     "done": 100,
     "todo": 69
   },

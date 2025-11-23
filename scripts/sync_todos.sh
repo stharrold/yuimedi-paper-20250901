@@ -52,8 +52,8 @@ if ! git rev-parse --git-dir &> /dev/null; then
 fi
 
 # Verify we're in the correct repository (optional safety check)
+EXPECTED_REPO_NAME="yuimedi-paper-20250901"
 REPO_NAME=$(gh repo view --json name --jq .name 2>/dev/null || echo "unknown")
-if [[ "$REPO_NAME" != "yuimedi-paper-20250901" ]]; then
 if [[ "$REPO_NAME" != "$EXPECTED_REPO_NAME" ]]; then
     echo -e "${YELLOW}Warning: Repository name '$REPO_NAME' doesn't match expected '$EXPECTED_REPO_NAME'${NC}"
     read -p "Continue anyway? (y/N): " -n 1 -r
@@ -258,4 +258,3 @@ echo "   • Use 'gh issue create' to add new tasks that will sync automatically
 
 echo
 echo -e "${GREEN}All done! Happy researching!${NC}"
-fi
