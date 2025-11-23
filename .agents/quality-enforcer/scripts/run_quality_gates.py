@@ -184,7 +184,17 @@ def check_todo_frontmatter():
 
 
 def sync_ai_config():
-    """Sync CLAUDE.md to cross-tool formats if modified."""
+    """Sync CLAUDE.md to cross-tool formats if modified.
+
+    NOTE (PR #226 review feedback): This function copies files but does NOT
+    stage them for commit. This is intentional - sync_ai_config() is a pre-commit
+    step that runs during quality gates. After running quality gates, you should:
+    1. Review the synced files (git status)
+    2. Stage them manually (git add AGENTS.md .agents/ .github/)
+    3. Commit with your other changes
+
+    This allows developers to review and approve synced changes before commit.
+    """
     print("Checking AI assistant configuration...")
 
     # Check if CLAUDE.md or .claude/ was modified (uncommitted or staged changes)
