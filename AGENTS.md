@@ -78,10 +78,10 @@ The literature review synthesizes findings from systematic reviews, peer-reviewe
 ### Branch Structure
 
 ```
-main (production) ← develop (integration) ← contrib/stharrold (active) ← feature/*
+main (production) ← release/* ← develop (integration) ← contrib/stharrold (active) ← feature/*
 ```
 
-**PR Flow**: `feature → contrib → develop → main`
+**PR Flow**: `feature → contrib → develop → release/* → main`
 
 **Branch Editability:**
 | Branch | Editable | Direct Commits |
@@ -89,13 +89,14 @@ main (production) ← develop (integration) ← contrib/stharrold (active) ← f
 | `feature/*` | Yes | Yes |
 | `contrib/*` | Yes | Yes |
 | `develop` | No | PRs only |
+| `release/*` | Ephemeral | Created from develop, deleted after merge |
 | `main` | No | PRs only |
-| `release/*` | Ephemeral | Deleted after merge |
 
 **Workflow:**
 - Daily work: `contrib/stharrold` (or `feature/*` branches)
 - Integration: PR `contrib/stharrold` → `develop`
-- Releases: PR `develop` → `main`, tag after merge
+- Releases: Create `release/vX.Y.Z` from `develop`, PR to `main`, tag after merge
+- Backmerge: After release, PR `release/*` → `develop`, then delete release branch
 - Use git-workflow-manager for complex operations
 
 ## Containerized Development (Recommended)
