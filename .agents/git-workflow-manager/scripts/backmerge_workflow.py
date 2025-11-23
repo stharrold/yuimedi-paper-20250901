@@ -41,14 +41,24 @@ def get_current_branch() -> str:
     return result.stdout.strip()
 
 
+def sanitize_username(username: str) -> str:
+    """Sanitize username for use in branch names.
+
+    - Replaces spaces with hyphens
+    - Converts to lowercase
+    - Removes leading/trailing whitespace
+    """
+    return username.strip().lower().replace(" ", "-")
+
+
 def get_contrib_branch() -> str:
     """Get the contrib branch name (contrib/<username>).
 
-    Tries multiple sources for username (PR #226 review feedback):
+    Tries multiple sources for username (PR #226, #227 review feedback):
     1. GitHub CLI (gh api user)
     2. Environment variable GITHUB_USERNAME
-    3. Git config user.name
-    4. Raises error if none available
+    3. Git config user.name (sanitized: lowercase, spaces → hyphens)
+    4. Exits with error if none available
     """
     # Try GitHub CLI first
     result = run_cmd(["gh", "api", "user", "-q", ".login"], check=False)
@@ -58,10 +68,10 @@ def get_contrib_branch() -> str:
     if not username:
         username = os.environ.get("GITHUB_USERNAME", "")
 
-    # Fallback to git config
+    # Fallback to git config (sanitize since user.name may have spaces)
     if not username:
         result = run_cmd(["git", "config", "user.name"], check=False)
-        username = result.stdout.strip()
+        username = sanitize_username(result.stdout)
 
     # Error if no username found
     if not username:

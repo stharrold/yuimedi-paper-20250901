@@ -62,7 +62,8 @@
   
   "comparison_to_original": {
     "original_budget": 2700,
-    "increase_factor": 12.4,
+    "increase_factor": 11.28,
+    "calculation_note": "subtotal ($30,450) / original ($2,700) = 11.28; using subtotal before contingency for fair comparison",
     "justification": "Original budget only included SME reviews, missing all development and infrastructure costs"
   },
   
