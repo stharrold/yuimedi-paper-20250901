@@ -14,26 +14,28 @@ import json
 import re
 import subprocess
 import sys
+import warnings
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any, Optional
 
 
 class YuiQueryGitHubSync:
     """Bidirectional sync between GitHub issues and YuiQuery research TODO files"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.repo_root = Path(__file__).parent.parent
         self.todo_ai_path = self.repo_root / "TODO_FOR_AI.json"
         self.todo_human_path = self.repo_root / "TODO_FOR_HUMAN.md"
         self.github_repo = "stharrold/yuimedi-paper-20250901"
-        self.project_info = {
+        self.project_info: dict[str, Any] = {
             "type": "academic_research",
             "focus": "natural_language_sql_healthcare",
             "documentation_only": True,
             "research_phase": "whitepaper_development",
         }
 
-    def fetch_github_issues(self):
+    def fetch_github_issues(self) -> Optional[list[dict[str, Any]]]:
         """Fetch all issues from GitHub repository"""
         try:
             cmd = [
@@ -48,7 +50,8 @@ class YuiQueryGitHubSync:
                 "all",  # Include both open and closed issues
             ]
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-            return json.loads(result.stdout)
+            issues: list[dict[str, Any]] = json.loads(result.stdout)
+            return issues
         except subprocess.CalledProcessError as e:
             print(f"Error fetching GitHub issues: {e}")
             print(f"   Command: {' '.join(cmd)}")
@@ -58,7 +61,7 @@ class YuiQueryGitHubSync:
             print(f"Error parsing GitHub response: {e}")
             return None  # Return None for parsing errors
 
-    def parse_issue_metadata(self, body):
+    def parse_issue_metadata(self, body: Optional[str]) -> dict[str, Any]:
         """Extract structured metadata from GitHub issue body"""
         if not body:
             body = ""
@@ -91,7 +94,7 @@ class YuiQueryGitHubSync:
         # Special handling for closed issues
         return metadata
 
-    def github_to_todo(self, issues):
+    def github_to_todo(self, issues: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Convert GitHub issues to TODO_FOR_AI.json format"""
         print("Converting GitHub issues to TODO format...")
 
@@ -146,7 +149,7 @@ class YuiQueryGitHubSync:
 
         return ai_tasks
 
-    def update_todo_ai_file(self, github_tasks):
+    def update_todo_ai_file(self, github_tasks: list[dict[str, Any]]) -> Optional[dict[str, Any]]:
         """Update TODO_FOR_AI.json with GitHub data"""
         print("Updating TODO_FOR_AI.json...")
 
@@ -176,8 +179,8 @@ class YuiQueryGitHubSync:
             )
 
             # Calculate status distribution
-            status_dist = {}
-            priority_dist = {}
+            status_dist: dict[str, int] = {}
+            priority_dist: dict[str, int] = {}
             for task in all_tasks:
                 status = task["status"]
                 priority = task["priority"]
@@ -219,7 +222,7 @@ class YuiQueryGitHubSync:
             print(f"Error updating TODO_FOR_AI.json: {e}")
             return None
 
-    def generate_human_markdown(self, todo_data):
+    def generate_human_markdown(self, todo_data: dict[str, Any]) -> bool:
         """Generate human-readable TODO_FOR_HUMAN.md"""
         print("Generating TODO_FOR_HUMAN.md...")
 
@@ -227,7 +230,7 @@ class YuiQueryGitHubSync:
             tasks = todo_data["tasks"]
 
             # Organize tasks by priority and status
-            priorities = {"P0": [], "P1": [], "P2": [], "P3": []}
+            priorities: dict[str, list[dict[str, Any]]] = {"P0": [], "P1": [], "P2": [], "P3": []}
             blocked = []
             completed = []
 
@@ -411,11 +414,13 @@ class YuiQueryGitHubSync:
                 f.write("\n".join(markdown_lines))
 
             print(f"Generated TODO_FOR_HUMAN.md with {len(tasks)} tasks")
+            return True
 
         except Exception as e:
             print(f"Error generating TODO_FOR_HUMAN.md: {e}")
+            return False
 
-    def sync_from_github(self):
+    def sync_from_github(self) -> Optional[dict[str, Any]]:
         """Phase 1: Sync GitHub issues -> TODO files"""
         print("Phase 1: GitHub -> TODO sync")
 
@@ -443,7 +448,7 @@ class YuiQueryGitHubSync:
 
         return todo_data
 
-    def validate_sync(self):
+    def validate_sync(self) -> bool:
         """Validate consistency between GitHub and TODO files"""
         print("Validating sync consistency...")
 
@@ -454,6 +459,9 @@ class YuiQueryGitHubSync:
 
             # Get GitHub issues
             github_issues = self.fetch_github_issues()
+            if github_issues is None:
+                print("Error: Could not fetch GitHub issues for validation")
+                return False
 
             # Extract issue numbers
             todo_github_tasks = [
@@ -485,12 +493,13 @@ class YuiQueryGitHubSync:
             print(f"Error validating sync: {e}")
             return False
 
-    def load_existing_todo(self):
+    def load_existing_todo(self) -> Optional[dict[str, Any]]:
         """Load existing TODO_FOR_AI.json file if it exists"""
         try:
             if self.todo_ai_path.exists():
                 with open(self.todo_ai_path) as f:
-                    return json.load(f)
+                    data: dict[str, Any] = json.load(f)
+                    return data
             else:
                 print("No existing TODO_FOR_AI.json found")
                 return None
@@ -498,7 +507,7 @@ class YuiQueryGitHubSync:
             print(f"Error loading existing TODO file: {e}")
             return None
 
-    def create_github_issue(self, task):
+    def create_github_issue(self, task: dict[str, Any]) -> Optional[int]:
         """Create a single GitHub issue from a TODO task"""
         try:
             # Format issue body with metadata
@@ -569,7 +578,7 @@ class YuiQueryGitHubSync:
             print(f"Error creating GitHub issue for task '{task.get('title', 'Unknown')}': {e}")
             return None
 
-    def sync_to_github(self, existing_todo_data):
+    def sync_to_github(self, existing_todo_data: Optional[dict[str, Any]]) -> int:
         """Phase 0: Sync TODO tasks -> GitHub issues (create missing issues)"""
         if not existing_todo_data:
             print("No existing TODO data to sync to GitHub")
@@ -617,8 +626,16 @@ class YuiQueryGitHubSync:
         print(f"Successfully created {created_count} GitHub issues from TODO tasks")
         return created_count
 
-    def main(self):
+    def main(self) -> int:
         """Main bidirectional sync function"""
+        # Emit programmatic deprecation warning
+        warnings.warn(
+            "YuiQueryGitHubSync is deprecated since v1.3.0. "
+            "Use GitHub Issues directly (gh issue list/create/view/close).",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+
         print("=" * 70)
         print("⚠️  DEPRECATION WARNING")
         print("=" * 70)

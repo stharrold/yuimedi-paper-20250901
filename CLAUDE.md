@@ -26,8 +26,9 @@ This is a research project focused on natural language to SQL in healthcare, spe
   - `scripts/` - GitHub sync automation (Python, uses stdlib only)
   - `tools/validation/` - Documentation quality validation scripts (bash)
   - `tools/workflow-utilities/` - Archive management and version checking
-  - `.claude/skills/` - Workflow automation skills (9 skills, standard-workflow v1.15.1)
-  - `.claude/commands/` - Slash commands (/plan, /specify, /tasks)
+  - `.claude/skills/` - Workflow automation skills (9 skills, v1.5.0)
+  - `.agents/` - Mirror of .claude/skills/ for cross-tool compatibility
+  - `.claude/commands/workflow/` - Workflow slash commands (8 phase-based commands)
 
 - **Research Supporting Materials**:
   - `src/` - Algorithms, analysis code, and schema mapping
@@ -74,13 +75,28 @@ The literature review synthesizes findings from systematic reviews, peer-reviewe
 
 ## Branch Strategy
 
-**Active Branch:** `contrib/stharrold` (default for development)
-**Integration Branch:** `main`
-**Release Management:** Semantic versioning via git tags
+### Branch Structure
+
+```
+main (production) ← release/* ← develop (integration) ← contrib/stharrold (active) ← feature/*
+```
+
+**PR Flow**: `feature → contrib → develop → release/* → main`
+
+**Branch Editability:**
+| Branch | Editable | Direct Commits |
+|--------|----------|----------------|
+| `feature/*` | Yes | Yes |
+| `contrib/*` | Yes | Yes |
+| `develop` | No | PRs only |
+| `release/*` | Ephemeral | Created from develop, deleted after merge |
+| `main` | No | PRs only |
 
 **Workflow:**
-- Daily work: `contrib/stharrold`
-- Major releases: Create PR to `main`, tag after merge
+- Daily work: `contrib/stharrold` (or `feature/*` branches)
+- Integration: PR `contrib/stharrold` → `develop`
+- Releases: Create `release/vX.Y.Z` from `develop`, PR to `main`, tag after merge
+- Backmerge: After release, PR `release/*` → `develop`, then delete release branch
 - Use git-workflow-manager for complex operations
 
 ## Containerized Development (Recommended)
@@ -114,9 +130,11 @@ podman-compose run --rm dev python .claude/skills/quality-enforcer/scripts/run_q
 | 1. Documentation | All validation tests pass |
 | 2. Linting | `ruff check .` clean |
 | 3. Types | `mypy scripts/` passes |
-| 4. Coverage | ≥80% test coverage |
-| 5. Tests | All pytest tests pass |
+| 4. Coverage | ≥80% test coverage (if tests exist) |
+| 5. Tests | All pytest tests pass (if tests exist) |
 | 6. Build | `uv build` succeeds |
+
+**Note:** This is a documentation-only repository. Gates 4-5 (coverage/tests) pass automatically when no test directory exists. The quality-enforcer script auto-detects if podman-compose is unavailable and falls back to local `uv run` commands.
 
 ## Local Development (Alternative)
 
@@ -207,7 +225,7 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 
 **Run before all commits affecting documentation.**
 
-### Workflow Skills System (standard-workflow v1.15.1)
+### Workflow Skills System (v1.5.0)
 
 **9 Skills Available in `.claude/skills/`:**
 
@@ -215,10 +233,15 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 **Planning:** bmad-planner (requirements/architecture/epics), speckit-author (specifications)
 **Quality:** quality-enforcer (gates), tech-stack-adapter (stack detection), agentdb-state-manager (state sync)
 
-**3 Slash Commands:**
-- `/plan` - Implementation planning workflow
-- `/specify` - Feature specifications
-- `/tasks` - Dependency-ordered task generation
+**Workflow Commands** (`.claude/commands/workflow/`):
+- `/workflow/all` - Complete workflow orchestration (auto-detect state, continue)
+- `/workflow/1_specify` - Feature specification creation
+- `/workflow/2_plan` - Implementation planning
+- `/workflow/3_tasks` - Task breakdown generation
+- `/workflow/4_implement` - Implementation guidance
+- `/workflow/5_integrate` - Integration and PR creation
+- `/workflow/6_release` - Release branch workflow
+- `/workflow/7_backmerge` - Back-merge after release
 
 **When to Use:**
 - Major releases and complex git operations
@@ -398,4 +421,18 @@ uv add --dev <package>           # Add dev dependency
 - **ARCHIVED/TODO/**: Historical TODO files (deprecated 2025-11-21)
   - `20251121T095620Z_TODO_FOR_AI.json` - 169 tasks (100 done, 69 migrated)
   - `20251121T095620Z_TODO_FOR_HUMAN.md` - Human-readable version
-- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, etc.)
+- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, v1.3, v1.4.0, v1.5.0)
+
+## AI Config Sync
+
+The repository maintains parallel AI configuration directories:
+- `CLAUDE.md` → `AGENTS.md` (for cross-tool compatibility)
+- `.claude/skills/` → `.agents/` (mirror of workflow skills)
+- `.claude/commands/` → `.agents/commands/` (mirror of slash commands)
+
+**Sync after changes:**
+```bash
+rsync -av --delete --exclude=".DS_Store" --exclude="__pycache__" .claude/skills/ .agents/
+rsync -av --delete --exclude=".DS_Store" --exclude="__pycache__" .claude/commands/ .agents/commands/
+cp CLAUDE.md AGENTS.md
+```
