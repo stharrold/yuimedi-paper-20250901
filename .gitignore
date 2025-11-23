@@ -80,6 +80,10 @@ site/
 tmp/
 .tmp/
 
+# Data directory (keep README, ignore data files)
+data/*
+!data/README.md
+
 # Haskell (original patterns kept for compatibility)
 dist
 dist-*
