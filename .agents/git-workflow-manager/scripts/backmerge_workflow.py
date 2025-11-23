@@ -18,6 +18,7 @@ Steps:
 import argparse
 import subprocess
 import sys
+from typing import Optional
 
 
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
@@ -59,7 +60,7 @@ def return_to_editable_branch() -> bool:
     return True
 
 
-def find_release_branch() -> str | None:
+def find_release_branch() -> Optional[str]:
     """Find the most recent release branch."""
     result = run_cmd(["git", "branch", "-r", "--list", "origin/release/*"], check=False)
     branches = result.stdout.strip().split("\n")
@@ -250,6 +251,8 @@ def show_status():
         print("Next step: backmerge_workflow.py rebase-contrib")
     else:
         print("Status: All synced, ready for next feature")
+
+    return True
 
 
 def run_full_workflow(version: str = None):

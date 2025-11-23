@@ -26,7 +26,7 @@ This is a research project focused on natural language to SQL in healthcare, spe
   - `scripts/` - GitHub sync automation (Python, uses stdlib only)
   - `tools/validation/` - Documentation quality validation scripts (bash)
   - `tools/workflow-utilities/` - Archive management and version checking
-  - `.claude/skills/` - Workflow automation skills (9 skills, v1.4.0)
+  - `.claude/skills/` - Workflow automation skills (9 skills, v1.5.0)
   - `.agents/` - Mirror of .claude/skills/ for cross-tool compatibility
   - `.claude/commands/workflow/` - Workflow slash commands (8 phase-based commands)
 
@@ -210,7 +210,7 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 
 **Run before all commits affecting documentation.**
 
-### Workflow Skills System (v1.4.0)
+### Workflow Skills System (v1.5.0)
 
 **9 Skills Available in `.claude/skills/`:**
 
@@ -406,7 +406,7 @@ uv add --dev <package>           # Add dev dependency
 - **ARCHIVED/TODO/**: Historical TODO files (deprecated 2025-11-21)
   - `20251121T095620Z_TODO_FOR_AI.json` - 169 tasks (100 done, 69 migrated)
   - `20251121T095620Z_TODO_FOR_HUMAN.md` - Human-readable version
-- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, v1.3, v1.4.0)
+- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, v1.3, v1.4.0, v1.5.0)
 
 ## AI Config Sync
 

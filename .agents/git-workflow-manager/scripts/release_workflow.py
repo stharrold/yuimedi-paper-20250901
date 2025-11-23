@@ -277,6 +277,8 @@ def show_status():
     else:
         print("Next step: release_workflow.py create-release")
 
+    return True
+
 
 def run_full_workflow(version: str = None):
     """Run all workflow steps in sequence."""
