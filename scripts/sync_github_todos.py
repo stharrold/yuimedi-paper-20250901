@@ -11,6 +11,7 @@ Adapted for research documentation and academic workflow management
 """
 
 import json
+import os
 import re
 import subprocess
 import sys
@@ -19,15 +20,24 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
+# Default repository name, can be overridden via environment variable
+DEFAULT_GITHUB_REPO = "stharrold/yuimedi-paper-20250901"
+
+# Assignee filtering - internal identifiers that shouldn't be used as GitHub assignees
+# DSH = Developer Samuel Harrold (internal reference, not GitHub username)
+# YLT = Yuimedi Leadership Team (internal reference prefix)
+EXCLUDED_ASSIGNEES = ["DSH"]
+EXCLUDED_ASSIGNEE_PREFIXES = ["YLT"]
+
 
 class YuiQueryGitHubSync:
     """Bidirectional sync between GitHub issues and YuiQuery research TODO files"""
 
-    def __init__(self) -> None:
+    def __init__(self, github_repo: Optional[str] = None) -> None:
         self.repo_root = Path(__file__).parent.parent
         self.todo_ai_path = self.repo_root / "TODO_FOR_AI.json"
         self.todo_human_path = self.repo_root / "TODO_FOR_HUMAN.md"
-        self.github_repo = "stharrold/yuimedi-paper-20250901"
+        self.github_repo = github_repo or os.environ.get("GITHUB_REPO") or DEFAULT_GITHUB_REPO
         self.project_info: dict[str, Any] = {
             "type": "academic_research",
             "focus": "natural_language_sql_healthcare",
@@ -549,10 +559,15 @@ class YuiQueryGitHubSync:
             # Add labels if present (skip if they don't exist in repo)
             # Note: Labels will be ignored if they don't exist in the repository
 
-            # Add assignee if present and it looks like a GitHub username (not DSH)
+            # Add assignee if present and it looks like a GitHub username
+            # (exclude internal identifiers like DSH and YLT prefixes)
             assignee = task.get("assignee")
-            if assignee and assignee != "DSH" and not assignee.startswith("YLT"):
-                cmd.extend(["--assignee", assignee])
+            if assignee:
+                is_excluded = assignee in EXCLUDED_ASSIGNEES or any(
+                    assignee.startswith(p) for p in EXCLUDED_ASSIGNEE_PREFIXES
+                )
+                if not is_excluded:
+                    cmd.extend(["--assignee", assignee])
 
             result = subprocess.run(
                 cmd,
