@@ -4,7 +4,7 @@
 YuiQuery's capability with worst-case healthcare data scenarios
 
 ## Deadline
-December 20, 2025
+January 10, 2026
 
 ## Key Deliverables
 - Algorithm implementation for schema inference

@@ -255,7 +255,7 @@ Maintained and updated weekly:
 - **Backup Role**: Review and validation support
 
 ### Paper 2: Proof of Concept
-- **Deadline**: December 20, 2025
+- **Deadline**: January 10, 2026
 - **Backup Role**: Algorithm testing and validation
 
 ### Paper 3: Meta-level Schema Mapping
