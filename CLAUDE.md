@@ -210,7 +210,9 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 - Expected deliverables
 - Development workflow instructions
 
-**Historical Note:** Previously used `TODO_FOR_AI.json` with bidirectional sync (`scripts/sync_github_todos.py`). This workflow was deprecated on 2025-11-21 due to duplicate task entries (47.8% deduplication achieved). Old TODO files archived in `ARCHIVED/TODO/` for reference.
+**Status (as of v1.6.0):** All GitHub Issues from batches 1-4 have been resolved. The issue tracker is clean.
+
+**Historical Note:** Previously used `TODO_FOR_AI.json` (deprecated 2025-11-21, archived in `ARCHIVED/TODO/`).
 
 ### Documentation Validation Architecture
 
@@ -225,7 +227,7 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 
 **Run before all commits affecting documentation.**
 
-### Workflow Skills System (v1.5.0)
+### Workflow Skills System (v1.6.0)
 
 **9 Skills Available in `.claude/skills/`:**
 
@@ -289,9 +291,8 @@ See individual `SKILL.md` files in `.claude/skills/` for detailed usage.
 - Consistent terminology throughout
 
 ### Task Management
-**Current Approach:** Direct GitHub Issues management (no sync needed)
-**Migration Note:** Previous bidirectional sync (TODO_FOR_AI.json ↔ GitHub Issues) deprecated 2025-11-21
-**Reference:** See `TODO.md` for migration details and archived files
+**Current Approach:** Direct GitHub Issues management via `gh` CLI
+**Reference:** See `TODO.md` for historical migration details
 
 ## Project Requirements
 
@@ -399,10 +400,9 @@ uv add --dev <package>           # Add dev dependency
 **Prevention**: Use modern, unified tooling from the start
 
 ### TODO Management Migration (2025-11-21)
-**Issue**: Duplicate tasks in TODO_FOR_AI.json (69 items, 33 duplicates)
-**Solution**: Migrated to GitHub Issues as single source of truth (36 unique issues)
-**Benefits**: 47.8% deduplication, better collaboration, comprehensive Claude Code context
-**Reference**: See `TODO.md` and commit 285de29 for migration details
+**Issue**: Duplicate tasks in TODO_FOR_AI.json
+**Solution**: Migrated to GitHub Issues as single source of truth
+**Reference**: See `TODO.md` for migration details
 
 ## Citation Reference Format
 
@@ -421,7 +421,7 @@ uv add --dev <package>           # Add dev dependency
 - **ARCHIVED/TODO/**: Historical TODO files (deprecated 2025-11-21)
   - `20251121T095620Z_TODO_FOR_AI.json` - 169 tasks (100 done, 69 migrated)
   - `20251121T095620Z_TODO_FOR_HUMAN.md` - Human-readable version
-- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, v1.3, v1.4.0, v1.5.0)
+- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, v1.3, v1.4.0, v1.5.0, v1.6.0)
 
 ## AI Config Sync
 
