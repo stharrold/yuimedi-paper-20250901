@@ -76,7 +76,7 @@ jobs:
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
-              repo: context.repo.name,
+              repo: context.repo.repo,
               body: `❌ Code quality checks failed. Please fix the following:
 
               1. Run \`uv run ruff format .\` to format your code
