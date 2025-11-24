@@ -37,11 +37,7 @@ class YuiQueryGitHubSync:
         self.repo_root = Path(__file__).parent.parent
         self.todo_ai_path = self.repo_root / "TODO_FOR_AI.json"
         self.todo_human_path = self.repo_root / "TODO_FOR_HUMAN.md"
-        self.github_repo = (
-            github_repo
-            or os.environ.get("GITHUB_REPO")
-            or DEFAULT_GITHUB_REPO
-        )
+        self.github_repo = github_repo or os.environ.get("GITHUB_REPO") or DEFAULT_GITHUB_REPO
         self.project_info: dict[str, Any] = {
             "type": "academic_research",
             "focus": "natural_language_sql_healthcare",
@@ -567,9 +563,8 @@ class YuiQueryGitHubSync:
             # (exclude internal identifiers like DSH and YLT prefixes)
             assignee = task.get("assignee")
             if assignee:
-                is_excluded = (
-                    assignee in EXCLUDED_ASSIGNEES
-                    or any(assignee.startswith(p) for p in EXCLUDED_ASSIGNEE_PREFIXES)
+                is_excluded = assignee in EXCLUDED_ASSIGNEES or any(
+                    assignee.startswith(p) for p in EXCLUDED_ASSIGNEE_PREFIXES
                 )
                 if not is_excluded:
                     cmd.extend(["--assignee", assignee])
