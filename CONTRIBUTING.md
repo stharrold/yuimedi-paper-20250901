@@ -1,12 +1,13 @@
 # Contributing to YuiQuery Healthcare Analytics Research
 
-Thank you for considering contributing to this research project! This document provides guidelines for contributing to the YuiQuery healthcare analytics research documentation.
+Thank you for considering contributing to this project! This document provides guidelines for contributing to the research paper and workflow automation tools.
 
 ## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
 - [Development Workflow](#development-workflow)
+- [MCP Server Contributions](#mcp-server-contributions)
 - [Documentation Requirements](#documentation-requirements)
 - [Pull Request Process](#pull-request-process)
 - [Quality Standards](#quality-standards)
@@ -28,50 +29,43 @@ Ensure you have the required tools installed:
 
 ```bash
 # Required
-uv --version          # UV package manager (Python 3.8+, for workflow utilities)
-git --version         # Version control
-gh --version          # GitHub CLI (for PR management)
+podman --version          # Container runtime (Podman 4.0+)
+podman-compose --version  # Container orchestration
+git --version             # Version control
 
-# Optional
-pandoc --version      # Document generation
+# VCS Provider CLI (one of):
+gh --version              # GitHub CLI (for GitHub repos)
+# OR
+az --version              # Azure CLI (for Azure DevOps repos)
+az extension add --name azure-devops  # Required extension for Azure DevOps
 ```
-
-**Why UV?**
-- Fast, reliable Python package management
-- Consistent environment across team members
-- Automatic Python version management
-- Zero-config virtual environment handling
 
 ### Initial Setup
 
 1. **Fork and clone the repository:**
    ```bash
-   gh repo fork stharrold/yuimedi-paper-20250901 --clone
-   cd yuimedi-paper-20250901
+   gh repo fork stharrold/stharrold-templates --clone
+   cd stharrold-templates
    ```
 
-2. **Set up UV environment:**
+2. **Build container:**
    ```bash
-   # UV automatically creates .venv on first use
-   uv sync  # Installs ruff, mypy, pre-commit
+   podman-compose build
    ```
 
-3. **Run validation scripts:**
+3. **Test MCP manager:**
    ```bash
-   ./validate_documentation.sh
+   podman-compose run --rm dev python mcp_manager.py --status
    ```
 
-4. **Verify setup:**
+4. **Run validation scripts:**
    ```bash
-   # UV automatically uses .venv when running commands
-   uv run python --version
-   uv run ruff --version
-   uv run mypy --version
+   podman-compose run --rm dev ./validate_documentation.sh
    ```
 
 ## Development Workflow
 
-This repository uses a contrib branch workflow:
+This repository uses a contrib branch workflow for personal contributions:
 
 ### Branch Structure
 
@@ -82,16 +76,17 @@ develop (integration)
   ↑
 contrib/stharrold (active development)
   ↑
-feature/* (individual features)
+feature/* (individual features via worktrees)
 ```
 
 ### Creating a Feature Branch
 
 ```bash
-# Create feature branch from contrib/stharrold
-git checkout contrib/stharrold
-git pull origin contrib/stharrold
-git checkout -b feat/my-feature
+# Option 1: Using workflow tool (recommended)
+podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/create_worktree.py feature my-feature contrib/stharrold
+
+# Option 2: Manual worktree creation
+git worktree add ../stharrold-templates.worktrees/my-feature -b feat/my-feature
 ```
 
 ### Daily Maintenance
@@ -110,38 +105,72 @@ git push origin contrib/stharrold --force-with-lease
 2. **contrib/stharrold → develop**: When ready for integration
 3. **develop → main**: For production releases
 
+## MCP Server Contributions
+
+### Adding New MCP Server Templates
+
+When adding templates for new MCP servers:
+
+1. **Document in docs/guides/**
+   - Create guide following modular CLAUDE.md pattern
+   - Keep file size ≤30KB for AI context optimization
+   - Include server configuration, credentials, platform compatibility
+
+2. **Test on all platforms:**
+   - Claude Code CLI (`~/.claude.json`)
+   - VS Code MCP Extension (platform-specific paths)
+   - Claude Desktop (platform-specific paths)
+
+3. **Update mcp_manager.py if needed:**
+   - Add platform detection logic
+   - Handle new credential types
+   - Test deduplication logic
+
+### MCP Configuration Standards
+
+**JSON Structure:**
+```json
+{
+  "mcpServers": {  // or "servers" for VS Code
+    "server-name": {
+      "command": "command",
+      "args": ["arg1", "arg2"],
+      "env": {
+        "ENV_VAR": "value"
+      }
+    }
+  }
+}
+```
+
+**Credential Management:**
+- Use keychain/credential manager (not plaintext)
+- Document required environment variables
+- Test with `mcp_manager.py --check-credentials`
+
 ## Documentation Requirements
 
-### Academic Research Standards
+### Modular CLAUDE.md Pattern
 
-**Citation Management:**
-- Use `[A#]` format for academic sources (peer-reviewed journals, systematic reviews)
-- Use `[I#]` format for industry sources (case studies, white papers)
-- Maintain complete bibliography with DOI links where available
-- Ensure all claims are supported by citations
+All directories must have:
 
-**Healthcare Domain Accuracy:**
-- Accurately use medical terminology (ICD-10, CPT, SNOMED, RxNorm)
-- Reference healthcare IT standards appropriately (HIMSS AMAM, HL7, FHIR)
-- Account for regulatory context (HIPAA, data governance)
-- Frame findings within healthcare-specific challenges
+1. **CLAUDE.md** - AI context and navigation
+   - YAML frontmatter with type, parent, children
+   - Cross-references to related concepts
+   - Command examples and workflows
 
-**Statistical Reporting:**
-- Include confidence intervals, p-values, and effect sizes where appropriate
-- Report quantitative results with statistical significance
-- Follow systematic literature review methodology
+2. **README.md** - Human-readable documentation
+   - YAML frontmatter with directory metadata
+   - Detailed explanations and tutorials
+   - Usage examples
 
-### Document Structure
+3. **ARCHIVED/** - Deprecated files subdirectory
 
-**Academic Paper Format:**
-- Abstract, Introduction, Literature Review, Methods, Results, Discussion, Conclusion
-- Appendices for glossaries and practical examples
-- Consistent section numbering and cross-references
+### File Size Constraints
 
-**File Organization:**
-- Primary research document: `paper.md`
-- Supporting materials: `images/`, `docs/`, `scripts/`
-- Project management: `TODO_FOR_AI.json`, `TODO_FOR_HUMAN.md`, `DECISION_LOG.json`
+- All files in `docs/guides/` must be ≤30KB
+- Use modular structure with cross-references
+- ARCHIVED/ uses compressed date-based archives (YYYYMMDD.tar.gz)
 
 ### Validation
 
@@ -149,7 +178,7 @@ Before committing documentation changes:
 
 ```bash
 ./validate_documentation.sh  # Runs all 5 validation tests:
-# - test_file_size.sh (30KB limit for modular files)
+# - test_file_size.sh (30KB limit)
 # - test_cross_references.sh (internal links)
 # - test_content_duplication.sh (detect duplicates)
 # - test_command_syntax.sh (validate bash commands)
@@ -174,10 +203,10 @@ gh pr create \
 ### 2. PR Requirements
 
 - [ ] All validation scripts pass
-- [ ] Documentation follows academic standards
-- [ ] Citations properly formatted
+- [ ] MCP manager functional (if Python changes)
+- [ ] Documentation updated
 - [ ] Commit messages follow convention
-- [ ] No sensitive information exposed
+- [ ] Dependencies added to pyproject.toml if needed
 
 ### 3. Commit Message Format
 
@@ -204,140 +233,126 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 ### 5. After Merge
 
 ```bash
-# Cleanup branches
-git checkout contrib/stharrold
-git pull origin contrib/stharrold
+# Cleanup worktree and branches
+git worktree remove ../stharrold-templates.worktrees/my-feature
 git branch -D feat/my-feature
 git push origin --delete feat/my-feature
 ```
 
 ## Quality Standards
 
-### Documentation Standards
-
-**Academic Quality:**
-- Systematic methodology for literature reviews
-- Evidence-based claims with proper citations
-- Empirical validation with quantitative results
-- Healthcare context maintained throughout
-
-**Technical Accuracy:**
-- Correctly represent NL2SQL technology state
-- Accurately describe healthcare analytics maturity models
-- Realistically portray implementation challenges
-- Base ROI calculations on documented case studies
-
-**Writing Quality:**
-- Clear, concise academic writing
-- Consistent terminology throughout
-- Proper grammar and spelling
-- Logical flow and narrative coherence
-
-### Python Script Standards
+### Python Code Standards
 
 **Core Principles:**
-- **Stdlib only**: No external dependencies for core tools
+- **Containerized**: Use podman-compose for all development
 - **Cross-platform**: Works on macOS, Linux, Windows
-- **Modern tooling**: Use Ruff for fast formatting and linting
+- **One way to run**: Always use `podman-compose run --rm dev <command>`
 - **Error handling**: Comprehensive try/except with clear messages
 
-**Development Tools:**
+**Quality Tools:**
 ```bash
-# Format code (Ruff formatter, Black-compatible)
-uv run ruff format .
+# Linting with ruff
+podman-compose run --rm dev ruff check .
+podman-compose run --rm dev ruff check --fix .
 
-# Lint code (replaces flake8 + isort + more)
-uv run ruff check .
-
-# Auto-fix linting issues
-uv run ruff check --fix .
-
-# Type checking
-uv run mypy scripts/
-
-# Run all checks
-uv run ruff format . && uv run ruff check . && uv run mypy scripts/
-
-# Run pre-commit hooks
-uv run pre-commit run --all-files
+# Testing with pytest
+podman-compose run --rm dev pytest
+podman-compose run --rm dev pytest --cov=. --cov-report=term
 ```
 
-**UV Environment Management:**
+### Documentation Standards
+
+**CLAUDE.md Files:**
+- Purpose-focused (what this directory contains)
+- Command-focused (quick reference)
+- Navigation-focused (where to go next)
+- Context-optimized (≤30KB)
+
+**README.md Files:**
+- Explanation-focused (why and how)
+- Tutorial-focused (step-by-step guides)
+- Reference-focused (complete documentation)
+- Human-optimized (no size limit)
+
+### Testing Standards
+
+**Manual Testing:**
 ```bash
-# Sync dependencies
-uv sync
+# MCP manager functionality
+podman-compose run --rm dev python mcp_manager.py --status
+podman-compose run --rm dev pytest test_mcp_deduplication.py
 
-# Add new dev dependency
-uv add --dev pytest
+# Documentation validation
+podman-compose run --rm dev ./validate_documentation.sh
 
-# Update dependencies
-uv sync --upgrade
-
-# Show installed packages
-uv pip list
+# Workflow tools
+podman-compose run --rm dev python .claude/skills/workflow-utilities/scripts/archive_manager.py list
+podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/semantic_version.py develop v5.0.0
 ```
 
-**Why Ruff?**
-- 10-100x faster than Black + Flake8 combined
-- Single tool for formatting and linting
-- Black-compatible formatting
-- Hundreds of linting rules (pycodestyle, pyflakes, isort, naming, etc.)
-- Written in Rust for maximum performance
+**Automated Testing (CI/CD):**
+- GitHub Actions runs on push/PR (same podman-compose setup)
+- Azure Pipelines available (same podman-compose setup)
+- Must pass before merge
 
-### Workflow Utilities
+## Workflow Tools Integration
 
-**Archive Management:**
+This repository includes workflow automation tools in `.claude/skills/`:
+
+### Using Workflow Tools
+
 ```bash
-# List archives
-uv run python tools/workflow-utilities/archive_manager.py list
+# Archive management
+podman-compose run --rm dev python .claude/skills/workflow-utilities/scripts/archive_manager.py list
 
-# Create archive
-uv run python tools/workflow-utilities/archive_manager.py create path/to/file
+# Directory structure validation
+podman-compose run --rm dev python .claude/skills/workflow-utilities/scripts/directory_structure.py docs/guides/
+
+# Version consistency checking
+podman-compose run --rm dev python .claude/skills/workflow-utilities/scripts/validate_versions.py
+
+# Semantic versioning
+podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/semantic_version.py develop v5.0.0
+
+# Worktree creation
+podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/create_worktree.py feature my-feature contrib/stharrold
 ```
 
-**Directory Structure:**
-```bash
-# Validate directory structure
-uv run python tools/workflow-utilities/directory_structure.py docs/
+### NOT Included from German Workflow
 
-# Every directory should have:
-# - CLAUDE.md (AI context)
-# - README.md (human documentation)
-# - ARCHIVED/ (deprecated files)
-```
+The following are intentionally NOT integrated:
+- BMAD planner (Python project focus)
+- SpecKit author (Python project focus)
+- Quality enforcer with pytest (overkill for documentation)
+- AgentDB state manager (external dependency)
+- Full 6-phase workflow orchestrator (not applicable)
 
-**Version Validation:**
-```bash
-# Check version consistency
-uv run python tools/workflow-utilities/validate_versions.py
-```
+See `docs/reference/german-workflow-v5.3.0.md` for complete workflow documentation.
 
-## Document Generation
+## AI Configuration Guidelines
 
-### Pandoc PDF Generation
+### Where to Make Changes
 
-**Basic PDF:**
-```bash
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf
-```
+| To change... | Edit this | NOT this |
+|--------------|-----------|----------|
+| Skills | `.claude/skills/` | `.agents/` |
+| Commands | `.claude/commands/` | N/A |
+| Root instructions | `CLAUDE.md` | `AGENTS.md` |
 
-**Professional Academic PDF:**
-```bash
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf \
-  --template=eisvogel \
-  --pdf-engine=xelatex \
-  --listings \
-  --toc \
-  --number-sections
-```
+### Why?
 
-**HTML for Web:**
-```bash
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.html \
-  --standalone \
-  --toc \
-  --self-contained
-```
+- `.claude/` is the **PRIMARY** source
+- `.agents/` is automatically synced (read-only mirror)
+- `AGENTS.md` is automatically generated from `CLAUDE.md`
+
+Changes to `.agents/` or `AGENTS.md` will be overwritten on next sync.
+
+### Sync Mechanism
+
+The sync happens:
+1. **Pre-commit hook** - `sync-ai-config` runs automatically
+2. **Manual** - `uv run python .claude/skills/workflow-utilities/scripts/sync_ai_config.py sync`
+3. **PR workflow** - `pr_workflow.py sync-agents` during integration
 
 ## Questions or Issues?
 
@@ -347,4 +362,4 @@ pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.html \
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the same license as the project (MIT License).
+By contributing, you agree that your contributions will be licensed under the same license as the project.

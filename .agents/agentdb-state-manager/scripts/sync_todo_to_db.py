@@ -16,7 +16,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import yaml
 
@@ -42,7 +42,7 @@ def info(msg: str) -> None:
     print(f"{Colors.BLUE}ℹ {msg}{Colors.END}")
 
 
-def parse_todo_file(file_path: Path) -> Optional[dict[str, Any]]:
+def parse_todo_file(file_path: Path) -> dict[str, Any] | None:
     """Parse TODO file and extract YAML frontmatter.
 
     Args:
@@ -150,7 +150,7 @@ def convert_to_records(frontmatter: dict[str, Any], file_name: str) -> list[dict
             passed = (
                 value
                 if isinstance(value, bool)
-                else (value >= 80 if isinstance(value, (int, float)) else False)
+                else (value >= 80 if isinstance(value, int | float) else False)
             )
 
             records.append(
@@ -177,25 +177,31 @@ def sync_to_agentdb(records: list[dict[str, Any]], session_id: str) -> bool:
     Returns:
         True if sync successful
 
-    Note: In actual execution, would use AgentDB tool to execute SQL.
+    Note: In actual execution, would use AgentDB tool to execute SQL with parameterized queries.
     """
     info(f"Syncing {len(records)} records to AgentDB...")
 
-    # Generate INSERT statements
-    for record in records:
-        sql = f"""
+    # Generate parameterized INSERT statements (SQL injection safe)
+    # Uses DuckDB positional parameter syntax ($1, $2, etc.)
+    sql_template = """
         INSERT INTO workflow_records (object_id, object_type, object_state, object_metadata)
-        VALUES (
-            '{record["object_id"]}',
-            '{record["object_type"]}',
-            '{record["object_state"]}',
-            '{record["object_metadata"]}'::JSON
-        );
-        """
-        print(sql.strip())
+        VALUES ($1, $2, $3, $4::JSON);
+    """
+    print("SQL Template (parameterized):")
+    print(sql_template.strip())
+    print("\nParameter values for each record:")
 
-    success(f"Prepared {len(records)} INSERT statements")
-    print("\nNOTE: In actual execution, these would be sent to AgentDB")
+    for i, record in enumerate(records):
+        params = (
+            record["object_id"],
+            record["object_type"],
+            record["object_state"],
+            record["object_metadata"],
+        )
+        print(f"  Record {i + 1}: {params}")
+
+    success(f"Prepared {len(records)} parameterized INSERT statements")
+    print("\nNOTE: In actual execution, use conn.execute(sql, params) for SQL injection safety")
 
     return True
 

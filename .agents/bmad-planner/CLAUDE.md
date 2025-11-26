@@ -6,6 +6,8 @@ parent: null
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md
+  - scripts/CLAUDE.md
+  - templates/CLAUDE.md
 related_skills:
   - **workflow-orchestrator** - Calls create_planning.py script
   - **speckit-author** - Reads planning context

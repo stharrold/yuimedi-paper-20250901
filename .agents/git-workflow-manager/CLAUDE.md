@@ -6,12 +6,14 @@ parent: null
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md
+  - scripts/CLAUDE.md
 related_skills:
-  - **workflow-orchestrator** - Calls git-workflow-manager scripts
-  - **speckit-author** - Runs in worktrees created by this skill
-  - **quality-enforcer** - Uses semantic_version.py
-  - **workflow-utilities** - Provides VCS abstraction and TODO utilities
-  - **bmad-planner** - Planning happens before worktree creation
+  - workflow-orchestrator
+  - speckit-author
+  - quality-enforcer
+  - workflow-utilities
+  - bmad-planner
+  - agentdb-state-manager
 ---
 
 # Claude Code Context: git-workflow-manager
@@ -19,6 +21,8 @@ related_skills:
 ## Purpose
 
 Git Workflow Manager provides **automated git operations** for the git-flow + GitHub-flow hybrid workflow with worktrees. It handles branch creation, worktree management, commits, PRs, semantic versioning, and daily rebase operations. All operations are designed to work with the isolated worktree development pattern and VCS provider abstraction (GitHub/Azure DevOps).
+
+> **Note**: As of v5.12.0, workflow state tracking has migrated from TODO_*.md files to AgentDB (DuckDB). Some scripts in this skill (create_worktree.py, cleanup_feature.py) still reference TODO files but will be updated in a future release. See `agentdb-state-manager` for the current state tracking system.
 
 ## Directory Structure
 
@@ -31,7 +35,7 @@ Git Workflow Manager provides **automated git operations** for the git-flow + Gi
 │   ├── semantic_version.py       # Calculate semantic version from changes (Phase 3)
 │   ├── create_release.py         # Create release branch from develop (Phase 5)
 │   ├── tag_release.py            # Tag release on main after merge (Phase 5)
-│   ├── backmerge_release.py      # Back-merge release to develop (Phase 5)
+│   ├── backmerge_workflow.py     # Backmerge workflow orchestrator (Step 7)
 │   ├── cleanup_release.py        # Cleanup release branch after completion (Phase 5)
 │   └── __init__.py               # Package initialization
 ├── templates/                    # (none - no template files)
@@ -40,6 +44,7 @@ Git Workflow Manager provides **automated git operations** for the git-flow + Gi
 ├── README.md                     # Human-readable overview
 ├── CHANGELOG.md                  # Version history
 └── ARCHIVED/                     # Deprecated files
+    ├── backmerge_release.py      # [DEPRECATED] Replaced by backmerge_workflow.py
     ├── CLAUDE.md
     └── README.md
 ```
@@ -305,35 +310,47 @@ python .claude/skills/git-workflow-manager/scripts/tag_release.py \
 
 ---
 
-### backmerge_release.py
+### backmerge_workflow.py
 
-**Purpose:** Back-merge release changes to develop after tagging
+**Purpose:** Orchestrate backmerge of release changes to develop (Step 7)
 
-**When to use:** Phase 5 (Release) - after tagging release on main
+**When to use:** Step 7 (/7_backmerge) - after tagging release on main
 
 **Invocation:**
 ```bash
-python .claude/skills/git-workflow-manager/scripts/backmerge_release.py \
-  <version> <target-branch>
+python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py <step>
 ```
+
+**Available steps:**
+- `pr-develop` - Create PR from release branch to develop
+- `rebase-contrib` - Rebase contrib on updated develop
+- `cleanup-release` - Delete release branch
+- `full` - Run all steps in sequence
+- `status` - Show current backmerge status
 
 **Example:**
 ```bash
-# Merge release/v1.6.0 back to develop
-python .claude/skills/git-workflow-manager/scripts/backmerge_release.py \
-  v1.6.0 develop
+# Create PR from release to develop
+python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop
+
+# After PR merged, rebase contrib
+python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py rebase-contrib
+
+# Cleanup release branch
+python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py cleanup-release
 ```
 
 **What it does:**
-1. Checks out target branch (develop)
-2. Merges release branch
-3. Resolves conflicts if any (manual intervention required)
-4. Pushes to origin
+1. Creates PR from release branch to develop
+2. (Manual) User merges PR in GitHub UI
+3. Rebases contrib branch on updated develop
+4. Deletes release branch
 
 **Key features:**
-- Keeps develop in sync with production
+- Uses release branch directly (no separate backmerge branch)
+- Returns to editable branch (contrib) at end
 - Handles merge conflicts gracefully
-- Validates branches exist
+- Idempotent (safe to re-run)
 
 ---
 

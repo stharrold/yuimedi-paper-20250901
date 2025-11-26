@@ -9,76 +9,131 @@ next: /6_release
 
 **Workflow**: `/1_specify` → `/2_plan` → `/3_tasks` → `/4_implement` → `/5_integrate` → `/6_release` → `/7_backmerge`
 
-**Purpose**: Integrate completed feature work into shared branches (PR to contrib, archive, sync, PR to develop).
+**Purpose**: Integrate completed feature work into shared branches (PR to contrib, cleanup, PR to develop).
 
-**Prerequisites**: Implementation complete, all tasks done, quality gates passed (from `/4_implement`)
+**Prerequisites**: Implementation complete, quality gates passed (from `/4_implement`)
 
-**Outputs**: PR created, TODO archived, configs synced
+**Outputs**: PRs created, worktree cleaned, GitHub Issue closed, AgentDB state record
 
-**Next**: Run `/6_release` to release to production, then `/7_backmerge` to sync back
+**Next**: Run `/6_release` to release to production
 
 ---
 
-# Integration Workflow Command
+## Usage Modes
 
-Execute the required PR workflow sequence.
+This command supports two modes based on user input:
 
-## Workflow Steps (in order)
+### Full Integration (default)
+- **Trigger**: `/5_integrate` (no additional arguments)
+- **Use when**: Completing a feature worktree workflow (steps 1-4 completed)
+- **Runs**: feature → contrib PR, worktree cleanup, contrib → develop PR
 
-1. **finish-feature** - PR feature → contrib (runs quality gates first)
-2. **archive-todo** - Archive TODO files after PR merge
-3. **sync-agents** - Sync CLAUDE.md → AGENTS.md and .agents/
-4. **start-develop** - PR contrib → develop
+### Contrib-Only Integration
+- **Trigger**: `/5_integrate from contrib to develop` or similar phrasing
+- **Use when**: Changes made directly on `contrib/*` branch (no feature worktree)
+- **Runs**: contrib → develop PR only (skips steps 1-3)
+- **Examples**:
+  - `/5_integrate from contrib to develop`
+  - `/5_integrate contrib only`
+  - `/5_integrate just pr to develop`
 
-## Usage
+**Detection**: If user mentions "contrib to develop", "contrib only", "no worktree", or "direct", use Contrib-Only mode.
 
-Run workflow step:
+---
+
+## Step 0: Verify Context (REQUIRED - STOP if fails)
+
+**Run this first. If it fails, STOP and tell the user to fix the context.**
+
 ```bash
-podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/pr_workflow.py <step>
+python .claude/skills/workflow-utilities/scripts/verify_workflow_context.py --step 5
 ```
 
-## Available Steps
+Expected: Main repo, `contrib/*` branch
 
-- `finish-feature` - Create PR from feature to contrib branch
-- `archive-todo` - Archive TODO*.md files to ARCHIVED/
-- `sync-agents` - Sync CLAUDE.md to cross-tool formats
-- `start-develop` - Create PR from contrib to develop
-- `full` - Run all steps in sequence
-- `status` - Show current workflow status
+---
 
-## Example Session
+## Step 1: Create PR feature → contrib [FULL MODE ONLY]
 
+**Skip this step in Contrib-Only mode.**
+
+Create a pull request from the feature branch to contrib:
 ```bash
-# 1. On feature branch, finish feature and create PR to contrib
 podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/pr_workflow.py finish-feature
+```
 
-# 2. After PR is merged, archive the TODO file
-podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/pr_workflow.py archive-todo
+**MANUAL GATE**: Wait for PR approval and merge in GitHub UI.
 
-# 3. Sync CLAUDE.md to AGENTS.md
+## Step 2: Cleanup Feature Worktree [FULL MODE ONLY]
+
+**Skip this step in Contrib-Only mode.**
+
+After PR is merged, cleanup the worktree (no TODO archival):
+```bash
+podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py \
+  {slug} --no-archive
+```
+
+This deletes:
+- Feature worktree directory
+- Local feature branch
+- Remote feature branch
+
+## Step 3: Close GitHub Issue [FULL MODE ONLY]
+
+**Skip this step in Contrib-Only mode.**
+
+If a GitHub Issue was linked, close it:
+```bash
+gh issue close {issue-number} --comment "Implemented in PR #{pr-number}"
+```
+
+## Step 4: Sync AI Configs
+
+Sync CLAUDE.md to cross-tool formats:
+```bash
 podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/pr_workflow.py sync-agents
+```
 
-# 4. Create PR from contrib to develop
+## Step 5: Create PR contrib → develop
+
+Create a pull request from contrib to develop:
+```bash
 podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/pr_workflow.py start-develop
 ```
 
-## Quality Gates
+**MANUAL GATE**: Wait for PR approval and merge in GitHub UI.
 
-The `finish-feature` step automatically runs quality gates:
-- Test coverage (≥80%)
-- All tests passing
-- Build successful
-- Linting clean
-- TODO*.md YAML frontmatter valid
-- AI config sync
+## Step 6: Record State in AgentDB
 
-## TODO*.md Frontmatter Requirements
+Record the workflow transition (use appropriate pattern based on mode):
 
-All TODO*.md files must have YAML frontmatter with:
-```yaml
----
-status: in_progress|completed|blocked
-feature: feature-name
-branch: feature/timestamp_slug
----
+**Full mode:**
+```bash
+podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
+  --sync-type workflow_transition \
+  --pattern phase_5_integrate
 ```
+
+**Contrib-Only mode:**
+```bash
+podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
+  --sync-type workflow_transition \
+  --pattern phase_5_integrate_contrib_only
+```
+
+## Step 7: Report Completion
+
+Report to the user based on mode:
+
+**Full mode:**
+- Feature PR merged to contrib
+- Worktree cleaned up
+- GitHub Issue closed (if applicable)
+- Contrib → develop PR created
+- Next step: Run `/6_release` when ready for production
+
+**Contrib-Only mode:**
+- Contrib → develop PR created
+- No worktree cleanup needed (changes were made directly on contrib)
+- Next step: Run `/6_release` when ready for production

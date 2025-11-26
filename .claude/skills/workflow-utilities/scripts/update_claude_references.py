@@ -127,9 +127,9 @@ def update_claude_file(claude_file: Path, root_dir: Path, dry_run: bool = False)
         final_content += f"\n{cross_refs}"
 
     if dry_run:
-        print(f"\n{'=' * 60}")
+        print(f"\n{'='*60}")
         print(f"Would update: {claude_file.relative_to(root_dir)}")
-        print(f"{'=' * 60}")
+        print(f"{'='*60}")
         print(cross_refs)
     else:
         claude_file.write_text(final_content, encoding="utf-8")

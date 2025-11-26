@@ -15,7 +15,7 @@
 
 **Strategic positioning:** These whitepapers demonstrate technical expertise and industry understanding to:
 - Build credibility with healthcare institutions
-- Attract top talent and strategic partnerships  
+- Attract top talent and strategic partnerships
 - Shape industry conversations around AI in healthcare
 - Position Yuimedi ahead of competitors in the knowledge space
 
@@ -33,7 +33,7 @@
 
 **Expected Returns:**
 - Enterprise Sales Pipeline: $500K+ from thought leadership positioning
-- Strategic Partnerships: 5+ partnerships from speaking opportunities  
+- Strategic Partnerships: 5+ partnerships from speaking opportunities
 - Product Development: Foundation for $2M+ roadmap validation
 - Market Position: Establish Yuimedi as go-to healthcare AI expert
 
@@ -84,7 +84,7 @@
     * ResearchGate - direct upload after registration
     * Zenodo - https://zenodo.org/ (CERN-operated, DOI provided)
     * Yuimedi website - full control over timing/message
-  
+
   Note: Conference presentations (HIMSS, AMIA) are separate from whitepaper publication
 
 • **Decision Authority**: Designate go/no-go approver
@@ -120,9 +120,9 @@
 **Next Executive Decision:** Budget approval required by September 6, 2025
 
 ## Timeline Overview
-**Start Date:** 2025-09-02  
-**End Date:** 2026-03-15  
-**Weekly Commitment:** 10 hours maximum  
+**Start Date:** 2025-09-02
+**End Date:** 2026-03-15
+**Weekly Commitment:** 10 hours maximum
 **Total Duration:** 28 weeks
 
 ## Related Documents & Resources
@@ -133,20 +133,20 @@
 - **[Decision Log](DECISION_LOG.json)** - Historical decision tracking and rationale
 - **[Quality Gates](project-management/quality-gates.md)** - Milestone success criteria
 
-### 💰 Budget & Resources  
+### 💰 Budget & Resources
 - **[Final Budget Breakdown](project-management/budget/budget-final.json)** - Detailed $33,495 allocation
 - **[RACI Matrix](project-management/roles/raci-matrix.csv)** - Responsibility assignments
 - **[Backup Developer Plan](project-management/roles/backup-developer.md)** - Risk mitigation strategy
 
 ### 🎯 Risk Management
-- **[Risk Assessment Methodology](project-management/risk-assessment-methodology.md)** - Success probability calculations  
+- **[Risk Assessment Methodology](project-management/risk-assessment-methodology.md)** - Success probability calculations
 - **[Risk Register](project-management/risks/risk-register-v2.csv)** - Current risk tracking
 - **[Risk Scoring Matrix](project-management/risk-scoring-matrix.csv)** - Impact/probability framework
 
 ### 📄 Research Content
 - **[Main Research Paper](paper.md)** - Current Paper 1 draft (111 citations)
 - **[Paper 1 Research](docs/paper1/README.md)** - Literature review methodology
-- **[Paper 2 Research](docs/paper2/README.md)** - Proof of concept framework  
+- **[Paper 2 Research](docs/paper2/README.md)** - Proof of concept framework
 - **[Paper 3 Research](docs/paper3/README.md)** - FHIR mapping specifications
 
 ### 🔧 Technical Implementation
@@ -175,13 +175,13 @@
 
 **TMP Validation Integration**: Based on validated test cases from [archived validation work](archive/TMP-yuiquery-update-sept2025_20250903T075200Z.md):
 - **Test Case #1**: Primary/foreign key discovery → Algorithm development milestones
-- **Test Case #2**: Design pattern memory recall → Validation methodology checkpoints  
+- **Test Case #2**: Design pattern memory recall → Validation methodology checkpoints
 - **Test Case #3**: Business object detection → Research phase deliverables
 - **Test Case #4**: Synthea data integrity → Quality validation gates for Paper 2
 
 **Streamlined Task Management**:
 - **GitHub Issues**: Technical task tracking with bidirectional sync
-- **TODO_FOR_AI.json**: Detailed task metadata and dependencies  
+- **TODO_FOR_AI.json**: Detailed task metadata and dependencies
 - **TODO_FOR_HUMAN.md**: Priority overview and quality assurance checklist
 - **This Document**: Strategic context, timelines, and executive dashboard
 
@@ -189,7 +189,7 @@
 
 ## Revised Scope (30% Reduction)
 - **Paper 1:** 70 hours (was 100)
-- **Paper 2:** 70 hours (was 100)  
+- **Paper 2:** 70 hours (was 100)
 - **Paper 3:** 70 hours (was 100)
 - **Total:** 210 hours (was 330)
 
@@ -264,7 +264,7 @@ These academic whitepapers establish Yuimedi's intellectual authority in healthc
 **Phase 1: Preprint Servers (Immediate Visibility)**
 - **Timeline**: 24-72 hour review
 - **Primary**: medRxiv (healthcare/medical focus)
-- **Secondary**: arXiv (technical/CS audience) 
+- **Secondary**: arXiv (technical/CS audience)
 - **Tertiary**: SSRN (social science/health policy angle)
 - **Cost**: FREE
 - **Benefits**: Establish priority, immediate DOI, citeable
@@ -313,7 +313,7 @@ These academic whitepapers establish Yuimedi's intellectual authority in healthc
 
 **Based on TMP Validation Work**: Connected to validated test cases from [archived validation work](archive/TMP-yuiquery-update-sept2025_20250903T075200Z.md) including:
 - Primary/foreign key discovery patterns (July 28, 2025)
-- Design pattern memory recall testing (July 29, 2025) 
+- Design pattern memory recall testing (July 29, 2025)
 - Business object detection + haversine calculations (August 3, 2025)
 - Frequency distributions + Synthea data integrity analysis (August 5, 2025)
 
@@ -336,7 +336,7 @@ These academic whitepapers establish Yuimedi's intellectual authority in healthc
 
 ### GitHub Milestones Created ✅
 - **Milestone 1**: Paper 1: Literature Review (https://github.com/stharrold/yuimedi-paper-20250901/milestone/1)
-- **Milestone 2**: Paper 2: Proof of Concept (https://github.com/stharrold/yuimedi-paper-20250901/milestone/2)  
+- **Milestone 2**: Paper 2: Proof of Concept (https://github.com/stharrold/yuimedi-paper-20250901/milestone/2)
 - **Milestone 3**: Paper 3: Schema Mapping & Interoperability (https://github.com/stharrold/yuimedi-paper-20250901/milestone/3)
 
 **GitHub Projects Integration**: All milestones connected to [YuiQuery Research Papers Timeline](https://github.com/users/stharrold/projects/1) with validation-based tracking
@@ -353,7 +353,7 @@ Week 7-8 (2025-09-12 to 2025-09-25): Draft writing, figures [20h]
   **CRITICAL WEEK: Consider 2 days PTO for 20h total**
   Deliverable: Draft conference abstract for HIMSS/AMIA
 Week 9 (2025-09-26 to 2025-10-02): Revisions, formatting, submission [10h]
-  Deliverables: 
+  Deliverables:
   - Submit to medRxiv for rapid publication (24-72hr review)
   - Upload to ResearchGate for immediate visibility
   - Consider AHIMA Journal submission for peer review
@@ -639,7 +639,7 @@ gh issue create --title "..." --label "..." --milestone "..."
 ### PTO Strategy for Critical Weeks
 Samuel Harrold may need to take 2 days PTO to double capacity (10→20 hrs) during:
 - **2025-09-12 to 2025-09-25**: Paper 1 draft writing
-- **2025-10-17 to 2025-10-30**: Paper 2 algorithm implementation  
+- **2025-10-17 to 2025-10-30**: Paper 2 algorithm implementation
 - **2025-11-28 to 2025-12-11**: Paper 2 statistical analysis
 - **2026-01-16 to 2026-01-29**: Paper 3 implementation
 - **2026-01-30 to 2026-02-12**: Paper 3 query translation
@@ -653,12 +653,12 @@ Total PTO needed: 10 days across 30 weeks
    - Focus: Validate healthcare data infrastructure challenges and institutional knowledge gaps
    - Review scope: Confirm problem significance, verify market sizing
    - Typical rate: $90-150/hour ([Salary.com SME rates](https://www.salary.com/research/salary/recruiting/subject-matter-expert-hourly-wages))
-   
-2. **Data Science/AI Healthcare Expert** (Paper 2)  
+
+2. **Data Science/AI Healthcare Expert** (Paper 2)
    - Focus: Validate machine learning approach on degraded healthcare data
    - Review scope: Verify algorithm accuracy, assess technical soundness
    - Typical rate: $120-180/hour ([PayScale Technical SME](https://www.payscale.com/research/US/Job=Technical_Subject_Matter_Expert/Salary))
-   
+
 3. **FHIR/OMOP Standards Expert** (Paper 3)
    - Focus: Validate healthcare interoperability approach and schema mappings
    - Review scope: Confirm mapping accuracy, assess implementation feasibility
@@ -836,21 +836,21 @@ Based on Anthropic's internal team practices ([How Anthropic Teams Use Claude Co
 ./scripts/github_project_sync.sh
 
 # Manual GitHub Project operations (Repository-Linked)
-gh api graphql -f query='mutation { 
-  addProjectV2ItemById(input: { 
-    projectId: "PVT_kwHOAD8Xp84BCJ9K", 
-    contentId: "ISSUE_ID" 
-  }) { item { id } } 
+gh api graphql -f query='mutation {
+  addProjectV2ItemById(input: {
+    projectId: "PVT_kwHOAD8Xp84BCJ9K",
+    contentId: "ISSUE_ID"
+  }) { item { id } }
 }'
 
 # Set TMP validation-based field values
-gh api graphql -f query='mutation { 
-  updateProjectV2ItemFieldValue(input: { 
-    projectId: "PVT_kwHOAD8Xp84BCJ9K", 
-    itemId: "ITEM_ID", 
-    fieldId: "PVTSSF_lAHOAD8Xp84BCJ9Kzg0cw2o", 
+gh api graphql -f query='mutation {
+  updateProjectV2ItemFieldValue(input: {
+    projectId: "PVT_kwHOAD8Xp84BCJ9K",
+    itemId: "ITEM_ID",
+    fieldId: "PVTSSF_lAHOAD8Xp84BCJ9Kzg0cw2o",
     value: { singleSelectOptionId: "122107e7" } # Paper 1
-  }) { projectV2Item { id } } 
+  }) { projectV2Item { id } }
 }'
 ```
 
@@ -859,7 +859,7 @@ gh api graphql -f query='mutation {
 
 ### TMP Validation → GitHub Project Mapping
 - **TMP Test Cases** → Project **Validation** phase tasks
-- **70-hour paper targets** → **Hours_Est** field values  
+- **70-hour paper targets** → **Hours_Est** field values
 - **3-paper structure** → **Paper** field categorization
 - **Priority system (P0-P3)** → Matches executive dashboard priorities
 
@@ -872,7 +872,7 @@ gh api graphql -f query='mutation {
   - Timeline: 24-72 hours
   - Cost: FREE
 
-- **medRxiv** (Health Sciences Preprints)  
+- **medRxiv** (Health Sciences Preprints)
   - Submit: https://www.medrxiv.org/submit-a-manuscript
   - Timeline: 24-72 hours
   - Cost: FREE
@@ -880,7 +880,7 @@ gh api graphql -f query='mutation {
 
 - **SSRN** (Social Science Research Network)
   - Register/Submit: https://www.ssrn.com/
-  - Timeline: 24-72 hours  
+  - Timeline: 24-72 hours
   - Cost: FREE
   - Best for: Health policy angle
 
@@ -919,5 +919,5 @@ gh api graphql -f query='mutation {
 - World Economic Forum (by invitation/partnership only)
 
 ---
-*Last Updated: 2025-09-03*  
+*Last Updated: 2025-09-03*
 *Next Review: 2025-09-10*

@@ -17,24 +17,50 @@ Steps:
 """
 
 import argparse
-import os
 import subprocess
 import sys
 from pathlib import Path
-from typing import Optional
+
+# Add workflow-utilities to path for container_utils
+sys.path.insert(
+    0,
+    str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"),
+)
+
+from container_utils import get_command_prefix
+
+# Safe cross-platform output
+try:
+    from safe_output import format_check, format_cross, format_warning, safe_print
+except ImportError:
+    # Fallback if module not found
+    def safe_print(*args, **kwargs):
+        try:
+            print(*args, **kwargs)
+        except UnicodeEncodeError:
+            message = " ".join(str(arg) for arg in args)
+            message = (
+                message.replace("[OK]", "[OK]")
+                .replace("[X]", "[X]")
+                .replace("->", "->")
+                .replace("!", "!")
+            )
+            print(message, **kwargs)
+
+    def format_check(msg):
+        return f"[OK] {msg}"
+
+    def format_cross(msg):
+        return f"[X] {msg}"
+
+    def format_warning(msg):
+        return f"! {msg}"
 
 
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
-    """Run a command and return the result.
-
-    If check=False and the command fails, stderr is logged for debugging.
-    """
-    print(f"  → {' '.join(cmd)}")
-    result = subprocess.run(cmd, capture_output=True, text=True, check=check)
-    # Log stderr on failure when not raising exception (PR #226 review feedback)
-    if not check and result.returncode != 0 and result.stderr:
-        print(f"    [debug] stderr: {result.stderr.strip()}")
-    return result
+    """Run a command and return the result."""
+    safe_print(f"  -> {' '.join(cmd)}")
+    return subprocess.run(cmd, capture_output=True, text=True, check=check)
 
 
 def get_current_branch() -> str:
@@ -43,44 +69,21 @@ def get_current_branch() -> str:
     return result.stdout.strip()
 
 
-def sanitize_username(username: str) -> str:
-    """Sanitize username for use in branch names.
-
-    - Replaces spaces with hyphens
-    - Converts to lowercase
-    - Removes leading/trailing whitespace
-    """
-    return username.strip().lower().replace(" ", "-")
-
-
 def get_contrib_branch() -> str:
     """Get the contrib branch name (contrib/<username>).
 
-    Tries multiple sources for username (PR #226, #227 review feedback):
-    1. GitHub CLI (gh api user)
-    2. Environment variable GITHUB_USERNAME
-    3. Git config user.name (sanitized: lowercase, spaces → hyphens)
-    4. Exits with error if none available
+    Requires GitHub CLI authentication. Run 'gh auth login' if not authenticated.
     """
-    # Try GitHub CLI first
     result = run_cmd(["gh", "api", "user", "-q", ".login"], check=False)
     username = result.stdout.strip()
-
-    # Fallback to environment variable
     if not username:
-        username = os.environ.get("GITHUB_USERNAME", "")
-
-    # Fallback to git config (sanitize since user.name may have spaces)
-    if not username:
-        result = run_cmd(["git", "config", "user.name"], check=False)
-        username = sanitize_username(result.stdout)
-
-    # Error if no username found
-    if not username:
-        print("✗ Could not determine GitHub username.")
-        print("  Fix: Run 'gh auth login' or set GITHUB_USERNAME env var")
+        safe_print(
+            format_cross(
+                "Could not determine GitHub username. "
+                "Please ensure you are authenticated with 'gh auth login'."
+            )
+        )
         sys.exit(1)
-
     return f"contrib/{username}"
 
 
@@ -97,10 +100,10 @@ def return_to_editable_branch() -> bool:
     result = run_cmd(["git", "checkout", contrib], check=False)
 
     if result.returncode != 0:
-        print(f"✗ Failed to checkout {contrib}: {result.stderr}")
+        print(f"[X] Failed to checkout {contrib}: {result.stderr}")
         return False
 
-    print(f"✓ Now on editable branch: {contrib}")
+    print(f"[OK] Now on editable branch: {contrib}")
     return True
 
 
@@ -129,17 +132,16 @@ def run_quality_gates() -> bool:
     script_path = Path(".claude/skills/quality-enforcer/scripts/run_quality_gates.py")
 
     if not script_path.exists():
-        print("⚠️  Quality gates script not found, skipping")
+        print("!️  Quality gates script not found, skipping")
         return True
 
-    result = subprocess.run(
-        ["podman-compose", "run", "--rm", "dev", "python", str(script_path)], check=False
-    )
+    prefix = get_command_prefix()
+    result = subprocess.run(prefix + ["python", str(script_path)], check=False)
 
     return result.returncode == 0
 
 
-def step_create_release(version: Optional[str] = None) -> bool:
+def step_create_release(version: str = None) -> bool:
     """Create release branch from develop."""
     print("\n" + "=" * 60)
     print("STEP 1: Create Release Branch")
@@ -160,24 +162,24 @@ def step_create_release(version: Optional[str] = None) -> bool:
     # Check if release branch already exists
     result = run_cmd(["git", "branch", "-r", "--list", f"origin/{release_branch}"], check=False)
     if result.stdout.strip():
-        print(f"⚠️  Release branch {release_branch} already exists")
+        print(f"!️  Release branch {release_branch} already exists")
         return True
 
     # Create release branch from develop
     print(f"\n[Branch] Creating {release_branch} from develop...")
     result = run_cmd(["git", "checkout", "-b", release_branch, "origin/develop"], check=False)
     if result.returncode != 0:
-        print(f"✗ Failed to create branch: {result.stderr}")
+        print(f"[X] Failed to create branch: {result.stderr}")
         return False
 
     # Push branch
     print(f"\n[Push] Pushing {release_branch}...")
     result = run_cmd(["git", "push", "-u", "origin", release_branch], check=False)
     if result.returncode != 0:
-        print(f"✗ Push failed: {result.stderr}")
+        print(f"[X] Push failed: {result.stderr}")
         return False
 
-    print(f"✓ Step 1 complete: Created {release_branch}")
+    print(f"[OK] Step 1 complete: Created {release_branch}")
     return True
 
 
@@ -188,28 +190,28 @@ def step_run_gates() -> bool:
     print("=" * 60)
 
     if not run_quality_gates():
-        print("✗ Quality gates failed. Fix issues before proceeding.")
+        print("[X] Quality gates failed. Fix issues before proceeding.")
         return False
 
-    print("✓ Step 2 complete: Quality gates passed")
+    print("[OK] Step 2 complete: Quality gates passed")
     return True
 
 
 def step_pr_main() -> bool:
     """Create PR from release to main."""
     print("\n" + "=" * 60)
-    print("STEP 3: PR Release → Main")
+    print("STEP 3: PR Release -> Main")
     print("=" * 60)
 
     current = get_current_branch()
     if not current.startswith("release/"):
-        print(f"✗ Must be on release branch (current: {current})")
+        print(f"[X] Must be on release branch (current: {current})")
         return False
 
     version = current.replace("release/", "")
 
     # Create PR
-    print(f"\n[PR] Creating PR: {current} → main...")
+    print(f"\n[PR] Creating PR: {current} -> main...")
     result = run_cmd(
         [
             "gh",
@@ -228,12 +230,12 @@ def step_pr_main() -> bool:
 
     if result.returncode != 0:
         if "already exists" in result.stderr:
-            print("⚠️  PR already exists")
+            print("!️  PR already exists")
         else:
-            print(f"✗ PR creation failed: {result.stderr}")
+            print(f"[X] PR creation failed: {result.stderr}")
             return False
 
-    print(f"✓ Step 3 complete: PR created {current} → main")
+    print(f"[OK] Step 3 complete: PR created {current} -> main")
     print("\nNext: Merge PR in GitHub, then run: release_workflow.py tag-release")
     return True
 
@@ -258,7 +260,7 @@ def step_tag_release() -> bool:
             version = branches[-1].strip().replace("origin/release/", "")
 
     if not version:
-        print("✗ Could not determine version. Specify release branch.")
+        print("[X] Could not determine version. Specify release branch.")
         return False
 
     # Checkout main and pull
@@ -271,26 +273,26 @@ def step_tag_release() -> bool:
     result = run_cmd(["git", "tag", "-a", version, "-m", f"Release {version}"], check=False)
     if result.returncode != 0:
         if "already exists" in result.stderr:
-            print(f"⚠️  Tag {version} already exists")
+            print(f"!️  Tag {version} already exists")
         else:
-            print(f"✗ Tag creation failed: {result.stderr}")
+            print(f"[X] Tag creation failed: {result.stderr}")
             return False
 
     # Push tag
     print(f"\n[Push] Pushing tag {version}...")
     result = run_cmd(["git", "push", "origin", version], check=False)
     if result.returncode != 0:
-        print(f"⚠️  Tag push warning: {result.stderr}")
+        print(f"!️  Tag push warning: {result.stderr}")
 
     # Return to editable branch
     return_to_editable_branch()
 
-    print(f"✓ Step 4 complete: Tagged {version} on main")
+    print(f"[OK] Step 4 complete: Tagged {version} on main")
     print("\nNext: Run backmerge_workflow.py to sync release back to develop")
     return True
 
 
-def show_status() -> bool:
+def show_status():
     """Show current release status."""
     print("\n" + "=" * 60)
     print("RELEASE STATUS")
@@ -320,10 +322,8 @@ def show_status() -> bool:
     else:
         print("Next step: release_workflow.py create-release")
 
-    return True
 
-
-def run_full_workflow(version: Optional[str] = None) -> bool:
+def run_full_workflow(version: str = None):
     """Run all workflow steps in sequence."""
     print("\n" + "=" * 60)
     print("FULL RELEASE WORKFLOW")
@@ -338,12 +338,12 @@ def run_full_workflow(version: Optional[str] = None) -> bool:
     for name, func in steps:
         print(f"\n>>> Running step: {name}")
         if not func():
-            print(f"\n✗ Workflow stopped at step: {name}")
+            print(f"\n[X] Workflow stopped at step: {name}")
             return_to_editable_branch()
             return False
 
     print("\n" + "=" * 60)
-    print("✓ RELEASE WORKFLOW COMPLETE (awaiting PR merge)")
+    print("[OK] RELEASE WORKFLOW COMPLETE (awaiting PR merge)")
     print("After PR merge, run: release_workflow.py tag-release")
     print("=" * 60)
     return True

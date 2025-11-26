@@ -6,6 +6,7 @@ parent: null
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md
+  - scripts/CLAUDE.md
 related_skills:
   - **workflow-orchestrator** - Calls quality-enforcer at Phase 3
   - **git-workflow-manager** - Semantic versioning after quality gates

@@ -25,16 +25,58 @@ Constants:
 """
 
 import argparse
+import json
 import re
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Optional
 
 # Constants with documented rationale
 TIMESTAMP_FORMAT = "%Y-%m-%d"  # Human-readable date for documentation
 CONTRIB_BRANCH_PREFIX = "contrib/"  # Must be on contrib branch
+
+# Global config for non-interactive mode
+_CONFIG: dict | None = None
+_CONFIG_PATH: list[str] = []  # Tracks path through nested config for lookups
+
+
+def load_config(config_path: Path) -> dict:
+    """Load configuration from YAML or JSON file."""
+    content = config_path.read_text()
+    if config_path.suffix in [".yaml", ".yml"]:
+        try:
+            import yaml
+
+            return yaml.safe_load(content)
+        except ImportError:
+            error_exit("PyYAML not installed. Use JSON config or: uv add pyyaml")
+    else:
+        return json.loads(content)
+
+
+def get_config_value(key: str, default: str | None = None) -> str | None:
+    """Get value from config at current path + key."""
+    if _CONFIG is None:
+        return None
+
+    # Navigate to current path
+    obj = _CONFIG
+    for path_key in _CONFIG_PATH:
+        if isinstance(obj, dict) and path_key in obj:
+            obj = obj[path_key]
+        else:
+            return default
+
+    # Get the value
+    if isinstance(obj, dict) and key in obj:
+        return obj[key]
+    return default
+
+
+def is_non_interactive() -> bool:
+    """Check if running in non-interactive mode."""
+    return _CONFIG is not None
 
 
 def error_exit(message: str, code: int = 1) -> None:
@@ -43,7 +85,7 @@ def error_exit(message: str, code: int = 1) -> None:
     sys.exit(code)
 
 
-def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
+def run_command(cmd: list[str], capture=True, check=True) -> str | None:
     """Run command and return output or None on error."""
     try:
         if capture:
@@ -96,10 +138,29 @@ def detect_context() -> dict[str, any]:
 
 
 def ask_question(
-    prompt: str, options: Optional[list[str]] = None, default: Optional[str] = None
+    prompt: str,
+    options: list[str] | None = None,
+    default: str | None = None,
+    config_key: str | None = None,
 ) -> str:
-    """Ask user a question and return response."""
+    """Ask user a question and return response.
 
+    In non-interactive mode, returns value from config file using config_key.
+    Falls back to default if config_key not found.
+    """
+    # Non-interactive mode: return config value or default
+    if is_non_interactive():
+        if config_key:
+            value = get_config_value(config_key, default)
+            if value is not None:
+                print(f"[config] {prompt}: {value}")
+                return value
+        if default:
+            print(f"[default] {prompt}: {default}")
+            return default
+        error_exit(f"Non-interactive mode: no config value for '{config_key}' and no default")
+
+    # Interactive mode
     if options:
         print(f"\n{prompt}")
         for i, option in enumerate(options, 1):
@@ -135,8 +196,30 @@ def ask_question(
         return response if response else (default or "")
 
 
-def ask_yes_no(prompt: str, default: bool = True) -> bool:
-    """Ask yes/no question."""
+def ask_yes_no(prompt: str, default: bool = True, config_key: str | None = None) -> bool:
+    """Ask yes/no question.
+
+    In non-interactive mode, returns value from config file using config_key.
+    Falls back to default if config_key not found.
+    """
+    # Non-interactive mode: return config value or default
+    if is_non_interactive():
+        if config_key:
+            value = get_config_value(config_key)
+            if value is not None:
+                # Handle various truthy representations
+                if isinstance(value, bool):
+                    result = value
+                elif isinstance(value, str):
+                    result = value.lower() in ["y", "yes", "true", "1"]
+                else:
+                    result = bool(value)
+                print(f"[config] {prompt}: {'yes' if result else 'no'}")
+                return result
+        print(f"[default] {prompt}: {'yes' if default else 'no'}")
+        return default
+
+    # Interactive mode
     default_str = "Y/n" if default else "y/N"
     response = input(f"\n{prompt} ({default_str}) > ").strip().lower()
 
@@ -148,6 +231,7 @@ def ask_yes_no(prompt: str, default: bool = True) -> bool:
 
 def interactive_qa_analyst() -> dict[str, any]:
     """Conduct 🧠 BMAD Analyst persona Q&A for requirements gathering."""
+    global _CONFIG_PATH
 
     print("\n" + "=" * 70)
     print("🧠 BMAD Analyst Persona - Requirements Gathering")
@@ -155,15 +239,25 @@ def interactive_qa_analyst() -> dict[str, any]:
     print("\nI'll help create the requirements document through interactive Q&A.")
     print("-" * 70)
 
+    # Set config path for analyst section
+    _CONFIG_PATH = ["analyst"]
+
     data = {}
 
     # Business context
-    data["problem_statement"] = ask_question("What problem does this feature solve?")
+    data["problem_statement"] = ask_question(
+        "What problem does this feature solve?",
+        config_key="problem_statement",
+    )
 
-    data["primary_users"] = ask_question("Who are the primary users of this feature?")
+    data["primary_users"] = ask_question(
+        "Who are the primary users of this feature?",
+        config_key="primary_users",
+    )
 
     data["success_criteria"] = ask_question(
-        "How will we measure success? (e.g., 'Users can search 100+ words/sec')"
+        "How will we measure success? (e.g., 'Users can search 100+ words/sec')",
+        config_key="success_criteria",
     )
 
     # Functional requirements
@@ -172,44 +266,61 @@ def interactive_qa_analyst() -> dict[str, any]:
     print("-" * 70)
 
     data["functional_requirements"] = []
-    fr_num = 1
 
-    while True:
-        fr_name = ask_question(
-            f"FR-{fr_num:03d} requirement name (or press Enter to finish):", default=""
-        )
-
-        if not fr_name:
-            break
-
-        fr_desc = ask_question(f"FR-{fr_num:03d} description:")
-
-        fr_priority = ask_question(
-            f"FR-{fr_num:03d} priority?", options=["High", "Medium", "Low"], default="Medium"
-        )
-
-        # Acceptance criteria
-        print(f"\nFR-{fr_num:03d} Acceptance Criteria (AC):")
-        acceptance_criteria = []
-        ac_num = 1
+    # Non-interactive mode: load functional_requirements from config
+    if is_non_interactive():
+        fr_list = get_config_value("functional_requirements", [])
+        if isinstance(fr_list, list):
+            for i, fr in enumerate(fr_list, 1):
+                fr_id = f"FR-{i:03d}"
+                fr_entry = {
+                    "id": fr_id,
+                    "name": fr.get("name", ""),
+                    "description": fr.get("description", ""),
+                    "priority": fr.get("priority", "Medium"),
+                    "acceptance_criteria": fr.get("acceptance_criteria", []),
+                }
+                data["functional_requirements"].append(fr_entry)
+                print(f"[config] {fr_id}: {fr_entry['name']}")
+    else:
+        # Interactive mode
+        fr_num = 1
         while True:
-            ac = ask_question(f"  AC {ac_num} (or press Enter to finish):", default="")
-            if not ac:
+            fr_name = ask_question(
+                f"FR-{fr_num:03d} requirement name (or press Enter to finish):", default=""
+            )
+
+            if not fr_name:
                 break
-            acceptance_criteria.append(ac)
-            ac_num += 1
 
-        data["functional_requirements"].append(
-            {
-                "id": f"FR-{fr_num:03d}",
-                "name": fr_name,
-                "description": fr_desc,
-                "priority": fr_priority,
-                "acceptance_criteria": acceptance_criteria,
-            }
-        )
+            fr_desc = ask_question(f"FR-{fr_num:03d} description:")
 
-        fr_num += 1
+            fr_priority = ask_question(
+                f"FR-{fr_num:03d} priority?", options=["High", "Medium", "Low"], default="Medium"
+            )
+
+            # Acceptance criteria
+            print(f"\nFR-{fr_num:03d} Acceptance Criteria (AC):")
+            acceptance_criteria = []
+            ac_num = 1
+            while True:
+                ac = ask_question(f"  AC {ac_num} (or press Enter to finish):", default="")
+                if not ac:
+                    break
+                acceptance_criteria.append(ac)
+                ac_num += 1
+
+            data["functional_requirements"].append(
+                {
+                    "id": f"FR-{fr_num:03d}",
+                    "name": fr_name,
+                    "description": fr_desc,
+                    "priority": fr_priority,
+                    "acceptance_criteria": acceptance_criteria,
+                }
+            )
+
+            fr_num += 1
 
     # Non-functional requirements
     print("\n" + "-" * 70)
@@ -219,22 +330,32 @@ def interactive_qa_analyst() -> dict[str, any]:
     data["performance_requirements"] = ask_question(
         "Performance requirements? (e.g., '<200ms response', 'not critical')",
         default="Standard performance expectations",
+        config_key="performance_requirements",
     )
 
     data["security_requirements"] = ask_question(
-        "Security requirements? (e.g., 'authentication', 'encryption', 'none')", default="none"
+        "Security requirements? (e.g., 'authentication', 'encryption', 'none')",
+        default="none",
+        config_key="security_requirements",
     )
 
     data["scalability_requirements"] = ask_question(
         "Scalability requirements? (e.g., '1000 concurrent users', 'not critical')",
         default="Standard scalability",
+        config_key="scalability_requirements",
     )
 
     # Constraints and assumptions
-    data["constraints"] = ask_question("Any constraints or limitations?", default="None identified")
+    data["constraints"] = ask_question(
+        "Any constraints or limitations?",
+        default="None identified",
+        config_key="constraints",
+    )
 
     data["assumptions"] = ask_question(
-        "Any assumptions being made?", default="Standard development environment and tooling"
+        "Any assumptions being made?",
+        default="Standard development environment and tooling",
+        config_key="assumptions",
     )
 
     print("\n✓ Requirements gathering complete!")
@@ -244,12 +365,16 @@ def interactive_qa_analyst() -> dict[str, any]:
 
 def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any]:
     """Conduct 🏗️ BMAD Architect persona Q&A for architecture design."""
+    global _CONFIG_PATH
 
     print("\n" + "=" * 70)
     print("🏗️ BMAD Architect Persona - Technical Architecture Design")
     print("=" * 70)
     print("\nBased on the requirements, I'll design the technical architecture.")
     print("-" * 70)
+
+    # Set config path for architect section
+    _CONFIG_PATH = ["architect"]
 
     data = {}
 
@@ -260,10 +385,14 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
         "Web framework (if applicable)?",
         options=["FastAPI", "Flask", "Django", "None"],
         default="None",
+        config_key="web_framework",
     )
 
     data["database"] = ask_question(
-        "Database?", options=["SQLite (dev)", "PostgreSQL", "MySQL", "None"], default="SQLite (dev)"
+        "Database?",
+        options=["SQLite (dev)", "PostgreSQL", "MySQL", "None"],
+        default="SQLite (dev)",
+        config_key="database",
     )
 
     if data["database"] != "None":
@@ -271,6 +400,7 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
             "Database migration strategy?",
             options=["Alembic", "Manual SQL", "None"],
             default="Alembic",
+            config_key="database_migration",
         )
     else:
         data["database_migration"] = "None"
@@ -279,16 +409,22 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
         "Testing framework?",
         options=["pytest (recommended)", "unittest", "other"],
         default="pytest (recommended)",
+        config_key="testing_framework",
     )
 
     # Container strategy
-    data["use_containers"] = ask_yes_no("Use containerization (Podman)?", default=True)
+    data["use_containers"] = ask_yes_no(
+        "Use containerization (Podman)?",
+        default=True,
+        config_key="use_containers",
+    )
 
     if data["use_containers"]:
         data["container_strategy"] = ask_question(
             "Container strategy?",
             options=["Single container", "Multi-container (podman-compose)", "Custom"],
             default="Single container",
+            config_key="container_strategy",
         )
     else:
         data["container_strategy"] = "None"
@@ -298,15 +434,23 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
         "Architecture pattern?",
         options=["Layered (data/service/API)", "Modular", "Monolithic", "Other"],
         default="Layered (data/service/API)",
+        config_key="architecture_pattern",
     )
 
     # API design (if web framework selected)
     if data["web_framework"] != "None":
         data["api_style"] = ask_question(
-            "API style?", options=["REST", "GraphQL", "RPC", "Other"], default="REST"
+            "API style?",
+            options=["REST", "GraphQL", "RPC", "Other"],
+            default="REST",
+            config_key="api_style",
         )
 
-        data["api_versioning"] = ask_yes_no("Include API versioning?", default=False)
+        data["api_versioning"] = ask_yes_no(
+            "Include API versioning?",
+            default=False,
+            config_key="api_versioning",
+        )
     else:
         data["api_style"] = "Not applicable"
         data["api_versioning"] = False
@@ -317,12 +461,14 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
             "Authentication method?",
             options=["JWT", "OAuth2", "API Key", "Session-based", "Other"],
             default="JWT",
+            config_key="authentication_method",
         )
 
         data["authorization_method"] = ask_question(
             "Authorization method?",
             options=["RBAC (Role-based)", "ABAC (Attribute-based)", "Simple permissions", "None"],
             default="Simple permissions",
+            config_key="authorization_method",
         )
     else:
         data["authentication_method"] = "None"
@@ -333,6 +479,7 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
         "Error handling strategy?",
         options=["Structured exceptions", "Error codes", "Standard Python exceptions", "Custom"],
         default="Structured exceptions",
+        config_key="error_handling",
     )
 
     # Logging and observability
@@ -340,6 +487,7 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
         "Logging approach?",
         options=["Standard Python logging", "Structured logging (JSON)", "Custom", "Minimal"],
         default="Standard Python logging",
+        config_key="logging_level",
     )
 
     # Deployment considerations
@@ -347,6 +495,7 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
         "Deployment target?",
         options=["Local development only", "Server deployment", "Cloud (AWS/GCP/Azure)", "Other"],
         default="Local development only",
+        config_key="deployment_target",
     )
 
     print("\n✓ Architecture design complete!")
@@ -409,7 +558,7 @@ def generate_epic_breakdown(
                 "dependencies": dependencies,
                 "estimated_effort": f"{len(requirements_data['functional_requirements']) * 1}-{len(requirements_data['functional_requirements']) * 1.5} days",
                 "deliverables": [
-                    f"Implementation of {fr['id']}"
+                    f'Implementation of {fr["id"]}'
                     for fr in requirements_data["functional_requirements"][:5]
                 ]
                 + ["Unit tests for business logic", "Integration tests"],
@@ -424,15 +573,15 @@ def generate_epic_breakdown(
             {
                 "id": f"E-{epic_num:03d}",
                 "name": "API Layer",
-                "description": f"Implement {architecture_data['web_framework']} API endpoints and request/response handling",
+                "description": f'Implement {architecture_data["web_framework"]} API endpoints and request/response handling',
                 "complexity": "Medium",
-                "complexity_reasoning": f"{architecture_data['web_framework']} API development is straightforward but requires careful contract design",
+                "complexity_reasoning": f'{architecture_data["web_framework"]} API development is straightforward but requires careful contract design',
                 "priority": "P0",
                 "priority_reasoning": "Required for external system integration",
                 "dependencies": dependencies,
                 "estimated_effort": "2-3 days",
                 "deliverables": [
-                    f"{architecture_data['api_style']} API endpoints",
+                    f'{architecture_data["api_style"]} API endpoints',
                     "Request validation",
                     "Response serialization",
                     "API documentation (OpenAPI)",
@@ -505,7 +654,7 @@ def process_requirements_template(
     """Process requirements.md template with analyst data."""
 
     template = template_path.read_text()
-    date = datetime.now(timezone.utc).strftime(TIMESTAMP_FORMAT)
+    date = datetime.now(UTC).strftime(TIMESTAMP_FORMAT)
     title = slug.replace("-", " ").replace("_", " ").title()
 
     # Replace basic placeholders
@@ -568,7 +717,7 @@ def process_architecture_template(
     """Process architecture.md template with architect data."""
 
     template = template_path.read_text()
-    date = datetime.now(timezone.utc).strftime(TIMESTAMP_FORMAT)
+    date = datetime.now(UTC).strftime(TIMESTAMP_FORMAT)
     title = slug.replace("-", " ").replace("_", " ").title()
 
     # Replace basic placeholders
@@ -625,7 +774,7 @@ def process_epics_template(
     """Process epics.md template with generated epic data."""
 
     template = template_path.read_text()
-    date = datetime.now(timezone.utc).strftime(TIMESTAMP_FORMAT)
+    date = datetime.now(UTC).strftime(TIMESTAMP_FORMAT)
     title = slug.replace("-", " ").replace("_", " ").title()
 
     # Replace basic placeholders
@@ -817,7 +966,8 @@ Epic breakdown created through BMAD PM persona:
 
     archived_claude = archived_dir / "CLAUDE.md"
     if not archived_claude.exists():
-        archived_claude.write_text(f"""# Claude Code Context: Archived Planning
+        archived_claude.write_text(
+            f"""# Claude Code Context: Archived Planning
 
 ## Purpose
 
@@ -830,12 +980,14 @@ This directory contains previous versions of planning documents that have been s
 ## Related Documentation
 
 - **[README.md](README.md)** - Archive information
-""")
+"""
+        )
         print(f"  ✓ Created {archived_claude}")
 
     archived_readme = archived_dir / "README.md"
     if not archived_readme.exists():
-        archived_readme.write_text("""# Archived Planning Documents
+        archived_readme.write_text(
+            """# Archived Planning Documents
 
 ## Overview
 
@@ -844,7 +996,8 @@ Archive of deprecated planning documents that are no longer in active use.
 ## Contents
 
 This directory contains archived versions of requirements.md, architecture.md, and epics.md that have been replaced or superseded.
-""")
+"""
+        )
         print(f"  ✓ Created {archived_readme}")
 
 
@@ -884,6 +1037,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 
 def main():
     """Main entry point for BMAD planning tool."""
+    global _CONFIG
 
     parser = argparse.ArgumentParser(
         description="Interactive BMAD planning tool - creates requirements, architecture, epics"
@@ -891,8 +1045,21 @@ def main():
     parser.add_argument("slug", help="Feature slug (e.g., my-feature)")
     parser.add_argument("gh_user", help="GitHub username")
     parser.add_argument("--no-commit", action="store_true", help="Skip git commit (for testing)")
+    parser.add_argument(
+        "--config",
+        type=Path,
+        help="Path to YAML/JSON config file for non-interactive mode. "
+        "Config should have sections: analyst (requirements), architect (architecture).",
+    )
 
     args = parser.parse_args()
+
+    # Load config for non-interactive mode
+    if args.config:
+        if not args.config.exists():
+            error_exit(f"Config file not found: {args.config}")
+        _CONFIG = load_config(args.config)
+        print(f"✓ Running in non-interactive mode with config: {args.config}")
 
     # Detect and validate context
     print("Working in main repository...")
@@ -903,7 +1070,9 @@ def main():
     planning_dir = Path("planning") / args.slug
     if planning_dir.exists():
         overwrite = ask_yes_no(
-            f"Planning directory already exists: {planning_dir}\nOverwrite?", default=False
+            f"Planning directory already exists: {planning_dir}\nOverwrite?",
+            default=False,
+            config_key="overwrite_existing",
         )
         if not overwrite:
             print("Aborted.")

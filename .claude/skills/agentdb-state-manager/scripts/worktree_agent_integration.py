@@ -33,7 +33,7 @@ import subprocess
 import sys
 from enum import Enum
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 from uuid import uuid4
 
 logger = logging.getLogger(__name__)
@@ -121,7 +121,7 @@ class FlowTokenManager:
         return f"ad-hoc-{uuid4().hex[:8]}"
 
     @staticmethod
-    def extract_issue_number(flow_token: str) -> Optional[int]:
+    def extract_issue_number(flow_token: str) -> int | None:
         """Extract issue number from flow token if present.
 
         Patterns:
@@ -321,7 +321,7 @@ class ComplianceWrapper:
         action: str,
         flow_token: str,
         state_snapshot: dict[str, Any],
-        context: Optional[dict[str, Any]] = None,
+        context: dict[str, Any] | None = None,
     ) -> list[str]:
         """Wrapped version of sync_engine.on_agent_action_complete with compliance logging.
 
@@ -362,7 +362,8 @@ class ComplianceWrapper:
         if phi_detected:
             phi_justification = PHIDetector.extract_justification(context)
             logger.warning(
-                f"PHI detected in sync: agent={agent_id}, action={action}, flow_token={flow_token}"
+                f"PHI detected in sync: agent={agent_id}, action={action}, "
+                f"flow_token={flow_token}"
             )
             logger.info(f"PHI justification: {phi_justification}")
 
@@ -414,7 +415,7 @@ class SyncEngineFactory:
     _instances: dict[str, ComplianceWrapper] = {}
 
     @classmethod
-    def create_sync_engine(cls, db_path: Optional[str] = None) -> Optional[ComplianceWrapper]:
+    def create_sync_engine(cls, db_path: str | None = None) -> ComplianceWrapper | None:
         """Create sync engine instance if enabled.
 
         Feature Flag:
@@ -490,8 +491,8 @@ async def trigger_sync_completion(
     agent_id: str,
     action: str,
     state_snapshot: dict[str, Any],
-    context: Optional[dict[str, Any]] = None,
-    sync_engine: Optional[ComplianceWrapper] = None,
+    context: dict[str, Any] | None = None,
+    sync_engine: ComplianceWrapper | None = None,
 ) -> bool:
     """Trigger sync engine after agent action completes.
 

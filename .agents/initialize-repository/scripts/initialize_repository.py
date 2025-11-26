@@ -38,9 +38,8 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Optional
 
 # Add VCS module to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"))
@@ -115,8 +114,8 @@ def warning(message: str) -> None:
 
 def ask_question(
     prompt: str,
-    options: Optional[list[str]] = None,
-    default: Optional[str] = None,
+    options: list[str] | None = None,
+    default: str | None = None,
     allow_multiple: bool = False,
 ) -> str:
     """Ask user a question with optional choices.
@@ -273,7 +272,10 @@ class RepositoryConfig:
         self.name: str = ""
         self.purpose: str = ""
         self.description: str = ""
-        self.gh_user: str = ""
+        self.vcs_provider: str = "github"  # "github" or "azure_devops"
+        self.vcs_user: str = ""  # Username from VCS provider
+        self.azure_org: str | None = None  # Azure DevOps organization URL
+        self.azure_project: str | None = None  # Azure DevOps project name
         self.python_version: str = "3.11"
         self.copy_workflow: bool = True
         self.copy_domain: bool = False
@@ -282,7 +284,17 @@ class RepositoryConfig:
         self.copy_cicd: bool = False
         self.init_git: bool = True
         self.create_branches: bool = True
-        self.remote_url: Optional[str] = None
+        self.remote_url: str | None = None
+
+    @property
+    def gh_user(self) -> str:
+        """Backward compatibility alias for vcs_user."""
+        return self.vcs_user
+
+    @gh_user.setter
+    def gh_user(self, value: str) -> None:
+        """Backward compatibility alias for vcs_user."""
+        self.vcs_user = value
 
 
 def phase1_configuration(source_path: Path, target_path: Path) -> RepositoryConfig:
@@ -317,15 +329,45 @@ def phase1_configuration(source_path: Path, target_path: Path) -> RepositoryConf
 
     config.description = ask_question("Brief description of the repository (one line):")
 
-    # VCS username (GitHub/Azure DevOps)
-    try:
-        vcs = get_vcs_adapter()
-        detected_user = vcs.get_current_user()
-        config.gh_user = ask_question(
-            f"VCS username ({vcs.get_provider_name()})", default=detected_user
+    # VCS provider selection
+    config.vcs_provider = (
+        ask_question(
+            "Which VCS provider will this repository use?",
+            options=["GitHub", "Azure DevOps"],
+            default="GitHub",
         )
-    except Exception:
-        config.gh_user = ask_question("VCS username:")
+        .lower()
+        .replace(" ", "_")
+    )  # Normalize to "github" or "azure_devops"
+
+    # VCS username and provider-specific config
+    if config.vcs_provider == "azure_devops":
+        # Azure DevOps specific configuration
+        config.azure_org = ask_question(
+            "Azure DevOps organization URL (e.g., https://dev.azure.com/myorg):"
+        )
+        config.azure_project = ask_question("Azure DevOps project name:")
+        # Try to detect Azure DevOps user
+        try:
+            vcs = get_vcs_adapter()
+            if vcs.get_provider_name() == "Azure DevOps":
+                detected_user = vcs.get_current_user()
+                # Extract username from email (before @)
+                if "@" in detected_user:
+                    detected_user = detected_user.split("@")[0]
+                config.vcs_user = ask_question("Azure DevOps username", default=detected_user)
+            else:
+                config.vcs_user = ask_question("Azure DevOps username:")
+        except Exception:
+            config.vcs_user = ask_question("Azure DevOps username:")
+    else:
+        # GitHub configuration
+        try:
+            vcs = get_vcs_adapter()
+            detected_user = vcs.get_current_user()
+            config.vcs_user = ask_question("GitHub username", default=detected_user)
+        except Exception:
+            config.vcs_user = ask_question("GitHub username:")
 
     # Technology stack
     config.python_version = ask_question(
@@ -444,6 +486,12 @@ def generate_readme(config: RepositoryConfig, target_path: Path) -> None:
     """
     info("Generating README.md...")
 
+    # Determine VCS CLI instructions based on provider
+    if config.vcs_provider == "azure_devops":
+        vcs_prereq = "- Git and Azure CLI (`az` with azure-devops extension)"
+    else:
+        vcs_prereq = "- Git and GitHub CLI (`gh`) OR Azure CLI (`az`)"
+
     readme_content = f"""# {config.name}
 
 {config.description}
@@ -458,7 +506,7 @@ def generate_readme(config: RepositoryConfig, target_path: Path) -> None:
 
 - Python {config.python_version}+
 - uv package manager
-- Git and GitHub CLI (gh)
+{vcs_prereq}
 
 ### Installation
 
@@ -710,7 +758,7 @@ pythonpath = ["src"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py{config.python_version.replace(".", "")}"
+target-version = "py{config.python_version.replace('.', '')}"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W"]
@@ -739,6 +787,36 @@ def copy_gitignore(source_path: Path, target_path: Path) -> None:
         target_file = target_path / ".gitignore"
         shutil.copy2(source_file, target_file)
         success("Copied .gitignore")
+
+
+def generate_vcs_config(config: RepositoryConfig, target_path: Path) -> None:
+    """Generate .vcs_config.yaml for VCS provider configuration.
+
+    Args:
+        config: RepositoryConfig with user selections
+        target_path: Path to target repository
+    """
+    # Only generate for Azure DevOps (GitHub is auto-detected and doesn't need config)
+    if config.vcs_provider != "azure_devops":
+        return
+
+    info("Generating .vcs_config.yaml for Azure DevOps...")
+
+    vcs_config_content = f"""# VCS Provider Configuration
+# This file configures the workflow system to use Azure DevOps instead of GitHub.
+# Auto-generated by initialize-repository.
+
+vcs_provider: azure_devops
+
+azure_devops:
+  organization: "{config.azure_org}"
+  project: "{config.azure_project}"
+  repository: "{config.name}"  # Defaults to project name if not specified
+"""
+
+    target_file = target_path / ".vcs_config.yaml"
+    target_file.write_text(vcs_config_content)
+    success("Generated .vcs_config.yaml")
 
 
 def create_directory_structure(target_path: Path, config: RepositoryConfig) -> None:
@@ -771,7 +849,8 @@ def create_directory_structure(target_path: Path, config: RepositoryConfig) -> N
         # Create CLAUDE.md and README.md in each directory
         if dir_name != "ARCHIVED":
             claude_md = dir_path / "CLAUDE.md"
-            claude_md.write_text(f"""# Claude Code Context: {dir_name}
+            claude_md.write_text(
+                f"""# Claude Code Context: {dir_name}
 
 ## Purpose
 
@@ -792,10 +871,12 @@ Context-specific guidance for {dir_name}
 ## Related Documentation
 
 - **[README.md](README.md)** - Human-readable documentation for this directory
-""")
+"""
+            )
 
             readme_md = dir_path / "README.md"
-            readme_md.write_text(f"""# {dir_name}
+            readme_md.write_text(
+                f"""# {dir_name}
 
 [Description of this directory's purpose]
 
@@ -806,7 +887,8 @@ Context-specific guidance for {dir_name}
 ## Usage
 
 [Instructions for working with this directory]
-""")
+"""
+            )
 
         # Create ARCHIVED subdirectory (except in ARCHIVED itself)
         if dir_name != "ARCHIVED":
@@ -814,16 +896,20 @@ Context-specific guidance for {dir_name}
             archived_path.mkdir(exist_ok=True)
 
             archived_claude = archived_path / "CLAUDE.md"
-            archived_claude.write_text(f"""# Claude Code Context: {dir_name}/ARCHIVED
+            archived_claude.write_text(
+                f"""# Claude Code Context: {dir_name}/ARCHIVED
 
 Archived files from {dir_name}
-""")
+"""
+            )
 
             archived_readme = archived_path / "README.md"
-            archived_readme.write_text(f"""# {dir_name}/ARCHIVED
+            archived_readme.write_text(
+                f"""# {dir_name}/ARCHIVED
 
 Archived files from {dir_name}
-""")
+"""
+            )
 
         success(f"Created: {dir_name}/")
 
@@ -839,7 +925,7 @@ def create_todo_manifest(target_path: Path, config: RepositoryConfig) -> None:
     """
     info("Creating TODO.md master manifest...")
 
-    timestamp = datetime.now(timezone.utc).isoformat()
+    timestamp = datetime.now(UTC).isoformat()
 
     todo_content = f"""---
 type: workflow-master-manifest
@@ -905,7 +991,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial repository setup with workflow system v5.2.0
 
 ## [0.1.0] - """
-        + datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        + datetime.now(UTC).strftime("%Y-%m-%d")
         + """
 
 ### Added
@@ -997,6 +1083,9 @@ def phase3_file_operations(source_path: Path, target_path: Path, config: Reposit
 
     # Copy supporting files
     copy_gitignore(source_path, target_path)
+
+    # Generate VCS config for Azure DevOps
+    generate_vcs_config(config, target_path)
 
     # Create directory structure
     create_directory_structure(target_path, config)
@@ -1160,12 +1249,19 @@ def print_summary(target_path: Path, config: RepositoryConfig) -> None:
     print(f"{Colors.BLUE}Repository:{Colors.END} {target_path}")
     print(f"{Colors.BLUE}Name:{Colors.END} {config.name}")
     print(f"{Colors.BLUE}Purpose:{Colors.END} {config.purpose}")
-    print(f"{Colors.BLUE}GitHub User:{Colors.END} {config.gh_user}")
+    vcs_display = "Azure DevOps" if config.vcs_provider == "azure_devops" else "GitHub"
+    print(f"{Colors.BLUE}VCS Provider:{Colors.END} {vcs_display}")
+    print(f"{Colors.BLUE}VCS User:{Colors.END} {config.vcs_user}")
+    if config.vcs_provider == "azure_devops":
+        print(f"{Colors.BLUE}Azure Org:{Colors.END} {config.azure_org}")
+        print(f"{Colors.BLUE}Azure Project:{Colors.END} {config.azure_project}")
 
     print(f"\n{Colors.BOLD}Created:{Colors.END}")
     print("  ✓ Workflow system (9 skills)")
     print("  ✓ Documentation (WORKFLOW.md, CLAUDE.md, CONTRIBUTING.md)")
     print("  ✓ Quality configs (pyproject.toml, .gitignore)")
+    if config.vcs_provider == "azure_devops":
+        print("  ✓ VCS config (.vcs_config.yaml for Azure DevOps)")
     print("  ✓ Directory structure (ARCHIVED/, planning/, specs/)")
 
     if config.copy_domain:
@@ -1245,7 +1341,12 @@ Examples:
     print(f"  Target: {args.target_repo}")
     print(f"  Name: {config.name}")
     print(f"  Purpose: {config.purpose}")
-    print(f"  GitHub User: {config.gh_user}")
+    vcs_display = "Azure DevOps" if config.vcs_provider == "azure_devops" else "GitHub"
+    print(f"  VCS Provider: {vcs_display}")
+    print(f"  VCS User: {config.vcs_user}")
+    if config.vcs_provider == "azure_devops":
+        print(f"  Azure Org: {config.azure_org}")
+        print(f"  Azure Project: {config.azure_project}")
     print(f"  Copy workflow: {config.copy_workflow}")
     print(f"  Copy domain: {config.copy_domain}")
     print(f"  Copy CI/CD: {config.copy_cicd}")

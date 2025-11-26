@@ -16,9 +16,9 @@ import re
 import subprocess
 import sys
 import warnings
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 # Default repository name, can be overridden via environment variable
 DEFAULT_GITHUB_REPO = "stharrold/yuimedi-paper-20250901"
@@ -33,7 +33,7 @@ EXCLUDED_ASSIGNEE_PREFIXES = ["YLT"]
 class YuiQueryGitHubSync:
     """Bidirectional sync between GitHub issues and YuiQuery research TODO files"""
 
-    def __init__(self, github_repo: Optional[str] = None) -> None:
+    def __init__(self, github_repo: str | None = None) -> None:
         self.repo_root = Path(__file__).parent.parent
         self.todo_ai_path = self.repo_root / "TODO_FOR_AI.json"
         self.todo_human_path = self.repo_root / "TODO_FOR_HUMAN.md"
@@ -45,7 +45,7 @@ class YuiQueryGitHubSync:
             "research_phase": "whitepaper_development",
         }
 
-    def fetch_github_issues(self) -> Optional[list[dict[str, Any]]]:
+    def fetch_github_issues(self) -> list[dict[str, Any]] | None:
         """Fetch all issues from GitHub repository"""
         try:
             cmd = [
@@ -71,7 +71,7 @@ class YuiQueryGitHubSync:
             print(f"Error parsing GitHub response: {e}")
             return None  # Return None for parsing errors
 
-    def parse_issue_metadata(self, body: Optional[str]) -> dict[str, Any]:
+    def parse_issue_metadata(self, body: str | None) -> dict[str, Any]:
         """Extract structured metadata from GitHub issue body"""
         if not body:
             body = ""
@@ -151,7 +151,7 @@ class YuiQueryGitHubSync:
                 "updated_at": issue["updatedAt"],
                 "implementation_notes": {
                     "github_sync": True,
-                    "last_sync": datetime.now(timezone.utc).isoformat(),
+                    "last_sync": datetime.now(UTC).isoformat(),
                     "issue_state": issue["state"],
                 },
             }
@@ -159,7 +159,7 @@ class YuiQueryGitHubSync:
 
         return ai_tasks
 
-    def update_todo_ai_file(self, github_tasks: list[dict[str, Any]]) -> Optional[dict[str, Any]]:
+    def update_todo_ai_file(self, github_tasks: list[dict[str, Any]]) -> dict[str, Any] | None:
         """Update TODO_FOR_AI.json with GitHub data"""
         print("Updating TODO_FOR_AI.json...")
 
@@ -203,13 +203,13 @@ class YuiQueryGitHubSync:
                 "version": "1.0.0",
                 "type": "Academic research documentation",
                 "focus": "Natural language to SQL in healthcare",
-                "updated": datetime.now(timezone.utc).isoformat(),
-                "last_sync": datetime.now(timezone.utc).isoformat(),
+                "updated": datetime.now(UTC).isoformat(),
+                "last_sync": datetime.now(UTC).isoformat(),
                 "sync_source": "github_bidirectional_sync",
                 "sync_metadata": {
                     "github_repo": self.github_repo,
                     "sync_direction": "bidirectional",
-                    "last_github_fetch": datetime.now(timezone.utc).isoformat(),
+                    "last_github_fetch": datetime.now(UTC).isoformat(),
                     "total_github_issues": len(github_tasks),
                     "total_tasks": len(all_tasks),
                     "sync_conflicts": [],
@@ -430,7 +430,7 @@ class YuiQueryGitHubSync:
             print(f"Error generating TODO_FOR_HUMAN.md: {e}")
             return False
 
-    def sync_from_github(self) -> Optional[dict[str, Any]]:
+    def sync_from_github(self) -> dict[str, Any] | None:
         """Phase 1: Sync GitHub issues -> TODO files"""
         print("Phase 1: GitHub -> TODO sync")
 
@@ -503,7 +503,7 @@ class YuiQueryGitHubSync:
             print(f"Error validating sync: {e}")
             return False
 
-    def load_existing_todo(self) -> Optional[dict[str, Any]]:
+    def load_existing_todo(self) -> dict[str, Any] | None:
         """Load existing TODO_FOR_AI.json file if it exists"""
         try:
             if self.todo_ai_path.exists():
@@ -517,7 +517,7 @@ class YuiQueryGitHubSync:
             print(f"Error loading existing TODO file: {e}")
             return None
 
-    def create_github_issue(self, task: dict[str, Any]) -> Optional[int]:
+    def create_github_issue(self, task: dict[str, Any]) -> int | None:
         """Create a single GitHub issue from a TODO task"""
         try:
             # Format issue body with metadata
@@ -593,7 +593,7 @@ class YuiQueryGitHubSync:
             print(f"Error creating GitHub issue for task '{task.get('title', 'Unknown')}': {e}")
             return None
 
-    def sync_to_github(self, existing_todo_data: Optional[dict[str, Any]]) -> int:
+    def sync_to_github(self, existing_todo_data: dict[str, Any] | None) -> int:
         """Phase 0: Sync TODO tasks -> GitHub issues (create missing issues)"""
         if not existing_todo_data:
             print("No existing TODO data to sync to GitHub")

@@ -19,6 +19,18 @@ next: /7_backmerge
 
 ---
 
+## Step 0: Verify Context (REQUIRED - STOP if fails)
+
+**Run this first. If it fails, STOP and tell the user to fix the context.**
+
+```bash
+python .claude/skills/workflow-utilities/scripts/verify_workflow_context.py --step 6
+```
+
+Expected: Main repo, `contrib/*` branch
+
+---
+
 # Release Workflow Command
 
 Create a release and deploy to production.
@@ -77,8 +89,18 @@ The `run-gates` step runs quality gates:
 - Build successful
 - Linting clean
 
+## Step 5: Record State in AgentDB
+
+After tagging, record the workflow transition:
+```bash
+podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
+  --sync-type workflow_transition \
+  --pattern phase_6_release
+```
+
 ## Notes
 
 - Release branch is ephemeral (deleted after backmerge)
 - Tag is created on main after PR merge
 - CHANGELOG.md is updated automatically if present
+- AgentDB records the release transition for workflow tracking

@@ -47,7 +47,8 @@ def validate_version_format(version):
     """
     if not re.match(VERSION_PATTERN, version):
         raise ValueError(
-            f"Invalid version format '{version}'. Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
+            f"Invalid version format '{version}'. "
+            f"Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
         )
 
 
@@ -159,7 +160,7 @@ def verify_commits_in_branch(release_branch, target_branch):
             raise ValueError(
                 f"Release not back-merged to {target_branch}. "
                 f"{commit_count} commit(s) from {release_branch} not in {target_branch}. "
-                f"Run: python .claude/skills/git-workflow-manager/scripts/backmerge_release.py"
+                f"Run: python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop"
             )
 
     except subprocess.CalledProcessError as e:

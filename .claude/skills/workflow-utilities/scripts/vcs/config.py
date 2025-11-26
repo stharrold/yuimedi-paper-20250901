@@ -11,7 +11,7 @@ Constants:
 """
 
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 try:
     import yaml
@@ -24,7 +24,7 @@ CONFIG_FILE_NAME = ".vcs_config.yaml"
 VALID_PROVIDERS = ["github", "azure_devops"]
 
 
-def load_vcs_config(config_path: Optional[Path] = None) -> Optional[dict[str, Any]]:
+def load_vcs_config(config_path: Path | None = None) -> dict[str, Any] | None:
     """Load VCS configuration from .vcs_config.yaml.
 
     Args:
@@ -46,7 +46,7 @@ def load_vcs_config(config_path: Optional[Path] = None) -> Optional[dict[str, An
     """
     if yaml is None:
         raise ImportError(
-            "PyYAML is required to load VCS configuration. Install it with: pip install pyyaml"
+            "PyYAML is required to load VCS configuration. " "Install it with: pip install pyyaml"
         )
 
     if config_path is None:

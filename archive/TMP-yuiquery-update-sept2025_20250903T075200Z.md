@@ -21,7 +21,7 @@ Recommending three focused papers for thought leadership ([Slack](https://yuimed
 - Institutional knowledge loss quantification
 - Framework for knowledge retention through discoverable use-cases
 
-**Paper 2: Inferential Data Modeling in Healthcare** 
+**Paper 2: Inferential Data Modeling in Healthcare**
 - Methodology for programmatic schema discovery
 - Case study: Working with undocumented healthcare databases
 - Statistical approaches to entity relationship inference
@@ -36,7 +36,7 @@ Current draft: https://github.com/stharrold/yuimedi-paper-20250901/blob/main/pap
 ## Technical Findings
 
 1. **Data Discovery**: Healthcare systems need programmatic key discovery due to poor documentation standards
-2. **Pattern Recognition**: Semantic understanding enables query reuse across different terminologies  
+2. **Pattern Recognition**: Semantic understanding enables query reuse across different terminologies
 3. **Data Quality**: Synthea claims_transactions shows financial relationship errors (validation query: cmdzv0xl500kls60jndoszw84)
 
 ## Next Steps

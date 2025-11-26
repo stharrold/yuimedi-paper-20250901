@@ -1,7 +1,7 @@
 ---
 title: "YuiQuery: Natural Language to SQL in Healthcare"
 subtitle: "A Comprehensive Analysis of Conversational AI Platforms for Healthcare Analytics"
-author: 
+author:
   - name: "YuiQuery Research Team"
     affiliation: "Yuimedi"
     email: "research@yuimedi.com"
@@ -129,7 +129,7 @@ Demonstrate through systematic literature review that conversational AI platform
 ### Non-Goals
 This research explicitly does not address:
 - Specific vendor comparisons or product recommendations
-- Implementation details for particular healthcare IT environments  
+- Implementation details for particular healthcare IT environments
 - Regulatory compliance strategies for specific jurisdictions
 - Technical architecture specifications for conversational AI systems
 
@@ -175,7 +175,7 @@ A systematic literature review of big data analytics in healthcare by Kamble et 
 
 Health Catalyst's Healthcare Analytics Adoption Model [I13] corroborates these findings, documenting that most healthcare organizations remain at Stages 0-3, characterized by:
 - Fragmented data sources without integration
-- Limited automated reporting capabilities  
+- Limited automated reporting capabilities
 - Lack of standardized data governance
 - Minimal predictive or prescriptive analytics
 - Absence of real-time decision support
@@ -291,7 +291,7 @@ graph TD
     E --> F[Intelligent Response Generation]
     F --> G[Contextual Insights & Visualizations]
     G --> A
-    
+
     H[Institutional Knowledge Base] --> C
     I[Healthcare Ontologies] --> C
     J[Organizational Memory] --> H
@@ -496,7 +496,7 @@ Research published in the International Journal of Medical Informatics [A19] spe
 
 **Context**: Large NHS trust serving 650,000 patients with complex integrated care pathways spanning acute, community, and mental health services. The organization faced significant challenges with analytics accessibility for clinical staff and operational managers.
 
-**Implementation**: 
+**Implementation**:
 - **Platform**: Low-code conversational analytics platform deployment
 - **Timeline**: 18-month implementation beginning January 2023
 - **Scope**: 800+ "citizen developers" across clinical and operational departments

@@ -8,7 +8,7 @@
     "estimated_duration": "5_weeks",
     "critical_deadline": "2025-09-06"
   },
-  
+
   "references": {
     "raci_matrix": "https://www.pmi.org/learning/library/responsibility-assignment-matrix-3631",
     "salary_data": "https://www.glassdoor.com/Salaries/healthcare-data-analyst-salary-SRCH_KO0,23.htm",
@@ -27,7 +27,7 @@
     "scholar_alerts": "https://scholar.google.com/scholar_alerts?view_op=list_alerts",
     "agile_standups": "https://www.atlassian.com/agile/scrum/standups"
   },
-  
+
   "phase_1_critical_fixes": {
     "duration": "2025-09-02_to_2025-09-06",
     "tasks": [
@@ -61,7 +61,7 @@
       }
     ]
   },
-  
+
   "phase_2_compliance": {
     "duration": "2025-09-09_to_2025-09-13",
     "tasks": [
@@ -83,7 +83,7 @@
       }
     ]
   },
-  
+
   "phase_3_scope_reduction": {
     "duration": "2025-09-16_to_2025-09-20",
     "original_hours_per_paper": 100,
@@ -98,7 +98,7 @@
       "echo '{\"paper\": 60, \"abstract\": 10, \"total\": 70}' > ./project-management/scope-v2.json"
     ]
   },
-  
+
   "phase_4_timeline": {
     "duration": "2025-09-23_to_2025-09-27",
     "adjusted_milestones": {
@@ -114,7 +114,7 @@
       "gh api repos/:owner/:repo/milestones --method POST --field title='Paper 3: FHIR Mapping' --field due_on='2026-03-15T23:59:59Z'"
     ]
   },
-  
+
   "phase_5_quality_gates": {
     "duration": "2025-09-30",
     "gates": [
@@ -142,7 +142,7 @@
       "echo 'gate_id,criteria,met,date,approver' > ./project-management/quality-gates.csv"
     ]
   },
-  
+
   "phase_6_risk_register": {
     "duration": "2025-10-01",
     "risks": [
@@ -173,7 +173,7 @@
       "echo 'DSH_unavailable,high,critical,backup_assigned,YLT,weekly' >> ./project-management/risks/risk-register.csv"
     ]
   },
-  
+
   "phase_7_monitoring": {
     "duration": "2025-10-07",
     "analytics": {
@@ -185,12 +185,12 @@
       "echo '# Monitoring Setup\n\n## Google Analytics 4\nProperty ID: [pending]\n\n## Scholar Alerts\nSearch terms: YuiQuery, Yuimedi whitepapers\n\n## Success Metrics\n- Downloads: >500 per paper\n- Citations: >10 within 6 months\n- Leads: >20 qualified' > ./project-management/monitoring.md"
     ]
   },
-  
+
   "github_actions_workflow": {
     "file_path": ".github/workflows/project-tracking.yml",
     "content": "name: Project Tracking\non:\n  schedule:\n    - cron: '0 10 * * 2'  # Weekly Tuesday 10am\n  issues:\n    types: [opened, closed]\njobs:\n  track-progress:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3\n      - name: Update metrics\n        run: |\n          echo \"Week $(date +%V): Progress update\" >> progress.log\n          gh project item-list 1 --owner yuimedi --format json > metrics.json"
   },
-  
+
   "immediate_actions": {
     "day_1": [
       "Execute phase_1_critical_fixes.tasks[1].commands",
@@ -208,7 +208,7 @@
       "Document compliance requirements"
     ]
   },
-  
+
   "execution_instructions": {
     "for_claude_code": [
       "1. Read existing file at target_file path",
@@ -224,7 +224,7 @@
       "Test synthetic data generation"
     ]
   },
-  
+
   "success_metrics": {
     "week_1": ["Backup developer assigned", "Repository created", "Budget approved"],
     "week_2": ["IRB filed", "Synthetic data ready", "Compliance documented"],

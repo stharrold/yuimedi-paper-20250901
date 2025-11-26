@@ -9,7 +9,7 @@ Usage:
 
 import argparse
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 
 def store_checkpoint(todo_file: str) -> None:
@@ -17,7 +17,7 @@ def store_checkpoint(todo_file: str) -> None:
     print(f"Storing checkpoint from {todo_file}...")
 
     checkpoint_record = {
-        "object_id": f"checkpoint_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}",
+        "object_id": f"checkpoint_{datetime.now(UTC).strftime('%Y%m%dT%H%M%SZ')}",
         "object_type": "checkpoint",
         "object_state": "20_saved",
         "object_metadata": json.dumps(
@@ -34,8 +34,8 @@ def store_checkpoint(todo_file: str) -> None:
 
     sql = f"""
     INSERT INTO workflow_records (object_id, object_type, object_state, object_metadata)
-    VALUES ('{checkpoint_record["object_id"]}', '{checkpoint_record["object_type"]}',
-            '{checkpoint_record["object_state"]}', '{checkpoint_record["object_metadata"]}'::JSON);
+    VALUES ('{checkpoint_record['object_id']}', '{checkpoint_record['object_type']}',
+            '{checkpoint_record['object_state']}', '{checkpoint_record['object_metadata']}'::JSON);
     """
 
     print("SQL (to be executed via AgentDB):")

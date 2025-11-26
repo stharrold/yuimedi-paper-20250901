@@ -439,12 +439,14 @@ def test_join_queries(conn: duckdb.DuckDBPyConnection, results: TestResult, verb
 
     test_name = "JOIN query: agent_synchronizations + sync_executions"
     try:
-        result = conn.execute("""
+        result = conn.execute(
+            """
             SELECT s.sync_id, s.status, COUNT(e.execution_id) AS exec_count
             FROM agent_synchronizations s
             LEFT JOIN sync_executions e ON s.sync_id = e.sync_id
             GROUP BY s.sync_id, s.status
-        """).fetchall()
+        """
+        ).fetchall()
 
         if len(result) > 0:
             results.add_pass(test_name, verbose)
@@ -455,12 +457,14 @@ def test_join_queries(conn: duckdb.DuckDBPyConnection, results: TestResult, verb
 
     test_name = "JOIN query: all three tables"
     try:
-        result = conn.execute("""
+        result = conn.execute(
+            """
             SELECT s.sync_id, s.status, e.operation_type, a.event_type
             FROM agent_synchronizations s
             JOIN sync_executions e ON s.sync_id = e.sync_id
             JOIN sync_audit_trail a ON e.execution_id = a.execution_id
-        """).fetchall()
+        """
+        ).fetchall()
 
         # Should have at least one result from our sample inserts
         if len(result) >= 0:  # Allow 0 results as valid if no matching data
@@ -476,12 +480,14 @@ def test_json_fields(conn: duckdb.DuckDBPyConnection, results: TestResult, verbo
 
     test_name = "JSON field: agent_synchronizations.metadata"
     try:
-        result = conn.execute("""
+        result = conn.execute(
+            """
             SELECT metadata->>'priority' AS priority
             FROM agent_synchronizations
             WHERE metadata IS NOT NULL
             LIMIT 1
-        """).fetchone()
+        """
+        ).fetchone()
 
         if result and result[0] == "high":
             results.add_pass(test_name, verbose)
@@ -492,11 +498,13 @@ def test_json_fields(conn: duckdb.DuckDBPyConnection, results: TestResult, verbo
 
     test_name = "JSON field: sync_audit_trail.compliance_context"
     try:
-        result = conn.execute("""
+        result = conn.execute(
+            """
             SELECT compliance_context->>'purpose' AS purpose
             FROM sync_audit_trail
             LIMIT 1
-        """).fetchone()
+        """
+        ).fetchone()
 
         if result and "workflow state" in result[0]:
             results.add_pass(test_name, verbose)

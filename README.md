@@ -212,8 +212,8 @@ This licensing approach promotes open access to healthcare research while ensuri
 
 ## 📮 Contact
 
-**Research Team**: YuiQuery Healthcare Analytics Project  
-**Repository**: [https://github.com/yourusername/yuimedi-paper-20250901](https://github.com/yourusername/yuimedi-paper-20250901)  
+**Research Team**: YuiQuery Healthcare Analytics Project
+**Repository**: [https://github.com/yourusername/yuimedi-paper-20250901](https://github.com/yourusername/yuimedi-paper-20250901)
 **Discussions**: [GitHub Discussions](https://github.com/yourusername/yuimedi-paper-20250901/discussions)
 
 ## 📈 Citation
