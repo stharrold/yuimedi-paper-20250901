@@ -4,14 +4,14 @@ version = "1.5.0"
 description = "YuiQuery Healthcare Analytics Research - Natural Language to SQL in Healthcare"
 readme = "README.md"
 license = {file = "LICENSE"}
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 authors = [
     {name = "YuiQuery Research Team", email = "research@yuimedi.com"}
 ]
 keywords = [
-    "healthcare-analytics", 
-    "natural-language-processing", 
-    "sql-generation", 
+    "healthcare-analytics",
+    "natural-language-processing",
+    "sql-generation",
     "conversational-ai",
     "academic-research"
 ]
@@ -23,10 +23,9 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 
 # No runtime dependencies for automation scripts (scripts/, tools/)
@@ -35,12 +34,14 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = [
-    "ruff>=0.8.0",
-    "mypy>=1.0.0",
-    "pre-commit>=3.0.0"
+    "pytest>=8.4.0",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.0",
+    "mypy>=1.18.0",
+    "pre-commit>=4.5.0",
 ]
 workflow = [
-    "duckdb>=0.9.0"  # Required for agentdb-state-manager workflow skill
+    "duckdb>=1.4.0",  # Required for agentdb-state-manager workflow skill
 ]
 
 # Note: pandoc filters (pandoc-include-code, pandoc-xnos) are installed via pandoc,
@@ -61,14 +62,20 @@ build-backend = "hatchling.build"
 
 [tool.uv]
 dev-dependencies = [
-    "ruff>=0.8.0",
-    "mypy>=1.0.0",
-    "pre-commit>=3.0.0"
+    "pytest>=8.4.0",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.0",
+    "mypy>=1.18.0",
+    "pre-commit>=4.5.0",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
 
 [tool.ruff]
 line-length = 100
-target-version = "py39"
+target-version = "py311"
 
 [tool.ruff.lint]
 # Enable pycodestyle (E, W), pyflakes (F), isort (I), naming (N), pyupgrade (UP)
@@ -89,9 +96,14 @@ line-ending = "auto"
 [tool.ruff.lint.per-file-ignores]
 # Ignore import rules in __init__.py files
 "__init__.py" = ["F401"]
+# Skills scripts use sys.path manipulation before imports
+".claude/skills/**/scripts/*.py" = ["E402"]
+".agents/**/scripts/*.py" = ["E402"]
+# Allow Optional[X] style in scripts (stdlib-only constraint)
+"scripts/*.py" = ["UP007"]
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true

@@ -33,9 +33,8 @@ Constants:
 import argparse
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Optional
 
 # Constants with documented rationale
 OFFICIAL_DOCS_URLS = {
@@ -127,9 +126,7 @@ def warning(message: str) -> None:
     print(f"{Colors.YELLOW}⚠{Colors.END} {message}")
 
 
-def ask_question(
-    prompt: str, options: Optional[list[str]] = None, default: Optional[str] = None
-) -> str:
+def ask_question(prompt: str, options: list[str] | None = None, default: str | None = None) -> str:
     """Ask user a question with optional choices.
 
     Args:
@@ -517,7 +514,7 @@ description: |
   Triggers: {triggers_str}
 ---
 
-# {config.name.replace("-", " ").title()} Skill
+# {config.name.replace('-', ' ').title()} Skill
 
 ## Purpose
 
@@ -534,7 +531,7 @@ Use this skill when:
 - [Condition 2]
 - [Condition 3]
 
-**Triggered by keywords:** {", ".join(config.triggers)}
+**Triggered by keywords:** {', '.join(config.triggers)}
 
 ## Integration with Workflow
 
@@ -548,8 +545,8 @@ This skill follows the local workflow system patterns which extend official
 Claude Code skill specifications:
 
 **Official Claude Code Skills:**
-- Specification: {OFFICIAL_DOCS_URLS["agent_skills"]}
-- Building Agents: {OFFICIAL_DOCS_URLS["building_agents"]}
+- Specification: {OFFICIAL_DOCS_URLS['agent_skills']}
+- Building Agents: {OFFICIAL_DOCS_URLS['building_agents']}
 
 **Local Pattern Extensions:**
 
@@ -695,7 +692,7 @@ def generate_readme(skill_path: Path, config: SkillConfig) -> None:
     """
     info("Generating README.md...")
 
-    content = f"""# {config.name.replace("-", " ").title()} Skill
+    content = f"""# {config.name.replace('-', ' ').title()} Skill
 
 {config.description}
 
@@ -734,11 +731,11 @@ def generate_changelog(skill_path: Path, config: SkillConfig) -> None:
     """
     info("Generating CHANGELOG.md...")
 
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.now(UTC).strftime("%Y-%m-%d")
 
     content = f"""# Changelog - {config.name}
 
-All notable changes to the {config.name.replace("-", " ").title()} skill will be documented in this file.
+All notable changes to the {config.name.replace('-', ' ').title()} skill will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -790,7 +787,8 @@ def generate_archived_files(skill_path: Path, config: SkillConfig) -> None:
 
     # ARCHIVED/CLAUDE.md
     archived_claude = archived_path / "CLAUDE.md"
-    archived_claude.write_text(f"""# Claude Code Context: {config.name}/ARCHIVED
+    archived_claude.write_text(
+        f"""# Claude Code Context: {config.name}/ARCHIVED
 
 Archived files from {config.name} skill
 
@@ -803,17 +801,19 @@ been superseded by newer versions but are preserved for reference.
 
 - **[README.md](README.md)** - Human-readable documentation for archived files
 - **[../CLAUDE.md](../CLAUDE.md)** - Current {config.name} context
-""")
+"""
+    )
 
     # ARCHIVED/README.md
     archived_readme = archived_path / "README.md"
-    archived_readme.write_text(f"""# {config.name}/ARCHIVED
+    archived_readme.write_text(
+        f"""# {config.name}/ARCHIVED
 
 Archived files from {config.name} skill
 
 ## Purpose
 
-This directory contains deprecated files from the {config.name.replace("-", " ").title()}
+This directory contains deprecated files from the {config.name.replace('-', ' ').title()}
 skill that have been superseded by newer versions. Files are archived (not deleted)
 to preserve history and allow comparison with current implementations.
 
@@ -836,7 +836,8 @@ This creates a timestamped ZIP archive in this directory.
 
 - **[../SKILL.md](../SKILL.md)** - Current skill documentation
 - **[../CLAUDE.md](../CLAUDE.md)** - Current Claude Code context
-""")
+"""
+    )
 
     success("Generated ARCHIVED/ files")
 
@@ -856,10 +857,12 @@ def generate_script_init(skill_path: Path, config: SkillConfig) -> None:
     scripts_path = skill_path / "scripts"
     init_path = scripts_path / "__init__.py"
 
-    init_path.write_text(f'''"""{config.name.replace("-", " ").title()} skill scripts package."""
+    init_path.write_text(
+        f'''"""{config.name.replace('-', ' ').title()} skill scripts package."""
 
 __version__ = "1.0.0"
-''')
+'''
+    )
 
     success("Generated scripts/__init__.py")
 

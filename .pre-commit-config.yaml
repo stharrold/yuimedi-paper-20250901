@@ -1,0 +1,54 @@
+# Pre-commit hooks for repository consistency
+# Install: uv add --dev pre-commit && uv run pre-commit install
+# Run manually: uv run pre-commit run --all-files
+
+repos:
+  # Standard hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: check-merge-conflict
+      - id: detect-private-key
+
+  # Ruff for Python linting and formatting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.6
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  # Local hooks for repository-specific checks
+  - repo: local
+    hooks:
+      # Sync AI configuration files (CLAUDE.md → AGENTS.md, .agents/)
+      # This hook runs FIRST to ensure derived files are synced before other checks
+      - id: sync-ai-config
+        name: Sync AI configuration (CLAUDE.md → AGENTS.md, .agents/)
+        entry: python .claude/skills/workflow-utilities/scripts/sync_ai_config.py sync
+        language: python
+        files: ^(CLAUDE\.md|\.claude/)
+        pass_filenames: false
+        stages: [pre-commit]
+
+      # Check CLAUDE.md frontmatter
+      - id: claude-md-frontmatter
+        name: Check CLAUDE.md has YAML frontmatter
+        entry: python .claude/skills/workflow-utilities/scripts/check_claude_md_frontmatter.py
+        language: python
+        files: CLAUDE\.md$
+        pass_filenames: false
+
+      # Verify skill directory structure
+      - id: skill-structure
+        name: Verify skill directory structure
+        entry: python .claude/skills/workflow-utilities/scripts/check_skill_structure.py
+        language: python
+        files: ^\.claude/skills/
+        pass_filenames: false

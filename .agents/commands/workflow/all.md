@@ -36,29 +36,47 @@ Parse `$ARGUMENTS` to determine mode:
 
 ### Step 2: Detect Current State
 
-Run state detection:
+#### 2a. Query AgentDB for Workflow State
+
+Run state query to get last known phase:
+```bash
+podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/query_workflow_state.py \
+  --format json
+```
+
+Parse the result for:
+- `phase`: Last completed phase number (0-7)
+- `phase_name`: Human-readable phase name
+- `next_command`: Suggested next slash command
+- `pattern`: Last recorded sync pattern
+
+#### 2b. Detect Branch Type
+
+Run git detection:
 ```bash
 git branch --show-current
 ```
 
 Determine branch type:
-- Pattern `^\d{3}-` or `^feature/` → BRANCH_TYPE=feature
-- Pattern `^contrib/` → BRANCH_TYPE=contrib
+- Pattern `^feature/` → BRANCH_TYPE=feature (in worktree)
+- Pattern `^contrib/` → BRANCH_TYPE=contrib (main repo)
 - Pattern `^develop$` → BRANCH_TYPE=develop
 - Pattern `^release/` → BRANCH_TYPE=release
 - Pattern `^main$` → BRANCH_TYPE=main
 
 ### Step 3: Check Artifact Existence
 
-For feature branches, check which artifacts exist in `specs/{branch-name}/`:
-- `spec.md` exists → SPEC_EXISTS=true
-- `research.md` exists → RESEARCH_EXISTS=true
-- `tasks.md` exists → TASKS_EXISTS=true
+For feature branches, check which artifacts exist:
+- `planning/{slug}/` exists → PLANNING_EXISTS=true
+- `specs/{slug}/spec.md` exists → SPEC_EXISTS=true
+- `specs/{slug}/plan.md` with tasks → TASKS_EXISTS=true
 
 Report detected state:
 ```
 Detected state:
   Branch: {branch} ({branch_type})
+  AgentDB Phase: {phase} ({phase_name})
+  Next Command: {next_command}
   Artifacts: {list of existing artifacts}
 ```
 
@@ -101,21 +119,30 @@ Detected state:
    - Continue execution from the determined step
 
 #### MODE=default (auto-detect)
-1. Based on BRANCH_TYPE and artifacts, determine starting step:
+1. Use AgentDB phase + branch type to determine starting step:
+
+| AgentDB Phase | Branch Type | Start From |
+|---------------|-------------|------------|
+| 0 (not_started) | any | Step 1 (/1_specify) |
+| 1 (specify) | feature | Step 2 (/2_plan) |
+| 2 (plan) | feature | Step 3 (/3_tasks) |
+| 3 (tasks) | feature | Step 4 (/4_implement) |
+| 4 (implement) | feature | Step 5 (/5_integrate) |
+| 5 (integrate) | contrib | Step 6 (/6_release) or suggest |
+| 6 (release) | any | Step 7 (/7_backmerge) |
+| 7 (backmerge) | contrib | Workflow complete |
+
+Fallback to artifact detection if AgentDB is unavailable:
 
 | Branch Type | Artifacts | Start From |
 |-------------|-----------|------------|
-| feature | none | Step 1 (/1_specify) |
-| feature | spec only | Step 2 (/2_plan) |
-| feature | spec + research | Step 3 (/3_tasks) |
-| feature | spec + tasks | Step 4 (/4_implement) |
-| feature | all complete | Step 5 (/5_integrate) |
-| contrib | - | Step 6 (/6_release) or suggest |
-| develop | - | Step 6 (/6_release) |
-| release | - | Step 7 (/7_backmerge) |
+| feature | no planning | Step 1 (/1_specify) |
+| feature | planning only | Step 2 (/2_plan) |
+| feature | specs exist | Step 3 (/3_tasks) |
+| contrib | - | Step 6 (/6_release) |
 | main | - | Suggest: `/workflow/all new "description"` |
 
-2. Report: `Starting from: Step {N} (/{N}_command)`
+2. Report: `Starting from: Step {N} (/{N}_command) [from AgentDB: phase {phase}]`
 3. Execute steps in sequence until manual gate or completion
 
 ### Step 5: Manual Gate Handling

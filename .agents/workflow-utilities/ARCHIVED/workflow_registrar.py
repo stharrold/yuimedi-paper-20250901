@@ -19,9 +19,9 @@ Constants:
 import argparse
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 try:
     import yaml
@@ -60,7 +60,7 @@ def warning(msg: str) -> None:
     print(f"{Colors.YELLOW}⚠{Colors.END} {msg}")
 
 
-def extract_timestamp_from_filename(filename: str) -> Optional[str]:
+def extract_timestamp_from_filename(filename: str) -> str | None:
     """Extract timestamp from TODO filename.
 
     Args:
@@ -118,7 +118,7 @@ def save_todo_md(frontmatter: dict[str, Any], content: str) -> None:
 
 
 def register_workflow(
-    todo_file: Path, workflow_type: str, slug: str, title: Optional[str] = None
+    todo_file: Path, workflow_type: str, slug: str, title: str | None = None
 ) -> None:
     """Register workflow in TODO.md active list.
 
@@ -145,7 +145,7 @@ def register_workflow(
     timestamp = extract_timestamp_from_filename(todo_file.name)
     if not timestamp:
         warning(f"Could not extract timestamp from {todo_file.name}")
-        timestamp = datetime.now(timezone.utc).isoformat()
+        timestamp = datetime.now(UTC).isoformat()
 
     # Ensure workflows structure exists
     if "workflows" not in frontmatter:
@@ -165,7 +165,7 @@ def register_workflow(
     workflow_entry = {
         "slug": slug,
         "timestamp": extract_timestamp_from_filename(todo_file.name)
-        or datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
+        or datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ"),
         "title": title or f"{workflow_type.title()}: {slug}",
         "status": "in_progress",
         "file": todo_file.name,
@@ -175,7 +175,7 @@ def register_workflow(
     frontmatter["workflows"]["active"].append(workflow_entry)
 
     # Update last_update timestamp
-    frontmatter["last_update"] = datetime.now(timezone.utc).isoformat()
+    frontmatter["last_update"] = datetime.now(UTC).isoformat()
 
     # Save
     save_todo_md(frontmatter, content)

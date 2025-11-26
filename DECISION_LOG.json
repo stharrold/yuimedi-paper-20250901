@@ -18,7 +18,7 @@
     },
     {
       "id": "002",
-      "date": "2025-08-21", 
+      "date": "2025-08-21",
       "title": "Documentation Format Selection",
       "description": "Selected Markdown format for all research documentation",
       "decision": "Use Markdown (.md) files for all research documents including bibliography and literature review",
@@ -45,7 +45,7 @@
         "Academic-specific licenses",
         "No license/all rights reserved"
       ],
-      "status": "implemented", 
+      "status": "implemented",
       "impact": "medium",
       "stakeholders": ["research team", "academic community"],
       "tags": ["legal", "licensing", "open-source"]
@@ -69,12 +69,12 @@
     {
       "id": "2025-08-21-005",
       "date": "2025-08-21",
-      "category": "implementation", 
+      "category": "implementation",
       "decision": "Transform generic whitepaper template into healthcare analytics research paper",
       "rationale": "Existing paper.md template provided good academic structure but needed healthcare-specific content and evidence-based approach",
       "alternatives": [
         "Start with blank document",
-        "Use LaTeX academic template", 
+        "Use LaTeX academic template",
         "Adapt from healthcare journal templates"
       ],
       "tradeoffs": "Gained: professional academic structure, pandoc compatibility. Lost: some template content that wasn't relevant to research focus",
@@ -106,7 +106,7 @@
       "rationale": "Python 3.6 compatibility issue encountered when user ran scripts with anaconda Python 3.6 (subprocess.run text=True parameter not available). UV environment ensures Python 3.8+ compatibility and provides development consistency. While scripts have zero external dependencies, environment isolation prevents Python version compatibility issues.",
       "alternatives": [
         "Continue with system Python and document Python 3.8+ requirement",
-        "Use requirements.txt with traditional venv", 
+        "Use requirements.txt with traditional venv",
         "Add Python version checks to scripts"
       ],
       "tradeoffs": "Gained: Python version consistency, development environment isolation, future-proof for package additions, resolved compatibility issues. Lost: some setup complexity, requires UV installation",
@@ -115,7 +115,7 @@
       "revisitDate": "2026-01-01"
     },
     {
-      "id": "2025-08-21-008", 
+      "id": "2025-08-21-008",
       "date": "2025-08-21",
       "category": "implementation",
       "decision": "Reverse decision 2025-08-21-007 and implement UV environment",
@@ -173,7 +173,7 @@
       "rationale": "Bidirectional sync was creating 4+ duplicates per task, cluttering project management dashboard. Clean tracking essential for September 30 Paper 1 deadline and executive reporting.",
       "alternatives_considered": [
         "Keep all duplicate issues and manage manually",
-        "Disable bidirectional sync entirely", 
+        "Disable bidirectional sync entirely",
         "Create separate tracking systems for different task types",
         "Rebuild entire issue tracking from scratch"
       ],

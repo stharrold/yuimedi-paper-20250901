@@ -6,11 +6,14 @@ parent: null
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md
+  - scripts/CLAUDE.md
+  - templates/CLAUDE.md
 related_skills:
-  - **workflow-orchestrator** - Calls SpecKit scripts
-  - **bmad-planner** - Creates planning context
-  - **workflow-utilities** - Shared utilities
-  - **git-workflow-manager** - Worktree management
+  - workflow-orchestrator
+  - bmad-planner
+  - workflow-utilities
+  - git-workflow-manager
+  - agentdb-state-manager
 ---
 
 # Claude Code Context: speckit-author
@@ -18,6 +21,8 @@ related_skills:
 ## Purpose
 
 SpecKit Author provides **interactive callable tools** for creating and managing specifications in feature/release/hotfix worktrees. It implements the SpecKit phase of the workflow, generating detailed specifications (spec.md) and implementation plans (plan.md) through interactive Q&A sessions.
+
+> **Note**: As of v5.12.0, workflow tasks are now stored in `specs/*/tasks.md` instead of TODO_*.md files. Workflow state is tracked via AgentDB. See `agentdb-state-manager` for the current system.
 
 ## Directory Structure
 

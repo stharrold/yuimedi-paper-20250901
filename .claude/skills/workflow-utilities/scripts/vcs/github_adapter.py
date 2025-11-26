@@ -123,7 +123,7 @@ class GitHubAdapter(BaseVCSAdapter):
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
-            raise RuntimeError(f"Failed to create GitHub pull request.\nError: {error_msg}")
+            raise RuntimeError(f"Failed to create GitHub pull request.\n" f"Error: {error_msg}")
         except subprocess.TimeoutExpired:
             raise RuntimeError("Timeout while creating GitHub pull request")
 
@@ -194,7 +194,7 @@ class GitHubAdapter(BaseVCSAdapter):
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
-            raise RuntimeError(f"Failed to fetch PR comments.\nError: {error_msg}")
+            raise RuntimeError(f"Failed to fetch PR comments.\n" f"Error: {error_msg}")
         except subprocess.TimeoutExpired:
             raise RuntimeError("Timeout while fetching PR comments")
         except (json.JSONDecodeError, KeyError) as e:
@@ -230,7 +230,7 @@ class GitHubAdapter(BaseVCSAdapter):
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
-            raise RuntimeError(f"Failed to update PR.\nError: {error_msg}")
+            raise RuntimeError(f"Failed to update PR.\n" f"Error: {error_msg}")
         except subprocess.TimeoutExpired:
             raise RuntimeError("Timeout while updating PR")
 
@@ -277,7 +277,7 @@ class GitHubAdapter(BaseVCSAdapter):
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
-            raise RuntimeError(f"Failed to fetch PR status.\nError: {error_msg}")
+            raise RuntimeError(f"Failed to fetch PR status.\n" f"Error: {error_msg}")
         except subprocess.TimeoutExpired:
             raise RuntimeError("Timeout while fetching PR status")
         except (json.JSONDecodeError, KeyError) as e:

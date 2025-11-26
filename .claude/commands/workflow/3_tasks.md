@@ -9,67 +9,72 @@ next: /4_implement
 
 **Workflow**: `/1_specify` → `/2_plan` → `/3_tasks` → `/4_implement` → `/5_integrate` → `/6_release` → `/7_backmerge`
 
-**Purpose**: Generate ordered, executable task list from design artifacts.
+**Purpose**: Validate task list from plan.md and prepare for implementation.
 
-**Prerequisites**: `plan.md` must exist (created by `/2_plan`); optionally `data-model.md`, `contracts/`, `research.md`, `quickstart.md`
+**Prerequisites**:
+- Must be in feature worktree
+- `specs/{slug}/plan.md` must exist with ## Tasks section (created by `/2_plan`)
 
-**Outputs**: `tasks.md` with numbered tasks (T001, T002, etc.)
+**Outputs**: Validated task list ready for execution, AgentDB state record
 
-**Next**: Run `/4_implement` to execute tasks automatically, then `/5_integrate` to create PR
+**Next**: Run `/4_implement` to execute tasks automatically
 
 ---
 
-Given the context provided as an argument, do this:
+Given the feature context, do this:
 
-1. Run `.specify/scripts/bash/check-task-prerequisites.sh --json` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute.
-2. Load and analyze available design documents:
-   - Always read plan.md for tech stack and libraries
-   - IF EXISTS: Read data-model.md for entities
-   - IF EXISTS: Read contracts/ for API endpoints
-   - IF EXISTS: Read research.md for technical decisions
-   - IF EXISTS: Read quickstart.md for test scenarios
+## Step 0: Verify Context (REQUIRED - STOP if fails)
 
-   Note: Not all projects have all documents. For example:
-   - CLI tools might not have contracts/
-   - Simple libraries might not need data-model.md
-   - Generate tasks based on what's available
+**Run this first. If it fails, STOP and tell the user to fix the context.**
 
-3. Generate tasks following the template:
-   - Use `.specify/templates/tasks-template.md` as the base
-   - Replace example tasks with actual tasks based on:
-     * **Setup tasks**: Project init, dependencies, linting
-     * **Test tasks [P]**: One per contract, one per integration scenario
-     * **Core tasks**: One per entity, service, CLI command, endpoint
-     * **Integration tasks**: DB connections, middleware, logging
-     * **Polish tasks [P]**: Unit tests, performance, docs
+```bash
+python .claude/skills/workflow-utilities/scripts/verify_workflow_context.py --step 3
+```
 
-4. Task generation rules:
-   - Each contract file → contract test task marked [P]
-   - Each entity in data-model → model creation task marked [P]
-   - Each endpoint → implementation task (not parallel if shared files)
-   - Each user story → integration test marked [P]
-   - Different files = can be parallel [P]
-   - Same file = sequential (no [P])
+Expected: Worktree directory, `feature/*` branch
 
-5. Order tasks by dependencies:
-   - Setup before everything
-   - Tests before implementation (TDD)
-   - Models before services
-   - Services before endpoints
-   - Core before integration
-   - Everything before polish
+---
 
-6. Include parallel execution examples:
-   - Group [P] tasks that can run together
-   - Show actual Task agent commands
+## Step 1: Detect Feature Slug and Locate Plan File
 
-7. Create FEATURE_DIR/tasks.md with:
-   - Correct feature name from implementation plan
-   - Numbered tasks (T001, T002, etc.)
-   - Clear file paths for each task
-   - Dependency notes
-   - Parallel execution guidance
+Extract slug from branch (`feature/{timestamp}_{slug}`) and find plan at `specs/{slug}/plan.md`.
 
-Context for task generation: $ARGUMENTS
+If plan file missing, STOP and prompt user to run `/2_plan` first.
 
-The tasks.md should be immediately executable - each task must be specific enough that an LLM can complete it without additional context.
+## Step 2: Validate Task Structure
+
+Read `specs/{slug}/plan.md` and verify it contains:
+- A `## Tasks` or `## Task Breakdown` section
+- Numbered tasks (T001, T002, etc. or similar format)
+- Clear task descriptions with file paths
+
+If tasks are missing or incomplete:
+- Check `specs/{slug}/tasks.md` as an alternative location
+- If no tasks found, prompt user to complete the plan first
+
+## Step 3: Parse and Display Tasks
+
+Parse the tasks from plan.md and display:
+- Total task count
+- Task categories (setup, implementation, testing, documentation)
+- Parallel execution opportunities (tasks marked [P])
+- Dependencies between tasks
+
+## Step 4: Record State in AgentDB
+
+Record the workflow transition:
+```bash
+podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
+  --sync-type workflow_transition \
+  --pattern phase_3_tasks \
+  --source "specs/{slug}/plan.md"
+```
+
+## Step 5: Report Readiness
+
+Report to the user:
+- Tasks validated and ready for execution
+- Task summary (count, categories, parallel opportunities)
+- Next step: Run `/4_implement` to execute tasks
+
+**Important**: The task list must be complete and unambiguous before proceeding to implementation.

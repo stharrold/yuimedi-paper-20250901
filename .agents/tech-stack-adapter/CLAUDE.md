@@ -6,6 +6,7 @@ parent: null
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md
+  - scripts/CLAUDE.md
 related_skills:
   - **workflow-orchestrator** - Uses detect_stack.py at session start
   - **quality-enforcer** - Uses detected test/coverage commands

@@ -32,7 +32,8 @@ def deprecate_files(todo_file, description, *files):
     # Ensure ARCHIVED has standard files (if not already an ARCHIVED dir)
     archived_claude = archived_dir / "CLAUDE.md"
     if not archived_claude.exists():
-        archived_claude.write_text("""# Claude Code Context: Archived Content
+        archived_claude.write_text(
+            """# Claude Code Context: Archived Content
 
 ## Purpose
 
@@ -45,16 +46,19 @@ Zip files containing deprecated code and resources.
 ## Restoration
 
 Use archive_manager.py to list and extract archived files.
-""")
+"""
+        )
 
     archived_readme = archived_dir / "README.md"
     if not archived_readme.exists():
-        archived_readme.write_text("""# Archived Files
+        archived_readme.write_text(
+            """# Archived Files
 
 This directory contains archived (deprecated) files that are no longer in active use.
 
 Files are stored in timestamped zip archives for potential recovery.
-""")
+"""
+        )
 
     # Create zip archive
     zip_name = f"{timestamp}_{description}.zip"

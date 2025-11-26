@@ -16,7 +16,7 @@ import re
 import subprocess
 import sys
 import warnings
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Optional
 
@@ -151,7 +151,7 @@ class YuiQueryGitHubSync:
                 "updated_at": issue["updatedAt"],
                 "implementation_notes": {
                     "github_sync": True,
-                    "last_sync": datetime.now(timezone.utc).isoformat(),
+                    "last_sync": datetime.now(UTC).isoformat(),
                     "issue_state": issue["state"],
                 },
             }
@@ -203,13 +203,13 @@ class YuiQueryGitHubSync:
                 "version": "1.0.0",
                 "type": "Academic research documentation",
                 "focus": "Natural language to SQL in healthcare",
-                "updated": datetime.now(timezone.utc).isoformat(),
-                "last_sync": datetime.now(timezone.utc).isoformat(),
+                "updated": datetime.now(UTC).isoformat(),
+                "last_sync": datetime.now(UTC).isoformat(),
                 "sync_source": "github_bidirectional_sync",
                 "sync_metadata": {
                     "github_repo": self.github_repo,
                     "sync_direction": "bidirectional",
-                    "last_github_fetch": datetime.now(timezone.utc).isoformat(),
+                    "last_github_fetch": datetime.now(UTC).isoformat(),
                     "total_github_issues": len(github_tasks),
                     "total_tasks": len(all_tasks),
                     "sync_conflicts": [],

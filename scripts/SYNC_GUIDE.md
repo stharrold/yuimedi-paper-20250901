@@ -107,7 +107,7 @@ Add these HTML comments to GitHub issue descriptions:
 
 ```markdown
 <!-- priority: P0 -->  🔴 Critical - Blocks research progress
-<!-- priority: P1 -->  🟠 High - Important for research completion  
+<!-- priority: P1 -->  🟠 High - Important for research completion
 <!-- priority: P2 -->  🟡 Medium - Standard research tasks (default)
 <!-- priority: P3 -->  🟢 Low - Optional enhancements
 ```
@@ -133,11 +133,11 @@ Add these HTML comments to GitHub issue descriptions:
 <!-- status: in_progress -->
 <!-- depends-on: #145, #167 -->
 
-Comprehensive validation of natural language processing claims in the healthcare 
+Comprehensive validation of natural language processing claims in the healthcare
 analytics research paper, focusing on:
 
 - [ ] Verify cited accuracy percentages (45-78% range)
-- [ ] Validate case study implementations  
+- [ ] Validate case study implementations
 - [ ] Cross-check empirical results with source papers
 - [ ] Ensure medical terminology usage is accurate
 
@@ -161,7 +161,7 @@ analytics research paper, focusing on:
 {
   "project": "YuiQuery Healthcare Analytics Research",
   "version": "1.0.0",
-  "type": "Academic research documentation", 
+  "type": "Academic research documentation",
   "updated": "2025-08-21T14:30:52Z",
   "last_sync": "2025-08-21T14:30:52Z",
   "sync_metadata": {
@@ -200,10 +200,10 @@ analytics research paper, focusing on:
 > **CRITICAL**: Essential research tasks blocking publication progress
 
 - [ ] **[#145]** Complete systematic literature review validation
-  - Status: `in_progress` 
+  - Status: `in_progress`
   - Details: Verify methodology compliance with PRISMA guidelines...
 
-## Priority 1 - High  
+## Priority 1 - High
 > **HIGH**: Important research components for whitepaper completion
 
 - [ ] **[#123]** Validate Healthcare NLP Claims
@@ -251,7 +251,7 @@ open TODO_FOR_HUMAN.md
 # Create new research tasks
 gh issue create --title "Literature Review Section X" --body "<!-- priority: P1 -->"
 
-# Assign tasks to team members  
+# Assign tasks to team members
 gh issue edit 123 --add-assignee username
 
 # After task completion
@@ -415,7 +415,7 @@ jobs:
   "tasks": [
     {
       "label": "Sync TODOs",
-      "type": "shell", 
+      "type": "shell",
       "command": "./scripts/sync_todos.sh",
       "group": "build",
       "presentation": {"echo": true, "reveal": "always"}
@@ -513,6 +513,6 @@ gh repo view && python3 --version
 
 ---
 
-*Last updated: 2025-08-21*  
-*Project: YuiQuery Healthcare Analytics Research*  
+*Last updated: 2025-08-21*
+*Project: YuiQuery Healthcare Analytics Research*
 *Script version: 1.0.0*

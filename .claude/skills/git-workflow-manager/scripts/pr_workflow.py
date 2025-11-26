@@ -12,10 +12,10 @@ Usage:
     podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/pr_workflow.py <step>
 
 Steps:
-    finish-feature    - Step 1: PR feature → contrib (runs quality gates first)
+    finish-feature    - Step 1: PR feature -> contrib (runs quality gates first)
     archive-todo      - Step 2: Archive TODO file after merge
-    sync-agents       - Step 3: Sync CLAUDE.md → AGENTS.md
-    start-develop     - Step 4: PR contrib → develop
+    sync-agents       - Step 3: Sync CLAUDE.md -> AGENTS.md
+    start-develop     - Step 4: PR contrib -> develop
     full              - Run all steps in sequence
     status            - Show current workflow status
 """
@@ -27,10 +27,46 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+# Add workflow-utilities to path for sync_ai_config
+sys.path.insert(
+    0,
+    str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"),
+)
+
+# Safe cross-platform output
+try:
+    from safe_output import format_arrow, format_check, format_cross, format_warning, safe_print
+except ImportError:
+    # Fallback if module not found
+    def safe_print(*args, **kwargs):
+        try:
+            print(*args, **kwargs)
+        except UnicodeEncodeError:
+            message = " ".join(str(arg) for arg in args)
+            message = (
+                message.replace("[OK]", "[OK]")
+                .replace("[X]", "[X]")
+                .replace("->", "->")
+                .replace("⚠", "!")
+            )
+            print(message, **kwargs)
+
+    def format_check(msg):
+        return f"[OK] {msg}"
+
+    def format_cross(msg):
+        return f"[X] {msg}"
+
+    def format_warning(msg):
+        return f"! {msg}"
+
+    def format_arrow(left, right):
+        return f"{left} -> {right}"
+
 
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
     """Run a command and return the result."""
-    print(f"  → {' '.join(cmd)}")
+    safe_print(f"  -> {' '.join(cmd)}")
     return subprocess.run(cmd, capture_output=True, text=True, check=check)
 
 
@@ -65,10 +101,10 @@ def return_to_editable_branch() -> bool:
     result = run_cmd(["git", "checkout", contrib], check=False)
 
     if result.returncode != 0:
-        print(f"✗ Failed to checkout {contrib}: {result.stderr}")
+        safe_print(format_cross(f" Failed to checkout {contrib}: {result.stderr}"))
         return False
 
-    print(f"✓ Now on editable branch: {contrib}")
+    safe_print(format_check(f" Now on editable branch: {contrib}"))
     return True
 
 
@@ -78,7 +114,7 @@ def run_quality_gates() -> bool:
     script_path = Path(".claude/skills/quality-enforcer/scripts/run_quality_gates.py")
 
     if not script_path.exists():
-        print("⚠️  Quality gates script not found, skipping")
+        safe_print(format_warning("  Quality gates script not found, skipping"))
         return True
 
     result = subprocess.run(
@@ -97,7 +133,7 @@ def step_finish_feature() -> bool:
     - Quality gates must pass
     """
     print("\n" + "=" * 60)
-    print("STEP 1: PR Feature → Contrib")
+    print("STEP 1: PR Feature -> Contrib")
     print("=" * 60)
 
     current = get_current_branch()
@@ -105,24 +141,24 @@ def step_finish_feature() -> bool:
 
     # Validate we're on a feature branch
     if not current.startswith("feature/"):
-        print(f"✗ Must be on a feature branch (current: {current})")
+        safe_print(format_cross(f" Must be on a feature branch (current: {current})"))
         print("  Expected: feature/*")
         return False
 
     # Run quality gates
     if not run_quality_gates():
-        print("✗ Quality gates failed. Fix issues before creating PR.")
+        safe_print(format_cross(" Quality gates failed. Fix issues before creating PR."))
         return False
 
     # Push branch
     print(f"\n[Push] Pushing {current}...")
     result = run_cmd(["git", "push", "-u", "origin", current], check=False)
     if result.returncode != 0:
-        print(f"✗ Push failed: {result.stderr}")
+        safe_print(format_cross(f" Push failed: {result.stderr}"))
         return False
 
     # Create PR
-    print(f"\n[PR] Creating PR: {current} → {contrib}...")
+    print(f"\n[PR] Creating PR: {current} -> {contrib}...")
     result = run_cmd(
         [
             "gh",
@@ -139,12 +175,12 @@ def step_finish_feature() -> bool:
 
     if result.returncode != 0:
         if "already exists" in result.stderr:
-            print("⚠️  PR already exists")
+            safe_print(format_warning("  PR already exists"))
         else:
-            print(f"✗ PR creation failed: {result.stderr}")
+            safe_print(format_cross(f" PR creation failed: {result.stderr}"))
             return False
 
-    print(f"✓ Step 1 complete: PR created {current} → {contrib}")
+    safe_print(format_check(f" Step 1 complete: PR created {current} -> {contrib}"))
     print("\nNext: After PR is merged, run: pr_workflow.py archive-todo")
     return True
 
@@ -163,7 +199,7 @@ def step_archive_todo() -> bool:
     todo_files = list(Path(".").glob("TODO*.md"))
 
     if not todo_files:
-        print("⚠️  No TODO*.md files found to archive")
+        safe_print(format_warning("  No TODO*.md files found to archive"))
         return True
 
     # Create ARCHIVED directory
@@ -177,7 +213,7 @@ def step_archive_todo() -> bool:
         archive_name = f"{timestamp}_{todo_file.name}"
         archive_path = archived_dir / archive_name
 
-        print(f"  Archiving {todo_file} → {archive_path}")
+        print(f"  Archiving {todo_file} -> {archive_path}")
         shutil.move(str(todo_file), str(archive_path))
 
     # Commit the archive
@@ -195,9 +231,9 @@ def step_archive_todo() -> bool:
     )
 
     if result.returncode != 0 and "nothing to commit" not in result.stdout:
-        print(f"⚠️  Commit warning: {result.stderr}")
+        safe_print(format_warning(f"  Commit warning: {result.stderr}"))
 
-    print("✓ Step 2 complete: TODO files archived")
+    safe_print(format_check(" Step 2 complete: TODO files archived"))
     print("\nNext: Run: pr_workflow.py sync-agents")
     return True
 
@@ -206,56 +242,65 @@ def step_sync_agents() -> bool:
     """
     Step 3: Sync CLAUDE.md to AGENTS.md and .agents/.
 
-    Copies:
-    - CLAUDE.md → AGENTS.md
-    - CLAUDE.md → .github/copilot-instructions.md
-    - .claude/skills/ → .agents/
+    Uses consolidated sync_ai_config utility for:
+    - CLAUDE.md -> AGENTS.md
+    - CLAUDE.md -> .github/copilot-instructions.md
+    - .claude/skills/ -> .agents/
     """
     print("\n" + "=" * 60)
-    print("STEP 3: Sync CLAUDE.md → AGENTS.md")
+    print("STEP 3: Sync CLAUDE.md -> AGENTS.md")
     print("=" * 60)
 
-    # Sync CLAUDE.md → AGENTS.md
-    if Path("CLAUDE.md").exists():
-        shutil.copy("CLAUDE.md", "AGENTS.md")
-        print("  ✓ CLAUDE.md → AGENTS.md")
-    else:
-        print("  ⚠️  CLAUDE.md not found")
+    # Use consolidated sync utility
+    try:
+        from sync_ai_config import sync_all
 
-    # Sync CLAUDE.md → .github/copilot-instructions.md
-    if Path("CLAUDE.md").exists():
-        Path(".github").mkdir(exist_ok=True)
-        shutil.copy("CLAUDE.md", ".github/copilot-instructions.md")
-        print("  ✓ CLAUDE.md → .github/copilot-instructions.md")
+        success, modified = sync_all()
 
-    # Sync .claude/skills/ → .agents/
-    if Path(".claude/skills").exists():
-        Path(".agents").mkdir(exist_ok=True)
-        for skill_dir in Path(".claude/skills").iterdir():
-            if skill_dir.is_dir():
-                dest = Path(".agents") / skill_dir.name
-                if dest.exists():
-                    shutil.rmtree(dest)
-                shutil.copytree(skill_dir, dest)
-        print("  ✓ .claude/skills/ → .agents/")
+        if not success:
+            safe_print(format_cross(" Sync failed"))
+            return False
 
-    # Commit the sync
-    run_cmd(["git", "add", "AGENTS.md", ".github/", ".agents/"], check=False)
+    except ImportError:
+        # Fallback to inline implementation if import fails
+        safe_print("  " + format_warning("  Using fallback sync (sync_ai_config.py not found)"))
+        if Path("CLAUDE.md").exists():
+            shutil.copy("CLAUDE.md", "AGENTS.md")
+            safe_print("  " + format_check(" CLAUDE.md -> AGENTS.md"))
+            Path(".github").mkdir(exist_ok=True)
+            shutil.copy("CLAUDE.md", ".github/copilot-instructions.md")
+            safe_print("  " + format_check(" CLAUDE.md -> .github/copilot-instructions.md"))
+        if Path(".claude/skills").exists():
+            Path(".agents").mkdir(exist_ok=True)
+            for skill_dir in Path(".claude/skills").iterdir():
+                if skill_dir.is_dir():
+                    dest = Path(".agents") / skill_dir.name
+                    if dest.exists():
+                        shutil.rmtree(dest)
+                    shutil.copytree(skill_dir, dest)
+            safe_print("  " + format_check(" .claude/skills/ -> .agents/"))
+        modified = True
 
-    result = run_cmd(
-        [
-            "git",
-            "commit",
-            "-m",
-            "chore: sync CLAUDE.md to cross-tool formats\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
-        ],
-        check=False,
-    )
+    # Commit the sync if files were modified
+    if modified:
+        run_cmd(["git", "add", "AGENTS.md", ".github/", ".agents/"], check=False)
 
-    if result.returncode != 0 and "nothing to commit" not in result.stdout:
-        print(f"⚠️  Commit warning: {result.stderr}")
+        result = run_cmd(
+            [
+                "git",
+                "commit",
+                "-m",
+                "chore: sync CLAUDE.md to cross-tool formats\n\n"
+                "🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\n"
+                "Co-Authored-By: Claude <noreply@anthropic.com>",
+            ],
+            check=False,
+        )
 
-    print("✓ Step 3 complete: AI config synced")
+        if result.returncode != 0 and "nothing to commit" not in result.stdout:
+            safe_print(format_warning(f"  Commit warning: {result.stderr}"))
+
+    safe_print(format_check(" Step 3 complete: AI config synced"))
     print("\nNext: Run: pr_workflow.py start-develop")
     return True
 
@@ -269,7 +314,7 @@ def step_start_develop() -> bool:
     - All previous steps complete
     """
     print("\n" + "=" * 60)
-    print("STEP 4: PR Contrib → Develop")
+    print("STEP 4: PR Contrib -> Develop")
     print("=" * 60)
 
     current = get_current_branch()
@@ -277,7 +322,7 @@ def step_start_develop() -> bool:
 
     # Validate we're on contrib branch
     if not current.startswith("contrib/"):
-        print(f"⚠️  Not on contrib branch (current: {current})")
+        safe_print(format_warning(f"  Not on contrib branch (current: {current})"))
         print(f"  Switching to {contrib}...")
         run_cmd(["git", "checkout", contrib], check=False)
 
@@ -286,7 +331,7 @@ def step_start_develop() -> bool:
     result = run_cmd(["git", "push", "origin", contrib], check=False)
 
     # Create PR to develop
-    print(f"\n[PR] Creating PR: {contrib} → develop...")
+    print(f"\n[PR] Creating PR: {contrib} -> develop...")
     result = run_cmd(
         [
             "gh",
@@ -296,19 +341,25 @@ def step_start_develop() -> bool:
             "develop",
             "--fill",
             "--body",
-            f"Integration PR: {contrib} → develop\n\nWorkflow steps completed:\n- [x] Quality gates passed\n- [x] TODO archived\n- [x] AI config synced\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+            (
+                f"Integration PR: {contrib} -> develop\n\n"
+                "Workflow steps completed:\n"
+                "- [x] Quality gates passed\n"
+                "- [x] AI config synced\n\n"
+                "🤖 Generated with [Claude Code](https://claude.com/claude-code)"
+            ),
         ],
         check=False,
     )
 
     if result.returncode != 0:
         if "already exists" in result.stderr:
-            print("⚠️  PR already exists")
+            safe_print(format_warning("  PR already exists"))
         else:
-            print(f"✗ PR creation failed: {result.stderr}")
+            safe_print(format_cross(f" PR creation failed: {result.stderr}"))
             return False
 
-    print(f"✓ Step 4 complete: PR created {contrib} → develop")
+    safe_print(format_check(f" Step 4 complete: PR created {contrib} -> develop"))
 
     # Return to editable branch
     return_to_editable_branch()
@@ -337,11 +388,11 @@ def show_status():
 
     # Check AGENTS.md sync
     agents_synced = Path("AGENTS.md").exists()
-    print(f"\nAGENTS.md exists: {'✓' if agents_synced else '✗'}")
+    print(f"\nAGENTS.md exists: {'[OK]' if agents_synced else '[X]'}")
 
     # Check .agents/ sync
     agents_dir = Path(".agents").exists()
-    print(f".agents/ exists: {'✓' if agents_dir else '✗'}")
+    print(f".agents/ exists: {'[OK]' if agents_dir else '[X]'}")
 
     # Determine next step
     print("\n" + "-" * 40)
@@ -382,7 +433,7 @@ def run_full_workflow():
     return_to_editable_branch()
 
     print("\n" + "=" * 60)
-    print("✓ FULL WORKFLOW COMPLETE")
+    safe_print(format_check(" FULL WORKFLOW COMPLETE"))
     print("=" * 60)
     return True
 

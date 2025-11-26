@@ -16,7 +16,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import yaml
 
@@ -42,7 +42,7 @@ def info(msg: str) -> None:
     print(f"{Colors.BLUE}ℹ {msg}{Colors.END}")
 
 
-def parse_todo_file(file_path: Path) -> Optional[dict[str, Any]]:
+def parse_todo_file(file_path: Path) -> dict[str, Any] | None:
     """Parse TODO file and extract YAML frontmatter.
 
     Args:
@@ -150,7 +150,7 @@ def convert_to_records(frontmatter: dict[str, Any], file_name: str) -> list[dict
             passed = (
                 value
                 if isinstance(value, bool)
-                else (value >= 80 if isinstance(value, (int, float)) else False)
+                else (value >= 80 if isinstance(value, int | float) else False)
             )
 
             records.append(
@@ -186,10 +186,10 @@ def sync_to_agentdb(records: list[dict[str, Any]], session_id: str) -> bool:
         sql = f"""
         INSERT INTO workflow_records (object_id, object_type, object_state, object_metadata)
         VALUES (
-            '{record["object_id"]}',
-            '{record["object_type"]}',
-            '{record["object_state"]}',
-            '{record["object_metadata"]}'::JSON
+            '{record['object_id']}',
+            '{record['object_type']}',
+            '{record['object_state']}',
+            '{record['object_metadata']}'::JSON
         );
         """
         print(sql.strip())

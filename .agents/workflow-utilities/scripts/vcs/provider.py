@@ -11,7 +11,6 @@ Constants:
 import re
 import subprocess
 from enum import Enum
-from typing import Optional
 
 
 class VCSProvider(Enum):
@@ -33,7 +32,7 @@ AZURE_DEVOPS_PATTERNS = [
 ]
 
 
-def detect_from_remote() -> Optional[VCSProvider]:
+def detect_from_remote() -> VCSProvider | None:
     """Detect VCS provider from git remote URL.
 
     Returns:
@@ -74,7 +73,7 @@ def detect_from_remote() -> Optional[VCSProvider]:
         return None
 
 
-def extract_azure_repo_from_remote() -> Optional[str]:
+def extract_azure_repo_from_remote() -> str | None:
     """Extract repository name from Azure DevOps git remote URL.
 
     Returns:

@@ -14,7 +14,7 @@ REPOSITORY_URL="https://github.com/stharrold/yuimedi-paper-20250901/projects"
 
 # Field IDs from repository-linked project setup
 HOURS_EST_FIELD="PVTF_lAHOAD8Xp84BCJ9Kzg0cw2Q"
-HOURS_ACTUAL_FIELD="PVTF_lAHOAD8Xp84BCJ9Kzg0cw2U" 
+HOURS_ACTUAL_FIELD="PVTF_lAHOAD8Xp84BCJ9Kzg0cw2U"
 WEEK_START_FIELD="PVTF_lAHOAD8Xp84BCJ9Kzg0cw2Y"
 PAPER_FIELD="PVTSSF_lAHOAD8Xp84BCJ9Kzg0cw2o"
 PHASE_FIELD="PVTSSF_lAHOAD8Xp84BCJ9Kzg0cw24"
@@ -29,13 +29,13 @@ echo ""
 add_issue_to_project() {
     local issue_number=$1
     local issue_id=$(gh api "repos/stharrold/yuimedi-paper-20250901/issues/${issue_number}" --jq '.node_id')
-    
+
     echo "Adding issue #${issue_number} to project..."
-    gh api graphql -f query="mutation { 
-        addProjectV2ItemById(input: { 
-            projectId: \"${PROJECT_ID}\", 
-            contentId: \"${issue_id}\" 
-        }) { item { id } } 
+    gh api graphql -f query="mutation {
+        addProjectV2ItemById(input: {
+            projectId: \"${PROJECT_ID}\",
+            contentId: \"${issue_id}\"
+        }) { item { id } }
     }"
 }
 
@@ -43,15 +43,15 @@ add_issue_to_project() {
 set_paper_field() {
     local item_id=$1
     local paper_option=$2  # d919974b=Paper1, b436f425=Paper2, 2992a259=Paper3
-    
+
     echo "Setting Paper field for item ${item_id}..."
-    gh api graphql -f query="mutation { 
-        updateProjectV2ItemFieldValue(input: { 
-            projectId: \"${PROJECT_ID}\", 
-            itemId: \"${item_id}\", 
-            fieldId: \"${PAPER_FIELD}\", 
-            value: { singleSelectOptionId: \"${paper_option}\" } 
-        }) { projectV2Item { id } } 
+    gh api graphql -f query="mutation {
+        updateProjectV2ItemFieldValue(input: {
+            projectId: \"${PROJECT_ID}\",
+            itemId: \"${item_id}\",
+            fieldId: \"${PAPER_FIELD}\",
+            value: { singleSelectOptionId: \"${paper_option}\" }
+        }) { projectV2Item { id } }
     }"
 }
 
@@ -59,15 +59,15 @@ set_paper_field() {
 set_validation_phase() {
     local item_id=$1
     local phase_option=$2  # 8823407f=Research, c9f083ce=Algorithm, 73b12956=Validation, e1063212=Writing, 751f6f98=Review
-    
+
     echo "Setting validation phase for item ${item_id}..."
-    gh api graphql -f query="mutation { 
-        updateProjectV2ItemFieldValue(input: { 
-            projectId: \"${PROJECT_ID}\", 
-            itemId: \"${item_id}\", 
-            fieldId: \"${PHASE_FIELD}\", 
-            value: { singleSelectOptionId: \"${phase_option}\" } 
-        }) { projectV2Item { id } } 
+    gh api graphql -f query="mutation {
+        updateProjectV2ItemFieldValue(input: {
+            projectId: \"${PROJECT_ID}\",
+            itemId: \"${item_id}\",
+            fieldId: \"${PHASE_FIELD}\",
+            value: { singleSelectOptionId: \"${phase_option}\" }
+        }) { projectV2Item { id } }
     }"
 }
 

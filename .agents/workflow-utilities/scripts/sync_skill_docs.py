@@ -33,9 +33,8 @@ import argparse
 import re
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Optional
 
 # Constants
 SKILL_DIRS = [
@@ -60,7 +59,7 @@ def error_exit(message: str, code: int = 1) -> None:
     sys.exit(code)
 
 
-def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
+def run_command(cmd: list[str], capture=True, check=True) -> str | None:
     """Run command and return output or None on error."""
     try:
         if capture:
@@ -77,7 +76,7 @@ def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
         error_exit(f"Command not found: {cmd[0]}")
 
 
-def parse_version(version_str: str) -> Optional[tuple[int, int, int]]:
+def parse_version(version_str: str) -> tuple[int, int, int] | None:
     """Parse semantic version string."""
     match = VERSION_PATTERN.match(version_str)
     if not match:
@@ -85,7 +84,7 @@ def parse_version(version_str: str) -> Optional[tuple[int, int, int]]:
     return (int(match.group(1)), int(match.group(2)), int(match.group(3)))
 
 
-def get_current_version(skill_md: Path) -> Optional[str]:
+def get_current_version(skill_md: Path) -> str | None:
     """Extract current version from SKILL.md frontmatter."""
     if not skill_md.exists():
         return None
@@ -165,7 +164,7 @@ def prompt_changelog_entry(skill_name: str, old_version: str, new_version: str) 
     changelog_content = "\n".join(lines)
 
     # Generate full CHANGELOG entry
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.now(UTC).strftime("%Y-%m-%d")
     entry = f"""## [{new_version}] - {today}
 
 {changelog_content}

@@ -23,9 +23,9 @@ Constants:
 import argparse
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 try:
     import yaml
@@ -65,7 +65,7 @@ def warning(msg: str) -> None:
     print(f"{Colors.YELLOW}⚠{Colors.END} {msg}")
 
 
-def parse_todo_filename(filename: str) -> Optional[dict[str, str]]:
+def parse_todo_filename(filename: str) -> dict[str, str] | None:
     """Parse TODO filename to extract metadata.
 
     Args:
@@ -94,7 +94,7 @@ def parse_todo_filename(filename: str) -> Optional[dict[str, str]]:
     }
 
 
-def load_workflow_metadata(todo_file: Path) -> Optional[dict[str, Any]]:
+def load_workflow_metadata(todo_file: Path) -> dict[str, Any] | None:
     """Load workflow file and extract metadata from frontmatter.
 
     Args:
@@ -258,7 +258,7 @@ def sync_manifest(dry_run: bool = False) -> None:
         frontmatter["context_stats"] = {}
 
     frontmatter["context_stats"]["total_workflows_completed"] = len(archived_workflows)
-    frontmatter["last_update"] = datetime.now(timezone.utc).isoformat()
+    frontmatter["last_update"] = datetime.now(UTC).isoformat()
 
     # Display changes
     print(f"\n{Colors.BLUE}Changes to be made:{Colors.END}")

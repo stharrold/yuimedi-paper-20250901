@@ -6,6 +6,7 @@ parent: null
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md
+  - scripts/CLAUDE.md
 related_skills:
   - workflow-orchestrator - Main coordinator for workflow phases
   - tech-stack-adapter - Detects Python/uv project configuration

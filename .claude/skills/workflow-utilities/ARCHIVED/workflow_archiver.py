@@ -21,9 +21,9 @@ import argparse
 import re
 import shutil
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 try:
     import yaml
@@ -62,7 +62,7 @@ def warning(msg: str) -> None:
     print(f"{Colors.YELLOW}⚠{Colors.END} {msg}")
 
 
-def extract_slug_from_filename(filename: str) -> Optional[str]:
+def extract_slug_from_filename(filename: str) -> str | None:
     """Extract slug from TODO filename.
 
     Args:
@@ -142,7 +142,7 @@ def load_workflow_file(todo_file: Path) -> dict[str, Any]:
 
 
 def archive_workflow(
-    todo_file: Path, summary: Optional[str] = None, version: Optional[str] = None
+    todo_file: Path, summary: str | None = None, version: str | None = None
 ) -> None:
     """Archive workflow: move file and update TODO.md.
 
@@ -207,7 +207,7 @@ def archive_workflow(
 
     # Update workflow entry for archival
     workflow_entry["status"] = "completed"
-    workflow_entry["completed_at"] = datetime.now(timezone.utc).isoformat()
+    workflow_entry["completed_at"] = datetime.now(UTC).isoformat()
     workflow_entry["file"] = f"ARCHIVED/{todo_file.name}"
 
     if summary:
@@ -227,10 +227,10 @@ def archive_workflow(
 
     total_completed = frontmatter["context_stats"].get("total_workflows_completed", 0)
     frontmatter["context_stats"]["total_workflows_completed"] = total_completed + 1
-    frontmatter["context_stats"]["last_checkpoint"] = datetime.now(timezone.utc).isoformat()
+    frontmatter["context_stats"]["last_checkpoint"] = datetime.now(UTC).isoformat()
 
     # Update last_update timestamp
-    frontmatter["last_update"] = datetime.now(timezone.utc).isoformat()
+    frontmatter["last_update"] = datetime.now(UTC).isoformat()
 
     # Save
     save_todo_md(frontmatter, content)
