@@ -123,7 +123,7 @@ class GitHubAdapter(BaseVCSAdapter):
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
-            raise RuntimeError(f"Failed to create GitHub pull request.\n" f"Error: {error_msg}")
+            raise RuntimeError(f"Failed to create GitHub pull request.\nError: {error_msg}")
         except subprocess.TimeoutExpired:
             raise RuntimeError("Timeout while creating GitHub pull request")
 
