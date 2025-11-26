@@ -19,7 +19,12 @@ def check_coverage(threshold=80):
     """
     try:
         # Run pytest with coverage
-        # Measure coverage for: .claude/skills, tools, and root Python files
+        # Coverage paths explanation:
+        # - .claude/skills: Workflow automation scripts (primary codebase)
+        # - tools: Validation and utility scripts
+        # - mcp_manager.py: MCP server configuration (if exists)
+        # Note: This repo doesn't have src/ - it's a documentation-focused project
+        # with automation in .claude/skills/ and tools/
         subprocess.run(
             [
                 "uv",

@@ -247,7 +247,7 @@ class PRFeedbackWorkItemGenerator:
 
         except FileNotFoundError:
             raise RuntimeError(
-                "'az' CLI not found. " "Install from https://learn.microsoft.com/cli/azure/"
+                "'az' CLI not found. Install from https://learn.microsoft.com/cli/azure/"
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
@@ -507,7 +507,7 @@ class PRFeedbackWorkItemGenerator:
 
         except FileNotFoundError:
             raise RuntimeError(
-                "'az' CLI not found. " "Install from https://learn.microsoft.com/cli/azure/"
+                "'az' CLI not found. Install from https://learn.microsoft.com/cli/azure/"
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)

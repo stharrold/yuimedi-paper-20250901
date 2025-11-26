@@ -70,9 +70,20 @@ def get_current_branch() -> str:
 
 
 def get_contrib_branch() -> str:
-    """Get the contrib branch name (contrib/<username>)."""
+    """Get the contrib branch name (contrib/<username>).
+
+    Requires GitHub CLI authentication. Run 'gh auth login' if not authenticated.
+    """
     result = run_cmd(["gh", "api", "user", "-q", ".login"], check=False)
-    username = result.stdout.strip() or "stharrold"
+    username = result.stdout.strip()
+    if not username:
+        safe_print(
+            format_cross(
+                "Could not determine GitHub username. "
+                "Please ensure you are authenticated with 'gh auth login'."
+            )
+        )
+        sys.exit(1)
     return f"contrib/{username}"
 
 
