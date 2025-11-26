@@ -50,12 +50,12 @@ Edit `github-project-guide-v2.md` with these critical changes:
 ### Section: Timeline Overview
 REPLACE:
 ```
-**Start Date:** 2025-08-01  
+**Start Date:** 2025-08-01
 **End Date:** 2026-02-26
 ```
 WITH:
 ```
-**Start Date:** 2025-09-02  
+**Start Date:** 2025-09-02
 **End Date:** 2026-03-15
 **CRITICAL CHANGES:**
 - Paper 1 deadline: 2025-09-30 (for HIMSS abstract Oct 15)
@@ -78,7 +78,7 @@ REPLACE entire section with:
 ```
 ## Revised Scope (30% Reduction)
 - **Paper 1:** 70 hours (was 100)
-- **Paper 2:** 70 hours (was 100)  
+- **Paper 2:** 70 hours (was 100)
 - **Paper 3:** 70 hours (was 100)
 - **Total:** 210 hours (was 330)
 
@@ -201,7 +201,7 @@ on:
     - cron: '0 10 * * 2'  # Weekly Tuesday 10am
   issues:
     types: [opened, closed]
-    
+
 jobs:
   track-progress:
     runs-on: ubuntu-latest
@@ -274,7 +274,7 @@ Execute ALL phases in order. Do NOT skip:
 After completion, run:
 ```bash
 # Verify all files created
-find . -type f -name "*.md" -o -name "*.json" -o -name "*.csv" | grep -E "(budget|risk|gate|implementation)" 
+find . -type f -name "*.md" -o -name "*.json" -o -name "*.csv" | grep -E "(budget|risk|gate|implementation)"
 
 # Check git status
 git status

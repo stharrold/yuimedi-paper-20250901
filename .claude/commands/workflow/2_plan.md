@@ -9,43 +9,78 @@ next: /3_tasks
 
 **Workflow**: `/1_specify` → `/2_plan` → `/3_tasks` → `/4_implement` → `/5_integrate` → `/6_release` → `/7_backmerge`
 
-**Purpose**: Generate design artifacts (research, data model, contracts, quickstart) from specification.
+**Purpose**: Generate specifications (spec.md, plan.md) from planning documents.
 
-**Prerequisites**: `specs/{feature}/spec.md` must exist (created by `/1_specify`)
+**Prerequisites**:
+- Must be in feature worktree (created by `/1_specify`)
+- `../planning/{slug}/` must exist with BMAD documents
 
-**Outputs**: `research.md`, `data-model.md`, `contracts/`, `quickstart.md`, `plan.md`
+**Outputs**: `specs/{slug}/spec.md`, `specs/{slug}/plan.md`, AgentDB state record
 
 ---
 
-Given the implementation details provided as an argument, do this:
+Given the feature context, do this:
 
-1. Run `.specify/scripts/bash/setup-plan.sh --json` from the repo root and parse JSON for FEATURE_SPEC, IMPL_PLAN, SPECS_DIR, BRANCH. All future file paths must be absolute.
-2. Read and analyze the feature specification to understand:
-   - The feature requirements and user stories
-   - Functional and non-functional requirements
-   - Success criteria and acceptance criteria
-   - Any technical constraints or dependencies mentioned
+## Step 0: Verify Context (REQUIRED - STOP if fails)
 
-3. Read the constitution at `.specify/memory/constitution.md` to understand constitutional requirements.
+**Run this first. If it fails, STOP and tell the user to fix the context.**
 
-4. Execute the implementation plan template:
-   - Load `.specify/templates/plan-template.md` (already copied to IMPL_PLAN path)
-   - Set Input path to FEATURE_SPEC
-   - Run the Execution Flow (main) function steps 1-10
-   - The template is self-contained and executable
-   - Follow error handling and gate checks as specified
-   - Let the template guide artifact generation in $SPECS_DIR:
-     * Phase 0 generates research.md
-     * Phase 1 generates data-model.md, contracts/, quickstart.md
-     * Phase 2 generates tasks.md
-   - Incorporate user-provided details from arguments into Technical Context: $ARGUMENTS
-   - Update Progress Tracking as you complete each phase
+```bash
+python .claude/skills/workflow-utilities/scripts/verify_workflow_context.py --step 2
+```
 
-5. Verify execution completed:
-   - Check Progress Tracking shows all phases complete
-   - Ensure all required artifacts were generated
-   - Confirm no ERROR states in execution
+Expected: Worktree directory, `feature/*` branch
 
-6. Report results with branch name, file paths, and generated artifacts.
+---
 
-Use absolute paths with the repository root for all file operations to avoid path issues.
+## Step 1: Detect Feature Slug
+
+Extract the slug from the current branch name:
+```bash
+git branch --show-current
+```
+Branch format: `feature/{timestamp}_{slug}` → extract `{slug}`
+
+## Step 2: Verify Planning Documents
+
+Check that BMAD planning documents exist in the **main repo**:
+```bash
+ls ../planning/{slug}/requirements.md ../planning/{slug}/architecture.md ../planning/{slug}/epics.md 2>/dev/null
+```
+
+If missing, STOP and prompt user to run `/1_specify` first.
+
+## Step 3: Create Specifications
+
+Run the SpecKit author to create specifications:
+```bash
+podman-compose run --rm dev python .claude/skills/speckit-author/scripts/create_specifications.py \
+  feature {slug} stharrold \
+  --issue {issue-number}
+```
+
+This creates `specs/{slug}/` with:
+- `spec.md` - Technical specification
+- `plan.md` - Implementation plan with tasks
+- `CLAUDE.md` - AI context
+- `README.md` - Overview
+
+## Step 4: Record State in AgentDB
+
+Record the workflow transition:
+```bash
+podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
+  --sync-type workflow_transition \
+  --pattern phase_2_plan \
+  --source "../planning/{slug}" \
+  --target "specs/{slug}"
+```
+
+## Step 5: Report Completion
+
+Report to the user:
+- Specifications created at `specs/{slug}/`
+- Planning documents referenced from `../planning/{slug}/`
+- Next step: Run `/3_tasks` to validate task list
+
+**Important**: Verify `specs/{slug}/plan.md` has a valid task breakdown before proceeding.

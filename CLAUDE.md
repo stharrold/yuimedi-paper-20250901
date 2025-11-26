@@ -1,3 +1,20 @@
+---
+type: claude-context
+directory: .
+purpose: Research paper on YuiQuery healthcare analytics - documentation-only repository
+parent: null
+sibling_readme: README.md
+children:
+  - .claude/CLAUDE.md
+  - docs/CLAUDE.md
+  - scripts/CLAUDE.md
+  - tools/CLAUDE.md
+related_skills:
+  - workflow-orchestrator
+  - quality-enforcer
+  - git-workflow-manager
+---
+
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
@@ -26,7 +43,7 @@ This is a research project focused on natural language to SQL in healthcare, spe
   - `scripts/` - GitHub sync automation (Python, uses stdlib only)
   - `tools/validation/` - Documentation quality validation scripts (bash)
   - `tools/workflow-utilities/` - Archive management and version checking
-  - `.claude/skills/` - Workflow automation skills (9 skills, v1.5.0)
+  - `.claude/skills/` - Workflow automation skills (9 skills, v5.15.0)
   - `.agents/` - Mirror of .claude/skills/ for cross-tool compatibility
   - `.claude/commands/workflow/` - Workflow slash commands (8 phase-based commands)
 
@@ -54,24 +71,12 @@ The literature review synthesizes findings from systematic reviews, peer-reviewe
 **Core Scripts (Zero Dependencies):**
 - `scripts/sync_github_todos.py` - GitHub Issues sync
 - `tools/validation/*` - Documentation validation tests
-- All scripts in `scripts/`, `tools/` directories
 
 **Workflow Skills (Optional Dependencies):**
-- `.claude/skills/agentdb-state-manager/` - Requires `duckdb>=0.9.0`
-- Install workflow dependencies: `uv sync --extra workflow`
-- Most workflow operations work without these dependencies
+- `.claude/skills/agentdb-state-manager/` - Requires `duckdb>=1.4.0`
+- Install: `uv sync --extra workflow`
 
-**Rationale:**
-- Core automation runs on any Python 3.9+ installation
-- Advanced workflow features are opt-in
-- Reduces mandatory dependency footprint
-
-**Development Tools (Optional):**
-- Ruff (formatting + linting) - via UV
-- MyPy (type checking) - via UV
-- Pandoc (document generation) - system install
-
-**When adding new automation scripts:** Use `import sys, os, subprocess, json, pathlib` etc. NO external packages.
+**When adding new automation scripts:** Use only Python stdlib (`sys, os, subprocess, json, pathlib`). NO external packages.
 
 ## Branch Strategy
 
@@ -210,8 +215,6 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 - Expected deliverables
 - Development workflow instructions
 
-**Status (as of v1.6.0):** All GitHub Issues from batches 1-4 have been resolved. The issue tracker is clean.
-
 **Historical Note:** Previously used `TODO_FOR_AI.json` (deprecated 2025-11-21, archived in `ARCHIVED/TODO/`).
 
 ### Documentation Validation Architecture
@@ -227,7 +230,7 @@ Each GitHub Issue includes comprehensive context for Claude Code:
 
 **Run before all commits affecting documentation.**
 
-### Workflow Skills System (v1.6.0)
+### Workflow Skills System (v5.15.0)
 
 **9 Skills Available in `.claude/skills/`:**
 
@@ -323,11 +326,10 @@ See individual `SKILL.md` files in `.claude/skills/` for detailed usage.
 ## Development Environment Setup
 
 ### Prerequisites
-- **Podman** (recommended): Container runtime - `brew install podman && podman machine init && podman machine start`
-- **podman-compose**: `pip install podman-compose`
-- **UV Package Manager** (alternative): `curl -LsSf https://astral.sh/uv/install.sh | sh`
-- **Python 3.9+**: Minimum version (UV handles installation)
+- **UV Package Manager**: `curl -LsSf https://astral.sh/uv/install.sh | sh`
+- **Python 3.11+**: Minimum version (UV handles installation)
 - **GitHub CLI**: `brew install gh` + `gh auth login`
+- **Podman** (optional): `brew install podman && podman machine init && podman machine start`
 - **Pandoc** (optional): For PDF/HTML generation
 
 ### First-Time Setup (Container - Recommended)
@@ -357,10 +359,24 @@ git clone <repo-url>
 cd yuimedi-paper-20250901
 uv sync
 
+# Install pre-commit hooks
+uv run pre-commit install
+
 # Verify
 uv run python --version
 ./validate_documentation.sh
 ```
+
+### Pre-commit Hooks
+
+Pre-commit hooks run automatically on `git commit`:
+- **trailing-whitespace, end-of-file-fixer** - Basic formatting
+- **ruff** - Python linting and formatting
+- **sync-ai-config** - Syncs CLAUDE.md → AGENTS.md, .agents/
+- **claude-md-frontmatter** - Validates YAML frontmatter in CLAUDE.md files
+- **skill-structure** - Validates .claude/skills/ directory structure
+
+Run manually: `uv run pre-commit run --all-files`
 
 ### Container Command Patterns
 ```bash
@@ -412,16 +428,10 @@ uv add --dev <package>           # Add dev dependency
 
 ## Data Structures
 
-- **GitHub Issues**: Primary task tracking (replaces TODO_FOR_AI.json as of 2025-11-21)
-  - Priority labels: P0 (critical), P1 (high), P2 (medium)
-  - Each issue includes comprehensive Claude Code context
-  - View: `gh issue list` or https://github.com/stharrold/yuimedi-paper-20250901/issues
-- **TODO.md**: Task management documentation (points to GitHub Issues, includes migration details)
+- **GitHub Issues**: Primary task tracking with priority labels (P0/P1/P2)
 - **DECISION_LOG.json**: Decision history with rationale, alternatives, tradeoffs
 - **ARCHIVED/TODO/**: Historical TODO files (deprecated 2025-11-21)
-  - `20251121T095620Z_TODO_FOR_AI.json` - 169 tasks (100 done, 69 migrated)
-  - `20251121T095620Z_TODO_FOR_HUMAN.md` - Human-readable version
-- **Version Control**: Semantic versioning for major releases (v1.0, v1.1, v1.2, v1.3, v1.4.0, v1.5.0, v1.6.0)
+- **Version Control**: Semantic versioning (v1.0 through v1.6.0+)
 
 ## AI Config Sync
 

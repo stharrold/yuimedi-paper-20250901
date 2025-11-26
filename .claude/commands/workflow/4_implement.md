@@ -9,51 +9,100 @@ next: /5_integrate
 
 **Workflow**: `/1_specify` → `/2_plan` → `/3_tasks` → `/4_implement` → `/5_integrate` → `/6_release` → `/7_backmerge`
 
-**Purpose**: Execute tasks from tasks.md automatically with progress tracking.
+**Purpose**: Execute tasks from plan.md/tasks.md automatically with progress tracking.
 
-**Prerequisites**: `tasks.md` must exist (created by `/3_tasks`)
+**Prerequisites**:
+- Must be in feature worktree
+- Tasks validated (from `/3_tasks`)
 
-**Outputs**: Implemented feature, completed tasks, quality gates passed
+**Outputs**: Implemented feature, quality gates passed, AgentDB state record
 
 **Next**: Run `/5_integrate` to create PRs and integrate feature
 
 ---
 
-Execute tasks from tasks.md automatically. User can stop/rewind via Claude Code controls at any time.
+Execute tasks automatically. User can stop/rewind via Claude Code controls at any time.
 
-## Execution Flow
+## Step 0: Verify Context (REQUIRED - STOP if fails)
 
-1. Run `.specify/scripts/bash/check-task-prerequisites.sh --json` from repo root and parse FEATURE_DIR.
-2. Load and parse `FEATURE_DIR/tasks.md`:
-   - Extract all tasks (T001, T002, etc.)
-   - Identify task dependencies from the Dependencies section
-   - Identify [P] marked tasks that can run in parallel
-3. Initialize TodoWrite with all tasks from tasks.md
-4. Execute tasks in dependency order:
-   - **Phase 3.1 Setup**: Create directories, initialize project
-   - **Phase 3.2 Tests**: Write failing tests first (TDD)
-   - **Phase 3.3 Core**: Implement models, services, commands
-   - **Phase 3.4 Integration**: Connect components, add middleware
-   - **Phase 3.5 Polish**: Unit tests, docs, cleanup
-5. For each task:
+**Run this first. If it fails, STOP and tell the user to fix the context.**
+
+```bash
+python .claude/skills/workflow-utilities/scripts/verify_workflow_context.py --step 4
+```
+
+Expected: Worktree directory, `feature/*` branch
+
+---
+
+## Step 1: Verify Task Artifacts
+
+Extract slug from branch (`feature/{timestamp}_{slug}`) and verify task artifacts exist:
+```bash
+ls specs/{slug}/plan.md specs/{slug}/tasks.md 2>/dev/null
+```
+
+If artifacts missing, STOP and prompt user to run `/2_plan` and `/3_tasks` first.
+
+## Step 2: Load Tasks
+
+Load tasks from `specs/{slug}/plan.md` or `specs/{slug}/tasks.md`:
+- Extract all tasks (T001, T002, etc.)
+- Identify task dependencies
+- Identify [P] marked tasks that can run in parallel
+
+## Step 3: Initialize Progress Tracking
+
+Initialize TodoWrite with all tasks from the plan.
+
+## Step 4: Execute Tasks
+
+Execute tasks in dependency order:
+1. For each task:
    - Mark task as `in_progress` in TodoWrite
    - Execute the task instructions
    - Mark task as `completed` when done
    - If task fails, keep as `in_progress` and report error
-6. Run [P] marked tasks in parallel using Task tool when dependencies allow
-7. After all tasks complete, run quality gates:
-   ```bash
-   podman-compose run --rm dev python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
-   ```
-8. Report completion and readiness for `/5_integrate`
+2. Run [P] marked tasks in parallel using Task tool when dependencies allow
 
-## Task Parsing Rules
+## Step 5: Run Quality Gates
 
-- Tasks are numbered: `T001`, `T002`, etc.
-- `[P]` suffix means task can run in parallel with other [P] tasks
-- Tasks without [P] must run sequentially
-- Dependencies are listed in the Dependencies section
-- Each task has a description and file path
+After all tasks complete, run quality gates:
+```bash
+podman-compose run --rm dev python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
+```
+
+Quality gates must pass (5/5):
+1. Test coverage ≥80%
+2. All tests passing
+3. Build successful
+4. Linting clean
+5. AI config sync
+
+## Step 6: Calculate Semantic Version
+
+Calculate the next version based on changes:
+```bash
+podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/semantic_version.py \
+  develop v{current-version}
+```
+
+## Step 7: Record State in AgentDB
+
+Record the workflow transition:
+```bash
+podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
+  --sync-type quality_gate \
+  --pattern phase_4_implement
+```
+
+## Step 8: Report Completion
+
+Report to the user:
+- All tasks completed
+- Quality gates passed (5/5)
+- Semantic version calculated
+- Next step: Run `/5_integrate` to create PRs
 
 ## Error Handling
 
@@ -61,30 +110,3 @@ Execute tasks from tasks.md automatically. User can stop/rewind via Claude Code 
 - User can fix the issue and resume
 - Use TodoWrite to track which tasks are complete
 - Never skip a task unless explicitly told to
-
-## Quality Gates (must pass before /5_integrate)
-
-1. Test coverage ≥80%
-2. All tests passing
-3. Build successful
-4. Linting clean
-5. TODO*.md YAML frontmatter valid
-6. AI config sync
-
-## Example
-
-```
-Loading tasks.md...
-Found 12 tasks: T001-T012
-
-[T001] Creating workflow directory... ✓
-[T002-T006] Creating command files (parallel)... ✓
-[T007] Updating CLAUDE.md... ✓
-[T008-T011] Removing old files (parallel)... ✓
-[T012] Running verification... ✓
-
-Running quality gates...
-All gates passed ✓
-
-Ready for /5_integrate
-```

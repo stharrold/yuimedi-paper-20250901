@@ -6,16 +6,18 @@ This script runs interactively in a feature/release/hotfix worktree and:
 2. Conducts interactive Q&A session (with or without BMAD context)
 3. Generates spec.md and plan.md from templates
 4. Creates compliant specs/<slug>/ directory structure
-5. Updates TODO_*.md with tasks parsed from plan.md
-6. Commits changes to the feature branch
+5. Commits changes to the feature branch
+
+Note: TODO file updates are deprecated. Use GitHub Issues (--issue) and
+specs/*/tasks.md for work item tracking instead.
 
 Usage:
     python .claude/skills/speckit-author/scripts/create_specifications.py \\
-        <workflow_type> <slug> <gh_user> [--todo-file <path>]
+        <workflow_type> <slug> <gh_user> [--issue <number>]
 
 Example:
     python .claude/skills/speckit-author/scripts/create_specifications.py \\
-        feature my-feature stharrold --todo-file ../TODO_feature_20251024_my-feature.md
+        feature my-feature stharrold --issue 42
 
 Constants:
 - TIMESTAMP_FORMAT: YYYY-MM-DD (for spec headers)
@@ -23,12 +25,12 @@ Constants:
 """
 
 import argparse
+import json
 import re
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Optional
 
 # Constants with documented rationale
 TIMESTAMP_FORMAT = "%Y-%m-%d"  # Human-readable date for documentation
@@ -37,6 +39,48 @@ TASK_PATTERN = re.compile(
     r"^####\s+Task\s+(\w+_\d+):\s+(.+)$", re.MULTILINE
 )  # Parse tasks from plan.md
 
+# Global config for non-interactive mode
+_CONFIG: dict | None = None
+_CONFIG_PATH: list[str] = []  # Tracks path through nested config for lookups
+
+
+def load_config(config_path: Path) -> dict:
+    """Load configuration from YAML or JSON file."""
+    content = config_path.read_text()
+    if config_path.suffix in [".yaml", ".yml"]:
+        try:
+            import yaml
+
+            return yaml.safe_load(content)
+        except ImportError:
+            error_exit("PyYAML not installed. Use JSON config or: uv add pyyaml")
+    else:
+        return json.loads(content)
+
+
+def get_config_value(key: str, default: str | None = None) -> str | None:
+    """Get value from config at current path + key."""
+    if _CONFIG is None:
+        return None
+
+    # Navigate to current path
+    obj = _CONFIG
+    for path_key in _CONFIG_PATH:
+        if isinstance(obj, dict) and path_key in obj:
+            obj = obj[path_key]
+        else:
+            return default
+
+    # Get the value
+    if isinstance(obj, dict) and key in obj:
+        return obj[key]
+    return default
+
+
+def is_non_interactive() -> bool:
+    """Check if running in non-interactive mode."""
+    return _CONFIG is not None
+
 
 def error_exit(message: str, code: int = 1) -> None:
     """Print error message and exit with code."""
@@ -44,7 +88,7 @@ def error_exit(message: str, code: int = 1) -> None:
     sys.exit(code)
 
 
-def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
+def run_command(cmd: list[str], capture=True, check=True) -> str | None:
     """Run command and return output or None on error."""
     try:
         if capture:
@@ -88,7 +132,7 @@ def detect_context() -> dict[str, any]:
     }
 
 
-def find_bmad_planning(slug: str) -> Optional[dict[str, Path]]:
+def find_bmad_planning(slug: str) -> dict[str, Path] | None:
     """Check for BMAD planning documents in ../planning/<slug>/."""
 
     planning_dir = Path("..") / "planning" / slug
@@ -115,10 +159,29 @@ def find_bmad_planning(slug: str) -> Optional[dict[str, Path]]:
 
 
 def ask_question(
-    prompt: str, options: Optional[list[str]] = None, default: Optional[str] = None
+    prompt: str,
+    options: list[str] | None = None,
+    default: str | None = None,
+    config_key: str | None = None,
 ) -> str:
-    """Ask user a question and return response."""
+    """Ask user a question and return response.
 
+    In non-interactive mode, returns value from config file using config_key.
+    Falls back to default if config_key not found.
+    """
+    # Non-interactive mode: return config value or default
+    if is_non_interactive():
+        if config_key:
+            value = get_config_value(config_key, default)
+            if value is not None:
+                print(f"[config] {prompt}: {value}")
+                return value
+        if default:
+            print(f"[default] {prompt}: {default}")
+            return default
+        error_exit(f"Non-interactive mode: no config value for '{config_key}' and no default")
+
+    # Interactive mode
     if options:
         print(f"\n{prompt}")
         for i, option in enumerate(options, 1):
@@ -154,8 +217,30 @@ def ask_question(
         return response if response else (default or "")
 
 
-def ask_yes_no(prompt: str, default: bool = True) -> bool:
-    """Ask yes/no question."""
+def ask_yes_no(prompt: str, default: bool = True, config_key: str | None = None) -> bool:
+    """Ask yes/no question.
+
+    In non-interactive mode, returns value from config file using config_key.
+    Falls back to default if config_key not found.
+    """
+    # Non-interactive mode: return config value or default
+    if is_non_interactive():
+        if config_key:
+            value = get_config_value(config_key)
+            if value is not None:
+                # Handle various truthy representations
+                if isinstance(value, bool):
+                    result = value
+                elif isinstance(value, str):
+                    result = value.lower() in ["y", "yes", "true", "1"]
+                else:
+                    result = bool(value)
+                print(f"[config] {prompt}: {'yes' if result else 'no'}")
+                return result
+        print(f"[default] {prompt}: {'yes' if default else 'no'}")
+        return default
+
+    # Interactive mode
     default_str = "Y/n" if default else "y/N"
     response = input(f"\n{prompt} ({default_str}) > ").strip().lower()
 
@@ -167,6 +252,7 @@ def ask_yes_no(prompt: str, default: bool = True) -> bool:
 
 def interactive_qa_with_bmad(bmad_docs: dict[str, Path], slug: str) -> dict[str, any]:
     """Conduct interactive Q&A when BMAD planning exists."""
+    global _CONFIG_PATH
 
     print("\n" + "=" * 70)
     print("SpecKit Interactive Specification Tool")
@@ -204,6 +290,9 @@ def interactive_qa_with_bmad(bmad_docs: dict[str, Path], slug: str) -> dict[str,
     print("\nImplementation Questions:")
     print("-" * 70)
 
+    # Set config path for with_bmad section
+    _CONFIG_PATH = ["with_bmad"]
+
     responses = {}
 
     # Database migrations (if database mentioned in architecture)
@@ -214,17 +303,26 @@ def interactive_qa_with_bmad(bmad_docs: dict[str, Path], slug: str) -> dict[str,
                 "Database migrations strategy?",
                 options=["Alembic (recommended)", "Manual SQL migrations", "None needed"],
                 default="Alembic (recommended)",
+                config_key="migration_strategy",
             )
 
     # Testing approach
-    responses["include_e2e_tests"] = ask_yes_no("Include end-to-end (E2E) tests?", default=False)
+    responses["include_e2e_tests"] = ask_yes_no(
+        "Include end-to-end (E2E) tests?",
+        default=False,
+        config_key="include_e2e_tests",
+    )
 
     responses["include_performance_tests"] = ask_yes_no(
-        "Include performance/load tests?", default=False
+        "Include performance/load tests?",
+        default=False,
+        config_key="include_performance_tests",
     )
 
     responses["include_security_tests"] = ask_yes_no(
-        "Include security tests (OWASP checks)?", default=False
+        "Include security tests (OWASP checks)?",
+        default=False,
+        config_key="include_security_tests",
     )
 
     # Task granularity
@@ -236,17 +334,22 @@ def interactive_qa_with_bmad(bmad_docs: dict[str, Path], slug: str) -> dict[str,
             "Large tasks (full-day each)",
         ],
         default="Small tasks (1-2 hours each)",
+        config_key="task_granularity",
     )
 
     # Epic implementation order
     if "epics" in bmad_docs:
         responses["follow_epic_order"] = ask_yes_no(
-            "Follow epic priority order from epics.md?", default=True
+            "Follow epic priority order from epics.md?",
+            default=True,
+            config_key="follow_epic_order",
         )
 
     # Additional implementation notes
     responses["additional_notes"] = ask_question(
-        "Any additional implementation notes or constraints? (optional)"
+        "Any additional implementation notes or constraints? (optional)",
+        config_key="additional_notes",
+        default="",
     )
 
     return responses
@@ -254,6 +357,7 @@ def interactive_qa_with_bmad(bmad_docs: dict[str, Path], slug: str) -> dict[str,
 
 def interactive_qa_without_bmad(slug: str) -> dict[str, any]:
     """Conduct interactive Q&A when no BMAD planning exists."""
+    global _CONFIG_PATH
 
     print("\n" + "=" * 70)
     print("SpecKit Interactive Specification Tool")
@@ -263,14 +367,26 @@ def interactive_qa_without_bmad(slug: str) -> dict[str, any]:
     print("\nRecommendation: Use BMAD planning for future features")
     print("=" * 70)
 
+    # Set config path for without_bmad section
+    _CONFIG_PATH = ["without_bmad"]
+
     responses = {}
 
     # Core requirements
-    responses["purpose"] = ask_question("What is the main purpose of this feature?")
+    responses["purpose"] = ask_question(
+        "What is the main purpose of this feature?",
+        config_key="purpose",
+    )
 
-    responses["users"] = ask_question("Who are the primary users of this feature?")
+    responses["users"] = ask_question(
+        "Who are the primary users of this feature?",
+        config_key="users",
+    )
 
-    responses["success_criteria"] = ask_question("How will success be measured? (metrics, goals)")
+    responses["success_criteria"] = ask_question(
+        "How will success be measured? (metrics, goals)",
+        config_key="success_criteria",
+    )
 
     # Technology stack
     print("\nTechnology Stack:")
@@ -279,10 +395,14 @@ def interactive_qa_without_bmad(slug: str) -> dict[str, any]:
         "Web framework (if applicable)?",
         options=["FastAPI", "Flask", "Django", "None"],
         default="None",
+        config_key="web_framework",
     )
 
     responses["database"] = ask_question(
-        "Database?", options=["SQLite (dev)", "PostgreSQL", "MySQL", "None"], default="None"
+        "Database?",
+        options=["SQLite (dev)", "PostgreSQL", "MySQL", "None"],
+        default="None",
+        config_key="database",
     )
 
     if responses["database"] != "None":
@@ -290,35 +410,54 @@ def interactive_qa_without_bmad(slug: str) -> dict[str, any]:
             "Database migration strategy?",
             options=["Alembic", "Manual SQL", "None"],
             default="Alembic",
+            config_key="migration_strategy",
         )
 
     responses["testing_framework"] = ask_question(
         "Testing framework?",
         options=["pytest (recommended)", "unittest", "other"],
         default="pytest (recommended)",
+        config_key="testing_framework",
     )
 
     # Performance & security
     responses["performance_target"] = ask_question(
-        "Performance target? (e.g., '<200ms response time', 'not critical')"
+        "Performance target? (e.g., '<200ms response time', 'not critical')",
+        config_key="performance_target",
+        default="Standard performance",
     )
 
     responses["security_requirements"] = ask_question(
-        "Security requirements? (e.g., 'authentication', 'encryption', 'none')"
+        "Security requirements? (e.g., 'authentication', 'encryption', 'none')",
+        config_key="security_requirements",
+        default="none",
     )
 
     # Testing preferences
-    responses["target_coverage"] = ask_question("Test coverage target?", default="80%")
+    responses["target_coverage"] = ask_question(
+        "Test coverage target?",
+        default="80%",
+        config_key="target_coverage",
+    )
 
-    responses["include_e2e_tests"] = ask_yes_no("Include E2E tests?", default=False)
+    responses["include_e2e_tests"] = ask_yes_no(
+        "Include E2E tests?",
+        default=False,
+        config_key="include_e2e_tests",
+    )
 
-    responses["include_performance_tests"] = ask_yes_no("Include performance tests?", default=False)
+    responses["include_performance_tests"] = ask_yes_no(
+        "Include performance tests?",
+        default=False,
+        config_key="include_performance_tests",
+    )
 
     # Task breakdown
     responses["task_granularity"] = ask_question(
         "Task size preference?",
         options=["Small (1-2 hours)", "Medium (half-day)", "Large (full-day)"],
         default="Small (1-2 hours)",
+        config_key="task_granularity",
     )
 
     return responses
@@ -343,7 +482,8 @@ def generate_spec_md(
     gh_user: str,
     date: str,
     qa_responses: dict[str, any],
-    bmad_docs: Optional[dict[str, Path]],
+    bmad_docs: dict[str, Path] | None,
+    issue_number: int | None = None,
 ) -> str:
     """Generate spec.md from template."""
 
@@ -361,6 +501,10 @@ def generate_spec_md(
     # (This helps Claude Code understand implementation preferences)
     context_section = "\n## Implementation Context\n\n"
     context_section += "<!-- Generated from SpecKit interactive Q&A -->\n\n"
+
+    # Add issue reference if provided
+    if issue_number:
+        context_section += f"**GitHub Issue:** #{issue_number}\n\n"
 
     if bmad_docs:
         context_section += f"**BMAD Planning:** See `../planning/{slug}/` for complete requirements and architecture.\n\n"
@@ -384,7 +528,7 @@ def generate_plan_md(
     workflow_type: str,
     date: str,
     qa_responses: dict[str, any],
-    bmad_docs: Optional[dict[str, Path]],
+    bmad_docs: dict[str, Path] | None,
 ) -> str:
     """Generate plan.md from template with example tasks."""
 
@@ -485,7 +629,7 @@ def update_todo_file(todo_path: Path, tasks: list[dict[str, str]]) -> None:
 
     frontmatter["workflow_progress"]["phase"] = 2
     frontmatter["workflow_progress"]["current_step"] = "2.4"
-    frontmatter["workflow_progress"]["last_update"] = datetime.now(timezone.utc).isoformat()
+    frontmatter["workflow_progress"]["last_update"] = datetime.now(UTC).isoformat()
 
     # Write back
     yaml_str = yaml.dump(frontmatter, default_flow_style=False, sort_keys=False)
@@ -542,7 +686,7 @@ When implementing this feature:
     (specs_dir / "CLAUDE.md").write_text(claude_md)
 
     # Create README.md
-    readme = f"""# Specifications: {slug.replace("-", " ").title()}
+    readme = f"""# Specifications: {slug.replace('-', ' ').title()}
 
 ## Overview
 
@@ -576,14 +720,16 @@ SpecKit Interactive Tool - `.claude/skills/speckit-author/scripts/create_specifi
     )
 
     (archived_dir / "README.md").write_text(
-        f"# Archived: specs/{slug}\n\nDeprecated specification files are stored here.\n"
+        f"# Archived: specs/{slug}\n\n" "Deprecated specification files are stored here.\n"
     )
 
     return specs_dir
 
 
-def commit_changes(slug: str, specs_dir: Path, todo_file: Optional[Path]) -> None:
-    """Commit spec.md, plan.md, and TODO updates."""
+def commit_changes(
+    slug: str, specs_dir: Path, todo_file: Path | None = None, issue_number: int | None = None
+) -> None:
+    """Commit spec.md, plan.md, and optionally TODO updates."""
 
     # Git add files
     run_command(["git", "add", str(specs_dir)])
@@ -591,15 +737,18 @@ def commit_changes(slug: str, specs_dir: Path, todo_file: Optional[Path]) -> Non
     if todo_file and todo_file.exists():
         run_command(["git", "add", str(todo_file)])
 
-    # Create commit message
+    # Create commit message with optional issue reference
+    refs_line = ""
+    if issue_number:
+        refs_line = f"\nRefs: #{issue_number}"
+    elif todo_file:
+        refs_line = f"\nRefs: {todo_file.name}"
+
     commit_msg = f"""docs(spec): add SpecKit specifications for {slug}
 
 Generated by SpecKit Interactive Tool:
 - spec.md: Detailed technical specification
-- plan.md: Implementation task breakdown
-- Updated TODO with tasks from plan.md
-
-Refs: {todo_file.name if todo_file else "TODO_*.md"}
+- plan.md: Implementation task breakdown{refs_line}
 """
 
     run_command(["git", "commit", "-m", commit_msg])
@@ -609,6 +758,7 @@ Refs: {todo_file.name if todo_file else "TODO_*.md"}
 
 def main():
     """Main entry point for SpecKit interactive tool."""
+    global _CONFIG
 
     parser = argparse.ArgumentParser(
         description="Interactive SpecKit tool - creates spec.md and plan.md in worktree"
@@ -621,31 +771,35 @@ def main():
     parser.add_argument("slug", help="Feature slug (e.g., my-feature)")
     parser.add_argument("gh_user", help="GitHub username")
     parser.add_argument(
-        "--todo-file", type=Path, help="Path to TODO file (default: auto-detect ../TODO_*.md)"
+        "--issue", type=int, default=None, help="GitHub Issue number to link (e.g., --issue 42)"
     )
     parser.add_argument("--no-commit", action="store_true", help="Skip git commit (for testing)")
+    parser.add_argument(
+        "--config",
+        type=Path,
+        help="Path to YAML/JSON config file for non-interactive mode. "
+        "Config should have section: with_bmad (if BMAD planning exists) or without_bmad (if not).",
+    )
 
     args = parser.parse_args()
+
+    # Load config for non-interactive mode
+    if args.config:
+        if not args.config.exists():
+            error_exit(f"Config file not found: {args.config}")
+        _CONFIG = load_config(args.config)
+        print(f"✓ Running in non-interactive mode with config: {args.config}")
 
     # 1. Detect context
     context = detect_context()
     print(f"Working in worktree: {context['current_dir']}")
     print(f"Branch: {context['current_branch']}")
 
-    # 2. Find TODO file
-    todo_file = args.todo_file
-    if not todo_file:
-        # Auto-detect TODO file
-        todo_pattern = Path("..") / f"TODO_{args.workflow_type}_*_{args.slug}.md"
-        import glob
-
-        matches = glob.glob(str(todo_pattern))
-        if matches:
-            todo_file = Path(matches[0])
-            print(f"✓ Auto-detected TODO file: {todo_file}")
-        else:
-            print(f"⚠ No TODO file found matching: {todo_pattern}")
-            print("  Continuing without TODO update...")
+    # 2. Display issue reference if provided
+    if args.issue:
+        print(f"✓ Linked to GitHub Issue: #{args.issue}")
+    else:
+        print("ℹ️  No GitHub Issue linked (use --issue to link)")
 
     # 3. Check for BMAD planning
     bmad_docs = find_bmad_planning(args.slug)
@@ -661,10 +815,16 @@ def main():
     print("Generating specifications...")
     print("=" * 70)
 
-    date = datetime.now(timezone.utc).strftime(TIMESTAMP_FORMAT)
+    date = datetime.now(UTC).strftime(TIMESTAMP_FORMAT)
 
     spec_md = generate_spec_md(
-        args.slug, args.workflow_type, args.gh_user, date, qa_responses, bmad_docs
+        args.slug,
+        args.workflow_type,
+        args.gh_user,
+        date,
+        qa_responses,
+        bmad_docs,
+        issue_number=args.issue,
     )
 
     plan_md = generate_plan_md(args.slug, args.workflow_type, date, qa_responses, bmad_docs)
@@ -682,18 +842,18 @@ def main():
     print(f"✓ Created {spec_path} ({len(spec_md)} chars)")
     print(f"✓ Created {plan_path} ({len(plan_md)} chars)")
 
-    # 7. Parse tasks and update TODO
+    # 7. Parse tasks (for informational purposes)
     tasks = parse_tasks_from_plan(plan_md)
 
-    if tasks and todo_file:
-        update_todo_file(todo_file, tasks)
-    elif not tasks:
-        print("⚠ No tasks found in plan.md (template uses placeholders)")
+    if not tasks:
+        print("ℹ️  No tasks found in plan.md (template uses placeholders)")
         print("  Claude Code will populate plan.md with actual tasks")
+    else:
+        print(f"✓ Found {len(tasks)} tasks in plan.md")
 
     # 8. Commit changes
     if not args.no_commit:
-        commit_changes(args.slug, specs_dir, todo_file)
+        commit_changes(args.slug, specs_dir, None, issue_number=args.issue)
     else:
         print("\n⚠ Skipping commit (--no-commit flag)")
 
@@ -735,15 +895,16 @@ def main():
     print(f"  - {specs_dir}/CLAUDE.md")
     print(f"  - {specs_dir}/README.md")
 
-    if tasks and todo_file:
-        print("\nTODO updated:")
-        print(f"  - {todo_file}")
-        print(f"  - {len(tasks)} tasks added")
+    if args.issue:
+        print(f"\nLinked to GitHub Issue: #{args.issue}")
 
     print("\nNext steps:")
     print("  1. Review spec.md and plan.md")
     print("  2. Implement tasks from plan.md")
-    print("  3. Update TODO task status as you complete each task")
+    if args.issue:
+        print(f"  3. Update GitHub Issue #{args.issue} with progress")
+    else:
+        print("  3. Track progress via GitHub Issues or specs/*/tasks.md")
 
     if bmad_docs:
         print(f"  4. Refer to ../planning/{args.slug}/ for BMAD context")

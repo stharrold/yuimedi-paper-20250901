@@ -23,7 +23,7 @@ import argparse
 import re
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 # Add VCS module to path
@@ -53,7 +53,8 @@ def validate_version_format(version):
     """
     if not re.match(VERSION_PATTERN, version):
         raise ValueError(
-            f"Invalid version format '{version}'. Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
+            f"Invalid version format '{version}'. "
+            f"Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
         )
 
 
@@ -117,7 +118,7 @@ def verify_tag_not_exists(version):
 
         if result.stdout.strip():
             raise ValueError(
-                f"Tag '{version}' already exists. Use 'git tag -l' to list existing tags."
+                f"Tag '{version}' already exists. " f"Use 'git tag -l' to list existing tags."
             )
 
     except subprocess.CalledProcessError as e:
@@ -267,7 +268,7 @@ def create_todo_file(version, base_branch, base_commit):
     Raises:
         RuntimeError: If TODO file creation fails
     """
-    timestamp = datetime.now(timezone.utc).strftime(TIMESTAMP_FORMAT)
+    timestamp = datetime.now(UTC).strftime(TIMESTAMP_FORMAT)
     version_slug = version.replace(".", "-")
     todo_filename = f"TODO_release_{timestamp}_{version_slug}.md"
 
@@ -285,7 +286,7 @@ def create_todo_file(version, base_branch, base_commit):
         github_user = "unknown"
 
     # Create TODO content
-    created_timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    created_timestamp = datetime.now(UTC).isoformat().replace("+00:00", "Z")
 
     todo_content = f"""---
 type: workflow-manifest
@@ -426,7 +427,7 @@ Release workflow for version {version} created from {base_branch} branch.
   - Command: `python .claude/skills/git-workflow-manager/scripts/tag_release.py {version} main`
 
 - [ ] **int_004**: Back-merge release to develop
-  - Command: `python .claude/skills/git-workflow-manager/scripts/backmerge_release.py {version} develop`
+  - Command: `python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop`
 
 - [ ] **int_005**: Cleanup release branch
   - Command: `python .claude/skills/git-workflow-manager/scripts/cleanup_release.py {version}`
@@ -456,7 +457,7 @@ gh pr create --base main --title "Release {version}" --body "Release {version} f
 python .claude/skills/git-workflow-manager/scripts/tag_release.py {version} main
 
 # Back-merge to develop
-python .claude/skills/git-workflow-manager/scripts/backmerge_release.py {version} develop
+python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop
 
 # Cleanup release branch
 python .claude/skills/git-workflow-manager/scripts/cleanup_release.py {version}

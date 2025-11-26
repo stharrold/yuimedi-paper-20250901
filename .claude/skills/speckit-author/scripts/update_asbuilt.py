@@ -27,9 +27,8 @@ import argparse
 import re
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Optional
 
 # Constants
 TIMESTAMP_FORMAT = "%Y-%m-%d"  # Human-readable date for documentation
@@ -41,7 +40,7 @@ def error_exit(message: str, code: int = 1) -> None:
     sys.exit(code)
 
 
-def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
+def run_command(cmd: list[str], capture=True, check=True) -> str | None:
     """Run command and return output."""
     try:
         if capture:
@@ -56,7 +55,7 @@ def run_command(cmd: list[str], capture=True, check=True) -> Optional[str]:
         return None
 
 
-def ask_question(prompt: str, default: Optional[str] = None) -> str:
+def ask_question(prompt: str, default: str | None = None) -> str:
     """Ask user a question."""
     if default:
         print(f"\n{prompt}")
@@ -134,7 +133,7 @@ def analyze_deviations(planning_dir: Path, specs_dir: Path) -> list[dict[str, st
 
 
 def gather_as_built_info(
-    planning_dir: Path, specs_dir: Path, todo_file: Optional[Path]
+    planning_dir: Path, specs_dir: Path, todo_file: Path | None
 ) -> dict[str, any]:
     """Interactive Q&A to gather as-built information."""
 
@@ -146,7 +145,7 @@ def gather_as_built_info(
     print(f"Updating BMAD planning in: {planning_dir}/")
 
     info = {
-        "date": datetime.now(timezone.utc).strftime(TIMESTAMP_FORMAT),
+        "date": datetime.now(UTC).strftime(TIMESTAMP_FORMAT),
         "specs_reference": f"specs/{specs_dir.name}/spec.md",
     }
 

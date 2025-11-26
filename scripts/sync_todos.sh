@@ -9,7 +9,7 @@ set -e  # Exit on any error
 
 # Colors for output
 RED='\033[0;31m'
-GREEN='\033[0;32m' 
+GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
@@ -76,12 +76,12 @@ TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 if [[ -f "TODO_FOR_AI.json" || -f "TODO_FOR_HUMAN.md" ]]; then
     echo -e "${BLUE}Creating backup of existing TODO files...${NC}"
     mkdir -p "$BACKUP_DIR"
-    
+
     if [[ -f "TODO_FOR_AI.json" ]]; then
         cp "TODO_FOR_AI.json" "$BACKUP_DIR/TODO_FOR_AI_${TIMESTAMP}.json"
         echo "   Backed up: TODO_FOR_AI.json -> $BACKUP_DIR/TODO_FOR_AI_${TIMESTAMP}.json"
     fi
-    
+
     if [[ -f "TODO_FOR_HUMAN.md" ]]; then
         cp "TODO_FOR_HUMAN.md" "$BACKUP_DIR/TODO_FOR_HUMAN_${TIMESTAMP}.md"
         echo "   Backed up: TODO_FOR_HUMAN.md -> $BACKUP_DIR/TODO_FOR_HUMAN_${TIMESTAMP}.md"
@@ -106,7 +106,7 @@ if (source "$REPO_ROOT/.venv/bin/activate" && python "$SCRIPT_DIR/sync_github_to
     echo -e "${GREEN}Synchronization completed successfully${NC}"
 else
     echo -e "${RED}Synchronization failed${NC}"
-    
+
     # Restore backups if sync failed
     if [[ -d "$BACKUP_DIR" ]]; then
         echo -e "${YELLOW}Restoring backup files...${NC}"
@@ -119,7 +119,7 @@ else
             echo "   Restored: TODO_FOR_HUMAN.md"
         fi
     fi
-    
+
     exit 1
 fi
 
@@ -150,19 +150,19 @@ fi
 # If changes detected, commit them
 if [[ "$CHANGES_DETECTED" == true ]]; then
     echo -e "${BLUE}Committing TODO file changes...${NC}"
-    
+
     # Add changed files
     for file in "${FILES_TO_COMMIT[@]}"; do
         git add "$file"
         echo "   Added: $file"
     done
-    
+
     # Create commit with proper message format (using HEREDOC as specified in CLAUDE.md)
     COMMIT_MESSAGE=$(cat <<'COMMIT_MSG'
 chore: sync TODO files with GitHub issues
 
 Bidirectional synchronization between GitHub issues and local TODO files:
-- Updated TODO_FOR_AI.json with research task metadata and priorities  
+- Updated TODO_FOR_AI.json with research task metadata and priorities
 - Regenerated TODO_FOR_HUMAN.md with current research status
 
 🤖 Generated with [Claude Code](https://claude.ai/code)
@@ -170,14 +170,14 @@ Bidirectional synchronization between GitHub issues and local TODO files:
 Co-Authored-By: Claude <noreply@anthropic.com>
 COMMIT_MSG
 )
-    
+
     if git commit -m "$COMMIT_MESSAGE"; then
         echo -e "${GREEN}Changes committed successfully${NC}"
-        
+
         # Show commit details
         echo -e "${BLUE}Commit details:${NC}"
         git show --stat HEAD
-        
+
         # Ask about pushing changes
         echo -e "${YELLOW}Push changes to remote repository?${NC}"
         read -p "Push to remote? (y/N): " -n 1 -r
@@ -193,7 +193,7 @@ COMMIT_MSG
             echo -e "${YELLOW}Changes committed locally but not pushed${NC}"
             echo "   To push later: git push"
         fi
-        
+
     else
         echo -e "${RED}Failed to commit changes${NC}"
         exit 1
@@ -205,10 +205,10 @@ fi
 # Clean up old backups (keep last 5)
 if [[ -d "$BACKUP_DIR" ]]; then
     echo -e "${BLUE}Cleaning up old backups...${NC}"
-    
+
     # Count backup files
     BACKUP_COUNT=$(find "$BACKUP_DIR" -name "TODO_FOR_*_*.json" -o -name "TODO_FOR_*_*.md" | wc -l)
-    
+
     if [[ $BACKUP_COUNT -gt 10 ]]; then
         echo "   Removing old backups (keeping last 10)..."
         # Remove backups older than 7 days
@@ -224,26 +224,26 @@ echo "=================================================="
 # Show current task summary
 if [[ -f "TODO_FOR_AI.json" ]]; then
     echo -e "${BLUE}Current task summary:${NC}"
-    
-    # Extract summary using Python  
+
+    # Extract summary using Python
     python3 << 'EOF'
 import json
 try:
     with open('TODO_FOR_AI.json', 'r') as f:
         data = json.load(f)
-    
+
     total = data.get('sync_metadata', {}).get('total_tasks', 0)
     github_issues = data.get('sync_metadata', {}).get('total_github_issues', 0)
     priority_dist = data.get('priority_distribution', {})
     status_dist = data.get('status_distribution', {})
-    
+
     print(f'   Total tasks: {total}')
     print(f'   GitHub issues: {github_issues}')
     print(f'   Critical (P0): {priority_dist.get("P0", 0)}')
     print(f'   High priority (P1): {priority_dist.get("P1", 0)}')
     print(f'   In progress: {status_dist.get("in_progress", 0)}')
     print(f'   Blocked: {status_dist.get("blocked", 0)}')
-    
+
 except Exception as e:
     print(f'   Error reading summary: {e}')
 EOF
@@ -252,7 +252,7 @@ fi
 echo
 echo -e "${BLUE}Next steps:${NC}"
 echo "   • Review TODO_FOR_HUMAN.md for priority tasks"
-echo "   • Check TODO_FOR_AI.json for technical implementation details" 
+echo "   • Check TODO_FOR_AI.json for technical implementation details"
 echo "   • Run this script regularly to keep GitHub and local TODOs in sync"
 echo "   • Use 'gh issue create' to add new tasks that will sync automatically"
 

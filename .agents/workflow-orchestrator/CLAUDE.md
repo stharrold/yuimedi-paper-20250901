@@ -1,26 +1,30 @@
 ---
 type: claude-context
 directory: .claude/skills/workflow-orchestrator
-purpose: Workflow Orchestrator is **the main coordinator skill** for the 6-phase workflow system. Unlike other skills, it contains no executable scripts - instead, it provides algorithmic guidance for Claude Code to detect workflow context, determine current phase, load appropriate skills dynamically, and manage context usage. This is a **conceptual skill** that directs Claude's behavior rather than providing callable tools.
+purpose: Workflow Orchestrator is **the main coordinator skill** for the 7-phase workflow system. Unlike other skills, it contains no executable scripts - instead, it provides algorithmic guidance for Claude Code to detect workflow context, determine current phase, load appropriate skills dynamically, and manage context usage. This is a **conceptual skill** that directs Claude's behavior rather than providing callable tools.
 parent: null
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md
+  - scripts/CLAUDE.md
+  - templates/CLAUDE.md
 related_skills:
-  - **tech-stack-adapter** - Always loaded first
-  - **bmad-planner** - Loaded in Phase 1
-  - **git-workflow-manager** - Loaded in Phases 2, 3, 4, 5, 6
-  - **speckit-author** - Loaded in Phase 2.3, Phase 4 (optional)
-  - **quality-enforcer** - Loaded in Phase 3, Phase 5, Phase 6
-  - **workflow-utilities** - Loaded as needed
-  - **agentdb-state-manager** - Loaded for complex queries (optional)
+  - tech-stack-adapter
+  - bmad-planner
+  - git-workflow-manager
+  - speckit-author
+  - quality-enforcer
+  - workflow-utilities
+  - agentdb-state-manager
 ---
 
 # Claude Code Context: workflow-orchestrator
 
 ## Purpose
 
-Workflow Orchestrator is **the main coordinator skill** for the 6-phase workflow system. Unlike other skills, it contains no executable scripts - instead, it provides algorithmic guidance for Claude Code to detect workflow context, determine current phase, load appropriate skills dynamically, and manage context usage. This is a **conceptual skill** that directs Claude's behavior rather than providing callable tools.
+Workflow Orchestrator is **the main coordinator skill** for the 7-phase workflow system. Unlike other skills, it contains no executable scripts - instead, it provides algorithmic guidance for Claude Code to detect workflow context, determine current phase, load appropriate skills dynamically, and manage context usage. This is a **conceptual skill** that directs Claude's behavior rather than providing callable tools.
+
+> **Note**: As of v5.12.0, workflow state tracking has migrated from TODO_*.md files to AgentDB (DuckDB). Use `query_workflow_state.py` from `agentdb-state-manager` to determine current phase instead of parsing TODO files.
 
 ## Directory Structure
 
@@ -60,7 +64,7 @@ Workflow Orchestrator is **the main coordinator skill** for the 6-phase workflow
 
 **Purpose:** Determine where user is in workflow (main repo vs worktree, which phase)
 
-**Algorithm (from SKILL.md):**
+**Algorithm (updated for AgentDB):**
 ```python
 def detect_context():
     """Determine current workflow phase and required skills."""
@@ -72,19 +76,18 @@ def detect_context():
 
     is_worktree = (current_dir != repo_root)
 
-    # Find TODO file
-    if is_worktree:
-        # Look in parent (main repo)
-        todo_files = glob('../TODO_*.md')
-    else:
-        # Look in current (main repo)
-        todo_files = glob('TODO_*.md')
+    # Query AgentDB for workflow state (preferred method)
+    # Use: python .claude/skills/agentdb-state-manager/scripts/query_workflow_state.py
+    workflow_state = query_agentdb_workflow_state()
 
-    if todo_files:
-        todo_file = todo_files[0]
-        workflow_type = parse_workflow_type(todo_file)  # feature|release|hotfix
+    if workflow_state:
+        phase = workflow_state['phase']
+        phase_name = workflow_state['phase_name']
+        next_command = workflow_state['next_command']
     else:
-        workflow_type = None
+        # Fallback: detect from specs/*/tasks.md
+        specs = glob('specs/*/tasks.md')
+        workflow_type = detect_from_branch(current_branch)  # feature|release|hotfix
 
     return {
         'repo_root': repo_root,

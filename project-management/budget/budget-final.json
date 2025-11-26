@@ -3,7 +3,7 @@
   "version": "3.0-REMEDIATED",
   "date": "2025-09-01",
   "currency": "USD",
-  
+
   "primary_work": {
     "description": "Primary developer (DSH) - 3 papers",
     "hours": 210,
@@ -15,7 +15,7 @@
       "paper_3": 70
     }
   },
-  
+
   "backup_coverage": {
     "description": "Backup developer for risk mitigation",
     "hours": 100,
@@ -23,7 +23,7 @@
     "total": 7500,
     "justification": "Critical risk mitigation for single point of failure"
   },
-  
+
   "sme_reviews": {
     "description": "Subject Matter Expert reviews",
     "hours": 18,
@@ -35,7 +35,7 @@
       "fhir_standards_expert": 6
     }
   },
-  
+
   "publication_fees": {
     "description": "Journal submission and conference fees",
     "total": 3500,
@@ -45,7 +45,7 @@
       "open_access_fees": 500
     }
   },
-  
+
   "tools_and_infrastructure": {
     "description": "Software, cloud services, data storage",
     "total": 1000,
@@ -55,18 +55,18 @@
       "software_licenses": 500
     }
   },
-  
+
   "subtotal": 30450,
   "contingency_10_percent": 3045,
   "grand_total": 33495,
-  
+
   "comparison_to_original": {
     "original_budget": 2700,
     "increase_factor": 11.28,
     "calculation_note": "subtotal ($30,450) / original ($2,700) = 11.28; using subtotal before contingency for fair comparison",
     "justification": "Original budget only included SME reviews, missing all development and infrastructure costs"
   },
-  
+
   "payment_schedule": {
     "phase_1": {
       "date": "2025-09-30",
@@ -84,7 +84,7 @@
       "deliverable": "Paper 3 complete"
     }
   },
-  
+
   "risk_provisions": {
     "backup_developer_critical": "Must be assigned by 2025-09-06",
     "budget_approval_required": "Executive approval needed for 10x increase",

@@ -4,7 +4,6 @@
 import re
 import sys
 from pathlib import Path
-from typing import Optional
 
 
 def has_yaml_frontmatter(content: str) -> bool:
@@ -20,7 +19,7 @@ def has_yaml_frontmatter(content: str) -> bool:
     return content.strip().startswith("---")
 
 
-def extract_frontmatter(content: str) -> tuple[Optional[str], str]:
+def extract_frontmatter(content: str) -> tuple[str | None, str]:
     """
     Extract YAML frontmatter and body from content.
 

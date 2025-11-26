@@ -45,7 +45,7 @@ open scripts/SYNC_GUIDE.md
 
 ### Prerequisites
 - UV (Python package manager) installed
-- GitHub CLI (`gh`) installed and authenticated  
+- GitHub CLI (`gh`) installed and authenticated
 - Git repository with GitHub remote
 - Python 3.8+ (automatically managed by UV)
 
@@ -480,7 +480,7 @@ cp .todo_backups/TODO_FOR_AI_LATEST.json TODO_FOR_AI.json  # Emergency restore
 
 ---
 
-*Directory: `/scripts/`*  
-*Project: YuiQuery Healthcare Analytics Research*  
-*Updated: 2025-08-21*  
+*Directory: `/scripts/`*
+*Project: YuiQuery Healthcare Analytics Research*
+*Updated: 2025-08-21*
 *Type: Academic research automation*

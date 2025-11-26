@@ -30,7 +30,6 @@ Constants:
 import re
 import sys
 from pathlib import Path
-from typing import Optional
 
 # Constants with documented rationale
 SKILL_DIRS = [
@@ -84,7 +83,7 @@ class VersionValidator:
         """Add validation warning."""
         self.warnings.append(ValidationError("WARNING", file, message))
 
-    def parse_version(self, version_str: str) -> Optional[tuple[int, int, int]]:
+    def parse_version(self, version_str: str) -> tuple[int, int, int] | None:
         """Parse semantic version string into (major, minor, patch) tuple.
 
         Args:
@@ -101,7 +100,7 @@ class VersionValidator:
             return None
         return (int(match.group(1)), int(match.group(2)), int(match.group(3)))
 
-    def extract_yaml_frontmatter(self, content: str) -> Optional[dict[str, str]]:
+    def extract_yaml_frontmatter(self, content: str) -> dict[str, str] | None:
         """Extract YAML frontmatter from markdown file.
 
         Args:

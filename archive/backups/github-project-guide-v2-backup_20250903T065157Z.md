@@ -6,7 +6,7 @@
 
 **Strategic positioning:** These whitepapers demonstrate technical expertise and industry understanding to:
 - Build credibility with healthcare institutions
-- Attract top talent and strategic partnerships  
+- Attract top talent and strategic partnerships
 - Shape industry conversations around AI in healthcare
 - Position Yuimedi ahead of competitors in the knowledge space
 
@@ -46,14 +46,14 @@
   - Paper 3: Successful mapping to minimum 3 systems
 
 ## Timeline Overview
-**Start Date:** 2025-08-01  
-**End Date:** 2026-02-26  
-**Weekly Commitment:** 10 hours maximum  
+**Start Date:** 2025-08-01
+**End Date:** 2026-02-26
+**Weekly Commitment:** 10 hours maximum
 **Total Duration:** 30 weeks
 
 ## Adjusted Time Estimates (50% reduction with AI tools)
 - **Paper 1:** 80-100 hours → 8-10 weeks
-- **Paper 2:** 100-120 hours → 10-12 weeks  
+- **Paper 2:** 100-120 hours → 10-12 weeks
 - **Paper 3:** 90-110 hours → 9-11 weeks
 - **Total:** 270-330 hours
 
@@ -417,7 +417,7 @@ gh issue create --title "..." --label "..." --milestone "..."
 ### PTO Strategy for Critical Weeks
 Samuel Harrold may need to take 2 days PTO to double capacity (10→20 hrs) during:
 - **2025-09-12 to 2025-09-25**: Paper 1 draft writing
-- **2025-10-17 to 2025-10-30**: Paper 2 algorithm implementation  
+- **2025-10-17 to 2025-10-30**: Paper 2 algorithm implementation
 - **2025-11-28 to 2025-12-11**: Paper 2 statistical analysis
 - **2026-01-16 to 2026-01-29**: Paper 3 implementation
 - **2026-01-30 to 2026-02-12**: Paper 3 query translation
@@ -431,12 +431,12 @@ Total PTO needed: 10 days across 30 weeks
    - Focus: Validate healthcare data infrastructure challenges and institutional knowledge gaps
    - Review scope: Confirm problem significance, verify market sizing
    - Typical rate: $90-150/hour ([Salary.com SME rates](https://www.salary.com/research/salary/recruiting/subject-matter-expert-hourly-wages))
-   
-2. **Data Science/AI Healthcare Expert** (Paper 2)  
+
+2. **Data Science/AI Healthcare Expert** (Paper 2)
    - Focus: Validate machine learning approach on degraded healthcare data
    - Review scope: Verify algorithm accuracy, assess technical soundness
    - Typical rate: $120-180/hour ([PayScale Technical SME](https://www.payscale.com/research/US/Job=Technical_Subject_Matter_Expert/Salary))
-   
+
 3. **FHIR/OMOP Standards Expert** (Paper 3)
    - Focus: Validate healthcare interoperability approach and schema mappings
    - Review scope: Confirm mapping accuracy, assess implementation feasibility
@@ -546,5 +546,5 @@ gh workflow enable project-tracking.yml
 ```
 
 ---
-*Last Updated: 2025-08-01*  
+*Last Updated: 2025-08-01*
 *Next Review: 2025-08-08*

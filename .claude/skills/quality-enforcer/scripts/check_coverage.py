@@ -19,8 +19,18 @@ def check_coverage(threshold=80):
     """
     try:
         # Run pytest with coverage
+        # Measure coverage for: .claude/skills, tools, and root Python files
         subprocess.run(
-            ["uv", "run", "pytest", "--cov=src", "--cov-report=term", "--cov-report=json"],
+            [
+                "uv",
+                "run",
+                "pytest",
+                "--cov=.claude/skills",
+                "--cov=tools",
+                "--cov=mcp_manager.py",
+                "--cov-report=term",
+                "--cov-report=json",
+            ],
             capture_output=True,
             text=True,
             check=False,
