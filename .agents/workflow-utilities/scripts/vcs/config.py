@@ -46,7 +46,7 @@ def load_vcs_config(config_path: Path | None = None) -> dict[str, Any] | None:
     """
     if yaml is None:
         raise ImportError(
-            "PyYAML is required to load VCS configuration. " "Install it with: pip install pyyaml"
+            "PyYAML is required to load VCS configuration. Install it with: pip install pyyaml"
         )
 
     if config_path is None:
