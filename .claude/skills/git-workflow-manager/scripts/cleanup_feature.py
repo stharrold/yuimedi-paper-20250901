@@ -123,9 +123,7 @@ def find_branch(slug: str) -> str:
     branches = [b.strip().lstrip("* ") for b in result.stdout.strip().split("\n") if b.strip()]
 
     if not branches:
-        raise ValueError(
-            f"No branch found for slug '{slug}'\n" f"Expected pattern: feature/*_{slug}"
-        )
+        raise ValueError(f"No branch found for slug '{slug}'\nExpected pattern: feature/*_{slug}")
 
     if len(branches) > 1:
         raise ValueError(

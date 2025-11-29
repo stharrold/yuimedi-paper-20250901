@@ -125,7 +125,7 @@ def get_purpose(dir_path: Path, dir_name: str) -> str:
         return f"Feature specification for {spec_name}."
 
     # Default purpose
-    return f'{dir_name.replace("-", " ").replace("_", " ").title()} directory.'
+    return f"{dir_name.replace('-', ' ').replace('_', ' ').title()} directory."
 
 
 def find_children(dir_path: Path) -> list[str]:
@@ -236,9 +236,9 @@ def generate_claude_md(dir_path: Path, dry_run: bool = False, verbose: bool = Fa
     claude_md_path = dir_path / "CLAUDE.md"
 
     if verbose:
-        print(f'\n{"=" * 60}')
+        print(f"\n{'=' * 60}")
         print(f"Path: {claude_md_path}")
-        print(f'{"=" * 60}')
+        print(f"{'=' * 60}")
         print(content[:500] + "..." if len(content) > 500 else content)
 
     if dry_run:
@@ -314,7 +314,7 @@ def main():
     for path in missing:
         print(f"  - {path.relative_to(REPO_ROOT)}")
 
-    print(f'\n{"=" * 60}')
+    print(f"\n{'=' * 60}")
     print("Generating CLAUDE.md files...")
     print("=" * 60 + "\n")
 
@@ -323,7 +323,7 @@ def main():
         if generate_claude_md(path, dry_run=args.dry_run, verbose=args.verbose):
             created += 1
 
-    print(f'\n{"=" * 60}')
+    print(f"\n{'=' * 60}")
     if args.dry_run:
         print(f"[DRY-RUN] Would create {created} CLAUDE.md files")
     else:

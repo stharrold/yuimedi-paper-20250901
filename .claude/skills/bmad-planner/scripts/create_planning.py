@@ -558,7 +558,7 @@ def generate_epic_breakdown(
                 "dependencies": dependencies,
                 "estimated_effort": f"{len(requirements_data['functional_requirements']) * 1}-{len(requirements_data['functional_requirements']) * 1.5} days",
                 "deliverables": [
-                    f'Implementation of {fr["id"]}'
+                    f"Implementation of {fr['id']}"
                     for fr in requirements_data["functional_requirements"][:5]
                 ]
                 + ["Unit tests for business logic", "Integration tests"],
@@ -573,15 +573,15 @@ def generate_epic_breakdown(
             {
                 "id": f"E-{epic_num:03d}",
                 "name": "API Layer",
-                "description": f'Implement {architecture_data["web_framework"]} API endpoints and request/response handling',
+                "description": f"Implement {architecture_data['web_framework']} API endpoints and request/response handling",
                 "complexity": "Medium",
-                "complexity_reasoning": f'{architecture_data["web_framework"]} API development is straightforward but requires careful contract design',
+                "complexity_reasoning": f"{architecture_data['web_framework']} API development is straightforward but requires careful contract design",
                 "priority": "P0",
                 "priority_reasoning": "Required for external system integration",
                 "dependencies": dependencies,
                 "estimated_effort": "2-3 days",
                 "deliverables": [
-                    f'{architecture_data["api_style"]} API endpoints',
+                    f"{architecture_data['api_style']} API endpoints",
                     "Request validation",
                     "Response serialization",
                     "API documentation (OpenAPI)",
