@@ -2,147 +2,133 @@
 
 **Type:** feature
 **Slug:** repo-organization-cleanup
+**Issue:** #243
 **Date:** 2025-11-29
-
-
-<!-- Note: Customize task breakdown based on specific feature requirements -->
-<!-- This template provides the structure. Claude Code will populate with actual tasks. -->
 
 ## Task Breakdown
 
-### Phase 1: Foundation
+### Phase 1: Preparation
 
-#### Task impl_001: [Task Name]
+#### Task impl_001: Verify archived files exist
 
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file1.py`
-- `src/path/file2.py`
-- `tests/test_file.py`
-
-**Description:**
-[Detailed description of what needs to be implemented]
-
-**Steps:**
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
-
-**Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
-
-**Verification:**
-```bash
-# Commands to verify implementation
-uv run python -c "from src.module import Class; print('OK')"
-uv run pytest tests/test_file.py -v
-```
-
-**Dependencies:**
-- None (or list other task IDs)
-
----
-
-#### Task impl_002: [Task Name]
-
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file3.py`
-
-**Description:**
-[Detailed description]
-
-**Steps:**
-1. [Step 1]
-2. [Step 2]
-
-**Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-
-**Verification:**
-```bash
-uv run pytest tests/test_file3.py
-```
-
-**Dependencies:**
-- impl_001 (must complete first)
-
----
-
-### Phase 2: Core Implementation
-
-#### Task impl_003: [Task Name]
-
-**Estimated Time:** [Duration]
 **Priority:** High
 
 **Files:**
-- `src/core/module.py`
-- `tests/test_module.py`
+- `ARCHIVED/TODO/TODO_FOR_AI.json`
+- `ARCHIVED/TODO/TODO_FOR_HUMAN.md`
 
 **Description:**
-[Core business logic implementation]
+Confirm that deprecated TODO files have been properly archived before removal from root.
 
 **Steps:**
-1. Create module structure
-2. Implement core functionality
-3. Add error handling
-4. Write comprehensive tests
+1. Check `ARCHIVED/TODO/` directory exists
+2. Verify `TODO_FOR_AI.json` is present in archive
+3. Verify `TODO_FOR_HUMAN.md` is present in archive
 
 **Acceptance Criteria:**
-- [ ] All business logic implemented
-- [ ] Error cases handled
-- [ ] Tests passing with >85% coverage
+- [ ] ARCHIVED/TODO/ directory exists
+- [ ] TODO_FOR_AI.json archived
+- [ ] TODO_FOR_HUMAN.md archived
 
 **Verification:**
 ```bash
-uv run pytest tests/test_module.py --cov=src.core.module --cov-report=term
+ls -la ARCHIVED/TODO/
 ```
 
 **Dependencies:**
-- impl_001, impl_002
+- None
 
 ---
 
-### Phase 3: API Layer
+### Phase 2: File Removal
 
-#### Task impl_004: [Task Name]
+#### Task impl_002: Remove deprecated root files
 
-**Estimated Time:** [Duration]
 **Priority:** High
 
 **Files:**
-- `src/api/routes.py`
-- `src/api/models.py`
-- `tests/test_api.py`
+- `TODO_FOR_AI.json` (remove)
+- `TODO_FOR_HUMAN.md` (remove)
 
 **Description:**
-[API endpoint implementation]
+Remove deprecated TODO files from root directory. These have already been migrated to GitHub Issues and archived in ARCHIVED/TODO/.
 
 **Steps:**
-1. Define Pydantic models for request/response
-2. Implement endpoint handlers
-3. Add input validation
-4. Write integration tests
+1. git rm TODO_FOR_AI.json
+2. git rm TODO_FOR_HUMAN.md
+3. Verify files removed from root
 
 **Acceptance Criteria:**
-- [ ] Endpoints respond correctly
-- [ ] Validation working
-- [ ] Error responses formatted correctly
-- [ ] Integration tests passing
+- [ ] TODO_FOR_AI.json removed from root
+- [ ] TODO_FOR_HUMAN.md removed from root
+- [ ] git status shows expected changes
 
 **Verification:**
 ```bash
-uv run pytest tests/test_api.py -v
-# Manual test:
-curl -X POST http://localhost:8000/api/endpoint -H "Content-Type: application/json" -d '{"field": "value"}'
+git status
+ls TODO_FOR_AI.json TODO_FOR_HUMAN.md 2>/dev/null && echo "FAILED" || echo "OK - files removed"
+```
+
+**Dependencies:**
+- impl_001
+
+---
+
+### Phase 3: .agents/ Cleanup
+
+#### Task impl_003: Audit .agents/ structure
+
+**Priority:** High
+
+**Files:**
+- `.agents/`
+
+**Description:**
+Examine current .agents/ directory structure to identify duplicate nested structure.
+
+**Steps:**
+1. List all directories in .agents/
+2. Check for .agents/skills/ duplicate directory
+3. Document current structure
+
+**Acceptance Criteria:**
+- [ ] Current structure documented
+- [ ] Duplicate .agents/skills/ identified (if exists)
+
+**Verification:**
+```bash
+find .agents/ -type d -maxdepth 2
+ls -la .agents/skills/ 2>/dev/null && echo "DUPLICATE EXISTS" || echo "NO DUPLICATE"
+```
+
+**Dependencies:**
+- None (can run in parallel with Phase 2)
+
+---
+
+#### Task impl_004: Remove duplicate .agents/skills/
+
+**Priority:** High
+
+**Files:**
+- `.agents/skills/` (remove if exists)
+
+**Description:**
+Remove the nested duplicate .agents/skills/ directory if it exists. The correct structure should have skills directly under .agents/ (e.g., .agents/workflow-orchestrator/).
+
+**Steps:**
+1. Check if .agents/skills/ exists
+2. If exists, remove rm -rf .agents/skills/
+3. Verify only flat structure remains
+
+**Acceptance Criteria:**
+- [ ] .agents/skills/ directory removed (if existed)
+- [ ] .agents/ contains only flat skill mirrors
+
+**Verification:**
+```bash
+ls -la .agents/
+# Should show: agentdb-state-manager/, bmad-planner/, commands/, etc. (no skills/)
 ```
 
 **Dependencies:**
@@ -150,221 +136,155 @@ curl -X POST http://localhost:8000/api/endpoint -H "Content-Type: application/js
 
 ---
 
-### Phase 4: Testing
+### Phase 4: Sync Script Verification
 
-#### Task test_001: Unit Tests
+#### Task impl_005: Review sync_ai_config.py
 
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `tests/test_*.py`
-- `tests/conftest.py`
-
-**Description:**
-Comprehensive unit tests for all modules.
-
-**Coverage Targets:**
-- Overall: ≥80%
-- Core modules: ≥90%
-- Utilities: ≥85%
-
-**Steps:**
-1. Set up pytest fixtures in conftest.py
-2. Write unit tests for each module
-3. Test happy paths and error conditions
-4. Achieve coverage targets
-
-**Verification:**
-```bash
-uv run pytest --cov=src --cov-report=term --cov-report=html
-uv run pytest --cov=src --cov-fail-under=80
-```
-
-**Dependencies:**
-- impl_001, impl_002, impl_003, impl_004
-
----
-
-#### Task test_002: Integration Tests
-
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `tests/integration/test_*.py`
-
-**Description:**
-End-to-end integration tests with real database.
-
-**Steps:**
-1. Set up test database fixtures
-2. Test API workflows end-to-end
-3. Test error scenarios
-4. Test concurrent requests
-
-**Verification:**
-```bash
-uv run pytest tests/integration/ -v
-```
-
-**Dependencies:**
-- impl_004, test_001
-
----
-
-### Phase 5: Containerization
-
-#### Task container_001: Application Container
-
-**Estimated Time:** [Duration]
 **Priority:** Medium
 
 **Files:**
-- `Containerfile`
-- `.containerignore`
+- `.claude/skills/workflow-utilities/scripts/sync_ai_config.py`
 
 **Description:**
-Create optimized container for application.
+Review the AI config sync script to ensure it creates the correct flat structure and won't recreate the nested .agents/skills/ directory.
 
 **Steps:**
-1. Write multi-stage Containerfile
-2. Optimize layer caching
-3. Add health check
-4. Test container build and run
+1. Read sync_ai_config.py
+2. Verify rsync command targets flat structure
+3. Update if necessary
+
+**Acceptance Criteria:**
+- [ ] Script reviewed
+- [ ] Sync creates flat .agents/skill-name/ structure
+- [ ] No risk of recreating .agents/skills/
 
 **Verification:**
 ```bash
-podman build -t repo-organization-cleanup:latest .
-podman run --rm -p 8000:8000 repo-organization-cleanup:latest
-curl http://localhost:8000/health
+grep -A 5 "rsync" .claude/skills/workflow-utilities/scripts/sync_ai_config.py
 ```
 
 **Dependencies:**
-- All implementation tasks complete
+- impl_004
 
 ---
 
-#### Task container_002: Container Orchestration
+#### Task impl_006: Update CLAUDE.md if needed
 
-**Estimated Time:** [Duration]
 **Priority:** Medium
 
 **Files:**
-- `podman-compose.yml`
-- `.env.example`
+- `CLAUDE.md`
 
 **Description:**
-Set up multi-container orchestration.
+Verify CLAUDE.md sync commands are correct and update any references to deprecated files.
 
 **Steps:**
-1. Define services in podman-compose.yml
-2. Configure volumes and networks
-3. Set up environment variables
-4. Add health checks
-5. Test full stack
+1. Check AI Config Sync section
+2. Verify rsync commands are correct
+3. Remove any references to TODO_FOR_AI.json or TODO_FOR_HUMAN.md
+
+**Acceptance Criteria:**
+- [ ] Sync commands verified correct
+- [ ] No references to deprecated files
 
 **Verification:**
 ```bash
-podman-compose up -d
-podman-compose ps
-curl http://localhost:8000/health
-podman-compose logs app
-podman-compose down
+grep -n "TODO_FOR_AI\|TODO_FOR_HUMAN" CLAUDE.md && echo "NEEDS UPDATE" || echo "OK"
 ```
 
 **Dependencies:**
-- container_001
+- impl_002
 
 ---
 
-## Estimated Total Time
+### Phase 5: Validation
 
-| Phase | Duration |
-|-------|----------|
-| Phase 1: Foundation | [X hours] |
-| Phase 2: Core Implementation | [X hours] |
-| Phase 3: API Layer | [X hours] |
-| Phase 4: Testing | [X hours] |
-| Phase 5: Containerization | [X hours] |
-| **Total** | **[X hours]** |
+#### Task test_001: Run documentation validation
+
+**Priority:** High
+
+**Files:**
+- `validate_documentation.sh`
+
+**Description:**
+Run all documentation validation tests to ensure changes haven't broken anything.
+
+**Steps:**
+1. Run ./validate_documentation.sh
+2. Fix any failures
+
+**Acceptance Criteria:**
+- [ ] All 5 validation tests pass
+
+**Verification:**
+```bash
+./validate_documentation.sh
+```
+
+**Dependencies:**
+- impl_002, impl_004, impl_006
+
+---
+
+#### Task test_002: Run pre-commit hooks
+
+**Priority:** High
+
+**Description:**
+Run pre-commit hooks to ensure all formatting and sync checks pass.
+
+**Steps:**
+1. Run uv run pre-commit run --all-files
+2. Fix any failures
+
+**Acceptance Criteria:**
+- [ ] All pre-commit hooks pass
+
+**Verification:**
+```bash
+uv run pre-commit run --all-files
+```
+
+**Dependencies:**
+- test_001
+
+---
+
+## Task Summary
+
+| Task ID | Description | Priority | Dependencies |
+|---------|-------------|----------|--------------|
+| impl_001 | Verify archived files exist | High | None |
+| impl_002 | Remove deprecated root files | High | impl_001 |
+| impl_003 | Audit .agents/ structure | High | None |
+| impl_004 | Remove duplicate .agents/skills/ | High | impl_003 |
+| impl_005 | Review sync_ai_config.py | Medium | impl_004 |
+| impl_006 | Update CLAUDE.md if needed | Medium | impl_002 |
+| test_001 | Run documentation validation | High | impl_002, impl_004, impl_006 |
+| test_002 | Run pre-commit hooks | High | test_001 |
 
 ## Task Dependencies Graph
 
 ```
-impl_001 ─┐
-          ├─> impl_003 ─> impl_004 ─┐
-impl_002 ─┘                          ├─> test_001 ─> test_002 ─> container_001 ─> container_002
-                                     │
-                                     └─> test_001
+impl_001 ─> impl_002 ─────────────────────┐
+                                          │
+impl_003 ─> impl_004 ─> impl_005          ├─> test_001 ─> test_002
+                                          │
+                    ─> impl_006 ──────────┘
 ```
-
-## Critical Path
-
-1. impl_001
-2. impl_002
-3. impl_003
-4. impl_004
-5. test_001
-6. test_002
-7. container_001
-8. container_002
-
-[Identify which tasks are on the critical path and cannot be parallelized]
 
 ## Parallel Work Opportunities
 
-- impl_001 and impl_002 can be done in parallel
-- test_001 unit tests can be written alongside implementation
-- Documentation can be written in parallel with containerization
+- impl_001/impl_002 can run in parallel with impl_003/impl_004
+- impl_005 and impl_006 can run in parallel after their dependencies
 
 ## Quality Checklist
 
 Before considering this feature complete:
 
 - [ ] All tasks marked as complete
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing (unit + integration)
-- [ ] Linting clean (`uv run ruff check src/ tests/`)
-- [ ] Type checking clean (`uv run mypy src/`)
-- [ ] Container builds successfully
-- [ ] Container health checks passing
-- [ ] API documentation complete
-- [ ] Code reviewed
-- [ ] Manual testing performed
-
-## Risk Assessment
-
-### High Risk Tasks
-
-- **impl_003**: Core business logic is complex
-  - Mitigation: Break into smaller subtasks, pair programming
-
-- **test_002**: Integration tests may be flaky
-  - Mitigation: Use proper fixtures, isolated test database
-
-### Medium Risk Tasks
-
-- **container_002**: Multi-container networking can be tricky
-  - Mitigation: Test thoroughly in local environment first
-
-## Notes
-
-[Any additional notes, considerations, or context for implementation]
-
-### Implementation Tips
-
-- [Tip 1]
-- [Tip 2]
-- [Tip 3]
-
-### Common Pitfalls
-
-- [Pitfall 1 and how to avoid it]
-- [Pitfall 2 and how to avoid it]
-
-### Resources
-
-- [Link to relevant documentation]
-- [Link to example code]
-- [Link to design patterns]
+- [ ] Documentation validation passes
+- [ ] Pre-commit hooks pass
+- [ ] Root file count reduced (TODO files removed)
+- [ ] .agents/ has correct flat structure
+- [ ] No references to deprecated files in documentation
