@@ -181,18 +181,23 @@ def sync_to_agentdb(records: list[dict[str, Any]], session_id: str) -> bool:
     """
     info(f"Syncing {len(records)} records to AgentDB...")
 
-    # Generate INSERT statements
+    # Generate INSERT statements using parameterized query pattern
+    # NOTE: This generates SQL for demonstration. In production, use parameterized queries:
+    #   conn.execute(sql, [object_id, object_type, object_state, object_metadata])
     for record in records:
-        sql = f"""
+        # Use parameterized query format (? placeholders) to prevent SQL injection
+        sql = """
         INSERT INTO workflow_records (object_id, object_type, object_state, object_metadata)
-        VALUES (
-            '{record["object_id"]}',
-            '{record["object_type"]}',
-            '{record["object_state"]}',
-            '{record["object_metadata"]}'::JSON
-        );
+        VALUES (?, ?, ?, ?::JSON);
         """
-        print(sql.strip())
+        params = [
+            record["object_id"],
+            record["object_type"],
+            record["object_state"],
+            record["object_metadata"],
+        ]
+        print(f"-- Query: {sql.strip()}")
+        print(f"-- Params: {params}")
 
     success(f"Prepared {len(records)} INSERT statements")
     print("\nNOTE: In actual execution, these would be sent to AgentDB")
