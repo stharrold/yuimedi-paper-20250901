@@ -19,12 +19,7 @@ def check_coverage(threshold=80):
     """
     try:
         # Run pytest with coverage
-        # Coverage paths explanation:
-        # - .claude/skills: Workflow automation scripts (primary codebase)
-        # - tools: Validation and utility scripts
-        # - mcp_manager.py: MCP server configuration (if exists)
-        # Note: This repo doesn't have src/ - it's a documentation-focused project
-        # with automation in .claude/skills/ and tools/
+        # Measure coverage for: .claude/skills, tools, and root Python files
         subprocess.run(
             [
                 "uv",
@@ -57,7 +52,7 @@ def check_coverage(threshold=80):
 
         print(f"Coverage: {total_coverage:.1f}%")
         print(f"Threshold: {threshold}%")
-        print(f"Status: {'✓ PASS' if passed else '✗ FAIL'}")
+        print(f"Status: {'[OK] PASS' if passed else '[FAIL]'}")
 
         if not passed:
             print(f"\nCoverage is below {threshold}%. Add more tests.")

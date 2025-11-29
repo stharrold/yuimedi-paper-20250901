@@ -2,7 +2,7 @@
 type: claude-context
 directory: .claude/skills/workflow-orchestrator
 purpose: Workflow Orchestrator is **the main coordinator skill** for the 7-phase workflow system. Unlike other skills, it contains no executable scripts - instead, it provides algorithmic guidance for Claude Code to detect workflow context, determine current phase, load appropriate skills dynamically, and manage context usage. This is a **conceptual skill** that directs Claude's behavior rather than providing callable tools.
-parent: null
+parent: ../CLAUDE.md
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md

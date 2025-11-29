@@ -100,7 +100,7 @@ def main():
             if update_skill_claude_md(skill, dry_run=args.dry_run):
                 updated += 1
 
-    print(f'\n{"[DRY-RUN] " if args.dry_run else ""}Updated {updated} CLAUDE.md files')
+    print(f"\n{'[DRY-RUN] ' if args.dry_run else ''}Updated {updated} CLAUDE.md files")
 
 
 if __name__ == "__main__":

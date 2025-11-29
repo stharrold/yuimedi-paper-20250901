@@ -1,0 +1,10 @@
+# SpecKit configuration for repo-organization-cleanup feature
+# Non-interactive mode configuration
+
+with_bmad:
+  include_e2e_tests: false
+  include_contract_tests: false
+  include_skills_tests: false
+  dependencies: []
+  design_patterns: []
+  skip_additional_questions: true

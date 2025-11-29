@@ -31,14 +31,11 @@ def get_command_prefix() -> list[str]:
 
     Returns:
         ['uv', 'run'] if inside container,
-        ['podman-compose', 'run', '--rm', 'dev', 'uv', 'run'] if on host.
-
-    Note: On host, commands are prefixed with podman-compose and 'uv run'
-    to ensure tools are available in the container's uv environment.
+        ['podman-compose', 'run', '--rm', 'dev'] if on host.
     """
     if is_inside_container():
         return ["uv", "run"]
-    return ["podman-compose", "run", "--rm", "dev", "uv", "run"]
+    return ["podman-compose", "run", "--rm", "dev"]
 
 
 def get_uv_command_prefix() -> list[str]:

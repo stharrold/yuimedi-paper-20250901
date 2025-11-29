@@ -1,55 +1,35 @@
-"""Safe cross-platform output utilities for Unicode characters.
+"""Safe cross-platform output utilities with ASCII-only symbols.
 
-Handles Windows console encoding issues (cp1252) by:
-1. Attempting to reconfigure stdout to UTF-8
-2. Providing ASCII fallbacks for special characters
+Uses ASCII-only characters for maximum compatibility with:
+- Legacy systems without Unicode support
+- Windows terminals with encoding issues (cp1252)
+- CI/CD environments with limited character sets
+- SSH sessions with misconfigured locales
+
+Issue: #102
 """
 
-import sys
 from typing import Any
 
-
-# Try to reconfigure stdout to UTF-8 (Python 3.7+)
-def _init_utf8():
-    """Initialize UTF-8 encoding for stdout if possible."""
-    if hasattr(sys.stdout, "reconfigure"):
-        try:
-            sys.stdout.reconfigure(encoding="utf-8")
-            return True
-        except Exception:
-            pass
-    return False
-
-
-_UTF8_SUPPORTED = _init_utf8()
-
-
-# Character mappings: Unicode -> ASCII fallback
+# ASCII-only symbols for maximum compatibility
+# Rationale: Simplicity over configurability - guaranteed compatibility
 SYMBOLS = {
-    "checkmark": "✓" if _UTF8_SUPPORTED else "[OK]",
-    "cross": "✗" if _UTF8_SUPPORTED else "[X]",
-    "arrow": "→" if _UTF8_SUPPORTED else "->",
-    "bullet": "•" if _UTF8_SUPPORTED else "*",
-    "warning": "⚠" if _UTF8_SUPPORTED else "!",
+    "checkmark": "[OK]",
+    "cross": "[FAIL]",
+    "arrow": "->",
+    "bullet": "*",
+    "warning": "[WARN]",
+    "info": "[INFO]",
 }
 
 
 def safe_print(*args: Any, **kwargs: Any) -> None:
-    """Print with automatic fallback to ASCII on encoding errors."""
-    try:
-        print(*args, **kwargs)
-    except UnicodeEncodeError:
-        # Convert to ASCII-safe string
-        message = " ".join(str(arg) for arg in args)
-        # Replace common Unicode characters
-        message = (
-            message.replace("✓", "[OK]")
-            .replace("✗", "[X]")
-            .replace("→", "->")
-            .replace("•", "*")
-            .replace("⚠", "!")
-        )
-        print(message, **kwargs)
+    """Print function wrapper for consistency.
+
+    Note: With ASCII-only symbols, no special handling is needed.
+    This function is kept for API compatibility.
+    """
+    print(*args, **kwargs)
 
 
 def format_check(message: str) -> str:
@@ -72,6 +52,11 @@ def format_warning(message: str) -> str:
     return f"{SYMBOLS['warning']} {message}"
 
 
+def format_info(message: str) -> str:
+    """Format an info message."""
+    return f"{SYMBOLS['info']} {message}"
+
+
 # Convenience functions
 def print_success(message: str) -> None:
     """Print a success message."""
@@ -86,3 +71,8 @@ def print_error(message: str) -> None:
 def print_warning(message: str) -> None:
     """Print a warning message."""
     safe_print(format_warning(message))
+
+
+def print_info(message: str) -> None:
+    """Print an info message."""
+    safe_print(format_info(message))

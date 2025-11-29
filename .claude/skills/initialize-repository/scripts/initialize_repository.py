@@ -81,7 +81,7 @@ def error_exit(message: str, code: int = 1) -> None:
         message: Error message to display
         code: Exit code (default 1)
     """
-    print(f"{Colors.RED}✗ Error:{Colors.END} {message}", file=sys.stderr)
+    print(f"{Colors.RED}[FAIL] Error:{Colors.END} {message}", file=sys.stderr)
     sys.exit(code)
 
 
@@ -91,7 +91,7 @@ def success(message: str) -> None:
     Args:
         message: Success message to display
     """
-    print(f"{Colors.GREEN}✓{Colors.END} {message}")
+    print(f"{Colors.GREEN}[OK]{Colors.END} {message}")
 
 
 def info(message: str) -> None:
@@ -100,7 +100,7 @@ def info(message: str) -> None:
     Args:
         message: Info message to display
     """
-    print(f"{Colors.BLUE}ℹ{Colors.END} {message}")
+    print(f"{Colors.BLUE}[INFO]{Colors.END} {message}")
 
 
 def warning(message: str) -> None:
@@ -109,7 +109,7 @@ def warning(message: str) -> None:
     Args:
         message: Warning message to display
     """
-    print(f"{Colors.YELLOW}⚠{Colors.END} {message}")
+    print(f"{Colors.YELLOW}[WARN]{Colors.END} {message}")
 
 
 def ask_question(
@@ -558,11 +558,11 @@ This repository uses a skill-based workflow system. See [WORKFLOW.md](WORKFLOW.m
 
 ## Quality Standards
 
-- ✓ Test coverage ≥ 80%
-- ✓ All tests passing
-- ✓ Linting clean (ruff)
-- ✓ Type checking clean (mypy)
-- ✓ Build successful
+- [OK] Test coverage >= 80%
+- [OK] All tests passing
+- [OK] Linting clean (ruff)
+- [OK] Type checking clean (mypy)
+- [OK] Build successful
 
 ## Contributing
 
@@ -688,11 +688,11 @@ uv run ruff format src/
 
 ## Quality Gates (Enforced Before PR)
 
-- ✓ Test coverage ≥ 80%
-- ✓ All tests passing
-- ✓ Build successful
-- ✓ Linting clean (ruff)
-- ✓ Type checking clean (mypy)
+- [OK] Test coverage >= 80%
+- [OK] All tests passing
+- [OK] Build successful
+- [OK] Linting clean (ruff)
+- [OK] Type checking clean (mypy)
 
 ## Git Branch Structure
 
@@ -758,7 +758,7 @@ pythonpath = ["src"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py{config.python_version.replace('.', '')}"
+target-version = "py{config.python_version.replace(".", "")}"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W"]
@@ -1243,7 +1243,7 @@ def print_summary(target_path: Path, config: RepositoryConfig) -> None:
         config: RepositoryConfig with user selections
     """
     print(f"\n{Colors.BOLD}{'=' * 60}{Colors.END}")
-    print(f"{Colors.BOLD}✓ Repository Initialization Complete{Colors.END}")
+    print(f"{Colors.BOLD}[OK] Repository Initialization Complete{Colors.END}")
     print(f"{Colors.BOLD}{'=' * 60}{Colors.END}\n")
 
     print(f"{Colors.BLUE}Repository:{Colors.END} {target_path}")
@@ -1257,29 +1257,29 @@ def print_summary(target_path: Path, config: RepositoryConfig) -> None:
         print(f"{Colors.BLUE}Azure Project:{Colors.END} {config.azure_project}")
 
     print(f"\n{Colors.BOLD}Created:{Colors.END}")
-    print("  ✓ Workflow system (9 skills)")
-    print("  ✓ Documentation (WORKFLOW.md, CLAUDE.md, CONTRIBUTING.md)")
-    print("  ✓ Quality configs (pyproject.toml, .gitignore)")
+    print("  [OK] Workflow system (9 skills)")
+    print("  [OK] Documentation (WORKFLOW.md, CLAUDE.md, CONTRIBUTING.md)")
+    print("  [OK] Quality configs (pyproject.toml, .gitignore)")
     if config.vcs_provider == "azure_devops":
-        print("  ✓ VCS config (.vcs_config.yaml for Azure DevOps)")
-    print("  ✓ Directory structure (ARCHIVED/, planning/, specs/)")
+        print("  [OK] VCS config (.vcs_config.yaml for Azure DevOps)")
+    print("  [OK] Directory structure (ARCHIVED/, planning/, specs/)")
 
     if config.copy_domain:
-        print("  ✓ Domain content (src/, resources/)")
+        print("  [OK] Domain content (src/, resources/)")
     if config.copy_tests:
-        print("  ✓ Tests (tests/)")
+        print("  [OK] Tests (tests/)")
     if config.copy_containers:
-        print("  ✓ Container configs")
+        print("  [OK] Container configs")
     if config.copy_cicd:
-        print("  ✓ CI/CD pipelines (GitHub Actions + Azure Pipelines)")
+        print("  [OK] CI/CD pipelines (GitHub Actions + Azure Pipelines)")
 
     if config.init_git:
         print(f"\n{Colors.BOLD}Git:{Colors.END}")
-        print("  ✓ Initialized repository")
+        print("  [OK] Initialized repository")
         if config.create_branches:
-            print(f"  ✓ Created branches: main, develop, contrib/{config.gh_user}")
+            print(f"  [OK] Created branches: main, develop, contrib/{config.gh_user}")
         if config.remote_url:
-            print(f"  ✓ Remote configured: {config.remote_url}")
+            print(f"  [OK] Remote configured: {config.remote_url}")
 
     print(f"\n{Colors.BOLD}Next Steps:{Colors.END}")
     print(f"  1. cd {target_path}")

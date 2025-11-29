@@ -2,7 +2,7 @@
 type: claude-context
 directory: .claude/skills/tech-stack-adapter
 purpose: Tech Stack Adapter provides **automatic project detection** for Python/uv projects. It reads `pyproject.toml`, detects installed dependencies and tools, and generates appropriate commands for testing, building, coverage, database migrations, and containerization. Enables workflow to adapt to different project configurations without hardcoded assumptions.
-parent: null
+parent: ../CLAUDE.md
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md

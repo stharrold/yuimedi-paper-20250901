@@ -189,6 +189,40 @@ def get_worktree_id() -> str:
     return ctx.worktree_id
 
 
+def get_main_repo_path() -> Path | None:
+    """Get the main repository path when running from a worktree.
+
+    For worktrees, git_common_dir points to the shared .git directory
+    in the main repository. This function returns the parent of that
+    directory (the main repo root).
+
+    This is useful when a worktree needs to access files in the main repo
+    that aren't included in the worktree itself (e.g., planning/ directory).
+
+    Returns:
+        Path to main repo root, or None if not in a worktree.
+
+    Raises:
+        RuntimeError: If not in a git repository.
+
+    Example:
+        >>> # From worktree at /path/to/repo_feature_my-feature
+        >>> main_repo = get_main_repo_path()
+        >>> print(main_repo)
+        /path/to/repo
+        >>> planning_dir = main_repo / "planning" / "my-feature"
+    """
+    ctx = get_worktree_context()
+
+    if not ctx.is_worktree:
+        return None
+
+    # git_common_dir is the shared .git directory in the main repo
+    # e.g., /path/to/main-repo/.git
+    # Its parent is the main repo root
+    return ctx.git_common_dir.parent
+
+
 def cleanup_orphaned_state(repo_root: Path) -> list[Path]:
     """Find orphaned state directories from removed worktrees.
 
