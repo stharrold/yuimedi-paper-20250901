@@ -264,7 +264,7 @@ See individual `SKILL.md` files in `.claude/skills/` for detailed usage.
 ### File Naming Conventions
 - **Research Documents**: Descriptive names with `.md` extension (`paper.md`)
 - **Timestamp Format**: `YYYYMMDDTHHMMSSZ_` prefix for historical files
-- **Project Management**: Uppercase names (`TODO_FOR_AI.json`, `DECISION_LOG.json`)
+- **Project Management**: Uppercase names (`DECISION_LOG.json`, `CHANGELOG.md`)
 
 ### Document Organization
 - **Academic Structure**: Standard format (abstract, intro, lit review, methods, results, discussion, conclusion)
