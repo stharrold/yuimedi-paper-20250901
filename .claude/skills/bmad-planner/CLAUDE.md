@@ -2,7 +2,7 @@
 type: claude-context
 directory: .claude/skills/bmad-planner
 purpose: BMAD Planner provides an **interactive callable tool** for creating planning documents in the main repository on contrib branches. It implements Phase 1 (Planning) of the workflow, generating comprehensive requirements, architecture, and epic breakdown through a three-persona interactive Q&A system.
-parent: null
+parent: ../CLAUDE.md
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md

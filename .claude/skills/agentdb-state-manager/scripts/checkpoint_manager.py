@@ -40,7 +40,7 @@ def store_checkpoint(todo_file: str) -> None:
 
     print("SQL (to be executed via AgentDB):")
     print(sql)
-    print("\n✓ Checkpoint stored")
+    print("\n[OK] Checkpoint stored")
 
 
 def list_checkpoints() -> None:
@@ -71,7 +71,7 @@ def restore_checkpoint(checkpoint_id: str) -> None:
     print(f"Restoring checkpoint {checkpoint_id}...")
     print("SQL Query:")
     print(query)
-    print("\n✓ Checkpoint restored (would display resume instructions)")
+    print("\n[OK] Checkpoint restored (would display resume instructions)")
 
 
 def main() -> None:

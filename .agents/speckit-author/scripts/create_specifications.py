@@ -105,6 +105,36 @@ def run_command(cmd: list[str], capture=True, check=True) -> str | None:
         error_exit(f"Command not found: {cmd[0]}")
 
 
+def get_main_repo_path() -> Path | None:
+    """Get the main repository path when running from a worktree.
+
+    Uses git's --git-common-dir to find the shared .git directory,
+    then returns its parent (the main repo root).
+
+    This is useful when a worktree needs to access files in the main repo
+    that aren't included in the worktree itself (e.g., planning/ directory).
+
+    Returns:
+        Path to main repo root, or None if not in a worktree.
+    """
+    # Check if in a worktree by looking at git-dir path
+    git_dir = run_command(["git", "rev-parse", "--git-dir"])
+    if "/worktrees/" not in git_dir:
+        return None
+
+    # Get the common git directory (shared .git for worktrees)
+    git_common_dir = run_command(["git", "rev-parse", "--git-common-dir"])
+
+    # Make it absolute if relative
+    git_common_path = Path(git_common_dir)
+    if not git_common_path.is_absolute():
+        git_common_path = (Path.cwd() / git_common_path).resolve()
+
+    # The parent of .git is the main repo root
+    main_repo = git_common_path.parent
+    return main_repo if main_repo.exists() else None
+
+
 def detect_context() -> dict[str, any]:
     """Detect current worktree context and BMAD planning availability."""
 
@@ -113,14 +143,20 @@ def detect_context() -> dict[str, any]:
     current_dir = Path.cwd()
     current_branch = run_command(["git", "branch", "--show-current"])
 
-    # Determine if in worktree (different from repo root)
-    is_worktree = current_dir != repo_root
+    # Determine if in worktree by checking git-dir path
+    # Worktrees have git-dir like: /path/to/main/.git/worktrees/<name>
+    # Main repo has git-dir like: /path/to/main/.git
+    git_dir = run_command(["git", "rev-parse", "--git-dir"])
+    is_worktree = "/worktrees/" in git_dir
+
+    # Get main repo path if in worktree
+    main_repo_path = get_main_repo_path() if is_worktree else None
 
     if not is_worktree:
         error_exit(
             "Not in a worktree. This script must be run from a feature/release/hotfix worktree.\n"
             f"Current directory: {current_dir}\n"
-            f"Repository root: {repo_root}\n"
+            f"Git directory: {git_dir}\n"
             "Create a worktree first using create_worktree.py"
         )
 
@@ -129,15 +165,44 @@ def detect_context() -> dict[str, any]:
         "current_dir": current_dir,
         "current_branch": current_branch,
         "is_worktree": is_worktree,
+        "main_repo_path": main_repo_path,
     }
 
 
 def find_bmad_planning(slug: str) -> dict[str, Path] | None:
-    """Check for BMAD planning documents in ../planning/<slug>/."""
+    """Check for BMAD planning documents.
 
-    planning_dir = Path("..") / "planning" / slug
+    Searches in order:
+    1. planning/<slug>/ (in worktree - planning docs included via rebase)
+    2. <main_repo>/planning/<slug>/ (main repo when running from worktree)
+    3. ../planning/<slug>/ (legacy fallback for nested worktree layout)
 
-    if not planning_dir.exists():
+    The main repo path is resolved from the git worktree configuration,
+    not from filesystem parent directory (which doesn't work for worktrees
+    with naming conventions like repo_feature_timestamp_slug).
+    """
+    planning_dir = None
+
+    # Try 1: Current directory (worktree includes planning via rebase)
+    candidate = Path("planning") / slug
+    if candidate.exists():
+        planning_dir = candidate
+
+    # Try 2: Main repo path (proper worktree resolution)
+    if planning_dir is None:
+        main_repo = get_main_repo_path()
+        if main_repo:
+            candidate = main_repo / "planning" / slug
+            if candidate.exists():
+                planning_dir = candidate
+
+    # Try 3: Parent directory fallback (legacy nested worktree layout)
+    if planning_dir is None:
+        candidate = Path("..") / "planning" / slug
+        if candidate.exists():
+            planning_dir = candidate
+
+    if planning_dir is None:
         return None
 
     bmad_docs = {
@@ -257,7 +322,7 @@ def interactive_qa_with_bmad(bmad_docs: dict[str, Path], slug: str) -> dict[str,
     print("\n" + "=" * 70)
     print("SpecKit Interactive Specification Tool")
     print("=" * 70)
-    print(f"\n✓ Detected BMAD planning context: ../planning/{slug}/")
+    print(f"\n[OK] Detected BMAD planning context: {bmad_docs['planning_dir']}/")
 
     # Display BMAD summary
     print("\nBMAD Summary:")
@@ -362,7 +427,7 @@ def interactive_qa_without_bmad(slug: str) -> dict[str, any]:
     print("\n" + "=" * 70)
     print("SpecKit Interactive Specification Tool")
     print("=" * 70)
-    print(f"\n⚠ No BMAD planning found for '{slug}'")
+    print(f"\n[WARN] No BMAD planning found for '{slug}'")
     print("I'll gather requirements through comprehensive Q&A.")
     print("\nRecommendation: Use BMAD planning for future features")
     print("=" * 70)
@@ -507,7 +572,8 @@ def generate_spec_md(
         context_section += f"**GitHub Issue:** #{issue_number}\n\n"
 
     if bmad_docs:
-        context_section += f"**BMAD Planning:** See `../planning/{slug}/` for complete requirements and architecture.\n\n"
+        planning_path = bmad_docs.get("planning_dir", f"planning/{slug}")
+        context_section += f"**BMAD Planning:** See `{planning_path}/` for complete requirements and architecture.\n\n"
 
     context_section += "**Implementation Preferences:**\n\n"
     for key, value in qa_responses.items():
@@ -583,7 +649,7 @@ def update_todo_file(todo_path: Path, tasks: list[dict[str, str]]) -> None:
         error_exit("PyYAML required for TODO updates. Install: pip install pyyaml or uv add pyyaml")
 
     if not todo_path.exists():
-        print(f"⚠ TODO file not found: {todo_path}")
+        print(f"[WARN] TODO file not found: {todo_path}")
         print("  Skipping TODO update. Please update manually.")
         return
 
@@ -591,13 +657,13 @@ def update_todo_file(todo_path: Path, tasks: list[dict[str, str]]) -> None:
 
     # Split frontmatter and body
     if not content.startswith("---"):
-        print("⚠ TODO file missing YAML frontmatter")
+        print("[WARN] TODO file missing YAML frontmatter")
         print("  Skipping TODO update. Please update manually.")
         return
 
     parts = content.split("---", 2)
     if len(parts) < 3:
-        print("⚠ Invalid TODO file format")
+        print("[WARN] Invalid TODO file format")
         print("  Skipping TODO update. Please update manually.")
         return
 
@@ -636,15 +702,18 @@ def update_todo_file(todo_path: Path, tasks: list[dict[str, str]]) -> None:
     new_content = f"---\n{yaml_str}---{body}"
     todo_path.write_text(new_content)
 
-    print(f"✓ Updated TODO file: {todo_path}")
+    print(f"[OK] Updated TODO file: {todo_path}")
     print(f"  Added {len(tasks)} tasks across {len(tasks_by_category)} categories")
 
 
-def create_specs_directory(slug: str, workflow_type: str) -> Path:
+def create_specs_directory(slug: str, workflow_type: str, planning_path: str | None = None) -> Path:
     """Create specs/<slug>/ directory with required structure."""
 
     specs_dir = Path("specs") / slug
     specs_dir.mkdir(parents=True, exist_ok=True)
+
+    # Use provided planning path or default
+    planning_ref = planning_path if planning_path else f"planning/{slug}"
 
     # Create CLAUDE.md
     claude_md = f"""# Claude Code Context: specs/{slug}
@@ -675,12 +744,12 @@ When implementing this feature:
 1. Read spec.md for technical details
 2. Follow plan.md task order
 3. Update TODO_*.md task status as you complete each task
-4. Refer to ../planning/{slug}/ for BMAD context (if available)
+4. Refer to {planning_ref}/ for BMAD context (if available)
 
 ## Related Documentation
 
 - **[README.md](README.md)** - Human-readable documentation for this directory
-- **[../../planning/{slug}/CLAUDE.md](../../planning/{slug}/CLAUDE.md)** - BMAD Planning (if available)
+- **[{planning_ref}/CLAUDE.md]({planning_ref}/CLAUDE.md)** - BMAD Planning (if available)
 """
 
     (specs_dir / "CLAUDE.md").write_text(claude_md)
@@ -703,7 +772,7 @@ SpecKit Interactive Tool - `.claude/skills/speckit-author/scripts/create_specifi
 
 ## Related
 
-- BMAD Planning: `../../planning/{slug}/` (if available)
+- BMAD Planning: `{planning_ref}/` (if available)
 - Implementation: `../../src/`
 - Tests: `../../tests/`
 """
@@ -753,7 +822,7 @@ Generated by SpecKit Interactive Tool:
 
     run_command(["git", "commit", "-m", commit_msg])
 
-    print("\n✓ Committed changes to branch")
+    print("\n[OK] Committed changes to branch")
 
 
 def main():
@@ -788,7 +857,7 @@ def main():
         if not args.config.exists():
             error_exit(f"Config file not found: {args.config}")
         _CONFIG = load_config(args.config)
-        print(f"✓ Running in non-interactive mode with config: {args.config}")
+        print(f"[OK] Running in non-interactive mode with config: {args.config}")
 
     # 1. Detect context
     context = detect_context()
@@ -797,9 +866,9 @@ def main():
 
     # 2. Display issue reference if provided
     if args.issue:
-        print(f"✓ Linked to GitHub Issue: #{args.issue}")
+        print(f"[OK] Linked to GitHub Issue: #{args.issue}")
     else:
-        print("ℹ️  No GitHub Issue linked (use --issue to link)")
+        print("[INFO] No GitHub Issue linked (use --issue to link)")
 
     # 3. Check for BMAD planning
     bmad_docs = find_bmad_planning(args.slug)
@@ -830,7 +899,8 @@ def main():
     plan_md = generate_plan_md(args.slug, args.workflow_type, date, qa_responses, bmad_docs)
 
     # 6. Create specs directory
-    specs_dir = create_specs_directory(args.slug, args.workflow_type)
+    planning_path = str(bmad_docs["planning_dir"]) if bmad_docs else None
+    specs_dir = create_specs_directory(args.slug, args.workflow_type, planning_path)
 
     # Write spec.md and plan.md
     spec_path = specs_dir / "spec.md"
@@ -839,23 +909,23 @@ def main():
     spec_path.write_text(spec_md)
     plan_path.write_text(plan_md)
 
-    print(f"✓ Created {spec_path} ({len(spec_md)} chars)")
-    print(f"✓ Created {plan_path} ({len(plan_md)} chars)")
+    print(f"[OK] Created {spec_path} ({len(spec_md)} chars)")
+    print(f"[OK] Created {plan_path} ({len(plan_md)} chars)")
 
     # 7. Parse tasks (for informational purposes)
     tasks = parse_tasks_from_plan(plan_md)
 
     if not tasks:
-        print("ℹ️  No tasks found in plan.md (template uses placeholders)")
+        print("[INFO] No tasks found in plan.md (template uses placeholders)")
         print("  Claude Code will populate plan.md with actual tasks")
     else:
-        print(f"✓ Found {len(tasks)} tasks in plan.md")
+        print(f"[OK] Found {len(tasks)} tasks in plan.md")
 
     # 8. Commit changes
     if not args.no_commit:
         commit_changes(args.slug, specs_dir, None, issue_number=args.issue)
     else:
-        print("\n⚠ Skipping commit (--no-commit flag)")
+        print("\n[WARN] Skipping commit (--no-commit flag)")
 
     # Trigger sync engine (Phase 3 integration)
     try:
@@ -907,7 +977,7 @@ def main():
         print("  3. Track progress via GitHub Issues or specs/*/tasks.md")
 
     if bmad_docs:
-        print(f"  4. Refer to ../planning/{args.slug}/ for BMAD context")
+        print(f"  4. Refer to {bmad_docs['planning_dir']}/ for BMAD context")
 
     print("")
 

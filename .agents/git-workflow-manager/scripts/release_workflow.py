@@ -30,36 +30,12 @@ sys.path.insert(
 from container_utils import get_command_prefix
 
 # Safe cross-platform output
-try:
-    from safe_output import format_check, format_cross, format_warning, safe_print
-except ImportError:
-    # Fallback if module not found
-    def safe_print(*args, **kwargs):
-        try:
-            print(*args, **kwargs)
-        except UnicodeEncodeError:
-            message = " ".join(str(arg) for arg in args)
-            message = (
-                message.replace("[OK]", "[OK]")
-                .replace("[X]", "[X]")
-                .replace("->", "->")
-                .replace("!", "!")
-            )
-            print(message, **kwargs)
-
-    def format_check(msg):
-        return f"[OK] {msg}"
-
-    def format_cross(msg):
-        return f"[X] {msg}"
-
-    def format_warning(msg):
-        return f"! {msg}"
+from safe_output import safe_print
 
 
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
     """Run a command and return the result."""
-    safe_print(f"  -> {' '.join(cmd)}")
+    safe_print(f"  → {' '.join(cmd)}")
     return subprocess.run(cmd, capture_output=True, text=True, check=check)
 
 
@@ -72,17 +48,14 @@ def get_current_branch() -> str:
 def get_contrib_branch() -> str:
     """Get the contrib branch name (contrib/<username>).
 
-    Requires GitHub CLI authentication. Run 'gh auth login' if not authenticated.
+    Raises:
+        SystemExit: If GitHub username cannot be determined.
     """
     result = run_cmd(["gh", "api", "user", "-q", ".login"], check=False)
     username = result.stdout.strip()
     if not username:
-        safe_print(
-            format_cross(
-                "Could not determine GitHub username. "
-                "Please ensure you are authenticated with 'gh auth login'."
-            )
-        )
+        safe_print("✗ Could not determine GitHub username.")
+        safe_print("  Ensure you are logged in: gh auth login")
         sys.exit(1)
     return f"contrib/{username}"
 
@@ -93,17 +66,17 @@ def return_to_editable_branch() -> bool:
     current = get_current_branch()
 
     if current == contrib:
-        print(f"  Already on editable branch: {contrib}")
+        safe_print(f"  Already on editable branch: {contrib}")
         return True
 
-    print(f"\n[Return] Switching to editable branch: {contrib}")
+    safe_print(f"\n[Return] Switching to editable branch: {contrib}")
     result = run_cmd(["git", "checkout", contrib], check=False)
 
     if result.returncode != 0:
-        print(f"[X] Failed to checkout {contrib}: {result.stderr}")
+        safe_print(f"✗ Failed to checkout {contrib}: {result.stderr}")
         return False
 
-    print(f"[OK] Now on editable branch: {contrib}")
+    safe_print(f"✓ Now on editable branch: {contrib}")
     return True
 
 
@@ -128,11 +101,11 @@ def calculate_next_version(current: str) -> str:
 
 def run_quality_gates() -> bool:
     """Run quality gates."""
-    print("\n[Quality Gates] Running quality gates...")
+    safe_print("\n[Quality Gates] Running quality gates...")
     script_path = Path(".claude/skills/quality-enforcer/scripts/run_quality_gates.py")
 
     if not script_path.exists():
-        print("!️  Quality gates script not found, skipping")
+        safe_print("⚠  Quality gates script not found, skipping")
         return True
 
     prefix = get_command_prefix()
@@ -143,75 +116,75 @@ def run_quality_gates() -> bool:
 
 def step_create_release(version: str = None) -> bool:
     """Create release branch from develop."""
-    print("\n" + "=" * 60)
-    print("STEP 1: Create Release Branch")
-    print("=" * 60)
+    safe_print("\n" + "=" * 60)
+    safe_print("STEP 1: Create Release Branch")
+    safe_print("=" * 60)
 
     # Calculate version if not provided
     if not version:
         current = get_latest_version()
         version = calculate_next_version(current)
-        print(f"  Auto-calculated version: {version}")
+        safe_print(f"  Auto-calculated version: {version}")
 
     release_branch = f"release/{version}"
 
     # Fetch latest
-    print("\n[Fetch] Fetching latest...")
+    safe_print("\n[Fetch] Fetching latest...")
     run_cmd(["git", "fetch", "origin"], check=False)
 
     # Check if release branch already exists
     result = run_cmd(["git", "branch", "-r", "--list", f"origin/{release_branch}"], check=False)
     if result.stdout.strip():
-        print(f"!️  Release branch {release_branch} already exists")
+        safe_print(f"⚠  Release branch {release_branch} already exists")
         return True
 
     # Create release branch from develop
-    print(f"\n[Branch] Creating {release_branch} from develop...")
+    safe_print(f"\n[Branch] Creating {release_branch} from develop...")
     result = run_cmd(["git", "checkout", "-b", release_branch, "origin/develop"], check=False)
     if result.returncode != 0:
-        print(f"[X] Failed to create branch: {result.stderr}")
+        safe_print(f"✗ Failed to create branch: {result.stderr}")
         return False
 
     # Push branch
-    print(f"\n[Push] Pushing {release_branch}...")
+    safe_print(f"\n[Push] Pushing {release_branch}...")
     result = run_cmd(["git", "push", "-u", "origin", release_branch], check=False)
     if result.returncode != 0:
-        print(f"[X] Push failed: {result.stderr}")
+        safe_print(f"✗ Push failed: {result.stderr}")
         return False
 
-    print(f"[OK] Step 1 complete: Created {release_branch}")
+    safe_print(f"✓ Step 1 complete: Created {release_branch}")
     return True
 
 
 def step_run_gates() -> bool:
     """Run quality gates on release branch."""
-    print("\n" + "=" * 60)
-    print("STEP 2: Run Quality Gates")
-    print("=" * 60)
+    safe_print("\n" + "=" * 60)
+    safe_print("STEP 2: Run Quality Gates")
+    safe_print("=" * 60)
 
     if not run_quality_gates():
-        print("[X] Quality gates failed. Fix issues before proceeding.")
+        safe_print("✗ Quality gates failed. Fix issues before proceeding.")
         return False
 
-    print("[OK] Step 2 complete: Quality gates passed")
+    safe_print("✓ Step 2 complete: Quality gates passed")
     return True
 
 
 def step_pr_main() -> bool:
     """Create PR from release to main."""
-    print("\n" + "=" * 60)
-    print("STEP 3: PR Release -> Main")
-    print("=" * 60)
+    safe_print("\n" + "=" * 60)
+    safe_print("STEP 3: PR Release -> Main")
+    safe_print("=" * 60)
 
     current = get_current_branch()
     if not current.startswith("release/"):
-        print(f"[X] Must be on release branch (current: {current})")
+        safe_print(f"✗ Must be on release branch (current: {current})")
         return False
 
     version = current.replace("release/", "")
 
     # Create PR
-    print(f"\n[PR] Creating PR: {current} -> main...")
+    safe_print(f"\n[PR] Creating PR: {current} -> main...")
     result = run_cmd(
         [
             "gh",
@@ -230,21 +203,21 @@ def step_pr_main() -> bool:
 
     if result.returncode != 0:
         if "already exists" in result.stderr:
-            print("!️  PR already exists")
+            safe_print("⚠  PR already exists")
         else:
-            print(f"[X] PR creation failed: {result.stderr}")
+            safe_print(f"✗ PR creation failed: {result.stderr}")
             return False
 
-    print(f"[OK] Step 3 complete: PR created {current} -> main")
-    print("\nNext: Merge PR in GitHub, then run: release_workflow.py tag-release")
+    safe_print(f"✓ Step 3 complete: PR created {current} -> main")
+    safe_print("\nNext: Merge PR in GitHub, then run: release_workflow.py tag-release")
     return True
 
 
 def step_tag_release() -> bool:
     """Tag release on main after PR merge."""
-    print("\n" + "=" * 60)
-    print("STEP 4: Tag Release")
-    print("=" * 60)
+    safe_print("\n" + "=" * 60)
+    safe_print("STEP 4: Tag Release")
+    safe_print("=" * 60)
 
     current = get_current_branch()
     version = None
@@ -260,74 +233,74 @@ def step_tag_release() -> bool:
             version = branches[-1].strip().replace("origin/release/", "")
 
     if not version:
-        print("[X] Could not determine version. Specify release branch.")
+        safe_print("✗ Could not determine version. Specify release branch.")
         return False
 
     # Checkout main and pull
-    print("\n[Checkout] Switching to main...")
+    safe_print("\n[Checkout] Switching to main...")
     run_cmd(["git", "checkout", "main"], check=False)
     run_cmd(["git", "pull", "origin", "main"], check=False)
 
     # Create tag
-    print(f"\n[Tag] Creating tag {version}...")
+    safe_print(f"\n[Tag] Creating tag {version}...")
     result = run_cmd(["git", "tag", "-a", version, "-m", f"Release {version}"], check=False)
     if result.returncode != 0:
         if "already exists" in result.stderr:
-            print(f"!️  Tag {version} already exists")
+            safe_print(f"⚠  Tag {version} already exists")
         else:
-            print(f"[X] Tag creation failed: {result.stderr}")
+            safe_print(f"✗ Tag creation failed: {result.stderr}")
             return False
 
     # Push tag
-    print(f"\n[Push] Pushing tag {version}...")
+    safe_print(f"\n[Push] Pushing tag {version}...")
     result = run_cmd(["git", "push", "origin", version], check=False)
     if result.returncode != 0:
-        print(f"!️  Tag push warning: {result.stderr}")
+        safe_print(f"⚠  Tag push warning: {result.stderr}")
 
     # Return to editable branch
     return_to_editable_branch()
 
-    print(f"[OK] Step 4 complete: Tagged {version} on main")
-    print("\nNext: Run backmerge_workflow.py to sync release back to develop")
+    safe_print(f"✓ Step 4 complete: Tagged {version} on main")
+    safe_print("\nNext: Run backmerge_workflow.py to sync release back to develop")
     return True
 
 
 def show_status():
     """Show current release status."""
-    print("\n" + "=" * 60)
-    print("RELEASE STATUS")
-    print("=" * 60)
+    safe_print("\n" + "=" * 60)
+    safe_print("RELEASE STATUS")
+    safe_print("=" * 60)
 
     current = get_current_branch()
-    print(f"\nCurrent branch: {current}")
+    safe_print(f"\nCurrent branch: {current}")
 
     # Show latest version
     latest = get_latest_version()
-    print(f"Latest version: {latest}")
+    safe_print(f"Latest version: {latest}")
 
     # Show release branches
     result = run_cmd(["git", "branch", "-r", "--list", "origin/release/*"], check=False)
     branches = result.stdout.strip()
     if branches:
-        print(f"\nRelease branches:\n{branches}")
+        safe_print(f"\nRelease branches:\n{branches}")
     else:
-        print("\nNo release branches found")
+        safe_print("\nNo release branches found")
 
     # Determine next step
-    print("\n" + "-" * 40)
+    safe_print("\n" + "-" * 40)
     if current.startswith("release/"):
-        print("Next step: release_workflow.py pr-main")
+        safe_print("Next step: release_workflow.py pr-main")
     elif current == "main":
-        print("Next step: release_workflow.py tag-release")
+        safe_print("Next step: release_workflow.py tag-release")
     else:
-        print("Next step: release_workflow.py create-release")
+        safe_print("Next step: release_workflow.py create-release")
 
 
 def run_full_workflow(version: str = None):
     """Run all workflow steps in sequence."""
-    print("\n" + "=" * 60)
-    print("FULL RELEASE WORKFLOW")
-    print("=" * 60)
+    safe_print("\n" + "=" * 60)
+    safe_print("FULL RELEASE WORKFLOW")
+    safe_print("=" * 60)
 
     steps = [
         ("create-release", lambda: step_create_release(version)),
@@ -336,16 +309,16 @@ def run_full_workflow(version: str = None):
     ]
 
     for name, func in steps:
-        print(f"\n>>> Running step: {name}")
+        safe_print(f"\n>>> Running step: {name}")
         if not func():
-            print(f"\n[X] Workflow stopped at step: {name}")
+            safe_print(f"\n✗ Workflow stopped at step: {name}")
             return_to_editable_branch()
             return False
 
-    print("\n" + "=" * 60)
-    print("[OK] RELEASE WORKFLOW COMPLETE (awaiting PR merge)")
-    print("After PR merge, run: release_workflow.py tag-release")
-    print("=" * 60)
+    safe_print("\n" + "=" * 60)
+    safe_print("✓ RELEASE WORKFLOW COMPLETE (awaiting PR merge)")
+    safe_print("After PR merge, run: release_workflow.py tag-release")
+    safe_print("=" * 60)
     return True
 
 

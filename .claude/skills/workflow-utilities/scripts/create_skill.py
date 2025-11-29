@@ -95,7 +95,7 @@ def error_exit(message: str, code: int = 1) -> None:
         message: Error message to display
         code: Exit code (default 1)
     """
-    print(f"{Colors.RED}✗ Error:{Colors.END} {message}", file=sys.stderr)
+    print(f"{Colors.RED}[FAIL] Error:{Colors.END} {message}", file=sys.stderr)
     sys.exit(code)
 
 
@@ -105,7 +105,7 @@ def success(message: str) -> None:
     Args:
         message: Success message to display
     """
-    print(f"{Colors.GREEN}✓{Colors.END} {message}")
+    print(f"{Colors.GREEN}[OK]{Colors.END} {message}")
 
 
 def info(message: str) -> None:
@@ -114,7 +114,7 @@ def info(message: str) -> None:
     Args:
         message: Info message to display
     """
-    print(f"{Colors.BLUE}ℹ{Colors.END} {message}")
+    print(f"{Colors.BLUE}[INFO]{Colors.END} {message}")
 
 
 def warning(message: str) -> None:
@@ -123,7 +123,7 @@ def warning(message: str) -> None:
     Args:
         message: Warning message to display
     """
-    print(f"{Colors.YELLOW}⚠{Colors.END} {message}")
+    print(f"{Colors.YELLOW}[WARN]{Colors.END} {message}")
 
 
 def ask_question(prompt: str, options: list[str] | None = None, default: str | None = None) -> str:
@@ -353,7 +353,7 @@ def alert_user_discrepancies(discrepancies: list[Discrepancy]) -> bool:
         return True
 
     print(f"\n{Colors.BOLD}{'=' * 70}{Colors.END}")
-    print(f"{Colors.YELLOW}⚠️  DISCREPANCY ALERT{Colors.END}")
+    print(f"{Colors.YELLOW}[WARN] DISCREPANCY ALERT{Colors.END}")
     print(f"{Colors.BOLD}{'=' * 70}{Colors.END}\n")
 
     print("Local workflow patterns differ from official Claude Code best practices.\n")
@@ -938,7 +938,7 @@ Official Documentation:
 
 Refs: .claude/skills/{config.name}/CHANGELOG.md
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+Generated with Claude Code (https://claude.com/claude-code)
 
 Co-Authored-By: Claude <noreply@anthropic.com>
 """
@@ -955,7 +955,7 @@ def print_summary(skill_path: Path, config: SkillConfig) -> None:
         config: Skill configuration
     """
     print(f"\n{Colors.BOLD}{'=' * 70}{Colors.END}")
-    print(f"{Colors.BOLD}✓ Skill Creation Complete{Colors.END}")
+    print(f"{Colors.BOLD}[OK] Skill Creation Complete{Colors.END}")
     print(f"{Colors.BOLD}{'=' * 70}{Colors.END}\n")
 
     print(f"{Colors.BLUE}Skill:{Colors.END} {config.name}")
@@ -964,16 +964,16 @@ def print_summary(skill_path: Path, config: SkillConfig) -> None:
     print(f"{Colors.BLUE}Location:{Colors.END} {skill_path}")
 
     print(f"\n{Colors.BOLD}Created Files:{Colors.END}")
-    print("  ✓ SKILL.md (complete documentation)")
-    print("  ✓ CLAUDE.md (Claude Code context)")
-    print("  ✓ README.md (human-readable overview)")
-    print("  ✓ CHANGELOG.md (version history)")
-    print("  ✓ ARCHIVED/ (directory structure)")
+    print("  [OK] SKILL.md (complete documentation)")
+    print("  [OK] CLAUDE.md (Claude Code context)")
+    print("  [OK] README.md (human-readable overview)")
+    print("  [OK] CHANGELOG.md (version history)")
+    print("  [OK] ARCHIVED/ (directory structure)")
 
     if config.has_scripts:
-        print("  ✓ scripts/__init__.py (package initialization)")
+        print("  [OK] scripts/__init__.py (package initialization)")
     if config.has_templates:
-        print("  ✓ templates/ (document templates)")
+        print("  [OK] templates/ (document templates)")
 
     print(f"\n{Colors.BOLD}Next Steps:{Colors.END}")
     print("  1. Implement skill functionality in scripts/")
