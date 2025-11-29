@@ -84,6 +84,63 @@ def daily_rebase(contrib_branch):
         print("Fetching from origin...", file=sys.stderr)
         subprocess.run(["git", "fetch", "origin"], check=True, capture_output=True)
 
+        # DIVERGENCE CHECK: Ensure local and remote are not diverged
+        # This prevents creating parallel histories when multiple sessions run rebase
+        print("Checking for divergence...", file=sys.stderr)
+        div_result = subprocess.run(
+            [
+                "git",
+                "rev-list",
+                "--left-right",
+                "--count",
+                f"{contrib_branch}...origin/{contrib_branch}",
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if div_result.returncode == 0:
+            counts = div_result.stdout.strip().split()
+            if len(counts) == 2:
+                local_ahead, remote_ahead = int(counts[0]), int(counts[1])
+                if local_ahead > 0 and remote_ahead > 0:
+                    print(
+                        f"✗ DIVERGENCE DETECTED: {contrib_branch} has diverged from origin",
+                        file=sys.stderr,
+                    )
+                    print(f"  Local has {local_ahead} commits not on remote", file=sys.stderr)
+                    print(f"  Remote has {remote_ahead} commits not on local", file=sys.stderr)
+                    print("\n  To resolve, choose one of:", file=sys.stderr)
+                    print(
+                        f"    1. Accept remote: git reset --hard origin/{contrib_branch}",
+                        file=sys.stderr,
+                    )
+                    print(
+                        f"    2. Force push local: git push --force-with-lease origin {contrib_branch}",
+                        file=sys.stderr,
+                    )
+                    print(
+                        "    3. Merge: git pull --no-rebase (creates merge commit)", file=sys.stderr
+                    )
+                    return False
+                elif remote_ahead > 0:
+                    # Remote is ahead - pull before rebase to avoid divergence
+                    print(
+                        f"  Remote is {remote_ahead} commits ahead, pulling first...",
+                        file=sys.stderr,
+                    )
+                    pull_result = subprocess.run(
+                        ["git", "pull", "--rebase", "origin", contrib_branch],
+                        capture_output=True,
+                        text=True,
+                        check=False,
+                    )
+                    if pull_result.returncode != 0:
+                        print(f"✗ Pull failed: {pull_result.stderr}", file=sys.stderr)
+                        print("  Resolve manually, then retry.", file=sys.stderr)
+                        return False
+                    print("  ✓ Synced with remote", file=sys.stderr)
+
         # Rebase onto origin/develop
         print(f"Rebasing onto {TARGET_BRANCH}...", file=sys.stderr)
         result = subprocess.run(

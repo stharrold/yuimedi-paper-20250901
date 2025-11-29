@@ -109,7 +109,8 @@ class AzureDevOpsAdapter(BaseVCSAdapter):
 
         except FileNotFoundError:
             raise RuntimeError(
-                f"'{AZURE_CLI}' CLI not found. Install from https://learn.microsoft.com/cli/azure/"
+                f"'{AZURE_CLI}' CLI not found. "
+                f"Install from https://learn.microsoft.com/cli/azure/"
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
@@ -172,11 +173,14 @@ class AzureDevOpsAdapter(BaseVCSAdapter):
 
         except FileNotFoundError:
             raise RuntimeError(
-                f"'{AZURE_CLI}' CLI not found. Install from https://learn.microsoft.com/cli/azure/"
+                f"'{AZURE_CLI}' CLI not found. "
+                f"Install from https://learn.microsoft.com/cli/azure/"
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
-            raise RuntimeError(f"Failed to create Azure DevOps pull request.\nError: {error_msg}")
+            raise RuntimeError(
+                f"Failed to create Azure DevOps pull request.\n" f"Error: {error_msg}"
+            )
         except subprocess.TimeoutExpired:
             raise RuntimeError("Timeout while creating Azure DevOps pull request")
 
@@ -238,11 +242,12 @@ class AzureDevOpsAdapter(BaseVCSAdapter):
 
         except FileNotFoundError:
             raise RuntimeError(
-                f"'{AZURE_CLI}' CLI not found. Install from https://learn.microsoft.com/cli/azure/"
+                f"'{AZURE_CLI}' CLI not found. "
+                f"Install from https://learn.microsoft.com/cli/azure/"
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
-            raise RuntimeError(f"Failed to fetch Azure DevOps PR comments.\nError: {error_msg}")
+            raise RuntimeError(f"Failed to fetch Azure DevOps PR comments.\n" f"Error: {error_msg}")
         except subprocess.TimeoutExpired:
             raise RuntimeError("Timeout while fetching Azure DevOps PR comments")
         except (json.JSONDecodeError, KeyError) as e:
@@ -283,11 +288,12 @@ class AzureDevOpsAdapter(BaseVCSAdapter):
 
         except FileNotFoundError:
             raise RuntimeError(
-                f"'{AZURE_CLI}' CLI not found. Install from https://learn.microsoft.com/cli/azure/"
+                f"'{AZURE_CLI}' CLI not found. "
+                f"Install from https://learn.microsoft.com/cli/azure/"
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
-            raise RuntimeError(f"Failed to update Azure DevOps PR.\nError: {error_msg}")
+            raise RuntimeError(f"Failed to update Azure DevOps PR.\n" f"Error: {error_msg}")
         except subprocess.TimeoutExpired:
             raise RuntimeError("Timeout while updating Azure DevOps PR")
 
@@ -341,11 +347,12 @@ class AzureDevOpsAdapter(BaseVCSAdapter):
 
         except FileNotFoundError:
             raise RuntimeError(
-                f"'{AZURE_CLI}' CLI not found. Install from https://learn.microsoft.com/cli/azure/"
+                f"'{AZURE_CLI}' CLI not found. "
+                f"Install from https://learn.microsoft.com/cli/azure/"
             )
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
-            raise RuntimeError(f"Failed to fetch Azure DevOps PR status.\nError: {error_msg}")
+            raise RuntimeError(f"Failed to fetch Azure DevOps PR status.\n" f"Error: {error_msg}")
         except subprocess.TimeoutExpired:
             raise RuntimeError("Timeout while fetching Azure DevOps PR status")
         except (json.JSONDecodeError, KeyError) as e:

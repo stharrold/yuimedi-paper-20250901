@@ -2,7 +2,7 @@
 type: claude-context
 directory: .claude/skills/quality-enforcer
 purpose: Quality Enforcer provides **automated quality gate enforcement** for the workflow. It runs tests, checks coverage, validates linting, type checking, and builds before allowing PR creation. Enforces minimum 80% test coverage and all tests passing. Integrates with git-workflow-manager for semantic versioning.
-parent: null
+parent: ../CLAUDE.md
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md

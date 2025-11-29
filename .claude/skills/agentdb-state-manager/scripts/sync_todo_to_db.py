@@ -177,31 +177,25 @@ def sync_to_agentdb(records: list[dict[str, Any]], session_id: str) -> bool:
     Returns:
         True if sync successful
 
-    Note: In actual execution, would use AgentDB tool to execute SQL with parameterized queries.
+    Note: In actual execution, would use AgentDB tool to execute SQL.
     """
     info(f"Syncing {len(records)} records to AgentDB...")
 
-    # Generate parameterized INSERT statements (SQL injection safe)
-    # Uses DuckDB positional parameter syntax ($1, $2, etc.)
-    sql_template = """
+    # Generate INSERT statements
+    for record in records:
+        sql = f"""
         INSERT INTO workflow_records (object_id, object_type, object_state, object_metadata)
-        VALUES ($1, $2, $3, $4::JSON);
-    """
-    print("SQL Template (parameterized):")
-    print(sql_template.strip())
-    print("\nParameter values for each record:")
+        VALUES (
+            '{record['object_id']}',
+            '{record['object_type']}',
+            '{record['object_state']}',
+            '{record['object_metadata']}'::JSON
+        );
+        """
+        print(sql.strip())
 
-    for i, record in enumerate(records):
-        params = (
-            record["object_id"],
-            record["object_type"],
-            record["object_state"],
-            record["object_metadata"],
-        )
-        print(f"  Record {i + 1}: {params}")
-
-    success(f"Prepared {len(records)} parameterized INSERT statements")
-    print("\nNOTE: In actual execution, use conn.execute(sql, params) for SQL injection safety")
+    success(f"Prepared {len(records)} INSERT statements")
+    print("\nNOTE: In actual execution, these would be sent to AgentDB")
 
     return True
 

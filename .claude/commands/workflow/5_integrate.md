@@ -74,10 +74,10 @@ podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/c
   {slug} --no-archive
 ```
 
-This deletes:
-- Feature worktree directory
-- Local feature branch
-- Remote feature branch
+This deletes (in order):
+1. Feature worktree directory
+2. Local feature branch
+3. Remote feature branch (if exists)
 
 ## Step 3: Close GitHub Issue [FULL MODE ONLY]
 

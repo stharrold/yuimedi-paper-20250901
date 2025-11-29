@@ -13,7 +13,7 @@ next: /3_tasks
 
 **Prerequisites**:
 - Must be in feature worktree (created by `/1_specify`)
-- `../planning/{slug}/` must exist with BMAD documents
+- `planning/{slug}/` must exist with BMAD documents (included via rebase from contrib)
 
 **Outputs**: `specs/{slug}/spec.md`, `specs/{slug}/plan.md`, AgentDB state record
 
@@ -43,12 +43,17 @@ Branch format: `feature/{timestamp}_{slug}` → extract `{slug}`
 
 ## Step 2: Verify Planning Documents
 
-Check that BMAD planning documents exist in the **main repo**:
+Check that BMAD planning documents exist (included in worktree via rebase):
 ```bash
-ls ../planning/{slug}/requirements.md ../planning/{slug}/architecture.md ../planning/{slug}/epics.md 2>/dev/null
+ls planning/{slug}/requirements.md planning/{slug}/architecture.md planning/{slug}/epics.md 2>/dev/null
 ```
 
-If missing, STOP and prompt user to run `/1_specify` first.
+If missing, the worktree may need to be rebased from contrib:
+```bash
+git fetch origin contrib/stharrold && git rebase origin/contrib/stharrold
+```
+
+If still missing, STOP and prompt user to run `/1_specify` first.
 
 ## Step 3: Create Specifications
 
@@ -72,7 +77,7 @@ Record the workflow transition:
 podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
   --sync-type workflow_transition \
   --pattern phase_2_plan \
-  --source "../planning/{slug}" \
+  --source "planning/{slug}" \
   --target "specs/{slug}"
 ```
 
@@ -80,7 +85,7 @@ podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/
 
 Report to the user:
 - Specifications created at `specs/{slug}/`
-- Planning documents referenced from `../planning/{slug}/`
+- Planning documents referenced from `planning/{slug}/`
 - Next step: Run `/3_tasks` to validate task list
 
 **Important**: Verify `specs/{slug}/plan.md` has a valid task breakdown before proceeding.

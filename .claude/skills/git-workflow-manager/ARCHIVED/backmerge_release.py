@@ -99,7 +99,8 @@ def validate_version_format(version):
     """
     if not re.match(VERSION_PATTERN, version):
         raise ValueError(
-            f"Invalid version format '{version}'. Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
+            f"Invalid version format '{version}'. "
+            f"Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
         )
 
 
@@ -281,7 +282,7 @@ def create_pr(version, target_branch):
         subprocess.run(["gh", "--version"], capture_output=True, check=True)
     except (subprocess.CalledProcessError, FileNotFoundError):
         raise RuntimeError(
-            "gh CLI not available. Cannot create PR. Install gh CLI: https://cli.github.com/"
+            "gh CLI not available. Cannot create PR. " "Install gh CLI: https://cli.github.com/"
         )
 
     release_branch = f"{RELEASE_BRANCH_PREFIX}{version}"

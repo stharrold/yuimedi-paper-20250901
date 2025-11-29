@@ -4,9 +4,9 @@
 This script runs interactively in the main repository on contrib/<gh-user> branch and:
 1. Verifies location (main repo, contrib branch - NOT in worktree)
 2. Conducts three-persona interactive Q&A sessions:
-   - 🧠 BMAD Analyst: Requirements gathering
-   - 🏗️ BMAD Architect: Technical architecture design
-   - 📋 BMAD PM: Epic breakdown and planning
+   - BMAD Analyst: Requirements gathering
+   - BMAD Architect: Technical architecture design
+   - BMAD PM: Epic breakdown and planning
 3. Generates requirements.md, architecture.md, epics.md from templates
 4. Creates compliant planning/<slug>/ directory structure
 5. Commits changes to the contrib branch
@@ -230,11 +230,11 @@ def ask_yes_no(prompt: str, default: bool = True, config_key: str | None = None)
 
 
 def interactive_qa_analyst() -> dict[str, any]:
-    """Conduct 🧠 BMAD Analyst persona Q&A for requirements gathering."""
+    """Conduct BMAD Analyst persona Q&A for requirements gathering."""
     global _CONFIG_PATH
 
     print("\n" + "=" * 70)
-    print("🧠 BMAD Analyst Persona - Requirements Gathering")
+    print("[ANALYST] BMAD Analyst Persona - Requirements Gathering")
     print("=" * 70)
     print("\nI'll help create the requirements document through interactive Q&A.")
     print("-" * 70)
@@ -358,17 +358,17 @@ def interactive_qa_analyst() -> dict[str, any]:
         config_key="assumptions",
     )
 
-    print("\n✓ Requirements gathering complete!")
+    print("\n[OK] Requirements gathering complete!")
 
     return data
 
 
 def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any]:
-    """Conduct 🏗️ BMAD Architect persona Q&A for architecture design."""
+    """Conduct BMAD Architect persona Q&A for architecture design."""
     global _CONFIG_PATH
 
     print("\n" + "=" * 70)
-    print("🏗️ BMAD Architect Persona - Technical Architecture Design")
+    print("[ARCHITECT] BMAD Architect Persona - Technical Architecture Design")
     print("=" * 70)
     print("\nBased on the requirements, I'll design the technical architecture.")
     print("-" * 70)
@@ -498,7 +498,7 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
         config_key="deployment_target",
     )
 
-    print("\n✓ Architecture design complete!")
+    print("\n[OK] Architecture design complete!")
 
     return data
 
@@ -506,10 +506,10 @@ def interactive_qa_architect(requirements_data: dict[str, any]) -> dict[str, any
 def generate_epic_breakdown(
     requirements_data: dict[str, any], architecture_data: dict[str, any]
 ) -> list[dict[str, any]]:
-    """Generate 📋 BMAD PM epic breakdown automatically based on requirements and architecture."""
+    """Generate BMAD PM epic breakdown automatically based on requirements and architecture."""
 
     print("\n" + "=" * 70)
-    print("📋 BMAD PM Persona - Epic Breakdown")
+    print("[PM] BMAD PM Persona - Epic Breakdown")
     print("=" * 70)
     print("\nAnalyzing requirements and architecture to create epic breakdown...")
     print("-" * 70)
@@ -558,7 +558,7 @@ def generate_epic_breakdown(
                 "dependencies": dependencies,
                 "estimated_effort": f"{len(requirements_data['functional_requirements']) * 1}-{len(requirements_data['functional_requirements']) * 1.5} days",
                 "deliverables": [
-                    f"Implementation of {fr['id']}"
+                    f'Implementation of {fr["id"]}'
                     for fr in requirements_data["functional_requirements"][:5]
                 ]
                 + ["Unit tests for business logic", "Integration tests"],
@@ -573,15 +573,15 @@ def generate_epic_breakdown(
             {
                 "id": f"E-{epic_num:03d}",
                 "name": "API Layer",
-                "description": f"Implement {architecture_data['web_framework']} API endpoints and request/response handling",
+                "description": f'Implement {architecture_data["web_framework"]} API endpoints and request/response handling',
                 "complexity": "Medium",
-                "complexity_reasoning": f"{architecture_data['web_framework']} API development is straightforward but requires careful contract design",
+                "complexity_reasoning": f'{architecture_data["web_framework"]} API development is straightforward but requires careful contract design',
                 "priority": "P0",
                 "priority_reasoning": "Required for external system integration",
                 "dependencies": dependencies,
                 "estimated_effort": "2-3 days",
                 "deliverables": [
-                    f"{architecture_data['api_style']} API endpoints",
+                    f'{architecture_data["api_style"]} API endpoints',
                     "Request validation",
                     "Response serialization",
                     "API documentation (OpenAPI)",
@@ -637,13 +637,13 @@ def generate_epic_breakdown(
             }
         )
 
-    print(f"\n✓ Identified {len(epics)} epics:")
+    print(f"\n[OK] Identified {len(epics)} epics:")
     for epic in epics:
         print(
             f"  - {epic['id']}: {epic['name']} (Priority: {epic['priority']}, {epic['complexity']} complexity)"
         )
 
-    print("\n✓ Epic breakdown complete!")
+    print("\n[OK] Epic breakdown complete!")
 
     return epics
 
@@ -844,9 +844,9 @@ BMAD planning documents for the {slug} feature. Created during Phase 1 (Planning
 
 ```
 planning/{slug}/
-├── requirements.md    # Business requirements (🧠 Analyst)
-├── architecture.md    # Technical architecture (🏗️ Architect)
-├── epics.md          # Epic breakdown (📋 PM)
+├── requirements.md    # Business requirements (Analyst)
+├── architecture.md    # Technical architecture (Architect)
+├── epics.md          # Epic breakdown (PM)
 ├── CLAUDE.md         # This file
 ├── README.md         # Human-readable overview
 └── ARCHIVED/         # Deprecated planning documents
@@ -907,7 +907,7 @@ These planning documents are used as input context by SpecKit (Phase 2) when cre
 - workflow-utilities
 """
         claude_md.write_text(claude_content)
-        print(f"  ✓ Created {claude_md}")
+        print(f"  [OK] Created {claude_md}")
 
     # Create README.md
     readme_md = planning_dir / "README.md"
@@ -958,7 +958,7 @@ Epic breakdown created through BMAD PM persona:
 - **[epics.md](epics.md)** - Epic breakdown and planning
 """
         readme_md.write_text(readme_content)
-        print(f"  ✓ Created {readme_md}")
+        print(f"  [OK] Created {readme_md}")
 
     # Create ARCHIVED subdirectory
     archived_dir = planning_dir / "ARCHIVED"
@@ -982,7 +982,7 @@ This directory contains previous versions of planning documents that have been s
 - **[README.md](README.md)** - Archive information
 """
         )
-        print(f"  ✓ Created {archived_claude}")
+        print(f"  [OK] Created {archived_claude}")
 
     archived_readme = archived_dir / "README.md"
     if not archived_readme.exists():
@@ -998,7 +998,7 @@ Archive of deprecated planning documents that are no longer in active use.
 This directory contains archived versions of requirements.md, architecture.md, and epics.md that have been replaced or superseded.
 """
         )
-        print(f"  ✓ Created {archived_readme}")
+        print(f"  [OK] Created {archived_readme}")
 
 
 def commit_planning_docs(planning_dir: Path, slug: str) -> None:
@@ -1011,20 +1011,20 @@ def commit_planning_docs(planning_dir: Path, slug: str) -> None:
 
     # Create commit message
     # Convert slug to human-readable title for commit message
-    # e.g., "protect-main-develop" → "Protect Main Develop"
+    # e.g., "protect-main-develop" -> "Protect Main Develop"
     title = slug.replace("-", " ").replace("_", " ").title()
     commit_msg = f"""docs(planning): add BMAD planning for {title}
 
 BMAD planning session completed via interactive tool:
-- requirements.md: Business requirements and user stories (🧠 Analyst)
-- architecture.md: Technical design and technology stack (🏗️ Architect)
-- epics.md: Epic breakdown and priorities (📋 PM)
+- requirements.md: Business requirements and user stories (Analyst)
+- architecture.md: Technical design and technology stack (Architect)
+- epics.md: Epic breakdown and priorities (PM)
 
 Generated by: .claude/skills/bmad-planner/scripts/create_planning.py
 
 Refs: planning/{slug}/README.md
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+Generated with Claude Code (https://claude.com/claude-code)
 
 Co-Authored-By: Claude <noreply@anthropic.com>
 """
@@ -1032,7 +1032,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
     # Commit
     run_command(["git", "commit", "-m", commit_msg], capture=False)
 
-    print(f"✓ Committed planning documents for {slug}")
+    print(f"[OK] Committed planning documents for {slug}")
 
 
 def main():
@@ -1059,7 +1059,7 @@ def main():
         if not args.config.exists():
             error_exit(f"Config file not found: {args.config}")
         _CONFIG = load_config(args.config)
-        print(f"✓ Running in non-interactive mode with config: {args.config}")
+        print(f"[OK] Running in non-interactive mode with config: {args.config}")
 
     # Detect and validate context
     print("Working in main repository...")
@@ -1085,13 +1085,13 @@ def main():
     print(f"GitHub user: {args.gh_user}")
     print(f"Output directory: {planning_dir}")
 
-    # Phase 1: 🧠 Analyst - Requirements
+    # Phase 1: Analyst - Requirements
     analyst_data = interactive_qa_analyst()
 
-    # Phase 2: 🏗️ Architect - Architecture
+    # Phase 2: Architect - Architecture
     architect_data = interactive_qa_architect(analyst_data)
 
-    # Phase 3: 📋 PM - Epic Breakdown
+    # Phase 3: PM - Epic Breakdown
     epics = generate_epic_breakdown(analyst_data, architect_data)
 
     # Generate documents from templates
@@ -1118,19 +1118,19 @@ def main():
 
     # Write planning documents
     (planning_dir / "requirements.md").write_text(requirements_content)
-    print(f"  ✓ Created {planning_dir / 'requirements.md'}")
+    print(f"  [OK] Created {planning_dir / 'requirements.md'}")
 
     (planning_dir / "architecture.md").write_text(architecture_content)
-    print(f"  ✓ Created {planning_dir / 'architecture.md'}")
+    print(f"  [OK] Created {planning_dir / 'architecture.md'}")
 
     (planning_dir / "epics.md").write_text(epics_content)
-    print(f"  ✓ Created {planning_dir / 'epics.md'}")
+    print(f"  [OK] Created {planning_dir / 'epics.md'}")
 
     # Commit changes
     if not args.no_commit:
         commit_planning_docs(planning_dir, args.slug)
     else:
-        print("\n⚠ Skipping git commit (--no-commit flag)")
+        print("\n[WARN] Skipping git commit (--no-commit flag)")
 
     # Trigger sync engine (Phase 3 integration)
     try:
@@ -1161,7 +1161,7 @@ def main():
 
     # Success summary
     print("\n" + "=" * 70)
-    print("✓ BMAD Planning Documents Created Successfully!")
+    print("[OK] BMAD Planning Documents Created Successfully!")
     print("=" * 70)
 
     print(f"\nFiles created in {planning_dir}:")
