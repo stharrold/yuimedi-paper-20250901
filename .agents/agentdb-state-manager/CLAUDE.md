@@ -6,7 +6,7 @@ purpose: Persistent state management using AgentDB (DuckDB) for workflow state t
 Tracks workflow transitions via slash command invocations.
 
 **Primary purpose:** Workflow state tracking and analytics
-parent: null
+parent: ../CLAUDE.md
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md

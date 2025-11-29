@@ -2,7 +2,7 @@
 type: claude-context
 directory: .claude/skills/initialize-repository
 purpose: Initialize-repository is a **meta-skill (Phase 0)** that bootstraps new repositories with the complete workflow system. It provides an interactive callable tool for replicating skills, documentation, and standards from a source repository to a new target repository. Unlike other skills that operate within a repository, this meta-skill operates across repositories (source → target) and is used once per new project.
-parent: null
+parent: ../CLAUDE.md
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md

@@ -2,7 +2,7 @@
 type: claude-context
 directory: .claude/skills/speckit-author
 purpose: SpecKit Author provides **interactive callable tools** for creating and managing specifications in feature/release/hotfix worktrees. It implements the SpecKit phase of the workflow, generating detailed specifications (spec.md) and implementation plans (plan.md) through interactive Q&A sessions.
-parent: null
+parent: ../CLAUDE.md
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md

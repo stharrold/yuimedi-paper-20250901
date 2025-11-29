@@ -2,7 +2,7 @@
 type: claude-context
 directory: .claude/skills/workflow-utilities
 purpose: Workflow Utilities provides **shared utilities** for all workflow skills. It includes file deprecation, directory structure creation, CLAUDE.md hierarchy management, VCS abstraction (GitHub/Azure DevOps), documentation maintenance tools, and version validation. All other skills depend on workflow-utilities for consistent file operations.
-parent: null
+parent: ../CLAUDE.md
 sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md
