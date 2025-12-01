@@ -43,7 +43,8 @@ def validate_version_format(version):
     """
     if not re.match(VERSION_PATTERN, version):
         raise ValueError(
-            f"Invalid version format '{version}'. Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
+            f"Invalid version format '{version}'. "
+            f"Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
         )
 
 
@@ -86,7 +87,8 @@ def verify_tag_not_exists(version):
 
         if result.stdout.strip():
             raise ValueError(
-                f"Tag '{version}' already exists locally. Use 'git tag -l' to list existing tags."
+                f"Tag '{version}' already exists locally. "
+                f"Use 'git tag -l' to list existing tags."
             )
 
     except subprocess.CalledProcessError as e:
@@ -296,7 +298,8 @@ def verify_tag_pushed(version):
 
         if not result.stdout.strip():
             raise RuntimeError(
-                f"Tag '{version}' not found on remote after push. Push may have failed silently."
+                f"Tag '{version}' not found on remote after push. "
+                f"Push may have failed silently."
             )
 
     except subprocess.CalledProcessError as e:

@@ -11,6 +11,7 @@ files are deprecated in favor of GitHub Issues and specs/*/tasks.md.
 """
 
 import argparse
+import os
 import subprocess
 import sys
 from datetime import UTC, datetime
@@ -24,6 +25,135 @@ from worktree_context import compute_worktree_id
 # Constants with documented rationale
 TIMESTAMP_FORMAT = "%Y%m%dT%H%M%SZ"  # Compact ISO8601 for filename/branch safety
 VALID_WORKFLOW_TYPES = ["feature", "release", "hotfix"]  # Supported workflow types
+
+
+def setup_agentdb_symlink(worktree_path: Path, main_repo_path: Path) -> bool:
+    """Create symlink from worktree's agentdb.duckdb to main repo's database.
+
+    This enables all worktrees to share a unified AgentDB, allowing cross-session
+    visibility of workflow state.
+
+    Args:
+        worktree_path: Path to the newly created worktree
+        main_repo_path: Path to the main repository (source of AgentDB)
+
+    Returns:
+        True if symlink created successfully, False otherwise
+    """
+    worktree_state_dir = worktree_path / ".claude-state"
+    main_state_dir = main_repo_path / ".claude-state"
+    main_db_path = main_state_dir / "agentdb.duckdb"
+    worktree_db_path = worktree_state_dir / "agentdb.duckdb"
+
+    try:
+        # Ensure main repo state directory exists
+        main_state_dir.mkdir(parents=True, exist_ok=True)
+
+        # Initialize main repo database if it doesn't exist
+        if not main_db_path.exists():
+            # Touch the file so symlink target exists
+            main_db_path.touch()
+
+        # Skip if symlink already exists (idempotent)
+        if worktree_db_path.exists() or worktree_db_path.is_symlink():
+            return True
+
+        # Create relative symlink for portability
+        # Calculate relative path from worktree_state_dir to main_db_path
+        relative_target = os.path.relpath(main_db_path, worktree_state_dir)
+        worktree_db_path.symlink_to(relative_target)
+
+        return True
+
+    except (OSError, PermissionError) as e:
+        print(f"⚠️  Could not create AgentDB symlink: {e}", file=sys.stderr)
+        return False
+
+
+def verify_planning_committed(slug: str, repo_root: Path) -> None:
+    """
+    Verify planning documents are committed and pushed before worktree creation.
+
+    This function ensures that BMAD planning documents exist and are properly
+    committed/pushed before a feature worktree can be created. This prevents
+    worktrees that don't contain the planning context.
+
+    Args:
+        slug: Feature slug (e.g., 'auth-system')
+        repo_root: Path to repository root
+
+    Raises:
+        ValueError: If planning directory doesn't exist
+        ValueError: If uncommitted changes detected in planning directory
+        ValueError: If local branch is ahead of remote
+
+    Note:
+        Only called for feature worktrees, not release/hotfix.
+    """
+    planning_dir = repo_root / "planning" / slug
+
+    # Check 1: Planning directory exists
+    if not planning_dir.exists():
+        raise ValueError(
+            f"Planning directory not found: planning/{slug}/\n\n"
+            f"Resolution: Run /1_specify to create planning documents first.\n\n"
+            f"Expected files:\n"
+            f"  - planning/{slug}/requirements.md\n"
+            f"  - planning/{slug}/architecture.md\n"
+            f"  - planning/{slug}/epics.md"
+        )
+
+    # Check 2: No uncommitted changes in planning directory
+    result = subprocess.run(
+        ["git", "status", "--porcelain", f"planning/{slug}/"],
+        capture_output=True,
+        text=True,
+        cwd=repo_root,
+    )
+    if result.stdout.strip():
+        raise ValueError(
+            f"Uncommitted changes detected in planning/{slug}/\n\n"
+            f"Changed files:\n{result.stdout}\n"
+            f"Resolution: Commit and push planning documents first:\n"
+            f"  git add planning/{slug}/\n"
+            f"  git commit -m 'docs(planning): add planning for {slug}'\n"
+            f"  git push"
+        )
+
+    # Check 3: Local branch is pushed to remote
+    # First fetch to ensure we have latest remote state
+    subprocess.run(
+        ["git", "fetch", "origin"],
+        capture_output=True,
+        text=True,
+        cwd=repo_root,
+    )
+
+    # Get current branch
+    result = subprocess.run(
+        ["git", "branch", "--show-current"],
+        capture_output=True,
+        text=True,
+        cwd=repo_root,
+    )
+    current_branch = result.stdout.strip()
+
+    # Check if local is ahead of remote (only if remote branch exists)
+    result = subprocess.run(
+        ["git", "rev-list", "--count", f"origin/{current_branch}..HEAD"],
+        capture_output=True,
+        text=True,
+        cwd=repo_root,
+    )
+    # Only check if remote branch exists (returncode 0)
+    if result.returncode == 0:
+        ahead_count = result.stdout.strip()
+        if ahead_count and int(ahead_count) > 0:
+            raise ValueError(
+                f"Local branch is {ahead_count} commit(s) ahead of remote.\n\n"
+                f"Resolution: Push your changes first:\n"
+                f"  git push origin {current_branch}"
+            )
 
 
 def create_worktree(workflow_type, slug, base_branch, create_todo=False):
@@ -85,6 +215,10 @@ def create_worktree(workflow_type, slug, base_branch, create_todo=False):
         print("Available branches:", file=sys.stderr)
         subprocess.run(["git", "branch", "-a"], stderr=subprocess.DEVNULL)
         raise
+
+    # Verify planning documents are committed and pushed (feature worktrees only)
+    if workflow_type == "feature":
+        verify_planning_committed(slug, repo_root)
 
     worktree_path = repo_root.parent / f"{repo_root.name}_{workflow_type}_{timestamp}_{slug}"
 
@@ -229,6 +363,12 @@ Created: {created_timestamp}
         worktree_id = compute_worktree_id(worktree_path)
         (state_dir / ".worktree-id").write_text(worktree_id)
         print(f"✓ State directory: {state_dir}")
+
+        # Create symlink for shared AgentDB (repo_root is main repo)
+        if setup_agentdb_symlink(worktree_path, repo_root):
+            print(f"✓ AgentDB symlink: {state_dir / 'agentdb.duckdb'} → main repo")
+        else:
+            print("ℹ️  AgentDB: isolated (symlink creation failed)")
     except (OSError, PermissionError) as e:
         print(f"⚠️  Could not create state directory: {e}", file=sys.stderr)
 

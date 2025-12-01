@@ -75,6 +75,68 @@ def get_database_path() -> Path | None:
     return None
 
 
+def query_all_sessions(db_path: Path, limit: int = 20) -> list[dict]:
+    """Query workflow state from all sessions/worktrees.
+
+    When using shared AgentDB (via symlink), this shows records from all
+    Claude Code sessions working on the same project.
+
+    Args:
+        db_path: Path to database file
+        limit: Maximum number of records to return
+
+    Returns:
+        List of sync records with worktree identification
+    """
+    sql = f"""
+    SELECT
+        sync_id,
+        worktree_path,
+        sync_type,
+        pattern,
+        status,
+        created_at,
+        source_location,
+        target_location
+    FROM agent_synchronizations
+    ORDER BY created_at DESC
+    LIMIT {limit};
+    """
+
+    try:
+        import duckdb
+
+        conn = duckdb.connect(str(db_path), read_only=True)
+        results = conn.execute(sql).fetchall()
+        conn.close()
+
+        records = []
+        for result in results:
+            records.append(
+                {
+                    "sync_id": result[0],
+                    "worktree_path": result[1],
+                    "worktree_id": "main"
+                    if result[1] is None
+                    else Path(result[1]).name
+                    if result[1]
+                    else "main",
+                    "sync_type": result[2],
+                    "pattern": result[3],
+                    "status": result[4],
+                    "created_at": result[5].isoformat() if result[5] else None,
+                    "source_location": result[6],
+                    "target_location": result[7],
+                }
+            )
+        return records
+
+    except ImportError:
+        return []
+    except Exception:
+        return []
+
+
 def query_latest_sync(db_path: Path, worktree: str | None = None) -> dict | None:
     """Query the latest sync record for a worktree.
 
@@ -194,6 +256,37 @@ def get_workflow_state(worktree: str | None = None) -> dict:
     }
 
 
+def format_all_sessions(records: list[dict]) -> str:
+    """Format all session records as human-readable text.
+
+    Args:
+        records: List of sync records
+
+    Returns:
+        Formatted string showing worktree source for each record
+    """
+    if not records:
+        return "No workflow records found."
+
+    lines = ["Workflow State (All Sessions):", "=" * 50]
+
+    for record in records:
+        worktree_id = record.get("worktree_id", "main")
+        pattern = record.get("pattern", "unknown")
+        created_at = record.get("created_at", "unknown")
+        status = record.get("status", "unknown")
+
+        # Parse timestamp for cleaner display
+        if created_at and "T" in created_at:
+            created_at = created_at.replace("T", " ").split(".")[0]
+
+        lines.append(f"[{worktree_id}] {pattern} ({status}) - {created_at}")
+
+    lines.append("=" * 50)
+    lines.append(f"Total: {len(records)} records")
+    return "\n".join(lines)
+
+
 def format_text(state: dict) -> str:
     """Format state as human-readable text.
 
@@ -255,10 +348,32 @@ Examples:
     parser.add_argument(
         "--format", choices=["text", "json"], default="text", help="Output format (default: text)"
     )
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="Show records from all sessions/worktrees (requires shared AgentDB)",
+    )
+    parser.add_argument(
+        "--limit", type=int, default=20, help="Limit records when using --all (default: 20)"
+    )
 
     args = parser.parse_args()
 
-    # Get state
+    # Handle --all mode (show all sessions)
+    if args.all:
+        db_path = get_database_path()
+        if db_path is None:
+            print("Error: No AgentDB found", file=__import__("sys").stderr)
+            __import__("sys").exit(1)
+
+        records = query_all_sessions(db_path, args.limit)
+        if args.format == "json":
+            print(json.dumps(records, indent=2))
+        else:
+            print(format_all_sessions(records))
+        return
+
+    # Get state for single worktree
     state = get_workflow_state(args.worktree)
 
     # Output

@@ -275,9 +275,9 @@ def run_all_quality_gates(coverage_threshold=80):
                 context={},
             )
         )
-    except Exception as e:
-        # Graceful degradation: don't fail if sync unavailable, but log for debugging
-        print(f"  [DEBUG] AgentDB sync unavailable (non-critical): {e}")
+    except Exception:
+        # Graceful degradation: don't fail if sync unavailable
+        pass
 
     return all_passed, results
 

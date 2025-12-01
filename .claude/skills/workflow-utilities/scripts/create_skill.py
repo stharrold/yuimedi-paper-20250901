@@ -514,7 +514,7 @@ description: |
   Triggers: {triggers_str}
 ---
 
-# {config.name.replace("-", " ").title()} Skill
+# {config.name.replace('-', ' ').title()} Skill
 
 ## Purpose
 
@@ -531,7 +531,7 @@ Use this skill when:
 - [Condition 2]
 - [Condition 3]
 
-**Triggered by keywords:** {", ".join(config.triggers)}
+**Triggered by keywords:** {', '.join(config.triggers)}
 
 ## Integration with Workflow
 
@@ -545,8 +545,8 @@ This skill follows the local workflow system patterns which extend official
 Claude Code skill specifications:
 
 **Official Claude Code Skills:**
-- Specification: {OFFICIAL_DOCS_URLS["agent_skills"]}
-- Building Agents: {OFFICIAL_DOCS_URLS["building_agents"]}
+- Specification: {OFFICIAL_DOCS_URLS['agent_skills']}
+- Building Agents: {OFFICIAL_DOCS_URLS['building_agents']}
 
 **Local Pattern Extensions:**
 
@@ -692,7 +692,7 @@ def generate_readme(skill_path: Path, config: SkillConfig) -> None:
     """
     info("Generating README.md...")
 
-    content = f"""# {config.name.replace("-", " ").title()} Skill
+    content = f"""# {config.name.replace('-', ' ').title()} Skill
 
 {config.description}
 
@@ -735,7 +735,7 @@ def generate_changelog(skill_path: Path, config: SkillConfig) -> None:
 
     content = f"""# Changelog - {config.name}
 
-All notable changes to the {config.name.replace("-", " ").title()} skill will be documented in this file.
+All notable changes to the {config.name.replace('-', ' ').title()} skill will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -813,7 +813,7 @@ Archived files from {config.name} skill
 
 ## Purpose
 
-This directory contains deprecated files from the {config.name.replace("-", " ").title()}
+This directory contains deprecated files from the {config.name.replace('-', ' ').title()}
 skill that have been superseded by newer versions. Files are archived (not deleted)
 to preserve history and allow comparison with current implementations.
 
@@ -858,7 +858,7 @@ def generate_script_init(skill_path: Path, config: SkillConfig) -> None:
     init_path = scripts_path / "__init__.py"
 
     init_path.write_text(
-        f'''"""{config.name.replace("-", " ").title()} skill scripts package."""
+        f'''"""{config.name.replace('-', ' ').title()} skill scripts package."""
 
 __version__ = "1.0.0"
 '''

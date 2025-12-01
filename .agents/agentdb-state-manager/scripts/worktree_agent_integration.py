@@ -362,7 +362,8 @@ class ComplianceWrapper:
         if phi_detected:
             phi_justification = PHIDetector.extract_justification(context)
             logger.warning(
-                f"PHI detected in sync: agent={agent_id}, action={action}, flow_token={flow_token}"
+                f"PHI detected in sync: agent={agent_id}, action={action}, "
+                f"flow_token={flow_token}"
             )
             logger.info(f"PHI justification: {phi_justification}")
 

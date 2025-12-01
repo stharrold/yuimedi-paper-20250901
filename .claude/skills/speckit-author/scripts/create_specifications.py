@@ -755,7 +755,7 @@ When implementing this feature:
     (specs_dir / "CLAUDE.md").write_text(claude_md)
 
     # Create README.md
-    readme = f"""# Specifications: {slug.replace("-", " ").title()}
+    readme = f"""# Specifications: {slug.replace('-', ' ').title()}
 
 ## Overview
 
@@ -789,7 +789,7 @@ SpecKit Interactive Tool - `.claude/skills/speckit-author/scripts/create_specifi
     )
 
     (archived_dir / "README.md").write_text(
-        f"# Archived: specs/{slug}\n\nDeprecated specification files are stored here.\n"
+        f"# Archived: specs/{slug}\n\n" "Deprecated specification files are stored here.\n"
     )
 
     return specs_dir

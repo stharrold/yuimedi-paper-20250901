@@ -189,6 +189,32 @@ def get_worktree_id() -> str:
     return ctx.worktree_id
 
 
+def get_agentdb_path() -> Path:
+    """Get the path to the AgentDB database, resolving symlinks.
+
+    Returns the resolved (actual) path to agentdb.duckdb, which ensures
+    DuckDB locks the correct file even when accessed through a symlink.
+
+    Returns:
+        Resolved absolute path to agentdb.duckdb
+
+    Raises:
+        RuntimeError: If not in a git repository.
+
+    Example:
+        >>> # From worktree with symlinked AgentDB
+        >>> db_path = get_agentdb_path()
+        >>> print(db_path)
+        /path/to/main-repo/.claude-state/agentdb.duckdb
+    """
+    state_dir = get_state_dir()
+    db_path = state_dir / "agentdb.duckdb"
+
+    # Resolve symlink to get actual file path
+    # This ensures DuckDB locks the correct file
+    return db_path.resolve()
+
+
 def get_main_repo_path() -> Path | None:
     """Get the main repository path when running from a worktree.
 

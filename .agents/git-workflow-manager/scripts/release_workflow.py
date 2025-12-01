@@ -46,17 +46,9 @@ def get_current_branch() -> str:
 
 
 def get_contrib_branch() -> str:
-    """Get the contrib branch name (contrib/<username>).
-
-    Raises:
-        SystemExit: If GitHub username cannot be determined.
-    """
+    """Get the contrib branch name (contrib/<username>)."""
     result = run_cmd(["gh", "api", "user", "-q", ".login"], check=False)
-    username = result.stdout.strip()
-    if not username:
-        safe_print("✗ Could not determine GitHub username.")
-        safe_print("  Ensure you are logged in: gh auth login")
-        sys.exit(1)
+    username = result.stdout.strip() or "stharrold"
     return f"contrib/{username}"
 
 

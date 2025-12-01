@@ -47,7 +47,8 @@ def validate_version_format(version):
     """
     if not re.match(VERSION_PATTERN, version):
         raise ValueError(
-            f"Invalid version format '{version}'. Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
+            f"Invalid version format '{version}'. "
+            f"Must match pattern vX.Y.Z (e.g., v1.1.0, v2.0.0)"
         )
 
 

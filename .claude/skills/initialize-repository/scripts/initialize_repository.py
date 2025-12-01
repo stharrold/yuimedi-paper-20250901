@@ -758,7 +758,7 @@ pythonpath = ["src"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py{config.python_version.replace(".", "")}"
+target-version = "py{config.python_version.replace('.', '')}"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W"]
