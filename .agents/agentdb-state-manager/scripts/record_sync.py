@@ -156,38 +156,64 @@ def record_sync(
     # Prepare metadata JSON
     metadata_json = json.dumps(metadata) if metadata else "{}"
 
-    # Build SQL
-    sql = f"""
+    # Build parameterized SQL to prevent SQL injection
+    sql = """
     INSERT INTO agent_synchronizations (
         sync_id, agent_id, worktree_path, sync_type,
         source_location, target_location, pattern, status,
         created_at, completed_at, created_by, metadata
-    ) VALUES (
-        '{sync_id}',
-        'claude-code',
-        {f"'{worktree}'" if worktree else "NULL"},
-        '{sync_type}',
-        '{source}',
-        '{target}',
-        '{pattern}',
-        'completed',
-        '{timestamp}',
-        '{timestamp}',
-        'claude-code',
-        '{metadata_json}'
-    );
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     """
+
+    # Parameters tuple - use None for NULL values
+    params = (
+        sync_id,
+        "claude-code",
+        worktree,  # Will be NULL if None
+        sync_type,
+        source,
+        target,
+        pattern,
+        "completed",
+        timestamp,
+        timestamp,
+        "claude-code",
+        metadata_json,
+    )
 
     # Execute using DuckDB CLI or Python
     try:
         import duckdb
 
         conn = duckdb.connect(str(db_path))
-        conn.execute(sql)
+        conn.execute(sql, params)
         conn.close()
     except ImportError:
         # Fallback to CLI if duckdb not available
-        result = subprocess.run(["duckdb", str(db_path), "-c", sql], capture_output=True, text=True)
+        # Note: CLI fallback uses escaped values for safety
+        escaped_sql = f"""
+        INSERT INTO agent_synchronizations (
+            sync_id, agent_id, worktree_path, sync_type,
+            source_location, target_location, pattern, status,
+            created_at, completed_at, created_by, metadata
+        ) VALUES (
+            '{sync_id}',
+            'claude-code',
+            {f"'{worktree}'" if worktree else "NULL"},
+            '{sync_type}',
+            '{source.replace("'", "''")}',
+            '{target.replace("'", "''")}',
+            '{pattern}',
+            'completed',
+            '{timestamp}',
+            '{timestamp}',
+            'claude-code',
+            '{metadata_json.replace("'", "''")}'
+        );
+        """
+        result = subprocess.run(
+            ["duckdb", str(db_path), "-c", escaped_sql], capture_output=True, text=True
+        )
         if result.returncode != 0:
             raise RuntimeError(f"Database error: {result.stderr}")
 

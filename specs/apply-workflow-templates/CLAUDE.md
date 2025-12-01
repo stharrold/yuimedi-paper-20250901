@@ -1,42 +1,46 @@
 ---
 type: claude-context
 directory: specs/apply-workflow-templates
-purpose: Specifications for the apply-workflow-templates feature (GitHub Issue #239)
+purpose: SpecKit specifications for apply-workflow-templates feature
 parent: ../CLAUDE.md
+sibling_readme: README.md
 children:
   - ARCHIVED/CLAUDE.md
+related_skills:
+  - speckit-author
 ---
 
-# Claude Code Context: apply-workflow-templates
+# Claude Code Context: specs/apply-workflow-templates
 
 ## Purpose
 
-Specifications for the apply-workflow-templates feature (GitHub Issue #239).
+SpecKit specifications for feature 'apply-workflow-templates'
 
-## Contents
+## Directory Structure
 
-- `spec.md` - Technical specification
-- `plan.md` - Implementation plan with tasks
-- `ARCHIVED/` - Deprecated specification files
+```
+specs/apply-workflow-templates/
+├── spec.md        # Detailed technical specification
+├── plan.md        # Implementation task breakdown
+├── CLAUDE.md      # This file
+├── README.md      # Human-readable overview
+└── ARCHIVED/      # Deprecated specs
+```
 
-## Feature Summary
+## Files in This Directory
 
-This feature syncs updated workflow skills and commands from stharrold-templates to this repository:
-- 9 skills in `.claude/skills/`
-- 8 workflow commands in `.claude/commands/workflow/`
-- Mirror in `.agents/` for cross-tool compatibility
+- **spec.md** - Complete technical specification with implementation details
+- **plan.md** - Task breakdown (impl_*, test_*, doc_*) with acceptance criteria
 
-## Key Tasks
+## Usage
 
-1. Backup current skills (E1_001)
-2. Sync skills directory (E2_001)
-3. Sync commands directory (E3_001)
-4. Sync .agents directory (E4_001)
-5. Run pre-commit hooks (E5_001)
-6. Run quality gates (E5_002)
+When implementing this feature:
+1. Read spec.md for technical details
+2. Follow plan.md task order
+3. Update TODO_*.md task status as you complete each task
+4. Refer to planning/apply-workflow-templates/ for BMAD context (if available)
 
-## Related
+## Related Documentation
 
-- **Parent**: [specs](../CLAUDE.md)
-- **Planning**: `planning/apply-workflow-templates/`
-- **GitHub Issue**: #239
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[planning/apply-workflow-templates/CLAUDE.md](planning/apply-workflow-templates/CLAUDE.md)** - BMAD Planning (if available)

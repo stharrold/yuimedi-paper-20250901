@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Planning document verification in create_worktree.py** - Ensures BMAD planning docs are committed before worktree creation
+  - New `verify_planning_committed()` function with three checks:
+    1. Planning directory exists (`planning/{slug}/`)
+    2. No uncommitted changes in planning directory
+    3. Local branch is pushed to remote
+  - Only applies to feature worktrees (release/hotfix skip verification)
+  - Clear error messages with actionable resolution commands
+  - Prevents worktrees without planning context
+
 ### Planned
 - Enhanced worktree cleanup with validation
 

@@ -2,59 +2,67 @@
 
 **Type:** feature
 **Slug:** apply-workflow-templates
-**Date:** 2025-11-28
-**GitHub Issue:** #239
+**Date:** 2025-12-01
+**GitHub Issue:** #248
+
+## Overview
+
+Sync workflow skills and commands from `.tmp/stharrold-templates/` to update the repository's workflow automation with the latest improvements to AgentDB, git workflows, quality gates, and VCS abstraction.
 
 ## Task Breakdown
 
-### Phase 1: Preparation
+### Epic 1: Backup Current Skills
 
-#### Task E1_001: Backup Current Skills
+#### Task T001: Create Backup Archive
 
 **Priority:** High
+**Estimate:** 5 min
 
 **Description:**
-Create a timestamped backup of current skills directory before syncing.
+Create a timestamped backup of current `.claude/skills/` before making changes.
 
 **Steps:**
-1. Create ARCHIVED/ directory if not exists
-2. Create timestamped zip backup of `.claude/skills/`
+1. Verify ARCHIVED/ directory exists
+2. Create zip archive with timestamp prefix
 3. Verify backup integrity
 
-**Verification:**
+**Commands:**
 ```bash
-ls -la ARCHIVED/*.zip
-unzip -l ARCHIVED/*skills-backup.zip | head -20
+python .claude/skills/workflow-utilities/scripts/deprecate_files.py \
+  pre-template-sync-backup \
+  .claude/skills/
 ```
 
 **Acceptance Criteria:**
 - [ ] Backup zip exists in ARCHIVED/
-- [ ] Backup contains all skill directories
+- [ ] Backup contains all 9 skill directories
 
 ---
 
-### Phase 2: Sync Operations
+### Epic 2: Sync Skills Directory
 
-#### Task E2_001: Sync Skills Directory
+#### Task T002: Sync Skills from Template
 
 **Priority:** High
+**Estimate:** 10 min
+**Dependencies:** T001
 
 **Description:**
-Copy updated Python scripts from template skills to local skills.
+Copy updated Python scripts from template to local skills directory.
 
 **Steps:**
-1. Run rsync from template skills to local skills
-2. Exclude .DS_Store and __pycache__
+1. Verify template source exists at `.tmp/stharrold-templates/.claude/skills/`
+2. Run rsync with proper exclusions
 3. Verify all 9 skills synced
 
-**Verification:**
+**Commands:**
 ```bash
 rsync -av --delete \
   --exclude=".DS_Store" \
   --exclude="__pycache__" \
   --exclude="*.pyc" \
-  .tmp/stharrold-templates/.claude/skills/ .claude/skills/
-ls -la .claude/skills/
+  .tmp/stharrold-templates/.claude/skills/ \
+  .claude/skills/
 ```
 
 **Acceptance Criteria:**
@@ -62,209 +70,227 @@ ls -la .claude/skills/
 - [ ] No .DS_Store or __pycache__ copied
 - [ ] File permissions preserved
 
-**Dependencies:**
-- E1_001 (backup must complete first)
+**Skills to verify:**
+1. agentdb-state-manager
+2. bmad-planner
+3. git-workflow-manager
+4. initialize-repository
+5. quality-enforcer
+6. speckit-author
+7. tech-stack-adapter
+8. workflow-orchestrator
+9. workflow-utilities
 
 ---
 
-#### Task E3_001: Sync Commands Directory
+### Epic 3: Sync Commands Directory
+
+#### Task T003: Sync Workflow Commands
 
 **Priority:** High
+**Estimate:** 5 min
+**Dependencies:** T002
 
 **Description:**
-Copy updated workflow commands from template to local.
+Copy updated workflow slash commands from template.
 
 **Steps:**
-1. Run rsync from template commands to local commands
-2. Verify workflow commands updated
+1. Verify template commands exist
+2. Run rsync for commands directory
+3. Verify all 8 workflow commands present
 
-**Verification:**
+**Commands:**
 ```bash
 rsync -av --delete \
   --exclude=".DS_Store" \
-  .tmp/stharrold-templates/.claude/commands/ .claude/commands/
-ls -la .claude/commands/workflow/
+  .tmp/stharrold-templates/.claude/commands/workflow/ \
+  .claude/commands/workflow/
 ```
 
 **Acceptance Criteria:**
-- [ ] 2_plan.md updated
-- [ ] 5_integrate.md updated
-- [ ] All other commands intact
-
-**Dependencies:**
-- E1_001 (backup must complete first)
+- [ ] All workflow commands updated
+- [ ] 1_specify.md through 7_backmerge.md present
+- [ ] all.md present
 
 ---
 
-#### Task E4_001: Sync .agents Directory
+### Epic 4: Sync .agents Directory
+
+#### Task T004: Mirror to .agents Directory
 
 **Priority:** Medium
+**Estimate:** 5 min
+**Dependencies:** T002, T003
 
 **Description:**
-Mirror updated skills to .agents/ directory for cross-tool compatibility.
+Mirror updated skills and commands to .agents/ for cross-tool compatibility.
 
 **Steps:**
-1. Run rsync from template .agents to local .agents
-2. Verify mirror consistency
+1. Sync skills to .agents/
+2. Sync commands to .agents/commands/
+3. Verify mirror consistency
 
-**Verification:**
+**Commands:**
 ```bash
 rsync -av --delete \
   --exclude=".DS_Store" \
   --exclude="__pycache__" \
-  .tmp/stharrold-templates/.agents/ .agents/
-diff -rq .claude/skills/ .agents/ 2>/dev/null | grep -v "__pycache__" | head -10
+  .claude/skills/ .agents/
+
+rsync -av --delete \
+  --exclude=".DS_Store" \
+  .claude/commands/ .agents/commands/
 ```
 
 **Acceptance Criteria:**
 - [ ] .agents/ mirrors .claude/skills/
-- [ ] No Claude-specific files in .agents/
-
-**Dependencies:**
-- E2_001 (skills sync must complete first)
+- [ ] .agents/commands/ mirrors .claude/commands/
 
 ---
 
-### Phase 3: Validation
+### Epic 5: Validate and Test
 
-#### Task E5_001: Run Pre-commit Hooks
+#### Task T005: Run Pre-commit Hooks
 
 **Priority:** High
+**Estimate:** 5 min
+**Dependencies:** T004
 
 **Description:**
-Run pre-commit hooks to ensure code quality.
+Run pre-commit hooks to validate all changes.
 
-**Steps:**
-1. Run pre-commit hooks on all files
-2. Fix any formatting issues
-3. Re-run to verify clean
-
-**Verification:**
+**Commands:**
 ```bash
 uv run pre-commit run --all-files
 ```
 
 **Acceptance Criteria:**
 - [ ] All hooks pass
-- [ ] No manual intervention required
-
-**Dependencies:**
-- E2_001, E3_001, E4_001 (all syncs complete)
+- [ ] No formatting issues
+- [ ] CLAUDE.md frontmatter valid
 
 ---
 
-#### Task E5_002: Run Quality Gates
+#### Task T006: Run Quality Gates
 
 **Priority:** High
+**Estimate:** 5 min
+**Dependencies:** T005
 
 **Description:**
 Run all 6 quality gates to ensure updates don't break functionality.
 
-**Steps:**
-1. Run quality-enforcer script
-2. Review any failures
-3. Fix issues if needed
-
-**Verification:**
+**Commands:**
 ```bash
-python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
+uv run python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
 ```
 
 **Acceptance Criteria:**
 - [ ] Gate 1: Documentation validation passes
-- [ ] Gate 2: Linting clean
-- [ ] Gate 3: Type checking passes
-- [ ] Gate 4: Coverage (auto-pass, no tests)
-- [ ] Gate 5: Tests (auto-pass, no tests)
+- [ ] Gate 2: Linting passes (ruff check)
+- [ ] Gate 3: Type checking passes (mypy)
+- [ ] Gate 4: Coverage passes (or skipped if no tests)
+- [ ] Gate 5: Tests pass (or skipped if no tests)
 - [ ] Gate 6: Build succeeds
-
-**Dependencies:**
-- E5_001 (pre-commit hooks must pass first)
 
 ---
 
-#### Task E5_003: Verify Python Imports
+#### Task T007: Run Documentation Validation
 
 **Priority:** Medium
+**Estimate:** 5 min
+**Dependencies:** T005
+
+**Description:**
+Run documentation validation scripts.
+
+**Commands:**
+```bash
+./validate_documentation.sh
+```
+
+**Acceptance Criteria:**
+- [ ] File size check passes
+- [ ] Cross-references valid
+- [ ] No content duplication
+- [ ] Command syntax valid
+- [ ] YAML structure valid
+
+---
+
+#### Task T008: Verify Python Imports
+
+**Priority:** High
+**Estimate:** 5 min
+**Dependencies:** T006
 
 **Description:**
 Test that key Python scripts can be imported without errors.
 
-**Steps:**
-1. Try importing key modules
-2. Verify no missing dependencies
-3. Fix any import errors
-
-**Verification:**
+**Commands:**
 ```bash
-python -c "import sys; sys.path.insert(0, '.claude/skills'); print('OK')"
-python -c "from pathlib import Path; exec(Path('.claude/skills/workflow-utilities/scripts/validate_versions.py').read_text()[:100]); print('Syntax OK')"
+uv run python -c "import sys; sys.path.insert(0, '.claude/skills'); from workflow_utilities.scripts import deprecate_files; print('OK')"
+uv run python -c "from pathlib import Path; exec(Path('.claude/skills/quality-enforcer/scripts/run_quality_gates.py').read_text()[:100]); print('OK')"
 ```
 
 **Acceptance Criteria:**
 - [ ] No import errors
 - [ ] No syntax errors
-- [ ] All scripts executable
-
-**Dependencies:**
-- E2_001 (skills sync complete)
+- [ ] Scripts executable
 
 ---
+
+## Task Summary
+
+| Task | Description | Priority | Estimate | Dependencies |
+|------|-------------|----------|----------|--------------|
+| T001 | Create backup archive | High | 5 min | - |
+| T002 | Sync skills from template | High | 10 min | T001 |
+| T003 | Sync workflow commands | High | 5 min | T002 |
+| T004 | Mirror to .agents directory | Medium | 5 min | T002, T003 |
+| T005 | Run pre-commit hooks | High | 5 min | T004 |
+| T006 | Run quality gates | High | 5 min | T005 |
+| T007 | Run documentation validation | Medium | 5 min | T005 |
+| T008 | Verify Python imports | High | 5 min | T006 |
+
+**Total Estimated Time:** ~45 minutes
 
 ## Task Dependencies Graph
 
 ```
-E1_001 (Backup) ─┐
-                 ├─> E2_001 (Skills) ─┐
-                 ├─> E3_001 (Commands) ├─> E5_001 (Pre-commit) ─> E5_002 (Quality Gates)
-                 └─> E4_001 (.agents) ─┘                       └─> E5_003 (Imports)
+T001 (backup)
+  │
+  v
+T002 (sync skills)
+  │
+  ├──> T003 (sync commands)
+  │      │
+  │      v
+  └────> T004 (mirror .agents) <─┘
+           │
+           v
+         T005 (pre-commit)
+           │
+           ├──> T006 (quality gates) ──> T008 (verify imports)
+           │
+           └──> T007 (doc validation)
 ```
 
-## Critical Path
+## Parallel Opportunities
 
-1. E1_001 - Backup current skills
-2. E2_001 - Sync skills directory
-3. E3_001 - Sync commands directory
-4. E4_001 - Sync .agents directory
-5. E5_001 - Run pre-commit hooks
-6. E5_002 - Run quality gates
-
-## Parallel Work Opportunities
-
-- E2_001, E3_001 can be done after backup completes
-- E4_001 can be done after E2_001
-- E5_003 can be done in parallel with E5_002
+- T006 and T007 can run in parallel after T005
+- None of the sync tasks can be parallelized (sequential dependency)
 
 ## Quality Checklist
 
 Before considering this feature complete:
 
-- [ ] All tasks marked as complete
-- [ ] Pre-commit hooks passing
-- [ ] All 6 quality gates passing
-- [ ] Documentation validation passing
-- [ ] Linting clean
-- [ ] Type checking clean
-- [ ] No import errors
-- [ ] Git commit created
-
-## Notes
-
-### Implementation Tips
-
-- Always create backup before sync operations
-- Use `--delete` flag with rsync to remove obsolete files
-- Exclude build artifacts and caches from sync
-- Verify quality gates after each major sync
-
-### Common Pitfalls
-
-- Forgetting to exclude repository-specific files
-- Overwriting local CLAUDE.md with template version
-- Missing __pycache__ in exclude patterns
-
-### Resources
-
-- Source templates: `.tmp/stharrold-templates/`
-- Quality gates: `.claude/skills/quality-enforcer/`
-- Validation scripts: `tools/validation/`
+- [ ] All 8 tasks marked complete
+- [ ] Backup exists in ARCHIVED/
+- [ ] All 9 skills synced
+- [ ] All 8 workflow commands synced
+- [ ] .agents/ directory in sync
+- [ ] Pre-commit hooks pass
+- [ ] All 6 quality gates pass
+- [ ] Documentation validation passes
+- [ ] No Python import errors
