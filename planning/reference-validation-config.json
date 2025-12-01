@@ -1,0 +1,56 @@
+{
+  "analyst": {
+    "problem_statement": "The research paper (paper.md) contains 111 citations but lacks systematic validation to ensure: (1) every claim has a supporting reference, (2) references have accessible URLs, (3) URLs contain scrapable content, and (4) the content actually supports the claims made.",
+    "primary_users": "Paper authors, reviewers, and academic readers who need to verify claims are properly supported by citations",
+    "success_criteria": "100% of quantitative claims have citations; all reference URLs return 200 OK; validation report identifies any unsupported claims",
+    "functional_requirements": [
+      {
+        "name": "Claim Extraction",
+        "description": "Parse paper.md to identify all statements that require citations (statistics, quotes, assertions)",
+        "priority": "High",
+        "acceptance_criteria": ["Identify numeric claims", "Identify quoted statements", "Map claims to citation markers"]
+      },
+      {
+        "name": "Reference Parsing",
+        "description": "Extract all references and their URLs from the References section",
+        "priority": "High",
+        "acceptance_criteria": ["Parse [A*] academic citations", "Parse [I*] industry citations", "Extract URL for each reference"]
+      },
+      {
+        "name": "URL Validation",
+        "description": "Check each reference URL for accessibility and scrape text content",
+        "priority": "High",
+        "acceptance_criteria": ["HTTP status check", "Handle redirects gracefully", "Extract readable text content"]
+      },
+      {
+        "name": "Claim Verification",
+        "description": "Compare claims against scraped content to verify support",
+        "priority": "High",
+        "acceptance_criteria": ["Match claim text to reference content", "Score support level (strong/weak/none)", "Flag unsupported claims"]
+      },
+      {
+        "name": "Report Generation",
+        "description": "Generate comprehensive markdown report of validation results",
+        "priority": "Medium",
+        "acceptance_criteria": ["Summary statistics", "List issues by severity", "Actionable recommendations"]
+      }
+    ],
+    "performance_requirements": "Complete validation within 10 minutes for 111 references",
+    "security_requirements": "none",
+    "scalability_requirements": "Handle papers with up to 200 citations",
+    "constraints": "Python stdlib only (no requests, beautifulsoup, etc.)",
+    "assumptions": "Reference URLs are publicly accessible; paper.md follows established citation format"
+  },
+  "architect": {
+    "web_framework": "None",
+    "database": "None",
+    "testing_framework": "pytest (recommended)",
+    "use_containers": true,
+    "container_strategy": "Single container",
+    "architecture_pattern": "Modular",
+    "error_handling": "Structured exceptions",
+    "logging_level": "Standard Python logging",
+    "deployment_target": "Local development only"
+  },
+  "issue_number": 250
+}
