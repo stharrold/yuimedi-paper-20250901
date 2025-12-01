@@ -4,6 +4,11 @@
 Parses YAML frontmatter from TODO files and converts to immutable append-only
 records in AgentDB.
 
+IMPORTANT: This script generates SQL statements for demonstration and debugging
+purposes only. It PRINTS the SQL to stdout but does NOT execute them against
+the database. This is intentional for inspection and manual verification.
+For actual database writes, use record_sync.py which uses parameterized queries.
+
 Usage:
     python sync_todo_to_db.py [TODO_FILE]
     python sync_todo_to_db.py --all

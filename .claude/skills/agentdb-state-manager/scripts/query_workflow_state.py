@@ -17,6 +17,7 @@ Feature: 008-workflow-skill-integration
 import argparse
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 # Phase mapping from pattern to phase number and name
@@ -363,8 +364,8 @@ Examples:
     if args.all:
         db_path = get_database_path()
         if db_path is None:
-            print("Error: No AgentDB found", file=__import__("sys").stderr)
-            __import__("sys").exit(1)
+            print("Error: No AgentDB found", file=sys.stderr)
+            sys.exit(1)
 
         records = query_all_sessions(db_path, args.limit)
         if args.format == "json":
