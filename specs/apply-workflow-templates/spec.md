@@ -2,121 +2,309 @@
 
 **Type:** feature
 **Slug:** apply-workflow-templates
-**Date:** 2025-11-28
+**Date:** 2025-12-01
 **Author:** stharrold
-**GitHub Issue:** #239
 
 ## Overview
 
-This feature syncs updated workflow skills and commands from the stharrold-templates repository to this repository. The templates contain over 60 updated Python scripts with improvements to AgentDB state management, git workflow operations, quality enforcement gates, VCS abstraction, and workflow context verification.
+[One paragraph describing what this feature does and why it's needed]
+
+
+## Implementation Context
+
+<!-- Generated from SpecKit interactive Q&A -->
+
+**GitHub Issue:** #248
+
+**BMAD Planning:** See `planning/apply-workflow-templates/` for complete requirements and architecture.
+
+**Implementation Preferences:**
+
+- **Task Granularity:** Small tasks (1-2 hours each)
+- **Follow Epic Order:** True
 
 ## Requirements Reference
 
 See: `planning/apply-workflow-templates/requirements.md` in main repository
 
-### Success Criteria
-
-1. All 9 skills updated from template source
-2. All 2 workflow commands updated
-3. Pre-commit hooks pass
-4. Quality gates pass (6 gates)
-5. Documentation validation passes
-
 ## Detailed Specification
 
-### Component 1: Skills Directory Sync
+### Component 1: [Component Name]
 
-**Source:** `.tmp/stharrold-templates/.claude/skills/`
-**Target:** `.claude/skills/`
+**File:** `src/path/to/file.py`
 
-**Skills to Update (9 total):**
-1. agentdb-state-manager - Workflow state tracking with DuckDB
-2. bmad-planner - Requirements and architecture planning
-3. git-workflow-manager - Git operations, worktrees, PRs
-4. initialize-repository - Repository bootstrapping
-5. quality-enforcer - Quality gates (6 gates)
-6. speckit-author - Specification authoring
-7. tech-stack-adapter - Stack detection
-8. workflow-orchestrator - Main coordinator
-9. workflow-utilities - Shared utilities
+**Purpose:** [What does this component do?]
 
 **Implementation:**
-```bash
-rsync -av --delete \
-  --exclude=".DS_Store" \
-  --exclude="__pycache__" \
-  --exclude="*.pyc" \
-  .tmp/stharrold-templates/.claude/skills/ .claude/skills/
+
+```python
+# Example code structure
+
+class ExampleClass:
+    """Brief description of class purpose."""
+
+    def __init__(self, param1: str, param2: int):
+        """Initialize with parameters."""
+        self.param1 = param1
+        self.param2 = param2
+
+    def method_name(self, arg: str) -> dict:
+        """
+        Description of what this method does.
+
+        Args:
+            arg: Description of argument
+
+        Returns:
+            Dictionary with result data
+
+        Raises:
+            ValueError: When input is invalid
+        """
+        # Implementation details
+        pass
 ```
 
-### Component 2: Commands Directory Sync
+**Dependencies:**
+- [External library or module]
+- [Internal component]
 
-**Source:** `.tmp/stharrold-templates/.claude/commands/`
-**Target:** `.claude/commands/`
+### Component 2: [Component Name]
+
+**File:** `src/path/to/another_file.py`
+
+[Similar structure as Component 1]
+
+## Data Models
+
+### Model: ExampleModel
+
+**File:** `src/models/example.py`
+
+```python
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+class ExampleModel(Base):
+    """Database model for example data."""
+
+    __tablename__ = 'examples'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100), nullable=False, unique=True)
+    description = Column(String(500))
+    created_at = Column(DateTime, nullable=False)
+```
+
+## API Endpoints
+
+### POST /api/endpoint
+
+**Description:** [What this endpoint does]
+
+**Request:**
+```json
+{
+  "field1": "value",
+  "field2": 123
+}
+```
+
+**Response (200 OK):**
+```json
+{
+  "id": 1,
+  "status": "success",
+  "data": {
+    "result": "value"
+  }
+}
+```
+
+**Response (400 Bad Request):**
+```json
+{
+  "error": "Validation failed",
+  "details": ["field1 is required"]
+}
+```
 
 **Implementation:**
-```bash
-rsync -av --delete \
-  --exclude=".DS_Store" \
-  .tmp/stharrold-templates/.claude/commands/ .claude/commands/
+
+```python
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
+
+router = APIRouter()
+
+class RequestModel(BaseModel):
+    field1: str
+    field2: int
+
+class ResponseModel(BaseModel):
+    id: int
+    status: str
+    data: dict
+
+@router.post("/api/endpoint", response_model=ResponseModel)
+async def endpoint_handler(request: RequestModel):
+    """Handle endpoint request."""
+    # Implementation
+    pass
 ```
 
-### Component 3: .agents Directory Sync
+### GET /api/endpoint/{id}
 
-**Source:** `.tmp/stharrold-templates/.agents/`
-**Target:** `.agents/`
+**Description:** [What this endpoint does]
 
-**Purpose:** Mirror of .claude/skills/ for cross-tool compatibility
+[Similar structure as POST endpoint]
 
-**Implementation:**
-```bash
-rsync -av --delete \
-  --exclude=".DS_Store" \
-  --exclude="__pycache__" \
-  .tmp/stharrold-templates/.agents/ .agents/
+## Testing Requirements
+
+### Unit Tests
+
+**File:** `tests/test_example.py`
+
+```python
+import pytest
+from src.module import ExampleClass
+
+def test_example_success():
+    """Test successful operation."""
+    instance = ExampleClass("test", 123)
+    result = instance.method_name("input")
+    assert result["status"] == "success"
+
+def test_example_validation_error():
+    """Test validation error handling."""
+    instance = ExampleClass("test", 123)
+    with pytest.raises(ValueError):
+        instance.method_name("")
 ```
 
-## Files to Exclude from Sync
+### Integration Tests
 
-### Repository-Specific Files (DO NOT SYNC)
-- `CLAUDE.md` (root) - Repository-specific instructions
-- `AGENTS.md` (root) - Auto-generated from CLAUDE.md
-- `pyproject.toml` - Repository-specific dependencies
-- `README.md` (root) - Repository-specific documentation
-- `WORKFLOW.md` - Repository-specific workflow docs
-- `CONTRIBUTING.md` - Repository-specific guidelines
+**File:** `tests/test_integration.py`
 
-### Template-Only Files (DO NOT SYNC)
-- `.tmp/stharrold-templates/specs/` - Template specs
-- `.tmp/stharrold-templates/tests/` - Template tests
-- `.tmp/stharrold-templates/planning/` - Template planning
-- `.tmp/stharrold-templates/docs/` - Template docs
+```python
+from fastapi.testclient import TestClient
+from src.main import app
+
+client = TestClient(app)
+
+def test_endpoint_integration():
+    """Test API endpoint integration."""
+    response = client.post("/api/endpoint", json={
+        "field1": "value",
+        "field2": 123
+    })
+    assert response.status_code == 200
+    assert response.json()["status"] == "success"
+```
 
 ## Quality Gates
 
-- [ ] Pre-commit hooks pass
-- [ ] Documentation validation passes (`./validate_documentation.sh`)
-- [ ] Linting clean (`uv run ruff check .`)
-- [ ] Type checking clean (`uv run mypy scripts/`)
-- [ ] Build succeeds (`uv build`)
+- [ ] Test coverage ≥ 80%
+- [ ] All tests passing
+- [ ] Linting clean (ruff check)
+- [ ] Type checking clean (mypy)
+- [ ] API documentation complete
 
-## Risk Assessment
+## Container Specifications
 
-| Risk | Mitigation |
-|------|------------|
-| Breaking existing scripts | Create backup before sync |
-| Overwriting repo-specific config | Exclude specific files from rsync |
-| Quality gate failures | Run validation after sync |
-| Import errors | Test scripts after sync |
+### Containerfile
+
+```dockerfile
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev
+
+COPY src/ src/
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD python -c "import requests; requests.get('http://localhost:8000/health')"
+
+CMD ["uv", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+### podman-compose.yml
+
+```yaml
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Containerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+```
 
 ## Dependencies
 
-- rsync (system utility)
-- Python 3.11+
-- uv package manager
-- GitHub CLI (gh)
+**pyproject.toml additions:**
+
+```toml
+[project]
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "sqlalchemy>=2.0.0",
+    "pydantic>=2.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-asyncio>=0.21.0",
+    "httpx>=0.25.0",
+    "ruff>=0.1.0",
+    "mypy>=1.7.0",
+]
+```
+
+## Implementation Notes
+
+### Key Considerations
+
+- [Important implementation detail]
+- [Potential gotcha or edge case]
+- [Performance consideration]
+
+### Error Handling
+
+- [How to handle specific error type]
+- [Validation strategy]
+- [Retry logic if applicable]
+
+### Security
+
+- [Input validation approach]
+- [Authentication requirements]
+- [Authorization checks]
 
 ## References
 
-- Source templates: `.tmp/stharrold-templates/`
-- Planning documents: `planning/apply-workflow-templates/`
+- [Link to external documentation]
+- [Related specifications]
+- [Design patterns used]
