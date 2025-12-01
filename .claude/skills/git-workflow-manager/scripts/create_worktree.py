@@ -11,10 +11,10 @@ files are deprecated in favor of GitHub Issues and specs/*/tasks.md.
 """
 
 import argparse
-import os
 import subprocess
 import sys
 from datetime import UTC, datetime
+from os.path import relpath
 from pathlib import Path
 
 # Add workflow-utilities to path
@@ -60,7 +60,9 @@ def setup_agentdb_symlink(worktree_path: Path, main_repo_path: Path) -> bool:
 
         # Create relative symlink for portability
         # Calculate relative path from worktree_state_dir to main_db_path
-        relative_target = os.path.relpath(main_db_path, worktree_state_dir)
+        # Note: Using relpath() instead of Path.relative_to() because the paths
+        # are in different directory trees (main repo vs worktree)
+        relative_target = relpath(main_db_path, worktree_state_dir)
         worktree_db_path.symlink_to(relative_target)
 
         return True
