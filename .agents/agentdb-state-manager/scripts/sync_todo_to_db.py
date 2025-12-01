@@ -186,10 +186,10 @@ def sync_to_agentdb(records: list[dict[str, Any]], session_id: str) -> bool:
         sql = f"""
         INSERT INTO workflow_records (object_id, object_type, object_state, object_metadata)
         VALUES (
-            '{record['object_id']}',
-            '{record['object_type']}',
-            '{record['object_state']}',
-            '{record['object_metadata']}'::JSON
+            '{record["object_id"]}',
+            '{record["object_type"]}',
+            '{record["object_state"]}',
+            '{record["object_metadata"]}'::JSON
         );
         """
         print(sql.strip())

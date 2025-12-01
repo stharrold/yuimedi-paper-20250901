@@ -165,7 +165,7 @@ def record_sync(
     ) VALUES (
         '{sync_id}',
         'claude-code',
-        {f"'{worktree}'" if worktree else 'NULL'},
+        {f"'{worktree}'" if worktree else "NULL"},
         '{sync_type}',
         '{source}',
         '{target}',
