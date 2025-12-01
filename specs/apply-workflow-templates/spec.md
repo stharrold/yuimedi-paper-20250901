@@ -4,307 +4,193 @@
 **Slug:** apply-workflow-templates
 **Date:** 2025-12-01
 **Author:** stharrold
+**GitHub Issue:** #248
 
 ## Overview
 
-[One paragraph describing what this feature does and why it's needed]
+Update the repository's workflow skills (`.claude/skills/`) and commands (`.claude/commands/workflow/`) from the source templates in `.tmp/stharrold-templates/`. This sync brings improvements to:
 
-
-## Implementation Context
-
-<!-- Generated from SpecKit interactive Q&A -->
-
-**GitHub Issue:** #248
-
-**BMAD Planning:** See `planning/apply-workflow-templates/` for complete requirements and architecture.
-
-**Implementation Preferences:**
-
-- **Task Granularity:** Small tasks (1-2 hours each)
-- **Follow Epic Order:** True
+- AgentDB state management
+- Git workflow operations (worktrees, PRs, releases)
+- Quality enforcement gates
+- VCS abstraction layer (GitHub/Azure DevOps)
+- Workflow context verification
 
 ## Requirements Reference
 
-See: `planning/apply-workflow-templates/requirements.md` in main repository
+See: `planning/apply-workflow-templates/requirements.md`
 
-## Detailed Specification
+### Functional Requirements
 
-### Component 1: [Component Name]
+| ID | Description | Priority |
+|----|-------------|----------|
+| FR-001 | Sync skill scripts from template | High |
+| FR-002 | Sync workflow commands from template | High |
+| FR-003 | Mirror to .agents/ directory | Medium |
+| FR-004 | Validate with quality gates | High |
+| FR-005 | Run documentation validation | Medium |
 
-**File:** `src/path/to/file.py`
+### Non-Functional Requirements
 
-**Purpose:** [What does this component do?]
+| ID | Description |
+|----|-------------|
+| NFR-001 | No breaking changes to existing workflows |
+| NFR-002 | Preserve repository-specific configuration |
 
-**Implementation:**
+## Source and Target Mapping
 
-```python
-# Example code structure
+### Skills Directory
 
-class ExampleClass:
-    """Brief description of class purpose."""
+**Source:** `.tmp/stharrold-templates/.claude/skills/`
+**Target:** `.claude/skills/`
 
-    def __init__(self, param1: str, param2: int):
-        """Initialize with parameters."""
-        self.param1 = param1
-        self.param2 = param2
+| Skill | Description |
+|-------|-------------|
+| agentdb-state-manager | DuckDB-based workflow state tracking |
+| bmad-planner | BMAD planning document generation |
+| git-workflow-manager | Git operations (worktrees, branches, PRs) |
+| initialize-repository | New repository setup |
+| quality-enforcer | Quality gate validation (6 gates) |
+| speckit-author | Specification and plan generation |
+| tech-stack-adapter | Technology stack detection |
+| workflow-orchestrator | Workflow phase coordination |
+| workflow-utilities | Shared utilities (deprecation, VCS, etc.) |
 
-    def method_name(self, arg: str) -> dict:
-        """
-        Description of what this method does.
+### Commands Directory
 
-        Args:
-            arg: Description of argument
+**Source:** `.tmp/stharrold-templates/.claude/commands/workflow/`
+**Target:** `.claude/commands/workflow/`
 
-        Returns:
-            Dictionary with result data
+| Command | Description |
+|---------|-------------|
+| 1_specify.md | Create feature specification |
+| 2_plan.md | Generate implementation plan |
+| 3_tasks.md | Validate task list |
+| 4_implement.md | Execute implementation |
+| 5_integrate.md | Create PR to contrib |
+| 6_release.md | Release branch workflow |
+| 7_backmerge.md | Backmerge after release |
+| all.md | Full workflow orchestration |
 
-        Raises:
-            ValueError: When input is invalid
-        """
-        # Implementation details
-        pass
+### Mirror Directory
+
+**Source:** `.claude/skills/`, `.claude/commands/`
+**Target:** `.agents/`, `.agents/commands/`
+
+Purpose: Cross-tool compatibility for non-Claude AI assistants.
+
+## Sync Strategy
+
+### rsync Command Pattern
+
+```bash
+rsync -av --delete \
+  --exclude=".DS_Store" \
+  --exclude="__pycache__" \
+  --exclude="*.pyc" \
+  <source>/ <target>/
 ```
 
-**Dependencies:**
-- [External library or module]
-- [Internal component]
+### Exclusions
 
-### Component 2: [Component Name]
+| Pattern | Reason |
+|---------|--------|
+| .DS_Store | macOS metadata |
+| __pycache__ | Python bytecode cache |
+| *.pyc | Compiled Python |
 
-**File:** `src/path/to/another_file.py`
+### Files NOT to Sync
 
-[Similar structure as Component 1]
+| File | Reason |
+|------|--------|
+| Root CLAUDE.md | Repository-specific content |
+| pyproject.toml | Repository-specific dependencies |
+| .tmp/stharrold-templates/tests/ | Template tests, not needed |
+| .tmp/stharrold-templates/specs/ | Template specs, not needed |
 
-## Data Models
+## Validation Strategy
 
-### Model: ExampleModel
+### Pre-commit Hooks
 
-**File:** `src/models/example.py`
-
-```python
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    """Database model for example data."""
-
-    __tablename__ = 'examples'
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False, unique=True)
-    description = Column(String(500))
-    created_at = Column(DateTime, nullable=False)
+```bash
+uv run pre-commit run --all-files
 ```
 
-## API Endpoints
+Validates:
+- Trailing whitespace
+- End of file newlines
+- Ruff formatting and linting
+- CLAUDE.md YAML frontmatter
+- Skill directory structure
 
-### POST /api/endpoint
+### Quality Gates (6 gates)
 
-**Description:** [What this endpoint does]
-
-**Request:**
-```json
-{
-  "field1": "value",
-  "field2": 123
-}
+```bash
+uv run python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
 ```
 
-**Response (200 OK):**
-```json
-{
-  "id": 1,
-  "status": "success",
-  "data": {
-    "result": "value"
-  }
-}
+| Gate | Description |
+|------|-------------|
+| 1 | Documentation validation |
+| 2 | Linting (ruff check) |
+| 3 | Type checking (mypy) |
+| 4 | Coverage (≥80% or skip) |
+| 5 | Tests (pass or skip) |
+| 6 | Build (uv build) |
+
+### Documentation Validation
+
+```bash
+./validate_documentation.sh
 ```
 
-**Response (400 Bad Request):**
-```json
-{
-  "error": "Validation failed",
-  "details": ["field1 is required"]
-}
-```
+Runs 5 tests:
+1. File size (30KB limit)
+2. Cross-references
+3. Content duplication
+4. Command syntax
+5. YAML structure
 
-**Implementation:**
+## Rollback Strategy
 
-```python
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+If sync causes issues:
 
-router = APIRouter()
-
-class RequestModel(BaseModel):
-    field1: str
-    field2: int
-
-class ResponseModel(BaseModel):
-    id: int
-    status: str
-    data: dict
-
-@router.post("/api/endpoint", response_model=ResponseModel)
-async def endpoint_handler(request: RequestModel):
-    """Handle endpoint request."""
-    # Implementation
-    pass
-```
-
-### GET /api/endpoint/{id}
-
-**Description:** [What this endpoint does]
-
-[Similar structure as POST endpoint]
-
-## Testing Requirements
-
-### Unit Tests
-
-**File:** `tests/test_example.py`
-
-```python
-import pytest
-from src.module import ExampleClass
-
-def test_example_success():
-    """Test successful operation."""
-    instance = ExampleClass("test", 123)
-    result = instance.method_name("input")
-    assert result["status"] == "success"
-
-def test_example_validation_error():
-    """Test validation error handling."""
-    instance = ExampleClass("test", 123)
-    with pytest.raises(ValueError):
-        instance.method_name("")
-```
-
-### Integration Tests
-
-**File:** `tests/test_integration.py`
-
-```python
-from fastapi.testclient import TestClient
-from src.main import app
-
-client = TestClient(app)
-
-def test_endpoint_integration():
-    """Test API endpoint integration."""
-    response = client.post("/api/endpoint", json={
-        "field1": "value",
-        "field2": 123
-    })
-    assert response.status_code == 200
-    assert response.json()["status"] == "success"
-```
-
-## Quality Gates
-
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing
-- [ ] Linting clean (ruff check)
-- [ ] Type checking clean (mypy)
-- [ ] API documentation complete
-
-## Container Specifications
-
-### Containerfile
-
-```dockerfile
-FROM python:3.11-slim
-
-WORKDIR /app
-
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev
-
-COPY src/ src/
-
-EXPOSE 8000
-
-HEALTHCHECK --interval=30s --timeout=3s \
-  CMD python -c "import requests; requests.get('http://localhost:8000/health')"
-
-CMD ["uv", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
-### podman-compose.yml
-
-```yaml
-version: '3.8'
-
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Containerfile
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./data:/app/data
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-```
+1. Extract backup from `ARCHIVED/<timestamp>_pre-template-sync-backup.zip`
+2. Restore `.claude/skills/` from backup
+3. Re-sync `.agents/` from restored skills
 
 ## Dependencies
 
-**pyproject.toml additions:**
+### Required
 
-```toml
-[project]
-dependencies = [
-    "fastapi>=0.104.0",
-    "uvicorn[standard]>=0.24.0",
-    "sqlalchemy>=2.0.0",
-    "pydantic>=2.5.0",
-]
+- `.tmp/stharrold-templates/` must exist with template files
+- rsync available (standard on macOS/Linux)
+- uv package manager installed
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "pytest-asyncio>=0.21.0",
-    "httpx>=0.25.0",
-    "ruff>=0.1.0",
-    "mypy>=1.7.0",
-]
-```
+### Optional
+
+- duckdb (for AgentDB state tracking)
+- podman-compose (for container-based validation)
 
 ## Implementation Notes
 
-### Key Considerations
+### Order of Operations
 
-- [Important implementation detail]
-- [Potential gotcha or edge case]
-- [Performance consideration]
+1. **Backup first** - Always create backup before destructive sync
+2. **Skills before commands** - Commands may reference skill scripts
+3. **Mirror after both** - .agents/ should reflect final state
+4. **Validate last** - Run all validation after sync complete
 
-### Error Handling
+### Known Issues
 
-- [How to handle specific error type]
-- [Validation strategy]
-- [Retry logic if applicable]
+- Container environment can't access git worktrees (use `uv run` instead)
+- AgentDB requires `uv sync --extra workflow` for duckdb
 
-### Security
+### Success Indicators
 
-- [Input validation approach]
-- [Authentication requirements]
-- [Authorization checks]
-
-## References
-
-- [Link to external documentation]
-- [Related specifications]
-- [Design patterns used]
+- All 9 skill directories present and updated
+- All 8 workflow commands present
+- .agents/ mirrors .claude/ structure
+- All pre-commit hooks pass
+- All 6 quality gates pass
+- Documentation validation passes

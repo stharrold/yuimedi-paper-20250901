@@ -3,368 +3,294 @@
 **Type:** feature
 **Slug:** apply-workflow-templates
 **Date:** 2025-12-01
+**GitHub Issue:** #248
 
+## Overview
 
-<!-- Note: Customize task breakdown based on specific feature requirements -->
-<!-- This template provides the structure. Claude Code will populate with actual tasks. -->
+Sync workflow skills and commands from `.tmp/stharrold-templates/` to update the repository's workflow automation with the latest improvements to AgentDB, git workflows, quality gates, and VCS abstraction.
 
 ## Task Breakdown
 
-### Phase 1: Foundation
+### Epic 1: Backup Current Skills
 
-#### Task impl_001: [Task Name]
+#### Task T001: Create Backup Archive
 
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file1.py`
-- `src/path/file2.py`
-- `tests/test_file.py`
+**Priority:** High
+**Estimate:** 5 min
 
 **Description:**
-[Detailed description of what needs to be implemented]
+Create a timestamped backup of current `.claude/skills/` before making changes.
 
 **Steps:**
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
+1. Verify ARCHIVED/ directory exists
+2. Create zip archive with timestamp prefix
+3. Verify backup integrity
+
+**Commands:**
+```bash
+python .claude/skills/workflow-utilities/scripts/deprecate_files.py \
+  pre-template-sync-backup \
+  .claude/skills/
+```
 
 **Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
-
-**Verification:**
-```bash
-# Commands to verify implementation
-uv run python -c "from src.module import Class; print('OK')"
-uv run pytest tests/test_file.py -v
-```
-
-**Dependencies:**
-- None (or list other task IDs)
+- [ ] Backup zip exists in ARCHIVED/
+- [ ] Backup contains all 9 skill directories
 
 ---
 
-#### Task impl_002: [Task Name]
+### Epic 2: Sync Skills Directory
 
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
+#### Task T002: Sync Skills from Template
 
-**Files:**
-- `src/path/file3.py`
+**Priority:** High
+**Estimate:** 10 min
+**Dependencies:** T001
 
 **Description:**
-[Detailed description]
+Copy updated Python scripts from template to local skills directory.
 
 **Steps:**
-1. [Step 1]
-2. [Step 2]
+1. Verify template source exists at `.tmp/stharrold-templates/.claude/skills/`
+2. Run rsync with proper exclusions
+3. Verify all 9 skills synced
+
+**Commands:**
+```bash
+rsync -av --delete \
+  --exclude=".DS_Store" \
+  --exclude="__pycache__" \
+  --exclude="*.pyc" \
+  .tmp/stharrold-templates/.claude/skills/ \
+  .claude/skills/
+```
 
 **Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
+- [ ] All 9 skill directories updated
+- [ ] No .DS_Store or __pycache__ copied
+- [ ] File permissions preserved
 
-**Verification:**
-```bash
-uv run pytest tests/test_file3.py
-```
-
-**Dependencies:**
-- impl_001 (must complete first)
+**Skills to verify:**
+1. agentdb-state-manager
+2. bmad-planner
+3. git-workflow-manager
+4. initialize-repository
+5. quality-enforcer
+6. speckit-author
+7. tech-stack-adapter
+8. workflow-orchestrator
+9. workflow-utilities
 
 ---
 
-### Phase 2: Core Implementation
+### Epic 3: Sync Commands Directory
 
-#### Task impl_003: [Task Name]
+#### Task T003: Sync Workflow Commands
 
-**Estimated Time:** [Duration]
 **Priority:** High
-
-**Files:**
-- `src/core/module.py`
-- `tests/test_module.py`
+**Estimate:** 5 min
+**Dependencies:** T002
 
 **Description:**
-[Core business logic implementation]
+Copy updated workflow slash commands from template.
 
 **Steps:**
-1. Create module structure
-2. Implement core functionality
-3. Add error handling
-4. Write comprehensive tests
+1. Verify template commands exist
+2. Run rsync for commands directory
+3. Verify all 8 workflow commands present
+
+**Commands:**
+```bash
+rsync -av --delete \
+  --exclude=".DS_Store" \
+  .tmp/stharrold-templates/.claude/commands/workflow/ \
+  .claude/commands/workflow/
+```
 
 **Acceptance Criteria:**
-- [ ] All business logic implemented
-- [ ] Error cases handled
-- [ ] Tests passing with >85% coverage
-
-**Verification:**
-```bash
-uv run pytest tests/test_module.py --cov=src.core.module --cov-report=term
-```
-
-**Dependencies:**
-- impl_001, impl_002
+- [ ] All workflow commands updated
+- [ ] 1_specify.md through 7_backmerge.md present
+- [ ] all.md present
 
 ---
 
-### Phase 3: API Layer
+### Epic 4: Sync .agents Directory
 
-#### Task impl_004: [Task Name]
+#### Task T004: Mirror to .agents Directory
 
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `src/api/routes.py`
-- `src/api/models.py`
-- `tests/test_api.py`
-
-**Description:**
-[API endpoint implementation]
-
-**Steps:**
-1. Define Pydantic models for request/response
-2. Implement endpoint handlers
-3. Add input validation
-4. Write integration tests
-
-**Acceptance Criteria:**
-- [ ] Endpoints respond correctly
-- [ ] Validation working
-- [ ] Error responses formatted correctly
-- [ ] Integration tests passing
-
-**Verification:**
-```bash
-uv run pytest tests/test_api.py -v
-# Manual test:
-curl -X POST http://localhost:8000/api/endpoint -H "Content-Type: application/json" -d '{"field": "value"}'
-```
-
-**Dependencies:**
-- impl_003
-
----
-
-### Phase 4: Testing
-
-#### Task test_001: Unit Tests
-
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `tests/test_*.py`
-- `tests/conftest.py`
-
-**Description:**
-Comprehensive unit tests for all modules.
-
-**Coverage Targets:**
-- Overall: ≥80%
-- Core modules: ≥90%
-- Utilities: ≥85%
-
-**Steps:**
-1. Set up pytest fixtures in conftest.py
-2. Write unit tests for each module
-3. Test happy paths and error conditions
-4. Achieve coverage targets
-
-**Verification:**
-```bash
-uv run pytest --cov=src --cov-report=term --cov-report=html
-uv run pytest --cov=src --cov-fail-under=80
-```
-
-**Dependencies:**
-- impl_001, impl_002, impl_003, impl_004
-
----
-
-#### Task test_002: Integration Tests
-
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `tests/integration/test_*.py`
-
-**Description:**
-End-to-end integration tests with real database.
-
-**Steps:**
-1. Set up test database fixtures
-2. Test API workflows end-to-end
-3. Test error scenarios
-4. Test concurrent requests
-
-**Verification:**
-```bash
-uv run pytest tests/integration/ -v
-```
-
-**Dependencies:**
-- impl_004, test_001
-
----
-
-### Phase 5: Containerization
-
-#### Task container_001: Application Container
-
-**Estimated Time:** [Duration]
 **Priority:** Medium
-
-**Files:**
-- `Containerfile`
-- `.containerignore`
+**Estimate:** 5 min
+**Dependencies:** T002, T003
 
 **Description:**
-Create optimized container for application.
+Mirror updated skills and commands to .agents/ for cross-tool compatibility.
 
 **Steps:**
-1. Write multi-stage Containerfile
-2. Optimize layer caching
-3. Add health check
-4. Test container build and run
+1. Sync skills to .agents/
+2. Sync commands to .agents/commands/
+3. Verify mirror consistency
 
-**Verification:**
+**Commands:**
 ```bash
-podman build -t apply-workflow-templates:latest .
-podman run --rm -p 8000:8000 apply-workflow-templates:latest
-curl http://localhost:8000/health
+rsync -av --delete \
+  --exclude=".DS_Store" \
+  --exclude="__pycache__" \
+  .claude/skills/ .agents/
+
+rsync -av --delete \
+  --exclude=".DS_Store" \
+  .claude/commands/ .agents/commands/
 ```
 
-**Dependencies:**
-- All implementation tasks complete
+**Acceptance Criteria:**
+- [ ] .agents/ mirrors .claude/skills/
+- [ ] .agents/commands/ mirrors .claude/commands/
 
 ---
 
-#### Task container_002: Container Orchestration
+### Epic 5: Validate and Test
 
-**Estimated Time:** [Duration]
+#### Task T005: Run Pre-commit Hooks
+
+**Priority:** High
+**Estimate:** 5 min
+**Dependencies:** T004
+
+**Description:**
+Run pre-commit hooks to validate all changes.
+
+**Commands:**
+```bash
+uv run pre-commit run --all-files
+```
+
+**Acceptance Criteria:**
+- [ ] All hooks pass
+- [ ] No formatting issues
+- [ ] CLAUDE.md frontmatter valid
+
+---
+
+#### Task T006: Run Quality Gates
+
+**Priority:** High
+**Estimate:** 5 min
+**Dependencies:** T005
+
+**Description:**
+Run all 6 quality gates to ensure updates don't break functionality.
+
+**Commands:**
+```bash
+uv run python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
+```
+
+**Acceptance Criteria:**
+- [ ] Gate 1: Documentation validation passes
+- [ ] Gate 2: Linting passes (ruff check)
+- [ ] Gate 3: Type checking passes (mypy)
+- [ ] Gate 4: Coverage passes (or skipped if no tests)
+- [ ] Gate 5: Tests pass (or skipped if no tests)
+- [ ] Gate 6: Build succeeds
+
+---
+
+#### Task T007: Run Documentation Validation
+
 **Priority:** Medium
-
-**Files:**
-- `podman-compose.yml`
-- `.env.example`
+**Estimate:** 5 min
+**Dependencies:** T005
 
 **Description:**
-Set up multi-container orchestration.
+Run documentation validation scripts.
 
-**Steps:**
-1. Define services in podman-compose.yml
-2. Configure volumes and networks
-3. Set up environment variables
-4. Add health checks
-5. Test full stack
-
-**Verification:**
+**Commands:**
 ```bash
-podman-compose up -d
-podman-compose ps
-curl http://localhost:8000/health
-podman-compose logs app
-podman-compose down
+./validate_documentation.sh
 ```
 
-**Dependencies:**
-- container_001
+**Acceptance Criteria:**
+- [ ] File size check passes
+- [ ] Cross-references valid
+- [ ] No content duplication
+- [ ] Command syntax valid
+- [ ] YAML structure valid
 
 ---
 
-## Estimated Total Time
+#### Task T008: Verify Python Imports
 
-| Phase | Duration |
-|-------|----------|
-| Phase 1: Foundation | [X hours] |
-| Phase 2: Core Implementation | [X hours] |
-| Phase 3: API Layer | [X hours] |
-| Phase 4: Testing | [X hours] |
-| Phase 5: Containerization | [X hours] |
-| **Total** | **[X hours]** |
+**Priority:** High
+**Estimate:** 5 min
+**Dependencies:** T006
+
+**Description:**
+Test that key Python scripts can be imported without errors.
+
+**Commands:**
+```bash
+uv run python -c "import sys; sys.path.insert(0, '.claude/skills'); from workflow_utilities.scripts import deprecate_files; print('OK')"
+uv run python -c "from pathlib import Path; exec(Path('.claude/skills/quality-enforcer/scripts/run_quality_gates.py').read_text()[:100]); print('OK')"
+```
+
+**Acceptance Criteria:**
+- [ ] No import errors
+- [ ] No syntax errors
+- [ ] Scripts executable
+
+---
+
+## Task Summary
+
+| Task | Description | Priority | Estimate | Dependencies |
+|------|-------------|----------|----------|--------------|
+| T001 | Create backup archive | High | 5 min | - |
+| T002 | Sync skills from template | High | 10 min | T001 |
+| T003 | Sync workflow commands | High | 5 min | T002 |
+| T004 | Mirror to .agents directory | Medium | 5 min | T002, T003 |
+| T005 | Run pre-commit hooks | High | 5 min | T004 |
+| T006 | Run quality gates | High | 5 min | T005 |
+| T007 | Run documentation validation | Medium | 5 min | T005 |
+| T008 | Verify Python imports | High | 5 min | T006 |
+
+**Total Estimated Time:** ~45 minutes
 
 ## Task Dependencies Graph
 
 ```
-impl_001 ─┐
-          ├─> impl_003 ─> impl_004 ─┐
-impl_002 ─┘                          ├─> test_001 ─> test_002 ─> container_001 ─> container_002
-                                     │
-                                     └─> test_001
+T001 (backup)
+  │
+  v
+T002 (sync skills)
+  │
+  ├──> T003 (sync commands)
+  │      │
+  │      v
+  └────> T004 (mirror .agents) <─┘
+           │
+           v
+         T005 (pre-commit)
+           │
+           ├──> T006 (quality gates) ──> T008 (verify imports)
+           │
+           └──> T007 (doc validation)
 ```
 
-## Critical Path
+## Parallel Opportunities
 
-1. impl_001
-2. impl_002
-3. impl_003
-4. impl_004
-5. test_001
-6. test_002
-7. container_001
-8. container_002
-
-[Identify which tasks are on the critical path and cannot be parallelized]
-
-## Parallel Work Opportunities
-
-- impl_001 and impl_002 can be done in parallel
-- test_001 unit tests can be written alongside implementation
-- Documentation can be written in parallel with containerization
+- T006 and T007 can run in parallel after T005
+- None of the sync tasks can be parallelized (sequential dependency)
 
 ## Quality Checklist
 
 Before considering this feature complete:
 
-- [ ] All tasks marked as complete
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing (unit + integration)
-- [ ] Linting clean (`uv run ruff check src/ tests/`)
-- [ ] Type checking clean (`uv run mypy src/`)
-- [ ] Container builds successfully
-- [ ] Container health checks passing
-- [ ] API documentation complete
-- [ ] Code reviewed
-- [ ] Manual testing performed
-
-## Risk Assessment
-
-### High Risk Tasks
-
-- **impl_003**: Core business logic is complex
-  - Mitigation: Break into smaller subtasks, pair programming
-
-- **test_002**: Integration tests may be flaky
-  - Mitigation: Use proper fixtures, isolated test database
-
-### Medium Risk Tasks
-
-- **container_002**: Multi-container networking can be tricky
-  - Mitigation: Test thoroughly in local environment first
-
-## Notes
-
-[Any additional notes, considerations, or context for implementation]
-
-### Implementation Tips
-
-- [Tip 1]
-- [Tip 2]
-- [Tip 3]
-
-### Common Pitfalls
-
-- [Pitfall 1 and how to avoid it]
-- [Pitfall 2 and how to avoid it]
-
-### Resources
-
-- [Link to relevant documentation]
-- [Link to example code]
-- [Link to design patterns]
+- [ ] All 8 tasks marked complete
+- [ ] Backup exists in ARCHIVED/
+- [ ] All 9 skills synced
+- [ ] All 8 workflow commands synced
+- [ ] .agents/ directory in sync
+- [ ] Pre-commit hooks pass
+- [ ] All 6 quality gates pass
+- [ ] Documentation validation passes
+- [ ] No Python import errors
