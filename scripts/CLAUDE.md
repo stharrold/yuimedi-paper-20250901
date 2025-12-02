@@ -15,6 +15,7 @@ Automation scripts for GitHub Issues synchronization. **All scripts use Python s
 
 ## Contents
 
+- `validate_references.py` - Reference validation for paper.md citations
 - `sync_github_todos.py` - Main GitHub Issues sync script
 - `sync_todos.sh` - Bash wrapper for sync script
 - `github_project_sync.sh` - GitHub project board sync
@@ -36,6 +37,12 @@ import click     # Use argparse instead
 ## Usage
 
 ```bash
+# Validate paper.md references
+python scripts/validate_references.py --all
+python scripts/validate_references.py --check-citations
+python scripts/validate_references.py --check-urls --verbose
+python scripts/validate_references.py --report
+
 # Run sync script
 python scripts/sync_github_todos.py
 
