@@ -64,7 +64,7 @@ This repository contains research documentation for YuiQuery, a conversational A
 ├── config/                     # Configuration files
 ├── compliance/                 # IRB and compliance documentation
 ├── tools/                      # Workflow utilities
-└── archive/                    # Historical files and backups
+└── ARCHIVED/                   # Historical files and backups
 ```
 
 ## 📖 Research Focus Areas

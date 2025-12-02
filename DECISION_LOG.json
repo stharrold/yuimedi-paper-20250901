@@ -200,7 +200,7 @@
         "Create separate validation tracking system"
       ],
       "tradeoffs": "Gained: simplified project management, reduced maintenance overhead, preserved validation methodology, clear strategic focus. Lost: visual GitHub Projects interface, some automation possibilities",
-      "impact": "Archived TMP-yuiquery-update-sept2025.md to archive/, created GitHub Projects backup at archive/github-projects-integration-20250903T074900Z.md, established project-management.md as authoritative hub",
+      "impact": "Archived TMP-yuiquery-update-sept2025.md to ARCHIVED/, created GitHub Projects backup at ARCHIVED/github-projects-integration-20250903T074900Z.md, established project-management.md as authoritative hub",
       "reversible": true,
       "revisitDate": "2026-01-01",
       "status": "implemented",

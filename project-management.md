@@ -159,9 +159,9 @@
 - **[Database Config](config/database/README.md)** - Data governance approach
 
 ### 📁 Historical Archive
-- **[Implementation Archive](archive/implementation/)** - Completed remediation artifacts
-- **[Project Backups](archive/backups/)** - Previous document versions
-- **[TODO History](archive/todo-history/)** - Task tracking evolution
+- **[Implementation Archive](ARCHIVED/implementation/)** - Completed remediation artifacts
+- **[Project Backups](ARCHIVED/backups/)** - Previous document versions
+- **[TODO History](ARCHIVED/todo-history/)** - Task tracking evolution
 
 **CRITICAL CHANGES:**
 - Paper 1 deadline: 2025-09-30 (allows October publication)
@@ -173,7 +173,7 @@
 
 **PRIMARY SYSTEM**: This document (`project-management.md`) serves as the **authoritative project hub**
 
-**TMP Validation Integration**: Based on validated test cases from [archived validation work](archive/TMP-yuiquery-update-sept2025_20250903T075200Z.md):
+**TMP Validation Integration**: Based on validated test cases from [archived validation work](ARCHIVED/TMP-yuiquery-update-sept2025_20250903T075200Z.md):
 - **Test Case #1**: Primary/foreign key discovery → Algorithm development milestones
 - **Test Case #2**: Design pattern memory recall → Validation methodology checkpoints
 - **Test Case #3**: Business object detection → Research phase deliverables
@@ -185,7 +185,7 @@
 - **TODO_FOR_HUMAN.md**: Priority overview and quality assurance checklist
 - **This Document**: Strategic context, timelines, and executive dashboard
 
-**GitHub Projects**: [Backup system available](archive/github-projects-integration-20250903T074900Z.md) but **not primary workflow**
+**GitHub Projects**: [Backup system available](ARCHIVED/github-projects-integration-20250903T074900Z.md) but **not primary workflow**
 
 ## Revised Scope (30% Reduction)
 - **Paper 1:** 70 hours (was 100)
@@ -311,7 +311,7 @@ These academic whitepapers establish Yuimedi's intellectual authority in healthc
 **Project ID**: `PVT_kwHOAD8Xp84BCJ6G`
 **Integration Status**: COMPLETE
 
-**Based on TMP Validation Work**: Connected to validated test cases from [archived validation work](archive/TMP-yuiquery-update-sept2025_20250903T075200Z.md) including:
+**Based on TMP Validation Work**: Connected to validated test cases from [archived validation work](ARCHIVED/TMP-yuiquery-update-sept2025_20250903T075200Z.md) including:
 - Primary/foreign key discovery patterns (July 28, 2025)
 - Design pattern memory recall testing (July 29, 2025)
 - Business object detection + haversine calculations (August 3, 2025)
@@ -546,7 +546,7 @@ gh issue create --title "..." --label "..." --milestone "..."
 | Dependency Blocks | 0 | Count(Blocked Issues) |
 
 ## 10. Recent Progress (September 2025)
-- ✅ Created standardized archive/ directory structure
+- ✅ Created standardized ARCHIVED/ directory structure
 - ✅ Moved 17 historical files to organized archive with UTC timestamps
 - ✅ Created 3 GitHub milestones with proper descriptions and deadlines
 - ✅ Established backup developer documentation and RACI matrix

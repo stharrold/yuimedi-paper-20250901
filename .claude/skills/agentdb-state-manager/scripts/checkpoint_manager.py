@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Manage context checkpoints in AgentDB.
 
+IMPORTANT: This script generates SQL statements for demonstration and debugging
+purposes only. It PRINTS the SQL to stdout but does NOT execute them against
+the database. This is intentional for inspection and manual verification.
+For actual database writes, use record_sync.py which uses parameterized queries.
+
 Usage:
     python checkpoint_manager.py store --todo TODO_FILE
     python checkpoint_manager.py list

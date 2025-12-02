@@ -2,121 +2,195 @@
 
 **Type:** feature
 **Slug:** apply-workflow-templates
-**Date:** 2025-11-28
+**Date:** 2025-12-01
 **Author:** stharrold
-**GitHub Issue:** #239
+**GitHub Issue:** #248
 
 ## Overview
 
-This feature syncs updated workflow skills and commands from the stharrold-templates repository to this repository. The templates contain over 60 updated Python scripts with improvements to AgentDB state management, git workflow operations, quality enforcement gates, VCS abstraction, and workflow context verification.
+Update the repository's workflow skills (`.claude/skills/`) and commands (`.claude/commands/workflow/`) from the source templates in `.tmp/stharrold-templates/`. This sync brings improvements to:
+
+- AgentDB state management
+- Git workflow operations (worktrees, PRs, releases)
+- Quality enforcement gates
+- VCS abstraction layer (GitHub/Azure DevOps)
+- Workflow context verification
 
 ## Requirements Reference
 
-See: `planning/apply-workflow-templates/requirements.md` in main repository
+See: `planning/apply-workflow-templates/requirements.md`
 
-### Success Criteria
+### Functional Requirements
 
-1. All 9 skills updated from template source
-2. All 2 workflow commands updated
-3. Pre-commit hooks pass
-4. Quality gates pass (6 gates)
-5. Documentation validation passes
+| ID | Description | Priority |
+|----|-------------|----------|
+| FR-001 | Sync skill scripts from template | High |
+| FR-002 | Sync workflow commands from template | High |
+| FR-003 | Mirror to .agents/ directory | Medium |
+| FR-004 | Validate with quality gates | High |
+| FR-005 | Run documentation validation | Medium |
 
-## Detailed Specification
+### Non-Functional Requirements
 
-### Component 1: Skills Directory Sync
+| ID | Description |
+|----|-------------|
+| NFR-001 | No breaking changes to existing workflows |
+| NFR-002 | Preserve repository-specific configuration |
+
+## Source and Target Mapping
+
+### Skills Directory
 
 **Source:** `.tmp/stharrold-templates/.claude/skills/`
 **Target:** `.claude/skills/`
 
-**Skills to Update (9 total):**
-1. agentdb-state-manager - Workflow state tracking with DuckDB
-2. bmad-planner - Requirements and architecture planning
-3. git-workflow-manager - Git operations, worktrees, PRs
-4. initialize-repository - Repository bootstrapping
-5. quality-enforcer - Quality gates (6 gates)
-6. speckit-author - Specification authoring
-7. tech-stack-adapter - Stack detection
-8. workflow-orchestrator - Main coordinator
-9. workflow-utilities - Shared utilities
+| Skill | Description |
+|-------|-------------|
+| agentdb-state-manager | DuckDB-based workflow state tracking |
+| bmad-planner | BMAD planning document generation |
+| git-workflow-manager | Git operations (worktrees, branches, PRs) |
+| initialize-repository | New repository setup |
+| quality-enforcer | Quality gate validation (6 gates) |
+| speckit-author | Specification and plan generation |
+| tech-stack-adapter | Technology stack detection |
+| workflow-orchestrator | Workflow phase coordination |
+| workflow-utilities | Shared utilities (deprecation, VCS, etc.) |
 
-**Implementation:**
+### Commands Directory
+
+**Source:** `.tmp/stharrold-templates/.claude/commands/workflow/`
+**Target:** `.claude/commands/workflow/`
+
+| Command | Description |
+|---------|-------------|
+| 1_specify.md | Create feature specification |
+| 2_plan.md | Generate implementation plan |
+| 3_tasks.md | Validate task list |
+| 4_implement.md | Execute implementation |
+| 5_integrate.md | Create PR to contrib |
+| 6_release.md | Release branch workflow |
+| 7_backmerge.md | Backmerge after release |
+| all.md | Full workflow orchestration |
+
+### Mirror Directory
+
+**Source:** `.claude/skills/`, `.claude/commands/`
+**Target:** `.agents/`, `.agents/commands/`
+
+Purpose: Cross-tool compatibility for non-Claude AI assistants.
+
+## Sync Strategy
+
+### rsync Command Pattern
+
 ```bash
 rsync -av --delete \
   --exclude=".DS_Store" \
   --exclude="__pycache__" \
   --exclude="*.pyc" \
-  .tmp/stharrold-templates/.claude/skills/ .claude/skills/
+  <source>/ <target>/
 ```
 
-### Component 2: Commands Directory Sync
+### Exclusions
 
-**Source:** `.tmp/stharrold-templates/.claude/commands/`
-**Target:** `.claude/commands/`
+| Pattern | Reason |
+|---------|--------|
+| .DS_Store | macOS metadata |
+| __pycache__ | Python bytecode cache |
+| *.pyc | Compiled Python |
 
-**Implementation:**
+### Files NOT to Sync
+
+| File | Reason |
+|------|--------|
+| Root CLAUDE.md | Repository-specific content |
+| pyproject.toml | Repository-specific dependencies |
+| .tmp/stharrold-templates/tests/ | Template tests, not needed |
+| .tmp/stharrold-templates/specs/ | Template specs, not needed |
+
+## Validation Strategy
+
+### Pre-commit Hooks
+
 ```bash
-rsync -av --delete \
-  --exclude=".DS_Store" \
-  .tmp/stharrold-templates/.claude/commands/ .claude/commands/
+uv run pre-commit run --all-files
 ```
 
-### Component 3: .agents Directory Sync
+Validates:
+- Trailing whitespace
+- End of file newlines
+- Ruff formatting and linting
+- CLAUDE.md YAML frontmatter
+- Skill directory structure
 
-**Source:** `.tmp/stharrold-templates/.agents/`
-**Target:** `.agents/`
+### Quality Gates (6 gates)
 
-**Purpose:** Mirror of .claude/skills/ for cross-tool compatibility
-
-**Implementation:**
 ```bash
-rsync -av --delete \
-  --exclude=".DS_Store" \
-  --exclude="__pycache__" \
-  .tmp/stharrold-templates/.agents/ .agents/
+uv run python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
 ```
 
-## Files to Exclude from Sync
+| Gate | Description |
+|------|-------------|
+| 1 | Documentation validation |
+| 2 | Linting (ruff check) |
+| 3 | Type checking (mypy) |
+| 4 | Coverage (≥80% or skip) |
+| 5 | Tests (pass or skip) |
+| 6 | Build (uv build) |
 
-### Repository-Specific Files (DO NOT SYNC)
-- `CLAUDE.md` (root) - Repository-specific instructions
-- `AGENTS.md` (root) - Auto-generated from CLAUDE.md
-- `pyproject.toml` - Repository-specific dependencies
-- `README.md` (root) - Repository-specific documentation
-- `WORKFLOW.md` - Repository-specific workflow docs
-- `CONTRIBUTING.md` - Repository-specific guidelines
+### Documentation Validation
 
-### Template-Only Files (DO NOT SYNC)
-- `.tmp/stharrold-templates/specs/` - Template specs
-- `.tmp/stharrold-templates/tests/` - Template tests
-- `.tmp/stharrold-templates/planning/` - Template planning
-- `.tmp/stharrold-templates/docs/` - Template docs
+```bash
+./validate_documentation.sh
+```
 
-## Quality Gates
+Runs 5 tests:
+1. File size (30KB limit)
+2. Cross-references
+3. Content duplication
+4. Command syntax
+5. YAML structure
 
-- [ ] Pre-commit hooks pass
-- [ ] Documentation validation passes (`./validate_documentation.sh`)
-- [ ] Linting clean (`uv run ruff check .`)
-- [ ] Type checking clean (`uv run mypy scripts/`)
-- [ ] Build succeeds (`uv build`)
+## Rollback Strategy
 
-## Risk Assessment
+If sync causes issues:
 
-| Risk | Mitigation |
-|------|------------|
-| Breaking existing scripts | Create backup before sync |
-| Overwriting repo-specific config | Exclude specific files from rsync |
-| Quality gate failures | Run validation after sync |
-| Import errors | Test scripts after sync |
+1. Extract backup from `ARCHIVED/<timestamp>_pre-template-sync-backup.zip`
+2. Restore `.claude/skills/` from backup
+3. Re-sync `.agents/` from restored skills
 
 ## Dependencies
 
-- rsync (system utility)
-- Python 3.11+
-- uv package manager
-- GitHub CLI (gh)
+### Required
 
-## References
+- `.tmp/stharrold-templates/` must exist with template files
+- rsync available (standard on macOS/Linux)
+- uv package manager installed
 
-- Source templates: `.tmp/stharrold-templates/`
-- Planning documents: `planning/apply-workflow-templates/`
+### Optional
+
+- duckdb (for AgentDB state tracking)
+- podman-compose (for container-based validation)
+
+## Implementation Notes
+
+### Order of Operations
+
+1. **Backup first** - Always create backup before destructive sync
+2. **Skills before commands** - Commands may reference skill scripts
+3. **Mirror after both** - .agents/ should reflect final state
+4. **Validate last** - Run all validation after sync complete
+
+### Known Issues
+
+- Container environment can't access git worktrees (use `uv run` instead)
+- AgentDB requires `uv sync --extra workflow` for duckdb
+
+### Success Indicators
+
+- All 9 skill directories present and updated
+- All 8 workflow commands present
+- .agents/ mirrors .claude/ structure
+- All pre-commit hooks pass
+- All 6 quality gates pass
+- Documentation validation passes

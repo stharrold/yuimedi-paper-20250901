@@ -80,7 +80,7 @@ The primary research paper lives at the repository root as **`paper.md`** for ea
 ### Version Management
 Historical versions are tracked in:
 - Git commit history (preferred method)
-- `archive/` directory for major milestones
+- `ARCHIVED/` directory for major milestones
 - Individual paper directories for submission-specific versions
 
 ## 🎨 Figures and Diagrams

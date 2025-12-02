@@ -110,3 +110,53 @@ Report to the user:
 - User can fix the issue and resume
 - Use TodoWrite to track which tasks are complete
 - Never skip a task unless explicitly told to
+
+## Step 9: Commit and Push All Changes
+
+**After all tasks complete and quality gates pass, finalize the work:**
+
+1. Stage all changes:
+   ```bash
+   git add .
+   ```
+
+2. Commit with implementation summary:
+   ```bash
+   git commit -m "feat({slug}): implement feature per plan.md
+
+   Implemented tasks from specs/{slug}/plan.md.
+   Quality gates passed (5/5).
+
+   Refs: #{issue-number}"
+   ```
+
+3. Push to remote:
+   ```bash
+   git push
+   ```
+
+## Step 10: Next Steps (User Action Required)
+
+**IMPORTANT: You must switch to the main repository before running `/5_integrate`.**
+
+The `/5_integrate` step must run from the **main repository** on the `contrib/*` branch, NOT from this worktree.
+
+**Instructions:**
+
+1. Return to the main repository:
+   ```bash
+   cd /path/to/main/repo
+   ```
+   (The main repo path is the parent directory name without the `_feature_*` suffix)
+
+2. Ensure you're on the contrib branch:
+   ```bash
+   git checkout contrib/stharrold
+   ```
+
+3. Then run the next step:
+   ```
+   /5_integrate
+   ```
+
+**Why?** Step 5 creates PRs and cleans up the worktree, which must be done from outside the worktree itself.
