@@ -1,4 +1,9 @@
-"""Tests for domain exceptions."""
+"""Tests for domain exceptions.
+
+Note: The assertions after `pytest.raises` blocks ARE reachable.
+pytest.raises is a context manager that catches the exception and stores it
+in exc_info, allowing subsequent assertions to verify the exception details.
+"""
 
 import pytest
 
