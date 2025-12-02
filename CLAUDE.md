@@ -36,7 +36,8 @@ uv sync                                    # Local
 podman-compose build                       # Container (recommended)
 
 # Quality checks (run before commits)
-./validate_documentation.sh                # Documentation validation (5 tests)
+./validate_documentation.sh                # Documentation validation (6 tests)
+python scripts/validate_references.py --all  # Reference validation + URL checks
 uv run ruff format . && uv run ruff check --fix .  # Format + lint
 uv run mypy scripts/                       # Type checking
 
@@ -70,7 +71,7 @@ Scripts in `scripts/` and `tools/` use **Python stdlib only**. No external packa
 ```
 
 ### Validation System
-`./validate_documentation.sh` runs 5 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure.
+`./validate_documentation.sh` runs 6 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure, and reference validation (citations in paper.md).
 
 ### AI Config Sync
 Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` for cross-tool compatibility.
