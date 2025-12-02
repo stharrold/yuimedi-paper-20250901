@@ -1,0 +1,78 @@
+{
+  "papers": [
+    {
+      "doi": "10.1038/nature12373",
+      "title": "Machine learning for healthcare: Predictive analytics",
+      "authors": [
+        {"last_name": "Chen", "first_name": "Tianqi", "initials": "T.", "orcid": null},
+        {"last_name": "Guestrin", "first_name": "Carlos", "initials": "C.", "orcid": "0000-0002-1234-5678"}
+      ],
+      "publication_year": 2023,
+      "journal": "Nature Medicine",
+      "abstract": "We present a comprehensive review of machine learning applications in healthcare predictive analytics.",
+      "keywords": ["machine learning", "healthcare", "predictive analytics"],
+      "quality_score": null,
+      "included": null,
+      "assessment_notes": ""
+    },
+    {
+      "doi": "10.1016/j.jbi.2023.104567",
+      "title": "Natural language processing in clinical text mining",
+      "authors": [
+        {"last_name": "Wang", "first_name": "Yanshan", "initials": "Y.", "orcid": null}
+      ],
+      "publication_year": 2023,
+      "journal": "Journal of Biomedical Informatics",
+      "abstract": "This study explores NLP techniques for extracting clinical information from unstructured medical records.",
+      "keywords": ["NLP", "clinical text", "information extraction"],
+      "quality_score": 8.5,
+      "included": true,
+      "assessment_notes": "High-quality systematic review with clear methodology"
+    },
+    {
+      "doi": "10.1093/jamia/ocad123",
+      "title": "Deep learning for medical image analysis: A review",
+      "authors": [
+        {"last_name": "Litjens", "first_name": "Geert", "initials": "G.", "orcid": null},
+        {"last_name": "Kooi", "first_name": "Thijs", "initials": "T.", "orcid": null},
+        {"last_name": "Bejnordi", "first_name": "Babak", "initials": "B.", "orcid": null}
+      ],
+      "publication_year": 2022,
+      "journal": "Journal of the American Medical Informatics Association",
+      "abstract": "A comprehensive survey of deep learning methods applied to medical imaging.",
+      "keywords": ["deep learning", "medical imaging", "CNN"],
+      "quality_score": 6.0,
+      "included": false,
+      "assessment_notes": "Out of scope - focuses on imaging rather than analytics"
+    },
+    {
+      "doi": "10.1371/journal.pone.0234567",
+      "title": "Electronic health record data quality assessment framework",
+      "authors": [
+        {"last_name": "Johnson", "first_name": "Alistair", "initials": "A.", "orcid": "0000-0001-9876-5432"}
+      ],
+      "publication_year": 2024,
+      "journal": "PLOS ONE",
+      "abstract": "We propose a standardized framework for assessing data quality in EHR systems.",
+      "keywords": ["EHR", "data quality", "healthcare informatics"],
+      "quality_score": null,
+      "included": null,
+      "assessment_notes": ""
+    },
+    {
+      "doi": "10.1186/s12911-023-02345-x",
+      "title": "FHIR-based interoperability for healthcare analytics platforms",
+      "authors": [
+        {"last_name": "Mandel", "first_name": "Joshua", "initials": "J.", "orcid": null},
+        {"last_name": "Kreda", "first_name": "David", "initials": "D.", "orcid": null}
+      ],
+      "publication_year": 2023,
+      "journal": "BMC Medical Informatics and Decision Making",
+      "abstract": "Implementation of FHIR standards for enabling healthcare data interoperability.",
+      "keywords": ["FHIR", "interoperability", "healthcare standards"],
+      "quality_score": 9.0,
+      "included": true,
+      "assessment_notes": "Excellent practical implementation with reproducible results"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+"""DOI value object with validation.
+
+A DOI (Digital Object Identifier) uniquely identifies academic papers and other
+scholarly content. This value object ensures DOI format validity at creation time.
+"""
+
+import re
+from dataclasses import dataclass
+
+from lit_review.domain.exceptions import ValidationError
+
+# DOI regex pattern following the official DOI specification
+# Format: 10.XXXX/suffix where XXXX is 4+ digits and suffix contains allowed chars
+DOI_PATTERN = re.compile(r"^10\.\d{4,}/[-._;()/:\w]+$")
+
+
+@dataclass(frozen=True)
+class DOI:
+    """Immutable DOI value object with format validation.
+
+    DOIs must follow the format: 10.XXXX/suffix
+    - Starts with '10.'
+    - Followed by 4+ digit registrant code
+    - Forward slash separator
+    - Suffix containing alphanumeric chars and special chars: - . _ ; ( ) / :
+
+    Attributes:
+        value: The validated DOI string.
+
+    Raises:
+        ValidationError: If the DOI format is invalid.
+
+    Example:
+        >>> doi = DOI("10.1234/example-2024")
+        >>> doi.value
+        '10.1234/example-2024'
+    """
+
+    value: str
+
+    def __post_init__(self) -> None:
+        """Validate DOI format on creation."""
+        if not self.value:
+            raise ValidationError("DOI cannot be empty")
+
+        if not DOI_PATTERN.match(self.value):
+            raise ValidationError(
+                f"Invalid DOI format: '{self.value}'. DOI must match pattern: 10.XXXX/suffix"
+            )
+
+    def __str__(self) -> str:
+        """Return the DOI string value."""
+        return self.value
+
+    def __hash__(self) -> int:
+        """Return hash based on DOI value."""
+        return hash(self.value)
+
+    def to_url(self) -> str:
+        """Convert DOI to its URL representation.
+
+        Returns:
+            The DOI as a resolvable URL via doi.org.
+
+        Example:
+            >>> DOI("10.1234/test").to_url()
+            'https://doi.org/10.1234/test'
+        """
+        return f"https://doi.org/{self.value}"

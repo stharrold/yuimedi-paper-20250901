@@ -28,9 +28,13 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
 ]
 
-# No runtime dependencies for automation scripts (scripts/, tools/)
-# Workflow skills (.claude/skills/) may require optional dependencies
-dependencies = []
+# Runtime dependencies for lit_review package
+dependencies = [
+    "click>=8.0.0",
+    "requests>=2.28.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=0.19.0",
+]
 
 [project.optional-dependencies]
 dev = [
@@ -39,9 +43,17 @@ dev = [
     "ruff>=0.14.0",
     "mypy>=1.18.0",
     "pre-commit>=4.5.0",
+    "bandit>=1.7.0",
 ]
 workflow = [
     "duckdb>=1.4.0",  # Required for agentdb-state-manager workflow skill
+]
+ai = [
+    "anthropic>=0.18.0",  # Claude API for AI-powered analysis
+]
+export = [
+    "python-docx>=0.8.11",  # Word export
+    "bibtexparser>=1.4.0",  # BibTeX parsing
 ]
 
 # Note: pandoc filters (pandoc-include-code, pandoc-xnos) are installed via pandoc,
@@ -55,6 +67,7 @@ Documentation = "https://github.com/stharrold/yuimedi-paper-20250901/blob/main/R
 
 [project.scripts]
 sync-todos = "scripts.sync_github_todos:main"
+academic-review = "lit_review.interfaces.cli.review_cli:review"
 
 [build-system]
 requires = ["hatchling"]
@@ -129,4 +142,4 @@ exclude = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["scripts"]
+packages = ["scripts", "lit_review"]
