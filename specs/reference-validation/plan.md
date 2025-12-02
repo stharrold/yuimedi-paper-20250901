@@ -4,367 +4,308 @@
 **Slug:** reference-validation
 **Date:** 2025-12-02
 
+## Overview
 
-<!-- Note: Customize task breakdown based on specific feature requirements -->
-<!-- This template provides the structure. Claude Code will populate with actual tasks. -->
+Implement Python scripts to validate that all citations in `paper.md` are properly supported by accessible references. This is a documentation-only repository, so scripts must use **Python stdlib only** (no external packages).
 
 ## Task Breakdown
 
-### Phase 1: Foundation
+### Phase 1: Reference Parsing (FR-002)
 
-#### Task impl_001: [Task Name]
+#### Task T001: Parse references from paper.md
 
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
+**Priority:** High
+**Category:** implementation
 
 **Files:**
-- `src/path/file1.py`
-- `src/path/file2.py`
-- `tests/test_file.py`
+- `scripts/validate_references.py` (new)
+- `paper.md` (read-only)
 
 **Description:**
-[Detailed description of what needs to be implemented]
+Create a Python script using stdlib only to parse the References section of paper.md and extract all citation entries with their markers ([A1], [I1], etc.) and URLs.
 
 **Steps:**
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
+1. Create `scripts/validate_references.py` with stdlib imports only
+2. Implement regex patterns to match [A*] and [I*] citation markers
+3. Extract URLs from each reference entry
+4. Build a dictionary mapping citation markers to metadata (title, URL, type)
 
 **Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+- [ ] Script parses all 111 citations from paper.md
+- [ ] Correctly identifies [A*] academic and [I*] industry citations
+- [ ] Extracts URL for each reference that has one
+- [ ] Uses only Python stdlib (no external packages)
 
 **Verification:**
 ```bash
-# Commands to verify implementation
-uv run python -c "from src.module import Class; print('OK')"
-uv run pytest tests/test_file.py -v
+python scripts/validate_references.py --parse-only
+# Should output: "Found N references (X academic, Y industry)"
 ```
 
-**Dependencies:**
-- None (or list other task IDs)
+**Dependencies:** None
 
 ---
 
-#### Task impl_002: [Task Name]
+#### Task T002: Extract claims requiring citations
 
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
+**Priority:** High
+**Category:** implementation
 
 **Files:**
-- `src/path/file3.py`
+- `scripts/validate_references.py`
+- `paper.md` (read-only)
 
 **Description:**
-[Detailed description]
+Extend the validation script to identify statements in paper.md that contain citation markers, mapping claims to their supporting references.
 
 **Steps:**
-1. [Step 1]
-2. [Step 2]
+1. Add function to scan paper.md body (excluding References section)
+2. Extract text surrounding each citation marker
+3. Build claim-to-citation mapping
+4. Identify any orphaned citations (referenced but not defined)
 
 **Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
+- [ ] Identifies all paragraphs/sentences with citations
+- [ ] Maps each claim to its citation markers
+- [ ] Detects orphaned citation markers (no matching reference)
+- [ ] Detects unused references (defined but never cited)
 
 **Verification:**
 ```bash
-uv run pytest tests/test_file3.py
+python scripts/validate_references.py --check-citations
+# Should output: "N claims found, M orphaned markers, K unused references"
 ```
 
-**Dependencies:**
-- impl_001 (must complete first)
+**Dependencies:** T001
 
 ---
 
-### Phase 2: Core Implementation
+### Phase 2: URL Validation (FR-003)
 
-#### Task impl_003: [Task Name]
+#### Task T003: Validate reference URLs
 
-**Estimated Time:** [Duration]
 **Priority:** High
+**Category:** implementation
 
 **Files:**
-- `src/core/module.py`
-- `tests/test_module.py`
+- `scripts/validate_references.py`
 
 **Description:**
-[Core business logic implementation]
+Add URL validation to check that each reference URL is accessible (returns HTTP 200 or valid redirect).
 
 **Steps:**
-1. Create module structure
-2. Implement core functionality
-3. Add error handling
-4. Write comprehensive tests
+1. Use `urllib.request` for HTTP requests (stdlib)
+2. Implement timeout and retry logic
+3. Handle redirects gracefully
+4. Record HTTP status for each URL
+5. Generate report of broken/inaccessible URLs
 
 **Acceptance Criteria:**
-- [ ] All business logic implemented
-- [ ] Error cases handled
-- [ ] Tests passing with >85% coverage
+- [ ] Checks each reference URL for accessibility
+- [ ] Handles HTTP redirects (301, 302, 307, 308)
+- [ ] Timeout after 10 seconds per URL
+- [ ] Reports broken URLs with status codes
+- [ ] Uses only Python stdlib (urllib.request)
 
 **Verification:**
 ```bash
-uv run pytest tests/test_module.py --cov=src.core.module --cov-report=term
+python scripts/validate_references.py --check-urls
+# Should output: "Checked N URLs: M accessible, K broken"
 ```
 
-**Dependencies:**
-- impl_001, impl_002
+**Dependencies:** T001
 
 ---
 
-### Phase 3: API Layer
+### Phase 3: Report Generation (FR-005)
 
-#### Task impl_004: [Task Name]
+#### Task T004: Generate validation report
 
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `src/api/routes.py`
-- `src/api/models.py`
-- `tests/test_api.py`
-
-**Description:**
-[API endpoint implementation]
-
-**Steps:**
-1. Define Pydantic models for request/response
-2. Implement endpoint handlers
-3. Add input validation
-4. Write integration tests
-
-**Acceptance Criteria:**
-- [ ] Endpoints respond correctly
-- [ ] Validation working
-- [ ] Error responses formatted correctly
-- [ ] Integration tests passing
-
-**Verification:**
-```bash
-uv run pytest tests/test_api.py -v
-# Manual test:
-curl -X POST http://localhost:8000/api/endpoint -H "Content-Type: application/json" -d '{"field": "value"}'
-```
-
-**Dependencies:**
-- impl_003
-
----
-
-### Phase 4: Testing
-
-#### Task test_001: Unit Tests
-
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `tests/test_*.py`
-- `tests/conftest.py`
-
-**Description:**
-Comprehensive unit tests for all modules.
-
-**Coverage Targets:**
-- Overall: ≥80%
-- Core modules: ≥90%
-- Utilities: ≥85%
-
-**Steps:**
-1. Set up pytest fixtures in conftest.py
-2. Write unit tests for each module
-3. Test happy paths and error conditions
-4. Achieve coverage targets
-
-**Verification:**
-```bash
-uv run pytest --cov=src --cov-report=term --cov-report=html
-uv run pytest --cov=src --cov-fail-under=80
-```
-
-**Dependencies:**
-- impl_001, impl_002, impl_003, impl_004
-
----
-
-#### Task test_002: Integration Tests
-
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `tests/integration/test_*.py`
-
-**Description:**
-End-to-end integration tests with real database.
-
-**Steps:**
-1. Set up test database fixtures
-2. Test API workflows end-to-end
-3. Test error scenarios
-4. Test concurrent requests
-
-**Verification:**
-```bash
-uv run pytest tests/integration/ -v
-```
-
-**Dependencies:**
-- impl_004, test_001
-
----
-
-### Phase 5: Containerization
-
-#### Task container_001: Application Container
-
-**Estimated Time:** [Duration]
 **Priority:** Medium
+**Category:** implementation
 
 **Files:**
-- `Containerfile`
-- `.containerignore`
+- `scripts/validate_references.py`
+- `docs/validation_report.md` (new, generated)
 
 **Description:**
-Create optimized container for application.
+Generate a comprehensive markdown report summarizing validation results.
 
 **Steps:**
-1. Write multi-stage Containerfile
-2. Optimize layer caching
-3. Add health check
-4. Test container build and run
+1. Add report generation function
+2. Include summary statistics
+3. List issues by severity (broken URLs, orphaned citations, unused refs)
+4. Output to `docs/validation_report.md`
+
+**Acceptance Criteria:**
+- [ ] Generates markdown report with summary stats
+- [ ] Lists all broken URLs with reference markers
+- [ ] Lists orphaned citation markers
+- [ ] Lists unused references
+- [ ] Report is human-readable and actionable
 
 **Verification:**
 ```bash
-podman build -t reference-validation:latest .
-podman run --rm -p 8000:8000 reference-validation:latest
-curl http://localhost:8000/health
+python scripts/validate_references.py --report
+# Should create docs/validation_report.md
 ```
 
-**Dependencies:**
-- All implementation tasks complete
+**Dependencies:** T001, T002, T003
 
 ---
 
-#### Task container_002: Container Orchestration
+### Phase 4: Testing & Quality
 
-**Estimated Time:** [Duration]
+#### Task T005: Add unit tests
+
+**Priority:** High
+**Category:** testing
+
+**Files:**
+- `tests/test_validate_references.py` (new)
+
+**Description:**
+Create unit tests for the reference validation script.
+
+**Steps:**
+1. Create test file with pytest
+2. Test reference parsing with sample data
+3. Test citation extraction
+4. Test URL validation (with mocked responses)
+5. Test report generation
+
+**Acceptance Criteria:**
+- [ ] Tests cover reference parsing
+- [ ] Tests cover citation extraction
+- [ ] Tests cover edge cases (malformed refs, missing URLs)
+- [ ] Tests pass with `uv run pytest`
+
+**Verification:**
+```bash
+uv run pytest tests/test_validate_references.py -v
+```
+
+**Dependencies:** T001, T002, T003, T004
+
+---
+
+#### Task T006: Integrate with existing validation
+
 **Priority:** Medium
+**Category:** integration
 
 **Files:**
-- `podman-compose.yml`
-- `.env.example`
+- `validate_documentation.sh`
+- `scripts/validate_references.py`
 
 **Description:**
-Set up multi-container orchestration.
+Integrate the new reference validation into the existing `validate_documentation.sh` script.
 
 **Steps:**
-1. Define services in podman-compose.yml
-2. Configure volumes and networks
-3. Set up environment variables
-4. Add health checks
-5. Test full stack
+1. Add reference validation as test 6 in validate_documentation.sh
+2. Ensure script exits with appropriate codes
+3. Update documentation about validation tests
+
+**Acceptance Criteria:**
+- [ ] `./validate_documentation.sh` includes reference validation
+- [ ] Reference validation failures cause script to fail
+- [ ] Documentation updated to describe new test
 
 **Verification:**
 ```bash
-podman-compose up -d
-podman-compose ps
-curl http://localhost:8000/health
-podman-compose logs app
-podman-compose down
+./validate_documentation.sh
+# Should include "Test 6: Reference validation"
 ```
 
-**Dependencies:**
-- container_001
+**Dependencies:** T004, T005
 
 ---
 
-## Estimated Total Time
+### Phase 5: Documentation
 
-| Phase | Duration |
-|-------|----------|
-| Phase 1: Foundation | [X hours] |
-| Phase 2: Core Implementation | [X hours] |
-| Phase 3: API Layer | [X hours] |
-| Phase 4: Testing | [X hours] |
-| Phase 5: Containerization | [X hours] |
-| **Total** | **[X hours]** |
+#### Task T007: Update project documentation
+
+**Priority:** Low
+**Category:** documentation
+
+**Files:**
+- `CLAUDE.md`
+- `scripts/CLAUDE.md`
+
+**Description:**
+Update project documentation to describe the new reference validation capability.
+
+**Steps:**
+1. Add reference validation to Essential Commands in root CLAUDE.md
+2. Document the script in scripts/CLAUDE.md
+3. Ensure commands are accurate and tested
+
+**Acceptance Criteria:**
+- [ ] Root CLAUDE.md mentions reference validation
+- [ ] scripts/CLAUDE.md documents validate_references.py
+- [ ] All documented commands work correctly
+
+**Verification:**
+```bash
+# Run documented command
+python scripts/validate_references.py --help
+```
+
+**Dependencies:** T006
+
+---
+
+## Task Summary
+
+| Task ID | Name | Priority | Category | Dependencies |
+|---------|------|----------|----------|--------------|
+| T001 | Parse references from paper.md | High | implementation | None |
+| T002 | Extract claims requiring citations | High | implementation | T001 |
+| T003 | Validate reference URLs | High | implementation | T001 |
+| T004 | Generate validation report | Medium | implementation | T001, T002, T003 |
+| T005 | Add unit tests | High | testing | T001-T004 |
+| T006 | Integrate with existing validation | Medium | integration | T004, T005 |
+| T007 | Update project documentation | Low | documentation | T006 |
+
+## Parallel Execution Opportunities
+
+- **T002 and T003** can run in parallel after T001 completes
+- **T007** can be started early and refined as implementation progresses
 
 ## Task Dependencies Graph
 
 ```
-impl_001 ─┐
-          ├─> impl_003 ─> impl_004 ─┐
-impl_002 ─┘                          ├─> test_001 ─> test_002 ─> container_001 ─> container_002
-                                     │
-                                     └─> test_001
+T001 (Parse references)
+  │
+  ├─→ T002 (Extract claims) ─┐
+  │                           ├─→ T004 (Generate report) ─→ T005 (Tests) ─→ T006 (Integration) ─→ T007 (Docs)
+  └─→ T003 (Validate URLs) ──┘
 ```
-
-## Critical Path
-
-1. impl_001
-2. impl_002
-3. impl_003
-4. impl_004
-5. test_001
-6. test_002
-7. container_001
-8. container_002
-
-[Identify which tasks are on the critical path and cannot be parallelized]
-
-## Parallel Work Opportunities
-
-- impl_001 and impl_002 can be done in parallel
-- test_001 unit tests can be written alongside implementation
-- Documentation can be written in parallel with containerization
 
 ## Quality Checklist
 
 Before considering this feature complete:
 
 - [ ] All tasks marked as complete
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing (unit + integration)
-- [ ] Linting clean (`uv run ruff check src/ tests/`)
-- [ ] Type checking clean (`uv run mypy src/`)
-- [ ] Container builds successfully
-- [ ] Container health checks passing
-- [ ] API documentation complete
-- [ ] Code reviewed
-- [ ] Manual testing performed
-
-## Risk Assessment
-
-### High Risk Tasks
-
-- **impl_003**: Core business logic is complex
-  - Mitigation: Break into smaller subtasks, pair programming
-
-- **test_002**: Integration tests may be flaky
-  - Mitigation: Use proper fixtures, isolated test database
-
-### Medium Risk Tasks
-
-- **container_002**: Multi-container networking can be tricky
-  - Mitigation: Test thoroughly in local environment first
+- [ ] Script uses stdlib only (per project constraint)
+- [ ] Tests pass with `uv run pytest`
+- [ ] Linting clean (`uv run ruff check scripts/`)
+- [ ] Type checking clean (`uv run mypy scripts/`)
+- [ ] `./validate_documentation.sh` passes (all 6 tests)
+- [ ] Reference validation report generated
+- [ ] Documentation updated
 
 ## Notes
 
-[Any additional notes, considerations, or context for implementation]
+### Key Constraints
+
+- **Stdlib only**: Per CLAUDE.md, scripts must use Python stdlib only (sys, os, subprocess, json, pathlib, datetime, re, typing, urllib)
+- **No external packages**: Cannot use requests, beautifulsoup, etc.
+- **Documentation-only repo**: Focus is on validating paper.md citations, not building a web service
 
 ### Implementation Tips
 
-- [Tip 1]
-- [Tip 2]
-- [Tip 3]
-
-### Common Pitfalls
-
-- [Pitfall 1 and how to avoid it]
-- [Pitfall 2 and how to avoid it]
-
-### Resources
-
-- [Link to relevant documentation]
-- [Link to example code]
-- [Link to design patterns]
+- Use `urllib.request.urlopen()` for HTTP requests
+- Use `re` module for parsing citation patterns
+- Use `json` for structured output
+- Use `pathlib.Path` for file operations
