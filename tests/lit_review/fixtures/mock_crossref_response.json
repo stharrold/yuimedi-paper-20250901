@@ -1,0 +1,67 @@
+{
+  "status": "ok",
+  "message-type": "work-list",
+  "message-version": "1.0.0",
+  "message": {
+    "facets": {},
+    "total-results": 3,
+    "items": [
+      {
+        "DOI": "10.1038/nature12373",
+        "title": ["Machine learning for healthcare: Predictive analytics"],
+        "author": [
+          {"family": "Chen", "given": "Tianqi", "sequence": "first"},
+          {"family": "Guestrin", "given": "Carlos", "sequence": "additional", "ORCID": "0000-0002-1234-5678"}
+        ],
+        "published": {
+          "date-parts": [[2023, 6, 15]]
+        },
+        "container-title": ["Nature Medicine"],
+        "abstract": "<p>We present a comprehensive review of machine learning applications in healthcare predictive analytics.</p>",
+        "subject": ["Medicine", "Computer Science"],
+        "type": "journal-article",
+        "ISSN": ["1078-8956"],
+        "publisher": "Springer Nature"
+      },
+      {
+        "DOI": "10.1016/j.jbi.2023.104567",
+        "title": ["Natural language processing in clinical text mining"],
+        "author": [
+          {"family": "Wang", "given": "Yanshan", "sequence": "first"}
+        ],
+        "published": {
+          "date-parts": [[2023, 3, 1]]
+        },
+        "container-title": ["Journal of Biomedical Informatics"],
+        "abstract": "<jats:p>This study explores NLP techniques for extracting clinical information from unstructured medical records.</jats:p>",
+        "subject": ["Health Informatics"],
+        "type": "journal-article",
+        "ISSN": ["1532-0464"],
+        "publisher": "Elsevier"
+      },
+      {
+        "DOI": "10.1093/jamia/ocad123",
+        "title": ["Deep learning for medical image analysis: A review"],
+        "author": [
+          {"family": "Litjens", "given": "Geert", "sequence": "first"},
+          {"family": "Kooi", "given": "Thijs", "sequence": "additional"},
+          {"family": "Bejnordi", "given": "Babak", "sequence": "additional"}
+        ],
+        "published": {
+          "date-parts": [[2022, 11, 20]]
+        },
+        "container-title": ["Journal of the American Medical Informatics Association"],
+        "abstract": "A comprehensive survey of deep learning methods applied to medical imaging.",
+        "subject": ["Medical Informatics"],
+        "type": "review-article",
+        "ISSN": ["1067-5027"],
+        "publisher": "Oxford University Press"
+      }
+    ],
+    "items-per-page": 20,
+    "query": {
+      "start-index": 0,
+      "search-terms": "machine learning healthcare"
+    }
+  }
+}
