@@ -7,7 +7,9 @@ sibling_readme: README.md
 children:
   - .claude/CLAUDE.md
   - docs/CLAUDE.md
+  - lit_review/CLAUDE.md
   - scripts/CLAUDE.md
+  - tests/CLAUDE.md
   - tools/CLAUDE.md
 related_skills:
   - workflow-orchestrator
@@ -39,10 +41,21 @@ podman-compose build                       # Container (recommended)
 ./validate_documentation.sh                # Documentation validation (6 tests)
 python scripts/validate_references.py --all  # Reference validation + URL checks
 uv run ruff format . && uv run ruff check --fix .  # Format + lint
-uv run mypy scripts/                       # Type checking
+uv run mypy scripts/ lit_review/           # Type checking
 
 # Full quality gates (before PRs)
 python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
+
+# Literature review workflow
+uv run academic-review --help              # CLI for systematic reviews
+uv run academic-review init <review-id>    # Initialize new review
+uv run academic-review search <review-id>  # Execute search stage
+uv run academic-review status <review-id>  # Check review status
+
+# Testing
+uv run pytest                              # Run all tests
+uv run pytest tests/lit_review/ -v         # Literature review tests only
+uv run pytest --cov=lit_review             # With coverage
 
 # Task management
 gh issue list --label "P0"                 # Critical tasks
@@ -63,12 +76,17 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 
 ## Architecture
 
-### Zero Runtime Dependencies
-Scripts in `scripts/` and `tools/` use **Python stdlib only**. No external packages.
+### Dependency Strategy
+**Scripts (`scripts/`, `tools/`):** Python stdlib only - no external packages.
 ```python
 # Allowed: sys, os, subprocess, json, pathlib, datetime, re, typing
 # NOT allowed: requests, click, etc.
 ```
+
+**Literature Review Package (`lit_review/`):** External dependencies allowed.
+- Clean Architecture (domain/application/infrastructure/interfaces layers)
+- Dependencies: pydantic, httpx, click (see pyproject.toml)
+- All dependencies managed via `uv sync`
 
 ### Validation System
 `./validate_documentation.sh` runs 6 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure, and reference validation (citations in paper.md).
