@@ -59,7 +59,7 @@ echo ""
 
 # Test 6: Reference validation (citations and URLs)
 echo "Test 6: Reference validation"
-python3 "$REPO_ROOT/scripts/validate_references.py" --check-citations 2>/dev/null
+python3 "$REPO_ROOT/scripts/validate_references.py" --check-citations
 if [ $? -ne 0 ]; then
     ((total_errors++))
     echo "  ❌ Reference validation failed"

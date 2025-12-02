@@ -7,8 +7,7 @@
 
 ## Overview
 
-[One paragraph describing what this feature does and why it's needed]
-
+This feature provides comprehensive validation of citations and references in paper.md, ensuring all claims have supporting references, all references have accessible URLs, and the citation format follows the established [A*]/[I*] pattern. The validation script integrates into the documentation validation suite as Test 6.
 
 ## Implementation Context
 
@@ -27,284 +26,128 @@
 
 See: `planning/reference-validation/requirements.md` in main repository
 
-## Detailed Specification
+## Components
 
-### Component 1: [Component Name]
+### Reference Parser
 
-**File:** `src/path/to/file.py`
+**File:** `scripts/validate_references.py`
 
-**Purpose:** [What does this component do?]
+**Purpose:** Parse the References section of paper.md and extract all [A*] academic and [I*] industry references with their URLs.
 
-**Implementation:**
+**Key Functions:**
+- `parse_references()` - Extracts reference entries from the References section
+- `extract_citations()` - Finds all citation markers in the paper body
+- `find_orphaned_and_unused()` - Identifies citation/reference mismatches
 
-```python
-# Example code structure
+### URL Validator
 
-class ExampleClass:
-    """Brief description of class purpose."""
+**File:** `scripts/validate_references.py`
 
-    def __init__(self, param1: str, param2: int):
-        """Initialize with parameters."""
-        self.param1 = param1
-        self.param2 = param2
+**Purpose:** Validate that reference URLs are accessible using Python stdlib only (urllib).
 
-    def method_name(self, arg: str) -> dict:
-        """
-        Description of what this method does.
+**Key Functions:**
+- `check_url()` - Validates individual URL accessibility with retry logic
+- `validate_urls()` - Batch validates all reference URLs
 
-        Args:
-            arg: Description of argument
+### Report Generator
 
-        Returns:
-            Dictionary with result data
+**File:** `scripts/validate_references.py`
 
-        Raises:
-            ValueError: When input is invalid
-        """
-        # Implementation details
-        pass
-```
+**Purpose:** Generate markdown validation reports summarizing results.
 
-**Dependencies:**
-- [External library or module]
-- [Internal component]
-
-### Component 2: [Component Name]
-
-**File:** `src/path/to/another_file.py`
-
-[Similar structure as Component 1]
+**Key Functions:**
+- `generate_report()` - Creates detailed markdown report with issues and statistics
 
 ## Data Models
 
-### Model: ExampleModel
-
-**File:** `src/models/example.py`
+### Reference (dataclass)
 
 ```python
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    """Database model for example data."""
-
-    __tablename__ = 'examples'
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False, unique=True)
-    description = Column(String(500))
-    created_at = Column(DateTime, nullable=False)
+@dataclass
+class Reference:
+    marker: str      # e.g., "A1", "I5"
+    ref_type: str    # "academic" or "industry"
+    number: int
+    full_text: str
+    url: str | None
+    url_status: int | None
+    url_error: str | None
 ```
 
-## API Endpoints
-
-### POST /api/endpoint
-
-**Description:** [What this endpoint does]
-
-**Request:**
-```json
-{
-  "field1": "value",
-  "field2": 123
-}
-```
-
-**Response (200 OK):**
-```json
-{
-  "id": 1,
-  "status": "success",
-  "data": {
-    "result": "value"
-  }
-}
-```
-
-**Response (400 Bad Request):**
-```json
-{
-  "error": "Validation failed",
-  "details": ["field1 is required"]
-}
-```
-
-**Implementation:**
+### Citation (dataclass)
 
 ```python
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
-
-router = APIRouter()
-
-class RequestModel(BaseModel):
-    field1: str
-    field2: int
-
-class ResponseModel(BaseModel):
-    id: int
-    status: str
-    data: dict
-
-@router.post("/api/endpoint", response_model=ResponseModel)
-async def endpoint_handler(request: RequestModel):
-    """Handle endpoint request."""
-    # Implementation
-    pass
+@dataclass
+class Citation:
+    marker: str      # e.g., "A1", "I5"
+    line_number: int
+    context: str     # surrounding text
 ```
 
-### GET /api/endpoint/{id}
+### ValidationResult (dataclass)
 
-**Description:** [What this endpoint does]
+```python
+@dataclass
+class ValidationResult:
+    references: dict[str, Reference]
+    citations: list[Citation]
+    orphaned_citations: list[Citation]
+    unused_references: list[str]
+    broken_urls: list[Reference]
+    accessible_urls: list[Reference]
+    missing_urls: list[Reference]
+```
 
-[Similar structure as POST endpoint]
+## CLI Interface
+
+```bash
+# Parse references only
+python scripts/validate_references.py --parse-only
+
+# Check for orphaned/unused citations
+python scripts/validate_references.py --check-citations
+
+# Validate reference URLs
+python scripts/validate_references.py --check-urls
+
+# Generate validation report
+python scripts/validate_references.py --report
+
+# Run all validations
+python scripts/validate_references.py --all
+
+# JSON output
+python scripts/validate_references.py --all --json
+```
 
 ## Testing Requirements
 
-### Unit Tests
+**File:** `tests/test_validate_references.py`
 
-**File:** `tests/test_example.py`
-
-```python
-import pytest
-from src.module import ExampleClass
-
-def test_example_success():
-    """Test successful operation."""
-    instance = ExampleClass("test", 123)
-    result = instance.method_name("input")
-    assert result["status"] == "success"
-
-def test_example_validation_error():
-    """Test validation error handling."""
-    instance = ExampleClass("test", 123)
-    with pytest.raises(ValueError):
-        instance.method_name("")
-```
-
-### Integration Tests
-
-**File:** `tests/test_integration.py`
-
-```python
-from fastapi.testclient import TestClient
-from src.main import app
-
-client = TestClient(app)
-
-def test_endpoint_integration():
-    """Test API endpoint integration."""
-    response = client.post("/api/endpoint", json={
-        "field1": "value",
-        "field2": 123
-    })
-    assert response.status_code == 200
-    assert response.json()["status"] == "success"
-```
+19 tests covering:
+- Reference parsing (academic and industry)
+- Citation extraction
+- Orphaned/unused detection
+- Report generation
+- Integration with real paper.md
 
 ## Quality Gates
 
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing
-- [ ] Linting clean (ruff check)
-- [ ] Type checking clean (mypy)
-- [ ] API documentation complete
+- [x] Test coverage for all validation functions
+- [x] All 19 tests passing
+- [x] Linting clean (ruff check)
+- [x] Type checking clean (mypy)
+- [x] Python stdlib only (no external dependencies)
 
-## Container Specifications
+## Integration
 
-### Containerfile
-
-```dockerfile
-FROM python:3.11-slim
-
-WORKDIR /app
-
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev
-
-COPY src/ src/
-
-EXPOSE 8000
-
-HEALTHCHECK --interval=30s --timeout=3s \
-  CMD python -c "import requests; requests.get('http://localhost:8000/health')"
-
-CMD ["uv", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
-### podman-compose.yml
-
-```yaml
-version: '3.8'
-
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Containerfile
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./data:/app/data
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-```
-
-## Dependencies
-
-**pyproject.toml additions:**
-
-```toml
-[project]
-dependencies = [
-    "fastapi>=0.104.0",
-    "uvicorn[standard]>=0.24.0",
-    "sqlalchemy>=2.0.0",
-    "pydantic>=2.5.0",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "pytest-asyncio>=0.21.0",
-    "httpx>=0.25.0",
-    "ruff>=0.1.0",
-    "mypy>=1.7.0",
-]
-```
-
-## Implementation Notes
-
-### Key Considerations
-
-- [Important implementation detail]
-- [Potential gotcha or edge case]
-- [Performance consideration]
-
-### Error Handling
-
-- [How to handle specific error type]
-- [Validation strategy]
-- [Retry logic if applicable]
-
-### Security
-
-- [Input validation approach]
-- [Authentication requirements]
-- [Authorization checks]
+Integrated into `validate_documentation.sh` as Test 6:
+- Runs `--check-citations` mode during validation suite
+- Exit code 1 only for orphaned citations (critical)
+- Broken URLs are warnings (many academic sources have paywalls)
 
 ## References
 
-- [Link to external documentation]
-- [Related specifications]
-- [Design patterns used]
+- `planning/reference-validation/requirements.md` - Detailed requirements
+- `planning/reference-validation/architecture.md` - Technical architecture
+- `docs/validation_report.md` - Generated validation report
