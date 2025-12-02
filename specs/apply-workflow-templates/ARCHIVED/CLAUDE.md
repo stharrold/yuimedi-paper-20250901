@@ -1,21 +1,13 @@
 ---
 type: claude-context
 directory: specs/apply-workflow-templates/ARCHIVED
-purpose: Archived specification files for the apply-workflow-templates feature
+purpose: Archived specifications and deprecated files
 parent: ../CLAUDE.md
+sibling_readme: README.md
 children: []
+related_skills: []
 ---
 
-# Claude Code Context: ARCHIVED
+# Claude Code Context: specs/apply-workflow-templates/ARCHIVED
 
-## Purpose
-
-Archived specification files for the apply-workflow-templates feature.
-
-## Contents
-
-*(Currently empty)*
-
-## Related
-
-- **Parent**: [apply-workflow-templates](../CLAUDE.md)
+Archived specifications and deprecated files.

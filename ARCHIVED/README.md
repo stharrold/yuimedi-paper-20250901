@@ -1,15 +1,16 @@
-# Archive Directory
+# ARCHIVED Directory
 
 This directory contains historical project files and backups maintained for reference and audit purposes.
 
 ## 📂 Directory Structure
 
 ```
-archive/
+ARCHIVED/
 ├── backups/          # Archived backup files (manual and automated)
 ├── implementation/   # Historical implementation logs and summaries
 ├── temp/             # Temporary files moved from active areas
-└── todo-history/     # Historical TODO snapshots for progress tracking
+├── todo-history/     # Historical TODO snapshots for progress tracking
+└── TODO/             # Deprecated TODO management files
 ```
 
 ## 🎯 Purpose
@@ -34,22 +35,22 @@ Files use timestamp format: `YYYYMMDDTHHMMSSZ` (ISO 8601)
 
 ```bash
 # Find files from specific date
-ls archive/**/TODO_FOR_AI_20250820*.json
+ls ARCHIVED/**/TODO_FOR_AI_20250820*.json
 
 # Find recent archives (last 30 days)
-find archive/ -type f -mtime -30
+find ARCHIVED/ -type f -mtime -30
 ```
 
 ### By Type
 ```bash
 # TODO history
-ls archive/todo-history/
+ls ARCHIVED/todo-history/
 
 # Implementation logs
-ls archive/implementation/
+ls ARCHIVED/implementation/
 
 # Backups
-ls archive/backups/
+ls ARCHIVED/backups/
 ```
 
 ## 🗃️ Archive Process

@@ -9,6 +9,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, resolve it
 done
 SCRIPT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+REPO_ROOT="$( cd -P "$SCRIPT_DIR/../.." && pwd )"
 
 echo "=== YuiQuery Research Documentation Validation ==="
 echo ""
@@ -53,6 +54,17 @@ echo "Test 5: YAML structure validation"
 "$SCRIPT_DIR/test_yaml_structure.sh"
 if [ $? -ne 0 ]; then
     ((total_errors++))
+fi
+echo ""
+
+# Test 6: Reference validation (citations and URLs)
+echo "Test 6: Reference validation"
+python3 "$REPO_ROOT/scripts/validate_references.py" --check-citations
+if [ $? -ne 0 ]; then
+    ((total_errors++))
+    echo "  ❌ Reference validation failed"
+else
+    echo "  ✅ Reference validation passed"
 fi
 echo ""
 

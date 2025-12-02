@@ -1,41 +1,40 @@
 ---
 type: claude-context
-directory: .claude
-purpose: Claude Code configuration root containing commands, skills, and settings.
+directory: .claude/skills
+purpose: Modular skill implementations (9 skills) for workflow automation.
 parent: ../CLAUDE.md
 sibling_readme: null
 children:
-  - commands/CLAUDE.md
-  - skills/CLAUDE.md
+  - agentdb-state-manager/CLAUDE.md
+  - bmad-planner/CLAUDE.md
+  - git-workflow-manager/CLAUDE.md
+  - initialize-repository/CLAUDE.md
+  - quality-enforcer/CLAUDE.md
+  - speckit-author/CLAUDE.md
+  - tech-stack-adapter/CLAUDE.md
+  - workflow-orchestrator/CLAUDE.md
+  - workflow-utilities/CLAUDE.md
 ---
 
-# Claude Code Context: .claude
+# Claude Code Context: skills
 
 ## Purpose
 
-Claude Code configuration root containing commands, skills, and settings.
-
-## Source Status
-
-**This directory (`.claude/`) is the PRIMARY source for AI configuration.**
-
-Changes made here sync to:
-- `.agents/` (skills only)
-- `AGENTS.md` (from root CLAUDE.md)
-- `.github/copilot-instructions.md` (from root CLAUDE.md)
-
-Claude-specific content (NOT synced):
-- `commands/` - Claude Code slash commands
-- `settings.local.json` - Local settings
+Modular skill implementations (9 skills) for workflow automation.
 
 ## Contents
 
-- `commands/` - Subdirectory
-- `skills/` - Subdirectory
-- `settings.local.json` - Configuration
+- `UPDATE_CHECKLIST.md` - Documentation
+- `agentdb-state-manager/` - Subdirectory
+- `bmad-planner/` - Subdirectory
+- `git-workflow-manager/` - Subdirectory
+- `initialize-repository/` - Subdirectory
+- `__init__.py` - Python script
+- *...and 1 more items*
 
 ## Related
 
-- **Parent**: [stharrold-templates](../CLAUDE.md)
-- **commands**: [commands/CLAUDE.md](commands/CLAUDE.md)
-- **skills**: [skills/CLAUDE.md](skills/CLAUDE.md)
+- **Parent**: [.claude](../CLAUDE.md)
+- **agentdb-state-manager**: [agentdb-state-manager/CLAUDE.md](agentdb-state-manager/CLAUDE.md)
+- **bmad-planner**: [bmad-planner/CLAUDE.md](bmad-planner/CLAUDE.md)
+- **git-workflow-manager**: [git-workflow-manager/CLAUDE.md](git-workflow-manager/CLAUDE.md)

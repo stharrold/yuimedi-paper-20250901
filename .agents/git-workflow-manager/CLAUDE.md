@@ -90,11 +90,35 @@ python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
 **What it does:**
 1. Validates workflow type (feature/release/hotfix) and slug format
 2. Generates timestamp in compact ISO8601 format (YYYYMMDDTHHMMSSZ)
-3. Creates branch: `<type>/<timestamp>_<slug>` or `release/<version>`
-4. Creates worktree directory: `../german_<type>_<slug>/`
-5. Creates TODO file: `TODO_<type>_<timestamp>_<slug>.md` in **main repo**
-6. Initializes TODO with YAML frontmatter and basic structure
+3. **For feature worktrees only:** Verifies planning documents are committed and pushed
+4. Creates branch: `<type>/<timestamp>_<slug>` or `release/<version>`
+5. Creates worktree directory: `../{repo}_<type>_<timestamp>_<slug>/`
+6. Initializes `.claude-state/` directory for worktree state isolation
 7. Prints worktree path and instructions
+
+**Planning Document Verification (Feature Only):**
+
+For feature worktrees, `create_worktree.py` verifies that planning documents are committed and pushed before allowing worktree creation:
+
+1. **Planning directory exists:** `planning/{slug}/` must exist
+2. **No uncommitted changes:** Planning directory must be clean (`git status --porcelain`)
+3. **Branch is pushed:** Local branch must not be ahead of remote
+
+If verification fails, the script provides clear error messages with resolution commands:
+```
+Planning directory not found: planning/my-feature/
+
+Resolution: Run /1_specify to create planning documents first.
+```
+
+```
+Uncommitted changes detected in planning/my-feature/
+
+Resolution: Commit and push planning documents first:
+  git add planning/my-feature/
+  git commit -m 'docs(planning): add planning for my-feature'
+  git push
+```
 
 **Key features:**
 - Timestamp format avoids shell escaping issues (no colons/hyphens)

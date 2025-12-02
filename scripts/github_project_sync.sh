@@ -22,7 +22,7 @@ PRIORITY_FIELD="PVTSSF_lAHOAD8Xp84BCJ9Kzg0cw28"
 
 echo "🎯 GitHub Projects Integration Script"
 echo "Project: ${PROJECT_URL}"
-echo "Based on TMP validation methodology from archive/TMP-yuiquery-update-sept2025_20250903T075200Z.md"
+echo "Based on TMP validation methodology from ARCHIVED/TMP-yuiquery-update-sept2025_20250903T075200Z.md"
 echo ""
 
 # Function to add GitHub Issue to project

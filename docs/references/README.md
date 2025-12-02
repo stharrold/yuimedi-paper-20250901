@@ -91,7 +91,7 @@ Examples:
 
 ### Version Control
 - **Track versions**: Use dated filenames for version clarity
-- **Archive old versions**: Move superseded documents to `archive/`
+- **Archive old versions**: Move superseded documents to `ARCHIVED/`
 - **Update references**: When new versions available, update citations
 - **Note changes**: Document significant updates in this README
 
@@ -153,7 +153,7 @@ When citing references from this directory in `paper.md`:
 
 - [Main Research Paper](../../paper.md) - Citations and references
 - [Documentation Directory](../README.md) - Paper organization
-- [Archive](../../archive/README.md) - Historical references
+- [Archive](../../ARCHIVED/README.md) - Historical references
 
 ---
 

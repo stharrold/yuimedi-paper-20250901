@@ -10,7 +10,7 @@ This release focuses on **repository organization**, **documentation structure**
 ## ✨ Major Features
 
 ### Repository Organization & Documentation
-- **Comprehensive directory documentation**: Added README.md files to all major directories (src/, docs/, compliance/, config/, archive/, project-management/, tools/validation/, docs/references/)
+- **Comprehensive directory documentation**: Added README.md files to all major directories (src/, docs/, compliance/, config/, ARCHIVED/, project-management/, tools/validation/, docs/references/)
 - **Updated repository structure**: Reorganized validation scripts to tools/validation/ with backward-compatible symlinks
 - **Enhanced CLAUDE.md**: Added architectural insights, sync flow details, directory README pattern documentation
 - **Fixed outdated references**: Corrected README.md to reference actual files (paper.md, not whitepaper.md)
@@ -94,7 +94,7 @@ None. All changes are backward compatible:
 2. `docs/README.md` - Paper versions, submissions, references
 3. `compliance/README.md` - IRB, HIPAA, regulatory docs
 4. `config/README.md` - Database config, security requirements
-5. `archive/README.md` - Retention policy, file recovery
+5. `ARCHIVED/README.md` - Retention policy, file recovery
 6. `project-management/README.md` - PM methodology, artifacts
 7. `tools/validation/README.md` - Validation tests, integration
 8. `docs/references/README.md` - Citation tracking
