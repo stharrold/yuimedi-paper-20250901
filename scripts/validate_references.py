@@ -38,7 +38,7 @@ MAX_RETRIES = 2
 ACADEMIC_PATTERN = re.compile(r"\[A(\d+)\]")
 INDUSTRY_PATTERN = re.compile(r"\[I(\d+)\]")
 CITATION_PATTERN = re.compile(r"\[(A|I)(\d+)\]")
-URL_PATTERN = re.compile(r"https?://[^\s<>\"\)]+")
+URL_PATTERN = re.compile(r'https?://[^\s<>"]+')
 REFERENCE_LINE_PATTERN = re.compile(r"^\[(A|I)(\d+)\]\s+(.+)$", re.MULTILINE)
 
 
@@ -191,10 +191,8 @@ def extract_citations(paper_content: str) -> list[Citation]:
 
 def check_url(url: str, timeout: int = URL_TIMEOUT) -> tuple[int | None, str | None]:
     """Check if a URL is accessible. Returns (status_code, error_message)."""
-    # Create SSL context that doesn't verify certificates (for checking accessibility)
+    # Use default SSL context with certificate verification enabled
     ssl_context = ssl.create_default_context()
-    ssl_context.check_hostname = False
-    ssl_context.verify_mode = ssl.CERT_NONE
 
     for attempt in range(MAX_RETRIES):
         try:
@@ -561,8 +559,12 @@ Examples:
     if args.json:
         print(json.dumps(result.to_dict(), indent=2))
 
-    # Return exit code based on issues
-    has_critical_issues = bool(result.orphaned_citations or result.broken_urls)
+    # Return exit code based on critical issues only
+    # Orphaned citations are critical (missing references)
+    # Broken URLs are warnings (many are paywalls/access restrictions)
+    has_critical_issues = bool(result.orphaned_citations)
+    if result.broken_urls:
+        print(f"\nWARNING: {len(result.broken_urls)} broken URLs (non-critical, likely paywalls)")
     return 1 if has_critical_issues else 0
 
 

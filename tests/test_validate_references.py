@@ -27,6 +27,13 @@ from validate_references import (  # noqa: E402
     parse_references,
 )
 
+
+@pytest.fixture
+def repo_root() -> Path:
+    """Return the repository root directory."""
+    return Path(__file__).parent.parent
+
+
 # Sample paper content for testing
 SAMPLE_PAPER_CONTENT = """# Sample Paper
 
