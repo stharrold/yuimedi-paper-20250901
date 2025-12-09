@@ -23,18 +23,26 @@ def generate_mock_papers(count: int, abstract_length: int = 500) -> list[Paper]:
 
     # Sample abstracts with healthcare/ML keywords
     abstract_templates = [
-        "Machine learning models improve clinical outcomes in healthcare settings. "
-        "Deep neural networks analyze patient data to predict disease progression. "
-        "Healthcare analytics enable better decision making for medical professionals. ",
-        "Natural language processing extracts information from electronic health records. "
-        "Clinical decision support systems assist physicians in diagnosis. "
-        "Healthcare informatics transforms patient care through data analysis. ",
-        "Predictive analytics identify high-risk patients requiring intervention. "
-        "Medical imaging benefits from deep learning classification algorithms. "
-        "Healthcare delivery improves with artificial intelligence applications. ",
-        "Patient outcomes improve through evidence-based machine learning models. "
-        "Clinical workflows optimize using healthcare analytics platforms. "
-        "Medical research advances with computational analysis methods. ",
+        (
+            "Machine learning models improve clinical outcomes in healthcare settings. "
+            "Deep neural networks analyze patient data to predict disease progression. "
+            "Healthcare analytics enable better decision making for medical professionals. "
+        ),
+        (
+            "Natural language processing extracts information from electronic health records. "
+            "Clinical decision support systems assist physicians in diagnosis. "
+            "Healthcare informatics transforms patient care through data analysis. "
+        ),
+        (
+            "Predictive analytics identify high-risk patients requiring intervention. "
+            "Medical imaging benefits from deep learning classification algorithms. "
+            "Healthcare delivery improves with artificial intelligence applications. "
+        ),
+        (
+            "Patient outcomes improve through evidence-based machine learning models. "
+            "Clinical workflows optimize using healthcare analytics platforms. "
+            "Medical research advances with computational analysis methods. "
+        ),
     ]
 
     for i in range(count):

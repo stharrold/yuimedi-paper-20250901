@@ -309,9 +309,11 @@ class TestSearchPerformanceRealistic:
             except TimeoutError:
                 return []
 
-        _result = benchmark(search_with_retry)
+        result = benchmark(search_with_retry)
 
         # Should complete reasonably fast even with one retry
+        # Benchmark captures timing, result used for validation
+        assert isinstance(result, list)
         # ~250ms total (100ms fail + 50ms backoff + 100ms success)
         assert benchmark.stats.mean < 1.0
 
