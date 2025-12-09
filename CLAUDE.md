@@ -46,21 +46,58 @@ uv run mypy scripts/ lit_review/           # Type checking
 # Full quality gates (before PRs)
 python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
 
-# Literature review workflow
-uv run academic-review --help              # CLI for systematic reviews
-uv run academic-review init <review-id>    # Initialize new review
-uv run academic-review search <review-id>  # Execute search stage
-uv run academic-review status <review-id>  # Check review status
+# Literature review CLI (current implementation)
+uv run academic-review init "Review Title" -q "Research question" -i "Inclusion criteria"
+uv run academic-review search "Review Title" -d crossref -k "search,keywords"
+uv run academic-review status "Review Title"  # Show review progress
+uv run academic-review list                    # List all reviews
+uv run academic-review export "Review Title" -f bibtex -o output.bib
+
+# Planned: Full PRISMA workflow with multi-database search, theme analysis,
+# AI synthesis - see planning/academic-literature-review-tool/requirements.md
 
 # Testing
 uv run pytest                              # Run all tests
 uv run pytest tests/lit_review/ -v         # Literature review tests only
 uv run pytest --cov=lit_review             # With coverage
+uv run pytest tests/lit_review/domain/ -v     # Domain layer tests only
+uv run pytest tests/lit_review/ -k "test_search"  # Tests matching pattern
+uv run pytest -m "integration"                # Integration tests only (if defined)
+uv run pytest -m "not slow"                   # Skip slow tests
 
 # Task management
 gh issue list --label "P0"                 # Critical tasks
 gh issue view <number>                     # Task details
 ```
+
+## Workflow System (for feature development)
+
+7-step workflow for implementing new features:
+
+```bash
+# Step 1: Create feature specification and planning documents
+/workflow:1_specify  # Creates planning/ documents and GitHub issue
+
+# Step 2: Design implementation in isolated worktree
+/workflow:2_plan     # Run from feature worktree after creation
+
+# Step 3: Generate task breakdown
+/workflow:3_tasks    # Creates detailed implementation tasks
+
+# Step 4: Execute implementation
+/workflow:4_implement  # Automated task execution with quality gates
+
+# Step 5: Integrate to develop branch
+/workflow:5_integrate  # Create and merge PR to develop
+
+# Step 6: Release to production
+/workflow:6_release    # Create release branch, tag, deploy
+
+# Step 7: Backmerge and cleanup
+/workflow:7_backmerge  # Sync changes back to develop and contrib
+```
+
+**Note:** Workflow skills (`.claude/skills/`) are for major releases and complex git operations, not daily editing tasks.
 
 ## Branch Strategy
 
@@ -88,6 +125,25 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 - Dependencies: pydantic, httpx, click (see pyproject.toml)
 - All dependencies managed via `uv sync`
 
+### Literature Review Package Status
+
+The `lit_review/` package implements Clean Architecture with partial implementation:
+
+**Implemented:**
+- Domain layer: `Paper`, `Review` entities; `DOI`, `Author` value objects
+- Application layer: `SearchPapersUseCase`, `ExportReviewUseCase` with port interfaces
+- Infrastructure: `CrossrefAdapter` for database search, `JSONReviewRepository` for persistence
+- Interfaces: CLI with `academic-review` command (init, search, status, export, list, delete, advance)
+
+**Workflow stages:** `PLANNING → SEARCH → SCREENING → ANALYSIS → SYNTHESIS → COMPLETE`
+
+**In development:** See `planning/academic-literature-review-tool/` for comprehensive expansion plan including:
+- Theme analysis (TF-IDF + clustering)
+- AI-powered synthesis (Claude API)
+- Additional database adapters (PubMed, ArXiv, Semantic Scholar)
+- PRISMA compliance reporting
+- Multiple export formats (DOCX, LaTeX, HTML beyond current BibTeX)
+
 ### Validation System
 `./validate_documentation.sh` runs 6 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure, and reference validation (citations in paper.md).
 
@@ -112,6 +168,15 @@ Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
 
 ### Three-Pillar Framework
 All research connects to: (1) analytics maturity, (2) workforce turnover, (3) technical barriers.
+
+### Data Storage
+
+**Literature reviews:** `~/.lit_review/` (configurable via `LIT_REVIEW_DATA_DIR` environment variable)
+- Reviews stored as JSON files
+- Atomic writes with automatic backups
+- File locking for concurrent access
+
+**Planning documents:** `planning/<feature-slug>/` in repository (committed to version control)
 
 ## Healthcare Domain Context
 
