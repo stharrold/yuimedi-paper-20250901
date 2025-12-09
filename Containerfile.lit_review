@@ -1,0 +1,78 @@
+# Multi-stage Containerfile for Academic Literature Review Tool
+# Optimized for size and security
+
+# Stage 1: Builder - install dependencies and build
+FROM python:3.11-slim-bookworm AS builder
+
+LABEL maintainer="YuiQuery Research Team <research@yuimedi.com>"
+LABEL description="Academic Literature Review Tool for Rigorous Claim Verification"
+
+# Install uv for fast dependency management
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates && \
+    curl -LsSf https://astral.sh/uv/install.sh | sh && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+# Set working directory
+WORKDIR /build
+
+# Copy dependency files first for better caching
+COPY pyproject.toml uv.lock ./
+
+# Install dependencies (frozen for reproducibility)
+RUN uv sync --frozen --no-dev
+
+# Copy application code
+COPY lit_review/ ./lit_review/
+COPY scripts/ ./scripts/
+COPY README.md LICENSE ./
+
+# Stage 2: Runtime - minimal image with only what's needed
+FROM python:3.11-slim-bookworm AS runtime
+
+# Install runtime dependencies only
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    ca-certificates && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create non-root user for security
+RUN useradd -m -u 1000 -s /bin/bash reviewer && \
+    mkdir -p /home/reviewer/data && \
+    chown -R reviewer:reviewer /home/reviewer
+
+# Set working directory
+WORKDIR /home/reviewer/app
+
+# Copy virtual environment from builder
+COPY --from=builder --chown=reviewer:reviewer /build/.venv ./.venv
+COPY --from=builder --chown=reviewer:reviewer /build/lit_review ./lit_review
+COPY --from=builder --chown=reviewer:reviewer /build/scripts ./scripts
+COPY --from=builder --chown=reviewer:reviewer /build/pyproject.toml ./
+COPY --from=builder --chown=reviewer:reviewer /build/README.md ./
+
+# Set environment variables
+ENV PATH="/home/reviewer/app/.venv/bin:${PATH}" \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    REVIEW_DATA_DIR=/home/reviewer/data
+
+# Switch to non-root user
+USER reviewer
+
+# Create data volume mount point
+VOLUME ["/home/reviewer/data"]
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD python -c "import lit_review; print('OK')" || exit 1
+
+# Default command shows help
+ENTRYPOINT ["academic-review"]
+CMD ["--help"]
