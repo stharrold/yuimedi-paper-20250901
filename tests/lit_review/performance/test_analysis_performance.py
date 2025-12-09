@@ -85,9 +85,9 @@ class TestAnalysisPerformanceTarget:
         assert len(result["themes"]) > 0
 
         # Check performance target
-        assert (
-            benchmark.stats.mean < 30.0
-        ), f"Analysis took {benchmark.stats.mean:.2f}s, exceeds 30s target for 500 papers"
+        assert benchmark.stats.mean < 30.0, (
+            f"Analysis took {benchmark.stats.mean:.2f}s, exceeds 30s target for 500 papers"
+        )
 
         print("\n=== 500 PAPERS PERFORMANCE ===")
         print(f"Mean time: {benchmark.stats.mean:.2f}s")
