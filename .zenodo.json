@@ -1,0 +1,47 @@
+{
+    "title": "Academic Literature Review Tool for Rigorous Claim Verification",
+    "description": "A Python-based systematic literature review tool implementing Clean Architecture for rigorous academic claim verification in healthcare research. Supports multi-database search (Crossref, PubMed, ArXiv, Semantic Scholar), automatic deduplication, thematic analysis, AI-powered synthesis, and multiple export formats.",
+    "version": "1.0.0",
+    "upload_type": "software",
+    "publication_date": "2025-12-09",
+    "creators": [
+        {
+            "name": "Harrold, Samuel T.",
+            "affiliation": "YuiQuery Research Team",
+            "orcid": "0000-0000-0000-0000"
+        }
+    ],
+    "contributors": [
+        {"name": "YuiQuery Research Team", "affiliation": "YuiMedi", "type": "ProjectMember"}
+    ],
+    "keywords": [
+        "literature review",
+        "systematic review",
+        "healthcare research",
+        "academic research",
+        "claim verification",
+        "PRISMA",
+        "natural language processing",
+        "thematic analysis",
+        "clean architecture",
+        "test-driven development"
+    ],
+    "license": "MIT",
+    "access_right": "open",
+    "language": "eng",
+    "communities": [{"identifier": "zenodo"}],
+    "related_identifiers": [
+        {
+            "relation": "isSupplementTo",
+            "identifier": "https://github.com/stharrold/yuimedi-paper-20250901",
+            "resource_type": "software"
+        }
+    ],
+    "grants": [],
+    "subjects": [
+        {"term": "Healthcare Analytics", "scheme": "keyword"},
+        {"term": "Systematic Literature Review", "scheme": "keyword"},
+        {"term": "Natural Language Processing", "scheme": "keyword"}
+    ],
+    "notes": "This tool was developed to support rigorous claim verification in the YuiQuery healthcare analytics research paper. It implements Clean Architecture principles with >80% test coverage and follows PRISMA 2020 guidelines for systematic reviews."
+}

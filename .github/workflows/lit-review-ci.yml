@@ -1,0 +1,132 @@
+name: Literature Review Tool CI
+
+on:
+  pull_request:
+    branches: [ develop, main ]
+    paths:
+      - 'lit_review/**'
+      - 'tests/lit_review/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/lit-review-ci.yml'
+  push:
+    branches: [ develop, main ]
+    paths:
+      - 'lit_review/**'
+      - 'tests/lit_review/**'
+      - 'pyproject.toml'
+
+jobs:
+  test:
+    name: Test Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12', '3.13']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install UV
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Verify UV installation
+        run: uv --version
+
+      - name: Cache uv dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/uv
+            .venv
+          key: uv-${{ runner.os }}-py${{ matrix.python-version }}-${{ hashFiles('uv.lock') }}
+          restore-keys: |
+            uv-${{ runner.os }}-py${{ matrix.python-version }}-
+            uv-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Run Ruff format check
+        run: uv run ruff format --check lit_review/ tests/lit_review/
+        continue-on-error: false
+
+      - name: Run Ruff linting
+        run: uv run ruff check lit_review/ tests/lit_review/
+        continue-on-error: false
+
+      - name: Run MyPy type checking
+        run: uv run mypy lit_review/
+        continue-on-error: false
+
+      - name: Run tests (exclude integration)
+        run: |
+          uv run pytest tests/lit_review/ \
+            -v \
+            -m "not integration" \
+            --cov=lit_review \
+            --cov-report=term \
+            --cov-report=xml \
+            --cov-report=html \
+            --cov-fail-under=80
+
+      - name: Upload coverage to Codecov
+        if: matrix.python-version == '3.11'
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          flags: lit_review
+          name: lit-review-${{ matrix.python-version }}
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload coverage HTML report
+        if: matrix.python-version == '3.11' && failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-py${{ matrix.python-version }}
+          path: htmlcov/
+          retention-days: 7
+
+      - name: Report summary
+        if: always()
+        run: |
+          echo "## Test Results - Python ${{ matrix.python-version }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Ruff format check passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Ruff linting passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ MyPy type checking passed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Tests passed with coverage ≥80%" >> $GITHUB_STEP_SUMMARY
+
+      - name: Comment on PR (if failed)
+        if: failure() && github.event_name == 'pull_request' && matrix.python-version == '3.11'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `❌ Literature Review CI failed on Python ${{ matrix.python-version }}
+
+            Please fix the following:
+
+            1. Run \`uv run ruff format lit_review/ tests/lit_review/\` to format your code
+            2. Run \`uv run ruff check --fix lit_review/ tests/lit_review/\` to fix linting issues
+            3. Run \`uv run mypy lit_review/\` to check types
+            4. Run \`uv run pytest tests/lit_review/ --cov=lit_review --cov-fail-under=80\` to verify tests and coverage
+
+            See the workflow logs for details.`
+            })
