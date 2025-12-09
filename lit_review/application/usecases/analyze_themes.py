@@ -10,9 +10,9 @@ from dataclasses import dataclass
 from typing import Any
 
 import numpy as np
-from scipy.cluster.hierarchy import fcluster, linkage  # type: ignore[import-untyped]
-from scipy.spatial.distance import pdist  # type: ignore[import-untyped]
-from sklearn.feature_extraction.text import TfidfVectorizer  # type: ignore[import-untyped]
+from scipy.cluster.hierarchy import fcluster, linkage
+from scipy.spatial.distance import pdist
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 from lit_review.application.ports.ai_analyzer import ThemeHierarchy
 from lit_review.domain.entities.paper import Paper
