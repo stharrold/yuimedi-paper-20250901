@@ -109,9 +109,9 @@ class TestSearchPerformanceThroughput:
         papers_per_minute = papers_per_second * 60
 
         # Should achieve at least 500 papers/minute with single service
-        assert papers_per_minute >= 500, (
-            f"Throughput too low: {papers_per_minute:.0f} papers/min " f"(target: 500+ papers/min)"
-        )
+        assert (
+            papers_per_minute >= 500
+        ), f"Throughput too low: {papers_per_minute:.0f} papers/min (target: 500+ papers/min)"
 
     def test_multiple_services_parallel_throughput(self, benchmark):
         """Test throughput with multiple services running in parallel.
