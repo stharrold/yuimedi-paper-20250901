@@ -160,6 +160,14 @@ module = [
 ]
 disable_error_code = ["arg-type", "attr-defined", "index", "no-any-return"]
 
+# Scientific libraries without type stubs
+[[tool.mypy.overrides]]
+module = [
+    "scipy.*",
+    "sklearn.*",
+]
+ignore_missing_imports = true
+
 [tool.hatch.metadata]
 allow-direct-references = true
 
