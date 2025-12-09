@@ -73,6 +73,35 @@ gh issue list --label "P0"                 # Critical tasks
 gh issue view <number>                     # Task details
 ```
 
+## Workflow System (for feature development)
+
+7-step workflow for implementing new features:
+
+```bash
+# Step 1: Create feature specification and planning documents
+/workflow:1_specify  # Creates planning/ documents and GitHub issue
+
+# Step 2: Design implementation in isolated worktree
+/workflow:2_plan     # Run from feature worktree after creation
+
+# Step 3: Generate task breakdown
+/workflow:3_tasks    # Creates detailed implementation tasks
+
+# Step 4: Execute implementation
+/workflow:4_implement  # Automated task execution with quality gates
+
+# Step 5: Integrate to develop branch
+/workflow:5_integrate  # Create and merge PR to develop
+
+# Step 6: Release to production
+/workflow:6_release    # Create release branch, tag, deploy
+
+# Step 7: Backmerge and cleanup
+/workflow:7_backmerge  # Sync changes back to develop and contrib
+```
+
+**Note:** Workflow skills (`.claude/skills/`) are for major releases and complex git operations, not daily editing tasks.
+
 ## Branch Strategy
 
 ```
@@ -144,6 +173,16 @@ Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
 
 ### Three-Pillar Framework
 All research connects to: (1) analytics maturity, (2) workforce turnover, (3) technical barriers.
+
+### Data Storage
+
+**Literature reviews:** `~/.lit_review/` (configurable via `LIT_REVIEW_DATA_DIR` environment variable)
+- Reviews stored as JSON files with atomic writes
+- Automatic backups in `.backups/` (keeps last 5 versions)
+- File locking for concurrent access
+- Soft deletes move to `.deleted/` directory
+
+**Planning documents:** `planning/<feature-slug>/` in repository (committed to version control)
 
 ## Healthcare Domain Context
 
