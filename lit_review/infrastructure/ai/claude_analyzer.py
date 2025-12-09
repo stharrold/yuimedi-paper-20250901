@@ -67,7 +67,7 @@ class ClaudeAnalyzer(AIAnalyzer):
         self._client = None
         if self.use_api:
             try:
-                from anthropic import Anthropic
+                from anthropic import Anthropic  # type: ignore[import-not-found]
 
                 self._client = Anthropic(api_key=self.api_key)
             except ImportError:
@@ -229,7 +229,7 @@ Return JSON with this structure:
         cache_key = self._get_cache_key("synthesis", papers, research_question)
         cached = self._load_from_cache(cache_key)
         if cached:
-            return cached
+            return str(cached)
 
         papers_text = self._papers_to_text(papers)
         themes_text = json.dumps(themes.themes, indent=2)
@@ -261,7 +261,7 @@ Generate a markdown-formatted synthesis that:
             messages=[{"role": "user", "content": prompt}],
         )
 
-        synthesis = response.content[0].text
+        synthesis: str = str(response.content[0].text)
 
         # Cache result
         self._save_to_cache(cache_key, synthesis)

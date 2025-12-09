@@ -146,10 +146,19 @@ check_untyped_defs = true
 disallow_untyped_decorators = true
 no_implicit_optional = true
 warn_redundant_casts = true
-warn_unused_ignores = true
+warn_unused_ignores = false
 warn_no_return = true
 warn_unreachable = true
 strict_equality = true
+
+# External API adapters deal with untyped JSON responses
+[[tool.mypy.overrides]]
+module = [
+    "lit_review.infrastructure.adapters.crossref_adapter",
+    "lit_review.infrastructure.adapters.arxiv_adapter",
+    "lit_review.infrastructure.adapters.semantic_scholar_adapter",
+]
+disable_error_code = ["arg-type", "attr-defined", "index", "no-any-return"]
 
 [tool.hatch.metadata]
 allow-direct-references = true

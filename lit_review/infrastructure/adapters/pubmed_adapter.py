@@ -64,9 +64,9 @@ class PubMedAdapter(SearchService):
         self._last_request_time = 0.0
 
         # Configure Entrez
-        Entrez.email = self.email
+        Entrez.email = self.email  # type: ignore[assignment]
         if self.api_key:
-            Entrez.api_key = self.api_key
+            Entrez.api_key = self.api_key  # type: ignore[assignment]
 
     def _rate_limit_sleep(self) -> None:
         """Sleep to respect rate limits."""
