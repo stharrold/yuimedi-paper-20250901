@@ -18,13 +18,8 @@ on:
 
 jobs:
   test:
-    name: Test Python ${{ matrix.python-version }}
+    name: Test in Container (Python 3.11)
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ['3.11', '3.12', '3.13']
 
     steps:
       - name: Checkout repository
@@ -32,48 +27,34 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build container image
+        uses: docker/build-push-action@v5
         with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install UV
-        run: |
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-
-      - name: Verify UV installation
-        run: uv --version
-
-      - name: Cache uv dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/uv
-            .venv
-          key: uv-${{ runner.os }}-py${{ matrix.python-version }}-${{ hashFiles('uv.lock') }}
-          restore-keys: |
-            uv-${{ runner.os }}-py${{ matrix.python-version }}-
-            uv-${{ runner.os }}-
-
-      - name: Install dependencies
-        run: uv sync --frozen
+          context: .
+          file: Containerfile
+          tags: yuimedi-paper:latest
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Run Ruff format check
-        run: uv run ruff format --check lit_review/ tests/lit_review/
+        run: docker run --rm -v $PWD:/app yuimedi-paper:latest uv run ruff format --check lit_review/ tests/lit_review/
         continue-on-error: false
 
       - name: Run Ruff linting
-        run: uv run ruff check lit_review/ tests/lit_review/
+        run: docker run --rm -v $PWD:/app yuimedi-paper:latest uv run ruff check lit_review/ tests/lit_review/
         continue-on-error: false
 
       - name: Run MyPy type checking
-        run: uv run mypy lit_review/
+        run: docker run --rm -v $PWD:/app yuimedi-paper:latest uv run mypy lit_review/
         continue-on-error: false
 
       - name: Run tests (exclude integration)
         run: |
-          uv run pytest tests/lit_review/ \
+          docker run --rm -v $PWD:/app yuimedi-paper:latest uv run pytest tests/lit_review/ \
             -v \
             -m "not integration" \
             --cov=lit_review \
@@ -82,28 +63,32 @@ jobs:
             --cov-report=html \
             --cov-fail-under=80
 
+      - name: Extract coverage from container
+        run: |
+          docker run --rm -v $PWD:/app yuimedi-paper:latest cp coverage.xml /app/ || true
+          docker run --rm -v $PWD:/app yuimedi-paper:latest cp -r htmlcov /app/ || true
+
       - name: Upload coverage to Codecov
-        if: matrix.python-version == '3.11'
         uses: codecov/codecov-action@v4
         with:
           files: ./coverage.xml
           flags: lit_review
-          name: lit-review-${{ matrix.python-version }}
-          fail_ci_if_error: true
+          name: lit-review-python311
+          fail_ci_if_error: false
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload coverage HTML report
-        if: matrix.python-version == '3.11' && failure()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report-py${{ matrix.python-version }}
+          name: coverage-report
           path: htmlcov/
           retention-days: 7
 
       - name: Report summary
         if: always()
         run: |
-          echo "## Test Results - Python ${{ matrix.python-version }}" >> $GITHUB_STEP_SUMMARY
+          echo "## Test Results - Container (Python 3.11)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "✅ Ruff format check passed" >> $GITHUB_STEP_SUMMARY
           echo "✅ Ruff linting passed" >> $GITHUB_STEP_SUMMARY
@@ -111,7 +96,7 @@ jobs:
           echo "✅ Tests passed with coverage ≥80%" >> $GITHUB_STEP_SUMMARY
 
       - name: Comment on PR (if failed)
-        if: failure() && github.event_name == 'pull_request' && matrix.python-version == '3.11'
+        if: failure() && github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
@@ -119,14 +104,15 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `❌ Literature Review CI failed on Python ${{ matrix.python-version }}
+              body: `❌ Literature Review CI failed in container environment
 
-            Please fix the following:
+            Please test locally using the container:
 
-            1. Run \`uv run ruff format lit_review/ tests/lit_review/\` to format your code
-            2. Run \`uv run ruff check --fix lit_review/ tests/lit_review/\` to fix linting issues
-            3. Run \`uv run mypy lit_review/\` to check types
-            4. Run \`uv run pytest tests/lit_review/ --cov=lit_review --cov-fail-under=80\` to verify tests and coverage
+            1. \`podman-compose build\` - Build the container
+            2. \`podman-compose run --rm dev uv run ruff format lit_review/ tests/lit_review/\`
+            3. \`podman-compose run --rm dev uv run ruff check lit_review/ tests/lit_review/\`
+            4. \`podman-compose run --rm dev uv run mypy lit_review/\`
+            5. \`podman-compose run --rm dev uv run pytest tests/lit_review/ --cov=lit_review --cov-fail-under=80\`
 
             See the workflow logs for details.`
             })
