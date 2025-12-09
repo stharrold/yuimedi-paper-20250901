@@ -74,7 +74,7 @@ class AnalyzeThemesUseCase:
         theme_clusters = self._cluster_keywords(cooccurrence, keywords, max_themes)
 
         # Calculate theme relationships
-        relationships = self._calculate_theme_relationships(theme_clusters, cooccurrence)
+        relationships = self._calculate_theme_relationships(theme_clusters, cooccurrence, keywords)
 
         # Generate summary
         summary = self._generate_summary(theme_clusters, len(papers_with_abstracts))
@@ -213,18 +213,23 @@ class AnalyzeThemesUseCase:
         self,
         theme_clusters: dict[str, list[str]],
         cooccurrence: np.ndarray[Any, Any],
+        keywords: list[str],
     ) -> dict[str, dict[str, float]]:
         """Calculate relationships between themes.
 
         Args:
             theme_clusters: Dictionary mapping theme names to keywords.
             cooccurrence: Co-occurrence matrix.
+            keywords: Original keyword list from TF-IDF (preserves matrix ordering).
 
         Returns:
             Dictionary mapping theme names to related themes with similarity scores.
         """
         theme_names = list(theme_clusters.keys())
         relationships: dict[str, dict[str, float]] = {}
+
+        # Build keyword to index mapping (preserves cooccurrence matrix ordering)
+        keyword_to_index = {kw: i for i, kw in enumerate(keywords)}
 
         # Calculate cross-theme similarity
         for i, theme1 in enumerate(theme_names):
@@ -235,15 +240,10 @@ class AnalyzeThemesUseCase:
                     keywords1 = theme_clusters[theme1]
                     keywords2 = theme_clusters[theme2]
 
-                    # Get all keywords for indexing
-                    all_keywords = []
-                    for keywords in theme_clusters.values():
-                        all_keywords.extend(keywords)
-                    all_keywords = list(set(all_keywords))
-
                     try:
-                        indices1 = [all_keywords.index(kw) for kw in keywords1]
-                        indices2 = [all_keywords.index(kw) for kw in keywords2]
+                        # Get correct indices from keyword mapping
+                        indices1 = [keyword_to_index[kw] for kw in keywords1]
+                        indices2 = [keyword_to_index[kw] for kw in keywords2]
 
                         # Average co-occurrence
                         similarities = [
@@ -256,7 +256,7 @@ class AnalyzeThemesUseCase:
 
                         if avg_similarity > 0.1:  # Only include significant relationships
                             relationships[theme1][theme2] = avg_similarity
-                    except (ValueError, IndexError):
+                    except (KeyError, IndexError):
                         # Keywords not found in co-occurrence matrix
                         continue
 
