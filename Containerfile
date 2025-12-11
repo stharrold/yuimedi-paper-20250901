@@ -16,6 +16,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Install PDF generation dependencies (pandoc + texlive)
+# Note: This adds ~450MB to the image size
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    pandoc \
+    texlive-xetex \
+    texlive-latex-extra \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    lmodern \
+    fonts-dejavu \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Eisvogel template for academic PDF formatting
+RUN mkdir -p /root/.local/share/pandoc/templates && \
+    curl -sL https://github.com/Wandmalfarbe/pandoc-latex-template/releases/latest/download/Eisvogel.tar.gz | \
+    tar xz -C /root/.local/share/pandoc/templates --strip-components=1
+
 # Install uv
 ENV UV_VERSION=0.5.5
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
