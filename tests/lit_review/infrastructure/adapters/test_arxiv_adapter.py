@@ -46,8 +46,9 @@ def mock_arxiv_atom() -> bytes:
     return atom.encode("utf-8")
 
 
+@pytest.mark.integration
 class TestArxivAdapter:
-    """Tests for ArxivAdapter."""
+    """Tests for ArxivAdapter (integration - mocked HTTP)."""
 
     def test_get_service_name(self) -> None:
         """get_service_name returns 'ArXiv'."""
@@ -328,8 +329,9 @@ class TestArxivAdapter:
         assert mock_sleep.call_count == 1
 
 
+@pytest.mark.integration
 class TestArxivAdapterParsing:
-    """Tests for ArXiv ATOM parsing."""
+    """Tests for ArXiv ATOM parsing (integration - DOI validation)."""
 
     def test_parse_atom_with_valid_data(self, mock_arxiv_atom: bytes) -> None:
         """_parse_atom correctly parses valid ATOM."""

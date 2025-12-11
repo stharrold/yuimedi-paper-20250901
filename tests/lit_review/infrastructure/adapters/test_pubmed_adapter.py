@@ -93,8 +93,9 @@ def mock_pubmed_xml_no_doi() -> bytes:
     return xml.encode("utf-8")
 
 
+@pytest.mark.integration
 class TestPubMedAdapter:
-    """Tests for PubMedAdapter."""
+    """Tests for PubMedAdapter (integration - mocked HTTP)."""
 
     def test_init_requires_email(self) -> None:
         """__init__ raises ValueError if no email provided."""

@@ -52,8 +52,9 @@ def sample_paper() -> Paper:
     )
 
 
+@pytest.mark.integration
 class TestJSONReviewRepository:
-    """Tests for JSONReviewRepository."""
+    """Tests for JSONReviewRepository (integration - filesystem I/O)."""
 
     def test_save_creates_file(
         self, repository: JSONReviewRepository, sample_review: Review
@@ -281,8 +282,9 @@ class TestJSONReviewRepositoryPaperSerialization:
         assert loaded_paper.authors[0].orcid == "0000-0001-2345-6789"
 
 
+@pytest.mark.integration
 class TestJSONReviewRepositoryBackupRecovery:
-    """Tests for backup and recovery functionality."""
+    """Tests for backup and recovery functionality (integration - filesystem timing)."""
 
     def test_recover_from_backup_most_recent(
         self, repository: JSONReviewRepository, sample_review: Review

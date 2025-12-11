@@ -36,8 +36,9 @@ def mock_crossref_response() -> dict:
     }
 
 
+@pytest.mark.integration
 class TestCrossrefAdapter:
-    """Tests for CrossrefAdapter."""
+    """Tests for CrossrefAdapter (integration - mocked HTTP)."""
 
     def test_get_service_name(self) -> None:
         """get_service_name returns 'Crossref'."""

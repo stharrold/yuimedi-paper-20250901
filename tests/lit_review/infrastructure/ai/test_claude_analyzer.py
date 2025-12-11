@@ -53,8 +53,9 @@ def temp_cache_dir() -> Path:
         yield Path(tmpdir)
 
 
+@pytest.mark.integration
 class TestClaudeAnalyzerInit:
-    """Tests for ClaudeAnalyzer initialization."""
+    """Tests for ClaudeAnalyzer initialization (integration - optional dependencies)."""
 
     def test_init_without_api_key_uses_fallback(self, temp_cache_dir: Path) -> None:
         """__init__ sets use_api=False when no API key provided."""

@@ -47,8 +47,9 @@ def mock_s2_response() -> dict:
     }
 
 
+@pytest.mark.integration
 class TestSemanticScholarAdapter:
-    """Tests for SemanticScholarAdapter."""
+    """Tests for SemanticScholarAdapter (integration - mocked HTTP)."""
 
     def test_get_service_name(self) -> None:
         """get_service_name returns 'Semantic Scholar'."""
@@ -362,8 +363,9 @@ class TestSemanticScholarAdapter:
         assert mock_sleep.call_count == 1
 
 
+@pytest.mark.integration
 class TestSemanticScholarAdapterParsing:
-    """Tests for Semantic Scholar response parsing."""
+    """Tests for Semantic Scholar response parsing (integration - DOI validation)."""
 
     def test_parse_response_with_valid_data(self, mock_s2_response: dict) -> None:
         """_parse_response correctly parses valid response."""
