@@ -3,368 +3,461 @@
 **Type:** feature
 **Slug:** workflow-test-coverage
 **Date:** 2025-12-11
+**GitHub Issue:** #241
 
+## Overview
 
-<!-- Note: Customize task breakdown based on specific feature requirements -->
-<!-- This template provides the structure. Claude Code will populate with actual tasks. -->
+Improve test coverage for workflow skills from ~0% to 80%. Focus on unit tests with mocks for core utilities and integration tests for critical workflows.
 
 ## Task Breakdown
 
-### Phase 1: Foundation
+### Phase 1: Test Infrastructure Setup
 
-#### Task impl_001: [Task Name]
+#### Task T001: Create test fixtures and conftest.py
 
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file1.py`
-- `src/path/file2.py`
-- `tests/test_file.py`
-
-**Description:**
-[Detailed description of what needs to be implemented]
-
-**Steps:**
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
-
-**Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
-
-**Verification:**
-```bash
-# Commands to verify implementation
-uv run python -c "from src.module import Class; print('OK')"
-uv run pytest tests/test_file.py -v
-```
-
-**Dependencies:**
-- None (or list other task IDs)
-
----
-
-#### Task impl_002: [Task Name]
-
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file3.py`
-
-**Description:**
-[Detailed description]
-
-**Steps:**
-1. [Step 1]
-2. [Step 2]
-
-**Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-
-**Verification:**
-```bash
-uv run pytest tests/test_file3.py
-```
-
-**Dependencies:**
-- impl_001 (must complete first)
-
----
-
-### Phase 2: Core Implementation
-
-#### Task impl_003: [Task Name]
-
-**Estimated Time:** [Duration]
 **Priority:** High
+**Estimated Time:** 1-2 hours
 
 **Files:**
-- `src/core/module.py`
-- `tests/test_module.py`
+- `tests/skills/conftest.py`
 
 **Description:**
-[Core business logic implementation]
+Set up pytest fixtures for mocking git commands, subprocess calls, and file system operations used by workflow skills.
 
 **Steps:**
-1. Create module structure
-2. Implement core functionality
-3. Add error handling
-4. Write comprehensive tests
+1. Create `tests/skills/conftest.py` with fixtures
+2. Add fixture for mocking `subprocess.run`
+3. Add fixture for temporary git repositories
+4. Add fixture for mocking DuckDB connections
+5. Add fixture for temporary file system paths
 
 **Acceptance Criteria:**
-- [ ] All business logic implemented
+- [ ] conftest.py created with reusable fixtures
+- [ ] Git mock fixture works for simulating git commands
+- [ ] Subprocess mock fixture captures command calls
+- [ ] Temp directory fixture cleans up after tests
+
+**Verification:**
+```bash
+uv run pytest tests/skills/conftest.py --collect-only
+```
+
+**Dependencies:** None
+
+---
+
+### Phase 2: VCS Adapter Unit Tests (FR-001)
+
+#### Task T002: Unit tests for VCS provider detection
+
+**Priority:** High
+**Estimated Time:** 1-2 hours
+
+**Files:**
+- `tests/skills/test_vcs_provider.py`
+- `.claude/skills/workflow-utilities/scripts/vcs/provider.py`
+
+**Description:**
+Test VCS provider detection from git remote URLs.
+
+**Steps:**
+1. Create test file `tests/skills/test_vcs_provider.py`
+2. Test GitHub URL detection (https, ssh, git@ formats)
+3. Test Azure DevOps URL detection
+4. Test unknown provider handling
+5. Test edge cases (no remote, invalid URLs)
+
+**Acceptance Criteria:**
+- [ ] GitHub URL patterns tested (3+ formats)
+- [ ] Azure DevOps URL patterns tested
+- [ ] Unknown provider returns appropriate result
+- [ ] Error cases handled gracefully
+
+**Verification:**
+```bash
+uv run pytest tests/skills/test_vcs_provider.py -v
+```
+
+**Dependencies:** T001
+
+---
+
+#### Task T003: Unit tests for GitHub adapter
+
+**Priority:** High
+**Estimated Time:** 2-3 hours
+
+**Files:**
+- `tests/skills/test_github_adapter.py`
+- `.claude/skills/workflow-utilities/scripts/vcs/github_adapter.py`
+
+**Description:**
+Test GitHub CLI adapter methods with mocked `gh` command responses.
+
+**Steps:**
+1. Create test file `tests/skills/test_github_adapter.py`
+2. Mock `subprocess.run` for `gh` commands
+3. Test `create_pr()` with various inputs
+4. Test `get_pr_status()` method
+5. Test error handling (auth failure, rate limits, network errors)
+
+**Acceptance Criteria:**
+- [ ] create_pr() tested with valid inputs
+- [ ] create_pr() handles missing gh CLI gracefully
+- [ ] Error responses parsed correctly
+- [ ] ≥80% coverage for github_adapter.py
+
+**Verification:**
+```bash
+uv run pytest tests/skills/test_github_adapter.py -v --cov=.claude/skills/workflow-utilities/scripts/vcs/github_adapter
+```
+
+**Dependencies:** T001, T002
+
+---
+
+#### Task T004: Unit tests for Azure DevOps adapter
+
+**Priority:** Medium
+**Estimated Time:** 2-3 hours
+
+**Files:**
+- `tests/skills/test_azure_adapter.py`
+- `.claude/skills/workflow-utilities/scripts/vcs/azure_adapter.py`
+
+**Description:**
+Test Azure DevOps CLI adapter methods with mocked `az` command responses.
+
+**Steps:**
+1. Create test file `tests/skills/test_azure_adapter.py`
+2. Mock `subprocess.run` for `az` commands
+3. Test `create_pr()` with various inputs
+4. Test error handling (auth failure, project not found)
+
+**Acceptance Criteria:**
+- [ ] create_pr() tested with valid inputs
+- [ ] create_pr() handles missing az CLI gracefully
+- [ ] Error responses parsed correctly
+- [ ] ≥80% coverage for azure_adapter.py
+
+**Verification:**
+```bash
+uv run pytest tests/skills/test_azure_adapter.py -v --cov=.claude/skills/workflow-utilities/scripts/vcs/azure_adapter
+```
+
+**Dependencies:** T001, T002
+
+---
+
+### Phase 3: Release Workflow Unit Tests (FR-002)
+
+#### Task T005: Unit tests for semantic version calculation
+
+**Priority:** High
+**Estimated Time:** 1-2 hours
+
+**Files:**
+- `tests/skills/test_semantic_version.py`
+- `.claude/skills/git-workflow-manager/scripts/semantic_version.py`
+
+**Description:**
+Test version calculation logic (major, minor, patch increments).
+
+**Steps:**
+1. Create test file `tests/skills/test_semantic_version.py`
+2. Test `calculate_next_version()` for major bumps
+3. Test `calculate_next_version()` for minor bumps
+4. Test `calculate_next_version()` for patch bumps
+5. Test edge cases (first release, prerelease tags)
+
+**Acceptance Criteria:**
+- [ ] Major version bump tested (1.2.3 → 2.0.0)
+- [ ] Minor version bump tested (1.2.3 → 1.3.0)
+- [ ] Patch version bump tested (1.2.3 → 1.2.4)
+- [ ] First release (no tags) handled
+
+**Verification:**
+```bash
+uv run pytest tests/skills/test_semantic_version.py -v
+```
+
+**Dependencies:** T001
+
+---
+
+#### Task T006: Unit tests for release workflow
+
+**Priority:** High
+**Estimated Time:** 2-3 hours
+
+**Files:**
+- `tests/skills/test_release_workflow.py`
+- `.claude/skills/git-workflow-manager/scripts/release_workflow.py`
+
+**Description:**
+Test release workflow logic with mocked git operations.
+
+**Steps:**
+1. Create test file `tests/skills/test_release_workflow.py`
+2. Mock git commands (branch, checkout, tag, push)
+3. Test `create_release_branch()` function
+4. Test `tag_release()` function
+5. Test branch validation logic
+6. Test error scenarios (uncommitted changes, branch exists)
+
+**Acceptance Criteria:**
+- [ ] Release branch creation tested
+- [ ] Tag creation tested
+- [ ] Error cases tested (dirty working tree)
+- [ ] ≥80% coverage for release_workflow.py
+
+**Verification:**
+```bash
+uv run pytest tests/skills/test_release_workflow.py -v --cov=.claude/skills/git-workflow-manager/scripts/release_workflow
+```
+
+**Dependencies:** T001, T005
+
+---
+
+### Phase 4: PR Workflow Unit Tests (FR-003)
+
+#### Task T007: Unit tests for PR workflow
+
+**Priority:** High
+**Estimated Time:** 2-3 hours
+
+**Files:**
+- `tests/skills/test_pr_workflow.py`
+- `.claude/skills/git-workflow-manager/scripts/pr_workflow.py`
+
+**Description:**
+Test PR creation and update logic with mocked VCS operations.
+
+**Steps:**
+1. Create test file `tests/skills/test_pr_workflow.py`
+2. Mock VCS adapter methods
+3. Test `create_pr()` function with GitHub
+4. Test `create_pr()` function with Azure DevOps
+5. Test PR body generation
+6. Test error handling (PR already exists, permission denied)
+
+**Acceptance Criteria:**
+- [ ] PR creation tested for both VCS providers
+- [ ] PR body formatting tested
 - [ ] Error cases handled
-- [ ] Tests passing with >85% coverage
+- [ ] ≥80% coverage for pr_workflow.py
 
 **Verification:**
 ```bash
-uv run pytest tests/test_module.py --cov=src.core.module --cov-report=term
+uv run pytest tests/skills/test_pr_workflow.py -v --cov=.claude/skills/git-workflow-manager/scripts/pr_workflow
 ```
 
-**Dependencies:**
-- impl_001, impl_002
+**Dependencies:** T001, T003, T004
 
 ---
 
-### Phase 3: API Layer
+### Phase 5: Quality Gate Unit Tests (FR-004)
 
-#### Task impl_004: [Task Name]
+#### Task T008: Unit tests for quality gates
 
-**Estimated Time:** [Duration]
 **Priority:** High
+**Estimated Time:** 2-3 hours
 
 **Files:**
-- `src/api/routes.py`
-- `src/api/models.py`
-- `tests/test_api.py`
+- `tests/skills/test_quality_gates.py`
+- `.claude/skills/quality-enforcer/scripts/run_quality_gates.py`
 
 **Description:**
-[API endpoint implementation]
+Test quality gate execution and result aggregation.
 
 **Steps:**
-1. Define Pydantic models for request/response
-2. Implement endpoint handlers
-3. Add input validation
-4. Write integration tests
+1. Expand `tests/skills/test_quality_enforcer.py` or create `test_quality_gates.py`
+2. Mock subprocess calls for pytest, ruff, mypy
+3. Test individual gate execution
+4. Test result aggregation logic
+5. Test threshold checking (pass/fail at different coverage levels)
+6. Test output formatting
 
 **Acceptance Criteria:**
-- [ ] Endpoints respond correctly
-- [ ] Validation working
-- [ ] Error responses formatted correctly
-- [ ] Integration tests passing
+- [ ] Individual gates tested (pytest, ruff, mypy)
+- [ ] Result aggregation tested
+- [ ] Threshold logic tested (20%, 40%, 60%, 80%)
+- [ ] ≥80% coverage for run_quality_gates.py
 
 **Verification:**
 ```bash
-uv run pytest tests/test_api.py -v
-# Manual test:
-curl -X POST http://localhost:8000/api/endpoint -H "Content-Type: application/json" -d '{"field": "value"}'
+uv run pytest tests/skills/test_quality_gates.py -v --cov=.claude/skills/quality-enforcer/scripts/run_quality_gates
 ```
 
-**Dependencies:**
-- impl_003
+**Dependencies:** T001
 
 ---
 
-### Phase 4: Testing
+### Phase 6: Integration Tests (FR-005)
 
-#### Task test_001: Unit Tests
+#### Task T009: Integration test for release workflow
 
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `tests/test_*.py`
-- `tests/conftest.py`
-
-**Description:**
-Comprehensive unit tests for all modules.
-
-**Coverage Targets:**
-- Overall: ≥80%
-- Core modules: ≥90%
-- Utilities: ≥85%
-
-**Steps:**
-1. Set up pytest fixtures in conftest.py
-2. Write unit tests for each module
-3. Test happy paths and error conditions
-4. Achieve coverage targets
-
-**Verification:**
-```bash
-uv run pytest --cov=src --cov-report=term --cov-report=html
-uv run pytest --cov=src --cov-fail-under=80
-```
-
-**Dependencies:**
-- impl_001, impl_002, impl_003, impl_004
-
----
-
-#### Task test_002: Integration Tests
-
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `tests/integration/test_*.py`
-
-**Description:**
-End-to-end integration tests with real database.
-
-**Steps:**
-1. Set up test database fixtures
-2. Test API workflows end-to-end
-3. Test error scenarios
-4. Test concurrent requests
-
-**Verification:**
-```bash
-uv run pytest tests/integration/ -v
-```
-
-**Dependencies:**
-- impl_004, test_001
-
----
-
-### Phase 5: Containerization
-
-#### Task container_001: Application Container
-
-**Estimated Time:** [Duration]
 **Priority:** Medium
+**Estimated Time:** 2-3 hours
 
 **Files:**
-- `Containerfile`
-- `.containerignore`
+- `tests/skills/integration/test_release_integration.py`
 
 **Description:**
-Create optimized container for application.
+End-to-end test for release workflow using a temporary git repository.
 
 **Steps:**
-1. Write multi-stage Containerfile
-2. Optimize layer caching
-3. Add health check
-4. Test container build and run
+1. Create `tests/skills/integration/` directory
+2. Create test that initializes temp git repo
+3. Create commits and tags
+4. Run release workflow
+5. Verify branch and tag creation
+6. Clean up temp repo
+
+**Acceptance Criteria:**
+- [ ] Temp git repo created with commits
+- [ ] Release workflow executes successfully
+- [ ] Release branch created correctly
+- [ ] Tag created with correct version
 
 **Verification:**
 ```bash
-podman build -t workflow-test-coverage:latest .
-podman run --rm -p 8000:8000 workflow-test-coverage:latest
-curl http://localhost:8000/health
+uv run pytest tests/skills/integration/test_release_integration.py -v -m integration
 ```
 
-**Dependencies:**
-- All implementation tasks complete
+**Dependencies:** T005, T006
 
 ---
 
-#### Task container_002: Container Orchestration
+#### Task T010: Integration test for PR workflow
 
-**Estimated Time:** [Duration]
 **Priority:** Medium
+**Estimated Time:** 2-3 hours
 
 **Files:**
-- `podman-compose.yml`
-- `.env.example`
+- `tests/skills/integration/test_pr_integration.py`
 
 **Description:**
-Set up multi-container orchestration.
+End-to-end test for PR workflow (without actual GitHub/Azure API calls).
 
 **Steps:**
-1. Define services in podman-compose.yml
-2. Configure volumes and networks
-3. Set up environment variables
-4. Add health checks
-5. Test full stack
+1. Create test that uses mocked VCS adapter
+2. Create temp git repo with feature branch
+3. Run PR workflow
+4. Verify PR metadata generated correctly
+5. Verify branch handling
+
+**Acceptance Criteria:**
+- [ ] PR workflow executes with mocked VCS
+- [ ] PR body generated correctly
+- [ ] Branch operations work correctly
+- [ ] No actual API calls made
 
 **Verification:**
 ```bash
-podman-compose up -d
-podman-compose ps
-curl http://localhost:8000/health
-podman-compose logs app
-podman-compose down
+uv run pytest tests/skills/integration/test_pr_integration.py -v -m integration
 ```
 
-**Dependencies:**
-- container_001
+**Dependencies:** T007
 
 ---
 
-## Estimated Total Time
+### Phase 7: Coverage Threshold Updates (FR-006)
 
-| Phase | Duration |
-|-------|----------|
-| Phase 1: Foundation | [X hours] |
-| Phase 2: Core Implementation | [X hours] |
-| Phase 3: API Layer | [X hours] |
-| Phase 4: Testing | [X hours] |
-| Phase 5: Containerization | [X hours] |
-| **Total** | **[X hours]** |
+#### Task T011: Update coverage threshold incrementally
+
+**Priority:** Medium
+**Estimated Time:** 1 hour
+
+**Files:**
+- `.claude/skills/quality-enforcer/scripts/run_quality_gates.py`
+- `pyproject.toml` or `pytest.ini`
+
+**Description:**
+Update coverage thresholds as tests are added.
+
+**Steps:**
+1. After T001-T004: Update threshold to 20%
+2. After T005-T007: Update threshold to 40%
+3. After T008: Update threshold to 60%
+4. After T009-T010: Update threshold to 80%
+5. Verify all tests pass at each threshold
+
+**Acceptance Criteria:**
+- [ ] Coverage ≥20% after Phase 2
+- [ ] Coverage ≥40% after Phase 3-4
+- [ ] Coverage ≥60% after Phase 5
+- [ ] Coverage ≥80% after Phase 6
+
+**Verification:**
+```bash
+uv run pytest tests/skills/ --cov=.claude/skills --cov-fail-under=80
+```
+
+**Dependencies:** T001-T010
+
+---
+
+## Task Summary
+
+| Task ID | Name | Priority | Dependencies | Status |
+|---------|------|----------|--------------|--------|
+| T001 | Test fixtures and conftest.py | High | None | Pending |
+| T002 | VCS provider detection tests | High | T001 | Pending |
+| T003 | GitHub adapter tests | High | T001, T002 | Pending |
+| T004 | Azure DevOps adapter tests | Medium | T001, T002 | Pending |
+| T005 | Semantic version tests | High | T001 | Pending |
+| T006 | Release workflow tests | High | T001, T005 | Pending |
+| T007 | PR workflow tests | High | T001, T003, T004 | Pending |
+| T008 | Quality gates tests | High | T001 | Pending |
+| T009 | Release integration test | Medium | T005, T006 | Pending |
+| T010 | PR integration test | Medium | T007 | Pending |
+| T011 | Coverage threshold updates | Medium | T001-T010 | Pending |
 
 ## Task Dependencies Graph
 
 ```
-impl_001 ─┐
-          ├─> impl_003 ─> impl_004 ─┐
-impl_002 ─┘                          ├─> test_001 ─> test_002 ─> container_001 ─> container_002
-                                     │
-                                     └─> test_001
+T001 (fixtures) ──┬──> T002 (VCS provider) ──┬──> T003 (GitHub) ──┬──> T007 (PR workflow) ──> T010 (PR integration)
+                  │                          │                    │
+                  │                          └──> T004 (Azure) ───┘
+                  │
+                  ├──> T005 (semantic version) ──> T006 (release workflow) ──> T009 (release integration)
+                  │
+                  └──> T008 (quality gates)
+
+T001-T010 ──> T011 (threshold updates)
 ```
-
-## Critical Path
-
-1. impl_001
-2. impl_002
-3. impl_003
-4. impl_004
-5. test_001
-6. test_002
-7. container_001
-8. container_002
-
-[Identify which tasks are on the critical path and cannot be parallelized]
 
 ## Parallel Work Opportunities
 
-- impl_001 and impl_002 can be done in parallel
-- test_001 unit tests can be written alongside implementation
-- Documentation can be written in parallel with containerization
+- T002 and T005 can run in parallel (both depend only on T001)
+- T003 and T004 can run in parallel (VCS adapters)
+- T008 can run in parallel with T002-T007 (only depends on T001)
 
 ## Quality Checklist
 
 Before considering this feature complete:
 
-- [ ] All tasks marked as complete
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing (unit + integration)
-- [ ] Linting clean (`uv run ruff check src/ tests/`)
-- [ ] Type checking clean (`uv run mypy src/`)
-- [ ] Container builds successfully
-- [ ] Container health checks passing
-- [ ] API documentation complete
-- [ ] Code reviewed
-- [ ] Manual testing performed
-
-## Risk Assessment
-
-### High Risk Tasks
-
-- **impl_003**: Core business logic is complex
-  - Mitigation: Break into smaller subtasks, pair programming
-
-- **test_002**: Integration tests may be flaky
-  - Mitigation: Use proper fixtures, isolated test database
-
-### Medium Risk Tasks
-
-- **container_002**: Multi-container networking can be tricky
-  - Mitigation: Test thoroughly in local environment first
+- [ ] All 11 tasks completed
+- [ ] Test coverage ≥ 80% for `.claude/skills/`
+- [ ] All tests pass (`uv run pytest tests/skills/ -v`)
+- [ ] Tests run in < 60 seconds total
+- [ ] No integration tests marked without `@pytest.mark.integration`
+- [ ] Linting clean (`uv run ruff check tests/skills/`)
+- [ ] Type checking clean (`uv run mypy tests/skills/`)
 
 ## Notes
 
-[Any additional notes, considerations, or context for implementation]
-
 ### Implementation Tips
 
-- [Tip 1]
-- [Tip 2]
-- [Tip 3]
+- Use `unittest.mock.patch` for subprocess mocking
+- Use `pytest.fixture` with `tmp_path` for temp directories
+- Use `@pytest.mark.integration` for integration tests
+- Keep unit tests fast (< 1 second each)
 
 ### Common Pitfalls
 
-- [Pitfall 1 and how to avoid it]
-- [Pitfall 2 and how to avoid it]
-
-### Resources
-
-- [Link to relevant documentation]
-- [Link to example code]
-- [Link to design patterns]
+- Don't mock too broadly - mock at the subprocess level, not internal functions
+- Remember to test error paths, not just happy paths
+- Ensure fixtures clean up properly to avoid test pollution
