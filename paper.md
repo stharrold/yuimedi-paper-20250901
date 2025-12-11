@@ -13,8 +13,8 @@ abstract: |
   workforce turnover with institutional memory loss, and technical barriers in natural language
   to SQL generation. Through review of peer-reviewed benchmarking studies and industry implementations,
   we demonstrate that natural language interfaces can democratize analytics access while preserving
-  institutional knowledge. Healthcare-specific text-to-SQL benchmarks achieve over 91% execution
-  accuracy, though current models require human oversight for clinical use. Healthcare workforce
+  institutional knowledge. Healthcare-specific text-to-SQL benchmarks show significant progress,
+  though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings. Healthcare workforce
   turnover rates of 8-36% create institutional memory loss, while low-code implementations show
   206% three-year ROI. The convergence of technical advances in NL2SQL generation, analytics
   maturity challenges in healthcare organizations, and workforce turnover creates both urgent
@@ -438,7 +438,7 @@ Chen et al. [A10] conducted comprehensive evaluations of LLMs for medicine, test
 
 The EHRSQL benchmark [A3] provides a practical evaluation framework for text-to-SQL systems on electronic health records. Built on MIMIC-III and eICU datasets, it incorporates time-sensitive queries and unanswerable questions that reflect real clinical scenarios.
 
-The TREQS/MIMICSQL dataset [A5] established foundational benchmarks for healthcare NL2SQL, achieving over 91% execution accuracy on test sets. Wang et al. demonstrated that healthcare-specific approaches significantly outperform general-purpose text-to-SQL systems when dealing with clinical terminology and complex medical queries.
+The TREQS/MIMICSQL dataset [A5] established foundational benchmarks for healthcare NL2SQL, demonstrating that healthcare-specific approaches can significantly outperform general-purpose text-to-SQL systems when dealing with clinical terminology and complex medical queries.
 
 ### RAG for Healthcare Queries
 
@@ -575,7 +575,7 @@ The peer-reviewed literature provides compelling evidence for implementing conve
 
 This review of academic and industry sources establishes several critical findings:
 
-1. **Technical Progress with Limitations**: Natural language to SQL technologies have advanced significantly, with healthcare-specific benchmarks [A3, A5] achieving over 91% execution accuracy. However, current models are "not yet sufficiently accurate for unsupervised use" in clinical settings [A6], requiring human oversight.
+1. **Technical Progress with Limitations**: Natural language to SQL technologies have advanced significantly, with healthcare-specific benchmarks [A3, A5] demonstrating substantial progress in clinical NL2SQL tasks. However, current models are "not yet sufficiently accurate for unsupervised use" in clinical settings [A6], requiring human oversight.
 
 2. **Organizational Need**: Healthcare analytics maturity remains an ongoing challenge, with the revised HIMSS AMAM model [I1] emphasizing the need for AI readiness and governance frameworks. Most organizations struggle to advance beyond basic reporting levels.
 

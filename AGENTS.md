@@ -30,6 +30,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
 
+**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261). Removed: 29 unused references, 5 likely AI-generated fabrications, and unverifiable claims. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
+
 ## Essential Commands
 
 ```bash
