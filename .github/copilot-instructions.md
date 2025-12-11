@@ -55,10 +55,17 @@ uv run academic-review status <review-id>  # Check review status
 # Testing
 uv run pytest                              # Run all tests
 uv run pytest tests/lit_review/ -v         # Literature review tests only
-uv run pytest tests/skills/ -v             # Workflow skills tests only
+uv run pytest tests/skills/ -v             # Workflow skills tests (289 tests)
 uv run pytest --cov=lit_review             # With coverage
 uv run pytest -k "test_paper" -v           # Run single test by name
 uv run pytest -m "not integration"         # Skip integration tests (default in CI)
+
+# Skills coverage (targeted modules)
+uv run pytest tests/skills/ \
+  --cov=.claude/skills/git-workflow-manager/scripts \
+  --cov=.claude/skills/quality-enforcer/scripts \
+  --cov=.claude/skills/workflow-utilities/scripts/vcs \
+  --cov-report=term
 
 # Task management
 gh issue list --label "P0"                 # Critical tasks
