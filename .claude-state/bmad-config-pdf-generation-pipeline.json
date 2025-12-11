@@ -1,0 +1,69 @@
+{
+  "analyst": {
+    "problem_statement": "paper.md needs to be converted to PDF for publication, but there's no automated pipeline. Manual pandoc commands exist as comments but aren't executable or integrated into CI/CD.",
+    "primary_users": "Paper authors and CI/CD systems that need to generate publication-ready PDFs from paper.md",
+    "success_criteria": "Running ./scripts/build_paper.sh produces a valid PDF with Eisvogel academic formatting; CI automatically generates PDFs on paper.md changes",
+    "functional_requirements": [
+      {
+        "name": "Build Script",
+        "description": "Create scripts/build_paper.sh wrapper for pandoc with XeLaTeX + Eisvogel template support",
+        "priority": "High",
+        "acceptance_criteria": [
+          "./scripts/build_paper.sh produces PDF with Eisvogel template",
+          "./scripts/build_paper.sh --format html produces standalone HTML",
+          "./scripts/build_paper.sh --format all produces PDF, HTML, DOCX",
+          "Script fails gracefully if pandoc/xelatex missing",
+          "Script auto-installs Eisvogel template on first run"
+        ]
+      },
+      {
+        "name": "Container Update",
+        "description": "Update Containerfile with pandoc and texlive packages for container-based builds",
+        "priority": "High",
+        "acceptance_criteria": [
+          "podman build -t yuimedi-paper . succeeds",
+          "podman run --rm yuimedi-paper pandoc --version works",
+          "podman run --rm yuimedi-paper xelatex --version works",
+          "Container size increase is reasonable (<500MB additional)"
+        ]
+      },
+      {
+        "name": "CI Workflow",
+        "description": "Create .github/workflows/pdf-generation.yml for automated PDF generation",
+        "priority": "High",
+        "acceptance_criteria": [
+          "Workflow triggers on paper.md changes",
+          "PDF artifact uploaded successfully",
+          "Release gets PDF attachment",
+          "Workflow completes in <10 minutes"
+        ]
+      },
+      {
+        "name": "Documentation",
+        "description": "Create docs/pdf-generation.md with setup and usage instructions",
+        "priority": "Medium",
+        "acceptance_criteria": [
+          "Instructions work on macOS and Ubuntu",
+          "Container usage documented",
+          "Troubleshooting covers common errors"
+        ]
+      }
+    ],
+    "performance_requirements": "PDF generation should complete in <5 minutes for ~30 page paper",
+    "security_requirements": "none",
+    "scalability_requirements": "Single paper generation, not multi-tenant",
+    "constraints": "Must use XeLaTeX for Unicode/font support; Eisvogel template for academic styling; Scripts must follow stdlib-only rule (no Python dependencies)",
+    "assumptions": "pandoc and texlive can be installed via apt-get; Eisvogel template available from GitHub releases"
+  },
+  "architect": {
+    "web_framework": "None",
+    "database": "None",
+    "testing_framework": "pytest (recommended)",
+    "use_containers": true,
+    "container_strategy": "Single container",
+    "architecture_pattern": "Modular",
+    "error_handling": "Standard Python exceptions",
+    "logging_level": "Standard Python logging",
+    "deployment_target": "Local development only"
+  }
+}
