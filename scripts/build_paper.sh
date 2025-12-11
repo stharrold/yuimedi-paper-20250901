@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 #
-# build_paper.sh - Generate PDF, HTML, or DOCX from paper.md
+# build_paper.sh - Generate PDF, HTML, DOCX, or LaTeX from paper.md
 #
 # Usage:
 #   ./scripts/build_paper.sh [--format FORMAT] [--help]
 #
 # Options:
-#   --format FORMAT  Output format: pdf (default), html, docx, all
+#   --format FORMAT  Output format: pdf (default), html, docx, latex, all
 #   --help           Show this help message
 #
 # Examples:
 #   ./scripts/build_paper.sh                  # Generate PDF
 #   ./scripts/build_paper.sh --format html    # Generate HTML
+#   ./scripts/build_paper.sh --format latex   # Generate LaTeX source
 #   ./scripts/build_paper.sh --format all     # Generate all formats
 #
 # Exit codes:
@@ -28,8 +29,11 @@ INPUT_FILE="${PROJECT_ROOT}/paper.md"
 METADATA_FILE="${PROJECT_ROOT}/metadata.yaml"
 OUTPUT_DIR="${PROJECT_ROOT}"
 
-# Eisvogel template location
-EISVOGEL_URL="https://github.com/Wandmalfarbe/pandoc-latex-template/releases/latest/download/Eisvogel.tar.gz"
+# Eisvogel template configuration
+# Pin to specific version for reproducibility and supply chain security
+EISVOGEL_VERSION="3.5.0"
+EISVOGEL_URL="https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v${EISVOGEL_VERSION}/Eisvogel-${EISVOGEL_VERSION}.tar.gz"
+EISVOGEL_SHA256="0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
 TEMPLATE_DIR="${HOME}/.local/share/pandoc/templates"
 
 # Colors for output
@@ -81,6 +85,30 @@ check_dependencies() {
     fi
 }
 
+# Verify SHA256 checksum
+verify_checksum() {
+    local file="$1"
+    local expected="$2"
+    local actual
+
+    if command -v sha256sum &> /dev/null; then
+        actual=$(sha256sum "$file" | cut -d' ' -f1)
+    elif command -v shasum &> /dev/null; then
+        actual=$(shasum -a 256 "$file" | cut -d' ' -f1)
+    else
+        warn "No checksum tool found, skipping verification"
+        return 0
+    fi
+
+    if [[ "$actual" != "$expected" ]]; then
+        error "Checksum verification failed!"
+        echo "  Expected: $expected"
+        echo "  Got:      $actual"
+        return 1
+    fi
+    return 0
+}
+
 # Install Eisvogel template if not present
 install_eisvogel() {
     local template_file="${TEMPLATE_DIR}/eisvogel.latex"
@@ -90,24 +118,51 @@ install_eisvogel() {
         return 0
     fi
 
-    info "Installing Eisvogel template..."
+    info "Installing Eisvogel template v${EISVOGEL_VERSION}..."
     mkdir -p "$TEMPLATE_DIR"
 
+    local temp_file
+    temp_file=$(mktemp)
+    trap "rm -f '$temp_file'" EXIT
+
+    # Download template
     if command -v curl &> /dev/null; then
-        curl -sL "$EISVOGEL_URL" | tar xz -C "$TEMPLATE_DIR" --strip-components=1
+        curl -sL "$EISVOGEL_URL" -o "$temp_file"
     elif command -v wget &> /dev/null; then
-        wget -qO- "$EISVOGEL_URL" | tar xz -C "$TEMPLATE_DIR" --strip-components=1
+        wget -qO "$temp_file" "$EISVOGEL_URL"
     else
         error "Neither curl nor wget found. Cannot download Eisvogel template."
         echo "  Manual installation: https://github.com/Wandmalfarbe/pandoc-latex-template"
         exit 1
     fi
 
+    # Verify checksum for supply chain security
+    if ! verify_checksum "$temp_file" "$EISVOGEL_SHA256"; then
+        error "Eisvogel template download failed checksum verification"
+        exit 1
+    fi
+    info "Checksum verified"
+
+    # Extract template
+    tar xzf "$temp_file" -C "$TEMPLATE_DIR" --strip-components=1
+
     if [[ -f "$template_file" ]]; then
-        info "Eisvogel template installed successfully"
+        info "Eisvogel template v${EISVOGEL_VERSION} installed successfully"
     else
         error "Failed to install Eisvogel template"
         exit 1
+    fi
+}
+
+# Build pandoc arguments array (avoids unquoted variable expansion)
+build_pandoc_args() {
+    local -n args_ref=$1
+    args_ref=(
+        "$INPUT_FILE"
+        "--from=markdown+smart"
+    )
+    if [[ -f "$METADATA_FILE" ]]; then
+        args_ref+=("--metadata-file=$METADATA_FILE")
     fi
 }
 
@@ -116,13 +171,10 @@ generate_pdf() {
     local output="${OUTPUT_DIR}/paper.pdf"
     info "Generating PDF: $output"
 
-    local metadata_arg=""
-    if [[ -f "$METADATA_FILE" ]]; then
-        metadata_arg="--metadata-file=$METADATA_FILE"
-    fi
+    local -a pandoc_args
+    build_pandoc_args pandoc_args
 
-    pandoc "$INPUT_FILE" \
-        --from=markdown+smart \
+    pandoc "${pandoc_args[@]}" \
         --to=pdf \
         --pdf-engine=xelatex \
         --template=eisvogel \
@@ -130,7 +182,6 @@ generate_pdf() {
         --number-sections \
         --toc \
         --toc-depth=3 \
-        $metadata_arg \
         --output="$output"
 
     if [[ -f "$output" && -s "$output" ]]; then
@@ -146,19 +197,15 @@ generate_html() {
     local output="${OUTPUT_DIR}/paper.html"
     info "Generating HTML: $output"
 
-    local metadata_arg=""
-    if [[ -f "$METADATA_FILE" ]]; then
-        metadata_arg="--metadata-file=$METADATA_FILE"
-    fi
+    local -a pandoc_args
+    build_pandoc_args pandoc_args
 
-    pandoc "$INPUT_FILE" \
-        --from=markdown+smart \
+    pandoc "${pandoc_args[@]}" \
         --to=html5 \
         --standalone \
         --toc \
         --toc-depth=3 \
         --number-sections \
-        $metadata_arg \
         --output="$output"
 
     if [[ -f "$output" && -s "$output" ]]; then
@@ -174,24 +221,45 @@ generate_docx() {
     local output="${OUTPUT_DIR}/paper.docx"
     info "Generating DOCX: $output"
 
-    local metadata_arg=""
-    if [[ -f "$METADATA_FILE" ]]; then
-        metadata_arg="--metadata-file=$METADATA_FILE"
-    fi
+    local -a pandoc_args
+    build_pandoc_args pandoc_args
 
-    pandoc "$INPUT_FILE" \
-        --from=markdown+smart \
+    pandoc "${pandoc_args[@]}" \
         --to=docx \
         --toc \
         --toc-depth=3 \
         --number-sections \
-        $metadata_arg \
         --output="$output"
 
     if [[ -f "$output" && -s "$output" ]]; then
         info "DOCX generated successfully: $output ($(du -h "$output" | cut -f1))"
     else
         error "DOCX generation failed"
+        exit 2
+    fi
+}
+
+# Generate LaTeX (intermediate format)
+generate_latex() {
+    local output="${OUTPUT_DIR}/paper.tex"
+    info "Generating LaTeX: $output"
+
+    local -a pandoc_args
+    build_pandoc_args pandoc_args
+
+    pandoc "${pandoc_args[@]}" \
+        --to=latex \
+        --template=eisvogel \
+        --listings \
+        --number-sections \
+        --toc \
+        --toc-depth=3 \
+        --output="$output"
+
+    if [[ -f "$output" && -s "$output" ]]; then
+        info "LaTeX generated successfully: $output ($(du -h "$output" | cut -f1))"
+    else
+        error "LaTeX generation failed"
         exit 2
     fi
 }
@@ -220,10 +288,10 @@ main() {
 
     # Validate format
     case $FORMAT in
-        pdf|html|docx|all)
+        pdf|html|docx|latex|all)
             ;;
         *)
-            error "Invalid format: $FORMAT. Must be one of: pdf, html, docx, all"
+            error "Invalid format: $FORMAT. Must be one of: pdf, html, docx, latex, all"
             exit 1
             ;;
     esac
@@ -240,8 +308,8 @@ main() {
     # Check dependencies
     check_dependencies
 
-    # Install Eisvogel for PDF generation
-    if [[ "$FORMAT" == "pdf" || "$FORMAT" == "all" ]]; then
+    # Install Eisvogel for PDF/LaTeX generation
+    if [[ "$FORMAT" == "pdf" || "$FORMAT" == "latex" || "$FORMAT" == "all" ]]; then
         install_eisvogel
     fi
 
@@ -256,10 +324,14 @@ main() {
         docx)
             generate_docx
             ;;
+        latex)
+            generate_latex
+            ;;
         all)
             generate_pdf
             generate_html
             generate_docx
+            generate_latex
             ;;
     esac
 
