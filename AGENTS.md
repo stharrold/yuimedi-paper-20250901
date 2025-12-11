@@ -34,8 +34,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Setup (choose one)
-uv sync                                    # Local (with dev dependencies)
-uv sync --extra ai --extra export         # With AI and export features
+uv sync                                    # Local
 podman-compose build                       # Container (recommended)
 
 # Quality checks (run before commits)
@@ -47,26 +46,16 @@ uv run mypy scripts/ lit_review/           # Type checking
 # Full quality gates (before PRs)
 python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
 
-# Literature review workflow (academic-review CLI)
+# Literature review workflow
 uv run academic-review --help              # CLI for systematic reviews
-uv run academic-review init "Title" -q "Research question" -i "Inclusion"  # Initialize
-uv run academic-review search "Title" -d crossref -k "keywords"  # Search databases
-uv run academic-review assess "Title" "10.1234/doi" --score 8 --include  # Assess paper
-uv run academic-review analyze "Title"     # Run thematic analysis (TF-IDF + clustering)
-uv run academic-review synthesize "Title" --output synthesis.md  # Generate narrative
-uv run academic-review export "Title" -f bibtex -f html -o output/  # Export multiple formats
-uv run academic-review status "Title"      # Check review status
-uv run academic-review list                # List all reviews
+uv run academic-review init <review-id>    # Initialize new review
+uv run academic-review search <review-id>  # Execute search stage
+uv run academic-review status <review-id>  # Check review status
 
 # Testing
 uv run pytest                              # Run all tests
 uv run pytest tests/lit_review/ -v         # Literature review tests only
-uv run pytest --cov=lit_review --cov-fail-under=80  # With coverage threshold
-uv run pytest -m "not integration and not benchmark"  # Skip slow tests
-uv run pytest tests/lit_review/domain/ -v  # Test specific layer
-
-# Performance benchmarks
-uv run pytest -m benchmark                 # Run performance tests only
+uv run pytest --cov=lit_review             # With coverage
 
 # Task management
 gh issue list --label "P0"                 # Critical tasks
@@ -125,9 +114,7 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 
 **Literature Review Package (`lit_review/`):** External dependencies allowed.
 - Clean Architecture (domain/application/infrastructure/interfaces layers)
-- **Core dependencies:** pydantic, httpx, click, scikit-learn, biopython, jinja2
-- **Optional extras:** `ai` (anthropic), `export` (python-docx, bibtexparser), `workflow` (duckdb)
-- **Test coverage:** 88.20% overall (domain 98.52%, application 95.88%, infrastructure 83.96%, CLI 80.70%)
+- Dependencies: pydantic, httpx, click, scikit-learn, biopython, jinja2 (see pyproject.toml)
 - All dependencies managed via `uv sync`
 
 **Clean Architecture Layers:**
@@ -139,7 +126,6 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 **Key Features:**
 - Multi-database search with parallel execution (ThreadPoolExecutor)
 - TF-IDF + hierarchical clustering for theme analysis (<30s for 500 papers)
-- Atomic writes with automatic backups (.backups/ keeps last 5)
 - Multiple export formats: BibTeX, DOCX, LaTeX, HTML, JSON, Markdown, CSV
 - Optional AI-powered synthesis with fallback to keyword-based approach
 
@@ -152,11 +138,30 @@ Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` 
 ### Workflow Skills
 9 skills in `.claude/skills/` for major releases and complex git operations. **Don't use for daily edits.**
 
+### CI/CD
+
+**Container-based testing:** GitHub Actions runs all tests inside Docker containers built from `Containerfile` to ensure environment parity with local Podman development.
+
+```yaml
+# .github/workflows/lit-review-ci.yml
+- name: Build container image
+  uses: docker/build-push-action@v5
+  with:
+    file: Containerfile  # Python 3.11 + uv
+    tags: yuimedi-paper:latest
+    cache-from: type=gha
+
+- name: Run tests (exclude integration)
+  run: docker run --rm -v $PWD:/app yuimedi-paper:latest uv run pytest ...
+```
+
+**Why containers?** Eliminates "works locally, fails in CI" issues by using identical environment (Python 3.11, uv, dependencies) in both contexts.
+
 ### Environment Variables
 - `LIT_REVIEW_DATA_DIR` - Data storage location (default: `~/.lit_review`)
 - `ANTHROPIC_API_KEY` - Claude API key for AI features (optional)
-- `PUBMED_EMAIL` - Email for PubMed API (optional, enables 10 req/sec vs 3 req/sec)
-- `NCBI_API_KEY` - NCBI API key for PubMed (optional, further rate limit increase)
+- `NCBI_EMAIL` - Email for PubMed API (required by NCBI policy)
+- `NCBI_API_KEY` - NCBI API key for PubMed (optional, enables 10 req/sec vs 3 req/sec)
 
 ## Key Patterns
 
@@ -173,14 +178,6 @@ Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
 
 ### Three-Pillar Framework
 All research connects to: (1) analytics maturity, (2) workforce turnover, (3) technical barriers.
-
-### Data Storage
-
-**Literature reviews:** `~/.lit_review/` (configurable via `LIT_REVIEW_DATA_DIR` environment variable)
-- Reviews stored as JSON files with atomic writes
-- Automatic backups in `.backups/` (keeps last 5 versions)
-- File locking for concurrent access
-- Soft deletes move to `.deleted/` directory
 
 **Planning documents:** `planning/<feature-slug>/` in repository (committed to version control)
 
