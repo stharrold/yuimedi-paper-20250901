@@ -1,311 +1,203 @@
 # Specification: Fix Paper References
 
-**Type:** feature
+**Type:** documentation
 **Slug:** fix-paper-references
 **Date:** 2025-12-11
 **Author:** stharrold
+**GitHub Issue:** #261
 
 ## Overview
 
-[One paragraph describing what this feature does and why it's needed]
-
+This specification defines the methodology for fixing unsupported claims and hallucinated references in `paper.md`. The goal is to ensure every citation is verifiable against peer-reviewed sources, removing fabricated references and replacing them with legitimate academic evidence.
 
 ## Implementation Context
 
-<!-- Generated from SpecKit interactive Q&A -->
-
-**GitHub Issue:** #261
-
 **BMAD Planning:** See `planning/fix-paper-references/` for complete requirements and architecture.
 
-**Implementation Preferences:**
+**Scope:**
+- Remove hallucinated/fabricated references
+- Verify all remaining citations against DOIs and authoritative sources
+- Replace unverifiable claims with evidence-based assertions
+- Document verification methodology for reproducibility
 
-- **Migration Strategy:** 3
-- **Task Granularity:** Small tasks (1-2 hours each)
-- **Follow Epic Order:** True
+## Verification Methodology
 
-## Requirements Reference
+### Citation Verification Process
 
-See: `planning/fix-paper-references/requirements.md` in main repository
+1. **DOI Validation**: Check all DOI links resolve to actual publications
+2. **Source Verification**: Confirm cited content supports the claim made
+3. **Author Verification**: Validate author names and affiliations exist
+4. **Publication Verification**: Confirm journal/venue is legitimate
+5. **Date Verification**: Ensure publication dates are accurate
 
-## Detailed Specification
+### Verification Categories
 
-### Component 1: [Component Name]
+| Category | Criteria | Action |
+|----------|----------|--------|
+| VERIFIED | DOI resolves, content matches claim | Keep |
+| PARTIALLY VERIFIED | Source exists, paywall prevents full access | Keep with DOI fallback |
+| NEEDS REPLACEMENT | Cannot verify, likely fabricated | Find alternative source |
+| UNUSED | Defined but never cited | Remove |
 
-**File:** `src/path/to/file.py`
+### Hallucination Detection Signals
 
-**Purpose:** [What does this component do?]
+References flagged for deeper review if they exhibit:
+- Suspiciously specific statistics without meta-analysis source
+- RCT claims without registration number
+- Author combinations that don't appear in academic databases
+- Journal names that don't exist or have been discontinued
+- DOIs that resolve to different papers than cited
 
-**Implementation:**
+## Citation Standards
 
-```python
-# Example code structure
+### Academic References [A*]
 
-class ExampleClass:
-    """Brief description of class purpose."""
+**Required fields:**
+- Author(s) with verifiable names
+- Title matching actual publication
+- Journal/venue that exists
+- Year matching actual publication
+- DOI or stable URL
 
-    def __init__(self, param1: str, param2: int):
-        """Initialize with parameters."""
-        self.param1 = param1
-        self.param2 = param2
-
-    def method_name(self, arg: str) -> dict:
-        """
-        Description of what this method does.
-
-        Args:
-            arg: Description of argument
-
-        Returns:
-            Dictionary with result data
-
-        Raises:
-            ValueError: When input is invalid
-        """
-        # Implementation details
-        pass
+**Format:**
+```
+[A1] Author(s). "Title." Journal, Year. DOI/URL
 ```
 
-**Dependencies:**
-- [External library or module]
-- [Internal component]
+### Industry References [I*]
 
-### Component 2: [Component Name]
+**Required fields:**
+- Organization name
+- Document/page title
+- Stable URL or archive link
+- Access date for web content
 
-**File:** `src/path/to/another_file.py`
-
-[Similar structure as Component 1]
-
-## Data Models
-
-### Model: ExampleModel
-
-**File:** `src/models/example.py`
-
-```python
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    """Database model for example data."""
-
-    __tablename__ = 'examples'
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False, unique=True)
-    description = Column(String(500))
-    created_at = Column(DateTime, nullable=False)
+**Format:**
+```
+[I1] Organization. "Title." URL (accessed YYYY-MM-DD)
 ```
 
-## API Endpoints
+## Three-Pillar Claim Mapping
 
-### POST /api/endpoint
+All claims must connect to the three-pillar framework with verified evidence:
 
-**Description:** [What this endpoint does]
+### Pillar 1: Analytics Maturity
 
-**Request:**
-```json
-{
-  "field1": "value",
-  "field2": 123
-}
-```
+| Claim | Required Evidence | Status |
+|-------|-------------------|--------|
+| Low AMAM adoption | HIMSS official data or peer-reviewed survey | VERIFIED [I1] |
+| Stage 0-1 prevalence | Published analytics maturity assessment | VERIFIED [I2] |
 
-**Response (200 OK):**
-```json
-{
-  "id": 1,
-  "status": "success",
-  "data": {
-    "result": "value"
-  }
-}
-```
+### Pillar 2: Workforce Turnover
 
-**Response (400 Bad Request):**
-```json
-{
-  "error": "Validation failed",
-  "details": ["field1 is required"]
-}
-```
+| Claim | Required Evidence | Status |
+|-------|-------------------|--------|
+| Healthcare turnover rates | Meta-analysis or large-scale survey | VERIFIED [A1], [A2] |
+| Knowledge loss impact | Peer-reviewed study on institutional memory | VERIFIED [A4] |
+| Training costs | Industry report with methodology | VERIFIED [I3], [I4] |
 
-**Implementation:**
+### Pillar 3: Technical Barriers
 
-```python
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
-
-router = APIRouter()
-
-class RequestModel(BaseModel):
-    field1: str
-    field2: int
-
-class ResponseModel(BaseModel):
-    id: int
-    status: str
-    data: dict
-
-@router.post("/api/endpoint", response_model=ResponseModel)
-async def endpoint_handler(request: RequestModel):
-    """Handle endpoint request."""
-    # Implementation
-    pass
-```
-
-### GET /api/endpoint/{id}
-
-**Description:** [What this endpoint does]
-
-[Similar structure as POST endpoint]
-
-## Testing Requirements
-
-### Unit Tests
-
-**File:** `tests/test_example.py`
-
-```python
-import pytest
-from src.module import ExampleClass
-
-def test_example_success():
-    """Test successful operation."""
-    instance = ExampleClass("test", 123)
-    result = instance.method_name("input")
-    assert result["status"] == "success"
-
-def test_example_validation_error():
-    """Test validation error handling."""
-    instance = ExampleClass("test", 123)
-    with pytest.raises(ValueError):
-        instance.method_name("")
-```
-
-### Integration Tests
-
-**File:** `tests/test_integration.py`
-
-```python
-from fastapi.testclient import TestClient
-from src.main import app
-
-client = TestClient(app)
-
-def test_endpoint_integration():
-    """Test API endpoint integration."""
-    response = client.post("/api/endpoint", json={
-        "field1": "value",
-        "field2": 123
-    })
-    assert response.status_code == 200
-    assert response.json()["status"] == "success"
-```
+| Claim | Required Evidence | Status |
+|-------|-------------------|--------|
+| NL2SQL accuracy benchmarks | Published benchmark results | VERIFIED [A3], [A5] |
+| Schema complexity challenges | Peer-reviewed NL2SQL research | VERIFIED [A6], [A7] |
+| Clinical readiness limitations | Expert assessment or validation study | VERIFIED [A9], [A10] |
 
 ## Quality Gates
 
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing
-- [ ] Linting clean (ruff check)
-- [ ] Type checking clean (mypy)
-- [ ] API documentation complete
+### Pre-Merge Validation
 
-## Container Specifications
+- [x] All citations have valid reference entries
+- [x] All references are cited at least once (no orphans)
+- [x] DOI links validated (or documented as paywalled)
+- [x] No hallucination signals detected
+- [x] Claims match verified source content
 
-### Containerfile
+### Documentation Validation
 
-```dockerfile
-FROM python:3.11-slim
-
-WORKDIR /app
-
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev
-
-COPY src/ src/
-
-EXPOSE 8000
-
-HEALTHCHECK --interval=30s --timeout=3s \
-  CMD python -c "import requests; requests.get('http://localhost:8000/health')"
-
-CMD ["uv", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```bash
+# Run before merge
+./validate_documentation.sh
+python scripts/validate_references.py --all
 ```
 
-### podman-compose.yml
+## URL Status Classification
 
-```yaml
-version: '3.8'
+### Paywalled (HTTP 403)
 
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Containerfile
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./data:/app/data
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-```
+URLs returning 403 are often legitimate sources behind publisher paywalls:
 
-## Dependencies
+| Status | Meaning | Action |
+|--------|---------|--------|
+| PMC 403 | NIH archive, may require institutional access | Provide DOI fallback |
+| ScienceDirect 403 | Elsevier paywall | Provide DOI fallback |
+| HIMSS 403 | Membership content | Note access requirement |
 
-**pyproject.toml additions:**
+### Truly Broken (HTTP 404/500)
 
-```toml
-[project]
-dependencies = [
-    "fastapi>=0.104.0",
-    "uvicorn[standard]>=0.24.0",
-    "sqlalchemy>=2.0.0",
-    "pydantic>=2.5.0",
-]
+URLs that no longer exist:
+- Find archived version (Wayback Machine)
+- Replace with alternative source
+- Remove if no alternative exists
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "pytest-asyncio>=0.21.0",
-    "httpx>=0.25.0",
-    "ruff>=0.1.0",
-    "mypy>=1.7.0",
-]
-```
+## Metrics
+
+### Before (Baseline)
+
+| Metric | Value |
+|--------|-------|
+| Total References | 54 |
+| Unused References | 29 |
+| Broken URLs | 23 |
+| Potentially Hallucinated | Unknown |
+
+### After (Target)
+
+| Metric | Value |
+|--------|-------|
+| Total References | 18 |
+| Unused References | 0 |
+| Verified Sources | 18 |
+| Paywalled (with DOI) | 8 |
+
+## Testing Requirements
+
+### Automated Validation
+
+The existing validation scripts verify:
+1. All `[A*]` and `[I*]` markers have matching reference entries
+2. All reference entries are cited in the paper body
+3. URL accessibility (with timeout and retry)
+4. File size limits and cross-reference integrity
+
+### Manual Review Checklist
+
+- [ ] Each verified claim matches source content
+- [ ] Author names are spelled correctly
+- [ ] Publication years are accurate
+- [ ] DOIs resolve to correct papers
+- [ ] Removed references had valid justification
 
 ## Implementation Notes
 
-### Key Considerations
+### Key Decisions
 
-- [Important implementation detail]
-- [Potential gotcha or edge case]
-- [Performance consideration]
+1. **Conservative approach**: Prefer removing questionable references over keeping them
+2. **Paywall handling**: Keep paywalled sources with DOI if the citation is otherwise verifiable
+3. **Benchmark preference**: Use published benchmarks (EHRSQL, TREQS) over proprietary claims
+4. **Temporal relevance**: Prefer recent sources (2020+) for rapidly evolving fields
 
-### Error Handling
+### Lessons Learned
 
-- [How to handle specific error type]
-- [Validation strategy]
-- [Retry logic if applicable]
-
-### Security
-
-- [Input validation approach]
-- [Authentication requirements]
-- [Authorization checks]
+- Original 111 citations likely included AI-generated fabrications
+- Meta-analyses are more reliable than single studies for turnover data
+- Healthcare NL2SQL benchmarks are limited but growing
+- Many industry reports require registration/membership access
 
 ## References
 
-- [Link to external documentation]
-- [Related specifications]
-- [Design patterns used]
+- `planning/fix-paper-references/requirements.md` - Business requirements
+- `planning/fix-paper-references/architecture.md` - Technical approach
+- `specs/fix-paper-references/claims_analysis.md` - Detailed claim mapping
+- `specs/fix-paper-references/reference_verification.md` - Verification results
