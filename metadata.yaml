@@ -1,0 +1,61 @@
+# Pandoc metadata for paper.md PDF generation
+# See: https://pandoc.org/MANUAL.html#metadata-variables
+
+# Document information
+title: "YuiQuery: A Conversational AI Platform for Healthcare Analytics"
+subtitle: "Addressing Analytics Maturity, Workforce Turnover, and Technical Barriers"
+author:
+  - name: Samuel Harrold
+    affiliation: Independent Researcher
+date: "2025"
+lang: en-US
+
+# Document class settings
+documentclass: article
+papersize: letter
+geometry:
+  - margin=1in
+
+# Typography
+fontsize: 11pt
+linestretch: 1.5
+mainfont: "DejaVu Serif"
+sansfont: "DejaVu Sans"
+monofont: "DejaVu Sans Mono"
+
+# Table of contents
+toc: true
+toc-depth: 3
+numbersections: true
+
+# Links
+colorlinks: true
+linkcolor: "blue"
+urlcolor: "blue"
+citecolor: "green"
+
+# Code blocks (Eisvogel)
+listings: true
+listings-no-page-break: true
+code-block-font-size: \small
+
+# Eisvogel-specific options
+# See: https://github.com/Wandmalfarbe/pandoc-latex-template
+titlepage: true
+titlepage-color: "FFFFFF"
+titlepage-text-color: "000000"
+titlepage-rule-color: "000000"
+titlepage-rule-height: 2
+book: false
+classoption:
+  - oneside
+
+# Header and footer
+header-left: "YuiQuery Research Paper"
+header-right: "\\today"
+footer-left: ""
+footer-center: "\\thepage"
+footer-right: ""
+
+# Prevent widows and orphans
+prevent-widows: true

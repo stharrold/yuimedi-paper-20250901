@@ -72,6 +72,12 @@ uv run pytest tests/skills/ \
 # Task management
 gh issue list --label "P0"                 # Critical tasks
 gh issue view <number>                     # Task details
+
+# PDF generation
+./scripts/build_paper.sh                   # Generate PDF (local)
+./scripts/build_paper.sh --format html     # Generate HTML
+./scripts/build_paper.sh --format all      # Generate PDF, HTML, DOCX
+podman-compose run --rm dev ./scripts/build_paper.sh  # Generate in container
 ```
 
 ## Workflow System (for feature development)
@@ -163,6 +169,7 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 
 **Container architecture:**
 - Python 3.12 + uv with `--all-extras` (includes duckdb for AgentDB)
+- PDF generation: pandoc + texlive-xetex + Eisvogel template
 - Named volume `venv_cache` isolates container `.venv` from host (avoids macOS/Linux binary mismatch)
 - Always use `uv run` prefix in container for proper venv activation
 
