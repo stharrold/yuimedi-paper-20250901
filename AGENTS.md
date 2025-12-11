@@ -154,20 +154,19 @@ Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` 
 
 **Container-based testing:** GitHub Actions runs all tests inside Docker containers built from `Containerfile` to ensure environment parity with local Podman development.
 
-```yaml
-# .github/workflows/lit-review-ci.yml
-- name: Build container image
-  uses: docker/build-push-action@v5
-  with:
-    file: Containerfile  # Python 3.11 + uv
-    tags: yuimedi-paper:latest
-    cache-from: type=gha
-
-- name: Run tests (exclude integration)
-  run: docker run --rm -v $PWD:/app yuimedi-paper:latest uv run pytest ...
+```bash
+# Local container development
+podman-compose build                    # Build container
+podman-compose run --rm dev uv run pytest  # Run tests in container
+podman-compose run --rm dev uv run python <script>  # Run any script
 ```
 
-**Why containers?** Eliminates "works locally, fails in CI" issues by using identical environment (Python 3.11, uv, dependencies) in both contexts.
+**Container architecture:**
+- Python 3.12 + uv with `--all-extras` (includes duckdb for AgentDB)
+- Named volume `venv_cache` isolates container `.venv` from host (avoids macOS/Linux binary mismatch)
+- Always use `uv run` prefix in container for proper venv activation
+
+**Why containers?** Eliminates "works locally, fails in CI" issues by using identical environment (Python 3.12, uv, dependencies) in both contexts.
 
 ### Environment Variables
 - `LIT_REVIEW_DATA_DIR` - Data storage location (default: `~/.lit_review`)
