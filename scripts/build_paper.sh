@@ -31,9 +31,9 @@ OUTPUT_DIR="${PROJECT_ROOT}"
 
 # Eisvogel template configuration
 # Pin to specific version for reproducibility and supply chain security
-EISVOGEL_VERSION="3.5.0"
+EISVOGEL_VERSION="3.3.0"
 EISVOGEL_URL="https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v${EISVOGEL_VERSION}/Eisvogel-${EISVOGEL_VERSION}.tar.gz"
-EISVOGEL_SHA256="0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+EISVOGEL_SHA256="0eb287d299e73aa884d0b35fa27a28ae326afa04f51959e54f01cbbe76601489"
 TEMPLATE_DIR="${HOME}/.local/share/pandoc/templates"
 
 # Colors for output
