@@ -1,0 +1,14 @@
+Parsing references...
+Found 54 references (23 academic, 31 industry)
+
+Extracting citations...
+Found 50 citations in paper body
+INFO: 29 unused references
+
+Validating URLs...
+Checked 54 URLs: 31 accessible, 23 broken, 0 missing
+
+Generating report...
+Report written to: /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901_feature_fix-paper-references/docs/validation_report.md
+
+WARNING: 23 broken URLs (non-critical, likely paywalls)
