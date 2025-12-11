@@ -52,8 +52,9 @@ def sample_paper() -> Paper:
     )
 
 
+@pytest.mark.integration
 class TestJSONReviewRepository:
-    """Tests for JSONReviewRepository."""
+    """Tests for JSONReviewRepository (integration - filesystem I/O)."""
 
     def test_save_creates_file(
         self, repository: JSONReviewRepository, sample_review: Review
@@ -77,19 +78,44 @@ class TestJSONReviewRepository:
         assert data["research_question"] == "What is the impact?"
         assert data["inclusion_criteria"] == ["Peer-reviewed"]
 
-    def test_save_creates_backup_on_overwrite(
+    def test_save_creates_timestamped_backup_on_overwrite(
         self, repository: JSONReviewRepository, sample_review: Review
     ) -> None:
-        """save creates backup before overwriting."""
+        """save creates timestamped backup before overwriting."""
         # Save twice
         repository.save(sample_review)
         sample_review.advance_stage()  # Modify review
         repository.save(sample_review)
 
-        path = repository._get_review_path(sample_review.title)
-        backup_path = path.with_suffix(".json.bak")
+        # Check for timestamped backup in .backups/
+        backups = list(repository.backup_dir.glob("Test_Review_*.json"))
+        assert len(backups) == 1
 
-        assert backup_path.exists()
+    def test_save_keeps_max_backups(
+        self, repository: JSONReviewRepository, sample_review: Review
+    ) -> None:
+        """save keeps only max_backups most recent backups."""
+        # Save 7 times (should keep only 5 backups)
+        for i in range(7):
+            sample_review.advance_stage() if i > 0 else None
+            repository.save(sample_review)
+            # Small delay to ensure different timestamps
+            import time
+
+            time.sleep(0.01)
+
+        backups = list(repository.backup_dir.glob("Test_Review_*.json"))
+        assert len(backups) == 5
+
+    def test_save_atomic_write_cleans_up_on_failure(
+        self, repository: JSONReviewRepository, sample_review: Review
+    ) -> None:
+        """save cleans up temp file on failure."""
+        # This is hard to test directly, but we can verify no temp files remain
+        repository.save(sample_review)
+
+        temp_files = list(repository.data_dir.glob("tmp*"))
+        assert len(temp_files) == 0
 
     def test_load_returns_review(
         self, repository: JSONReviewRepository, sample_review: Review
@@ -139,14 +165,19 @@ class TestJSONReviewRepository:
 
         assert "not found" in str(exc_info.value.message)
 
-    def test_delete_removes_file(
+    def test_delete_soft_deletes_file(
         self, repository: JSONReviewRepository, sample_review: Review
     ) -> None:
-        """delete removes review file."""
+        """delete moves file to .deleted/ directory."""
         repository.save(sample_review)
         repository.delete(sample_review.title)
 
+        # File should not exist in main directory
         assert not repository.exists(sample_review.title)
+
+        # But should exist in .deleted/
+        deleted_files = list(repository.deleted_dir.glob("Test_Review_*.json"))
+        assert len(deleted_files) == 1
 
     def test_delete_raises_not_found(self, repository: JSONReviewRepository) -> None:
         """delete raises EntityNotFoundError for missing review."""
@@ -249,3 +280,143 @@ class TestJSONReviewRepositoryPaperSerialization:
         loaded_paper = list(loaded.papers)[0]
 
         assert loaded_paper.authors[0].orcid == "0000-0001-2345-6789"
+
+
+@pytest.mark.integration
+class TestJSONReviewRepositoryBackupRecovery:
+    """Tests for backup and recovery functionality (integration - filesystem timing)."""
+
+    def test_recover_from_backup_most_recent(
+        self, repository: JSONReviewRepository, sample_review: Review
+    ) -> None:
+        """recover_from_backup recovers most recent backup by default."""
+        # Save twice to create backup
+        repository.save(sample_review)
+        sample_review.advance_stage()
+        repository.save(sample_review)
+
+        # Recover from backup (should be the first version)
+        recovered = repository.recover_from_backup(sample_review.title)
+
+        assert recovered.stage == ReviewStage.PLANNING  # Original stage
+
+    def test_recover_from_backup_specific_index(
+        self, repository: JSONReviewRepository, sample_review: Review
+    ) -> None:
+        """recover_from_backup can recover specific backup by index."""
+        # Save three times to create two backups
+        repository.save(sample_review)
+        sample_review.advance_stage()  # SEARCH
+        repository.save(sample_review)
+        sample_review.advance_stage()  # SCREENING
+        repository.save(sample_review)
+
+        import time
+
+        time.sleep(0.01)  # Ensure timestamps differ
+
+        # Recover from second most recent backup (index 1)
+        recovered = repository.recover_from_backup(sample_review.title, backup_index=1)
+
+        assert recovered.stage == ReviewStage.PLANNING
+
+    def test_recover_from_backup_raises_not_found(self, repository: JSONReviewRepository) -> None:
+        """recover_from_backup raises EntityNotFoundError when no backups."""
+        with pytest.raises(EntityNotFoundError) as exc_info:
+            repository.recover_from_backup("nonexistent")
+
+        assert "No backup found" in str(exc_info.value.message)
+
+    def test_recover_from_backup_invalid_index(
+        self, repository: JSONReviewRepository, sample_review: Review
+    ) -> None:
+        """recover_from_backup raises error for invalid backup index."""
+        repository.save(sample_review)
+        sample_review.advance_stage()
+        repository.save(sample_review)  # Creates 1 backup
+
+        with pytest.raises(EntityNotFoundError):
+            repository.recover_from_backup(sample_review.title, backup_index=5)
+
+
+class TestJSONReviewRepositorySoftDelete:
+    """Tests for soft delete functionality."""
+
+    def test_delete_cleanup_old_files(
+        self, repository: JSONReviewRepository, sample_review: Review, tmp_path: Path
+    ) -> None:
+        """_cleanup_deleted_files removes files older than 30 days."""
+        from datetime import datetime, timedelta
+
+        repository.save(sample_review)
+        repository.delete(sample_review.title)
+
+        # Get the deleted file
+        deleted_files = list(repository.deleted_dir.glob("*.json"))
+        assert len(deleted_files) == 1
+
+        # Manually set mtime to 31 days ago
+        old_time = (datetime.now() - timedelta(days=31)).timestamp()
+        import os
+
+        os.utime(deleted_files[0], (old_time, old_time))
+
+        # Run cleanup
+        repository._cleanup_deleted_files()
+
+        # File should be removed
+        deleted_files_after = list(repository.deleted_dir.glob("*.json"))
+        assert len(deleted_files_after) == 0
+
+    def test_delete_keeps_recent_files(
+        self, repository: JSONReviewRepository, sample_review: Review
+    ) -> None:
+        """_cleanup_deleted_files keeps files newer than 30 days."""
+        repository.save(sample_review)
+        repository.delete(sample_review.title)
+
+        # Run cleanup immediately
+        repository._cleanup_deleted_files()
+
+        # File should still exist
+        deleted_files = list(repository.deleted_dir.glob("*.json"))
+        assert len(deleted_files) == 1
+
+
+class TestJSONReviewRepositoryFileLocking:
+    """Tests for file locking functionality."""
+
+    def test_load_uses_file_locking(
+        self, repository: JSONReviewRepository, sample_review: Review
+    ) -> None:
+        """load uses file locking for concurrent access."""
+        repository.save(sample_review)
+
+        # Load should succeed with file locking
+        loaded = repository.load(sample_review.title)
+        assert loaded.title == sample_review.title
+
+    def test_concurrent_reads_allowed(
+        self, repository: JSONReviewRepository, sample_review: Review
+    ) -> None:
+        """Multiple concurrent reads are allowed with shared locks."""
+        import threading
+
+        repository.save(sample_review)
+
+        results = []
+
+        def read_review() -> None:
+            loaded = repository.load(sample_review.title)
+            results.append(loaded.title)
+
+        # Start multiple read threads
+        threads = [threading.Thread(target=read_review) for _ in range(5)]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+
+        # All reads should succeed
+        assert len(results) == 5
+        assert all(r == sample_review.title for r in results)

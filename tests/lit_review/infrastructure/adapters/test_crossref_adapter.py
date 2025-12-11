@@ -36,21 +36,29 @@ def mock_crossref_response() -> dict:
     }
 
 
+@pytest.mark.integration
 class TestCrossrefAdapter:
-    """Tests for CrossrefAdapter."""
+    """Tests for CrossrefAdapter (integration - mocked HTTP)."""
 
     def test_get_service_name(self) -> None:
         """get_service_name returns 'Crossref'."""
         adapter = CrossrefAdapter()
         assert adapter.get_service_name() == "Crossref"
 
-    @patch("lit_review.infrastructure.adapters.crossref_adapter.requests.get")
-    def test_search_returns_papers(self, mock_get: MagicMock, mock_crossref_response: dict) -> None:
+    @patch("lit_review.infrastructure.adapters.crossref_adapter.httpx.Client")
+    def test_search_returns_papers(
+        self, mock_client_class: MagicMock, mock_crossref_response: dict
+    ) -> None:
         """search returns list of Paper entities."""
         mock_response = MagicMock()
         mock_response.json.return_value = mock_crossref_response
         mock_response.raise_for_status.return_value = None
-        mock_get.return_value = mock_response
+
+        mock_client = MagicMock()
+        mock_client.__enter__ = MagicMock(return_value=mock_client)
+        mock_client.__exit__ = MagicMock()
+        mock_client.get.return_value = mock_response
+        mock_client_class.return_value = mock_client
 
         adapter = CrossrefAdapter()
         papers = adapter.search("test query", limit=10)
@@ -61,15 +69,20 @@ class TestCrossrefAdapter:
         assert len(papers[0].authors) == 2
         assert papers[0].authors[0].last_name == "Smith"
 
-    @patch("lit_review.infrastructure.adapters.crossref_adapter.requests.get")
+    @patch("lit_review.infrastructure.adapters.crossref_adapter.httpx.Client")
     def test_search_parses_authors_correctly(
-        self, mock_get: MagicMock, mock_crossref_response: dict
+        self, mock_client_class: MagicMock, mock_crossref_response: dict
     ) -> None:
         """search correctly parses author information."""
         mock_response = MagicMock()
         mock_response.json.return_value = mock_crossref_response
         mock_response.raise_for_status.return_value = None
-        mock_get.return_value = mock_response
+
+        mock_client = MagicMock()
+        mock_client.__enter__ = MagicMock(return_value=mock_client)
+        mock_client.__exit__ = MagicMock()
+        mock_client.get.return_value = mock_response
+        mock_client_class.return_value = mock_client
 
         adapter = CrossrefAdapter()
         papers = adapter.search("test query")
@@ -79,15 +92,20 @@ class TestCrossrefAdapter:
         assert first_author.first_name == "John"
         assert first_author.initials == "J."
 
-    @patch("lit_review.infrastructure.adapters.crossref_adapter.requests.get")
+    @patch("lit_review.infrastructure.adapters.crossref_adapter.httpx.Client")
     def test_search_cleans_html_from_abstract(
-        self, mock_get: MagicMock, mock_crossref_response: dict
+        self, mock_client_class: MagicMock, mock_crossref_response: dict
     ) -> None:
         """search removes HTML tags from abstract."""
         mock_response = MagicMock()
         mock_response.json.return_value = mock_crossref_response
         mock_response.raise_for_status.return_value = None
-        mock_get.return_value = mock_response
+
+        mock_client = MagicMock()
+        mock_client.__enter__ = MagicMock(return_value=mock_client)
+        mock_client.__exit__ = MagicMock()
+        mock_client.get.return_value = mock_response
+        mock_client_class.return_value = mock_client
 
         adapter = CrossrefAdapter()
         papers = adapter.search("test query")
@@ -95,21 +113,26 @@ class TestCrossrefAdapter:
         assert papers[0].abstract == "This is the abstract."
         assert "<p>" not in papers[0].abstract
 
-    @patch("lit_review.infrastructure.adapters.crossref_adapter.requests.get")
-    def test_search_handles_empty_response(self, mock_get: MagicMock) -> None:
+    @patch("lit_review.infrastructure.adapters.crossref_adapter.httpx.Client")
+    def test_search_handles_empty_response(self, mock_client_class: MagicMock) -> None:
         """search handles empty response gracefully."""
         mock_response = MagicMock()
         mock_response.json.return_value = {"message": {"items": []}}
         mock_response.raise_for_status.return_value = None
-        mock_get.return_value = mock_response
+
+        mock_client = MagicMock()
+        mock_client.__enter__ = MagicMock(return_value=mock_client)
+        mock_client.__exit__ = MagicMock()
+        mock_client.get.return_value = mock_response
+        mock_client_class.return_value = mock_client
 
         adapter = CrossrefAdapter()
         papers = adapter.search("test query")
 
         assert papers == []
 
-    @patch("lit_review.infrastructure.adapters.crossref_adapter.requests.get")
-    def test_search_skips_items_without_doi(self, mock_get: MagicMock) -> None:
+    @patch("lit_review.infrastructure.adapters.crossref_adapter.httpx.Client")
+    def test_search_skips_items_without_doi(self, mock_client_class: MagicMock) -> None:
         """search skips items missing DOI."""
         mock_response = MagicMock()
         mock_response.json.return_value = {
@@ -123,17 +146,22 @@ class TestCrossrefAdapter:
             }
         }
         mock_response.raise_for_status.return_value = None
-        mock_get.return_value = mock_response
+
+        mock_client = MagicMock()
+        mock_client.__enter__ = MagicMock(return_value=mock_client)
+        mock_client.__exit__ = MagicMock()
+        mock_client.get.return_value = mock_response
+        mock_client_class.return_value = mock_client
 
         adapter = CrossrefAdapter()
         papers = adapter.search("test query")
 
         assert papers == []
 
-    @patch("lit_review.infrastructure.adapters.crossref_adapter.requests.get")
-    def test_search_retries_on_timeout(self, mock_get: MagicMock) -> None:
+    @patch("lit_review.infrastructure.adapters.crossref_adapter.httpx.Client")
+    def test_search_retries_on_timeout(self, mock_client_class: MagicMock) -> None:
         """search retries on timeout."""
-        import requests
+        import httpx
 
         # First two calls timeout, third succeeds
         mock_response = MagicMock()
@@ -152,24 +180,32 @@ class TestCrossrefAdapter:
         }
         mock_response.raise_for_status.return_value = None
 
-        mock_get.side_effect = [
-            requests.Timeout(),
-            requests.Timeout(),
+        mock_client = MagicMock()
+        mock_client.__enter__ = MagicMock(return_value=mock_client)
+        mock_client.__exit__ = MagicMock()
+        mock_client.get.side_effect = [
+            httpx.TimeoutException("Timeout"),
+            httpx.TimeoutException("Timeout"),
             mock_response,
         ]
+        mock_client_class.return_value = mock_client
 
         adapter = CrossrefAdapter(max_retries=3)
         papers = adapter.search("test query")
 
         assert len(papers) == 1
-        assert mock_get.call_count == 3
+        assert mock_client.get.call_count == 3
 
-    @patch("lit_review.infrastructure.adapters.crossref_adapter.requests.get")
-    def test_search_raises_timeout_after_retries(self, mock_get: MagicMock) -> None:
+    @patch("lit_review.infrastructure.adapters.crossref_adapter.httpx.Client")
+    def test_search_raises_timeout_after_retries(self, mock_client_class: MagicMock) -> None:
         """search raises TimeoutError after max retries."""
-        import requests
+        import httpx
 
-        mock_get.side_effect = requests.Timeout()
+        mock_client = MagicMock()
+        mock_client.__enter__ = MagicMock(return_value=mock_client)
+        mock_client.__exit__ = MagicMock()
+        mock_client.get.side_effect = httpx.TimeoutException("Timeout")
+        mock_client_class.return_value = mock_client
 
         adapter = CrossrefAdapter(max_retries=2)
 
@@ -178,12 +214,16 @@ class TestCrossrefAdapter:
 
         assert "timed out" in str(exc_info.value)
 
-    @patch("lit_review.infrastructure.adapters.crossref_adapter.requests.get")
-    def test_search_raises_connection_error_on_failure(self, mock_get: MagicMock) -> None:
+    @patch("lit_review.infrastructure.adapters.crossref_adapter.httpx.Client")
+    def test_search_raises_connection_error_on_failure(self, mock_client_class: MagicMock) -> None:
         """search raises ConnectionError on persistent failure."""
-        import requests
+        import httpx
 
-        mock_get.side_effect = requests.RequestException("Network error")
+        mock_client = MagicMock()
+        mock_client.__enter__ = MagicMock(return_value=mock_client)
+        mock_client.__exit__ = MagicMock()
+        mock_client.get.side_effect = httpx.HTTPError("Network error")
+        mock_client_class.return_value = mock_client
 
         adapter = CrossrefAdapter(max_retries=2)
 

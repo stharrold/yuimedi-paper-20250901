@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+title: Academic Literature Review Tool for Rigorous Claim Verification
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Samuel T.
+    family-names: Harrold
+    email: research@yuimedi.com
+    affiliation: YuiQuery Research Team
+    orcid: 'https://orcid.org/0000-0000-0000-0000'
+repository-code: 'https://github.com/stharrold/yuimedi-paper-20250901'
+url: 'https://github.com/stharrold/yuimedi-paper-20250901'
+abstract: >-
+  A Python-based systematic literature review tool implementing
+  Clean Architecture for rigorous academic claim verification in
+  healthcare research. The tool provides automated multi-database
+  search across Crossref, PubMed, ArXiv, and Semantic Scholar,
+  automatic deduplication using DOI-based matching, thematic
+  analysis with TF-IDF and hierarchical clustering, AI-powered
+  narrative synthesis, and export to multiple formats (BibTeX,
+  DOCX, LaTeX, HTML, JSON). Built with test-driven development
+  achieving >80% code coverage and following PRISMA 2020
+  guidelines for systematic reviews.
+keywords:
+  - literature review
+  - systematic review
+  - healthcare research
+  - academic research
+  - claim verification
+  - PRISMA
+  - natural language processing
+  - thematic analysis
+  - clean architecture
+  - test-driven development
+license: MIT
+version: 1.0.0
+date-released: '2025-12-09'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.XXXXXXX
+    description: Zenodo DOI
+references:
+  - type: software
+    title: YuiQuery Healthcare Analytics Research
+    authors:
+      - name: YuiQuery Research Team
+    repository-code: 'https://github.com/stharrold/yuimedi-paper-20250901'

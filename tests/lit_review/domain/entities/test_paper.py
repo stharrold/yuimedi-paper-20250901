@@ -292,3 +292,17 @@ class TestPaperEquality:
         )
         paper_set = {paper1, paper2, paper3}
         assert len(paper_set) == 2  # paper1 and paper2 are same (same DOI)
+
+    def test_paper_not_equal_to_non_paper_object(self) -> None:
+        """Paper compared to non-Paper returns NotImplemented."""
+        paper = Paper(
+            doi=DOI("10.1234/test"),
+            title="Test Paper",
+            authors=[Author("Smith", "John", "J.")],
+            publication_year=2024,
+            journal="Journal",
+        )
+        # Comparing with different types should work
+        assert paper != "not a paper"
+        assert paper != 123
+        assert paper is not None
