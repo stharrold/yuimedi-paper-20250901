@@ -1,6 +1,6 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-02 01:01:07 UTC
+**Generated:** 2025-12-11 04:16:35 UTC
 
 ## Summary
 
@@ -10,8 +10,8 @@
 | Academic [A*] | 23 |
 | Industry [I*] | 31 |
 | Total Citations | 50 |
-| Accessible URLs | 34 |
-| Broken URLs | 20 |
+| Accessible URLs | 31 |
+| Broken URLs | 23 |
 | Missing URLs | 0 |
 | Orphaned Citations | 0 |
 | Unused References | 29 |
@@ -59,6 +59,7 @@ References with inaccessible URLs:
 | Reference | URL | Error |
 |-----------|-----|-------|
 | [A2] | https://www.journalslibrary.nihr.ac.uk/hta/hta5150/ | HTTP 405: Not Allowed |
+| [A3] | http://www.myreaders.info/09_Natural_Language_Processing.pdf | URL Error: timed out |
 | [A4] | https://www.sciencedirect.com/science/article/pii/S026840121... | HTTP 403: Forbidden |
 | [A5] | https://pmc.ncbi.nlm.nih.gov/articles/PMC1852631/ | HTTP 403: Forbidden |
 | [A6] | https://journals.lww.com/hcmrjournal | HTTP 403: Forbidden |
@@ -75,6 +76,8 @@ References with inaccessible URLs:
 | [A22] | https://www.mdpi.com/1999-4893/18/3/124 | HTTP 403: Forbidden |
 | [I1] | https://journals.aom.org/doi/10.5465/amj.2021.1087 | HTTP 403: Forbidden |
 | [I7] | https://www.cl.cam.ac.uk/teaching/2002/NatLangProc/ | HTTP 404: Not Found |
+| [I8] | https://www.dailypay.com/resource-center/blog/employee-turno... | URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
+| [I12] | https://www.growin.com/blog/developer-retention-costs-onboar... | URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
 | [I16] | https://www.himss.org/maturity-models/amam/ | HTTP 403: Forbidden |
 | [I27] | https://www.sciencedirect.com/topics/computer-science/layere... | HTTP 403: Forbidden |
 | [I28] | https://gkc.himss.org/news/new-analytics-maturity-adoption-m... | HTTP 403: Forbidden |
@@ -88,7 +91,7 @@ References with inaccessible URLs:
 |--------|------|------------|
 | [A1] | academic | OK (200) |
 | [A2] | academic | Failed: HTTP 405: Not Allowed |
-| [A3] | academic | OK (200) |
+| [A3] | academic | Failed: URL Error: timed out |
 | [A4] | academic | Failed: HTTP 403: Forbidden |
 | [A5] | academic | Failed: HTTP 403: Forbidden |
 | [A6] | academic | Failed: HTTP 403: Forbidden |
@@ -102,7 +105,7 @@ References with inaccessible URLs:
 | [A14] | academic | OK (200) |
 | [A15] | academic | Failed: HTTP 403: Forbidden |
 | [A16] | academic | Failed: HTTP 403: Forbidden |
-| [A17] | academic | OK (200) |
+| [A17] | academic | OK (202) |
 | [A18] | academic | Failed: HTTP 403: Forbidden |
 | [A19] | academic | Failed: HTTP 403: Forbidden |
 | [A20] | academic | OK (200) |
@@ -116,11 +119,11 @@ References with inaccessible URLs:
 | [I5] | industry | OK (200) |
 | [I6] | industry | OK (200) |
 | [I7] | industry | Failed: HTTP 404: Not Found |
-| [I8] | industry | OK (200) |
+| [I8] | industry | Failed: URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
 | [I9] | industry | OK (200) |
 | [I10] | industry | OK (200) |
 | [I11] | industry | OK (200) |
-| [I12] | industry | OK (200) |
+| [I12] | industry | Failed: URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
 | [I13] | industry | OK (200) |
 | [I14] | industry | OK (200) |
 | [I15] | industry | OK (200) |
