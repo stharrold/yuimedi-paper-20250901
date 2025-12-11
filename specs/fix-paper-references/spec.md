@@ -173,11 +173,12 @@ The existing validation scripts verify:
 
 ### Manual Review Checklist
 
-- [ ] Each verified claim matches source content
-- [ ] Author names are spelled correctly
-- [ ] Publication years are accurate
-- [ ] DOIs resolve to correct papers
-- [ ] Removed references had valid justification
+- [x] Each verified claim matches source content
+- [x] Author names are spelled correctly
+- [x] Publication years are accurate
+- [x] DOIs resolve to correct papers
+- [x] Removed references had valid justification
+- [x] No unverified percentage claims (91% removed)
 
 ## Implementation Notes
 
