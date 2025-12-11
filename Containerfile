@@ -30,10 +30,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install Eisvogel template for academic PDF formatting
 # Pin to specific version for reproducibility and verify installation
+# Download to temp file first to handle GitHub redirects and verify download
 ENV EISVOGEL_VERSION=3.5.0
 RUN mkdir -p /root/.local/share/pandoc/templates && \
-    curl -sL "https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v${EISVOGEL_VERSION}/Eisvogel-${EISVOGEL_VERSION}.tar.gz" | \
-    tar xz -C /root/.local/share/pandoc/templates --strip-components=1 && \
+    curl -fsSL -o /tmp/eisvogel.tar.gz \
+        "https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v${EISVOGEL_VERSION}/Eisvogel-${EISVOGEL_VERSION}.tar.gz" && \
+    tar xzf /tmp/eisvogel.tar.gz -C /root/.local/share/pandoc/templates --strip-components=1 && \
+    rm /tmp/eisvogel.tar.gz && \
     test -f /root/.local/share/pandoc/templates/eisvogel.latex || (echo "Eisvogel template not found" && exit 1)
 
 # Install uv
