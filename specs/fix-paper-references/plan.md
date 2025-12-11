@@ -3,368 +3,393 @@
 **Type:** feature
 **Slug:** fix-paper-references
 **Date:** 2025-12-11
+**GitHub Issue:** #261
 
+## Overview
 
-<!-- Note: Customize task breakdown based on specific feature requirements -->
-<!-- This template provides the structure. Claude Code will populate with actual tasks. -->
+Fix paper.md references: remove unused references, fix broken URLs, verify claims against real academic literature, and replace any hallucinated references with verified peer-reviewed sources.
+
+**Key tools:** `academic-review` CLI, `validate_references.py`, manual literature verification
 
 ## Task Breakdown
 
-### Phase 1: Foundation
+### Phase 1: Assessment
 
-#### Task impl_001: [Task Name]
+#### Task T001: Run reference validation baseline
 
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file1.py`
-- `src/path/file2.py`
-- `tests/test_file.py`
-
-**Description:**
-[Detailed description of what needs to be implemented]
-
-**Steps:**
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
-
-**Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
-
-**Verification:**
-```bash
-# Commands to verify implementation
-uv run python -c "from src.module import Class; print('OK')"
-uv run pytest tests/test_file.py -v
-```
-
-**Dependencies:**
-- None (or list other task IDs)
-
----
-
-#### Task impl_002: [Task Name]
-
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file3.py`
-
-**Description:**
-[Detailed description]
-
-**Steps:**
-1. [Step 1]
-2. [Step 2]
-
-**Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-
-**Verification:**
-```bash
-uv run pytest tests/test_file3.py
-```
-
-**Dependencies:**
-- impl_001 (must complete first)
-
----
-
-### Phase 2: Core Implementation
-
-#### Task impl_003: [Task Name]
-
-**Estimated Time:** [Duration]
 **Priority:** High
 
 **Files:**
-- `src/core/module.py`
-- `tests/test_module.py`
+- `paper.md`
+- `scripts/validate_references.py`
 
 **Description:**
-[Core business logic implementation]
+Run the reference validation script to establish a baseline of issues to fix.
 
 **Steps:**
-1. Create module structure
-2. Implement core functionality
-3. Add error handling
-4. Write comprehensive tests
+1. Run `python scripts/validate_references.py --all`
+2. Document the count of unused references
+3. Document the count of broken URLs
+4. Create a tracking list of all issues
 
 **Acceptance Criteria:**
-- [ ] All business logic implemented
-- [ ] Error cases handled
-- [ ] Tests passing with >85% coverage
+- [ ] Baseline report generated
+- [ ] Issue counts documented (29 unused, 23 broken URLs per issue #261)
 
 **Verification:**
 ```bash
-uv run pytest tests/test_module.py --cov=src.core.module --cov-report=term
+python scripts/validate_references.py --all 2>&1 | tee validation_baseline.txt
 ```
 
-**Dependencies:**
-- impl_001, impl_002
+**Dependencies:** None
 
 ---
 
-### Phase 3: API Layer
+#### Task T002: Extract and categorize claims from paper.md
 
-#### Task impl_004: [Task Name]
-
-**Estimated Time:** [Duration]
 **Priority:** High
 
 **Files:**
-- `src/api/routes.py`
-- `src/api/models.py`
-- `tests/test_api.py`
+- `paper.md`
 
 **Description:**
-[API endpoint implementation]
+Extract all claims from paper.md that require citations, categorize them by the three pillars.
 
 **Steps:**
-1. Define Pydantic models for request/response
-2. Implement endpoint handlers
-3. Add input validation
-4. Write integration tests
+1. Read paper.md and identify all factual claims
+2. Categorize claims by pillar:
+   - Pillar 1: Analytics maturity (HIMSS AMAM stages, healthcare analytics adoption)
+   - Pillar 2: Workforce turnover (institutional knowledge loss, training costs)
+   - Pillar 3: Technical barriers (NL2SQL challenges, schema complexity)
+3. Note which claims have citations and which don't
+4. Flag claims with potentially fabricated references
 
 **Acceptance Criteria:**
-- [ ] Endpoints respond correctly
-- [ ] Validation working
-- [ ] Error responses formatted correctly
-- [ ] Integration tests passing
+- [ ] All claims extracted and categorized
+- [ ] Claims mapped to three pillars
+- [ ] Uncited claims identified
 
 **Verification:**
-```bash
-uv run pytest tests/test_api.py -v
-# Manual test:
-curl -X POST http://localhost:8000/api/endpoint -H "Content-Type: application/json" -d '{"field": "value"}'
-```
+Manual review - claims documented in a structured format
 
-**Dependencies:**
-- impl_003
+**Dependencies:** T001
 
 ---
 
-### Phase 4: Testing
+### Phase 2: Literature Search
 
-#### Task test_001: Unit Tests
+#### Task T003: Search academic databases for Pillar 1 (Analytics Maturity)
 
-**Estimated Time:** [Duration]
 **Priority:** High
 
 **Files:**
-- `tests/test_*.py`
-- `tests/conftest.py`
+- Literature review artifacts (to be created)
 
 **Description:**
-Comprehensive unit tests for all modules.
-
-**Coverage Targets:**
-- Overall: ≥80%
-- Core modules: ≥90%
-- Utilities: ≥85%
+Use academic-review CLI to search for papers supporting analytics maturity claims.
 
 **Steps:**
-1. Set up pytest fixtures in conftest.py
-2. Write unit tests for each module
-3. Test happy paths and error conditions
-4. Achieve coverage targets
+1. Initialize a literature review: `uv run academic-review init pillar1-analytics`
+2. Define search queries covering HIMSS AMAM, healthcare analytics adoption, BI maturity
+3. Execute search: `uv run academic-review search pillar1-analytics`
+4. Review results and assess relevance
+
+**Acceptance Criteria:**
+- [ ] Search queries executed across Crossref, PubMed, ArXiv
+- [ ] Results deduplicated
+- [ ] Relevant papers identified for analytics maturity claims
 
 **Verification:**
 ```bash
-uv run pytest --cov=src --cov-report=term --cov-report=html
-uv run pytest --cov=src --cov-fail-under=80
+uv run academic-review status pillar1-analytics
 ```
 
-**Dependencies:**
-- impl_001, impl_002, impl_003, impl_004
+**Dependencies:** T002
 
 ---
 
-#### Task test_002: Integration Tests
+#### Task T004: Search academic databases for Pillar 2 (Workforce Turnover)
 
-**Estimated Time:** [Duration]
 **Priority:** High
 
 **Files:**
-- `tests/integration/test_*.py`
+- Literature review artifacts
 
 **Description:**
-End-to-end integration tests with real database.
+Search for papers supporting workforce turnover and institutional knowledge claims.
 
 **Steps:**
-1. Set up test database fixtures
-2. Test API workflows end-to-end
-3. Test error scenarios
-4. Test concurrent requests
+1. Initialize review: `uv run academic-review init pillar2-workforce`
+2. Define search queries: healthcare turnover, nurse retention, institutional memory, training costs
+3. Execute search and review results
+
+**Acceptance Criteria:**
+- [ ] Workforce-related papers found
+- [ ] Turnover statistics verified against peer-reviewed sources
 
 **Verification:**
 ```bash
-uv run pytest tests/integration/ -v
+uv run academic-review status pillar2-workforce
 ```
 
-**Dependencies:**
-- impl_004, test_001
+**Dependencies:** T002
 
 ---
 
-### Phase 5: Containerization
+#### Task T005: Search academic databases for Pillar 3 (Technical Barriers)
 
-#### Task container_001: Application Container
+**Priority:** High
 
-**Estimated Time:** [Duration]
+**Files:**
+- Literature review artifacts
+
+**Description:**
+Search for papers on NL2SQL challenges, text-to-SQL benchmarks, healthcare data complexity.
+
+**Steps:**
+1. Initialize review: `uv run academic-review init pillar3-technical`
+2. Define search queries: NL2SQL, text-to-SQL, Spider benchmark, healthcare schemas
+3. Execute search and review results
+
+**Acceptance Criteria:**
+- [ ] NL2SQL benchmark papers found (Spider, BIRD, etc.)
+- [ ] Healthcare-specific SQL challenges documented
+
+**Verification:**
+```bash
+uv run academic-review status pillar3-technical
+```
+
+**Dependencies:** T002
+
+---
+
+### Phase 3: Verification and Replacement
+
+#### Task T006: Verify existing references against claims
+
+**Priority:** High
+
+**Files:**
+- `paper.md`
+
+**Description:**
+Check each existing reference to verify it actually supports the claim it's cited for.
+
+**Steps:**
+1. For each citation in paper.md, verify the reference exists
+2. Check if the reference content actually supports the claim
+3. Flag references that don't support claims (potential hallucinations)
+4. Flag references that are inaccessible (403/404 URLs)
+
+**Acceptance Criteria:**
+- [ ] Each reference verified against its claim
+- [ ] Hallucinated references flagged
+- [ ] Inaccessible references flagged
+
+**Verification:**
+Manual review - verification status documented per reference
+
+**Dependencies:** T003, T004, T005
+
+---
+
+#### Task T007: Replace hallucinated/broken references
+
+**Priority:** High
+
+**Files:**
+- `paper.md`
+
+**Description:**
+Replace fabricated or broken references with verified peer-reviewed sources from the literature search.
+
+**Steps:**
+1. For each flagged reference, find a verified replacement from search results
+2. Update paper.md with correct reference details (authors, title, journal, year, DOI)
+3. Ensure replacement actually supports the claim
+4. Update citation format to [A*] for academic, [I*] for industry
+
+**Acceptance Criteria:**
+- [ ] All hallucinated references replaced
+- [ ] All broken URLs fixed or replaced with DOI alternatives
+- [ ] Citation format consistent
+
+**Verification:**
+```bash
+python scripts/validate_references.py --all
+```
+
+**Dependencies:** T006
+
+---
+
+#### Task T008: Remove unused references
+
+**Priority:** High
+
+**Files:**
+- `paper.md`
+
+**Description:**
+Remove references that are defined but never cited in the paper.
+
+**Steps:**
+1. Run validation to get list of unused references
+2. Remove unused reference definitions from paper.md
+3. Verify no orphaned citations remain
+
+**Acceptance Criteria:**
+- [ ] All unused references removed
+- [ ] No orphaned citations
+- [ ] Reference numbering consistent
+
+**Verification:**
+```bash
+python scripts/validate_references.py --all
+# Should report 0 unused references
+```
+
+**Dependencies:** T007
+
+---
+
+### Phase 4: Export and Validation
+
+#### Task T009: Export literature review artifacts
+
 **Priority:** Medium
 
 **Files:**
-- `Containerfile`
-- `.containerignore`
+- `docs/references.bib` (to be created)
+- `docs/literature_synthesis.md` (to be created)
 
 **Description:**
-Create optimized container for application.
+Export BibTeX and synthesis report documenting the reference verification methodology.
 
 **Steps:**
-1. Write multi-stage Containerfile
-2. Optimize layer caching
-3. Add health check
-4. Test container build and run
+1. Export BibTeX: `uv run academic-review export --format bibtex`
+2. Generate synthesis report documenting methodology
+3. Store artifacts in docs/ directory
+
+**Acceptance Criteria:**
+- [ ] BibTeX file generated with all verified references
+- [ ] Synthesis report documents verification methodology
 
 **Verification:**
 ```bash
-podman build -t fix-paper-references:latest .
-podman run --rm -p 8000:8000 fix-paper-references:latest
-curl http://localhost:8000/health
+ls docs/references.bib docs/literature_synthesis.md
 ```
 
-**Dependencies:**
-- All implementation tasks complete
+**Dependencies:** T007, T008
 
 ---
 
-#### Task container_002: Container Orchestration
+#### Task T010: Final validation and quality gates
 
-**Estimated Time:** [Duration]
-**Priority:** Medium
+**Priority:** High
 
 **Files:**
-- `podman-compose.yml`
-- `.env.example`
+- `paper.md`
+- All validation scripts
 
 **Description:**
-Set up multi-container orchestration.
+Run all validation checks to ensure paper.md passes quality gates.
 
 **Steps:**
-1. Define services in podman-compose.yml
-2. Configure volumes and networks
-3. Set up environment variables
-4. Add health checks
-5. Test full stack
+1. Run documentation validation: `./validate_documentation.sh`
+2. Run reference validation: `python scripts/validate_references.py --all`
+3. Run linting: `uv run ruff format . && uv run ruff check --fix .`
+4. Run full quality gates: `python .claude/skills/quality-enforcer/scripts/run_quality_gates.py`
+
+**Acceptance Criteria:**
+- [ ] Documentation validation passes (6 tests)
+- [ ] Reference validation passes with 0 critical issues
+- [ ] All URLs accessible or have DOI alternatives
+- [ ] No hallucinated references remain
 
 **Verification:**
 ```bash
-podman-compose up -d
-podman-compose ps
-curl http://localhost:8000/health
-podman-compose logs app
-podman-compose down
+./validate_documentation.sh
+python scripts/validate_references.py --all
+python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
 ```
 
-**Dependencies:**
-- container_001
+**Dependencies:** T008, T009
 
 ---
 
-## Estimated Total Time
+## Task Summary
 
-| Phase | Duration |
-|-------|----------|
-| Phase 1: Foundation | [X hours] |
-| Phase 2: Core Implementation | [X hours] |
-| Phase 3: API Layer | [X hours] |
-| Phase 4: Testing | [X hours] |
-| Phase 5: Containerization | [X hours] |
-| **Total** | **[X hours]** |
+| Task | Description | Priority | Dependencies |
+|------|-------------|----------|--------------|
+| T001 | Run reference validation baseline | High | None |
+| T002 | Extract and categorize claims | High | T001 |
+| T003 | Search for Pillar 1 papers | High | T002 |
+| T004 | Search for Pillar 2 papers | High | T002 |
+| T005 | Search for Pillar 3 papers | High | T002 |
+| T006 | Verify existing references | High | T003, T004, T005 |
+| T007 | Replace hallucinated references | High | T006 |
+| T008 | Remove unused references | High | T007 |
+| T009 | Export literature artifacts | Medium | T007, T008 |
+| T010 | Final validation | High | T008, T009 |
 
 ## Task Dependencies Graph
 
 ```
-impl_001 ─┐
-          ├─> impl_003 ─> impl_004 ─┐
-impl_002 ─┘                          ├─> test_001 ─> test_002 ─> container_001 ─> container_002
-                                     │
-                                     └─> test_001
+T001 ─> T002 ─┬─> T003 ─┐
+              ├─> T004 ─┼─> T006 ─> T007 ─> T008 ─┬─> T009 ─> T010
+              └─> T005 ─┘                         └─────────────┘
 ```
-
-## Critical Path
-
-1. impl_001
-2. impl_002
-3. impl_003
-4. impl_004
-5. test_001
-6. test_002
-7. container_001
-8. container_002
-
-[Identify which tasks are on the critical path and cannot be parallelized]
 
 ## Parallel Work Opportunities
 
-- impl_001 and impl_002 can be done in parallel
-- test_001 unit tests can be written alongside implementation
-- Documentation can be written in parallel with containerization
+- **[P] T003, T004, T005** can run in parallel (independent literature searches)
+- T009 can start after T007 while T008 is in progress
 
 ## Quality Checklist
 
 Before considering this feature complete:
 
-- [ ] All tasks marked as complete
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing (unit + integration)
-- [ ] Linting clean (`uv run ruff check src/ tests/`)
-- [ ] Type checking clean (`uv run mypy src/`)
-- [ ] Container builds successfully
-- [ ] Container health checks passing
-- [ ] API documentation complete
-- [ ] Code reviewed
-- [ ] Manual testing performed
+- [ ] All 10 tasks marked as complete
+- [ ] Reference validation passes with 0 unused references
+- [ ] Reference validation passes with 0 broken URLs (or DOI alternatives)
+- [ ] No hallucinated references remain
+- [ ] Documentation validation passes (6 tests)
+- [ ] BibTeX export generated
+- [ ] Synthesis report documents methodology
 
 ## Risk Assessment
 
 ### High Risk Tasks
 
-- **impl_003**: Core business logic is complex
-  - Mitigation: Break into smaller subtasks, pair programming
+- **T006**: Verifying references requires manual review of actual paper content
+  - Mitigation: Use DOIs to access papers, document verification methodology
 
-- **test_002**: Integration tests may be flaky
-  - Mitigation: Use proper fixtures, isolated test database
+- **T007**: Finding quality replacements for hallucinated references
+  - Mitigation: Use multiple academic databases, prioritize peer-reviewed sources with DOIs
 
 ### Medium Risk Tasks
 
-- **container_002**: Multi-container networking can be tricky
-  - Mitigation: Test thoroughly in local environment first
+- **T003-T005**: Academic database rate limits may slow searches
+  - Mitigation: Use NCBI_API_KEY for PubMed, stagger requests
 
 ## Notes
 
-[Any additional notes, considerations, or context for implementation]
+### Three-Pillar Framework
 
-### Implementation Tips
+All claims must connect to one of:
+1. **Analytics maturity** - HIMSS AMAM stages, healthcare analytics adoption rates
+2. **Workforce turnover** - Impact on institutional knowledge, training costs
+3. **Technical barriers** - NL2SQL challenges, schema complexity, ambiguity resolution
 
-- [Tip 1]
-- [Tip 2]
-- [Tip 3]
+### Citation Format
 
-### Common Pitfalls
-
-- [Pitfall 1 and how to avoid it]
-- [Pitfall 2 and how to avoid it]
+- Academic sources: `[A1]`, `[A2]`, etc.
+- Industry sources: `[I1]`, `[I2]`, etc.
 
 ### Resources
 
-- [Link to relevant documentation]
-- [Link to example code]
-- [Link to design patterns]
+- `uv run academic-review --help` - Literature review CLI
+- `python scripts/validate_references.py --help` - Reference validation
+- `./validate_documentation.sh` - Documentation validation
