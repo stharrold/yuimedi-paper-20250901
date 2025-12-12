@@ -1,7 +1,7 @@
 ---
 title: "Natural Language to SQL in Healthcare: Bridging Analytics Maturity Gaps, Workforce Turnover, and Technical Barriers Through Conversational AI Platforms"
 author: "Samuel T Harrold, Yuimedi"
-date: "August 2025"
+date: "December 2025"
 version: "1.0.0"
 abstract: |
   This research examines the evidence for implementing conversational AI platforms
