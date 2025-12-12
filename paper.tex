@@ -109,24 +109,6 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx}
-\makeatletter
-\newsavebox\pandoc@box
-\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
-  \sbox\pandoc@box{#1}%
-  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
-  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
-  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
-  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
-  \else\usebox{\pandoc@box}%
-  \fi%
-}
-% Set default figure placement to htbp
-% Make use of float-package and set default placement for figures to H.
-% The option H means 'PUT IT HERE' (as  opposed to the standard h option which means 'You may put it here if you like').
-\usepackage{float}
-\floatplacement{figure}{H}
-\makeatother
 \ifLuaTeX
 \usepackage[bidi=basic,shorthands=off]{babel}
 \else
@@ -142,6 +124,7 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{graphicx}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -968,18 +951,12 @@ The solution architecture addresses each identified challenge:
   organizational knowledge and expertise
 \end{enumerate}
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=1\textwidth,height=\textheight]{figures/architecture.jpg}
-\caption{Conversational AI Platform Architecture for Healthcare
-Analytics. The diagram illustrates the flow from clinical user queries
-through the NLP engine and SQL generation to the data warehouse, with
-institutional knowledge and healthcare ontologies informing the
-process.}\label{fig:architecture}
+\includegraphics[width=\textwidth,keepaspectratio]{figures/architecture.jpg}
+\caption{Conversational AI Platform Architecture for Healthcare Analytics. The diagram illustrates the flow from clinical user queries through the NLP engine and SQL generation to the data warehouse, with institutional knowledge and healthcare ontologies informing the process.}
+\label{fig:architecture}
 \end{figure}
-
-\emph{Figure 1: Conversational AI Platform Architecture for Healthcare
-Analytics}
 
 \subsection{Core Capabilities}\label{core-capabilities}
 

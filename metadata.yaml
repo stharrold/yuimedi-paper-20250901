@@ -56,3 +56,7 @@ footer-right: "\\hspace{0pt}"
 
 # Prevent widows and orphans
 prevent-widows: true
+
+# LaTeX packages for figures
+header-includes:
+  - \usepackage{graphicx}
