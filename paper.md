@@ -1,6 +1,6 @@
 ---
-title: "YuiQuery: Natural Language to SQL in Healthcare"
-subtitle: "A Comprehensive Analysis of Conversational AI Platforms for Healthcare Analytics"
+title: "Natural Language to SQL in Healthcare: Bridging Analytics Maturity Gaps, Workforce Turnover, and Technical Barriers Through Conversational AI Platforms"
+subtitle: ""
 author:
   - name: "Samuel T Harrold"
     affiliation: "Yuimedi"
@@ -8,7 +8,7 @@ author:
 date: "August 2025"
 version: "1.0.0"
 abstract: |
-  This research examines the evidence for implementing conversational AI platforms like YuiQuery
+  This research examines the evidence for implementing conversational AI platforms
   in healthcare analytics, addressing three critical challenges: low healthcare analytics maturity,
   workforce turnover with institutional memory loss, and technical barriers in natural language
   to SQL generation. Through review of peer-reviewed benchmarking studies and industry implementations,
@@ -44,33 +44,33 @@ citecolor: blue
 - Optional: Install pandoc-crossref for figure/table references
 
 ## Generate PDF (Basic)
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf
+pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.pdf
 
 ## Generate PDF (High Quality with XeLaTeX)
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf \
+pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.pdf \
   --pdf-engine=xelatex \
   --highlight-style=pygments \
   --toc \
   --number-sections
 
 ## Generate PDF (With Eisvogel Template - Professional Academic Look)
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf \
+pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.pdf \
   --template=eisvogel \
   --pdf-engine=xelatex \
   --listings
 
 ## Generate HTML (Standalone)
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.html \
+pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.html \
   --standalone \
   --toc \
   --toc-depth=3 \
   --self-contained
 
 ## Generate Word Document
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.docx
+pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.docx
 
 ## With Citation Processing (Note: Citations are already formatted in text)
-pandoc paper.md -o YuiQuery-Healthcare-Analytics-Research.pdf \
+pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.pdf \
   --pdf-engine=xelatex \
   --toc \
   --number-sections
@@ -82,7 +82,7 @@ Healthcare organizations face a critical convergence of challenges that threaten
 
 Through systematic review of academic and industry sources, we demonstrate that few healthcare organizations worldwide have achieved advanced analytics maturity, while annual turnover rates of 8-36% [A1, A2] create institutional memory loss with replacement costs reaching 1.5-2x annual salary [I6]. Simultaneously, natural language to SQL (NL2SQL) technologies have matured sufficiently to address healthcare's unique technical barriers, though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings [A6].
 
-Conversational AI platforms like YuiQuery directly address this convergence by democratizing analytics access through natural language interfaces while preserving institutional knowledge through embedded expertise. Evidence from healthcare implementations shows significant improvements in efficiency, with organizations like Berkshire Healthcare NHS Trust reporting over 800 citizen developers creating solutions [I4], and Forrester Research documenting 206% ROI from low-code implementations [I5].
+Conversational AI platforms directly address this convergence by democratizing analytics access through natural language interfaces while preserving institutional knowledge through embedded expertise. Evidence from healthcare implementations shows significant improvements in efficiency, with organizations like Berkshire Healthcare NHS Trust reporting over 800 citizen developers creating solutions [I4], and Forrester Research documenting 206% ROI from low-code implementations [I5].
 
 The strategic imperative is clear: healthcare organizations must adopt conversational AI platforms to preserve institutional memory, advance analytics maturity, and enable evidence-based decision making in an era of unprecedented workforce challenges.
 
@@ -140,7 +140,7 @@ Following this introduction, the paper proceeds through five main sections. The 
 
 # Literature Review: Natural Language Analytics in Healthcare - Evidence for Institutional Memory Preservation
 
-This literature review examines peer-reviewed evidence supporting the implementation of natural language analytics platforms like YuiQuery in healthcare systems. Analysis of recent systematic reviews, medical administration journals, and empirical studies reveals three critical findings: (1) natural language to SQL generation has evolved significantly but faces healthcare-specific challenges requiring specialized solutions, (2) healthcare analytics maturity remains critically low with most organizations struggling at basic stages, and (3) healthcare workforce turnover creates institutional memory loss that traditional approaches fail to address. The evidence strongly supports conversational AI platforms as a solution to these interconnected challenges.
+This literature review examines peer-reviewed evidence supporting the implementation of natural language analytics platforms in healthcare systems. Analysis of recent systematic reviews, medical administration journals, and empirical studies reveals three critical findings: (1) natural language to SQL generation has evolved significantly but faces healthcare-specific challenges requiring specialized solutions, (2) healthcare analytics maturity remains critically low with most organizations struggling at basic stages, and (3) healthcare workforce turnover creates institutional memory loss that traditional approaches fail to address. The evidence strongly supports conversational AI platforms as a solution to these interconnected challenges.
 
 ## 1. Current State of Natural Language to SQL Generation
 
@@ -223,7 +223,7 @@ The literature suggests that effective knowledge preservation requires active, e
 - Providing context-aware guidance to new users
 - Maintaining knowledge currency through continuous learning
 
-These principles align with YuiQuery's approach of embedding institutional knowledge within the AI model itself, making expertise permanently accessible regardless of staff turnover.
+These principles align with conversational AI approaches that embed institutional knowledge within the AI model itself, making expertise permanently accessible regardless of staff turnover.
 
 ### 4.3 Empirical Support for Low-Code Healthcare Solutions
 
@@ -263,7 +263,7 @@ Based on the literature review evidence, this section presents conversational AI
 
 ## Solution Overview
 
-Conversational AI platforms like YuiQuery represent a paradigm shift from traditional analytics tools to natural language interfaces that democratize data access while preserving institutional knowledge. Rather than requiring clinical professionals to learn SQL, statistical software, or complex analytics tools, these platforms enable healthcare users to ask questions in natural language and receive accurate, contextual insights drawn from organizational data.
+Conversational AI platforms represent a paradigm shift from traditional analytics tools to natural language interfaces that democratize data access while preserving institutional knowledge. Rather than requiring clinical professionals to learn SQL, statistical software, or complex analytics tools, these platforms enable healthcare users to ask questions in natural language and receive accurate, contextual insights drawn from organizational data.
 
 The solution architecture addresses each identified challenge:
 
@@ -569,7 +569,7 @@ Early adopters gain significant competitive advantages through improved decision
 
 # Conclusion
 
-The peer-reviewed literature provides compelling evidence for implementing conversational AI platforms like YuiQuery in healthcare settings. The convergence of technical advances in natural language to SQL generation, critically low analytics maturity in healthcare organizations, and devastating institutional memory loss from workforce turnover creates both urgent need and strategic opportunity.
+The peer-reviewed literature provides compelling evidence for implementing conversational AI platforms in healthcare settings. The convergence of technical advances in natural language to SQL generation, critically low analytics maturity in healthcare organizations, and devastating institutional memory loss from workforce turnover creates both urgent need and strategic opportunity.
 
 ## Key Findings
 

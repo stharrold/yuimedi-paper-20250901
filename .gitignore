@@ -62,7 +62,6 @@ docs/_build/
 site/
 
 # Pandoc
-*.pdf
 *.html
 *.docx
 *.tex
