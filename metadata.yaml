@@ -50,9 +50,9 @@ classoption:
 # Header and footer
 header-left: "NL2SQL in Healthcare"
 header-right: "December 2025"
-footer-left: ""
+footer-left: "\\hspace{0pt}"
 footer-center: "\\thepage"
-footer-right: ""
+footer-right: "\\hspace{0pt}"
 
 # Prevent widows and orphans
 prevent-widows: true
