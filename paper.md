@@ -267,21 +267,9 @@ The solution architecture addresses each identified challenge:
 2. **Analytics Maturity Acceleration**: Democratized access enables broader organizational capability
 3. **Institutional Memory Preservation**: AI models embed organizational knowledge and expertise
 
-```mermaid
-graph TD
-    A[Clinical User] -->|Natural Language Query| B[Conversational AI Interface]
-    B --> C[Healthcare NLP Engine]
-    C --> D[Context-Aware SQL Generation]
-    D --> E[Healthcare Data Warehouse]
-    E --> F[Intelligent Response Generation]
-    F --> G[Contextual Insights & Visualizations]
-    G --> A
+![Conversational AI Platform Architecture for Healthcare Analytics. The diagram illustrates the flow from clinical user queries through the NLP engine and SQL generation to the data warehouse, with institutional knowledge and healthcare ontologies informing the process.](figures/architecture.png){#fig:architecture width=100%}
 
-    H[Institutional Knowledge Base] --> C
-    I[Healthcare Ontologies] --> C
-    J[Organizational Memory] --> H
-    K[Best Practices Repository] --> H
-```
+*Figure 1: Conversational AI Platform Architecture for Healthcare Analytics*
 
 ## Core Capabilities
 
