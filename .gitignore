@@ -62,9 +62,6 @@ docs/_build/
 site/
 
 # Pandoc
-*.html
-*.docx
-*.tex
 !paper.md
 
 # Backups
