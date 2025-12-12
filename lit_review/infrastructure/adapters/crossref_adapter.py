@@ -7,7 +7,7 @@ rate limiting and response parsing.
 import os
 from time import sleep
 
-import requests
+import httpx
 
 from lit_review.application.ports.search_service import SearchService
 from lit_review.domain.entities.paper import Paper
@@ -77,28 +77,28 @@ class CrossrefAdapter(SearchService):
         # Retry with exponential backoff
         for attempt in range(self.max_retries):
             try:
-                response = requests.get(
-                    self.BASE_URL,
-                    params=params,
-                    headers=headers,
-                    timeout=self.timeout,
-                )
-                response.raise_for_status()
-                return self._parse_response(response.json())
-            except requests.Timeout:
+                with httpx.Client(timeout=self.timeout) as client:
+                    response = client.get(
+                        self.BASE_URL,
+                        params=params,
+                        headers=headers,
+                    )
+                    response.raise_for_status()
+                    return self._parse_response(response.json())
+            except httpx.TimeoutException:
                 if attempt == self.max_retries - 1:
                     raise TimeoutError(
                         f"Crossref request timed out after {self.max_retries} attempts"
                     )
                 sleep(2**attempt)
-            except requests.RequestException as e:
+            except httpx.HTTPError as e:
                 if attempt == self.max_retries - 1:
-                    raise ConnectionError(f"Crossref request failed: {e}")
+                    raise ConnectionError(f"Crossref request failed: {e}") from e
                 sleep(2**attempt)
 
         return []
 
-    def _parse_response(self, data: dict) -> list[Paper]:
+    def _parse_response(self, data: dict[str, object]) -> list[Paper]:
         """Parse Crossref API response to Paper entities.
 
         Args:
@@ -121,7 +121,7 @@ class CrossrefAdapter(SearchService):
 
         return papers
 
-    def _item_to_paper(self, item: dict) -> Paper | None:
+    def _item_to_paper(self, item: dict[str, object]) -> Paper | None:
         """Convert Crossref item to Paper entity.
 
         Args:
@@ -171,7 +171,7 @@ class CrossrefAdapter(SearchService):
         except Exception:
             return None
 
-    def _parse_authors(self, author_list: list) -> list[Author]:
+    def _parse_authors(self, author_list: list[dict[str, object]]) -> list[Author]:
         """Parse Crossref author list to Author value objects.
 
         Args:

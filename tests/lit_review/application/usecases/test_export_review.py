@@ -194,3 +194,171 @@ class TestBibTeXExport:
         assert "journal = " in content
         assert "year = " in content
         assert "doi = " in content
+
+
+class TestHTMLExport:
+    """Tests for HTML export format."""
+
+    def test_html_export_creates_valid_html(self) -> None:
+        """HTML export creates valid HTML document."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        content = use_case.export_to_string(review, ExportFormat.HTML)
+
+        assert "<!DOCTYPE html>" in content
+        assert "<html" in content
+        assert "</html>" in content
+        assert review.title in content
+
+    def test_html_export_includes_papers(self) -> None:
+        """HTML export includes all paper details."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        content = use_case.export_to_string(review, ExportFormat.HTML)
+
+        # Check papers are included
+        assert "Paper included1" in content
+        assert "Paper included2" in content
+
+    def test_html_export_includes_search_functionality(self) -> None:
+        """HTML export includes search box."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        content = use_case.export_to_string(review, ExportFormat.HTML)
+
+        assert "searchInput" in content
+        assert "Search papers" in content
+
+
+class TestMarkdownExport:
+    """Tests for Markdown export format."""
+
+    def test_markdown_export_has_title(self) -> None:
+        """Markdown export includes review title."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        content = use_case.export_to_string(review, ExportFormat.MARKDOWN)
+
+        assert f"# {review.title}" in content
+
+    def test_markdown_export_includes_papers(self) -> None:
+        """Markdown export includes all papers."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        content = use_case.export_to_string(review, ExportFormat.MARKDOWN)
+
+        assert "Paper included1" in content
+        assert "Paper included2" in content
+        assert "10.1234/included1" in content
+
+    def test_markdown_export_has_proper_structure(self) -> None:
+        """Markdown export has proper heading structure."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        content = use_case.export_to_string(review, ExportFormat.MARKDOWN)
+
+        assert "## Statistics" in content
+        assert "## Papers" in content
+        assert "###" in content  # Paper headings
+
+
+class TestCSVExport:
+    """Tests for CSV export format."""
+
+    def test_csv_export_has_header(self) -> None:
+        """CSV export includes header row."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        content = use_case.export_to_string(review, ExportFormat.CSV)
+
+        lines = content.split("\n")
+        header = lines[0]
+        assert "DOI" in header
+        assert "Title" in header
+        assert "Authors" in header
+
+    def test_csv_export_includes_all_papers(self) -> None:
+        """CSV export includes all papers."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        content = use_case.export_to_string(review, ExportFormat.CSV)
+
+        assert "10.1234/included1" in content
+        assert "10.1234/included2" in content
+        assert "Paper included1" in content
+
+    def test_csv_export_is_parseable(self) -> None:
+        """CSV export can be parsed."""
+        import csv
+        from io import StringIO
+
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        content = use_case.export_to_string(review, ExportFormat.CSV)
+
+        reader = csv.reader(StringIO(content))
+        rows = list(reader)
+
+        assert len(rows) > 1  # Header + data rows
+        assert len(rows[0]) == 8  # 8 columns
+
+
+class TestMultipleFormats:
+    """Tests for multiple format support."""
+
+    def test_execute_with_html_format(self) -> None:
+        """Execute can export to HTML format."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".html", delete=False) as tmp_file:
+            tmp_path = Path(tmp_file.name)
+
+        try:
+            count = use_case.execute(review, ExportFormat.HTML, tmp_path)
+            assert count == 2  # Only included papers
+            assert tmp_path.exists()
+
+            content = tmp_path.read_text()
+            assert "<!DOCTYPE html>" in content
+        finally:
+            tmp_path.unlink()
+
+    def test_execute_with_markdown_format(self) -> None:
+        """Execute can export to Markdown format."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".md", delete=False) as tmp_file:
+            tmp_path = Path(tmp_file.name)
+
+        try:
+            count = use_case.execute(review, ExportFormat.MARKDOWN, tmp_path)
+            assert count == 2
+            assert tmp_path.exists()
+        finally:
+            tmp_path.unlink()
+
+    def test_execute_with_csv_format(self) -> None:
+        """Execute can export to CSV format."""
+        use_case = ExportReviewUseCase()
+        review = create_review_with_papers()
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as tmp_file:
+            tmp_path = Path(tmp_file.name)
+
+        try:
+            count = use_case.execute(review, ExportFormat.CSV, tmp_path)
+            assert count == 2
+            assert tmp_path.exists()
+        finally:
+            tmp_path.unlink()

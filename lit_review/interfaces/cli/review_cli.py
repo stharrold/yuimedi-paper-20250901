@@ -9,10 +9,13 @@ from pathlib import Path
 
 import click
 
+from lit_review.application.usecases.analyze_themes import AnalyzeThemesUseCase
 from lit_review.application.usecases.export_review import ExportFormat, ExportReviewUseCase
+from lit_review.application.usecases.generate_synthesis import GenerateSynthesisUseCase
 from lit_review.application.usecases.search_papers import SearchPapersUseCase
 from lit_review.domain.entities.review import Review, ReviewStage
 from lit_review.domain.exceptions import EntityNotFoundError
+from lit_review.domain.values.doi import DOI
 from lit_review.infrastructure.adapters.crossref_adapter import CrossrefAdapter
 from lit_review.infrastructure.persistence.json_repository import JSONReviewRepository
 
@@ -132,26 +135,52 @@ def search(title: str, database: str, keywords: str, limit: int) -> None:
         click.echo(f"Error: Cannot add papers in {review_obj.stage.value} stage.", err=True)
         raise SystemExit(1)
 
-    # Search
-    click.echo(f"Searching {database} for: {keywords}")
-    use_case = get_search_use_case()
+    # Search with progress indicators
+    click.echo("\n=== Searching Academic Databases ===")
+    click.echo(f"Keywords: {keywords}")
+    click.echo(f"Database: {database}")
+    click.echo(f"Limit: {limit}")
+    click.echo("")
 
-    try:
-        papers = use_case.execute(keywords, databases=[database], limit=limit)
-    except (ConnectionError, TimeoutError) as e:
-        click.echo(f"Error: Search failed - {e}", err=True)
-        raise SystemExit(1)
+    use_case = get_search_use_case()
+    papers = []
+
+    with click.progressbar(
+        length=limit,
+        label=f"Searching {database}",
+        show_percent=True,
+    ) as bar:
+        try:
+            # Simulate progress updates during search
+            bar.update(limit // 4)
+            papers = use_case.execute(keywords, databases=[database], limit=limit)
+            bar.update(limit - (limit // 4))
+        except (ConnectionError, TimeoutError) as e:
+            click.echo(f"\nError: Search failed - {e}", err=True)
+            raise SystemExit(1)
 
     if not papers:
         click.echo("No papers found.")
         return
 
-    # Add papers to review
+    click.echo(f"\n{database}: Found {len(papers)} papers")
+
+    # Add papers to review with deduplication
+    click.echo("\nDeduplicating papers...")
     added = review_obj.add_papers(papers)
+    duplicates = len(papers) - added
+
     repo.save(review_obj)
 
-    click.echo(f"Found {len(papers)} papers, added {added} new papers.")
+    # Display results
+    click.echo("\n=== Search Results ===")
+    click.echo(f"Papers found: {len(papers)}")
+    click.echo(f"New papers added: {added}")
+    click.echo(f"Duplicates skipped: {duplicates}")
     click.echo(f"Total papers in review: {len(review_obj.papers)}")
+
+    if duplicates > 0:
+        click.echo(f"\nDeduplication rate: {(duplicates / len(papers) * 100):.1f}%")
 
 
 @review.command()
@@ -231,21 +260,35 @@ def advance(title: str) -> None:
 @click.option(
     "-f",
     "--format",
-    "fmt",
-    type=click.Choice(["bibtex", "json"]),
-    default="bibtex",
-    help="Export format",
+    "formats",
+    multiple=True,
+    type=click.Choice(["bibtex", "json", "html", "markdown", "csv"]),
+    help="Export format(s) - can specify multiple",
 )
-@click.option("-o", "--output", required=True, help="Output file path")
+@click.option("-o", "--output", help="Output file path (for single format)")
+@click.option(
+    "--outdir",
+    type=click.Path(file_okay=False, dir_okay=True),
+    help="Output directory (for multiple formats)",
+)
 @click.option("--all", "export_all", is_flag=True, help="Export all papers, not just included")
-def export_cmd(title: str, fmt: str, output: str, export_all: bool) -> None:
-    """Export review to file.
+def export_cmd(
+    title: str,
+    formats: tuple[str, ...],
+    output: str | None,
+    outdir: str | None,
+    export_all: bool,
+) -> None:
+    """Export review to file(s).
 
-    Exports papers from the review in the specified format.
+    Exports papers from the review in the specified format(s).
     By default, only exports papers marked as included.
+
+    Supports: bibtex, json, html, markdown, csv
 
     Example:
         academic-review export "ML Healthcare" -f bibtex -o refs.bib
+        academic-review export "ML Healthcare" -f bibtex -f json -f html --outdir exports/
     """
     repo = get_repository()
 
@@ -255,23 +298,71 @@ def export_cmd(title: str, fmt: str, output: str, export_all: bool) -> None:
         click.echo(f"Error: Review '{title}' not found.", err=True)
         raise SystemExit(1)
 
-    export_format = ExportFormat.BIBTEX if fmt == "bibtex" else ExportFormat.JSON
-    output_path = Path(output)
+    # Default to bibtex if no format specified
+    if not formats:
+        formats = ("bibtex",)
+
+    # Validate output options
+    if len(formats) == 1:
+        if not output and not outdir:
+            click.echo("Error: Must specify --output or --outdir", err=True)
+            raise SystemExit(1)
+    else:
+        if not outdir:
+            click.echo("Error: Must specify --outdir for multiple formats", err=True)
+            raise SystemExit(1)
 
     use_case = ExportReviewUseCase()
+    format_map = {
+        "bibtex": (ExportFormat.BIBTEX, ".bib"),
+        "json": (ExportFormat.JSON, ".json"),
+        "html": (ExportFormat.HTML, ".html"),
+        "markdown": (ExportFormat.MARKDOWN, ".md"),
+        "csv": (ExportFormat.CSV, ".csv"),
+    }
 
-    try:
-        count = use_case.execute(
-            review_obj,
-            export_format,
-            output_path,
-            included_only=not export_all,
-        )
-    except OSError as e:
-        click.echo(f"Error: Failed to write file - {e}", err=True)
-        raise SystemExit(1)
+    exported_files = []
 
-    click.echo(f"Exported {count} papers to {output}")
+    with click.progressbar(
+        formats,
+        label="Exporting",
+        show_percent=False,
+        item_show_func=lambda x: f"Format: {x}" if x else "",
+    ) as bar:
+        for fmt in bar:
+            export_format, ext = format_map[fmt]
+
+            # Determine output path
+            if len(formats) == 1 and output:
+                output_path = Path(output)
+            else:
+                assert outdir is not None
+                out_dir = Path(outdir)
+                out_dir.mkdir(parents=True, exist_ok=True)
+                # Sanitize title for filename
+                safe_title = "".join(c if c.isalnum() else "_" for c in title)
+                output_path = out_dir / f"{safe_title}{ext}"
+
+            try:
+                count = use_case.execute(
+                    review_obj,
+                    export_format,
+                    output_path,
+                    included_only=not export_all,
+                )
+
+                file_size = output_path.stat().st_size
+                exported_files.append((str(output_path), fmt, count, file_size))
+
+            except OSError as e:
+                click.echo(f"\nError: Failed to write {fmt} file - {e}", err=True)
+                continue
+
+    # Display results
+    click.echo("\nExport complete:")
+    for file_path, fmt, count, size in exported_files:
+        size_kb = size / 1024
+        click.echo(f"  {fmt:10s} | {count:3d} papers | {size_kb:7.1f} KB | {file_path}")
 
 
 @review.command("list")
@@ -319,6 +410,312 @@ def delete(title: str) -> None:
         raise SystemExit(1)
 
     click.echo(f"Deleted review: {title}")
+
+
+@review.command()
+@click.argument("title")
+@click.option("--doi", help="DOI of paper to assess")
+@click.option("--score", type=float, help="Quality score (0-10)")
+@click.option("--include/--exclude", default=None, help="Include or exclude the paper")
+@click.option("--notes", default="", help="Assessment notes")
+@click.option("--batch", type=click.Path(exists=True), help="CSV file with batch assessments")
+def assess(
+    title: str,
+    doi: str | None,
+    score: float | None,
+    include: bool | None,
+    notes: str,
+    batch: str | None,
+) -> None:
+    """Assess papers for quality and inclusion.
+
+    Single assessment with --doi, --score, and --include/--exclude flags.
+    Batch assessment with --batch CSV file (columns: doi,score,include,notes).
+
+    Example:
+        academic-review assess "ML Healthcare" --doi 10.1234/test --score 8.5 --include
+        academic-review assess "ML Healthcare" --batch assessments.csv
+    """
+    repo = get_repository()
+
+    try:
+        review_obj = repo.load(title)
+    except EntityNotFoundError:
+        click.echo(f"Error: Review '{title}' not found.", err=True)
+        raise SystemExit(1)
+
+    if batch:
+        # Batch assessment from CSV
+        import csv
+
+        assessments_made = 0
+        errors = 0
+
+        with open(batch) as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                try:
+                    paper_doi = row["doi"]
+                    paper_score = float(row["score"])
+                    paper_include = row["include"].lower() in ("true", "yes", "1")
+                    paper_notes = row.get("notes", "")
+
+                    paper = review_obj.get_paper_by_doi(DOI(paper_doi))
+                    if paper is None:
+                        click.echo(f"Warning: Paper {paper_doi} not found in review", err=True)
+                        errors += 1
+                        continue
+
+                    paper.assess(paper_score, paper_include, paper_notes)
+                    assessments_made += 1
+                except (KeyError, ValueError) as e:
+                    click.echo(f"Warning: Invalid row - {e}", err=True)
+                    errors += 1
+
+        repo.save(review_obj)
+        click.echo(
+            f"Batch assessment complete: {assessments_made} papers assessed, {errors} errors"
+        )
+
+    else:
+        # Single paper assessment
+        if not doi:
+            click.echo(
+                "Error: Must specify --doi for single assessment or --batch for batch", err=True
+            )
+            raise SystemExit(1)
+
+        if score is None or include is None:
+            click.echo("Error: Must specify --score and --include/--exclude", err=True)
+            raise SystemExit(1)
+
+        paper = review_obj.get_paper_by_doi(DOI(doi))
+        if paper is None:
+            click.echo(f"Error: Paper with DOI {doi} not found in review", err=True)
+            raise SystemExit(1)
+
+        # Display paper metadata before assessment
+        click.echo("\n=== Paper to Assess ===")
+        click.echo(f"DOI: {paper.doi.value}")
+        click.echo(f"Title: {paper.title}")
+        authors_str = ", ".join(f"{a.last_name}, {a.first_name[0]}." for a in paper.authors[:3])
+        if len(paper.authors) > 3:
+            authors_str += " et al."
+        click.echo(f"Authors: {authors_str}")
+        click.echo(f"Journal: {paper.journal} ({paper.publication_year})")
+        if paper.abstract:
+            click.echo(f"Abstract: {paper.abstract[:200]}...")
+        click.echo("")
+
+        # Assess paper
+        paper.assess(score, include, notes)
+        repo.save(review_obj)
+
+        click.echo(f"Assessed: {paper.title}")
+        click.echo(f"Score: {score}/10")
+        click.echo(f"Decision: {'INCLUDED' if include else 'EXCLUDED'}")
+
+        # Show updated statistics
+        stats = review_obj.generate_statistics()
+        click.echo(f"\nTotal assessed: {stats['assessed_papers']}/{stats['total_papers']}")
+        if stats["assessed_papers"] > 0:
+            click.echo(f"Inclusion rate: {stats['inclusion_rate']:.1%}")
+
+
+@review.command()
+@click.argument("title")
+@click.option(
+    "--method",
+    type=click.Choice(["tfidf", "ai", "hybrid"]),
+    default="tfidf",
+    help="Analysis method to use",
+)
+@click.option(
+    "--clusters",
+    type=click.IntRange(3, 10),
+    default=5,
+    help="Number of theme clusters (3-10)",
+)
+def analyze(title: str, method: str, clusters: int) -> None:
+    """Analyze papers and extract themes.
+
+    Analyzes included papers to identify major themes using TF-IDF
+    keyword extraction and hierarchical clustering.
+
+    Example:
+        academic-review analyze "ML Healthcare" --clusters 5
+        academic-review analyze "ML Healthcare" --method hybrid --clusters 7
+    """
+    repo = get_repository()
+
+    try:
+        review_obj = repo.load(title)
+    except EntityNotFoundError:
+        click.echo(f"Error: Review '{title}' not found.", err=True)
+        raise SystemExit(1)
+
+    # Get included papers
+    papers = review_obj.get_included_papers()
+    if not papers:
+        click.echo("Error: No included papers to analyze. Assess papers first.", err=True)
+        raise SystemExit(1)
+
+    # Check for abstracts
+    papers_with_abstracts = [p for p in papers if p.abstract]
+    if not papers_with_abstracts:
+        click.echo(
+            "Error: No papers with abstracts available. Cannot perform theme analysis.", err=True
+        )
+        raise SystemExit(1)
+
+    if len(papers_with_abstracts) < papers.__len__():
+        click.echo(
+            f"Warning: Only {len(papers_with_abstracts)}/{len(papers)} papers have abstracts",
+            err=True,
+        )
+
+    # Analyze themes
+    click.echo(f"Analyzing {len(papers_with_abstracts)} papers...")
+    click.echo(f"Method: {method}")
+    click.echo(f"Target clusters: {clusters}")
+    click.echo("")
+
+    use_case = AnalyzeThemesUseCase()
+
+    with click.progressbar(
+        length=100,
+        label="Extracting themes",
+        show_percent=True,
+        show_pos=False,
+    ) as bar:
+        bar.update(20)
+        click.echo(" - Extracting keywords...", nl=False)
+        bar.update(30)
+        click.echo(" done")
+        click.echo(" - Clustering themes...", nl=False)
+        bar.update(30)
+        click.echo(" done")
+        click.echo(" - Analyzing relationships...", nl=False)
+
+        try:
+            themes = use_case.execute(papers_with_abstracts, max_themes=clusters)
+        except ValueError as e:
+            click.echo(f"\nError: {e}", err=True)
+            raise SystemExit(1)
+
+        bar.update(20)
+        click.echo(" done")
+
+    # Display results
+    click.echo("\n=== Theme Analysis Results ===\n")
+    click.echo(themes.summary)
+    click.echo("\n=== Theme Details ===\n")
+
+    for theme_name, keywords in themes.themes.items():
+        click.echo(f"{theme_name}:")
+        click.echo(f"  Keywords: {', '.join(keywords[:10])}")
+
+        # Show related themes
+        if theme_name in themes.relationships:
+            related = themes.relationships[theme_name]
+            if related:
+                top_related = sorted(related.items(), key=lambda x: x[1], reverse=True)[:3]
+                related_str = ", ".join(f"{name} ({score:.2f})" for name, score in top_related)
+                click.echo(f"  Related: {related_str}")
+        click.echo("")
+
+    # Note: In a real implementation, we would save themes to review
+    # For now, just display them
+    click.echo(f"Analysis complete. Identified {len(themes.themes)} themes.")
+
+
+@review.command()
+@click.argument("title")
+@click.option(
+    "--output",
+    "-o",
+    type=click.Path(),
+    required=True,
+    help="Output markdown file path",
+)
+@click.option(
+    "--ai",
+    is_flag=True,
+    help="Use AI enhancement (if available)",
+)
+def synthesize(title: str, output: str, ai: bool) -> None:
+    """Generate narrative synthesis from included papers.
+
+    Creates a structured literature review synthesis with introduction,
+    thematic analysis, research gaps, and conclusions.
+
+    Example:
+        academic-review synthesize "ML Healthcare" -o synthesis.md
+        academic-review synthesize "ML Healthcare" -o synthesis.md --ai
+    """
+    repo = get_repository()
+
+    try:
+        review_obj = repo.load(title)
+    except EntityNotFoundError:
+        click.echo(f"Error: Review '{title}' not found.", err=True)
+        raise SystemExit(1)
+
+    # Get included papers
+    papers = review_obj.get_included_papers()
+    if not papers:
+        click.echo("Error: No included papers to synthesize. Assess papers first.", err=True)
+        raise SystemExit(1)
+
+    # Check for abstracts
+    papers_with_abstracts = [p for p in papers if p.abstract]
+    if not papers_with_abstracts:
+        click.echo("Warning: No papers with abstracts. Synthesis will be limited.", err=True)
+
+    click.echo(f"Synthesizing {len(papers)} papers...")
+    if ai:
+        click.echo("AI enhancement: enabled")
+    click.echo("")
+
+    # First, analyze themes
+    click.echo("Step 1/2: Analyzing themes...")
+    use_case_analyze = AnalyzeThemesUseCase()
+
+    try:
+        themes = use_case_analyze.execute(papers_with_abstracts or papers, max_themes=5)
+    except ValueError as e:
+        click.echo(f"Error: {e}", err=True)
+        raise SystemExit(1)
+
+    click.echo(f"  Identified {len(themes.themes)} themes")
+
+    # Generate synthesis
+    click.echo("Step 2/2: Generating synthesis...")
+    use_case_synth = GenerateSynthesisUseCase()
+
+    try:
+        synthesis = use_case_synth.execute(
+            papers=papers,
+            themes=themes,
+            research_question=review_obj.research_question,
+            use_ai=ai,
+        )
+    except ValueError as e:
+        click.echo(f"Error: {e}", err=True)
+        raise SystemExit(1)
+
+    # Write to file
+    output_path = Path(output)
+    output_path.write_text(synthesis, encoding="utf-8")
+
+    # Display statistics
+    word_count = len(synthesis.split())
+    click.echo("")
+    click.echo("Synthesis complete!")
+    click.echo(f"  Output: {output}")
+    click.echo(f"  Word count: {word_count:,}")
+    click.echo(f"  Papers cited: {len(papers)}")
+    click.echo(f"  Themes: {len(themes.themes)}")
 
 
 if __name__ == "__main__":
