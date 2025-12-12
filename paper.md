@@ -1,10 +1,6 @@
 ---
 title: "Natural Language to SQL in Healthcare: Bridging Analytics Maturity Gaps, Workforce Turnover, and Technical Barriers Through Conversational AI Platforms"
-subtitle: ""
-author:
-  - name: "Samuel T Harrold"
-    affiliation: "Yuimedi"
-    url: "https://us.yuimedi.com/contact-us/"
+author: "Samuel T Harrold, Yuimedi"
 date: "August 2025"
 version: "1.0.0"
 abstract: |

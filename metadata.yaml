@@ -2,12 +2,9 @@
 # See: https://pandoc.org/MANUAL.html#metadata-variables
 
 # Document information
-title: "YuiQuery: A Conversational AI Platform for Healthcare Analytics"
-subtitle: "Addressing Analytics Maturity, Workforce Turnover, and Technical Barriers"
-author:
-  - name: Samuel Harrold
-    affiliation: Independent Researcher
-date: "2025"
+title: "Natural Language to SQL in Healthcare: Bridging Analytics Maturity Gaps, Workforce Turnover, and Technical Barriers Through Conversational AI Platforms"
+author: "Samuel T Harrold, Yuimedi"
+date: "August 2025"
 lang: en-US
 
 # Document class settings
@@ -51,7 +48,7 @@ classoption:
   - oneside
 
 # Header and footer
-header-left: "YuiQuery Research Paper"
+header-left: "NL2SQL in Healthcare"
 header-right: "\\today"
 footer-left: ""
 footer-center: "\\thepage"
