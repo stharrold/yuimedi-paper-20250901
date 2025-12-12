@@ -32,6 +32,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261). Removed: 29 unused references, 5 likely AI-generated fabrications, and unverifiable claims. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
 
+**Paper classification:** Narrative review with original analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
+
 ## Essential Commands
 
 ```bash
@@ -204,3 +206,13 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 **Required knowledge:** ICD-10, CPT, SNOMED, RxNorm vocabularies; HIMSS AMAM stages; HL7/FHIR standards; HIPAA compliance.
 
 **Academic standards:** PRISMA guidelines for systematic reviews; statistical reporting with p-values/CIs; evidence hierarchy prioritizing RCTs.
+
+## Publication Strategy
+
+**Target journal:** npj Digital Medicine (Nature Portfolio) - IF 15.1, 7-day first decision
+- Journal policies: `npj_digital-medicine_about*.md`
+- Submission guide: `docs/journal-submission-guide.md`
+
+**Preprint strategy:**
+- arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY
+- medRxiv: NOT eligible (narrative reviews excluded)

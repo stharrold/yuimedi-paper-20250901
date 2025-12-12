@@ -350,7 +350,38 @@ This guide provides detailed information on target journals for publishing YuiQu
 
 ## Preprint and Repository Options
 
-### medRxiv (Healthcare Sciences Preprints)
+### arXiv (Computer Science / Health Informatics) - PRIMARY PREPRINT OPTION
+
+**Focus**: CS, AI/ML, NLP, informatics preprints
+
+**Details**:
+- **URL**: https://arxiv.org/submit
+- **Cost**: FREE
+- **Timeline**: 24-72 hours for posting (after moderation)
+- **DOI**: Provided immediately
+- **Indexing**: Google Scholar, Semantic Scholar, major databases
+- **Requirement**: Endorsement required for first-time submitters
+
+**Recommended Categories for Paper 1 (NL2SQL Healthcare Analytics)**:
+- **Primary**: cs.CL (Computation and Language) - NL2SQL focus
+- **Cross-list**: cs.DB (Databases) - SQL generation, data warehouses
+- **Cross-list**: cs.HC (Human-Computer Interaction) - user interfaces, democratization
+- **Cross-list**: cs.CY (Computers and Society) - healthcare applications
+
+**Why arXiv over medRxiv**:
+- arXiv accepts narrative reviews, analytical frameworks, and position papers
+- medRxiv explicitly excludes narrative reviews (only accepts systematic reviews with meta-analysis)
+
+**Strategy**:
+- Post preprint of Paper 1 to arXiv after completion
+- Establishes priority and thought leadership
+- Does not preclude journal submission (npj Digital Medicine allows preprints)
+
+**Best Fit**: All three papers (Paper 1 especially given narrative review format)
+
+---
+
+### medRxiv (Healthcare Sciences Preprints) - NOT RECOMMENDED FOR PAPER 1
 
 **Purpose**: Rapid dissemination before peer review
 
@@ -361,27 +392,13 @@ This guide provides detailed information on target journals for publishing YuiQu
 - **DOI**: Provided immediately
 - **Indexing**: Google Scholar, some databases
 
-**Strategy**:
-- Post preprint of Paper 1 immediately after completion
-- Allows citing work-in-progress in Papers 2 and 3
-- Establishes priority and thought leadership
-- Does not preclude journal submission (most journals allow)
+**Scope Limitations** (as of Dec 2025):
+- **Accepts**: Original research, systematic reviews with meta-analysis, scoping reviews with meta-analysis, methodological research, clinical protocols
+- **Does NOT accept**: Narrative reviews, hypotheses without data, opinion pieces, editorials, case reports
 
-**Recommended for**: All three papers as preprints
+**Paper 1 Status**: **NOT ELIGIBLE** - Paper 1 is a narrative review with an analytical framework, which medRxiv explicitly excludes.
 
----
-
-### arXiv (Computer Science / Health Informatics)
-
-**Focus**: CS, AI/ML, informatics preprints
-
-**Details**:
-- **URL**: https://arxiv.org/submit
-- **Cost**: FREE
-- **Requirement**: Endorsement for first-time submitters
-- **Categories**: cs.HC (Human-Computer Interaction), cs.AI, cs.DB
-
-**Best Fit**: Papers 2 and 3 (technical/algorithmic focus)
+**Recommended for**: Papers 2 and 3 only (if they include empirical primary research)
 
 ---
 
@@ -421,15 +438,17 @@ This guide provides detailed information on target journals for publishing YuiQu
 ### Paper 1: Literature Review (Deadline: 2025-09-30)
 
 **Primary Path**:
-1. **Week 1-2 (Oct 1-14, 2025)**: Submit to **medRxiv** preprint
-2. **Week 2-3 (Oct 8-21, 2025)**: Prepare JAMIA submission with PRISMA checklist
-3. **Week 4 (Oct 22-31, 2025)**: Submit to **JAMIA** as systematic review
-4. **Week 8-20 (Nov-Feb 2026)**: Peer review process
-5. **Week 24+ (Mar 2026)**: Potential publication
+1. **Pre-submission**: Send inquiry to npj Digital Medicine (see `docs/npj-digital-medicine-inquiry-email.md`)
+2. **Week 1-2**: Submit to **arXiv** preprint (cs.CL primary, cross-list cs.DB, cs.HC, cs.CY)
+3. **Week 2-3**: Prepare npj Digital Medicine submission (pending inquiry response)
+4. **Week 4**: Submit to **npj Digital Medicine** as Article or Perspective
+5. **Week 5+**: 7-day first editorial decision, ~178 days to acceptance if peer reviewed
 
-**Backup Path** (if JAMIA rejects):
-- Submit to **JMIR Medical Informatics** (4-6 week review)
-- Submit to **ACI** (6-8 week review)
+**Note**: Paper 1 is a narrative review with analytical framework. NOT eligible for medRxiv (narrative reviews excluded). arXiv is the appropriate preprint server.
+
+**Backup Path** (if npj Digital Medicine declines):
+- Submit to **JMIR Medical Informatics** (4-6 week review) - broad scope
+- Submit to **Communications Medicine** (Nature Portfolio alternative)
 - Submit to **BMC Medical Informatics** (6-10 week review)
 
 ---
@@ -437,7 +456,7 @@ This guide provides detailed information on target journals for publishing YuiQu
 ### Paper 2: Proof of Concept (Deadline: 2026-01-10)
 
 **Primary Path**:
-1. **Jan 2026**: Submit to **arXiv** and **medRxiv** as preprints
+1. **Jan 2026**: Submit to **arXiv** and **medRxiv** as preprints (Paper 2 qualifies for medRxiv if it includes empirical primary research)
 2. **Jan-Feb 2026**: Prepare submission for **JMIR Medical Informatics**
 3. **Feb 2026**: Submit to JMIR
 4. **Mar-Apr 2026**: Review and revision
