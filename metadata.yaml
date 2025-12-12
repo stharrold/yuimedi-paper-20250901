@@ -49,7 +49,7 @@ classoption:
 
 # Header and footer
 header-left: "NL2SQL in Healthcare"
-header-right: "\\today"
+header-right: "December 2025"
 footer-left: ""
 footer-center: "\\thepage"
 footer-right: ""
