@@ -4,6 +4,7 @@
 # Document information
 title: "Natural Language to SQL in Healthcare: Bridging Analytics Maturity Gaps, Workforce Turnover, and Technical Barriers Through Conversational AI Platforms"
 author: "Samuel T Harrold, Yuimedi"
+correspondence: "https://us.yuimedi.com/contact-us/ (include 'NL2SQL paper' in message)"
 date: "December 2025"
 lang: en-US
 
@@ -57,6 +58,7 @@ footer-right: "\\hspace{0pt}"
 # Prevent widows and orphans
 prevent-widows: true
 
-# LaTeX packages for figures
+# LaTeX packages for figures and URL formatting
 header-includes:
   - \usepackage{graphicx}
+  - \usepackage{xurl}
