@@ -3,8 +3,9 @@
 
 **Purpose**: Comprehensive guide to journal selection and submission for healthcare informatics research on conversational AI platforms.
 
-**Document Version**: 1.0
+**Document Version**: 2.0
 **Created**: 2025-11-21
+**Updated**: 2025-12-11
 **Target Papers**: Papers 1-3 (Literature Review, Proof of Concept, Schema Mapping)
 
 ---
@@ -13,21 +14,107 @@
 
 This guide provides detailed information on target journals for publishing YuiQuery Healthcare Analytics research. The strategy balances impact factor, audience reach, open access options, and submission timelines to maximize research dissemination and thought leadership positioning.
 
-**Recommended Primary Targets:**
-1. **JAMIA (Journal of the American Medical Informatics Association)** - High impact, clinical focus
-2. **JMIR Medical Informatics** - Open access, rapid publication
-3. **Applied Clinical Informatics** - ACI specialty focus on healthcare AI
+**Recommended Primary Target:**
+1. **npj Digital Medicine (Nature Portfolio)** - Highest impact (IF 15.1), rapid decisions, open access
 
-**Secondary Targets:**
-4. **International Journal of Medical Informatics (IJMI)**
-5. **BMC Medical Informatics and Decision Making**
-6. **Healthcare Informatics Research (HIR)**
+**Secondary Targets (Nature Portfolio):**
+2. **npj Health Systems** - Health systems research, AI integration
+3. **Communications Medicine** - Broad clinical/translational scope
+
+**Tertiary Targets (Traditional):**
+4. **JAMIA (Journal of the American Medical Informatics Association)** - High impact, clinical focus
+5. **JMIR Medical Informatics** - Open access, rapid publication
+6. **Applied Clinical Informatics** - ACI specialty focus on healthcare AI
+
+---
+
+## Tier 0: Nature Portfolio Journals (Primary Targets)
+
+### 1. npj Digital Medicine (PRIMARY TARGET)
+
+**Impact Factor**: 15.1 (2024) - Highest in healthcare informatics
+**Publisher**: Nature Publishing Group (Springer Nature)
+**Focus**: Digital medicine, AI/ML in healthcare, clinical informatics
+
+**Why This Journal**:
+- **2x higher impact factor** than JAMIA (15.1 vs 7.5)
+- Median **7 days** to first editorial decision
+- Fully open access with high visibility
+- Strong fit for NL2SQL and conversational AI research
+- Nature brand recognition and credibility
+
+**Submission Details**:
+- **URL**: https://www.nature.com/npjdigitalmed/
+- **Aims & Scope**: https://www.nature.com/npjdigitalmed/aims
+- **Article Types Suitable**:
+  - Original Research (our literature review fits here)
+  - Perspectives (thought leadership pieces)
+- **Review Timeline**: 7 days to first decision, ~15 weeks to publication
+- **APC**: ~$3,590 USD / £2,590 / €2,890
+- **Open Access**: Yes (fully OA)
+
+**Best Fit**:
+- **Paper 1 (Literature Review)**: Strong fit - AI in healthcare analytics
+- Emphasize: NL2SQL advancement, healthcare analytics democratization, institutional memory
+
+**Scope Alignment**:
+- ✅ Clinical application of AI and machine learning
+- ✅ Clinical informatics and digital transformation
+- ✅ Healthcare analytics and decision support
+- ✅ Natural language processing in clinical settings
+
+---
+
+### 2. npj Health Systems
+
+**Impact Factor**: New journal (launched 2024)
+**Publisher**: Nature Publishing Group (Springer Nature)
+**Focus**: Health systems research, policy, AI integration
+
+**Why This Journal**:
+- Interdisciplinary health systems focus
+- AI and informatics integration in health systems
+- APC waivers available
+- Growing journal with Nature backing
+
+**Submission Details**:
+- **URL**: https://www.nature.com/npjhealthsyst/
+- **Focus Areas**: Healthcare financing, delivery models, policy interventions, AI integration
+- **APC**: Waivers available on ad-hoc basis
+
+**Best Fit**:
+- Paper focusing on health system transformation
+- Institutional memory and workforce challenges angle
+
+---
+
+### 3. Communications Medicine
+
+**Impact Factor**: 6.3 (2024)
+**Publisher**: Nature Publishing Group (Springer Nature)
+**Focus**: Clinical, translational, and public health research
+
+**Why This Journal**:
+- Broad scope accepts diverse healthcare research
+- Active in healthcare AI publications
+- Lower APC than npj Digital Medicine
+- Q1 ranking
+
+**Submission Details**:
+- **URL**: https://www.nature.com/commsmed/
+- **Review Timeline**: ~21 weeks to publication
+- **APC**: ~$3,490 USD / £2,490 / €2,890
+- **Waivers**: Available for qualifying authors
+
+**Best Fit**:
+- Backup for npj Digital Medicine rejection
+- Broader clinical/translational angle
 
 ---
 
 ## Tier 1: High-Impact Peer-Reviewed Journals
 
-### 1. JAMIA (Journal of the American Medical Informatics Association)
+### 4. JAMIA (Journal of the American Medical Informatics Association)
 
 **Impact Factor**: 7.5 (2024)
 **Publisher**: Oxford University Press
@@ -418,6 +505,9 @@ This guide provides detailed information on target journals for publishing YuiQu
 
 | Journal | APC (USD) | Payment Timeline | Waiver/Discount Available? |
 |---------|-----------|------------------|---------------------------|
+| **npj Digital Medicine** | **$3,590** | Upon acceptance | Limited waivers |
+| npj Health Systems | TBD | Upon acceptance | Waivers available |
+| Communications Medicine | $3,490 | Upon acceptance | Limited waivers |
 | JAMIA | $3,500 | Upon acceptance | Sometimes for members |
 | JMIR Med Inform | $2,495-$3,495 | Upon acceptance | Limited waivers for LMICs |
 | ACI | $2,800 | Upon acceptance | No |
@@ -447,23 +537,23 @@ publish, or preparation of the manuscript.
 
 ## Journal Selection Decision Matrix
 
-### Selection Criteria Scoring
+### Selection Criteria Scoring (Updated December 2025)
 
-| Criterion | Weight | JAMIA | JMIR | ACI | IJMI | BMC |
-|-----------|--------|-------|------|-----|------|-----|
-| Impact Factor | 25% | 9/10 | 6/10 | 6/10 | 8/10 | 5/10 |
-| Review Speed | 20% | 5/10 | 9/10 | 7/10 | 4/10 | 7/10 |
-| Open Access | 20% | 6/10 | 10/10 | 10/10 | 6/10 | 10/10 |
-| Audience Fit | 20% | 9/10 | 8/10 | 8/10 | 7/10 | 7/10 |
-| Cost | 15% | 5/10 | 6/10 | 6/10 | 4/10 | 7/10 |
-| **Total Score** | | **7.2** | **7.9** | **7.5** | **6.0** | **7.3** |
+| Criterion | Weight | npj Digital Med | Comms Med | JAMIA | JMIR | ACI |
+|-----------|--------|-----------------|-----------|-------|------|-----|
+| Impact Factor | 25% | **10/10** | 8/10 | 9/10 | 6/10 | 6/10 |
+| Review Speed | 20% | **10/10** | 5/10 | 5/10 | 9/10 | 7/10 |
+| Open Access | 20% | **10/10** | 10/10 | 6/10 | 10/10 | 10/10 |
+| Audience Fit | 20% | **10/10** | 8/10 | 9/10 | 8/10 | 8/10 |
+| Cost | 15% | 5/10 | 5/10 | 5/10 | 6/10 | 6/10 |
+| **Total Score** | | **9.25** | **7.4** | **7.2** | **7.9** | **7.5** |
 
-**Recommendation Priority**:
-1. **JMIR Medical Informatics** (7.9) - Best balance of all factors
-2. **ACI** (7.5) - Good for clinical applications
-3. **BMC** (7.3) - Cost-effective open access
-4. **JAMIA** (7.2) - Highest prestige, worth longer timeline
-5. **IJMI** (6.0) - Backup option
+**Recommendation Priority (Updated)**:
+1. **npj Digital Medicine** (9.25) - **PRIMARY TARGET** - Highest impact, fastest decisions, perfect scope fit
+2. **JMIR Medical Informatics** (7.9) - Backup #1 - Fast review, good balance
+3. **ACI** (7.5) - Backup #2 - Clinical applications focus
+4. **Communications Medicine** (7.4) - Backup #3 - Nature Portfolio alternative
+5. **JAMIA** (7.2) - Backup #4 - High prestige, longer timeline
 
 ---
 

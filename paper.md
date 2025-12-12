@@ -2,9 +2,9 @@
 title: "YuiQuery: Natural Language to SQL in Healthcare"
 subtitle: "A Comprehensive Analysis of Conversational AI Platforms for Healthcare Analytics"
 author:
-  - name: "YuiQuery Research Team"
+  - name: "Samuel T Harrold"
     affiliation: "Yuimedi"
-    email: "research@yuimedi.com"
+    url: "https://us.yuimedi.com/contact-us/"
 date: "August 2025"
 version: "1.0.0"
 abstract: |
