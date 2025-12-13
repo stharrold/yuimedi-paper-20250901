@@ -11,8 +11,8 @@ abstract: |
   to SQL generation. Through review of peer-reviewed benchmarking studies and industry implementations,
   we demonstrate that natural language interfaces can democratize analytics access while preserving
   institutional knowledge. Healthcare-specific text-to-SQL benchmarks show significant progress,
-  though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings. Healthcare workforce
-  turnover rates of 8-36% create institutional memory loss, while low-code implementations show
+  though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings.
+  Healthcare workforce turnover rates of 8-36% create institutional memory loss, while low-code implementations show
   206% three-year ROI. The convergence of technical advances in NL2SQL generation, analytics
   maturity challenges in healthcare organizations, and workforce turnover creates both urgent
   need and strategic opportunity for conversational AI platforms with appropriate governance.
@@ -103,7 +103,7 @@ Healthcare organizations face three critical, interconnected challenges that col
 Despite massive investments in electronic health records and data infrastructure, healthcare organizations struggle to advance beyond basic reporting capabilities. The HIMSS AMAM reveals that most organizations remain at Stages 0-3, characterized by fragmented data sources, limited automated reporting, and minimal predictive capabilities [I1]. This low maturity severely constrains evidence-based decision making and operational optimization.
 
 ### Technical Barriers to Data Access
-Healthcare professionals possess deep clinical knowledge but lack the technical skills required for data analysis. Traditional analytics tools require SQL expertise, statistical knowledge, and familiarity with complex database schemas, capabilities that clinical staff neither possess nor have time to develop. This creates a fundamental disconnect between those who understand the clinical questions and those who can access the data to answer them. Code modernization approaches demonstrate that AI-assisted interfaces can bridge this gap by transforming legacy technical requirements into natural language interactions [I8].
+Healthcare professionals possess deep clinical knowledge but lack the technical skills required for data analysis. Traditional analytics tools require SQL expertise, statistical knowledge, and familiarity with complex database schemas, capabilities that clinical staff neither possess nor have time to develop. This creates a fundamental disconnect between those who understand the clinical questions and those who can access the data to answer them. Drawing on principles from code modernization, AI-assisted interfaces can bridge this gap by transforming legacy technical requirements into natural language interactions [I8].
 
 ### Institutional Memory Loss from Workforce Turnover
 Healthcare workforce turnover rates of 15-36% annually [A1, A2] create devastating institutional memory loss. When experienced analysts, clinical informatics professionals, or data-savvy clinicians leave, they take with them irreplaceable knowledge about data definitions, business rules, analytical approaches, and organizational context. This knowledge proves extremely difficult to document and transfer through traditional means.
@@ -547,7 +547,7 @@ The evidence base includes important caveats. Ziletti and D'Ambrosi [A6] note th
 Despite strong evidence supporting conversational AI adoption, several limitations must be acknowledged:
 
 ### Implementation Complexity
-Healthcare environments present unique complexity challenges including regulatory requirements, legacy system integration, and change management across diverse user populations. Implementation timelines reflect this complexity, though low-code approaches compare favorably to traditional analytics infrastructure projects. Healthcare and pharmaceutical organizations face particularly acute legacy modernization challenges [I8].
+Healthcare environments present unique complexity challenges including regulatory requirements, legacy system integration, and change management across diverse user populations. Implementation timelines reflect this complexity, though low-code approaches compare favorably to traditional analytics infrastructure projects. Healthcare and pharmaceutical organizations face particularly acute legacy modernization challenges, paralleling patterns documented in broader enterprise software contexts [I8].
 
 ### Context-Specific Customization Requirements
 Healthcare organizations vary significantly in data structures, clinical workflows, and analytical needs. Evidence suggests that successful implementations require substantial customization to organizational contexts, potentially limiting the applicability of standardized approaches.
@@ -638,7 +638,7 @@ Samuel T Harrold is founder of Yuimedi and a Data Scientist at Indiana Universit
 
 # Data Availability
 
-This is a narrative review. No datasets were generated or analyzed during this study.
+This is a narrative review. No primary datasets were generated or analyzed. All data cited are from publicly available peer-reviewed publications and industry reports, referenced in the bibliography.
 
 # Code Availability
 
