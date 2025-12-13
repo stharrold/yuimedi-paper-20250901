@@ -25,17 +25,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 111 citations addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 18 verified citations addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
+
+**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261). Removed: 29 unused references, 5 likely AI-generated fabrications, and unverifiable claims. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
+
+**Paper classification:** Narrative review with original analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
 
 ## Essential Commands
 
 ```bash
 # Setup (choose one)
-uv sync                                    # Local (with dev dependencies)
-uv sync --extra ai --extra export         # With AI and export features
+uv sync                                    # Local
 podman-compose build                       # Container (recommended)
 
 # Quality checks (run before commits)
@@ -47,30 +50,36 @@ uv run mypy scripts/ lit_review/           # Type checking
 # Full quality gates (before PRs)
 python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
 
-# Literature review workflow (academic-review CLI)
+# Literature review workflow
 uv run academic-review --help              # CLI for systematic reviews
-uv run academic-review init "Title" -q "Research question" -i "Inclusion"  # Initialize
-uv run academic-review search "Title" -d crossref -k "keywords"  # Search databases
-uv run academic-review assess "Title" "10.1234/doi" --score 8 --include  # Assess paper
-uv run academic-review analyze "Title"     # Run thematic analysis (TF-IDF + clustering)
-uv run academic-review synthesize "Title" --output synthesis.md  # Generate narrative
-uv run academic-review export "Title" -f bibtex -f html -o output/  # Export multiple formats
-uv run academic-review status "Title"      # Check review status
-uv run academic-review list                # List all reviews
+uv run academic-review init <review-id>    # Initialize new review
+uv run academic-review search <review-id>  # Execute search stage
+uv run academic-review status <review-id>  # Check review status
 
 # Testing
 uv run pytest                              # Run all tests
 uv run pytest tests/lit_review/ -v         # Literature review tests only
-uv run pytest --cov=lit_review --cov-fail-under=80  # With coverage threshold
-uv run pytest -m "not integration and not benchmark"  # Skip slow tests
-uv run pytest tests/lit_review/domain/ -v  # Test specific layer
+uv run pytest tests/skills/ -v             # Workflow skills tests (289 tests)
+uv run pytest --cov=lit_review             # With coverage
+uv run pytest -k "test_paper" -v           # Run single test by name
+uv run pytest -m "not integration"         # Skip integration tests (default in CI)
 
-# Performance benchmarks
-uv run pytest -m benchmark                 # Run performance tests only
+# Skills coverage (targeted modules)
+uv run pytest tests/skills/ \
+  --cov=.claude/skills/git-workflow-manager/scripts \
+  --cov=.claude/skills/quality-enforcer/scripts \
+  --cov=.claude/skills/workflow-utilities/scripts/vcs \
+  --cov-report=term
 
 # Task management
 gh issue list --label "P0"                 # Critical tasks
 gh issue view <number>                     # Task details
+
+# PDF generation
+./scripts/build_paper.sh                   # Generate PDF (local)
+./scripts/build_paper.sh --format html     # Generate HTML
+./scripts/build_paper.sh --format all      # Generate PDF, HTML, DOCX
+podman-compose run --rm dev ./scripts/build_paper.sh  # Generate in container
 ```
 
 ## Workflow System (for feature development)
@@ -125,9 +134,7 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 
 **Literature Review Package (`lit_review/`):** External dependencies allowed.
 - Clean Architecture (domain/application/infrastructure/interfaces layers)
-- **Core dependencies:** pydantic, httpx, click, scikit-learn, biopython, jinja2
-- **Optional extras:** `ai` (anthropic), `export` (python-docx, bibtexparser), `workflow` (duckdb)
-- **Test coverage:** 88.20% overall (domain 98.52%, application 95.88%, infrastructure 83.96%, CLI 80.70%)
+- Dependencies: pydantic, httpx, click, scikit-learn, biopython, jinja2 (see pyproject.toml)
 - All dependencies managed via `uv sync`
 
 **Clean Architecture Layers:**
@@ -139,7 +146,6 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 **Key Features:**
 - Multi-database search with parallel execution (ThreadPoolExecutor)
 - TF-IDF + hierarchical clustering for theme analysis (<30s for 500 papers)
-- Atomic writes with automatic backups (.backups/ keeps last 5)
 - Multiple export formats: BibTeX, DOCX, LaTeX, HTML, JSON, Markdown, CSV
 - Optional AI-powered synthesis with fallback to keyword-based approach
 
@@ -152,11 +158,30 @@ Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` 
 ### Workflow Skills
 9 skills in `.claude/skills/` for major releases and complex git operations. **Don't use for daily edits.**
 
+### CI/CD
+
+**Container-based testing:** GitHub Actions runs all tests inside Docker containers built from `Containerfile` to ensure environment parity with local Podman development.
+
+```bash
+# Local container development
+podman-compose build                    # Build container
+podman-compose run --rm dev uv run pytest  # Run tests in container
+podman-compose run --rm dev uv run python <script>  # Run any script
+```
+
+**Container architecture:**
+- Python 3.12 + uv with `--all-extras` (includes duckdb for AgentDB)
+- PDF generation: pandoc + texlive-xetex + Eisvogel template
+- Named volume `venv_cache` isolates container `.venv` from host (avoids macOS/Linux binary mismatch)
+- Always use `uv run` prefix in container for proper venv activation
+
+**Why containers?** Eliminates "works locally, fails in CI" issues by using identical environment (Python 3.12, uv, dependencies) in both contexts.
+
 ### Environment Variables
 - `LIT_REVIEW_DATA_DIR` - Data storage location (default: `~/.lit_review`)
 - `ANTHROPIC_API_KEY` - Claude API key for AI features (optional)
-- `PUBMED_EMAIL` - Email for PubMed API (optional, enables 10 req/sec vs 3 req/sec)
-- `NCBI_API_KEY` - NCBI API key for PubMed (optional, further rate limit increase)
+- `NCBI_EMAIL` - Email for PubMed API (required by NCBI policy)
+- `NCBI_API_KEY` - NCBI API key for PubMed (optional, enables 10 req/sec vs 3 req/sec)
 
 ## Key Patterns
 
@@ -168,19 +193,20 @@ Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` 
 - Historical files: `YYYYMMDDTHHMMSSZ_` prefix
 - Project management: UPPERCASE (`DECISION_LOG.json`)
 
+### Generated Files Strategy
+**Committed to git (intentional):**
+- `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
+- Versioned for reproducibility and release tagging
+
+**Excluded via .gitignore:**
+- `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
+- `.claude-state/*.duckdb` - Local database files
+
 ### Archiving
 Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
 
 ### Three-Pillar Framework
 All research connects to: (1) analytics maturity, (2) workforce turnover, (3) technical barriers.
-
-### Data Storage
-
-**Literature reviews:** `~/.lit_review/` (configurable via `LIT_REVIEW_DATA_DIR` environment variable)
-- Reviews stored as JSON files with atomic writes
-- Automatic backups in `.backups/` (keeps last 5 versions)
-- File locking for concurrent access
-- Soft deletes move to `.deleted/` directory
 
 **Planning documents:** `planning/<feature-slug>/` in repository (committed to version control)
 
@@ -189,3 +215,13 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 **Required knowledge:** ICD-10, CPT, SNOMED, RxNorm vocabularies; HIMSS AMAM stages; HL7/FHIR standards; HIPAA compliance.
 
 **Academic standards:** PRISMA guidelines for systematic reviews; statistical reporting with p-values/CIs; evidence hierarchy prioritizing RCTs.
+
+## Publication Strategy
+
+**Target journal:** npj Digital Medicine (Nature Portfolio) - IF 15.1, 7-day first decision
+- Journal policies: `npj_digital-medicine_about*.md`
+- Submission guide: `docs/journal-submission-guide.md`
+
+**Preprint strategy:**
+- arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY
+- medRxiv: NOT eligible (narrative reviews excluded)

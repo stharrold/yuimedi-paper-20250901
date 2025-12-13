@@ -21,9 +21,16 @@ Documentation directory containing paper versions, submission guides, and refere
 
 - `citation-audit-report.md` - Citation verification report
 - `journal-submission-guide.md` - Guide for journal submission
-- `YuiQuery-Healthcare-Analytics-Research.html` - Generated HTML version
-- `paper1/`, `paper2/`, `paper3/` - Paper version snapshots
+- `paper1/`, `paper2/`, `paper3/` - Paper research notes
 - `references/` - Reference materials
+
+## Primary Paper Files (in root directory)
+
+- `paper.md` - Source document
+- `paper.pdf` - PDF output
+- `paper.html` - HTML output
+- `paper.docx` - Word output
+- `paper.tex` - LaTeX output
 
 ## Usage
 

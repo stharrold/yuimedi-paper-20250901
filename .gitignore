@@ -62,10 +62,6 @@ docs/_build/
 site/
 
 # Pandoc
-*.pdf
-*.html
-*.docx
-*.tex
 !paper.md
 
 # Backups
@@ -83,6 +79,13 @@ tmp/
 # Data directory (keep README, ignore data files)
 data/*
 !data/README.md
+
+# Reference PDFs (keep README, ignore downloaded papers)
+docs/references/*.pdf
+!docs/references/README.md
+
+# Claude state database files
+.claude-state/*.duckdb
 
 # Haskell (original patterns kept for compatibility)
 dist

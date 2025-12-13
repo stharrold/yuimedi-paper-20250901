@@ -22,6 +22,11 @@ services:
     working_dir: /app
     volumes:
       - .:/app:Z
+      - venv_cache:/app/.venv  # Use named volume for container venv (avoids macOS/Linux binary mismatch)
     stdin_open: true
     tty: true
     command: bash
+
+volumes:
+  venv_cache:
+    # Named volume to persist container's .venv separately from host
