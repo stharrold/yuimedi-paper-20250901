@@ -84,6 +84,9 @@ data/*
 docs/references/*.pdf
 !docs/references/README.md
 
+# Claude state database files
+.claude-state/*.duckdb
+
 # Haskell (original patterns kept for compatibility)
 dist
 dist-*

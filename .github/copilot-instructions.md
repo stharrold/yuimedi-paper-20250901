@@ -193,6 +193,15 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 - Historical files: `YYYYMMDDTHHMMSSZ_` prefix
 - Project management: UPPERCASE (`DECISION_LOG.json`)
 
+### Generated Files Strategy
+**Committed to git (intentional):**
+- `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
+- Versioned for reproducibility and release tagging
+
+**Excluded via .gitignore:**
+- `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
+- `.claude-state/*.duckdb` - Local database files
+
 ### Archiving
 Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
 

@@ -1,5 +1,5 @@
 # Containerfile for yuimedi-paper-20250901
-# Python 3.11 + uv environment for development and CI/CD
+# Python 3.12 + uv environment for development and CI/CD
 #
 # Build:  podman build -t yuimedi-paper .
 # Run:    podman run --rm -v .:/app yuimedi-paper <command>

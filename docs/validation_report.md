@@ -1,17 +1,17 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-12 00:41:15 UTC
+**Generated:** 2025-12-13 17:05:27 UTC
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total References | 18 |
+| Total References | 20 |
 | Academic [A*] | 10 |
-| Industry [I*] | 8 |
-| Total Citations | 55 |
+| Industry [I*] | 10 |
+| Total Citations | 59 |
 | Accessible URLs | 10 |
-| Broken URLs | 8 |
+| Broken URLs | 10 |
 | Missing URLs | 0 |
 | Orphaned Citations | 0 |
 | Unused References | 0 |
@@ -25,13 +25,15 @@ References with inaccessible URLs:
 | Reference | URL | Error |
 |-----------|-----|-------|
 | [A1] | https://pmc.ncbi.nlm.nih.gov/articles/PMC10802134/ | HTTP 403: Forbidden |
-| [A2] | https://pmc.ncbi.nlm.nih.gov/articles/PMC11919231/ | HTTP 403: Forbidden |
-| [A4] | https://www.sciencedirect.com/science/article/pii/S138650562... | HTTP 403: Forbidden |
-| [A7] | https://www.tandfonline.com/doi/full/10.1080/20479700.2018.1... | HTTP 403: Forbidden |
+| [A2] | https://pmc.ncbi.nlm.nih.gov/\break | HTTP 403: Forbidden |
+| [A4] | https://www.sciencedirect.com/science/article/pii/\break | HTTP 403: Forbidden |
+| [A7] | https://www.tandfonline.com/doi/full/10.1080/\break | HTTP 403: Forbidden |
 | [A8] | https://www.sciencedirect.com/science/article/pii/S153204642... | HTTP 403: Forbidden |
 | [A9] | https://ai.nejm.org/doi/full/10.1056/AIdbp2500144 | HTTP 403: Forbidden |
 | [I1] | https://www.himss.org/maturity-models/amam/ | HTTP 403: Forbidden |
-| [I2] | https://legacy.himss.org/news/new-analytics-maturity-adoptio... | HTTP 403: Forbidden |
+| [I6] | https://www.oracle.com/\break | HTTP 403: Forbidden |
+| [I9] | https://www.wsj.com/articles/\break | HTTP 401: HTTP Forbidden |
+| [I10] | https://www.cnbc.com/2021/01/04/\break | HTTP 404: Not Found |
 
 ## All References
 
@@ -51,12 +53,14 @@ References with inaccessible URLs:
 | [A9] | academic | Failed: HTTP 403: Forbidden |
 | [A10] | academic | OK (200) |
 | [I1] | industry | Failed: HTTP 403: Forbidden |
-| [I2] | industry | Failed: HTTP 403: Forbidden |
+| [I2] | industry | OK (200) |
 | [I3] | industry | OK (200) |
 | [I4] | industry | OK (200) |
 | [I5] | industry | OK (200) |
-| [I6] | industry | OK (200) |
+| [I6] | industry | Failed: HTTP 403: Forbidden |
 | [I7] | industry | OK (200) |
 | [I8] | industry | OK (200) |
+| [I9] | industry | Failed: HTTP 401: HTTP Forbidden |
+| [I10] | industry | Failed: HTTP 404: Not Found |
 
 </details>
