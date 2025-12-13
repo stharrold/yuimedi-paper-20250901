@@ -80,6 +80,10 @@ tmp/
 data/*
 !data/README.md
 
+# Reference PDFs (keep README, ignore downloaded papers)
+docs/references/*.pdf
+!docs/references/README.md
+
 # Haskell (original patterns kept for compatibility)
 dist
 dist-*
