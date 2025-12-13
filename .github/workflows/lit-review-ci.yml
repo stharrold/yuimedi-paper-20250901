@@ -52,6 +52,9 @@ jobs:
         run: docker run --rm -v $PWD:/app yuimedi-paper:latest uv run mypy lit_review/
         continue-on-error: false
 
+      # Coverage threshold: 75% (lowered from 80% because benchmark tests are excluded
+      # in CI but provide coverage when run locally. Benchmark tests require pytest-benchmark
+      # fixture which has timing-sensitive behavior unsuitable for CI environments.)
       - name: Run tests (exclude integration and benchmark)
         run: |
           docker run --rm -v $PWD:/app yuimedi-paper:latest uv run pytest tests/lit_review/ \

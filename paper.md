@@ -132,7 +132,7 @@ This research explicitly does not address:
 - Regulatory compliance strategies for specific jurisdictions
 - Technical architecture specifications for conversational AI systems
 
-Note: Analysis of market dynamics explaining why institution-specific analytics challenges persist is within scope, as this provides necessary context for evaluating solution approaches. This differs from vendor comparison, which would evaluate specific products against each other.
+Note: Analysis of market dynamics and structural factors explaining why institution-specific analytics challenges persist is within scope. This market-level analysis provides necessary context for evaluating solution approaches and differs from product comparison, which would evaluate specific vendor offerings against each other or recommend particular products.
 
 ## Document Structure
 
@@ -270,7 +270,7 @@ Large-scale efforts to standardize healthcare AI have consistently failed. Indus
 
 ### Structural Disincentives in the Technology Market
 
-Major technology providers face inherent conflicts in solving institution-specific analytics challenges. EHR platform providers and cloud infrastructure companies derive substantial revenue from consulting services and implementation partner ecosystems. Building comprehensive institution-specific knowledge solutions would cannibalize these revenue streams. Market analysis suggests these providers rationally prefer remaining platforms that require implementation partners rather than delivering complete solutions that reduce dependency on external services.
+Major technology providers may face inherent tensions in solving institution-specific analytics challenges. EHR platform providers and cloud infrastructure companies derive substantial revenue from consulting services and implementation partner ecosystems. This business model dependency creates potential misalignment: building comprehensive institution-specific knowledge solutions could reduce demand for implementation services. Whether intentional or emergent, the result is that major platforms remain generalized tools requiring significant customization rather than turnkey solutions for institutional analytics.
 
 ### Deployment Constraint Mismatch
 
