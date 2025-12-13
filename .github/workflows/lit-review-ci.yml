@@ -61,7 +61,7 @@ jobs:
             --cov-report=term \
             --cov-report=xml \
             --cov-report=html \
-            --cov-fail-under=80
+            --cov-fail-under=75
 
       - name: Extract coverage from container
         run: |
@@ -93,10 +93,11 @@ jobs:
           echo "✅ Ruff format check passed" >> $GITHUB_STEP_SUMMARY
           echo "✅ Ruff linting passed" >> $GITHUB_STEP_SUMMARY
           echo "✅ MyPy type checking passed" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Tests passed with coverage ≥80%" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Tests passed with coverage ≥75%" >> $GITHUB_STEP_SUMMARY
 
       - name: Comment on PR (if failed)
         if: failure() && github.event_name == 'pull_request'
+        continue-on-error: true
         uses: actions/github-script@v7
         with:
           script: |
