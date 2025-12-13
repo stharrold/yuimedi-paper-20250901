@@ -7,7 +7,7 @@ Research whitepaper on natural language to SQL in healthcare - a comprehensive a
 
 ## 📄 Research Documents
 
-**[Main Research Paper](paper.md)** - Comprehensive academic research paper on YuiQuery healthcare analytics with 111+ citations
+**[Main Research Paper](paper.md)** - Comprehensive academic research paper on YuiQuery healthcare analytics with 18 verified citations
 
 ## 🚀 Quick Access
 

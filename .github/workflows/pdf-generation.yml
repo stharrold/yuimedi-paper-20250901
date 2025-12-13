@@ -1,0 +1,143 @@
+name: PDF Generation
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'paper.md'
+      - 'metadata.yaml'
+      - 'scripts/build_paper.sh'
+      - 'Containerfile'
+      - '.github/workflows/pdf-generation.yml'
+  pull_request:
+    paths:
+      - 'paper.md'
+      - 'metadata.yaml'
+      - 'scripts/build_paper.sh'
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build-pdf:
+    name: Generate PDF
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build container
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Containerfile
+          load: true
+          tags: yuimedi-paper:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Generate PDF
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/app \
+            -w /app \
+            yuimedi-paper:latest \
+            ./scripts/build_paper.sh --format pdf
+
+      - name: Verify PDF
+        run: |
+          ls -la paper.pdf
+          if [ ! -s paper.pdf ]; then
+            echo "Error: paper.pdf is empty"
+            exit 1
+          fi
+          echo "PDF size: $(du -h paper.pdf | cut -f1)"
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-pdf
+          path: paper.pdf
+          retention-days: 90
+          if-no-files-found: error
+
+      - name: Generate HTML (optional)
+        if: github.event_name == 'release'
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/app \
+            -w /app \
+            yuimedi-paper:latest \
+            ./scripts/build_paper.sh --format html
+
+      - name: Upload HTML artifact
+        if: github.event_name == 'release'
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-html
+          path: paper.html
+          retention-days: 90
+
+      - name: Report summary
+        if: always()
+        run: |
+          echo "## PDF Generation Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f paper.pdf ]; then
+            echo "**Status:** Success" >> $GITHUB_STEP_SUMMARY
+            echo "**PDF Size:** $(du -h paper.pdf | cut -f1)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**Status:** Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Ref:** ${{ github.ref }}" >> $GITHUB_STEP_SUMMARY
+
+  attach-to-release:
+    name: Attach PDF to Release
+    needs: build-pdf
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download PDF artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: paper-pdf
+
+      - name: Get release version
+        id: version
+        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Rename PDF with version
+        run: mv paper.pdf "yuiquery-paper-${{ steps.version.outputs.version }}.pdf"
+
+      - name: Attach PDF to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "yuiquery-paper-${{ steps.version.outputs.version }}.pdf"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download HTML artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: paper-html
+        continue-on-error: true
+
+      - name: Attach HTML to release
+        if: success()
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "paper.html"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

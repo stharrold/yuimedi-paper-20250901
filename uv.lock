@@ -1397,6 +1397,7 @@ source = { editable = "." }
 dependencies = [
     { name = "biopython" },
     { name = "click" },
+    { name = "duckdb" },
     { name = "httpx" },
     { name = "jinja2" },
     { name = "pydantic" },
@@ -1441,6 +1442,7 @@ requires-dist = [
     { name = "bibtexparser", marker = "extra == 'export'", specifier = ">=1.4.0" },
     { name = "biopython", specifier = ">=1.80" },
     { name = "click", specifier = ">=8.0.0" },
+    { name = "duckdb", specifier = ">=1.4.2" },
     { name = "duckdb", marker = "extra == 'workflow'", specifier = ">=1.4.0" },
     { name = "httpx", specifier = ">=0.24.0" },
     { name = "jinja2", specifier = ">=3.1.0" },

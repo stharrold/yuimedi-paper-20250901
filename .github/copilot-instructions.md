@@ -25,10 +25,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 111 citations addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 18 verified citations addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
+
+**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261). Removed: 29 unused references, 5 likely AI-generated fabrications, and unverifiable claims. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
+
+**Paper classification:** Narrative review with original analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
 
 ## Essential Commands
 
@@ -55,11 +59,27 @@ uv run academic-review status <review-id>  # Check review status
 # Testing
 uv run pytest                              # Run all tests
 uv run pytest tests/lit_review/ -v         # Literature review tests only
+uv run pytest tests/skills/ -v             # Workflow skills tests (289 tests)
 uv run pytest --cov=lit_review             # With coverage
+uv run pytest -k "test_paper" -v           # Run single test by name
+uv run pytest -m "not integration"         # Skip integration tests (default in CI)
+
+# Skills coverage (targeted modules)
+uv run pytest tests/skills/ \
+  --cov=.claude/skills/git-workflow-manager/scripts \
+  --cov=.claude/skills/quality-enforcer/scripts \
+  --cov=.claude/skills/workflow-utilities/scripts/vcs \
+  --cov-report=term
 
 # Task management
 gh issue list --label "P0"                 # Critical tasks
 gh issue view <number>                     # Task details
+
+# PDF generation
+./scripts/build_paper.sh                   # Generate PDF (local)
+./scripts/build_paper.sh --format html     # Generate HTML
+./scripts/build_paper.sh --format all      # Generate PDF, HTML, DOCX
+podman-compose run --rm dev ./scripts/build_paper.sh  # Generate in container
 ```
 
 ## Workflow System (for feature development)
@@ -142,20 +162,20 @@ Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` 
 
 **Container-based testing:** GitHub Actions runs all tests inside Docker containers built from `Containerfile` to ensure environment parity with local Podman development.
 
-```yaml
-# .github/workflows/lit-review-ci.yml
-- name: Build container image
-  uses: docker/build-push-action@v5
-  with:
-    file: Containerfile  # Python 3.11 + uv
-    tags: yuimedi-paper:latest
-    cache-from: type=gha
-
-- name: Run tests (exclude integration)
-  run: docker run --rm -v $PWD:/app yuimedi-paper:latest uv run pytest ...
+```bash
+# Local container development
+podman-compose build                    # Build container
+podman-compose run --rm dev uv run pytest  # Run tests in container
+podman-compose run --rm dev uv run python <script>  # Run any script
 ```
 
-**Why containers?** Eliminates "works locally, fails in CI" issues by using identical environment (Python 3.11, uv, dependencies) in both contexts.
+**Container architecture:**
+- Python 3.12 + uv with `--all-extras` (includes duckdb for AgentDB)
+- PDF generation: pandoc + texlive-xetex + Eisvogel template
+- Named volume `venv_cache` isolates container `.venv` from host (avoids macOS/Linux binary mismatch)
+- Always use `uv run` prefix in container for proper venv activation
+
+**Why containers?** Eliminates "works locally, fails in CI" issues by using identical environment (Python 3.12, uv, dependencies) in both contexts.
 
 ### Environment Variables
 - `LIT_REVIEW_DATA_DIR` - Data storage location (default: `~/.lit_review`)
@@ -173,6 +193,15 @@ Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` 
 - Historical files: `YYYYMMDDTHHMMSSZ_` prefix
 - Project management: UPPERCASE (`DECISION_LOG.json`)
 
+### Generated Files Strategy
+**Committed to git (intentional):**
+- `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
+- Versioned for reproducibility and release tagging
+
+**Excluded via .gitignore:**
+- `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
+- `.claude-state/*.duckdb` - Local database files
+
 ### Archiving
 Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
 
@@ -186,3 +215,13 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 **Required knowledge:** ICD-10, CPT, SNOMED, RxNorm vocabularies; HIMSS AMAM stages; HL7/FHIR standards; HIPAA compliance.
 
 **Academic standards:** PRISMA guidelines for systematic reviews; statistical reporting with p-values/CIs; evidence hierarchy prioritizing RCTs.
+
+## Publication Strategy
+
+**Target journal:** npj Digital Medicine (Nature Portfolio) - IF 15.1, 7-day first decision
+- Journal policies: `npj_digital-medicine_about*.md`
+- Submission guide: `docs/journal-submission-guide.md`
+
+**Preprint strategy:**
+- arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY
+- medRxiv: NOT eligible (narrative reviews excluded)
