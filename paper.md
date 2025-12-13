@@ -132,6 +132,8 @@ This research explicitly does not address:
 - Regulatory compliance strategies for specific jurisdictions
 - Technical architecture specifications for conversational AI systems
 
+Note: Analysis of market dynamics explaining why institution-specific analytics challenges persist is within scope, as this provides necessary context for evaluating solution approaches. This differs from vendor comparison, which would evaluate specific products against each other.
+
 ## Document Structure
 
 Following this introduction, the paper proceeds through five main sections. The Literature Review synthesizes evidence across the three challenge domains, establishing the current state of natural language processing in healthcare, analytics maturity research, and workforce turnover impacts. The Proposed Solution section presents conversational AI platforms as an integrated response to these challenges. The Evaluation section synthesizes empirical evidence from early implementations and academic studies. The Discussion examines implications, limitations, and future research directions. Finally, the Conclusion reinforces the evidence-based case for conversational AI adoption in healthcare analytics.
@@ -257,6 +259,24 @@ Despite substantial evidence supporting conversational AI in healthcare analytic
 3. **Governance frameworks**: Limited research on optimal governance models for democratized analytics
 4. **Training methodologies**: Best practices for transitioning from traditional to conversational analytics lack empirical validation
 5. **Integration patterns**: Architectural guidance for incorporating conversational AI into existing healthcare IT ecosystems remains sparse
+
+## 7. Why the Problem Persists
+
+Despite clear evidence of healthcare's analytics challenges and available technology, the problem remains unsolved. Analysis of market dynamics reveals three structural barriers:
+
+### Failed Standardization Approaches
+
+Large-scale efforts to standardize healthcare AI have consistently failed. Industry analysis documents multi-billion dollar investments in healthcare AI that were ultimately divested or disbanded after failing to achieve clinical adoption [I9]. A high-profile joint venture backed by major corporations controlling healthcare spending for over one million employees disbanded after three years without achieving its goals [I10]. These failures share a common pattern: attempting to impose standardized solutions across institutions with fundamentally unique data definitions, business rules, and clinical workflows.
+
+### Structural Disincentives in the Technology Market
+
+Major technology providers face inherent conflicts in solving institution-specific analytics challenges. EHR platform providers and cloud infrastructure companies derive substantial revenue from consulting services and implementation partner ecosystems. Building comprehensive institution-specific knowledge solutions would cannibalize these revenue streams. Market analysis suggests these providers rationally prefer remaining platforms that require implementation partners rather than delivering complete solutions that reduce dependency on external services.
+
+### Deployment Constraint Mismatch
+
+Healthcare organizations increasingly require solutions functional in secure, air-gapped environments due to regulatory requirements and data governance policies. General-purpose cloud AI services cannot meet these deployment constraints while simultaneously lacking the institution-specific context necessary for accurate analytics. The fundamental requirement that institutional knowledge must be captured, preserved, and accessed within each organization's specific environment cannot be addressed by standardized cloud offerings.
+
+These dynamics explain why, despite technological capability, the healthcare analytics maturity gap persists. Solutions must be designed for institution-specific deployment rather than cross-organizational standardization.
 
 # Proposed Solution: Conversational AI Platforms for Healthcare Analytics
 
@@ -616,6 +636,18 @@ S.T.H. conceived the research, conducted the literature review, and wrote the ma
 
 Samuel T Harrold is founder of Yuimedi and a Data Scientist at Indiana University Health. The views and opinions expressed in this paper are those of the author and do not necessarily reflect the official policy or position of Indiana University Health or any other organization. This research was conducted independently and does not constitute an endorsement by any affiliated institution.
 
+# Data Availability
+
+This is a narrative review. No datasets were generated or analyzed during this study.
+
+# Code Availability
+
+Not applicable. No custom code was developed for this research.
+
+# Funding
+
+This research received no external funding.
+
 # References
 
 ## Academic Sources
@@ -657,6 +689,10 @@ Samuel T Harrold is founder of Yuimedi and a Data Scientist at Indiana Universit
 [I7] Precedence Research. (2024). Healthcare analytics market size and forecast 2025 to 2034. https://www.precedenceresearch.com/healthcare-analytics-market
 
 [I8] Anthropic. (2025). Code modernization playbook: A practical guide to modernizing legacy systems with AI. https://resources.anthropic.com/code-modernization-playbook
+
+[I9] Farr, C. (2022). IBM sells Watson Health assets to investment firm Francisco Partners. *Wall Street Journal*. https://www.wsj.com/articles/\break ibm-to-sell-watson-health-assets-to-investment-firm-11642680400
+
+[I10] LaVito, A. (2021). Haven, the Amazon-Berkshire-JPMorgan venture to disrupt healthcare, is disbanding after 3 years. *CNBC*. https://www.cnbc.com/2021/01/04/\break haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding.html
 
 # Appendices
 
