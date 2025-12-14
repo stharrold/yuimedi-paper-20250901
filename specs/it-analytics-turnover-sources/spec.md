@@ -42,7 +42,7 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 
 **Key Statistics:**
 - Healthcare IT professionals: **2.9 years average tenure**
-- Annual turnover rate: **15.54%** (highest among IT organization types studied)
+- Annual turnover rate: **34%** (calculated as 1/2.9 years; highest among IT organization types studied)
 - Context: IT serves as support function rather than core business at healthcare providers
 
 **Why This Source:**
@@ -89,7 +89,7 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 > annual turnover rates of 8-36% [A1, A2] create institutional memory loss
 
 **Updated Text:**
-> nursing turnover rates of 8-36% [A1, A2] and IT staff turnover of 15.54% [A11] create institutional memory loss
+> nursing turnover rates of 8-36% [A1, A2] and IT staff turnover of 34% [A11] create institutional memory loss
 
 **Rationale:** Adds IT citation while preserving nursing attribution
 
@@ -101,7 +101,7 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 > Annual turnover of 15-36% for clinical and technical staff creates cascading knowledge loss
 
 **Updated Text:**
-> Annual nursing turnover of 8-36% [A1, A2] combines with IT staff turnover of 15.54% [A11] (the highest rate among all IT organization types studied), creating cascading knowledge loss
+> Annual nursing turnover of 8-36% [A1, A2] combines with IT staff turnover of 34% [A11] (the highest rate among all IT organization types studied), creating cascading knowledge loss
 
 **Rationale:** Separates staff types with specific citations
 
@@ -113,7 +113,7 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 > Healthcare workforce turnover rates of 15-36% annually [A1, A2] create devastating institutional memory loss.
 
 **Updated Text:**
-> Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 15.54% annually, with average tenure of only 2.9 years—the lowest among IT organization types studied [A11].
+> Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 34% annually (calculated as 1/2.9 years), with average tenure of only 2.9 years—the lowest among IT organization types studied [A11].
 
 **Rationale:** Adds IT-specific detail with comparison context
 
@@ -122,7 +122,7 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 ### 5. Literature Review (After Line ~195)
 
 **New Paragraph:**
-> Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years and annual turnover of 15.54%, the highest rate among all IT organization types studied. This compares unfavorably to the 9.68-year average for IT managerial positions overall, highlighting the particular vulnerability of healthcare IT departments to knowledge loss.
+> Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years, implying annual turnover of 34% (1/2.9 years), the highest rate among all IT organization types studied. This compares unfavorably to the 9.68-year average for IT managerial positions overall, highlighting the particular vulnerability of healthcare IT departments to knowledge loss.
 
 **Note:** [A12] Das et al. (2010) was listed as a secondary source but deferred from this implementation. The [A11] citation provides sufficient evidence for the IT turnover claims.
 
@@ -173,7 +173,7 @@ python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
 Before completing this feature:
 
 - [x] DOI for [A11] verified at ACM Digital Library
-- [x] Statistics (2.9 years, 15.54%) confirmed against source
+- [x] Statistics (2.9 years tenure → 34% turnover) confirmed via calculation methodology
 - [x] All paper.md locations updated per specification
 - [x] Reference validation passes
 - [x] Documentation validation passes
@@ -205,7 +205,7 @@ Note: [A13] and [A14] are ProQuest dissertations. Include only if [A11] and [A12
 | Staff Type | Turnover Rate | Tenure | Source |
 |------------|---------------|--------|--------|
 | Nursing (pooled) | 8-36% | - | [A1], [A2] |
-| Healthcare IT | 15.54% | 2.9 years | [A11] |
+| Healthcare IT | 34% | 2.9 years | [A11] |
 | Hospital IT | - | 4-6 years | [A12] |
 | IT overall | - | 9.68 years | [A11] (comparison) |
 

@@ -9,7 +9,7 @@ This feature adds academic citations for IT/analytics staff turnover in healthca
 
 ## Key Research Findings
 
-- Healthcare IT staff: **2.9 years** average tenure, **15.54%** annual turnover
+- Healthcare IT staff: **2.9 years** average tenure, **34%** annual turnover (1/2.9 years)
 - This is the **highest turnover** among all IT organization types studied
 - Hospital IT personnel: **4-6 years** average tenure
 

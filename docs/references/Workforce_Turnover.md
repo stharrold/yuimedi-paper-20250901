@@ -6,10 +6,10 @@ Research indicates that information technology staff at healthcare provider inst
 
 ## Key Findings
 
-### 1. Technical IT Staff at Healthcare Providers: ~2.9 years
+### 1. Technical IT Staff at Healthcare Providers: ~2.9 years (~34% annual turnover)
 
 - Healthcare provider institutions where IT serves as a support function have the lowest expected tenure among IT organizations
-- Annual turnover rate: 15.54% (highest among IT sectors studied)
+- **Implied annual turnover rate**: 34% (calculated as 1/2.9 years = 0.345)
 
 ### 2. Hospital IT Personnel: 4-6 years
 
@@ -17,12 +17,26 @@ Research indicates that information technology staff at healthcare provider inst
 
 ### 3. Comparison with Other IT Sectors
 
-| Sector/Strategy | Average Tenure |
-|-----------------|----------------|
-| IT managerial jobs overall | 9.68 years |
-| Organizations with industrial ILM strategies | 14.1 years |
-| Organizations with craft ILM strategies | 3.4 years |
-| **Healthcare IT (technical staff)** | **2.9 years** |
+| Sector/Strategy | Average Tenure | Implied Annual Turnover |
+|-----------------|----------------|------------------------|
+| IT managerial jobs overall | 9.68 years | ~10% |
+| Organizations with industrial ILM strategies | 14.1 years | ~7% |
+| Organizations with craft ILM strategies | 3.4 years | ~29% |
+| **Healthcare IT (technical staff)** | **2.9 years** | **~34%** |
+
+### Turnover Rate Calculation Methodology
+
+Annual turnover rate is derived from average tenure using the formula:
+
+```
+Annual Turnover Rate = 1 / Average Tenure (in years)
+```
+
+For healthcare IT staff:
+- Average tenure = 2.9 years
+- Annual turnover = 1 / 2.9 = 0.345 ≈ **34%**
+
+This calculation assumes a steady-state workforce with uniformly distributed departures.
 
 ## Conclusion
 
