@@ -136,11 +136,86 @@ Note: Analysis of market dynamics and structural factors explaining why institut
 
 ## Document Structure
 
-Following this introduction, the paper proceeds through five main sections. The Literature Review synthesizes evidence across the three challenge domains, establishing the current state of natural language processing in healthcare, analytics maturity research, and workforce turnover impacts. The Proposed Solution section presents conversational AI platforms as an integrated response to these challenges. The Evaluation section synthesizes empirical evidence from early implementations and academic studies. The Discussion examines implications, limitations, and future research directions. Finally, the Conclusion reinforces the evidence-based case for conversational AI adoption in healthcare analytics.
+Following this introduction, the paper proceeds through six main sections. The Methodology section describes the narrative review approach, literature search strategy, and source selection criteria. The Literature Review synthesizes evidence across the three challenge domains, establishing the current state of natural language processing in healthcare, analytics maturity research, and workforce turnover impacts. The Proposed Solution section presents conversational AI platforms as an integrated response to these challenges. The Evaluation section synthesizes empirical evidence from early implementations and academic studies. The Discussion examines implications, limitations, and future research directions. Finally, the Conclusion reinforces the evidence-based case for conversational AI adoption in healthcare analytics.
+
+# Methodology
+
+## Review Approach
+
+This paper employs a narrative review methodology to synthesize evidence across three interconnected domains: healthcare analytics maturity, workforce turnover, and natural language to SQL technologies. Unlike systematic reviews that follow pre-registered protocols with exhaustive searches, narrative reviews provide expert synthesis of relevant literature to construct coherent arguments and identify patterns across diverse evidence sources.
+
+The narrative review approach was selected because:
+
+1. **Integration across domains**: The paper synthesizes evidence from distinct fields (clinical informatics, human resources, natural language processing) that require interpretive integration rather than statistical pooling
+2. **Original analytical framework**: The three-pillar framework emerged iteratively from the literature rather than being pre-specified
+3. **Heterogeneous evidence types**: The evidence base includes peer-reviewed research, industry reports, and benchmark datasets that cannot be meaningfully combined through meta-analysis
+
+## Literature Search
+
+Literature was identified through multiple channels between January 2023 and December 2024:
+
+**Academic Databases:**
+
+- PubMed/MEDLINE: Clinical informatics, healthcare workforce, medical administration
+- IEEE Xplore and ACM Digital Library: Natural language to SQL, text-to-SQL systems
+- arXiv: Machine learning and NLP preprints, benchmark studies
+- Google Scholar: Cross-disciplinary search and citation tracing
+
+**Industry Sources:**
+
+- HIMSS publications and Analytics Maturity Model documentation
+- Healthcare IT vendor case studies and implementation reports
+- Market research reports (Precedence Research, Forrester)
+- Professional association surveys and white papers
+
+**Search Concepts:**
+
+Primary search terms included combinations of: "natural language SQL," "text-to-SQL healthcare," "healthcare analytics maturity," "HIMSS AMAM," "nursing turnover," "IT workforce turnover healthcare," "institutional memory loss," "low-code healthcare analytics," and "conversational AI clinical decision support."
+
+## Source Selection
+
+Sources were selected based on the following criteria:
+
+**Inclusion Criteria:**
+
+- Peer-reviewed publications in healthcare informatics, medical informatics, computer science, or health services research
+- Industry reports from established healthcare IT organizations (HIMSS, AHIMA, AMIA)
+- Publications from 2015-2024, with emphasis on 2020-2024 for rapidly evolving NL2SQL technologies
+- English language publications
+- Sources with verifiable DOIs, URLs, or institutional attribution
+
+**Exclusion Criteria:**
+
+- Sources without verifiable attribution or institutional backing
+- Vendor marketing materials without independent validation
+- Preprints without subsequent peer-reviewed publication (exception: foundational NL2SQL benchmarks where peer review is pending)
+- Studies with unverifiable statistics or methodological concerns
+
+## Evidence Synthesis
+
+Evidence was synthesized thematically around the three-pillar framework:
+
+1. **Analytics maturity**: Evidence on HIMSS AMAM adoption, healthcare analytics capabilities, and organizational readiness
+2. **Workforce turnover**: Evidence on nursing and IT staff turnover rates, institutional memory loss, and knowledge transfer challenges
+3. **Technical barriers**: Evidence on NL2SQL benchmarks, healthcare-specific NLP challenges, and low-code implementation patterns
+
+This framework emerged iteratively from the literature rather than being pre-specified, consistent with narrative review methodology. Citation verification followed the methodology documented in the reference verification process, which identified and removed 5 likely AI-generated fabrications and 29 unused references from the original draft.
+
+## Methodological Limitations
+
+This narrative review has inherent limitations:
+
+- **Non-exhaustive search**: Literature identification was selective rather than exhaustive; relevant studies may have been missed
+- **No formal quality assessment**: No standardized quality assessment tool (e.g., GRADE, Cochrane Risk of Bias) was applied; quality judgments were based on publication venue, methodological transparency, and verification of claims
+- **Single author synthesis**: Evidence synthesis reflects a single author's interpretation, which may introduce perspective bias
+- **Post-hoc selection criteria**: Inclusion and exclusion criteria were refined during the review process rather than pre-registered
+- **No protocol registration**: This review was not registered in PROSPERO or similar registries
+
+These limitations are balanced against the strengths of narrative review methodology: ability to synthesize heterogeneous evidence types across disciplinary boundaries, flexibility to pursue emerging themes, and capacity to construct novel analytical frameworks that illuminate connections between previously disconnected research domains.
 
 # Literature Review: Natural Language Analytics in Healthcare - Evidence for Institutional Memory Preservation
 
-This literature review examines peer-reviewed evidence supporting the implementation of natural language analytics platforms in healthcare systems. Analysis of recent systematic reviews, medical administration journals, and empirical studies reveals three critical findings: (1) natural language to SQL generation has evolved significantly but faces healthcare-specific challenges requiring specialized solutions, (2) healthcare analytics maturity remains critically low with most organizations struggling at basic stages, and (3) healthcare workforce turnover creates institutional memory loss that traditional approaches fail to address. The evidence strongly supports conversational AI platforms as a solution to these interconnected challenges.
+This narrative review examines evidence supporting the implementation of natural language analytics platforms in healthcare systems. Drawing from peer-reviewed research, industry reports, and benchmark datasets identified through the methodology described in the previous section, we synthesize findings across three domains. Analysis reveals three critical findings: (1) natural language to SQL generation has evolved significantly but faces healthcare-specific challenges requiring specialized solutions, (2) healthcare analytics maturity remains critically low with most organizations struggling at basic stages, and (3) healthcare workforce turnover creates institutional memory loss that traditional approaches fail to address. The evidence strongly supports conversational AI platforms as a solution to these interconnected challenges.
 
 ## 1. Current State of Natural Language to SQL Generation
 
@@ -565,6 +640,10 @@ Democratizing analytics access creates new challenges in maintaining data qualit
 ### Specialty-Specific Application Gaps
 Evidence primarily focuses on general acute care settings. Applications in specialized domains (oncology, cardiology, mental health) require domain-specific validation and customization that may not generalize from the existing evidence base.
 
+### Methodological Considerations
+
+As a narrative review, this paper has methodological limitations distinct from systematic reviews. The non-exhaustive literature search, single-author synthesis, and post-hoc selection criteria may have introduced selection or interpretation bias. No formal quality assessment tool was applied to included studies. These limitations, documented in detail in the Methodology section, should be considered when interpreting findings. The transparency provided through explicit documentation of search strategies, selection criteria, and synthesis approach enables readers to assess potential biases and evaluate the robustness of conclusions.
+
 ## Future Research Directions
 
 The evidence review identifies several priority areas for future investigation:
@@ -642,7 +721,7 @@ Samuel T Harrold is founder of Yuimedi and a Data Scientist at Indiana Universit
 
 # Data Availability
 
-This is a narrative review. No primary datasets were generated or analyzed. All data cited are from publicly available peer-reviewed publications and industry reports, referenced in the bibliography.
+This is a narrative review synthesizing existing literature. No primary datasets were generated or analyzed. All data cited are from publicly available peer-reviewed publications and industry reports, referenced in the bibliography. The literature search methodology and source selection criteria are documented in the Methodology section.
 
 # Code Availability
 
