@@ -42,7 +42,7 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 
 **Key Statistics:**
 - Healthcare IT professionals: **2.9 years average tenure**
-- Annual turnover rate: **15.54%** (highest among IT sectors studied)
+- Annual turnover rate: **15.54%** (highest among IT organization types studied)
 - Context: IT serves as support function rather than core business at healthcare providers
 
 **Why This Source:**
@@ -101,7 +101,7 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 > Annual turnover of 15-36% for clinical and technical staff creates cascading knowledge loss
 
 **Updated Text:**
-> Annual nursing turnover of 8-36% [A1, A2] combines with IT staff turnover of 15.54% [A11] (the highest among IT sectors), creating cascading knowledge loss
+> Annual nursing turnover of 8-36% [A1, A2] combines with IT staff turnover of 15.54% [A11] (the highest rate among all IT organization types studied), creating cascading knowledge loss
 
 **Rationale:** Separates staff types with specific citations
 
@@ -113,7 +113,7 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 > Healthcare workforce turnover rates of 15-36% annually [A1, A2] create devastating institutional memory loss.
 
 **Updated Text:**
-> Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 15.54% annually, with average tenure of only 2.9 years—the lowest among IT sectors studied [A11].
+> Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 15.54% annually, with average tenure of only 2.9 years—the lowest among IT organization types studied [A11].
 
 **Rationale:** Adds IT-specific detail with comparison context
 
@@ -122,7 +122,9 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 ### 5. Literature Review (After Line ~195)
 
 **New Paragraph:**
-> Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years and annual turnover of 15.54%, the highest rate among all IT organization types studied. Das et al. [A12] documented hospital IT personnel tenure of 4-6 years, still considerably shorter than the 9.68-year average for IT managerial positions overall.
+> Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years and annual turnover of 15.54%, the highest rate among all IT organization types studied. This compares unfavorably to the 9.68-year average for IT managerial positions overall, highlighting the particular vulnerability of healthcare IT departments to knowledge loss.
+
+**Note:** [A12] Das et al. (2010) was listed as a secondary source but deferred from this implementation. The [A11] citation provides sufficient evidence for the IT turnover claims.
 
 **Rationale:** Provides dedicated section on IT turnover with full context
 
@@ -134,9 +136,9 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 
 ```
 [A11] Ang, S., & Slaughter, S. (2004). Turnover of information technology professionals: The effects of internal labor market strategies. ACM SIGMIS Database: The DATABASE for Advances in Information Systems, 35(3), 11-27. https://doi.org/10.1145/1017114.1017118
-
-[A12] Das, S., Yaylacicegi, U., & Menon, N.M. (2010). The effect of information technology investments in healthcare: A longitudinal study of its lag, duration, and economic value. IEEE Transactions on Engineering Management, 58(1), 124-140. https://doi.org/10.1109/TEM.2009.2034254
 ```
+
+**Note:** [A12] Das et al. (2010) was documented in this spec as a secondary source but deferred from implementation. See Citation Priority section for rationale.
 
 ---
 
@@ -170,14 +172,15 @@ python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
 
 Before completing this feature:
 
-- [ ] DOI for [A11] verified at ACM Digital Library
-- [ ] DOI for [A12] verified at IEEE Xplore
-- [ ] Statistics (2.9 years, 15.54%, 4-6 years) confirmed against sources
-- [ ] All paper.md locations updated per specification
-- [ ] Reference validation passes
-- [ ] Documentation validation passes
-- [ ] Quality gates pass
-- [ ] PR ready for develop branch
+- [x] DOI for [A11] verified at ACM Digital Library
+- [x] Statistics (2.9 years, 15.54%) confirmed against source
+- [x] All paper.md locations updated per specification
+- [x] Reference validation passes
+- [x] Documentation validation passes
+- [x] Quality gates pass
+- [x] PR ready for develop branch
+
+**Note:** [A12] verification deferred - see Citation Priority section.
 
 ---
 

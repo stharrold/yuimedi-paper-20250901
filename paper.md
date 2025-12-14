@@ -93,7 +93,7 @@ The Healthcare Information Management Systems Society (HIMSS) Analytics Maturity
 
 This analytics maturity crisis occurs amid accelerating technological advances in natural language processing and conversational AI. Large language models have demonstrated remarkable capabilities in understanding clinical terminology, generating SQL queries, and bridging the gap between natural language questions and structured data analysis. These developments create unprecedented opportunities to democratize healthcare analytics access.
 
-Simultaneously, healthcare faces an institutional memory crisis driven by workforce turnover rates significantly higher than other knowledge-intensive sectors. Annual nursing turnover of 8-36% [A1, A2] combines with IT staff turnover of 15.54% [A11]—the highest among IT sectors—creating cascading knowledge loss, particularly in analytics roles where expertise combines domain knowledge with technical skills. Traditional knowledge management approaches prove inadequate for preserving the tacit knowledge essential for effective healthcare data analysis.
+Simultaneously, healthcare faces an institutional memory crisis driven by workforce turnover rates significantly higher than other knowledge-intensive sectors. Annual nursing turnover of 8-36% [A1, A2] combines with IT staff turnover of 15.54% [A11]—the highest rate among all IT organization types studied—creating cascading knowledge loss, particularly in analytics roles where expertise combines domain knowledge with technical skills. Traditional knowledge management approaches prove inadequate for preserving the tacit knowledge essential for effective healthcare data analysis.
 
 ## Problem Statement
 

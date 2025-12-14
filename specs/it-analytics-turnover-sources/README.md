@@ -1,4 +1,4 @@
-# Specifications: It Analytics Turnover Sources
+# Specifications: IT Analytics Turnover Sources
 
 ## Overview
 
