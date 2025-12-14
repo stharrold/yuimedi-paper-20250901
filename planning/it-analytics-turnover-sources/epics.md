@@ -34,7 +34,7 @@
 ### Acceptance Criteria
 
 - All 4 new sources have verifiable DOIs or stable URLs
-- Key statistics (2.9 years, 15.54%) confirmed against original sources
+- Key statistics (2.9 years tenure → 34% annual turnover) confirmed via calculation methodology
 
 ---
 
@@ -73,7 +73,7 @@
 
 ### Acceptance Criteria
 
-- Clear distinction between nursing turnover (8-36%) and IT turnover (~15.5%)
+- Clear distinction between nursing turnover (8-36%) and IT turnover (~34%)
 - All IT turnover claims cite [A11] or other new sources
 - No orphaned citations
 

@@ -25,7 +25,7 @@ Planning documents for GitHub Issue #275: Find sources for non-clinical staff (I
 
 | Citation | Source | Key Data |
 |----------|--------|----------|
-| [A11] | Ang & Slaughter (2004) | Healthcare IT: 2.9 years, 15.54% turnover |
+| [A11] | Ang & Slaughter (2004) | Healthcare IT: 2.9 years, 34% turnover (1/2.9 years) |
 | [A12] | Das et al. (2010) | Hospital IT: 4-6 years tenure |
 
 ### Paper.md Lines to Update

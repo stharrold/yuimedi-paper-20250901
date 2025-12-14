@@ -614,6 +614,10 @@ Examples:
                 print(f"  Line {v.line_number}: {v.latex_command} in URL")
                 if args.verbose:
                     print(f"    Full match: {v.full_match}")
+            print("\n  FIX: Remove LaTeX commands from URLs. Common issues:")
+            print("    - \\break in long URLs: Remove line breaks, use continuous URL")
+            print("    - \\textit or \\textbf: Remove formatting commands from URLs")
+            print("    - Escaped characters: Use raw URL without LaTeX escaping")
         else:
             print("OK: No LaTeX commands found in URLs")
 
@@ -637,6 +641,7 @@ Examples:
         print(
             f"\nERROR: {len(latex_violations)} LaTeX commands in URLs (critical, breaks hyperlinks)"
         )
+        print("  Run with --verbose to see affected URLs, then edit paper.md to fix.")
     return 1 if has_critical_issues else 0
 
 

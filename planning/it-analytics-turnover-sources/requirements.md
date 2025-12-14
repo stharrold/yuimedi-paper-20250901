@@ -28,7 +28,7 @@ Paper makes claims about "clinical and technical staff" but citations only suppo
 Key findings from user research:
 
 1. **Technical IT Staff at Healthcare Providers: ~2.9 years tenure**
-   - Annual turnover rate: 15.54% (highest among IT sectors studied)
+   - Annual turnover rate: 34% (calculated as 1/2.9 years; highest among IT sectors studied)
    - Source: Ang & Slaughter (2004)
 
 2. **Hospital IT Personnel: 4-6 years average tenure**
@@ -46,7 +46,7 @@ Key findings from user research:
 
 - [ ] All claims about technical/IT staff have verifiable citations
 - [ ] New citations verified via DOI or authoritative URL
-- [ ] Consistent turnover range (8-36% for nursing, ~15.5% for IT) throughout paper
+- [ ] Consistent turnover range (8-36% for nursing, ~34% for IT) throughout paper
 - [ ] Clear distinction between nursing data (peer-reviewed) and IT data
 - [ ] Quality gates pass after changes
 
@@ -56,7 +56,7 @@ Key findings from user research:
 
 | Citation | Source | Key Data | DOI/URL |
 |----------|--------|----------|---------|
-| **[A11]** | Ang & Slaughter (2004) | 2.9 years tenure, 15.54% turnover for healthcare IT | ACM SIGMIS Database |
+| **[A11]** | Ang & Slaughter (2004) | 2.9 years tenure, 34% turnover (1/2.9 years) for healthcare IT | ACM SIGMIS Database |
 | **[A12]** | Das et al. (2010) | 4-6 years IT tenure in hospitals | IEEE Trans Eng Mgmt |
 | **[A13]** | Rodriguez (2020) | Healthcare IT professional relationships | ProQuest |
 | **[A14]** | Belcher (2023) | Voluntary attrition in healthcare tech | ProQuest |
