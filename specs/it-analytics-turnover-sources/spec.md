@@ -1,312 +1,216 @@
-# Specification: It Analytics Turnover Sources
+# Specification: IT Analytics Turnover Sources
 
 **Type:** feature
 **Slug:** it-analytics-turnover-sources
 **Date:** 2025-12-14
 **Author:** stharrold
+**GitHub Issue:** #275
 
 ## Overview
 
-[One paragraph describing what this feature does and why it's needed]
+This feature addresses GitHub Issue #275: Find sources for non-clinical staff (IT/analytics/technical roles) turnover in healthcare. The paper currently cites turnover data for "clinical and technical staff" but only references nurse-specific meta-analyses [A1, A2]. This specification defines the documentation updates needed to properly cite IT-specific turnover research.
 
+## Problem Statement
+
+**Current State:**
+- Paper claims turnover data for "clinical and technical staff"
+- Only nursing-specific sources cited: [A1] Wu et al. (2024), [A2] Ren et al. (2024)
+- No citations supporting IT/analytics/technical staff turnover claims
+
+**Solution:**
+- Add verified academic sources for IT staff turnover in healthcare
+- Update paper text to clearly distinguish nursing vs IT turnover rates
+- Maintain citation integrity with DOI-verified references
 
 ## Implementation Context
 
-<!-- Generated from SpecKit interactive Q&A -->
-
-**GitHub Issue:** #275
-
 **BMAD Planning:** See `planning/it-analytics-turnover-sources/` for complete requirements and architecture.
 
-**Implementation Preferences:**
+**Implementation Type:** Documentation-only (no code changes)
 
-- **Migration Strategy:** None needed
-- **Task Granularity:** Small tasks (1-2 hours each)
-- **Follow Epic Order:** True
-- **Additional Notes:** Documentation-only task. Updates paper.md with new IT turnover citations from verified academic sources.
+**Key Constraints:**
+- All citations must be DOI-verifiable or from authoritative sources
+- Maintain existing citation format ([A#] for academic, [I#] for industry)
+- Clear distinction between nursing data (peer-reviewed meta-analyses) and IT data
 
-## Requirements Reference
+## New Citations to Add
 
-See: `planning/it-analytics-turnover-sources/requirements.md` in main repository
+### [A11] Ang & Slaughter (2004)
 
-## Detailed Specification
+**Full Citation:**
+> Ang, S., & Slaughter, S. (2004). Turnover of information technology professionals: The effects of internal labor market strategies. *ACM SIGMIS Database: The DATABASE for Advances in Information Systems*, 35(3), 11-27. https://doi.org/10.1145/1017114.1017118
 
-### Component 1: [Component Name]
+**Key Statistics:**
+- Healthcare IT professionals: **2.9 years average tenure**
+- Annual turnover rate: **15.54%** (highest among IT sectors studied)
+- Context: IT serves as support function rather than core business at healthcare providers
 
-**File:** `src/path/to/file.py`
+**Why This Source:**
+- Peer-reviewed academic journal
+- Directly addresses healthcare IT sector
+- Provides comparison across IT organization types
+- Explains why healthcare IT has highest turnover
 
-**Purpose:** [What does this component do?]
+---
 
-**Implementation:**
+### [A12] Das et al. (2010)
 
-```python
-# Example code structure
+**Full Citation:**
+> Das, S., Yaylacicegi, U., & Menon, N.M. (2010). The effect of information technology investments in healthcare: A longitudinal study of its lag, duration, and economic value. *IEEE Transactions on Engineering Management*, 58(1), 124-140. https://doi.org/10.1109/TEM.2009.2034254
 
-class ExampleClass:
-    """Brief description of class purpose."""
+**Key Statistics:**
+- Hospital IT personnel: **4-6 years average tenure**
+- Context: Longer tenure than Ang & Slaughter findings, includes administrative IT staff
 
-    def __init__(self, param1: str, param2: int):
-        """Initialize with parameters."""
-        self.param1 = param1
-        self.param2 = param2
+**Why This Source:**
+- Peer-reviewed IEEE journal
+- Hospital-specific IT focus
+- Complements [A11] with broader tenure range
 
-    def method_name(self, arg: str) -> dict:
-        """
-        Description of what this method does.
+---
 
-        Args:
-            arg: Description of argument
+## Paper.md Update Locations
 
-        Returns:
-            Dictionary with result data
+### 1. Abstract (Line ~15)
 
-        Raises:
-            ValueError: When input is invalid
-        """
-        # Implementation details
-        pass
+**Current Text:**
+> Healthcare workforce turnover rates of 8-36% create institutional memory loss
+
+**Updated Text:**
+> Healthcare nursing turnover rates of 8-36% and IT staff turnover of ~15% create institutional memory loss
+
+**Rationale:** Distinguishes nursing-specific data from IT-specific data
+
+---
+
+### 2. Executive Summary (Line ~80)
+
+**Current Text:**
+> annual turnover rates of 8-36% [A1, A2] create institutional memory loss
+
+**Updated Text:**
+> nursing turnover rates of 8-36% [A1, A2] and IT staff turnover of 15.54% [A11] create institutional memory loss
+
+**Rationale:** Adds IT citation while preserving nursing attribution
+
+---
+
+### 3. Introduction (Line ~96)
+
+**Current Text:**
+> Annual turnover of 15-36% for clinical and technical staff creates cascading knowledge loss
+
+**Updated Text:**
+> Annual nursing turnover of 8-36% [A1, A2] combines with IT staff turnover of 15.54% [A11] (the highest among IT sectors), creating cascading knowledge loss
+
+**Rationale:** Separates staff types with specific citations
+
+---
+
+### 4. Problem Statement (Lines ~108-109)
+
+**Current Text:**
+> Healthcare workforce turnover rates of 15-36% annually [A1, A2] create devastating institutional memory loss.
+
+**Updated Text:**
+> Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 15.54% annually, with average tenure of only 2.9 years—the lowest among IT sectors studied [A11].
+
+**Rationale:** Adds IT-specific detail with comparison context
+
+---
+
+### 5. Literature Review (After Line ~195)
+
+**New Paragraph:**
+> Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years and annual turnover of 15.54%, the highest rate among all IT organization types studied. Das et al. [A12] documented hospital IT personnel tenure of 4-6 years, still considerably shorter than the 9.68-year average for IT managerial positions overall.
+
+**Rationale:** Provides dedicated section on IT turnover with full context
+
+---
+
+### 6. References Section
+
+**Add after [A10]:**
+
+```
+[A11] Ang, S., & Slaughter, S. (2004). Turnover of information technology professionals: The effects of internal labor market strategies. ACM SIGMIS Database: The DATABASE for Advances in Information Systems, 35(3), 11-27. https://doi.org/10.1145/1017114.1017118
+
+[A12] Das, S., Yaylacicegi, U., & Menon, N.M. (2010). The effect of information technology investments in healthcare: A longitudinal study of its lag, duration, and economic value. IEEE Transactions on Engineering Management, 58(1), 124-140. https://doi.org/10.1109/TEM.2009.2034254
 ```
 
-**Dependencies:**
-- [External library or module]
-- [Internal component]
+---
 
-### Component 2: [Component Name]
+## Validation Requirements
 
-**File:** `src/path/to/another_file.py`
-
-[Similar structure as Component 1]
-
-## Data Models
-
-### Model: ExampleModel
-
-**File:** `src/models/example.py`
-
-```python
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    """Database model for example data."""
-
-    __tablename__ = 'examples'
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False, unique=True)
-    description = Column(String(500))
-    created_at = Column(DateTime, nullable=False)
+### Reference Validation
+```bash
+python scripts/validate_references.py --all
 ```
+- All citations must appear in References section
+- No orphaned citations in paper text
+- DOIs must resolve correctly
 
-## API Endpoints
-
-### POST /api/endpoint
-
-**Description:** [What this endpoint does]
-
-**Request:**
-```json
-{
-  "field1": "value",
-  "field2": 123
-}
+### Documentation Validation
+```bash
+./validate_documentation.sh
 ```
+- All 6 tests must pass
+- File size under 30KB limit
+- No cross-reference errors
 
-**Response (200 OK):**
-```json
-{
-  "id": 1,
-  "status": "success",
-  "data": {
-    "result": "value"
-  }
-}
+### Quality Gates
+```bash
+python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
 ```
+- Full quality gate suite must pass before PR
 
-**Response (400 Bad Request):**
-```json
-{
-  "error": "Validation failed",
-  "details": ["field1 is required"]
-}
-```
+---
 
-**Implementation:**
+## Quality Checklist
 
-```python
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+Before completing this feature:
 
-router = APIRouter()
+- [ ] DOI for [A11] verified at ACM Digital Library
+- [ ] DOI for [A12] verified at IEEE Xplore
+- [ ] Statistics (2.9 years, 15.54%, 4-6 years) confirmed against sources
+- [ ] All paper.md locations updated per specification
+- [ ] Reference validation passes
+- [ ] Documentation validation passes
+- [ ] Quality gates pass
+- [ ] PR ready for develop branch
 
-class RequestModel(BaseModel):
-    field1: str
-    field2: int
+---
 
-class ResponseModel(BaseModel):
-    id: int
-    status: str
-    data: dict
+## Notes
 
-@router.post("/api/endpoint", response_model=ResponseModel)
-async def endpoint_handler(request: RequestModel):
-    """Handle endpoint request."""
-    # Implementation
-    pass
-```
+### Citation Priority
 
-### GET /api/endpoint/{id}
+**Primary (must add):**
+- [A11] Ang & Slaughter (2004) - Core IT turnover statistics
 
-**Description:** [What this endpoint does]
+**Secondary (add if space permits):**
+- [A12] Das et al. (2010) - Hospital IT tenure data
 
-[Similar structure as POST endpoint]
+**Optional (from Issue #275 research):**
+- [A13] Rodriguez (2020) - Healthcare IT relationships (ProQuest)
+- [A14] Belcher (2023) - Healthcare tech attrition (ProQuest)
 
-## Testing Requirements
+Note: [A13] and [A14] are ProQuest dissertations. Include only if [A11] and [A12] prove insufficient for paper's needs.
 
-### Unit Tests
+### Turnover Rate Summary
 
-**File:** `tests/test_example.py`
+| Staff Type | Turnover Rate | Tenure | Source |
+|------------|---------------|--------|--------|
+| Nursing (pooled) | 8-36% | - | [A1], [A2] |
+| Healthcare IT | 15.54% | 2.9 years | [A11] |
+| Hospital IT | - | 4-6 years | [A12] |
+| IT overall | - | 9.68 years | [A11] (comparison) |
 
-```python
-import pytest
-from src.module import ExampleClass
-
-def test_example_success():
-    """Test successful operation."""
-    instance = ExampleClass("test", 123)
-    result = instance.method_name("input")
-    assert result["status"] == "success"
-
-def test_example_validation_error():
-    """Test validation error handling."""
-    instance = ExampleClass("test", 123)
-    with pytest.raises(ValueError):
-        instance.method_name("")
-```
-
-### Integration Tests
-
-**File:** `tests/test_integration.py`
-
-```python
-from fastapi.testclient import TestClient
-from src.main import app
-
-client = TestClient(app)
-
-def test_endpoint_integration():
-    """Test API endpoint integration."""
-    response = client.post("/api/endpoint", json={
-        "field1": "value",
-        "field2": 123
-    })
-    assert response.status_code == 200
-    assert response.json()["status"] == "success"
-```
-
-## Quality Gates
-
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing
-- [ ] Linting clean (ruff check)
-- [ ] Type checking clean (mypy)
-- [ ] API documentation complete
-
-## Container Specifications
-
-### Containerfile
-
-```dockerfile
-FROM python:3.11-slim
-
-WORKDIR /app
-
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev
-
-COPY src/ src/
-
-EXPOSE 8000
-
-HEALTHCHECK --interval=30s --timeout=3s \
-  CMD python -c "import requests; requests.get('http://localhost:8000/health')"
-
-CMD ["uv", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
-### podman-compose.yml
-
-```yaml
-version: '3.8'
-
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Containerfile
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./data:/app/data
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-```
-
-## Dependencies
-
-**pyproject.toml additions:**
-
-```toml
-[project]
-dependencies = [
-    "fastapi>=0.104.0",
-    "uvicorn[standard]>=0.24.0",
-    "sqlalchemy>=2.0.0",
-    "pydantic>=2.5.0",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "pytest-asyncio>=0.21.0",
-    "httpx>=0.25.0",
-    "ruff>=0.1.0",
-    "mypy>=1.7.0",
-]
-```
-
-## Implementation Notes
-
-### Key Considerations
-
-- [Important implementation detail]
-- [Potential gotcha or edge case]
-- [Performance consideration]
-
-### Error Handling
-
-- [How to handle specific error type]
-- [Validation strategy]
-- [Retry logic if applicable]
-
-### Security
-
-- [Input validation approach]
-- [Authentication requirements]
-- [Authorization checks]
+---
 
 ## References
 
-- [Link to external documentation]
-- [Related specifications]
-- [Design patterns used]
+- [planning/it-analytics-turnover-sources/requirements.md](../../planning/it-analytics-turnover-sources/requirements.md)
+- [planning/it-analytics-turnover-sources/architecture.md](../../planning/it-analytics-turnover-sources/architecture.md)
+- [planning/it-analytics-turnover-sources/epics.md](../../planning/it-analytics-turnover-sources/epics.md)
+- GitHub Issue #275

@@ -1,370 +1,343 @@
-# Implementation Plan: It Analytics Turnover Sources
+# Implementation Plan: IT Analytics Turnover Sources
 
 **Type:** feature
 **Slug:** it-analytics-turnover-sources
 **Date:** 2025-12-14
+**GitHub Issue:** #275
 
+## Overview
 
-<!-- Note: Customize task breakdown based on specific feature requirements -->
-<!-- This template provides the structure. Claude Code will populate with actual tasks. -->
+This is a **documentation update task** - no code changes required. Updates `paper.md` with new academic citations for IT/technical staff turnover rates in healthcare to support claims about non-clinical workforce turnover.
 
 ## Task Breakdown
 
-### Phase 1: Foundation
+### Phase 1: Source Verification (E-001)
 
-#### Task impl_001: [Task Name]
+#### Task doc_001: Verify Ang & Slaughter (2004) DOI
 
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file1.py`
-- `src/path/file2.py`
-- `tests/test_file.py`
+**Priority:** P0
+**Files:** None (research task)
 
 **Description:**
-[Detailed description of what needs to be implemented]
+Verify DOI and key statistics for primary IT turnover source.
 
 **Steps:**
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
+1. Access ACM Digital Library for Ang & Slaughter (2004)
+2. Confirm DOI: `10.1145/1017114.1017118`
+3. Verify statistics: 2.9 years tenure, 15.54% annual turnover for healthcare IT
+4. Document full citation with DOI
 
 **Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+- [ ] DOI resolves to correct paper
+- [ ] Statistics confirmed against original source
 
-**Verification:**
-```bash
-# Commands to verify implementation
-uv run python -c "from src.module import Class; print('OK')"
-uv run pytest tests/test_file.py -v
-```
-
-**Dependencies:**
-- None (or list other task IDs)
+**Dependencies:** None
 
 ---
 
-#### Task impl_002: [Task Name]
+#### Task doc_002: Verify Das et al. (2010) DOI
 
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file3.py`
+**Priority:** P0
+**Files:** None (research task)
 
 **Description:**
-[Detailed description]
+Verify DOI and key statistics for hospital IT tenure source.
 
 **Steps:**
-1. [Step 1]
-2. [Step 2]
+1. Access IEEE Xplore for Das et al. (2010)
+2. Confirm DOI: `10.1109/TEM.2009.2034254`
+3. Verify statistics: 4-6 years IT tenure in hospitals
+4. Document full citation with DOI
 
 **Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
+- [ ] DOI resolves to correct paper
+- [ ] Statistics confirmed against original source
 
-**Verification:**
-```bash
-uv run pytest tests/test_file3.py
-```
-
-**Dependencies:**
-- impl_001 (must complete first)
+**Dependencies:** None
 
 ---
 
-### Phase 2: Core Implementation
+### Phase 2: Add References (E-002)
 
-#### Task impl_003: [Task Name]
+#### Task doc_003: Add [A11] Citation
 
-**Estimated Time:** [Duration]
-**Priority:** High
-
+**Priority:** P0
 **Files:**
-- `src/core/module.py`
-- `tests/test_module.py`
+- `paper.md` (References section)
 
 **Description:**
-[Core business logic implementation]
+Add Ang & Slaughter (2004) citation to paper.md references.
 
-**Steps:**
-1. Create module structure
-2. Implement core functionality
-3. Add error handling
-4. Write comprehensive tests
+**Citation Format:**
+```
+[A11] Ang, S., & Slaughter, S. (2004). Turnover of information technology professionals:
+The effects of internal labor market strategies. ACM SIGMIS Database: The DATABASE
+for Advances in Information Systems, 35(3), 11-27. https://doi.org/10.1145/1017114.1017118
+```
 
 **Acceptance Criteria:**
-- [ ] All business logic implemented
-- [ ] Error cases handled
-- [ ] Tests passing with >85% coverage
+- [ ] Citation follows existing [A#] format
+- [ ] DOI included and functional
+- [ ] Placed after [A10] in References section
 
-**Verification:**
-```bash
-uv run pytest tests/test_module.py --cov=src.core.module --cov-report=term
-```
-
-**Dependencies:**
-- impl_001, impl_002
+**Dependencies:** doc_001
 
 ---
 
-### Phase 3: API Layer
+#### Task doc_004: Add [A12] Citation
 
-#### Task impl_004: [Task Name]
-
-**Estimated Time:** [Duration]
-**Priority:** High
-
+**Priority:** P0
 **Files:**
-- `src/api/routes.py`
-- `src/api/models.py`
-- `tests/test_api.py`
+- `paper.md` (References section)
 
 **Description:**
-[API endpoint implementation]
+Add Das et al. (2010) citation to paper.md references.
 
-**Steps:**
-1. Define Pydantic models for request/response
-2. Implement endpoint handlers
-3. Add input validation
-4. Write integration tests
+**Citation Format:**
+```
+[A12] Das, S., Yaylacicegi, U., & Menon, N.M. (2010). The effect of information
+technology investments in healthcare: A longitudinal study of its lag, duration,
+and economic value. IEEE Transactions on Engineering Management, 58(1), 124-140.
+https://doi.org/10.1109/TEM.2009.2034254
+```
 
 **Acceptance Criteria:**
-- [ ] Endpoints respond correctly
-- [ ] Validation working
-- [ ] Error responses formatted correctly
-- [ ] Integration tests passing
+- [ ] Citation follows existing [A#] format
+- [ ] DOI included and functional
+- [ ] Placed after [A11] in References section
 
-**Verification:**
-```bash
-uv run pytest tests/test_api.py -v
-# Manual test:
-curl -X POST http://localhost:8000/api/endpoint -H "Content-Type: application/json" -d '{"field": "value"}'
-```
-
-**Dependencies:**
-- impl_003
+**Dependencies:** doc_002
 
 ---
 
-### Phase 4: Testing
+### Phase 3: Update Paper Text (E-003)
 
-#### Task test_001: Unit Tests
+#### Task doc_005: Update Abstract
 
-**Estimated Time:** [Duration]
-**Priority:** High
-
+**Priority:** P0
 **Files:**
-- `tests/test_*.py`
-- `tests/conftest.py`
+- `paper.md` (Line ~15)
 
 **Description:**
-Comprehensive unit tests for all modules.
+Update Abstract to distinguish nursing vs IT turnover rates.
 
-**Coverage Targets:**
-- Overall: ≥80%
-- Core modules: ≥90%
-- Utilities: ≥85%
+**Current:**
+> Healthcare workforce turnover rates of 8-36% create institutional memory loss
 
-**Steps:**
-1. Set up pytest fixtures in conftest.py
-2. Write unit tests for each module
-3. Test happy paths and error conditions
-4. Achieve coverage targets
+**Revised:**
+> Healthcare nursing turnover rates of 8-36% and IT staff turnover of ~15% create institutional memory loss
 
-**Verification:**
-```bash
-uv run pytest --cov=src --cov-report=term --cov-report=html
-uv run pytest --cov=src --cov-fail-under=80
-```
+**Acceptance Criteria:**
+- [ ] Clear distinction between nursing and IT turnover
+- [ ] Statistics accurate
 
-**Dependencies:**
-- impl_001, impl_002, impl_003, impl_004
+**Dependencies:** doc_003
 
 ---
 
-#### Task test_002: Integration Tests
+#### Task doc_006: Update Executive Summary
 
-**Estimated Time:** [Duration]
-**Priority:** High
-
+**Priority:** P0
 **Files:**
-- `tests/integration/test_*.py`
+- `paper.md` (Line ~80)
 
 **Description:**
-End-to-end integration tests with real database.
+Update Executive Summary with IT turnover citation.
 
-**Steps:**
-1. Set up test database fixtures
-2. Test API workflows end-to-end
-3. Test error scenarios
-4. Test concurrent requests
+**Current:**
+> annual turnover rates of 8-36% [A1, A2] create institutional memory loss
 
-**Verification:**
-```bash
-uv run pytest tests/integration/ -v
-```
+**Revised:**
+> nursing turnover rates of 8-36% [A1, A2] and IT staff turnover of 15.54% [A11] create institutional memory loss
 
-**Dependencies:**
-- impl_004, test_001
+**Acceptance Criteria:**
+- [ ] [A11] citation added
+- [ ] Clear role distinction
+
+**Dependencies:** doc_003
 
 ---
 
-### Phase 5: Containerization
+#### Task doc_007: Update Introduction
 
-#### Task container_001: Application Container
-
-**Estimated Time:** [Duration]
-**Priority:** Medium
-
+**Priority:** P0
 **Files:**
-- `Containerfile`
-- `.containerignore`
+- `paper.md` (Line ~96)
 
 **Description:**
-Create optimized container for application.
+Update Introduction paragraph with IT turnover data.
 
-**Steps:**
-1. Write multi-stage Containerfile
-2. Optimize layer caching
-3. Add health check
-4. Test container build and run
+**Current:**
+> Annual turnover of 15-36% for clinical and technical staff creates cascading knowledge loss
 
-**Verification:**
-```bash
-podman build -t it-analytics-turnover-sources:latest .
-podman run --rm -p 8000:8000 it-analytics-turnover-sources:latest
-curl http://localhost:8000/health
-```
+**Revised:**
+> Annual nursing turnover of 8-36% [A1, A2] combines with IT staff turnover of 15.54% [A11] (the highest among IT sectors), creating cascading knowledge loss
 
-**Dependencies:**
-- All implementation tasks complete
+**Acceptance Criteria:**
+- [ ] Citations properly attributed to specific staff types
+- [ ] IT sector comparison noted
+
+**Dependencies:** doc_003
 
 ---
 
-#### Task container_002: Container Orchestration
+#### Task doc_008: Update Problem Statement
 
-**Estimated Time:** [Duration]
-**Priority:** Medium
-
+**Priority:** P0
 **Files:**
-- `podman-compose.yml`
-- `.env.example`
+- `paper.md` (Lines ~108-109)
 
 **Description:**
-Set up multi-container orchestration.
+Expand Problem Statement with IT turnover details.
 
-**Steps:**
-1. Define services in podman-compose.yml
-2. Configure volumes and networks
-3. Set up environment variables
-4. Add health checks
-5. Test full stack
+**Current:**
+> Healthcare workforce turnover rates of 15-36% annually [A1, A2] create devastating institutional memory loss.
 
-**Verification:**
-```bash
-podman-compose up -d
-podman-compose ps
-curl http://localhost:8000/health
-podman-compose logs app
-podman-compose down
-```
+**Revised:**
+> Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 15.54% annually, with average tenure of only 2.9 years—the lowest among IT sectors studied [A11].
 
-**Dependencies:**
-- container_001
+**Acceptance Criteria:**
+- [ ] IT-specific data with citation
+- [ ] Tenure statistic included
+
+**Dependencies:** doc_003
 
 ---
 
-## Estimated Total Time
+#### Task doc_009: Add Literature Review Paragraph
 
-| Phase | Duration |
-|-------|----------|
-| Phase 1: Foundation | [X hours] |
-| Phase 2: Core Implementation | [X hours] |
-| Phase 3: API Layer | [X hours] |
-| Phase 4: Testing | [X hours] |
-| Phase 5: Containerization | [X hours] |
-| **Total** | **[X hours]** |
+**Priority:** P0
+**Files:**
+- `paper.md` (After Line ~195)
+
+**Description:**
+Add new paragraph on IT/technical staff turnover to Literature Review section.
+
+**New Paragraph:**
+> Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years and annual turnover of 15.54%, the highest rate among all IT organization types studied. Das et al. [A12] documented hospital IT personnel tenure of 4-6 years, still considerably shorter than the 9.68-year average for IT managerial positions overall.
+
+**Acceptance Criteria:**
+- [ ] Both [A11] and [A12] cited
+- [ ] Comparison to other IT sectors included
+- [ ] Flows logically after nursing turnover discussion
+
+**Dependencies:** doc_003, doc_004
+
+---
+
+### Phase 4: Validation (E-004)
+
+#### Task doc_010: Run Reference Validation
+
+**Priority:** P0
+**Files:** None
+
+**Description:**
+Validate all references including new citations.
+
+**Verification:**
+```bash
+python scripts/validate_references.py --all
+```
+
+**Acceptance Criteria:**
+- [ ] All citations in References section
+- [ ] No orphaned citations in paper text
+- [ ] All DOIs valid
+
+**Dependencies:** doc_003, doc_004, doc_005, doc_006, doc_007, doc_008, doc_009
+
+---
+
+#### Task doc_011: Run Documentation Validation
+
+**Priority:** P0
+**Files:** None
+
+**Description:**
+Run full documentation validation suite.
+
+**Verification:**
+```bash
+./validate_documentation.sh
+```
+
+**Acceptance Criteria:**
+- [ ] All 6 tests pass
+- [ ] No validation errors
+
+**Dependencies:** doc_010
+
+---
+
+#### Task doc_012: Run Quality Gates
+
+**Priority:** P0
+**Files:** None
+
+**Description:**
+Run complete quality gates before PR.
+
+**Verification:**
+```bash
+python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
+```
+
+**Acceptance Criteria:**
+- [ ] All quality gates pass
+- [ ] Ready for PR to develop
+
+**Dependencies:** doc_011
+
+---
 
 ## Task Dependencies Graph
 
 ```
-impl_001 ─┐
-          ├─> impl_003 ─> impl_004 ─┐
-impl_002 ─┘                          ├─> test_001 ─> test_002 ─> container_001 ─> container_002
-                                     │
-                                     └─> test_001
+doc_001 ─> doc_003 ─┬─> doc_005
+                    ├─> doc_006
+doc_002 ─> doc_004 ─┼─> doc_007  ─> doc_010 ─> doc_011 ─> doc_012
+                    ├─> doc_008
+                    └─> doc_009
 ```
 
 ## Critical Path
 
-1. impl_001
-2. impl_002
-3. impl_003
-4. impl_004
-5. test_001
-6. test_002
-7. container_001
-8. container_002
-
-[Identify which tasks are on the critical path and cannot be parallelized]
+1. doc_001 (Verify Ang & Slaughter)
+2. doc_003 (Add [A11])
+3. doc_009 (Add Literature Review paragraph - depends on both citations)
+4. doc_010 (Reference validation)
+5. doc_011 (Documentation validation)
+6. doc_012 (Quality gates)
 
 ## Parallel Work Opportunities
 
-- impl_001 and impl_002 can be done in parallel
-- test_001 unit tests can be written alongside implementation
-- Documentation can be written in parallel with containerization
+- doc_001 and doc_002 can be done in parallel
+- doc_005, doc_006, doc_007, doc_008 can be done in parallel (after doc_003)
 
 ## Quality Checklist
 
 Before considering this feature complete:
 
-- [ ] All tasks marked as complete
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing (unit + integration)
-- [ ] Linting clean (`uv run ruff check src/ tests/`)
-- [ ] Type checking clean (`uv run mypy src/`)
-- [ ] Container builds successfully
-- [ ] Container health checks passing
-- [ ] API documentation complete
-- [ ] Code reviewed
-- [ ] Manual testing performed
-
-## Risk Assessment
-
-### High Risk Tasks
-
-- **impl_003**: Core business logic is complex
-  - Mitigation: Break into smaller subtasks, pair programming
-
-- **test_002**: Integration tests may be flaky
-  - Mitigation: Use proper fixtures, isolated test database
-
-### Medium Risk Tasks
-
-- **container_002**: Multi-container networking can be tricky
-  - Mitigation: Test thoroughly in local environment first
+- [ ] All DOIs verified and functional
+- [ ] All new citations follow existing format
+- [ ] Clear distinction between nursing and IT turnover data throughout
+- [ ] Reference validation passes
+- [ ] Documentation validation passes (all 6 tests)
+- [ ] Quality gates pass
+- [ ] PR ready for review
 
 ## Notes
 
-[Any additional notes, considerations, or context for implementation]
+### Key Statistics to Use
 
-### Implementation Tips
+| Source | Key Statistic | Context |
+|--------|---------------|---------|
+| [A11] Ang & Slaughter | 2.9 years, 15.54% turnover | Healthcare IT highest among sectors |
+| [A12] Das et al. | 4-6 years tenure | Hospital IT personnel |
 
-- [Tip 1]
-- [Tip 2]
-- [Tip 3]
+### Citation Format Reminders
 
-### Common Pitfalls
-
-- [Pitfall 1 and how to avoid it]
-- [Pitfall 2 and how to avoid it]
-
-### Resources
-
-- [Link to relevant documentation]
-- [Link to example code]
-- [Link to design patterns]
+- Academic: `[A#]` prefix (A11, A12, etc.)
+- Industry: `[I#]` prefix
+- All citations need DOI or authoritative URL
