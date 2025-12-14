@@ -21,6 +21,7 @@ from validate_references import (  # noqa: E402
     Citation,
     Reference,
     ValidationResult,
+    check_latex_in_urls,
     extract_citations,
     find_orphaned_and_unused,
     generate_report,
@@ -261,6 +262,87 @@ class TestGenerateReport:
         assert "# Reference Validation Report" in content
 
 
+class TestCheckLatexInUrls:
+    """Tests for check_latex_in_urls function."""
+
+    def test_detects_break_command(self):
+        """Should detect \\break LaTeX command in URLs."""
+        content = "Reference: https://example.com/\\break/path/to/resource"
+        violations = check_latex_in_urls(content)
+
+        assert len(violations) == 1
+        assert violations[0].latex_command == "\\break"
+        assert violations[0].line_number == 1
+
+    def test_detects_textit_command(self):
+        """Should detect other LaTeX commands like \\textit."""
+        content = "Reference: https://example.com/\\textit/path"
+        violations = check_latex_in_urls(content)
+
+        assert len(violations) == 1
+        assert violations[0].latex_command == "\\textit"
+
+    def test_clean_urls_pass(self):
+        """Should return empty list for clean URLs without LaTeX."""
+        content = """
+[A1] Smith, J. (2023). Title. https://example.com/path/to/resource
+
+[I1] Company. (2024). Report. https://company.org/reports/2024
+"""
+        violations = check_latex_in_urls(content)
+
+        assert len(violations) == 0
+
+    def test_detects_multiple_violations(self):
+        """Should detect multiple LaTeX violations across lines."""
+        content = """
+[A1] Reference with bad URL: https://example.com/\\break/path1
+
+[A2] Another bad URL: https://other.org/\\textit/path2
+
+[A3] Clean URL: https://clean.com/path
+"""
+        violations = check_latex_in_urls(content)
+
+        assert len(violations) == 2
+        assert any(v.latex_command == "\\break" for v in violations)
+        assert any(v.latex_command == "\\textit" for v in violations)
+
+    def test_captures_line_number(self):
+        """Should capture correct line numbers for violations."""
+        content = """Line 1 no URL
+Line 2 no URL
+https://example.com/\\break/path on line 3
+Line 4 no URL
+https://example.com/\\href/path on line 5
+"""
+        violations = check_latex_in_urls(content)
+
+        assert len(violations) == 2
+        line_numbers = {v.line_number for v in violations}
+        assert 3 in line_numbers
+        assert 5 in line_numbers
+
+    def test_captures_url_fragment(self):
+        """Should capture the URL fragment before the LaTeX command."""
+        content = "https://pmc.ncbi.nlm.nih.gov/\\break/articles/PMC123"
+        violations = check_latex_in_urls(content)
+
+        assert len(violations) == 1
+        assert violations[0].url_fragment == "https://pmc.ncbi.nlm.nih.gov/"
+
+    def test_ignores_non_url_latex(self):
+        """Should not flag LaTeX commands outside of URLs."""
+        content = """
+This is \\textbf{bold} text in the paper body.
+
+Reference: https://example.com/clean/path
+"""
+        violations = check_latex_in_urls(content)
+
+        assert len(violations) == 0
+
+
 class TestWithRealPaper:
     """Integration tests using the actual paper.md."""
 
@@ -302,3 +384,12 @@ class TestWithRealPaper:
 
         # All citations should have matching references
         assert len(orphaned) == 0, f"Found orphaned citations: {[c.marker for c in orphaned]}"
+
+    def test_no_latex_in_urls(self, paper_content: str):
+        """Real paper should have no LaTeX commands in URLs after fix."""
+        violations = check_latex_in_urls(paper_content)
+
+        assert len(violations) == 0, (
+            f"Found {len(violations)} LaTeX commands in URLs: "
+            f"{[(v.line_number, v.latex_command) for v in violations]}"
+        )

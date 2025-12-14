@@ -40,6 +40,8 @@ INDUSTRY_PATTERN = re.compile(r"\[I(\d+)\]")
 CITATION_PATTERN = re.compile(r"\[(A|I)(\d+)\]")
 URL_PATTERN = re.compile(r'https?://[^\s<>"]+')
 REFERENCE_LINE_PATTERN = re.compile(r"^\[(A|I)(\d+)\]\s+(.+)$", re.MULTILINE)
+# Pattern to detect LaTeX commands in URLs (e.g., \break, \textit, \href)
+LATEX_IN_URL_PATTERN = re.compile(r"(https?://[^\s<>\"]*)(\\[a-zA-Z]+)([^\s<>\"]*)")
 
 
 @dataclass
@@ -290,6 +292,49 @@ def find_orphaned_and_unused(
     return orphaned_citations, unused_references
 
 
+@dataclass
+class LatexViolation:
+    """Represents a LaTeX command found in a URL."""
+
+    line_number: int
+    url_fragment: str
+    latex_command: str
+    full_match: str
+
+
+def check_latex_in_urls(content: str) -> list[LatexViolation]:
+    """
+    Check for LaTeX commands embedded in URLs.
+
+    This detects issues like URLs split by \\break commands, which cause
+    hyperlinks to break in generated PDF/HTML/DOCX outputs.
+
+    Args:
+        content: The markdown content to check
+
+    Returns:
+        List of LatexViolation objects with line numbers and matched patterns
+    """
+    violations: list[LatexViolation] = []
+
+    for line_num, line in enumerate(content.split("\n"), start=1):
+        for match in LATEX_IN_URL_PATTERN.finditer(line):
+            url_before = match.group(1)
+            latex_cmd = match.group(2)
+            full_match = match.group(0)
+
+            violations.append(
+                LatexViolation(
+                    line_number=line_num,
+                    url_fragment=url_before,
+                    latex_command=latex_cmd,
+                    full_match=full_match,
+                )
+            )
+
+    return violations
+
+
 def generate_report(result: ValidationResult, output_path: Path | None = None) -> str:
     """Generate a markdown validation report."""
     timestamp = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
@@ -432,6 +477,7 @@ Examples:
   python scripts/validate_references.py --parse-only
   python scripts/validate_references.py --check-citations
   python scripts/validate_references.py --check-urls
+  python scripts/validate_references.py --check-latex
   python scripts/validate_references.py --report
   python scripts/validate_references.py --all
         """,
@@ -451,6 +497,11 @@ Examples:
         "--check-urls",
         action="store_true",
         help="Validate reference URLs",
+    )
+    parser.add_argument(
+        "--check-latex",
+        action="store_true",
+        help="Check for LaTeX commands in URLs (e.g., \\break)",
     )
     parser.add_argument(
         "--report",
@@ -489,7 +540,9 @@ Examples:
     args = parser.parse_args()
 
     # Default to --all if no specific action specified
-    if not any([args.parse_only, args.check_citations, args.check_urls, args.report]):
+    if not any(
+        [args.parse_only, args.check_citations, args.check_urls, args.check_latex, args.report]
+    ):
         args.all = True
 
     # Read paper content
@@ -550,6 +603,20 @@ Examples:
             f"{len(result.missing_urls)} missing"
         )
 
+    # Check for LaTeX commands in URLs
+    latex_violations: list[LatexViolation] = []
+    if args.check_latex or args.all:
+        print("\nChecking for LaTeX commands in URLs...")
+        latex_violations = check_latex_in_urls(paper_content)
+        if latex_violations:
+            print(f"ERROR: Found {len(latex_violations)} LaTeX commands in URLs:")
+            for v in latex_violations:
+                print(f"  Line {v.line_number}: {v.latex_command} in URL")
+                if args.verbose:
+                    print(f"    Full match: {v.full_match}")
+        else:
+            print("OK: No LaTeX commands found in URLs")
+
     # Generate report
     if args.report or args.all:
         print("\nGenerating report...")
@@ -561,10 +628,15 @@ Examples:
 
     # Return exit code based on critical issues only
     # Orphaned citations are critical (missing references)
+    # LaTeX in URLs is critical (breaks hyperlinks in output)
     # Broken URLs are warnings (many are paywalls/access restrictions)
-    has_critical_issues = bool(result.orphaned_citations)
+    has_critical_issues = bool(result.orphaned_citations) or bool(latex_violations)
     if result.broken_urls:
         print(f"\nWARNING: {len(result.broken_urls)} broken URLs (non-critical, likely paywalls)")
+    if latex_violations:
+        print(
+            f"\nERROR: {len(latex_violations)} LaTeX commands in URLs (critical, breaks hyperlinks)"
+        )
     return 1 if has_critical_issues else 0
 
 
