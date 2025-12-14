@@ -711,6 +711,10 @@ Future research should focus on longitudinal outcomes, specialty-specific applic
 
 The question is not whether healthcare organizations should adopt conversational AI platforms, but how quickly they can implement these systems to capture the demonstrated benefits while addressing the urgent challenges facing healthcare analytics today.
 
+# Acknowledgments
+
+This manuscript was prepared with assistance from Claude Code (Claude Opus 4.5, Anthropic). Claude Code assisted with manuscript editing and refinement, reference verification (including identification of fabricated citations that were removed per Issue #261), validation script development, and documentation workflow automation. In accordance with Nature Portfolio editorial policy, Claude does not meet authorship criteria; the author (S.T.H.) takes full responsibility for the final content, conducted the research, and verified all claims and citations. Figure 1 was created with assistance from Google Gemini, as noted in the figure caption.
+
 # Author Contributions
 
 S.T.H. conceived the research, conducted the literature review, and wrote the manuscript.
