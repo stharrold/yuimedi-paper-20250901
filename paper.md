@@ -721,7 +721,7 @@ S.T.H. conceived the research, conducted the literature review, and wrote the ma
 
 # Competing Interests
 
-Samuel T Harrold is founder of Yuimedi and a Data Scientist at Indiana University Health. The views and opinions expressed in this paper are those of the author and do not necessarily reflect the official policy or position of Indiana University Health or any other organization. This research was conducted independently and does not constitute an endorsement by any affiliated institution.
+Samuel T Harrold is a contract product advisor at Yuimedi and a Data Scientist at Indiana University Health. The views and opinions expressed in this paper are those of the author and do not necessarily reflect the official policy or position of Indiana University Health, Yuimedi, or any other organization. This research was conducted independently and does not constitute an endorsement by any affiliated institution.
 
 # Data Availability
 
@@ -733,7 +733,7 @@ Not applicable. No custom code was developed for this research.
 
 # Funding
 
-This research received no external funding.
+Yuimedi provided funding for the author's time writing and researching this manuscript.
 
 # References
 
