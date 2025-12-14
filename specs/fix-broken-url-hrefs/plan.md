@@ -4,106 +4,183 @@
 **Slug:** fix-broken-url-hrefs
 **Date:** 2025-12-14
 
-
-<!-- Note: Customize task breakdown based on specific feature requirements -->
-<!-- This template provides the structure. Claude Code will populate with actual tasks. -->
-
 ## Task Breakdown
 
-### Phase 1: Foundation
+### Phase 1: Fix URLs in paper.md
 
-#### Task impl_001: [Task Name]
+#### Task impl_001: Identify and fix broken URLs
 
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file1.py`
-- `src/path/file2.py`
-- `tests/test_file.py`
-
-**Description:**
-[Detailed description of what needs to be implemented]
-
-**Steps:**
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
-
-**Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
-
-**Verification:**
-```bash
-# Commands to verify implementation
-uv run python -c "from src.module import Class; print('OK')"
-uv run pytest tests/test_file.py -v
-```
-
-**Dependencies:**
-- None (or list other task IDs)
-
----
-
-#### Task impl_002: [Task Name]
-
-**Estimated Time:** [Duration]
-**Priority:** High | Medium | Low
-
-**Files:**
-- `src/path/file3.py`
-
-**Description:**
-[Detailed description]
-
-**Steps:**
-1. [Step 1]
-2. [Step 2]
-
-**Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-
-**Verification:**
-```bash
-uv run pytest tests/test_file3.py
-```
-
-**Dependencies:**
-- impl_001 (must complete first)
-
----
-
-### Phase 2: Core Implementation
-
-#### Task impl_003: [Task Name]
-
-**Estimated Time:** [Duration]
 **Priority:** High
 
 **Files:**
-- `src/core/module.py`
-- `tests/test_module.py`
+- `paper.md`
 
 **Description:**
-[Core business logic implementation]
+Remove `\break` LaTeX commands from 7 URLs in the References section that are causing hyperlinks to break in generated outputs.
 
 **Steps:**
-1. Create module structure
-2. Implement core functionality
-3. Add error handling
-4. Write comprehensive tests
+1. Search paper.md for `\break` commands in URLs
+2. For each affected reference ([A2], [A4], [A7], [I1], [I6], [I9], [I10]):
+   - Remove `\break` command
+   - Join URL fragments into single contiguous URL
+3. Verify URLs are syntactically correct
+4. Test that URLs are accessible (HTTP 200)
 
 **Acceptance Criteria:**
-- [ ] All business logic implemented
-- [ ] Error cases handled
-- [ ] Tests passing with >85% coverage
+- [ ] All 7 URLs are contiguous (no `\break` commands)
+- [ ] URLs are valid and accessible
+- [ ] No other references accidentally modified
 
 **Verification:**
 ```bash
-uv run pytest tests/test_module.py --cov=src.core.module --cov-report=term
+# Check no \break in URLs
+grep -E 'https?://.*\\break' paper.md && echo "FAIL: Found \\break in URLs" || echo "PASS"
+
+# Validate references
+python scripts/validate_references.py --all
+```
+
+**Dependencies:**
+- None
+
+---
+
+### Phase 2: Add Validation
+
+#### Task impl_002: Add check_latex_in_urls function
+
+**Priority:** High
+
+**Files:**
+- `scripts/validate_references.py`
+
+**Description:**
+Add a function to detect LaTeX commands (especially `\break`) embedded in URLs to prevent future regressions.
+
+**Steps:**
+1. Add `check_latex_in_urls(content: str) -> list[dict]` function
+2. Use regex to find URLs containing LaTeX commands
+3. Return list of violations with line numbers and matched commands
+4. Add `--check-latex` CLI flag to argparse
+5. Integrate check into main validation flow
+
+**Acceptance Criteria:**
+- [ ] Function detects `\break` and other LaTeX commands in URLs
+- [ ] CLI flag `--check-latex` works
+- [ ] Returns exit code 1 if violations found
+- [ ] Human-readable error output
+
+**Verification:**
+```bash
+# Test with clean paper.md (should pass after impl_001)
+python scripts/validate_references.py --check-latex
+
+# Test detection works (create temp file with bad URL)
+echo "https://example.com/\break/path" | python -c "
+import sys
+sys.path.insert(0, 'scripts')
+from validate_references import check_latex_in_urls
+content = sys.stdin.read()
+violations = check_latex_in_urls(content)
+print(f'Found {len(violations)} violations')
+assert len(violations) == 1
+"
+```
+
+**Dependencies:**
+- impl_001 (for clean paper.md to test against)
+
+---
+
+#### Task impl_003: Update validation pipeline
+
+**Priority:** Medium
+
+**Files:**
+- `validate_documentation.sh`
+
+**Description:**
+Include LaTeX-in-URL check in the standard documentation validation script.
+
+**Steps:**
+1. Add call to `python scripts/validate_references.py --check-latex`
+2. Update test count if needed
+3. Ensure proper error handling and exit codes
+
+**Acceptance Criteria:**
+- [ ] `./validate_documentation.sh` includes LaTeX check
+- [ ] Script fails if LaTeX found in URLs
+- [ ] Test count updated in script header
+
+**Verification:**
+```bash
+./validate_documentation.sh
+```
+
+**Dependencies:**
+- impl_002
+
+---
+
+### Phase 3: Testing
+
+#### Task test_001: Unit tests for LaTeX detection
+
+**Priority:** Medium
+
+**Files:**
+- `tests/test_validate_references.py`
+
+**Description:**
+Add comprehensive unit tests for the `check_latex_in_urls` function.
+
+**Steps:**
+1. Create test file if not exists
+2. Add test for detecting `\break` command
+3. Add test for clean URLs (no violations)
+4. Add test for multiple violations
+5. Add test for edge cases (URLs at end of line, in markdown links, etc.)
+
+**Acceptance Criteria:**
+- [ ] Tests for happy path (clean URLs)
+- [ ] Tests for error path (LaTeX in URLs)
+- [ ] Tests for edge cases
+- [ ] All tests passing
+
+**Verification:**
+```bash
+uv run pytest tests/test_validate_references.py -v -k "latex"
+```
+
+**Dependencies:**
+- impl_002
+
+---
+
+#### Task test_002: Integration test for paper.md
+
+**Priority:** Medium
+
+**Files:**
+- `tests/test_validate_references.py`
+
+**Description:**
+Add integration test that verifies paper.md has no LaTeX commands in URLs.
+
+**Steps:**
+1. Add test that reads actual paper.md
+2. Runs check_latex_in_urls against content
+3. Asserts zero violations
+4. Provides clear error message if violations found
+
+**Acceptance Criteria:**
+- [ ] Test reads real paper.md file
+- [ ] Test fails if any LaTeX found in URLs
+- [ ] Test provides actionable error message
+
+**Verification:**
+```bash
+uv run pytest tests/test_validate_references.py -v -k "paper"
 ```
 
 **Dependencies:**
@@ -111,260 +188,86 @@ uv run pytest tests/test_module.py --cov=src.core.module --cov-report=term
 
 ---
 
-### Phase 3: API Layer
+### Phase 4: Verification
 
-#### Task impl_004: [Task Name]
+#### Task verify_001: Generate and verify outputs
 
-**Estimated Time:** [Duration]
 **Priority:** High
 
 **Files:**
-- `src/api/routes.py`
-- `src/api/models.py`
-- `tests/test_api.py`
+- `paper.pdf`
+- `paper.html`
+- `paper.docx`
 
 **Description:**
-[API endpoint implementation]
+Generate all output formats and verify hyperlinks work correctly.
 
 **Steps:**
-1. Define Pydantic models for request/response
-2. Implement endpoint handlers
-3. Add input validation
-4. Write integration tests
+1. Run `./scripts/build_paper.sh --format all`
+2. Open paper.pdf and click each reference URL
+3. Open paper.html and click each reference URL
+4. Open paper.docx and click each reference URL
+5. Document any remaining issues
 
 **Acceptance Criteria:**
-- [ ] Endpoints respond correctly
-- [ ] Validation working
-- [ ] Error responses formatted correctly
-- [ ] Integration tests passing
+- [ ] PDF hyperlinks work
+- [ ] HTML hyperlinks work
+- [ ] DOCX hyperlinks work
+- [ ] All 7 previously broken URLs now functional
 
 **Verification:**
 ```bash
-uv run pytest tests/test_api.py -v
-# Manual test:
-curl -X POST http://localhost:8000/api/endpoint -H "Content-Type: application/json" -d '{"field": "value"}'
+./scripts/build_paper.sh --format all
+# Manual verification of clickable links
 ```
 
 **Dependencies:**
-- impl_003
+- impl_001, impl_002, impl_003
 
 ---
 
-### Phase 4: Testing
+## Task Summary
 
-#### Task test_001: Unit Tests
-
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `tests/test_*.py`
-- `tests/conftest.py`
-
-**Description:**
-Comprehensive unit tests for all modules.
-
-**Coverage Targets:**
-- Overall: ≥80%
-- Core modules: ≥90%
-- Utilities: ≥85%
-
-**Steps:**
-1. Set up pytest fixtures in conftest.py
-2. Write unit tests for each module
-3. Test happy paths and error conditions
-4. Achieve coverage targets
-
-**Verification:**
-```bash
-uv run pytest --cov=src --cov-report=term --cov-report=html
-uv run pytest --cov=src --cov-fail-under=80
-```
-
-**Dependencies:**
-- impl_001, impl_002, impl_003, impl_004
-
----
-
-#### Task test_002: Integration Tests
-
-**Estimated Time:** [Duration]
-**Priority:** High
-
-**Files:**
-- `tests/integration/test_*.py`
-
-**Description:**
-End-to-end integration tests with real database.
-
-**Steps:**
-1. Set up test database fixtures
-2. Test API workflows end-to-end
-3. Test error scenarios
-4. Test concurrent requests
-
-**Verification:**
-```bash
-uv run pytest tests/integration/ -v
-```
-
-**Dependencies:**
-- impl_004, test_001
-
----
-
-### Phase 5: Containerization
-
-#### Task container_001: Application Container
-
-**Estimated Time:** [Duration]
-**Priority:** Medium
-
-**Files:**
-- `Containerfile`
-- `.containerignore`
-
-**Description:**
-Create optimized container for application.
-
-**Steps:**
-1. Write multi-stage Containerfile
-2. Optimize layer caching
-3. Add health check
-4. Test container build and run
-
-**Verification:**
-```bash
-podman build -t fix-broken-url-hrefs:latest .
-podman run --rm -p 8000:8000 fix-broken-url-hrefs:latest
-curl http://localhost:8000/health
-```
-
-**Dependencies:**
-- All implementation tasks complete
-
----
-
-#### Task container_002: Container Orchestration
-
-**Estimated Time:** [Duration]
-**Priority:** Medium
-
-**Files:**
-- `podman-compose.yml`
-- `.env.example`
-
-**Description:**
-Set up multi-container orchestration.
-
-**Steps:**
-1. Define services in podman-compose.yml
-2. Configure volumes and networks
-3. Set up environment variables
-4. Add health checks
-5. Test full stack
-
-**Verification:**
-```bash
-podman-compose up -d
-podman-compose ps
-curl http://localhost:8000/health
-podman-compose logs app
-podman-compose down
-```
-
-**Dependencies:**
-- container_001
-
----
-
-## Estimated Total Time
-
-| Phase | Duration |
-|-------|----------|
-| Phase 1: Foundation | [X hours] |
-| Phase 2: Core Implementation | [X hours] |
-| Phase 3: API Layer | [X hours] |
-| Phase 4: Testing | [X hours] |
-| Phase 5: Containerization | [X hours] |
-| **Total** | **[X hours]** |
+| Task ID | Description | Priority | Dependencies |
+|---------|-------------|----------|--------------|
+| impl_001 | Fix broken URLs in paper.md | High | None |
+| impl_002 | Add check_latex_in_urls function | High | impl_001 |
+| impl_003 | Update validation pipeline | Medium | impl_002 |
+| test_001 | Unit tests for LaTeX detection | Medium | impl_002 |
+| test_002 | Integration test for paper.md | Medium | impl_001, impl_002 |
+| verify_001 | Generate and verify outputs | High | impl_001-003 |
 
 ## Task Dependencies Graph
 
 ```
-impl_001 ─┐
-          ├─> impl_003 ─> impl_004 ─┐
-impl_002 ─┘                          ├─> test_001 ─> test_002 ─> container_001 ─> container_002
-                                     │
-                                     └─> test_001
+impl_001 (Fix URLs)
+    ↓
+impl_002 (Add validation function)
+    ↓
+    ├─→ impl_003 (Update pipeline)
+    │       ↓
+    │       └─→ verify_001 (Generate outputs)
+    │
+    ├─→ test_001 (Unit tests)
+    │
+    └─→ test_002 (Integration test)
 ```
 
 ## Critical Path
 
-1. impl_001
-2. impl_002
-3. impl_003
-4. impl_004
-5. test_001
-6. test_002
-7. container_001
-8. container_002
-
-[Identify which tasks are on the critical path and cannot be parallelized]
-
-## Parallel Work Opportunities
-
-- impl_001 and impl_002 can be done in parallel
-- test_001 unit tests can be written alongside implementation
-- Documentation can be written in parallel with containerization
+1. impl_001 - Fix URLs
+2. impl_002 - Add validation
+3. impl_003 - Update pipeline
+4. verify_001 - Verify outputs
 
 ## Quality Checklist
 
 Before considering this feature complete:
 
-- [ ] All tasks marked as complete
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing (unit + integration)
-- [ ] Linting clean (`uv run ruff check src/ tests/`)
-- [ ] Type checking clean (`uv run mypy src/`)
-- [ ] Container builds successfully
-- [ ] Container health checks passing
-- [ ] API documentation complete
-- [ ] Code reviewed
-- [ ] Manual testing performed
-
-## Risk Assessment
-
-### High Risk Tasks
-
-- **impl_003**: Core business logic is complex
-  - Mitigation: Break into smaller subtasks, pair programming
-
-- **test_002**: Integration tests may be flaky
-  - Mitigation: Use proper fixtures, isolated test database
-
-### Medium Risk Tasks
-
-- **container_002**: Multi-container networking can be tricky
-  - Mitigation: Test thoroughly in local environment first
-
-## Notes
-
-[Any additional notes, considerations, or context for implementation]
-
-### Implementation Tips
-
-- [Tip 1]
-- [Tip 2]
-- [Tip 3]
-
-### Common Pitfalls
-
-- [Pitfall 1 and how to avoid it]
-- [Pitfall 2 and how to avoid it]
-
-### Resources
-
-- [Link to relevant documentation]
-- [Link to example code]
-- [Link to design patterns]
+- [ ] All 7 URLs fixed in paper.md
+- [ ] `python scripts/validate_references.py --check-latex` passes
+- [ ] `./validate_documentation.sh` passes (all tests including new LaTeX check)
+- [ ] Unit tests pass (`uv run pytest tests/test_validate_references.py -v`)
+- [ ] Integration test confirms paper.md is clean
+- [ ] PDF, HTML, and DOCX outputs have working hyperlinks
+- [ ] Code follows scripts/ dependency rules (stdlib only)

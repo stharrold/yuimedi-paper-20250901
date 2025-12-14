@@ -7,12 +7,9 @@
 
 ## Overview
 
-[One paragraph describing what this feature does and why it's needed]
-
+Fix 7 references in paper.md that have `\break` LaTeX commands embedded in URLs, causing broken hyperlinks in PDF/HTML/DOCX outputs. URLs are fragmented at slashes, preventing readers from clicking through to sources. Additionally, add automated validation to prevent future regressions.
 
 ## Implementation Context
-
-<!-- Generated from SpecKit interactive Q&A -->
 
 **GitHub Issue:** #276
 
@@ -27,286 +24,174 @@
 
 ## Requirements Reference
 
-See: `planning/fix-broken-url-hrefs/requirements.md` in main repository
+See: `planning/fix-broken-url-hrefs/requirements.md`
+
+### Functional Requirements
+
+| FR ID | Description | Priority |
+|-------|-------------|----------|
+| FR-001 | Fix broken URLs in paper.md | High |
+| FR-002 | Add LaTeX-in-URL validation to validate_references.py | High |
+| FR-003 | Update validate_documentation.sh to include LaTeX check | Medium |
+| FR-004 | Add test coverage for LaTeX-in-URL detection | Medium |
 
 ## Detailed Specification
 
-### Component 1: [Component Name]
+### Component 1: URL Fixes in paper.md
 
-**File:** `src/path/to/file.py`
+**File:** `paper.md`
 
-**Purpose:** [What does this component do?]
+**Purpose:** Remove `\break` commands from URLs in the References section
+
+**Affected References:**
+- [A2] - URL contains `\break`
+- [A4] - URL contains `\break`
+- [A7] - URL contains `\break`
+- [I1] - URL contains `\break`
+- [I6] - URL contains `\break`
+- [I9] - URL contains `\break`
+- [I10] - URL contains `\break`
+
+**Before:**
+```markdown
+[A2]: Some Author. "Title." Available: https://example.com/\break
+path/to/resource
+```
+
+**After:**
+```markdown
+[A2]: Some Author. "Title." Available: https://example.com/path/to/resource
+```
+
+### Component 2: LaTeX Validation Function
+
+**File:** `scripts/validate_references.py`
+
+**Purpose:** Add function to detect LaTeX commands (especially `\break`) in URLs
 
 **Implementation:**
 
 ```python
-# Example code structure
+import re
 
-class ExampleClass:
-    """Brief description of class purpose."""
+def check_latex_in_urls(content: str) -> list[dict]:
+    """
+    Check for LaTeX commands embedded in URLs.
 
-    def __init__(self, param1: str, param2: int):
-        """Initialize with parameters."""
-        self.param1 = param1
-        self.param2 = param2
+    Args:
+        content: The markdown content to check
 
-    def method_name(self, arg: str) -> dict:
-        """
-        Description of what this method does.
+    Returns:
+        List of violations with line numbers and matched patterns
+    """
+    violations = []
+    latex_in_url_pattern = re.compile(
+        r'https?://[^\s\]>]*\\[a-zA-Z]+[^\s\]>]*',
+        re.IGNORECASE
+    )
 
-        Args:
-            arg: Description of argument
+    for line_num, line in enumerate(content.split('\n'), 1):
+        matches = latex_in_url_pattern.findall(line)
+        for match in matches:
+            violations.append({
+                'line': line_num,
+                'url': match,
+                'latex_command': re.search(r'\\[a-zA-Z]+', match).group()
+            })
 
-        Returns:
-            Dictionary with result data
-
-        Raises:
-            ValueError: When input is invalid
-        """
-        # Implementation details
-        pass
+    return violations
 ```
 
-**Dependencies:**
-- [External library or module]
-- [Internal component]
+**CLI Integration:**
+- New flag: `--check-latex`
+- Exit code 1 if LaTeX found in URLs
+- Human-readable error messages showing line numbers and affected URLs
 
-### Component 2: [Component Name]
+### Component 3: Validation Pipeline Update
 
-**File:** `src/path/to/another_file.py`
+**File:** `validate_documentation.sh`
 
-[Similar structure as Component 1]
+**Purpose:** Include LaTeX-in-URL check in standard validation
 
-## Data Models
-
-### Model: ExampleModel
-
-**File:** `src/models/example.py`
-
-```python
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    """Database model for example data."""
-
-    __tablename__ = 'examples'
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False, unique=True)
-    description = Column(String(500))
-    created_at = Column(DateTime, nullable=False)
+**Change:**
+```bash
+# Add to validation checks
+python scripts/validate_references.py --check-latex
 ```
-
-## API Endpoints
-
-### POST /api/endpoint
-
-**Description:** [What this endpoint does]
-
-**Request:**
-```json
-{
-  "field1": "value",
-  "field2": 123
-}
-```
-
-**Response (200 OK):**
-```json
-{
-  "id": 1,
-  "status": "success",
-  "data": {
-    "result": "value"
-  }
-}
-```
-
-**Response (400 Bad Request):**
-```json
-{
-  "error": "Validation failed",
-  "details": ["field1 is required"]
-}
-```
-
-**Implementation:**
-
-```python
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
-
-router = APIRouter()
-
-class RequestModel(BaseModel):
-    field1: str
-    field2: int
-
-class ResponseModel(BaseModel):
-    id: int
-    status: str
-    data: dict
-
-@router.post("/api/endpoint", response_model=ResponseModel)
-async def endpoint_handler(request: RequestModel):
-    """Handle endpoint request."""
-    # Implementation
-    pass
-```
-
-### GET /api/endpoint/{id}
-
-**Description:** [What this endpoint does]
-
-[Similar structure as POST endpoint]
 
 ## Testing Requirements
 
 ### Unit Tests
 
-**File:** `tests/test_example.py`
+**File:** `tests/test_validate_references.py`
 
 ```python
 import pytest
-from src.module import ExampleClass
+from scripts.validate_references import check_latex_in_urls
 
-def test_example_success():
-    """Test successful operation."""
-    instance = ExampleClass("test", 123)
-    result = instance.method_name("input")
-    assert result["status"] == "success"
+def test_check_latex_in_urls_detects_break():
+    """Test that \\break in URLs is detected."""
+    content = "Reference: https://example.com/\\break/path"
+    violations = check_latex_in_urls(content)
+    assert len(violations) == 1
+    assert violations[0]['latex_command'] == '\\break'
 
-def test_example_validation_error():
-    """Test validation error handling."""
-    instance = ExampleClass("test", 123)
-    with pytest.raises(ValueError):
-        instance.method_name("")
+def test_check_latex_in_urls_clean():
+    """Test that clean URLs pass validation."""
+    content = "Reference: https://example.com/path/to/resource"
+    violations = check_latex_in_urls(content)
+    assert len(violations) == 0
+
+def test_check_latex_in_urls_multiple():
+    """Test detection of multiple violations."""
+    content = """
+    [A1]: https://example1.com/\\break/path
+    [A2]: https://example2.com/\\textit/path
+    """
+    violations = check_latex_in_urls(content)
+    assert len(violations) == 2
 ```
 
 ### Integration Tests
 
-**File:** `tests/test_integration.py`
+**File:** `tests/test_validate_references.py`
 
 ```python
-from fastapi.testclient import TestClient
-from src.main import app
-
-client = TestClient(app)
-
-def test_endpoint_integration():
-    """Test API endpoint integration."""
-    response = client.post("/api/endpoint", json={
-        "field1": "value",
-        "field2": 123
-    })
-    assert response.status_code == 200
-    assert response.json()["status"] == "success"
+def test_paper_has_no_latex_in_urls():
+    """Verify paper.md has no LaTeX commands in URLs after fix."""
+    with open('paper.md', 'r') as f:
+        content = f.read()
+    violations = check_latex_in_urls(content)
+    assert len(violations) == 0, f"Found LaTeX in URLs: {violations}"
 ```
 
 ## Quality Gates
 
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing
-- [ ] Linting clean (ruff check)
-- [ ] Type checking clean (mypy)
-- [ ] API documentation complete
+- [x] All 7 URLs fixed and accessible
+- [ ] validate_references.py --check-latex passes
+- [ ] validate_documentation.sh passes
+- [ ] Unit tests pass
+- [ ] Integration test confirms paper.md is clean
+- [ ] Generated outputs (PDF, HTML, DOCX) have working hyperlinks
 
-## Container Specifications
+## Verification Commands
 
-### Containerfile
+```bash
+# Run reference validation with LaTeX check
+python scripts/validate_references.py --check-latex
 
-```dockerfile
-FROM python:3.11-slim
+# Full documentation validation
+./validate_documentation.sh
 
-WORKDIR /app
+# Run tests
+uv run pytest tests/test_validate_references.py -v
 
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev
-
-COPY src/ src/
-
-EXPOSE 8000
-
-HEALTHCHECK --interval=30s --timeout=3s \
-  CMD python -c "import requests; requests.get('http://localhost:8000/health')"
-
-CMD ["uv", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Generate and verify PDF
+./scripts/build_paper.sh
+# Manual: Open paper.pdf and click each reference URL
 ```
-
-### podman-compose.yml
-
-```yaml
-version: '3.8'
-
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Containerfile
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./data:/app/data
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-```
-
-## Dependencies
-
-**pyproject.toml additions:**
-
-```toml
-[project]
-dependencies = [
-    "fastapi>=0.104.0",
-    "uvicorn[standard]>=0.24.0",
-    "sqlalchemy>=2.0.0",
-    "pydantic>=2.5.0",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "pytest-asyncio>=0.21.0",
-    "httpx>=0.25.0",
-    "ruff>=0.1.0",
-    "mypy>=1.7.0",
-]
-```
-
-## Implementation Notes
-
-### Key Considerations
-
-- [Important implementation detail]
-- [Potential gotcha or edge case]
-- [Performance consideration]
-
-### Error Handling
-
-- [How to handle specific error type]
-- [Validation strategy]
-- [Retry logic if applicable]
-
-### Security
-
-- [Input validation approach]
-- [Authentication requirements]
-- [Authorization checks]
 
 ## References
 
-- [Link to external documentation]
-- [Related specifications]
-- [Design patterns used]
+- GitHub Issue: #276 - References: href for links broken at slash incorrect
+- Related Issue: #261 - P0: Fix unsupported claims and hallucinated references
