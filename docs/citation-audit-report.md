@@ -128,3 +128,7 @@ grep -o '\[I[0-9]*\]' paper.md | sort -V | uniq -c
 ---
 
 *This audit was generated as part of batch-3 issue resolution (Issue #203).*
+
+---
+
+**Update (Issue #285):** Reference [A8] Lee 2022 was identified as incorrect and removed from paper.md. All subsequent academic references were renumbered ([A9]-[A14] → [A8]-[A13]). Final count: 24 verified citations (13 academic, 11 industry).

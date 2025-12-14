@@ -206,3 +206,9 @@
 ### LOW PRIORITY
 1. **Update Forrester ROI** - 188% → 206% (2024 data)
 2. **Fix broken URLs** - Replace HTTP 403/404 with DOI links
+
+---
+
+## Post-Verification Updates
+
+**Issue #285 (2025-12-14):** Reference [A8] Lee 2022 ("Medical entity recognition and SQL query generation using semantic parsing for electronic health records") was identified as incorrect and removed from paper.md. All subsequent academic references were renumbered ([A9]-[A14] → [A8]-[A13]). The reference numbers in this document reflect the pre-cleanup state and are historical.
