@@ -194,7 +194,9 @@ Multiple meta-analyses provide comprehensive data on healthcare workforce turnov
 
 The financial implications are substantial. Industry analysis documents turnover costs at 0.5-2.0 times annual salary, with knowledge-intensive positions reaching the higher end [I6]. Oracle documents the cascading costs of turnover including knowledge loss, decreased productivity, and project delays.
 
-Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years and annual turnover of 15.54%, the highest rate among all IT organization types studied. This compares unfavorably to the 9.68-year average for IT managerial positions overall, highlighting the particular vulnerability of healthcare IT departments to knowledge loss.
+Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years and annual turnover of 15.54%, the highest rate among all IT organization types studied. This compares unfavorably to the 9.68-year average for IT managerial positions overall. Recent surveys confirm these challenges persist: the 2023 AHIMA/NORC workforce survey found that 66% of health information professionals report persistent staffing shortages, with 83% witnessing increased unfilled positions over the past year [I11].
+
+The knowledge loss implications are substantial. Research indicates new IT hires require 8-12 months to reach full productivity, with healthcare-specific roles often requiring 9 months or longer due to domain complexity. Combined with the 2.9-year average tenure, healthcare IT professionals may operate at full productivity for only approximately two years before departing—creating a perpetual cycle where organizations lose experienced staff before fully recouping their training investment.
 
 ### Institutional Memory Loss
 
@@ -697,6 +699,8 @@ This research received no external funding.
 [I9] Farr, C. (2022). IBM sells Watson Health assets to investment firm Francisco Partners. *Wall Street Journal*. https://www.wsj.com/articles/\break ibm-to-sell-watson-health-assets-to-investment-firm-11642680400
 
 [I10] LaVito, A. (2021). Haven, the Amazon-Berkshire-JPMorgan venture to disrupt healthcare, is disbanding after 3 years. *CNBC*. https://www.cnbc.com/2021/01/04/\break haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding.html
+
+[I11] American Health Information Management Association & NORC at the University of Chicago. (2023). Health information workforce survey report. https://www.ahima.org/news-publications/press-room-press-releases/2023-press-releases/health-information-workforce-shortages-persist-as-ai-shows-promise-ahima-survey-reveals/
 
 # Appendices
 
