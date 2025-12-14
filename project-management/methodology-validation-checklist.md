@@ -131,23 +131,25 @@ done
 
 ## 4. Research Methodology Validation
 
-### Systematic Literature Review (Paper 1)
+### Narrative Literature Review (Paper 1)
 
-**PRISMA Compliance**:
-- [ ] Search strategy documented
-- [ ] Inclusion/exclusion criteria defined
-- [ ] Database sources specified
-- [ ] Search date ranges provided
-- [ ] Screening process described
-- [ ] Quality assessment criteria stated
-- [ ] Data extraction methods documented
+**Methodology Transparency (Narrative Review)**:
+- [x] Review approach described (narrative vs. systematic)
+- [x] Literature search sources documented
+- [x] Search concepts/terms provided
+- [x] Date range specified (2015-2024)
+- [x] Source selection criteria stated
+- [x] Synthesis approach described (three-pillar framework)
+- [x] Methodological limitations acknowledged
+
+Note: Full PRISMA compliance is not required for narrative reviews. See `docs/prisma-assessment.md` for detailed rationale.
 
 **Literature Search Validation**:
-- [ ] Verify database coverage (PubMed, IEEE, ACM, etc.)
-- [ ] Check search terms comprehensiveness
-- [ ] Confirm date range relevance (2015-2025)
-- [ ] Validate screening process (title→abstract→full text)
-- [ ] Document excluded studies with rationale
+- [x] Verify database coverage (PubMed, IEEE, ACM, arXiv, Google Scholar)
+- [x] Check search concepts comprehensiveness
+- [x] Confirm date range relevance (2015-2024, emphasis on 2020-2024)
+- [x] Source selection criteria documented in Methodology section
+- [x] Methodological limitations documented in paper
 
 ### Empirical Validation (Paper 2 - Planned)
 

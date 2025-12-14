@@ -141,13 +141,13 @@ This guide provides detailed information on target journals for publishing YuiQu
 - **Citation Format**: Vancouver style
 
 **Best Fit**:
-- **Paper 1**: Systematic review article type
+- **Paper 1**: Narrative review / Focus article type (NOT systematic review - see `docs/prisma-assessment.md`)
 - **Paper 2**: Original investigation with empirical validation
 - **Paper 3**: Focus article on technical methodology
 
 **Submission Requirements**:
 - IRB approval documentation (if applicable)
-- PRISMA checklist for systematic reviews
+- PRISMA checklist for systematic reviews (Note: Paper 1 is a narrative review - PRISMA not required. See `docs/prisma-assessment.md`)
 - Data availability statement
 - Conflict of interest disclosure
 - Author contribution statements
@@ -493,13 +493,14 @@ This guide provides detailed information on target journals for publishing YuiQu
 - [ ] Data availability statement
 - [ ] Ethics approval (IRB determination)
 
-### Systematic Review Specific (Paper 1)
+### Narrative Review Specific (Paper 1)
 
-- [ ] PRISMA 2020 checklist
-- [ ] PRISMA flow diagram
-- [ ] Search strategy documentation
-- [ ] Protocol registration (PROSPERO - optional but recommended)
-- [ ] Risk of bias assessment
+- [x] Methodology section with literature search description
+- [x] Source selection criteria documented
+- [x] Methodological limitations acknowledged
+- [x] NOT a systematic review - PRISMA not required (see `docs/prisma-assessment.md`)
+
+Note: Paper 1 is a narrative review with original analytical framework. Do NOT submit as systematic review.
 
 ### Empirical Research Specific (Paper 2)
 
@@ -582,7 +583,7 @@ publish, or preparation of the manuscript.
 
 1. **Out of Scope**: Ensure manuscript aligns with journal's stated focus areas
 2. **Insufficient Novelty**: Emphasize unique contributions (3-pillar framework, empirical validation)
-3. **Methodological Issues**: Follow PRISMA, CONSORT, or other reporting guidelines
+3. **Methodological Issues**: Follow appropriate reporting guidelines (PRISMA for systematic reviews, CONSORT for trials). Note: Paper 1 is a narrative review - methodology transparency is documented but full PRISMA not required
 4. **Poor Writing Quality**: Professional editing recommended before submission
 5. **Incomplete Data Sharing**: Prepare supplementary materials in advance
 
@@ -674,9 +675,9 @@ publish, or preparation of the manuscript.
 ### Recommended Strategy for YuiQuery Research
 
 **Immediate Actions (Q4 2025)**:
-1. Submit Paper 1 to medRxiv as preprint upon completion
-2. Prepare JAMIA submission with full PRISMA compliance
-3. Begin JMIR Medical Informatics submission preparation as backup
+1. Submit Paper 1 to arXiv as preprint upon completion (Note: medRxiv NOT eligible for narrative reviews)
+2. Prepare npj Digital Medicine submission with methodology transparency documented
+3. Begin JMIR Medical Informatics submission preparation as backup (classify as Focus Article, not Systematic Review)
 
 **Q1 2026 Actions**:
 1. Submit Paper 2 to arXiv and medRxiv

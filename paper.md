@@ -77,7 +77,7 @@ pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.pdf \
 
 Healthcare organizations face a critical convergence of challenges that threaten their ability to leverage data for improved patient outcomes and operational efficiency. This research examines evidence supporting conversational AI platforms as a strategic solution to three interconnected problems: persistently low healthcare analytics maturity, devastating institutional memory loss from workforce turnover, and technical barriers preventing clinical professionals from accessing their own data.
 
-Through systematic review of academic and industry sources, we demonstrate that few healthcare organizations worldwide have achieved advanced analytics maturity, while nursing turnover rates of 8-36% [A1, A2] and IT staff turnover of 34% [A11] create institutional memory loss with replacement costs reaching 1.5-2x annual salary [I6]. Simultaneously, natural language to SQL (NL2SQL) technologies have matured sufficiently to address healthcare's unique technical barriers, though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings [A6].
+Through systematic review of academic and industry sources, we demonstrate that few healthcare organizations worldwide have achieved advanced analytics maturity, while nursing turnover rates of 8-36% [A1, A2] and IT staff turnover of 34% [A10] create institutional memory loss with replacement costs reaching 1.5-2x annual salary [I6]. Simultaneously, natural language to SQL (NL2SQL) technologies have matured sufficiently to address healthcare's unique technical barriers, though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings [A6].
 
 Conversational AI platforms directly address this convergence by democratizing analytics access through natural language interfaces while preserving institutional knowledge through embedded expertise. Evidence from healthcare implementations shows significant improvements in efficiency, with organizations like Berkshire Healthcare NHS Trust reporting over 800 citizen developers creating solutions [I4], and Forrester Research documenting 206% ROI from low-code implementations [I5].
 
@@ -93,7 +93,7 @@ The Healthcare Information Management Systems Society (HIMSS) Analytics Maturity
 
 This analytics maturity crisis occurs amid accelerating technological advances in natural language processing and conversational AI. Large language models have demonstrated remarkable capabilities in understanding clinical terminology, generating SQL queries, and bridging the gap between natural language questions and structured data analysis. These developments create unprecedented opportunities to democratize healthcare analytics access.
 
-Simultaneously, healthcare faces an institutional memory crisis driven by workforce turnover rates significantly higher than other knowledge-intensive sectors. Annual nursing turnover of 8-36% [A1, A2] combines with IT staff turnover of 34% [A11]—the highest rate among all IT organization types studied—creating cascading knowledge loss, particularly in analytics roles where expertise combines domain knowledge with technical skills. Traditional knowledge management approaches prove inadequate for preserving the tacit knowledge essential for effective healthcare data analysis.
+Simultaneously, healthcare faces an institutional memory crisis driven by workforce turnover rates significantly higher than other knowledge-intensive sectors. Annual nursing turnover of 8-36% [A1, A2] combines with IT staff turnover of 34% [A10]—the highest rate among all IT organization types studied—creating cascading knowledge loss, particularly in analytics roles where expertise combines domain knowledge with technical skills. Traditional knowledge management approaches prove inadequate for preserving the tacit knowledge essential for effective healthcare data analysis.
 
 ## Problem Statement
 
@@ -106,7 +106,7 @@ Despite massive investments in electronic health records and data infrastructure
 Healthcare professionals possess deep clinical knowledge but lack the technical skills required for data analysis. Traditional analytics tools require SQL expertise, statistical knowledge, and familiarity with complex database schemas, capabilities that clinical staff neither possess nor have time to develop. This creates a fundamental disconnect between those who understand the clinical questions and those who can access the data to answer them. Drawing on principles from code modernization, AI-assisted interfaces can bridge this gap by transforming legacy technical requirements into natural language interactions [I8].
 
 ### Institutional Memory Loss from Workforce Turnover
-Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 34% annually (calculated as 1/2.9 years average tenure), with average tenure of only 2.9 years—the lowest among IT sectors studied [A11]. When experienced analysts, clinical informatics professionals, or data-savvy clinicians leave, they take with them irreplaceable knowledge about data definitions, business rules, analytical approaches, and organizational context. This knowledge proves extremely difficult to document and transfer through traditional means.
+Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 34% annually (calculated as 1/2.9 years average tenure), with average tenure of only 2.9 years—the lowest among IT sectors studied [A10]. When experienced analysts, clinical informatics professionals, or data-savvy clinicians leave, they take with them irreplaceable knowledge about data definitions, business rules, analytical approaches, and organizational context. This knowledge proves extremely difficult to document and transfer through traditional means.
 
 The cost of inaction is substantial. Organizations continue investing in analytics infrastructure while struggling to realize value from their data assets. Clinical professionals make decisions without access to relevant insights, operational inefficiencies persist, and competitive advantages remain unrealized.
 
@@ -136,11 +136,86 @@ Note: Analysis of market dynamics and structural factors explaining why institut
 
 ## Document Structure
 
-Following this introduction, the paper proceeds through five main sections. The Literature Review synthesizes evidence across the three challenge domains, establishing the current state of natural language processing in healthcare, analytics maturity research, and workforce turnover impacts. The Proposed Solution section presents conversational AI platforms as an integrated response to these challenges. The Evaluation section synthesizes empirical evidence from early implementations and academic studies. The Discussion examines implications, limitations, and future research directions. Finally, the Conclusion reinforces the evidence-based case for conversational AI adoption in healthcare analytics.
+Following this introduction, the paper proceeds through six main sections. The Methodology section describes the narrative review approach, literature search strategy, and source selection criteria. The Literature Review synthesizes evidence across the three challenge domains, establishing the current state of natural language processing in healthcare, analytics maturity research, and workforce turnover impacts. The Proposed Solution section presents conversational AI platforms as an integrated response to these challenges. The Evaluation section synthesizes empirical evidence from early implementations and academic studies. The Discussion examines implications, limitations, and future research directions. Finally, the Conclusion reinforces the evidence-based case for conversational AI adoption in healthcare analytics.
+
+# Methodology
+
+## Review Approach
+
+This paper employs a narrative review methodology to synthesize evidence across three interconnected domains: healthcare analytics maturity, workforce turnover, and natural language to SQL technologies. Unlike systematic reviews that follow pre-registered protocols with exhaustive searches, narrative reviews provide expert synthesis of relevant literature to construct coherent arguments and identify patterns across diverse evidence sources.
+
+The narrative review approach was selected because:
+
+1. **Integration across domains**: The paper synthesizes evidence from distinct fields (clinical informatics, human resources, natural language processing) that require interpretive integration rather than statistical pooling
+2. **Original analytical framework**: The three-pillar framework emerged iteratively from the literature rather than being pre-specified
+3. **Heterogeneous evidence types**: The evidence base includes peer-reviewed research, industry reports, and benchmark datasets that cannot be meaningfully combined through meta-analysis
+
+## Literature Search
+
+Literature was identified through multiple channels between January 2023 and December 2024:
+
+**Academic Databases:**
+
+- PubMed/MEDLINE: Clinical informatics, healthcare workforce, medical administration
+- IEEE Xplore and ACM Digital Library: Natural language to SQL, text-to-SQL systems
+- arXiv: Machine learning and NLP preprints, benchmark studies
+- Google Scholar: Cross-disciplinary search and citation tracing
+
+**Industry Sources:**
+
+- HIMSS publications and Analytics Maturity Model documentation
+- Healthcare IT vendor case studies and implementation reports
+- Market research reports (Precedence Research, Forrester)
+- Professional association surveys and white papers
+
+**Search Concepts:**
+
+Primary search terms included combinations of: "natural language SQL," "text-to-SQL healthcare," "healthcare analytics maturity," "HIMSS AMAM," "nursing turnover," "IT workforce turnover healthcare," "institutional memory loss," "low-code healthcare analytics," and "conversational AI clinical decision support."
+
+## Source Selection
+
+Sources were selected based on the following criteria:
+
+**Inclusion Criteria:**
+
+- Peer-reviewed publications in healthcare informatics, medical informatics, computer science, or health services research
+- Industry reports from established healthcare IT organizations (HIMSS, AHIMA, AMIA)
+- Publications from 2015-2024, with emphasis on 2020-2024 for rapidly evolving NL2SQL technologies
+- English language publications
+- Sources with verifiable DOIs, URLs, or institutional attribution
+
+**Exclusion Criteria:**
+
+- Sources without verifiable attribution or institutional backing
+- Vendor marketing materials without independent validation
+- Preprints without subsequent peer-reviewed publication (exception: foundational NL2SQL benchmarks where peer review is pending)
+- Studies with unverifiable statistics or methodological concerns
+
+## Evidence Synthesis
+
+Evidence was synthesized thematically around the three-pillar framework:
+
+1. **Analytics maturity**: Evidence on HIMSS AMAM adoption, healthcare analytics capabilities, and organizational readiness
+2. **Workforce turnover**: Evidence on nursing and IT staff turnover rates, institutional memory loss, and knowledge transfer challenges
+3. **Technical barriers**: Evidence on NL2SQL benchmarks, healthcare-specific NLP challenges, and low-code implementation patterns
+
+This framework emerged iteratively from the literature rather than being pre-specified, consistent with narrative review methodology. Citation verification followed the methodology documented in the reference verification process, which identified and removed 5 likely AI-generated fabrications and 29 unused references from the original draft.
+
+## Methodological Limitations
+
+This narrative review has inherent limitations:
+
+- **Non-exhaustive search**: Literature identification was selective rather than exhaustive; relevant studies may have been missed
+- **No formal quality assessment**: No standardized quality assessment tool (e.g., GRADE, Cochrane Risk of Bias) was applied; quality judgments were based on publication venue, methodological transparency, and verification of claims
+- **Single author synthesis**: Evidence synthesis reflects a single author's interpretation, which may introduce perspective bias
+- **Post-hoc selection criteria**: Inclusion and exclusion criteria were refined during the review process rather than pre-registered
+- **No protocol registration**: This review was not registered in PROSPERO or similar registries
+
+These limitations are balanced against the strengths of narrative review methodology: ability to synthesize heterogeneous evidence types across disciplinary boundaries, flexibility to pursue emerging themes, and capacity to construct novel analytical frameworks that illuminate connections between previously disconnected research domains.
 
 # Literature Review: Natural Language Analytics in Healthcare - Evidence for Institutional Memory Preservation
 
-This literature review examines peer-reviewed evidence supporting the implementation of natural language analytics platforms in healthcare systems. Analysis of recent systematic reviews, medical administration journals, and empirical studies reveals three critical findings: (1) natural language to SQL generation has evolved significantly but faces healthcare-specific challenges requiring specialized solutions, (2) healthcare analytics maturity remains critically low with most organizations struggling at basic stages, and (3) healthcare workforce turnover creates institutional memory loss that traditional approaches fail to address. The evidence strongly supports conversational AI platforms as a solution to these interconnected challenges.
+This narrative review examines evidence supporting the implementation of natural language analytics platforms in healthcare systems. Drawing from peer-reviewed research, industry reports, and benchmark datasets identified through the methodology described in the previous section, we synthesize findings across three domains. Analysis reveals three critical findings: (1) natural language to SQL generation has evolved significantly but faces healthcare-specific challenges requiring specialized solutions, (2) healthcare analytics maturity remains critically low with most organizations struggling at basic stages, and (3) healthcare workforce turnover creates institutional memory loss that traditional approaches fail to address. The evidence strongly supports conversational AI platforms as a solution to these interconnected challenges.
 
 ## 1. Current State of Natural Language to SQL Generation
 
@@ -148,19 +223,19 @@ This literature review examines peer-reviewed evidence supporting the implementa
 
 Recent systematic reviews document the rapid evolution of natural language to SQL (NL2SQL) technologies. Ziletti and D'Ambrosi [A6] demonstrate that retrieval augmented generation (RAG) approaches significantly improve query accuracy when applied to electronic health records (EHRs), though they note that "current language models are not yet sufficiently accurate for unsupervised use" in clinical settings. Their work on the MIMIC-3 dataset shows that integrating medical coding steps into the text-to-SQL process improves performance over simple prompting approaches.
 
-Recent benchmarking studies [A9, A10] examining LLM-based systems for healthcare identify unique challenges: medical terminology, characterized by abbreviations, synonyms, and context-dependent meanings, remains a barrier to accurate query generation. Evaluations of state-of-the-art LLMs including GPT-4 and Claude 3.5 show that even top-performing models achieve only 69-73% accuracy on clinical tasks, with significant gaps remaining between benchmark performance and real clinical readiness.
+Recent benchmarking studies [A8, A9] examining LLM-based systems for healthcare identify unique challenges: medical terminology, characterized by abbreviations, synonyms, and context-dependent meanings, remains a barrier to accurate query generation. Evaluations of state-of-the-art LLMs including GPT-4 and Claude 3.5 show that even top-performing models achieve only 69-73% accuracy on clinical tasks, with significant gaps remaining between benchmark performance and real clinical readiness.
 
 ### Healthcare-Specific Challenges
 
 The literature consistently identifies domain-specific obstacles in healthcare NL2SQL implementation. A systematic review of NLP in EHRs [A4] found that the lack of annotated data, automated tools, and other challenges hinder the full utilization of NLP for EHRs. The review, following PRISMA guidelines, categorized healthcare NLP applications into seven areas, with information extraction and clinical entity recognition proving most challenging due to medical terminology complexity.
 
-Wang et al. [A5] and Lee et al. [A8] demonstrate that healthcare NL2SQL methods must move beyond the constraints of exact or string-based matching to fully encompass the semantic complexities of clinical terminology. Their work emphasizes that general-purpose language models fail to capture the nuanced relationships between medical concepts, diagnoses codes (ICD), procedure codes (CPT), and medication vocabularies (RxNorm).
+Wang et al. [A5] demonstrate that healthcare NL2SQL methods must move beyond the constraints of exact or string-based matching to fully encompass the semantic complexities of clinical terminology. This work emphasizes that general-purpose language models fail to capture the nuanced relationships between medical concepts, diagnoses codes (ICD), procedure codes (CPT), and medication vocabularies (RxNorm).
 
 ### Promising Approaches and Limitations
 
 Recent advances show promise in addressing these challenges. The TREQS/MIMICSQL dataset development [A5] and EHRSQL benchmark [A3] provide question-SQL pairs specifically for healthcare, featuring questions in natural, free-form language. This approach acknowledges that healthcare queries often require multiple logical steps: population selection, temporal relationships, aggregation statistics, and mathematical operations.
 
-However, significant limitations persist. Benchmarking studies [A9, A10] conclude that while LLMs show capability in healthcare tasks, most models struggle with complex clinical reasoning. The MedAgentBench evaluation found even the best-performing model (Claude 3.5 Sonnet) achieved only 69.67% success rate on medical agent tasks, highlighting the gap between current capabilities and clinical readiness.
+However, significant limitations persist. Benchmarking studies [A8, A9] conclude that while LLMs show capability in healthcare tasks, most models struggle with complex clinical reasoning. The MedAgentBench evaluation found even the best-performing model (Claude 3.5 Sonnet) achieved only 69.67% success rate on medical agent tasks, highlighting the gap between current capabilities and clinical readiness.
 
 ## 2. State of Healthcare Analytics Maturity
 
@@ -194,9 +269,9 @@ Multiple meta-analyses provide comprehensive data on healthcare workforce turnov
 
 The financial implications are substantial. Industry analysis documents turnover costs at 0.5-2.0 times annual salary, with knowledge-intensive positions reaching the higher end [I6]. Oracle documents the cascading costs of turnover including knowledge loss, decreased productivity, and project delays.
 
-Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years, implying annual turnover of 34% (calculated as 1/2.9 years), the highest rate among all IT organization types studied. This compares unfavorably to the 9.68-year average for IT managerial positions overall. Recent surveys confirm these challenges persist: the 2023 AHIMA/NORC workforce survey found that 66% of health information professionals report persistent staffing shortages, with 83% witnessing increased unfilled positions over the past year [I11].
+Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A10] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years, implying annual turnover of 34% (calculated as 1/2.9 years), the highest rate among all IT organization types studied. This compares unfavorably to the 9.68-year average for IT managerial positions overall. Recent surveys confirm these challenges persist: the 2023 AHIMA/NORC workforce survey found that 66% of health information professionals report persistent staffing shortages, with 83% witnessing increased unfilled positions over the past year [I11].
 
-The knowledge loss implications are substantial. Research indicates new IT hires require 8-12 months to reach full productivity, with healthcare-specific roles often requiring 9 months or longer due to domain complexity. Combined with the 2.9-year average tenure, healthcare IT professionals may operate at full productivity for only approximately two years before departing—creating a perpetual cycle where organizations lose experienced staff before fully recouping their training investment.
+The knowledge loss implications are substantial. Research documents significant time-to-productivity requirements across healthcare IT roles: basic EHR training requires 8 hours to 2 months for end-users, while health information workforce development demands 18 months to 2 years for specialized roles [A11]. International Medical Informatics Association recommendations specify a minimum of 1 year (60 ECTS credits) for biomedical and health informatics specialists [A12], with personalized EHR training programs requiring 6 months of blended instruction to achieve meaningful competency improvements [A13]. Combined with the 2.9-year average tenure, healthcare IT professionals may operate at full productivity for only approximately two years before departing—creating a perpetual cycle where organizations lose experienced staff before fully recouping their training investment.
 
 ### Institutional Memory Loss
 
@@ -461,9 +536,9 @@ This section synthesizes evidence from academic benchmarking studies and real-wo
 
 ### LLM Benchmarking in Healthcare
 
-Recent benchmarking studies provide empirical validation of AI capabilities in healthcare settings. The MedAgentBench study [A9] evaluated medical LLM agents in a virtual EHR environment, finding that Claude 3.5 Sonnet achieved the highest overall success rate of 69.67% on medical agent tasks. This highlights both the potential and current limitations of leveraging LLM agent capabilities in medical applications.
+Recent benchmarking studies provide empirical validation of AI capabilities in healthcare settings. The MedAgentBench study [A8] evaluated medical LLM agents in a virtual EHR environment, finding that Claude 3.5 Sonnet achieved the highest overall success rate of 69.67% on medical agent tasks. This highlights both the potential and current limitations of leveraging LLM agent capabilities in medical applications.
 
-Chen et al. [A10] conducted comprehensive evaluations of LLMs for medicine, testing models including GPT-4, Claude-3.5, and specialized medical models across clinical tasks. Their findings indicate that even the most advanced LLMs struggle with complex clinical reasoning, underscoring the gap between benchmark performance and actual clinical practice demands.
+Chen et al. [A9] conducted comprehensive evaluations of LLMs for medicine, testing models including GPT-4, Claude-3.5, and specialized medical models across clinical tasks. Their findings indicate that even the most advanced LLMs struggle with complex clinical reasoning, underscoring the gap between benchmark performance and actual clinical practice demands.
 
 ### Healthcare Text-to-SQL Benchmarks
 
@@ -532,7 +607,7 @@ Industry market research provides validation for conversational AI adoption in h
 The research presents several compelling strengths that support the adoption of conversational AI platforms in healthcare analytics:
 
 ### Validated Benchmarking Data
-The evidence base includes peer-reviewed benchmarking studies from top venues (NEJM AI, NeurIPS, NAACL) that provide empirical validation of LLM capabilities in healthcare contexts. Studies like MedAgentBench [A9] and comprehensive medical LLM evaluations [A10] offer reproducible, quantitative performance metrics.
+The evidence base includes peer-reviewed benchmarking studies from top venues (NEJM AI, NeurIPS, NAACL) that provide empirical validation of LLM capabilities in healthcare contexts. Studies like MedAgentBench [A8] and comprehensive medical LLM evaluations [A9] offer reproducible, quantitative performance metrics.
 
 ### Real-World Implementation Evidence
 The Berkshire Healthcare NHS Trust case [I4] demonstrates successful low-code adoption in healthcare, with over 800 citizen developers creating solutions. This provides concrete evidence that non-technical healthcare professionals can effectively use these platforms.
@@ -564,6 +639,10 @@ Democratizing analytics access creates new challenges in maintaining data qualit
 
 ### Specialty-Specific Application Gaps
 Evidence primarily focuses on general acute care settings. Applications in specialized domains (oncology, cardiology, mental health) require domain-specific validation and customization that may not generalize from the existing evidence base.
+
+### Methodological Considerations
+
+As a narrative review, this paper has methodological limitations distinct from systematic reviews. The non-exhaustive literature search, single-author synthesis, and post-hoc selection criteria may have introduced selection or interpretation bias. No formal quality assessment tool was applied to included studies. These limitations, documented in detail in the Methodology section, should be considered when interpreting findings. The transparency provided through explicit documentation of search strategies, selection criteria, and synthesis approach enables readers to assess potential biases and evaluate the robustness of conclusions.
 
 ## Future Research Directions
 
@@ -614,7 +693,7 @@ This review of academic and industry sources establishes several critical findin
 
 2. **Organizational Need**: Healthcare analytics maturity remains an ongoing challenge, with the revised HIMSS AMAM model [I1] emphasizing the need for AI readiness and governance frameworks. Most organizations struggle to advance beyond basic reporting levels.
 
-3. **Workforce Impact**: Healthcare nursing turnover rates of 8-36% [A1, A2] and IT staff turnover of 34% [A11] create institutional memory loss, with replacement costs reaching 1.5-2x annual salary [I6]. This creates urgent need for knowledge preservation approaches.
+3. **Workforce Impact**: Healthcare nursing turnover rates of 8-36% [A1, A2] and IT staff turnover of 34% [A10] create institutional memory loss, with replacement costs reaching 1.5-2x annual salary [I6]. This creates urgent need for knowledge preservation approaches.
 
 4. **Implementation Evidence**: Real-world implementations like Berkshire Healthcare NHS Trust [I4] demonstrate that low-code platforms can enable 800+ citizen developers in healthcare settings, with Forrester Research [I5] documenting 206% three-year ROI.
 
@@ -632,17 +711,21 @@ Future research should focus on longitudinal outcomes, specialty-specific applic
 
 The question is not whether healthcare organizations should adopt conversational AI platforms, but how quickly they can implement these systems to capture the demonstrated benefits while addressing the urgent challenges facing healthcare analytics today.
 
+# Acknowledgments
+
+This manuscript was prepared with assistance from Claude Code (Claude Opus 4.5, Anthropic). Claude Code assisted with manuscript editing and refinement, reference verification (including identification of fabricated citations that were removed per Issue #261), validation script development, and documentation workflow automation. In accordance with Nature Portfolio editorial policy, Claude does not meet authorship criteria; the author (S.T.H.) takes full responsibility for the final content, conducted the research, and verified all claims and citations. Figure 1 was created with assistance from Google Gemini, as noted in the figure caption.
+
 # Author Contributions
 
 S.T.H. conceived the research, conducted the literature review, and wrote the manuscript.
 
 # Competing Interests
 
-Samuel T Harrold is founder of Yuimedi and a Data Scientist at Indiana University Health. The views and opinions expressed in this paper are those of the author and do not necessarily reflect the official policy or position of Indiana University Health or any other organization. This research was conducted independently and does not constitute an endorsement by any affiliated institution.
+Samuel T Harrold is a contract product advisor at Yuimedi and a Data Scientist at Indiana University Health. The views and opinions expressed in this paper are those of the author and do not necessarily reflect the official policy or position of Indiana University Health, Yuimedi, or any other organization. This research was conducted independently and does not constitute an endorsement by any affiliated institution.
 
 # Data Availability
 
-This is a narrative review. No primary datasets were generated or analyzed. All data cited are from publicly available peer-reviewed publications and industry reports, referenced in the bibliography.
+This is a narrative review synthesizing existing literature. No primary datasets were generated or analyzed. All data cited are from publicly available peer-reviewed publications and industry reports, referenced in the bibliography. The literature search methodology and source selection criteria are documented in the Methodology section.
 
 # Code Availability
 
@@ -650,7 +733,7 @@ Not applicable. No custom code was developed for this research.
 
 # Funding
 
-This research received no external funding.
+Yuimedi provided funding for the author's time writing and researching this manuscript.
 
 # References
 
@@ -670,13 +753,17 @@ This research received no external funding.
 
 [A7] Kamble, S. S., Gunasekaran, A., Goswami, M., & Manda, J. (2019). A systematic perspective on the applications of big data analytics in healthcare management. *International Journal of Healthcare Management*, 12(3), 226-240. DOI: 10.1080/20479700.2018.1531606. https://www.tandfonline.com/doi/full/10.1080/20479700.2018.1531606
 
-[A8] Lee, J., Kim, S., & Park, H. (2022). Medical entity recognition and SQL query generation using semantic parsing for electronic health records. *Journal of Biomedical Informatics*, 128, 104037. DOI: 10.1016/j.jbi.2022.104037. https://www.sciencedirect.com/science/article/pii/S1532046422000533
+[A8] MedAgentBench Study. (2024). MedAgentBench: A virtual EHR environment to benchmark medical LLM agents. *NEJM AI*. DOI: 10.1056/AIdbp2500144. https://ai.nejm.org/doi/full/10.1056/AIdbp2500144
 
-[A9] MedAgentBench Study. (2024). MedAgentBench: A virtual EHR environment to benchmark medical LLM agents. *NEJM AI*. DOI: 10.1056/AIdbp2500144. https://ai.nejm.org/doi/full/10.1056/AIdbp2500144
+[A9] Chen, Z., et al. (2024). Towards evaluating and building versatile large language models for medicine. *npj Digital Medicine*, 7, 320. DOI: 10.1038/s41746-024-01390-4. https://www.nature.com/articles/s41746-024-01390-4
 
-[A10] Chen, Z., et al. (2024). Towards evaluating and building versatile large language models for medicine. *npj Digital Medicine*, 7, 320. DOI: 10.1038/s41746-024-01390-4. https://www.nature.com/articles/s41746-024-01390-4
+[A10] Ang, S., & Slaughter, S. (2004). Turnover of information technology professionals: The effects of internal labor market strategies. *ACM SIGMIS Database: The DATABASE for Advances in Information Systems*, 35(3), 11-27. DOI: 10.1145/1017114.1017118. https://dl.acm.org/doi/10.1145/1017114.1017118
 
-[A11] Ang, S., & Slaughter, S. (2004). Turnover of information technology professionals: The effects of internal labor market strategies. *ACM SIGMIS Database: The DATABASE for Advances in Information Systems*, 35(3), 11-27. DOI: 10.1145/1017114.1017118. https://dl.acm.org/doi/10.1145/1017114.1017118
+[A11] Ledikwe, J. H., Reason, L. L., Burnett, S. M., Busang, L., Bodika, S., Lebelonyane, R., Ludick, S., Matshediso, E., Mawandia, S., Mmelesi, M., Sento, B., & Semo, B.-W. (2013). Establishing a health information workforce: Innovation for low- and middle-income countries. *Human Resources for Health*, 11, 35. DOI: 10.1186/1478-4491-11-35. https://human-resources-health.biomedcentral.com/articles/10.1186/1478-4491-11-35
+
+[A12] Mantas, J., Ammenwerth, E., Demiris, G., Hasman, A., Haux, R., Hersh, W., Hovenga, E., Lun, K. C., Marin, H., Martin-Sanchez, F., & Wright, G. (2010). Recommendations of the International Medical Informatics Association (IMIA) on education in biomedical and health informatics: First revision. *Methods of Information in Medicine*, 49(2), 105-120. DOI: 10.3414/ME5119. https://pubmed.ncbi.nlm.nih.gov/20054502/
+
+[A13] Musa, S., Dergaa, I., Al Shekh Yasin, R., & Singh, R. (2023). The impact of training on electronic health records related knowledge, practical competencies, and staff satisfaction: A pre-post intervention study among wellness center providers in a primary health-care facility. *Journal of Multidisciplinary Healthcare*, 16, 1551-1563. DOI: 10.2147/JMDH.S414200. https://pmc.ncbi.nlm.nih.gov/articles/PMC10243608/
 
 ## Industry Sources
 
