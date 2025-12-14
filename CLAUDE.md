@@ -150,7 +150,7 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 - Optional AI-powered synthesis with fallback to keyword-based approach
 
 ### Validation System
-`./validate_documentation.sh` runs 6 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure, and reference validation (citations in paper.md).
+`./validate_documentation.sh` runs 7 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure, reference validation (citations in paper.md), and LaTeX-in-URL validation.
 
 ### AI Config Sync
 Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` for cross-tool compatibility.
