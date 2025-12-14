@@ -84,6 +84,12 @@ data/*
 docs/references/*.pdf
 !docs/references/README.md
 
+# Journal policy PDFs (downloaded from publisher sites)
+npj_digital-medicine_*.pdf
+
+# Large uncompressed images (use .jpg versions instead)
+figures/*.png
+
 # Claude state database files
 .claude-state/*.duckdb
 
