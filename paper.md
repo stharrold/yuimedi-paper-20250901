@@ -658,17 +658,17 @@ This research received no external funding.
 
 [A1] Wu, Y., Li, X., Zhang, Y., et al. (2024). Worldwide prevalence and associated factors of nursing staff turnover: A systematic review and meta-analysis. *International Journal of Nursing Studies*, 149, 104625. DOI: 10.1016/j.ijnurstu.2023.104625. https://pmc.ncbi.nlm.nih.gov/articles/PMC10802134/
 
-[A2] Ren, L., Wang, H., Chen, J., et al. (2024). Global prevalence of nurse turnover rates: A meta-analysis of 21 studies from 14 countries. *Journal of Nursing Management*, 2024, 5063998. DOI: 10.1155/2024/5063998. https://pmc.ncbi.nlm.nih.gov/\break articles/PMC11919231/
+[A2] Ren, L., Wang, H., Chen, J., et al. (2024). Global prevalence of nurse turnover rates: A meta-analysis of 21 studies from 14 countries. *Journal of Nursing Management*, 2024, 5063998. DOI: 10.1155/2024/5063998. https://pmc.ncbi.nlm.nih.gov/articles/PMC11919231/
 
 [A3] Lee, G., et al. (2023). EHRSQL: A practical text-to-SQL benchmark for electronic health records. *Proceedings of NeurIPS 2022*. arXiv:2301.07695. https://arxiv.org/abs/2301.07695
 
-[A4] Navarro, D. F., Ijaz, K., Rezazadegan, D., Rahimi-Ardabili, H., Dras, M., Coiera, E., & Berkovsky, S. (2023). Clinical named entity recognition and relation extraction using natural language processing of medical free text: A systematic review. *International Journal of Medical Informatics*, 177, 105122. DOI: 10.1016/j.ijmedinf.2023.105122. https://www.sciencedirect.com/science/article/pii/\break S1386505623001405
+[A4] Navarro, D. F., Ijaz, K., Rezazadegan, D., Rahimi-Ardabili, H., Dras, M., Coiera, E., & Berkovsky, S. (2023). Clinical named entity recognition and relation extraction using natural language processing of medical free text: A systematic review. *International Journal of Medical Informatics*, 177, 105122. DOI: 10.1016/j.ijmedinf.2023.105122. https://www.sciencedirect.com/science/article/pii/S1386505623001405
 
 [A5] Wang, P., Shi, T., & Reddy, C. K. (2020). Text-to-SQL generation for question answering on electronic medical records. *Proceedings of The Web Conference 2020*, Pages 350-361. DOI: 10.1145/3366423.3380120. https://arxiv.org/abs/1908.01839
 
 [A6] Ziletti, A., & D'Ambrosi, L. (2024). Retrieval augmented text-to-SQL generation for epidemiological question answering using electronic health records. *NAACL 2024 Clinical NLP Workshop*. arXiv:2403.09226. https://arxiv.org/abs/2403.09226
 
-[A7] Kamble, S. S., Gunasekaran, A., Goswami, M., & Manda, J. (2019). A systematic perspective on the applications of big data analytics in healthcare management. *International Journal of Healthcare Management*, 12(3), 226-240. DOI: 10.1080/20479700.2018.1531606. https://www.tandfonline.com/doi/full/10.1080/\break 20479700.2018.1531606
+[A7] Kamble, S. S., Gunasekaran, A., Goswami, M., & Manda, J. (2019). A systematic perspective on the applications of big data analytics in healthcare management. *International Journal of Healthcare Management*, 12(3), 226-240. DOI: 10.1080/20479700.2018.1531606. https://www.tandfonline.com/doi/full/10.1080/20479700.2018.1531606
 
 [A8] Lee, J., Kim, S., & Park, H. (2022). Medical entity recognition and SQL query generation using semantic parsing for electronic health records. *Journal of Biomedical Informatics*, 128, 104037. DOI: 10.1016/j.jbi.2022.104037. https://www.sciencedirect.com/science/article/pii/S1532046422000533
 
@@ -680,7 +680,7 @@ This research received no external funding.
 
 ## Industry Sources
 
-[I1] HIMSS Analytics. (2024). Analytics maturity assessment model (AMAM) global report. Healthcare Information and Management Systems Society. \break https://www.himss.org/maturity-models/amam/
+[I1] HIMSS Analytics. (2024). Analytics maturity assessment model (AMAM) global report. Healthcare Information and Management Systems Society. https://www.himss.org/maturity-models/amam/
 
 [I2] Snowdon, A. (2024). New analytics maturity adoption model pushes for digital transformation and data-driven decisions. *HIMSS*. https://legacy.himss.org/news/new-analytics-maturity-adoption-model-pushes-digital-transformation-and-data-driven-decisions
 
@@ -690,15 +690,15 @@ This research received no external funding.
 
 [I5] Forrester Research. (2024). The total economic impact of Microsoft Power Apps. Forrester Consulting. https://tei.forrester.com/go/microsoft/powerappstei/?lang=en-us
 
-[I6] Oracle. (2024). The real cost of turnover in healthcare. https://www.oracle.com/\break human-capital-management/cost-employee-turnover-healthcare/
+[I6] Oracle. (2024). The real cost of turnover in healthcare. https://www.oracle.com/human-capital-management/cost-employee-turnover-healthcare/
 
 [I7] Precedence Research. (2024). Healthcare analytics market size and forecast 2025 to 2034. https://www.precedenceresearch.com/healthcare-analytics-market
 
 [I8] Anthropic. (2025). Code modernization playbook: A practical guide to modernizing legacy systems with AI. https://resources.anthropic.com/code-modernization-playbook
 
-[I9] Farr, C. (2022). IBM sells Watson Health assets to investment firm Francisco Partners. *Wall Street Journal*. https://www.wsj.com/articles/\break ibm-to-sell-watson-health-assets-to-investment-firm-11642680400
+[I9] Farr, C. (2022). IBM sells Watson Health assets to investment firm Francisco Partners. *Wall Street Journal*. https://www.wsj.com/articles/ibm-to-sell-watson-health-assets-to-investment-firm-11642680400
 
-[I10] LaVito, A. (2021). Haven, the Amazon-Berkshire-JPMorgan venture to disrupt healthcare, is disbanding after 3 years. *CNBC*. https://www.cnbc.com/2021/01/04/\break haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding.html
+[I10] LaVito, A. (2021). Haven, the Amazon-Berkshire-JPMorgan venture to disrupt healthcare, is disbanding after 3 years. *CNBC*. https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding.html
 
 [I11] American Health Information Management Association & NORC at the University of Chicago. (2023). Health information workforce survey report. https://www.ahima.org/news-publications/press-room-press-releases/2023-press-releases/health-information-workforce-shortages-persist-as-ai-shows-promise-ahima-survey-reveals/
 

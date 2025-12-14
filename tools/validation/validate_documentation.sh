@@ -68,6 +68,17 @@ else
 fi
 echo ""
 
+# Test 7: LaTeX-in-URL validation
+echo "Test 7: LaTeX-in-URL validation"
+python3 "$REPO_ROOT/scripts/validate_references.py" --check-latex
+if [ $? -ne 0 ]; then
+    ((total_errors++))
+    echo "  ❌ LaTeX-in-URL validation failed"
+else
+    echo "  ✅ LaTeX-in-URL validation passed"
+fi
+echo ""
+
 # Summary
 echo "=== Validation Summary ==="
 if [ $total_errors -eq 0 ]; then
