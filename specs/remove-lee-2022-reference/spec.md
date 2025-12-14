@@ -4,15 +4,13 @@
 **Slug:** remove-lee-2022-reference
 **Date:** 2025-12-14
 **Author:** stharrold
+**Issue:** #285
 
 ## Overview
 
-[One paragraph describing what this feature does and why it's needed]
-
+Remove incorrect reference [A8] (Lee 2022 - "Medical entity recognition and SQL query generation using semantic parsing for electronic health records") from paper.md and renumber all subsequent academic references to maintain sequential numbering. This is a documentation-only change to maintain academic integrity.
 
 ## Implementation Context
-
-<!-- Generated from SpecKit interactive Q&A -->
 
 **GitHub Issue:** #285
 
@@ -22,289 +20,125 @@
 
 - **Task Granularity:** Small tasks (1-2 hours each)
 - **Follow Epic Order:** True
+- **Execution Order:** Bottom-to-top within each file to avoid line number shift issues
 
-## Requirements Reference
+## Requirements Summary
 
-See: `planning/remove-lee-2022-reference/requirements.md` in main repository
+### Functional Requirements
 
-## Detailed Specification
+| ID | Description | Priority |
+|----|-------------|----------|
+| FR-001 | Remove [A8] citation from line 232 in paper.md | High |
+| FR-002 | Delete [A8] reference definition from line 756 | High |
+| FR-003 | Renumber [A9]-[A14] → [A8]-[A13] | High |
+| FR-004 | Update CLAUDE.md citation count to "24 (13 academic, 11 industry)" | Medium |
+| FR-005 | Update documentation files referencing [A8] | Medium |
+| FR-006 | Regenerate PDF, HTML, DOCX, TEX output files | Medium |
+| FR-007 | Pass all validation tests | High |
 
-### Component 1: [Component Name]
+## Reference Renumbering Map
 
-**File:** `src/path/to/file.py`
+| Before | After | Reference |
+|--------|-------|-----------|
+| [A1] | [A1] | Wu et al. (2024) |
+| [A2] | [A2] | Ren et al. (2024) |
+| [A3] | [A3] | Lee, G. et al. (2023) |
+| [A4] | [A4] | Navarro et al. (2023) |
+| [A5] | [A5] | Wang et al. (2020) |
+| [A6] | [A6] | Ziletti & D'Ambrosi (2024) |
+| [A7] | [A7] | Kamble et al. (2019) |
+| [A8] | **REMOVED** | Lee et al. (2022) |
+| [A9] | [A8] | MedAgentBench (2024) |
+| [A10] | [A9] | Chen et al. (2024) |
+| [A11] | [A10] | Ang & Slaughter (2004) |
+| [A12] | [A11] | Ledikwe et al. (2013) |
+| [A13] | [A12] | Mantas et al. (2010) |
+| [A14] | [A13] | Musa et al. (2023) |
 
-**Purpose:** [What does this component do?]
+## In-Text Citation Updates
 
-**Implementation:**
+| Line | Current | New |
+|------|---------|-----|
+| 80 | [A11] | [A10] |
+| 96 | [A11] | [A10] |
+| 109 | [A11] | [A10] |
+| 226 | [A9, A10] | [A8, A9] |
+| 232 | [A5] and [A8] | [A5] only |
+| 238 | [A9, A10] | [A8, A9] |
+| 272 | [A11] | [A10] |
+| 274 | [A12], [A13], [A14] | [A11], [A12], [A13] |
+| 539 | [A9] | [A8] |
+| 541 | [A10] | [A9] |
+| 610 | [A9], [A10] | [A8], [A9] |
+| 696 | [A11] | [A10] |
 
-```python
-# Example code structure
+## Files to Modify
 
-class ExampleClass:
-    """Brief description of class purpose."""
+### Primary File
 
-    def __init__(self, param1: str, param2: int):
-        """Initialize with parameters."""
-        self.param1 = param1
-        self.param2 = param2
+**File:** `paper.md`
 
-    def method_name(self, arg: str) -> dict:
-        """
-        Description of what this method does.
+**Changes:**
+1. Line 232: Rewrite sentence to remove "and Lee et al. [A8]"
+2. Line 756: Delete [A8] reference definition
+3. Lines 758-768: Renumber reference definitions
+4. Various lines: Update in-text citations per table above
 
-        Args:
-            arg: Description of argument
+### Metadata File
 
-        Returns:
-            Dictionary with result data
+**File:** `CLAUDE.md`
 
-        Raises:
-            ValueError: When input is invalid
-        """
-        # Implementation details
-        pass
+**Changes:**
+- Line 28: Update count to "24 verified citations (13 academic, 11 industry)"
+- Line 33: Update citation history
+
+### Documentation Files
+
+| File | Changes |
+|------|---------|
+| `docs/citation-audit-report.md` | Remove [A8] from citation lists |
+| `specs/fix-paper-references/reference_verification.md` | Remove [A8] section |
+| `specs/fix-paper-references/claims_analysis.md` | Update [A8] references |
+
+### Generated Output Files
+
+| File | Action |
+|------|--------|
+| `paper.pdf` | Regenerate via `./scripts/build_paper.sh` |
+| `paper.html` | Regenerate |
+| `paper.docx` | Regenerate |
+| `paper.tex` | Regenerate |
+
+## Validation Strategy
+
+### Pre-Implementation
+
+```bash
+# Verify current state
+./validate_documentation.sh
+python scripts/validate_references.py --all
 ```
 
-**Dependencies:**
-- [External library or module]
-- [Internal component]
+### Post-Implementation
 
-### Component 2: [Component Name]
-
-**File:** `src/path/to/another_file.py`
-
-[Similar structure as Component 1]
-
-## Data Models
-
-### Model: ExampleModel
-
-**File:** `src/models/example.py`
-
-```python
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    """Database model for example data."""
-
-    __tablename__ = 'examples'
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False, unique=True)
-    description = Column(String(500))
-    created_at = Column(DateTime, nullable=False)
+```bash
+# Verify changes
+./validate_documentation.sh                    # Must pass all 7 tests
+python scripts/validate_references.py --all   # Regenerates validation_report.md
+python scripts/validate_references.py --check-citations  # No orphaned citations
 ```
 
-## API Endpoints
+## Constraints
 
-### POST /api/endpoint
+- Must perform edits from bottom-to-top to avoid line number shift issues
+- Python stdlib only for scripts (no external packages)
+- All remaining citations must be DOI-verified
 
-**Description:** [What this endpoint does]
+## Success Criteria
 
-**Request:**
-```json
-{
-  "field1": "value",
-  "field2": 123
-}
-```
-
-**Response (200 OK):**
-```json
-{
-  "id": 1,
-  "status": "success",
-  "data": {
-    "result": "value"
-  }
-}
-```
-
-**Response (400 Bad Request):**
-```json
-{
-  "error": "Validation failed",
-  "details": ["field1 is required"]
-}
-```
-
-**Implementation:**
-
-```python
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
-
-router = APIRouter()
-
-class RequestModel(BaseModel):
-    field1: str
-    field2: int
-
-class ResponseModel(BaseModel):
-    id: int
-    status: str
-    data: dict
-
-@router.post("/api/endpoint", response_model=ResponseModel)
-async def endpoint_handler(request: RequestModel):
-    """Handle endpoint request."""
-    # Implementation
-    pass
-```
-
-### GET /api/endpoint/{id}
-
-**Description:** [What this endpoint does]
-
-[Similar structure as POST endpoint]
-
-## Testing Requirements
-
-### Unit Tests
-
-**File:** `tests/test_example.py`
-
-```python
-import pytest
-from src.module import ExampleClass
-
-def test_example_success():
-    """Test successful operation."""
-    instance = ExampleClass("test", 123)
-    result = instance.method_name("input")
-    assert result["status"] == "success"
-
-def test_example_validation_error():
-    """Test validation error handling."""
-    instance = ExampleClass("test", 123)
-    with pytest.raises(ValueError):
-        instance.method_name("")
-```
-
-### Integration Tests
-
-**File:** `tests/test_integration.py`
-
-```python
-from fastapi.testclient import TestClient
-from src.main import app
-
-client = TestClient(app)
-
-def test_endpoint_integration():
-    """Test API endpoint integration."""
-    response = client.post("/api/endpoint", json={
-        "field1": "value",
-        "field2": 123
-    })
-    assert response.status_code == 200
-    assert response.json()["status"] == "success"
-```
-
-## Quality Gates
-
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing
-- [ ] Linting clean (ruff check)
-- [ ] Type checking clean (mypy)
-- [ ] API documentation complete
-
-## Container Specifications
-
-### Containerfile
-
-```dockerfile
-FROM python:3.11-slim
-
-WORKDIR /app
-
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev
-
-COPY src/ src/
-
-EXPOSE 8000
-
-HEALTHCHECK --interval=30s --timeout=3s \
-  CMD python -c "import requests; requests.get('http://localhost:8000/health')"
-
-CMD ["uv", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
-### podman-compose.yml
-
-```yaml
-version: '3.8'
-
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Containerfile
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./data:/app/data
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-```
-
-## Dependencies
-
-**pyproject.toml additions:**
-
-```toml
-[project]
-dependencies = [
-    "fastapi>=0.104.0",
-    "uvicorn[standard]>=0.24.0",
-    "sqlalchemy>=2.0.0",
-    "pydantic>=2.5.0",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "pytest-asyncio>=0.21.0",
-    "httpx>=0.25.0",
-    "ruff>=0.1.0",
-    "mypy>=1.7.0",
-]
-```
-
-## Implementation Notes
-
-### Key Considerations
-
-- [Important implementation detail]
-- [Potential gotcha or edge case]
-- [Performance consideration]
-
-### Error Handling
-
-- [How to handle specific error type]
-- [Validation strategy]
-- [Retry logic if applicable]
-
-### Security
-
-- [Input validation approach]
-- [Authentication requirements]
-- [Authorization checks]
-
-## References
-
-- [Link to external documentation]
-- [Related specifications]
-- [Design patterns used]
+- [ ] Reference [A8] completely removed from paper
+- [ ] All subsequent academic references renumbered sequentially [A1]-[A13]
+- [ ] All in-text citations updated correctly
+- [ ] CLAUDE.md reflects accurate post-removal count (24 citations)
+- [ ] All validation tests pass (7/7)
+- [ ] Output files (PDF, HTML, DOCX, TEX) regenerated successfully
