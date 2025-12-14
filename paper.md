@@ -271,7 +271,7 @@ The financial implications are substantial. Industry analysis documents turnover
 
 Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years, implying annual turnover of 34% (calculated as 1/2.9 years), the highest rate among all IT organization types studied. This compares unfavorably to the 9.68-year average for IT managerial positions overall. Recent surveys confirm these challenges persist: the 2023 AHIMA/NORC workforce survey found that 66% of health information professionals report persistent staffing shortages, with 83% witnessing increased unfilled positions over the past year [I11].
 
-The knowledge loss implications are substantial. Research indicates new IT hires require 8-12 months to reach full productivity, with healthcare-specific roles often requiring 9 months or longer due to domain complexity. Combined with the 2.9-year average tenure, healthcare IT professionals may operate at full productivity for only approximately two years before departing—creating a perpetual cycle where organizations lose experienced staff before fully recouping their training investment.
+The knowledge loss implications are substantial. Research documents significant time-to-productivity requirements across healthcare IT roles: basic EHR training requires 8 hours to 2 months for end-users, while health information workforce development demands 18 months to 2 years for specialized roles [A12]. International Medical Informatics Association recommendations specify a minimum of 1 year (60 ECTS credits) for biomedical and health informatics specialists [A13], with personalized EHR training programs requiring 6 months of blended instruction to achieve meaningful competency improvements [A14]. Combined with the 2.9-year average tenure, healthcare IT professionals may operate at full productivity for only approximately two years before departing—creating a perpetual cycle where organizations lose experienced staff before fully recouping their training investment.
 
 ### Institutional Memory Loss
 
@@ -756,6 +756,12 @@ This research received no external funding.
 [A10] Chen, Z., et al. (2024). Towards evaluating and building versatile large language models for medicine. *npj Digital Medicine*, 7, 320. DOI: 10.1038/s41746-024-01390-4. https://www.nature.com/articles/s41746-024-01390-4
 
 [A11] Ang, S., & Slaughter, S. (2004). Turnover of information technology professionals: The effects of internal labor market strategies. *ACM SIGMIS Database: The DATABASE for Advances in Information Systems*, 35(3), 11-27. DOI: 10.1145/1017114.1017118. https://dl.acm.org/doi/10.1145/1017114.1017118
+
+[A12] Ledikwe, J. H., Reason, L. L., Burnett, S. M., Busang, L., Bodika, S., Lebelonyane, R., Ludick, S., Matshediso, E., Mawandia, S., Mmelesi, M., Sento, B., & Semo, B.-W. (2013). Establishing a health information workforce: Innovation for low- and middle-income countries. *Human Resources for Health*, 11, 35. DOI: 10.1186/1478-4491-11-35. https://human-resources-health.biomedcentral.com/articles/10.1186/1478-4491-11-35
+
+[A13] Mantas, J., Ammenwerth, E., Demiris, G., Hasman, A., Haux, R., Hersh, W., Hovenga, E., Lun, K. C., Marin, H., Martin-Sanchez, F., & Wright, G. (2010). Recommendations of the International Medical Informatics Association (IMIA) on education in biomedical and health informatics: First revision. *Methods of Information in Medicine*, 49(2), 105-120. DOI: 10.3414/ME5119. https://pubmed.ncbi.nlm.nih.gov/20054502/
+
+[A14] Musa, S., Dergaa, I., Al Shekh Yasin, R., & Singh, R. (2023). The impact of training on electronic health records related knowledge, practical competencies, and staff satisfaction: A pre-post intervention study among wellness center providers in a primary health-care facility. *Journal of Multidisciplinary Healthcare*, 16, 1551-1563. DOI: 10.2147/JMDH.S414200. https://pmc.ncbi.nlm.nih.gov/articles/PMC10243608/
 
 ## Industry Sources
 

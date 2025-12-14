@@ -1,17 +1,17 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-14 06:15:38 UTC
+**Generated:** 2025-12-14 15:22:58 UTC
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total References | 22 |
-| Academic [A*] | 11 |
+| Total References | 25 |
+| Academic [A*] | 14 |
 | Industry [I*] | 11 |
-| Total Citations | 65 |
-| Accessible URLs | 12 |
-| Broken URLs | 10 |
+| Total Citations | 68 |
+| Accessible URLs | 13 |
+| Broken URLs | 12 |
 | Missing URLs | 0 |
 | Orphaned Citations | 0 |
 | Unused References | 0 |
@@ -31,6 +31,8 @@ References with inaccessible URLs:
 | [A8] | https://www.sciencedirect.com/science/article/pii/S153204642... | HTTP 403: Forbidden |
 | [A9] | https://ai.nejm.org/doi/full/10.1056/AIdbp2500144 | HTTP 403: Forbidden |
 | [A11] | https://dl.acm.org/doi/10.1145/1017114.1017118 | HTTP 403: Forbidden |
+| [A13] | https://pubmed.ncbi.nlm.nih.gov/20054502/ | HTTP 403: Forbidden |
+| [A14] | https://pmc.ncbi.nlm.nih.gov/articles/PMC10243608/ | HTTP 403: Forbidden |
 | [I1] | https://www.himss.org/maturity-models/amam/ | HTTP 403: Forbidden |
 | [I9] | https://www.wsj.com/articles/ibm-to-sell-watson-health-asset... | HTTP 401: HTTP Forbidden |
 | [I10] | https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-j... | HTTP 404: Not Found |
@@ -53,6 +55,9 @@ References with inaccessible URLs:
 | [A9] | academic | Failed: HTTP 403: Forbidden |
 | [A10] | academic | OK (200) |
 | [A11] | academic | Failed: HTTP 403: Forbidden |
+| [A12] | academic | OK (200) |
+| [A13] | academic | Failed: HTTP 403: Forbidden |
+| [A14] | academic | Failed: HTTP 403: Forbidden |
 | [I1] | industry | Failed: HTTP 403: Forbidden |
 | [I2] | industry | OK (200) |
 | [I3] | industry | OK (200) |
