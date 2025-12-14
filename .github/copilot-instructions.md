@@ -25,12 +25,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 25 verified citations (14 academic, 11 industry) addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 22 verified citations (11 academic, 11 industry) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
 
-**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261), then expanded to 25 with additional DOI-verified sources. Removed: 29 unused references, 5 likely AI-generated fabrications, and unverifiable claims. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
+**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261), then expanded to 22 with additional DOI-verified sources. Removed: 29 unused references, 5 likely AI-generated fabrications, and unverifiable claims. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
 
 **Paper classification:** Narrative review with original analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
 
@@ -171,6 +171,7 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 
 **Container architecture:**
 - Python 3.12 + uv with `--all-extras` (includes duckdb for AgentDB)
+- GitHub CLI (`gh`) for workflow automation (PR creation, issue management)
 - PDF generation: pandoc + texlive-xetex + Eisvogel template
 - Named volume `venv_cache` isolates container `.venv` from host (avoids macOS/Linux binary mismatch)
 - Always use `uv run` prefix in container for proper venv activation
