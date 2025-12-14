@@ -34,7 +34,7 @@
 ### Acceptance Criteria
 
 - All 4 new sources have verifiable DOIs or stable URLs
-- Key statistics (2.9 years tenure → 34% annual turnover) confirmed via calculation methodology
+- Key statistics (2.9 years tenure → 34% annual turnover) confirmed against calculation methodology
 
 ---
 
