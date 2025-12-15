@@ -30,7 +30,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
 
-**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261), then expanded to 25 with additional DOI-verified sources. Removed incorrect reference [A8] Lee 2022 (Issue #285), resulting in 24 citations. Added 5 DOI-verified academic citations [A14]-[A18] from Analytics_Pace.md to strengthen organizational maturity claims (Issue #289), resulting in 29 citations. Added 5 DOI-verified academic citations [A19]-[A23] from Analytics_Low-Code-ROI.md to strengthen low-code ROI claims with peer-reviewed sources, reducing prominence of vendor-sponsored Forrester research (Issue #291), resulting in 34 citations. Added 1 DOI-verified academic citation [A24] Massingham (2018) for knowledge worker turnover costs, replacing vendor-specific Oracle claim (Issue #298), resulting in 35 citations. Added 2 DOI-verified academic citations [A25]-[A26] Benbya (2004) and Aulawi (2017) for knowledge portal architecture to clarify paper contribution (Issue #300), resulting in 37 citations. Added 4 DOI-verified academic citations [A27]-[A30] Richesson (2007), Gal (2019), Zheng (2020), and Bogaert (2021) for failed standardization claims with peer-reviewed sources (Issue #302), resulting in 41 citations. Total removed: 29 unused references, 5 likely AI-generated fabrications, 1 incorrect reference. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
+**Citation verification:** All citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
 
 **Paper classification:** Narrative review with original analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
 
@@ -177,6 +177,8 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 - Always use `uv run` prefix in container for proper venv activation
 
 **Why containers?** Eliminates "works locally, fails in CI" issues by using identical environment (Python 3.12, uv, dependencies) in both contexts.
+
+**Auto-build paper artifacts:** When `paper.md`, `metadata.yaml`, or `figures/**` changes are pushed to `main`, `develop`, or `contrib/*` branches, GitHub Actions automatically rebuilds all paper formats (PDF, HTML, DOCX, TEX) and commits them back with `[skip ci]` to prevent loops.
 
 ### Environment Variables
 - `LIT_REVIEW_DATA_DIR` - Data storage location (default: `~/.lit_review`)
