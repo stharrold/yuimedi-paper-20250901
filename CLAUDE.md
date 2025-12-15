@@ -25,12 +25,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 24 verified citations (13 academic, 11 industry) addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 29 verified citations (18 academic, 11 industry) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
 
-**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261), then expanded to 25 with additional DOI-verified sources. Removed incorrect reference [A8] Lee 2022 (Issue #285), resulting in 24 citations. Total removed: 29 unused references, 5 likely AI-generated fabrications, 1 incorrect reference. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
+**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261), then expanded to 25 with additional DOI-verified sources. Removed incorrect reference [A8] Lee 2022 (Issue #285), resulting in 24 citations. Added 5 DOI-verified academic citations [A14]-[A18] from Analytics_Pace.md to strengthen organizational maturity claims (Issue #289), resulting in 29 citations. Total removed: 29 unused references, 5 likely AI-generated fabrications, 1 incorrect reference. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
 
 **Paper classification:** Narrative review with original analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
 
