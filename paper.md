@@ -845,7 +845,7 @@ Yuimedi provided funding for the author's time writing and researching this manu
 
 [I8] Anthropic. (2025). Code modernization playbook: A practical guide to modernizing legacy systems with AI. https://resources.anthropic.com/code-modernization-playbook
 
-[I9] Farr, C. (2022). IBM sells Watson Health assets to investment firm Francisco Partners. *Wall Street Journal*. https://www.wsj.com/articles/ibm-to-sell-watson-health-assets-to-investment-firm-11642680400
+[I9] IBM. (2022). Francisco Partners to Acquire IBM's Healthcare Data and Analytics Assets. *IBM Newsroom*. https://newsroom.ibm.com/2022-01-21-Francisco-Partners-to-Acquire-IBMs-Healthcare-Data-and-Analytics-Assets
 
 [I10] LaVito, A. (2021). Haven, the Amazon-Berkshire-JPMorgan venture to disrupt healthcare, is disbanding after 3 years. *CNBC*. https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding.html
 
