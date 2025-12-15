@@ -77,7 +77,7 @@ class TestAnalysisPerformanceTarget:
         This is the critical performance requirement.
         """
         papers = generate_mock_papers(500, abstract_length=500)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         def analyze_operation():
             return use_case.execute(papers=papers, max_themes=5)
@@ -88,9 +88,9 @@ class TestAnalysisPerformanceTarget:
             iterations=1,
         )
 
-        # Verify results
-        assert "themes" in result
-        assert len(result["themes"]) > 0
+        # Verify results (result is ThemeHierarchy dataclass)
+        assert result.themes is not None
+        assert len(result.themes) > 0
 
         # Check performance target
         assert benchmark.stats.mean < 30.0, (
@@ -99,27 +99,27 @@ class TestAnalysisPerformanceTarget:
 
         print("\n=== 500 PAPERS PERFORMANCE ===")
         print(f"Mean time: {benchmark.stats.mean:.2f}s")
-        print(f"Themes found: {len(result['themes'])}")
+        print(f"Themes found: {len(result.themes)}")
         print(f"Papers/second: {500 / benchmark.stats.mean:.1f}")
 
     def test_100_papers_fast_analysis(self, benchmark):
         """Test that 100 papers can be analyzed quickly (baseline)."""
         papers = generate_mock_papers(100, abstract_length=500)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=5))
 
-        assert "themes" in result
+        assert result.themes is not None
         assert benchmark.stats.mean < 5.0  # Should be under 5 seconds
 
         print("\n=== 100 PAPERS BASELINE ===")
         print(f"Mean time: {benchmark.stats.mean:.3f}s")
-        print(f"Themes found: {len(result['themes'])}")
+        print(f"Themes found: {len(result.themes)}")
 
     def test_1000_papers_extended(self, benchmark):
         """Test analysis with 1000 papers (extended scenario)."""
         papers = generate_mock_papers(1000, abstract_length=500)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         result = benchmark.pedantic(
             lambda: use_case.execute(papers=papers, max_themes=10),
@@ -127,14 +127,14 @@ class TestAnalysisPerformanceTarget:
             iterations=1,
         )
 
-        assert "themes" in result
+        assert result.themes is not None
 
         # Should scale reasonably (under 60 seconds for 1000 papers)
         assert benchmark.stats.mean < 60.0
 
         print("\n=== 1000 PAPERS EXTENDED ===")
         print(f"Mean time: {benchmark.stats.mean:.2f}s")
-        print(f"Themes found: {len(result['themes'])}")
+        print(f"Themes found: {len(result.themes)}")
         print(f"Papers/second: {1000 / benchmark.stats.mean:.1f}")
 
 
@@ -146,11 +146,11 @@ class TestAnalysisPerformanceScaling:
     def test_scaling_by_paper_count(self, benchmark, paper_count):
         """Test performance scaling across different paper counts."""
         papers = generate_mock_papers(paper_count, abstract_length=500)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=5))
 
-        assert "themes" in result
+        assert result.themes is not None
 
         papers_per_second = paper_count / benchmark.stats.mean
 
@@ -162,11 +162,11 @@ class TestAnalysisPerformanceScaling:
         """Test how abstract length affects performance."""
         # Use 200 papers with longer abstracts
         papers = generate_mock_papers(200, abstract_length=2000)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=5))
 
-        assert "themes" in result
+        assert result.themes is not None
         assert benchmark.stats.mean < 15.0  # Should still be reasonably fast
 
         print("\n=== LONG ABSTRACTS (2000 chars) ===")
@@ -175,17 +175,17 @@ class TestAnalysisPerformanceScaling:
     def test_scaling_with_theme_count(self, benchmark):
         """Test how max_themes parameter affects performance."""
         papers = generate_mock_papers(200, abstract_length=500)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         # Test with more themes (more clusters)
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=20))
 
-        assert "themes" in result
-        assert len(result["themes"]) > 0
+        assert result.themes is not None
+        assert len(result.themes) > 0
 
         print("\n=== MANY THEMES (max=20) ===")
         print(f"Time: {benchmark.stats.mean:.3f}s")
-        print(f"Themes found: {len(result['themes'])}")
+        print(f"Themes found: {len(result.themes)}")
 
 
 @pytest.mark.benchmark
@@ -195,7 +195,7 @@ class TestAnalysisPerformanceOptimization:
     def test_vectorization_performance(self, benchmark):
         """Test that TF-IDF vectorization is efficient."""
         papers = generate_mock_papers(500, abstract_length=500)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         # Test with custom vectorizer settings for speed
         result = benchmark(
@@ -206,7 +206,7 @@ class TestAnalysisPerformanceOptimization:
             )
         )
 
-        assert "themes" in result
+        assert result.themes is not None
         # Should be faster with limited features
         assert benchmark.stats.mean < 20.0
 
@@ -216,18 +216,18 @@ class TestAnalysisPerformanceOptimization:
     def test_clustering_performance(self, benchmark):
         """Test clustering algorithm performance."""
         papers = generate_mock_papers(500, abstract_length=500)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         # Measure clustering specifically
         start = time.time()
         result = use_case.execute(papers=papers, max_themes=5)
         total_time = time.time() - start
 
-        assert "themes" in result
+        assert result.themes is not None
 
         print("\n=== CLUSTERING PERFORMANCE ===")
         print(f"Total time: {total_time:.3f}s for 500 papers")
-        print(f"Themes generated: {len(result['themes'])}")
+        print(f"Themes generated: {len(result.themes)}")
 
 
 @pytest.mark.benchmark
@@ -238,7 +238,7 @@ class TestAnalysisPerformanceMemory:
         """Test that analysis handles large corpus efficiently."""
         # This would ideally use memory_profiler, but we'll test execution time
         papers = generate_mock_papers(1000, abstract_length=1000)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         def analyze():
             result = use_case.execute(papers=papers, max_themes=10)
@@ -246,8 +246,8 @@ class TestAnalysisPerformanceMemory:
 
         result = benchmark.pedantic(analyze, rounds=2, iterations=1)
 
-        assert "themes" in result
-        assert len(result["themes"]) > 0
+        assert result.themes is not None
+        assert len(result.themes) > 0
 
         print("\n=== LARGE CORPUS (1000 papers, 1000 char abstracts) ===")
         print(f"Time: {benchmark.stats.mean:.2f}s")
@@ -256,7 +256,7 @@ class TestAnalysisPerformanceMemory:
     def test_incremental_processing(self, benchmark):
         """Test processing papers in batches for memory efficiency."""
         papers = generate_mock_papers(500, abstract_length=500)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         # Process in single batch (current implementation)
         def single_batch():
@@ -264,7 +264,7 @@ class TestAnalysisPerformanceMemory:
 
         result = benchmark(single_batch)
 
-        assert "themes" in result
+        assert result.themes is not None
 
         print("\n=== BATCH PROCESSING ===")
         print(f"Single batch time: {benchmark.stats.mean:.3f}s")
@@ -321,7 +321,7 @@ class TestAnalysisPerformanceBaselines:
     def test_baseline_full_pipeline(self, benchmark):
         """Baseline: Complete analysis pipeline."""
         papers = generate_mock_papers(500, abstract_length=500)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         result = benchmark.pedantic(
             lambda: use_case.execute(papers=papers, max_themes=5),
@@ -329,14 +329,14 @@ class TestAnalysisPerformanceBaselines:
             iterations=1,
         )
 
-        assert "themes" in result
+        assert result.themes is not None
 
         print("\n=== BASELINE: Full Analysis Pipeline ===")
         print(f"Mean: {benchmark.stats.mean:.3f}s")
         print(f"StdDev: {benchmark.stats.stddev:.3f}s")
         print(f"Min: {benchmark.stats.min:.3f}s")
         print(f"Max: {benchmark.stats.max:.3f}s")
-        print(f"Themes: {len(result['themes'])}")
+        print(f"Themes: {len(result.themes)}")
         print(f"Target: <30s for 500 papers - {'PASS' if benchmark.stats.mean < 30 else 'FAIL'}")
 
 
@@ -347,22 +347,22 @@ class TestAnalysisPerformanceEdgeCases:
     def test_many_small_abstracts(self, benchmark):
         """Test with many papers but small abstracts."""
         papers = generate_mock_papers(1000, abstract_length=100)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=5))
 
-        assert "themes" in result
+        assert result.themes is not None
         print("\n=== SMALL ABSTRACTS (100 chars) ===")
         print(f"Time: {benchmark.stats.mean:.3f}s for 1000 papers")
 
     def test_few_large_abstracts(self, benchmark):
         """Test with few papers but large abstracts."""
         papers = generate_mock_papers(50, abstract_length=5000)
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=5))
 
-        assert "themes" in result
+        assert result.themes is not None
         print("\n=== LARGE ABSTRACTS (5000 chars) ===")
         print(f"Time: {benchmark.stats.mean:.3f}s for 50 papers")
 
@@ -387,11 +387,11 @@ class TestAnalysisPerformanceEdgeCases:
                 )
             )
 
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=5))
 
-        assert "themes" in result
+        assert result.themes is not None
         print("\n=== IDENTICAL PAPERS ===")
         print(f"Time: {benchmark.stats.mean:.3f}s for 500 similar papers")
 
@@ -420,11 +420,11 @@ class TestAnalysisPerformanceEdgeCases:
                 )
             )
 
-        use_case = AnalyzeThemesUseCase(ai_analyzer=None)
+        use_case = AnalyzeThemesUseCase()
 
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=10))
 
-        assert "themes" in result
+        assert result.themes is not None
         print("\n=== DIVERSE PAPERS ===")
         print(f"Time: {benchmark.stats.mean:.3f}s for 500 diverse papers")
-        print(f"Themes found: {len(result['themes'])}")
+        print(f"Themes found: {len(result.themes)}")
