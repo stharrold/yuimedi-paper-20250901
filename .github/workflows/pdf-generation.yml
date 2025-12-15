@@ -1,11 +1,12 @@
-name: PDF Generation
+name: Paper Artifacts Generation
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, develop, 'contrib/*']
     paths:
       - 'paper.md'
       - 'metadata.yaml'
+      - 'figures/**'
       - 'scripts/build_paper.sh'
       - 'Containerfile'
       - '.github/workflows/pdf-generation.yml'
@@ -13,22 +14,27 @@ on:
     paths:
       - 'paper.md'
       - 'metadata.yaml'
+      - 'figures/**'
       - 'scripts/build_paper.sh'
   release:
     types: [published]
   workflow_dispatch:
 
 jobs:
-  build-pdf:
-    name: Generate PDF
+  build-paper:
+    name: Generate Paper Artifacts
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: write  # Required for auto-commit
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          # Token with write access for auto-commit
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -43,76 +49,78 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Generate PDF
+      - name: Generate all paper formats
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/app \
             -w /app \
             yuimedi-paper:latest \
-            ./scripts/build_paper.sh --format pdf
+            ./scripts/build_paper.sh --format all
 
-      - name: Verify PDF
+      - name: Verify outputs
         run: |
-          ls -la paper.pdf
-          if [ ! -s paper.pdf ]; then
-            echo "Error: paper.pdf is empty"
-            exit 1
-          fi
-          echo "PDF size: $(du -h paper.pdf | cut -f1)"
+          for file in paper.pdf paper.html paper.docx paper.tex; do
+            if [ ! -s "$file" ]; then
+              echo "Error: $file is empty or missing"
+              exit 1
+            fi
+            echo "$file: $(du -h $file | cut -f1)"
+          done
 
-      - name: Upload PDF artifact
+      - name: Auto-commit updated artifacts
+        if: github.event_name == 'push'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "build: regenerate paper artifacts [skip ci]"
+          file_pattern: 'paper.pdf paper.html paper.docx paper.tex'
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: GitHub Actions <github-actions[bot]@users.noreply.github.com>
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: paper-pdf
-          path: paper.pdf
+          name: paper-artifacts
+          path: |
+            paper.pdf
+            paper.html
+            paper.docx
+            paper.tex
           retention-days: 90
           if-no-files-found: error
-
-      - name: Generate HTML (optional)
-        if: github.event_name == 'release'
-        run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/app \
-            -w /app \
-            yuimedi-paper:latest \
-            ./scripts/build_paper.sh --format html
-
-      - name: Upload HTML artifact
-        if: github.event_name == 'release'
-        uses: actions/upload-artifact@v4
-        with:
-          name: paper-html
-          path: paper.html
-          retention-days: 90
 
       - name: Report summary
         if: always()
         run: |
-          echo "## PDF Generation Results" >> $GITHUB_STEP_SUMMARY
+          echo "## Paper Generation Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -f paper.pdf ]; then
-            echo "**Status:** Success" >> $GITHUB_STEP_SUMMARY
-            echo "**PDF Size:** $(du -h paper.pdf | cut -f1)" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "**Status:** Failed" >> $GITHUB_STEP_SUMMARY
-          fi
+          echo "| Format | Size | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|------|--------|" >> $GITHUB_STEP_SUMMARY
+          for file in paper.pdf paper.html paper.docx paper.tex; do
+            if [ -f "$file" ]; then
+              size=$(du -h "$file" | cut -f1)
+              echo "| $file | $size | ✓ |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| $file | - | ✗ |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
           echo "**Ref:** ${{ github.ref }}" >> $GITHUB_STEP_SUMMARY
 
   attach-to-release:
-    name: Attach PDF to Release
-    needs: build-pdf
+    name: Attach Artifacts to Release
+    needs: build-paper
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
     permissions:
       contents: write
 
     steps:
-      - name: Download PDF artifact
+      - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          name: paper-pdf
+          name: paper-artifacts
 
       - name: Get release version
         id: version
@@ -121,23 +129,12 @@ jobs:
       - name: Rename PDF with version
         run: mv paper.pdf "yuiquery-paper-${{ steps.version.outputs.version }}.pdf"
 
-      - name: Attach PDF to release
+      - name: Attach artifacts to release
         uses: softprops/action-gh-release@v1
         with:
-          files: "yuiquery-paper-${{ steps.version.outputs.version }}.pdf"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Download HTML artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: paper-html
-        continue-on-error: true
-
-      - name: Attach HTML to release
-        if: success()
-        uses: softprops/action-gh-release@v1
-        with:
-          files: "paper.html"
+          files: |
+            yuiquery-paper-${{ steps.version.outputs.version }}.pdf
+            paper.html
+            paper.docx
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
