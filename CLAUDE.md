@@ -243,3 +243,15 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 **Preprint strategy:**
 - arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY
 - medRxiv: NOT eligible (narrative reviews excluded)
+
+## Licensing
+
+**Dual-licensed repository:**
+- **Code** (Python, scripts, tools): Apache 2.0
+- **Paper** (paper.md, docs/): CC BY 4.0
+
+All Python source files include SPDX headers:
+```python
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
+```
