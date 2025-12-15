@@ -110,13 +110,11 @@ class TestAnalysisPerformanceTarget:
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=5))
 
         assert result.themes is not None
+        assert benchmark.stats.mean < 5.0  # Should be under 5 seconds
 
-        # Performance assertions only available in benchmark mode
-        if hasattr(benchmark.stats, "mean"):
-            assert benchmark.stats.mean < 5.0  # Should be under 5 seconds
-            print("\n=== 100 PAPERS BASELINE ===")
-            print(f"Mean time: {benchmark.stats.mean:.3f}s")
-            print(f"Themes found: {len(result.themes)}")
+        print("\n=== 100 PAPERS BASELINE ===")
+        print(f"Mean time: {benchmark.stats.mean:.3f}s")
+        print(f"Themes found: {len(result.themes)}")
 
     def test_1000_papers_extended(self, benchmark):
         """Test analysis with 1000 papers (extended scenario)."""
