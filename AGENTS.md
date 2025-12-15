@@ -236,8 +236,16 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 ## Publication Strategy
 
-**Target journal:** npj Digital Medicine (Nature Portfolio) - IF 15.1, 7-day first decision
-- Journal policies: `npj_digital-medicine_about*.md`
+**Three-paper series** targeting JMIR Medical Informatics:
+
+| Paper | Focus | Due Date |
+|-------|-------|----------|
+| 1 | Three-Pillar Analytical Framework | Dec 31, 2025 |
+| 2 | Reference Implementation (GCP/Synthea) | Jan 31, 2026 |
+| 3 | FHIR/OMOP Schema Mapping | Mar 15, 2026 |
+
+- Revision strategy: `ppr_review/20251215_Revision-Strategy-Milestones.md`
+- Journal policies: `standards/npj_digital-medicine_about*.md`
 - Submission guide: `docs/journal-submission-guide.md`
 
 **Preprint strategy:**
