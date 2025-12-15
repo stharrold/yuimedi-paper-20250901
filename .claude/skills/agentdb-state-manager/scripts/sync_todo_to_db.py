@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Sync TODO_*.md files to AgentDB.
 
 Parses YAML frontmatter from TODO files and converts to immutable append-only

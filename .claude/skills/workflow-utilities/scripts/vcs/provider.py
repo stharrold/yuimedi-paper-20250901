@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """VCS provider detection and enumeration.
 
 This module provides VCS provider detection from git remotes and configuration.

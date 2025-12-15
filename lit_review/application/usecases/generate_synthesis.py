@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Generate synthesis use case for creating narrative literature reviews.
 
 This use case generates structured synthesis from papers and themes,

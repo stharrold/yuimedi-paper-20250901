@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Initialize a new repository with the workflow system from a source repository.
 
 This meta-skill (Phase 0) bootstraps new repositories by copying the workflow

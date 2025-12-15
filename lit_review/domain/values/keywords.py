@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Keywords value object for academic papers.
 
 Represents a collection of keywords with validation, normalization,

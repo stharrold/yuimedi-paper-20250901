@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Application use cases - orchestrate domain entities."""
 
 from lit_review.application.usecases.analyze_themes import AnalyzeThemesUseCase

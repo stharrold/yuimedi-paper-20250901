@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Workflow progress tracking in worktree state directory.
 
 This module manages workflow progress state stored in .claude-state/workflow.json.

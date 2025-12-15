@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """VCS configuration loading and validation.
 
 This module handles loading and validating .vcs_config.yaml files.

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Domain exceptions for lit_review.
 
 These exceptions represent business rule violations and domain errors.

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Author value object for academic papers.
 
 Represents an author with name components and optional ORCID identifier.

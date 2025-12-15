@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Azure DevOps VCS adapter using az CLI.
 
 This adapter implements VCS operations for Azure DevOps using the az command-line tool.

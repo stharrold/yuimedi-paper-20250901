@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Update existing CLAUDE.md files to include new children references.
 
 This script updates skill CLAUDE.md files to include references to newly

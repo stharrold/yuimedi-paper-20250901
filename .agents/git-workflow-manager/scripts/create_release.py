@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Create release branch from base branch with TODO file generation.
 
 This script implements Step 5.1 of Phase 5 (Release Workflow) as documented

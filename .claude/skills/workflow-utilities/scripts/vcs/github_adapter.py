@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """GitHub VCS adapter using gh CLI.
 
 This adapter implements VCS operations for GitHub using the gh command-line tool.
