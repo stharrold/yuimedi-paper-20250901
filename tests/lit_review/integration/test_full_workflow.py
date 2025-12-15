@@ -44,11 +44,21 @@ def review_repository(temp_review_dir: Path) -> JSONReviewRepository:
 
 @pytest.fixture
 def search_use_case() -> SearchPapersUseCase:
-    """Create a search use case with all adapters."""
+    """Create a search use case with all adapters.
+
+    Note: PubMed adapter is only added if NCBI_EMAIL is set,
+    as it's required by NCBI policy.
+    """
+    import os
+
     use_case = SearchPapersUseCase()
     use_case.add_service("arxiv", ArxivAdapter())
     use_case.add_service("crossref", CrossrefAdapter())
-    use_case.add_service("pubmed", PubMedAdapter())
+
+    # Only add PubMed if email is configured (required by NCBI)
+    if os.environ.get("NCBI_EMAIL"):
+        use_case.add_service("pubmed", PubMedAdapter())
+
     use_case.add_service("semantic_scholar", SemanticScholarAdapter())
     return use_case
 
@@ -471,7 +481,7 @@ class TestFullWorkflowWithNetwork:
         try:
             papers = search_use_case.execute(
                 query="COVID-19 treatment randomized controlled trial",
-                databases=["pubmed"],  # Use only PubMed for reliability
+                databases=["crossref"],  # Use Crossref (no auth required)
                 limit=5,
             )
 
@@ -553,7 +563,7 @@ class TestFullWorkflowWithNetwork:
         try:
             papers = search_use_case.execute(
                 query="xyzxyzxyzinvalidquerythatshouldfail12345",
-                databases=["pubmed"],
+                databases=["crossref"],  # Use Crossref (no auth required)
                 limit=1,
             )
             # If it returns results, that's fine (shouldn't fail)
@@ -566,9 +576,10 @@ class TestFullWorkflowWithNetwork:
     def test_multiple_databases_concurrent_search(self, search_use_case: SearchPapersUseCase):
         """Test searching multiple databases concurrently."""
         try:
+            # Use databases that don't require authentication
             papers = search_use_case.execute(
                 query="machine learning healthcare",
-                databases=["arxiv", "pubmed", "crossref"],
+                databases=["arxiv", "crossref", "semantic_scholar"],
                 limit=3,
             )
 

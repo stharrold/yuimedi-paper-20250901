@@ -34,10 +34,20 @@ def get_worktree_info() -> dict:
 
 
 def run_tests():
-    """Run all tests and verify they pass."""
+    """Run all tests and verify they pass.
+
+    Excludes integration and benchmark tests by default:
+    - integration: require network/external services
+    - benchmark: require --benchmark-only flag for proper stats
+    """
     print("Running tests...")
     prefix = get_command_prefix()
-    result = subprocess.run(prefix + ["pytest", "-v"], capture_output=True, text=True)
+    # Exclude integration and benchmark tests (run separately with appropriate flags)
+    result = subprocess.run(
+        prefix + ["pytest", "-v", "-m", "not integration and not benchmark"],
+        capture_output=True,
+        text=True,
+    )
 
     passed = result.returncode == 0
 

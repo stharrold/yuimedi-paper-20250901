@@ -90,6 +90,10 @@ dev-dependencies = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+markers = [
+    "benchmark: marks tests as benchmark tests (deselect with '-m \"not benchmark\"')",
+    "integration: marks tests as integration tests requiring network/external services (deselect with '-m \"not integration\"')",
+]
 
 [tool.coverage.run]
 source = ["lit_review"]
