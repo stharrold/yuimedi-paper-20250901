@@ -27,6 +27,10 @@ class FastMockSearchService(SearchService):
         self.delay_ms = delay_ms
         self._call_count = 0
 
+    def get_service_name(self) -> str:
+        """Return the name of this search service."""
+        return "FastMockSearchService"
+
     def search(self, query: str, limit: int = 10) -> list[Paper]:
         """Return mock papers with minimal delay."""
         self._call_count += 1
@@ -57,6 +61,10 @@ class SlowMockSearchService(SearchService):
         """Initialize with configurable results and delay."""
         self.results_per_call = results_per_call
         self.delay_ms = delay_ms
+
+    def get_service_name(self) -> str:
+        """Return the name of this search service."""
+        return "SlowMockSearchService"
 
     def search(self, query: str, limit: int = 10) -> list[Paper]:
         """Return mock papers with realistic network delay."""
@@ -152,6 +160,9 @@ class TestSearchPerformanceThroughput:
         class OverlappingMockService(SearchService):
             def __init__(self, service_id: int):
                 self.service_id = service_id
+
+            def get_service_name(self) -> str:
+                return f"OverlappingMockService_{self.service_id}"
 
             def search(self, query: str, limit: int = 10) -> list[Paper]:
                 time.sleep(0.05)  # 50ms delay
@@ -282,6 +293,9 @@ class TestSearchPerformanceRealistic:
         class FlakeyService(SearchService):
             def __init__(self):
                 self.attempt = 0
+
+            def get_service_name(self) -> str:
+                return "FlakeyService"
 
             def search(self, query: str, limit: int = 10) -> list[Paper]:
                 self.attempt += 1
