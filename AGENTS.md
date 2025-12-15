@@ -25,12 +25,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 22 verified citations addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 35 verified citations (24 academic, 11 industry) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
 
-**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261). Removed: 29 unused references, 5 likely AI-generated fabrications, and unverifiable claims. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
+**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261), then expanded to 25 with additional DOI-verified sources. Removed incorrect reference [A8] Lee 2022 (Issue #285), resulting in 24 citations. Added 5 DOI-verified academic citations [A14]-[A18] from Analytics_Pace.md to strengthen organizational maturity claims (Issue #289), resulting in 29 citations. Added 5 DOI-verified academic citations [A19]-[A23] from Analytics_Low-Code-ROI.md to strengthen low-code ROI claims with peer-reviewed sources, reducing prominence of vendor-sponsored Forrester research (Issue #291), resulting in 34 citations. Added 1 DOI-verified academic citation [A24] Massingham (2018) for knowledge worker turnover costs, replacing vendor-specific Oracle claim (Issue #298), resulting in 35 citations. Total removed: 29 unused references, 5 likely AI-generated fabrications, 1 incorrect reference. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
 
 **Paper classification:** Narrative review with original analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
 
@@ -42,7 +42,7 @@ uv sync                                    # Local
 podman-compose build                       # Container (recommended)
 
 # Quality checks (run before commits)
-./validate_documentation.sh                # Documentation validation (6 tests)
+./validate_documentation.sh                # Documentation validation (7 tests)
 python scripts/validate_references.py --all  # Reference validation + URL checks
 uv run ruff format . && uv run ruff check --fix .  # Format + lint
 uv run mypy scripts/ lit_review/           # Type checking
@@ -150,7 +150,7 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 - Optional AI-powered synthesis with fallback to keyword-based approach
 
 ### Validation System
-`./validate_documentation.sh` runs 6 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure, and reference validation (citations in paper.md).
+`./validate_documentation.sh` runs 7 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure, reference validation (citations in paper.md), and LaTeX-in-URL validation.
 
 ### AI Config Sync
 Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` for cross-tool compatibility.
@@ -171,6 +171,7 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 
 **Container architecture:**
 - Python 3.12 + uv with `--all-extras` (includes duckdb for AgentDB)
+- GitHub CLI (`gh`) for workflow automation (PR creation, issue management)
 - PDF generation: pandoc + texlive-xetex + Eisvogel template
 - Named volume `venv_cache` isolates container `.venv` from host (avoids macOS/Linux binary mismatch)
 - Always use `uv run` prefix in container for proper venv activation
@@ -214,7 +215,7 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 **Required knowledge:** ICD-10, CPT, SNOMED, RxNorm vocabularies; HIMSS AMAM stages; HL7/FHIR standards; HIPAA compliance.
 
-**Academic standards:** PRISMA guidelines for systematic reviews; statistical reporting with p-values/CIs; evidence hierarchy prioritizing RCTs.
+**Academic standards:** PRISMA guidelines for systematic reviews (not applicable to this narrative review - see `docs/prisma-assessment.md`); statistical reporting with p-values/CIs; evidence hierarchy prioritizing RCTs.
 
 ## Publication Strategy
 

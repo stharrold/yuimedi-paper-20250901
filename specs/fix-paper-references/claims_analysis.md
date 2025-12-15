@@ -233,3 +233,9 @@ Industry: I2, I3, I4, I5, I7, I9, I10, I12, I14, I17, I18, I19, I20, I21, I22, I
 1. [A23] RAG approaches (arxiv - likely valid)
 2. [A19] 127 papers systematic review
 3. Case study specific figures
+
+---
+
+## Post-Analysis Updates
+
+**Issue #285 (2025-12-14):** Reference [A8] Lee 2022 ("Medical entity recognition and SQL query generation using semantic parsing for electronic health records") was identified as incorrect and removed from paper.md. All subsequent academic references were renumbered ([A9]-[A14] → [A8]-[A13]). The reference numbers in this document reflect the pre-cleanup state and are historical.

@@ -10,10 +10,11 @@ Quality gates ensure each paper meets minimum standards before proceeding to nex
 - **Decision Maker**: YLT designated member
 - **Deadline**: 2025-09-25
 - **Evidence Required**:
-  - Systematic review protocol documented
-  - PRISMA flow diagram completed
+  - Literature methodology transparency documented (see Methodology section in paper.md)
+  - Source selection criteria stated in paper
   - Gap analysis validates YuiQuery need
   - Citations from peer-reviewed journals
+  - Note: Full PRISMA compliance not required for narrative reviews (see docs/prisma-assessment.md)
 - **Reference**: https://www.nasa.gov/wp-content/uploads/2017/12/458490main_trl_definitions.pdf
 
 ## Gate 2: Algorithm Accuracy (Paper 2)

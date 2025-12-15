@@ -1,17 +1,17 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-14 04:06:43 UTC
+**Generated:** 2025-12-15 02:21:47 UTC
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total References | 22 |
-| Academic [A*] | 11 |
+| Total References | 29 |
+| Academic [A*] | 18 |
 | Industry [I*] | 11 |
-| Total Citations | 65 |
-| Accessible URLs | 11 |
-| Broken URLs | 11 |
+| Total Citations | 72 |
+| Accessible URLs | 15 |
+| Broken URLs | 14 |
 | Missing URLs | 0 |
 | Orphaned Citations | 0 |
 | Unused References | 0 |
@@ -25,16 +25,19 @@ References with inaccessible URLs:
 | Reference | URL | Error |
 |-----------|-----|-------|
 | [A1] | https://pmc.ncbi.nlm.nih.gov/articles/PMC10802134/ | HTTP 403: Forbidden |
-| [A2] | https://pmc.ncbi.nlm.nih.gov/\break | HTTP 403: Forbidden |
-| [A4] | https://www.sciencedirect.com/science/article/pii/\break | HTTP 403: Forbidden |
-| [A7] | https://www.tandfonline.com/doi/full/10.1080/\break | HTTP 403: Forbidden |
-| [A8] | https://www.sciencedirect.com/science/article/pii/S153204642... | HTTP 403: Forbidden |
-| [A9] | https://ai.nejm.org/doi/full/10.1056/AIdbp2500144 | HTTP 403: Forbidden |
-| [A11] | https://dl.acm.org/doi/10.1145/1017114.1017118 | HTTP 403: Forbidden |
+| [A2] | https://pmc.ncbi.nlm.nih.gov/articles/PMC11919231/ | HTTP 403: Forbidden |
+| [A4] | https://www.sciencedirect.com/science/article/pii/S138650562... | HTTP 403: Forbidden |
+| [A7] | https://www.tandfonline.com/doi/full/10.1080/20479700.2018.1... | HTTP 403: Forbidden |
+| [A8] | https://ai.nejm.org/doi/full/10.1056/AIdbp2500144 | HTTP 403: Forbidden |
+| [A10] | https://dl.acm.org/doi/10.1145/1017114.1017118 | HTTP 403: Forbidden |
+| [A12] | https://pubmed.ncbi.nlm.nih.gov/20054502/ | HTTP 403: Forbidden |
+| [A13] | https://pmc.ncbi.nlm.nih.gov/articles/PMC10243608/ | HTTP 403: Forbidden |
+| [A14] | https://www.sciencedirect.com/science/article/pii/S004016251... | HTTP 403: Forbidden |
+| [A15] | https://www.health.org.uk/publications/understanding-analyti... | HTTP 403: Forbidden |
+| [A17] | https://www.redjournal.org/article/S0360-3016(16)00260-1/ful... | HTTP 403: Forbidden |
 | [I1] | https://www.himss.org/maturity-models/amam/ | HTTP 403: Forbidden |
-| [I6] | https://www.oracle.com/\break | HTTP 403: Forbidden |
-| [I9] | https://www.wsj.com/articles/\break | HTTP 401: HTTP Forbidden |
-| [I10] | https://www.cnbc.com/2021/01/04/\break | HTTP 404: Not Found |
+| [I9] | https://www.wsj.com/articles/ibm-to-sell-watson-health-asset... | HTTP 401: HTTP Forbidden |
+| [I10] | https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-j... | HTTP 404: Not Found |
 
 ## All References
 
@@ -51,15 +54,22 @@ References with inaccessible URLs:
 | [A6] | academic | OK (200) |
 | [A7] | academic | Failed: HTTP 403: Forbidden |
 | [A8] | academic | Failed: HTTP 403: Forbidden |
-| [A9] | academic | Failed: HTTP 403: Forbidden |
-| [A10] | academic | OK (200) |
-| [A11] | academic | Failed: HTTP 403: Forbidden |
+| [A9] | academic | OK (200) |
+| [A10] | academic | Failed: HTTP 403: Forbidden |
+| [A11] | academic | OK (200) |
+| [A12] | academic | Failed: HTTP 403: Forbidden |
+| [A13] | academic | Failed: HTTP 403: Forbidden |
+| [A14] | academic | Failed: HTTP 403: Forbidden |
+| [A15] | academic | Failed: HTTP 403: Forbidden |
+| [A16] | academic | OK (200) |
+| [A17] | academic | Failed: HTTP 403: Forbidden |
+| [A18] | academic | OK (200) |
 | [I1] | industry | Failed: HTTP 403: Forbidden |
 | [I2] | industry | OK (200) |
 | [I3] | industry | OK (200) |
 | [I4] | industry | OK (200) |
 | [I5] | industry | OK (200) |
-| [I6] | industry | Failed: HTTP 403: Forbidden |
+| [I6] | industry | OK (200) |
 | [I7] | industry | OK (200) |
 | [I8] | industry | OK (200) |
 | [I9] | industry | Failed: HTTP 401: HTTP Forbidden |
