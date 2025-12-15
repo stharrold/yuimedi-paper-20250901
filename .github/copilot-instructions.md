@@ -123,6 +123,16 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 | `develop`, `main` | PRs only |
 | `release/*` | Ephemeral (create from develop, delete after merge) |
 
+## Commit Convention
+
+Use conventional commits format:
+- `fix(paper):` - Reference or content fixes
+- `feat(ci):` - New CI/CD features
+- `docs(CLAUDE.md):` - Documentation updates
+- `build:` - Build/artifact changes
+
+Include `Closes #<issue>` in commit body to auto-close GitHub issues.
+
 ## Architecture
 
 ### Dependency Strategy
@@ -152,8 +162,13 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 ### Validation System
 `./validate_documentation.sh` runs 7 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure, reference validation (citations in paper.md), and LaTeX-in-URL validation.
 
-### AI Config Sync
-Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` for cross-tool compatibility.
+### Pre-commit Hooks
+Hooks run automatically on every commit:
+- Trim trailing whitespace, fix end of files
+- Validate YAML/JSON structure
+- Check for large files, merge conflicts, private keys
+- Run ruff format/lint on Python files
+- Sync AI configs: `.claude/` → `.agents/`, `CLAUDE.md` → `AGENTS.md`
 
 ### Workflow Skills
 9 skills in `.claude/skills/` for major releases and complex git operations. **Don't use for daily edits.**
