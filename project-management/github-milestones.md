@@ -14,34 +14,37 @@
 
 **Title**: Paper 1: Literature Review & Evidence Synthesis
 
-**Due Date**: September 30, 2025
+**Due Date**: December 31, 2025
 
 **Description**:
 ```
-Systematic literature review on conversational AI platforms for healthcare analytics.
+Narrative review with original analytical framework on conversational AI platforms for healthcare analytics.
 
 Deliverables:
 - Comprehensive evidence synthesis across 3 pillars:
   1. Healthcare analytics maturity challenges
   2. Institutional memory loss from workforce turnover
   3. Technical barriers in natural language to SQL
-- PRISMA-compliant systematic review methodology
-- 111+ academic and industry citations
+- Narrative review methodology (NOT systematic review/meta-analysis)
+- 41 verified citations (30 academic, 11 industry)
 - Publication-ready manuscript
 
 Key Milestones:
-- Literature search completion
-- Evidence extraction and synthesis
-- Draft manuscript completion
-- SME review cycle
-- Final revisions
-- Submission to medRxiv/journal
+- Literature search completion ✓
+- Evidence extraction and synthesis ✓
+- Draft manuscript completion ✓
+- Citation verification ✓
+- Final revisions (in progress)
+- Submission to arXiv (cs.CL) and npj Digital Medicine
 
 Success Criteria:
-- Minimum 10 healthcare institutions referenced
-- Systematic review methodology validated
+- Three-pillar analytical framework documented
+- All citations verified via DOI or authoritative sources
 - Academic quality standards met
 - Ready for peer review submission
+
+Note: Paper type is narrative review, not systematic review.
+medRxiv does NOT accept narrative reviews - using arXiv instead.
 ```
 
 **State**: Open
@@ -161,19 +164,19 @@ Target: Q1 2026 completion
 gh api repos/stharrold/yuimedi-paper-20250901/milestones \
   --method POST \
   --field title="Paper 1: Literature Review & Evidence Synthesis" \
-  --field due_on="2025-09-30T23:59:59Z" \
-  --field description="Systematic literature review on conversational AI platforms for healthcare analytics.
+  --field due_on="2025-12-31T23:59:59Z" \
+  --field description="Narrative review with original analytical framework on conversational AI platforms for healthcare analytics.
 
 Deliverables:
 - Comprehensive evidence synthesis across 3 pillars
-- PRISMA-compliant systematic review methodology
-- 111+ academic and industry citations
+- Narrative review methodology (NOT systematic review)
+- 41 verified citations (30 academic, 11 industry)
 - Publication-ready manuscript
 
 Success Criteria:
-- Minimum 10 healthcare institutions referenced
-- Systematic review methodology validated
-- Ready for peer review submission" \
+- Three-pillar analytical framework documented
+- All citations verified via DOI or authoritative sources
+- Ready for peer review submission (arXiv + npj Digital Medicine)" \
   --field state="open"
 
 # Milestone 2: Paper 2
@@ -242,19 +245,19 @@ repo = g.get_repo("stharrold/yuimedi-paper-20250901")
 # Milestone 1: Paper 1
 milestone1 = repo.create_milestone(
     title="Paper 1: Literature Review & Evidence Synthesis",
-    due_on="2025-09-30T23:59:59Z",
-    description="""Systematic literature review on conversational AI platforms for healthcare analytics.
+    due_on="2025-12-31T23:59:59Z",
+    description="""Narrative review with original analytical framework on conversational AI platforms for healthcare analytics.
 
 Deliverables:
 - Comprehensive evidence synthesis across 3 pillars
-- PRISMA-compliant systematic review methodology
-- 111+ academic and industry citations
+- Narrative review methodology (NOT systematic review)
+- 41 verified citations (30 academic, 11 industry)
 - Publication-ready manuscript
 
 Success Criteria:
-- Minimum 10 healthcare institutions referenced
-- Systematic review methodology validated
-- Ready for peer review submission""",
+- Three-pillar analytical framework documented
+- All citations verified via DOI or authoritative sources
+- Ready for peer review submission (arXiv + npj Digital Medicine)""",
     state="open"
 )
 print(f"Created: {milestone1.title}")
@@ -398,11 +401,11 @@ Milestones should be reflected in:
 ## Success Criteria Summary
 
 ### Paper 1 Milestone Success
-- ✅ Literature review methodology validated
-- ✅ Minimum 10 healthcare institutions referenced
-- ✅ 111+ citations quality-checked
-- ✅ Ready for journal submission
-- ✅ Due: 2025-09-30
+- ✅ Narrative review methodology validated (NOT systematic review)
+- ✅ Three-pillar analytical framework documented
+- ✅ 41 citations verified (30 academic, 11 industry)
+- ✅ Ready for submission to arXiv + npj Digital Medicine
+- ✅ Due: 2025-12-31
 
 ### Paper 2 Milestone Success
 - ✅ Algorithm accuracy >85%
@@ -423,11 +426,18 @@ Milestones should be reflected in:
 ## Document Control
 
 **Document**: GitHub Milestones Configuration
-**Version**: 1.0
+**Version**: 1.1
 **Created**: 2025-11-21
-**Last Updated**: 2025-11-21
-**Next Review**: 2025-12-21
+**Last Updated**: 2025-12-15
+**Next Review**: 2026-01-15
 **Owner**: Project Management Team
+
+**Changelog v1.1 (2025-12-15)**:
+- Updated Paper 1 from "systematic review" to "narrative review"
+- Corrected citation count from 111+ to 41 (30 academic, 11 industry)
+- Changed submission target from medRxiv to arXiv (medRxiv excludes narrative reviews)
+- Updated due date from 2025-09-30 to 2025-12-31
+- Added progress checkmarks to Key Milestones
 
 **Related Documents**:
 - project-management.md (Timeline and deadlines)

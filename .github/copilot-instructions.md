@@ -25,12 +25,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 35 verified citations (24 academic, 11 industry) addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 41 verified citations (30 academic, 11 industry) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
 
-**Citation history:** Original draft had 111 citations, reduced to 18 after rigorous verification (Issue #261), then expanded to 25 with additional DOI-verified sources. Removed incorrect reference [A8] Lee 2022 (Issue #285), resulting in 24 citations. Added 5 DOI-verified academic citations [A14]-[A18] from Analytics_Pace.md to strengthen organizational maturity claims (Issue #289), resulting in 29 citations. Added 5 DOI-verified academic citations [A19]-[A23] from Analytics_Low-Code-ROI.md to strengthen low-code ROI claims with peer-reviewed sources, reducing prominence of vendor-sponsored Forrester research (Issue #291), resulting in 34 citations. Added 1 DOI-verified academic citation [A24] Massingham (2018) for knowledge worker turnover costs, replacing vendor-specific Oracle claim (Issue #298), resulting in 35 citations. Total removed: 29 unused references, 5 likely AI-generated fabrications, 1 incorrect reference. All remaining citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
+**Citation verification:** All citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
 
 **Paper classification:** Narrative review with original analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
 
@@ -123,6 +123,16 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 | `develop`, `main` | PRs only |
 | `release/*` | Ephemeral (create from develop, delete after merge) |
 
+## Commit Convention
+
+Use conventional commits format:
+- `fix(paper):` - Reference or content fixes
+- `feat(ci):` - New CI/CD features
+- `docs(CLAUDE.md):` - Documentation updates
+- `build:` - Build/artifact changes
+
+Include `Closes #<issue>` in commit body to auto-close GitHub issues.
+
 ## Architecture
 
 ### Dependency Strategy
@@ -152,8 +162,13 @@ main (production) ← release/* ← develop ← contrib/stharrold ← feature/*
 ### Validation System
 `./validate_documentation.sh` runs 7 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure, reference validation (citations in paper.md), and LaTeX-in-URL validation.
 
-### AI Config Sync
-Pre-commit hooks sync `.claude/` → `.agents/` and `CLAUDE.md` → `AGENTS.md` for cross-tool compatibility.
+### Pre-commit Hooks
+Hooks run automatically on every commit:
+- Trim trailing whitespace, fix end of files
+- Validate YAML/JSON structure
+- Check for large files, merge conflicts, private keys
+- Run ruff format/lint on Python files
+- Sync AI configs: `.claude/` → `.agents/`, `CLAUDE.md` → `AGENTS.md`
 
 ### Workflow Skills
 9 skills in `.claude/skills/` for major releases and complex git operations. **Don't use for daily edits.**
@@ -177,6 +192,8 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 - Always use `uv run` prefix in container for proper venv activation
 
 **Why containers?** Eliminates "works locally, fails in CI" issues by using identical environment (Python 3.12, uv, dependencies) in both contexts.
+
+**Auto-build paper artifacts:** When `paper.md`, `metadata.yaml`, or `figures/**` changes are pushed to `main`, `develop`, or `contrib/*` branches, GitHub Actions automatically rebuilds all paper formats (PDF, HTML, DOCX, TEX) and commits them back with `[skip ci]` to prevent loops.
 
 ### Environment Variables
 - `LIT_REVIEW_DATA_DIR` - Data storage location (default: `~/.lit_review`)
@@ -219,10 +236,30 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 ## Publication Strategy
 
-**Target journal:** npj Digital Medicine (Nature Portfolio) - IF 15.1, 7-day first decision
-- Journal policies: `npj_digital-medicine_about*.md`
+**Three-paper series** targeting JMIR Medical Informatics:
+
+| Paper | Focus | Due Date |
+|-------|-------|----------|
+| 1 | Three-Pillar Analytical Framework | Dec 31, 2025 |
+| 2 | Reference Implementation (GCP/Synthea) | Jan 31, 2026 |
+| 3 | FHIR/OMOP Schema Mapping | Mar 15, 2026 |
+
+- Revision strategy: `ppr_review/20251215_Revision-Strategy-Milestones.md`
+- Journal policies: `standards/npj_digital-medicine_about*.md`
 - Submission guide: `docs/journal-submission-guide.md`
 
 **Preprint strategy:**
 - arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY
 - medRxiv: NOT eligible (narrative reviews excluded)
+
+## Licensing
+
+**Dual-licensed repository:**
+- **Code** (Python, scripts, tools): Apache 2.0
+- **Paper** (paper.md, docs/): CC BY 4.0
+
+All Python source files include SPDX headers:
+```python
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
+```

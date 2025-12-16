@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Citation formatter service for generating formatted citations.
 
 Provides methods to format Paper entities into various citation formats

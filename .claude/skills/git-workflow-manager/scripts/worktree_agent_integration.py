@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Worktree-aware agent integration utilities.
 
 Provides flow token extraction and sync completion triggers using

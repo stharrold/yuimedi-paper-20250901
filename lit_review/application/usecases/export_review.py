@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Export review use case for generating formatted output.
 
 Handles exporting reviews to various formats including BibTeX and JSON.

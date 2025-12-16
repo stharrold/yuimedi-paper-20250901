@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Claude AI analyzer with graceful fallback to keyword-based analysis.
 
 Implements the AIAnalyzer port using Anthropic's Claude API with

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Update all CLAUDE.md files with cross-references to parent, children, and README."""
 
 import sys

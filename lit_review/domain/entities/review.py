@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Review entity with workflow stage enforcement.
 
 The Review entity manages a systematic literature review, enforcing workflow

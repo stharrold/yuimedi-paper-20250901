@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Test schema migration for agentdb_sync_schema.sql
 
 This script validates the MIT Agent Synchronization Pattern database schema

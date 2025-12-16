@@ -1,22 +1,28 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-15 02:21:47 UTC
+**Generated:** 2025-12-16 00:24:04 UTC
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total References | 29 |
-| Academic [A*] | 18 |
+| Total References | 41 |
+| Academic [A*] | 30 |
 | Industry [I*] | 11 |
-| Total Citations | 72 |
-| Accessible URLs | 15 |
-| Broken URLs | 14 |
+| Total Citations | 89 |
+| Accessible URLs | 22 |
+| Broken URLs | 19 |
 | Missing URLs | 0 |
 | Orphaned Citations | 0 |
-| Unused References | 0 |
+| Unused References | 1 |
 
 ## Issues
+
+### Unused References
+
+References defined but never cited in the paper body:
+
+- [A26]
 
 ### Broken URLs
 
@@ -35,8 +41,13 @@ References with inaccessible URLs:
 | [A14] | https://www.sciencedirect.com/science/article/pii/S004016251... | HTTP 403: Forbidden |
 | [A15] | https://www.health.org.uk/publications/understanding-analyti... | HTTP 403: Forbidden |
 | [A17] | https://www.redjournal.org/article/S0360-3016(16)00260-1/ful... | HTTP 403: Forbidden |
+| [A21] | https://pubsonline.informs.org/doi/abs/10.1287/educ.2023.025... | HTTP 403: Forbidden |
+| [A24] | https://doi.org/10.1108/JKM-08-2016-0338 | HTTP 403: Forbidden |
+| [A26] | https://digilib.uinsgd.ac.id/5114/ | URL Error: timed out |
+| [A27] | https://academic.oup.com/jamia/article/14/6/687/750453 | HTTP 403: Forbidden |
+| [A29] | https://www.acpjournals.org/doi/10.7326/M19-0871 | HTTP 403: Forbidden |
+| [A30] | https://www.sciencedirect.com/science/article/pii/S016885102... | HTTP 403: Forbidden |
 | [I1] | https://www.himss.org/maturity-models/amam/ | HTTP 403: Forbidden |
-| [I9] | https://www.wsj.com/articles/ibm-to-sell-watson-health-asset... | HTTP 401: HTTP Forbidden |
 | [I10] | https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-j... | HTTP 404: Not Found |
 
 ## All References
@@ -64,6 +75,18 @@ References with inaccessible URLs:
 | [A16] | academic | OK (200) |
 | [A17] | academic | Failed: HTTP 403: Forbidden |
 | [A18] | academic | OK (200) |
+| [A19] | academic | OK (200) |
+| [A20] | academic | OK (200) |
+| [A21] | academic | Failed: HTTP 403: Forbidden |
+| [A22] | academic | OK (200) |
+| [A23] | academic | OK (200) |
+| [A24] | academic | Failed: HTTP 403: Forbidden |
+| [A25] | academic | OK (200) |
+| [A26] | academic | Failed: URL Error: timed out |
+| [A27] | academic | Failed: HTTP 403: Forbidden |
+| [A28] | academic | OK (200) |
+| [A29] | academic | Failed: HTTP 403: Forbidden |
+| [A30] | academic | Failed: HTTP 403: Forbidden |
 | [I1] | industry | Failed: HTTP 403: Forbidden |
 | [I2] | industry | OK (200) |
 | [I3] | industry | OK (200) |
@@ -72,7 +95,7 @@ References with inaccessible URLs:
 | [I6] | industry | OK (200) |
 | [I7] | industry | OK (200) |
 | [I8] | industry | OK (200) |
-| [I9] | industry | Failed: HTTP 401: HTTP Forbidden |
+| [I9] | industry | OK (200) |
 | [I10] | industry | Failed: HTTP 404: Not Found |
 | [I11] | industry | OK (200) |
 

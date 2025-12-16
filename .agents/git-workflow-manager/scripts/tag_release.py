@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Create annotated tag on main branch after release merge.
 
 This script implements Step 5.5 of Phase 5 (Release Workflow) as documented

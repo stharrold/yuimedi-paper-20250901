@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Crossref API adapter for searching academic papers.
 
 Implements the SearchService port for the Crossref API with

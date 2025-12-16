@@ -34,7 +34,7 @@ keywords:
   - thematic analysis
   - clean architecture
   - test-driven development
-license: MIT
+license: Apache-2.0
 version: 1.0.0
 date-released: '2025-12-09'
 identifiers:

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Update BMAD planning with as-built implementation details.
 
 This script runs after a feature PR is merged to contrib branch. It:

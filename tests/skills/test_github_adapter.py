@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Tests for GitHub VCS adapter.
 
 Tests the github_adapter.py module which provides GitHub CLI operations.

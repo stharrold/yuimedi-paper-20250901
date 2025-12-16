@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Tests for semantic version calculation.
 
 Tests the semantic_version.py module which calculates the next version

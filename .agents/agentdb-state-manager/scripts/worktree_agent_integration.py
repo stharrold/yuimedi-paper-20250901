@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """MIT Agent Synchronization Pattern - Integration Layer (Phase 3)
 
 Provides non-invasive hooks for existing agents to trigger sync engine with

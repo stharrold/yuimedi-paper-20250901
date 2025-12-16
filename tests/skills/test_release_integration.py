@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Integration tests for release workflow.
 
 Tests end-to-end release workflow scenarios including release branch creation,

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """ArXiv API adapter for searching preprints.
 
 Implements the SearchService port for ArXiv with rate limiting

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Search service port for academic database searches.
 
 Defines the abstract interface for search service adapters that query

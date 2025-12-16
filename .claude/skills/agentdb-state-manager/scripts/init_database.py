@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Initialize AgentDB schema for workflow state tracking.
 
 This script initializes the AgentDB database with the canonical schema for

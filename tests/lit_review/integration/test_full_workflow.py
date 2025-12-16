@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Integration tests for full literature review workflow.
 
 Tests end-to-end workflow: init → search → assess → analyze → synthesize → export

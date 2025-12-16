@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Archive completed specifications.
 
 Moves completed spec directories to docs/archived/specs/ with timestamp.

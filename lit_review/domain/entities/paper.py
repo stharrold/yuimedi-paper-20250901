@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Paper entity representing an academic publication.
 
 The Paper entity is the core domain object representing a scholarly article

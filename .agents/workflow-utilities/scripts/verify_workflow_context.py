@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Verify workflow context - ensures commands run in correct location/branch.
 
 This script validates that workflow commands are executed in the correct

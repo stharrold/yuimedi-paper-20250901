@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Search papers use case for querying academic databases.
 
 Orchestrates searching across multiple academic databases and
