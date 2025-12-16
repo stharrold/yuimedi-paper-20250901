@@ -333,9 +333,13 @@ class="toc-section-number">3.2</span> Literature Search</a></li>
 class="toc-section-number">3.3</span> Source Selection</a></li>
 <li><a href="#evidence-synthesis" id="toc-evidence-synthesis"><span
 class="toc-section-number">3.4</span> Evidence Synthesis</a></li>
+<li><a href="#grey-literature-quality-assessment"
+id="toc-grey-literature-quality-assessment"><span
+class="toc-section-number">3.5</span> Grey Literature Quality
+Assessment</a></li>
 <li><a href="#methodological-limitations"
 id="toc-methodological-limitations"><span
-class="toc-section-number">3.5</span> Methodological
+class="toc-section-number">3.6</span> Methodological
 Limitations</a></li>
 </ul></li>
 <li><a
@@ -818,7 +822,7 @@ purpose.</p>
 other data-intensive industries. Unlike technology or financial
 services, healthcare combines complex clinical workflows, extensive
 regulatory requirements, and a workforce with limited technical training
-but deep domain expertise.</p>
+but deep domain expertise [I11].</p>
 <p>The Healthcare Information Management Systems Society (HIMSS)
 Analytics Maturity Assessment Model (AMAM) provides the industry
 standard for measuring healthcare analytics capabilities across seven
@@ -866,10 +870,10 @@ require SQL expertise, statistical knowledge, and familiarity with
 complex database schemas, capabilities that clinical staff neither
 possess nor have time to develop. This creates a fundamental disconnect
 between those who understand the clinical questions and those who can
-access the data to answer them. Drawing on principles from code
-modernization, AI-assisted interfaces can bridge this gap by
-transforming legacy technical requirements into natural language
-interactions [I8].</p>
+access the data to answer them [A14], [A15], [A16]. Drawing on
+principles from code modernization, AI-assisted interfaces can bridge
+this gap by transforming legacy technical requirements into natural
+language interactions [I8].</p>
 <h3 data-number="2.2.3"
 id="institutional-memory-loss-from-workforce-turnover"><span
 class="header-section-number">2.2.3</span> Institutional Memory Loss
@@ -1072,17 +1076,164 @@ Citation verification followed the methodology documented in the
 reference verification process, which identified and removed 5 likely
 AI-generated fabrications and 29 unused references from the original
 draft.</p>
-<h2 data-number="3.5" id="methodological-limitations"><span
-class="header-section-number">3.5</span> Methodological Limitations</h2>
+<h2 data-number="3.5" id="grey-literature-quality-assessment"><span
+class="header-section-number">3.5</span> Grey Literature Quality
+Assessment</h2>
+<p>Grey literature sources were assessed using the AACODS checklist
+(Tyndall, 2010) [A31], which evaluates Authority, Accuracy, Coverage,
+Objectivity, Date, and Significance. Sources with vendor sponsorship
+were retained when no independent alternative existed but flagged
+in-text. Table 1 summarizes the assessment.</p>
+<p><strong>Table 1: AACODS Assessment of Industry Sources</strong></p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 13%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 7%" />
+<col style="width: 17%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Authority</th>
+<th>Accuracy</th>
+<th>Coverage</th>
+<th>Objectivity</th>
+<th>Date</th>
+<th>Significance</th>
+<th>Include</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[I1] HIMSS AMAM</td>
+<td>High (industry standards body)</td>
+<td>Verifiable</td>
+<td>Global</td>
+<td>High</td>
+<td>2024</td>
+<td>High</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>[I2] Snowdon/HIMSS</td>
+<td>High (HIMSS officer)</td>
+<td>Verifiable</td>
+<td>N/A</td>
+<td>High</td>
+<td>2024</td>
+<td>Medium</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>[I3] Health Catalyst</td>
+<td>Medium (vendor)</td>
+<td>Unverifiable</td>
+<td>US</td>
+<td>Low</td>
+<td>2020</td>
+<td>Medium</td>
+<td>Yes*</td>
+</tr>
+<tr class="even">
+<td>[I4] Berkshire NHS</td>
+<td>High (NHS trust)</td>
+<td>Verifiable</td>
+<td>Single site</td>
+<td>High</td>
+<td>2024</td>
+<td>High</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>[I5] Forrester/Microsoft</td>
+<td>Medium (analyst firm)</td>
+<td>Unverifiable</td>
+<td>Enterprise</td>
+<td>Low (sponsor)</td>
+<td>2024</td>
+<td>Medium</td>
+<td>Yes*</td>
+</tr>
+<tr class="even">
+<td>[I6] Oracle</td>
+<td>Low (vendor)</td>
+<td>Unverifiable</td>
+<td>N/A</td>
+<td>Low</td>
+<td>2024</td>
+<td>Low</td>
+<td>Yes*</td>
+</tr>
+<tr class="odd">
+<td>[I7] Precedence Research</td>
+<td>Medium (market research)</td>
+<td>Unverifiable</td>
+<td>Global</td>
+<td>Medium</td>
+<td>2024</td>
+<td>Medium</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>[I8] Anthropic</td>
+<td>Medium (vendor)</td>
+<td>Verifiable</td>
+<td>N/A</td>
+<td>Medium</td>
+<td>2025</td>
+<td>Low</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>[I9] IBM Newsroom</td>
+<td>High (journalism)</td>
+<td>Verifiable</td>
+<td>N/A</td>
+<td>High</td>
+<td>2022</td>
+<td>High</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>[I10] CNBC/Haven</td>
+<td>High (journalism)</td>
+<td>Verifiable</td>
+<td>N/A</td>
+<td>High</td>
+<td>2021</td>
+<td>High</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>[I11] AHIMA/NORC</td>
+<td>High (professional assoc + academic)</td>
+<td>Verifiable</td>
+<td>US</td>
+<td>High</td>
+<td>2023</td>
+<td>High</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>*Vendor sponsorship or low objectivity noted in manuscript text.</p>
+<h2 data-number="3.6" id="methodological-limitations"><span
+class="header-section-number">3.6</span> Methodological Limitations</h2>
 <p>This narrative review has inherent limitations:</p>
 <ul>
 <li><strong>Non-exhaustive search</strong>: Literature identification
 was selective rather than exhaustive; relevant studies may have been
 missed</li>
-<li><strong>No formal quality assessment</strong>: No standardized
-quality assessment tool (e.g., GRADE, Cochrane Risk of Bias) was
-applied; quality judgments were based on publication venue,
-methodological transparency, and verification of claims</li>
+<li><strong>Limited formal quality assessment</strong>: Grey literature
+sources were assessed using the AACODS checklist; however, no
+standardized quality assessment tool (e.g., GRADE, Cochrane Risk of
+Bias) was applied to peer-reviewed sources, as these tools are designed
+for clinical intervention studies rather than narrative reviews</li>
 <li><strong>Single author synthesis</strong>: Evidence synthesis
 reflects a single author’s interpretation, which may introduce
 perspective bias</li>
@@ -1202,9 +1353,10 @@ Management identifies critical barriers to analytics adoption. The study
 reveals that healthcare enterprises struggle with technology selection,
 resource allocation, and organizational readiness for data-driven
 decision making.</p>
-<p>Health Catalyst’s Healthcare Analytics Adoption Model [I3]
-corroborates these findings, documenting that most healthcare
-organizations remain at Stages 0-3, characterized by:</p>
+<p>Health Catalyst’s Healthcare Analytics Adoption Model [I3], a
+vendor-produced framework, corroborates these findings, documenting that
+most healthcare organizations remain at Stages 0-3, characterized
+by:</p>
 <ul>
 <li>Fragmented data sources without integration</li>
 <li>Limited automated reporting capabilities</li>
@@ -1225,7 +1377,7 @@ and retaining professionals with the right analytical skills, while the
 need for big data specialists with analytical capabilities continues to
 grow [A16]. Traditional approaches to analytics require extensive
 technical expertise that healthcare professionals typically lack,
-creating a fundamental barrier to analytics adoption.</p>
+creating a fundamental barrier to analytics adoption [I11].</p>
 <h2 data-number="4.3"
 id="healthcare-workforce-turnover-and-knowledge-loss"><span
 class="header-section-number">4.3</span> 3. Healthcare Workforce
@@ -1244,9 +1396,9 @@ the impact of knowledge loss in a longitudinal study, finding that the
 total financial cost to address problems caused by knowledge loss
 reached three times the organization’s annual salary budget, including
 increased training costs, productivity losses, and project delays.
-Industry analysis corroborates these findings, documenting turnover
-costs at 0.5-2.0 times annual salary with knowledge-intensive positions
-reaching the higher end [I6].</p>
+Vendor analysis from Oracle [I6] corroborates these findings,
+documenting turnover costs at 0.5-2.0 times annual salary with
+knowledge-intensive positions reaching the higher end.</p>
 <p>Technical and analytics staff face even more severe turnover
 challenges. Ang and Slaughter [A10] found that IT professionals at
 healthcare provider institutions—where IT serves as a support function
@@ -2399,6 +2551,8 @@ https://www.acpjournals.org/doi/10.7326/M19-0871</p>
 information systems. <em>Health Policy</em>, 125(12), 1517-1526. DOI:
 10.1016/j.healthpol.2021.09.006.
 https://www.sciencedirect.com/science/article/pii/S0168851021002396</p>
+<p>[A31] Tyndall, J. (2010). AACODS Checklist. Flinders University.
+https://dspace.flinders.edu.au/jspui/bitstream/2328/3326/4/AACODS_Checklist.pdf</p>
 <h2 data-number="15.2" id="industry-sources"><span
 class="header-section-number">15.2</span> Industry Sources</h2>
 <p>[I1] HIMSS Analytics. (2024). Analytics maturity assessment model
@@ -2429,7 +2583,7 @@ and Analytics Assets. <em>IBM Newsroom</em>.
 https://newsroom.ibm.com/2022-01-21-Francisco-Partners-to-Acquire-IBMs-Healthcare-Data-and-Analytics-Assets</p>
 <p>[I10] LaVito, A. (2021). Haven, the Amazon-Berkshire-JPMorgan venture
 to disrupt healthcare, is disbanding after 3 years. <em>CNBC</em>.
-https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding.html</p>
+https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html</p>
 <p>[I11] American Health Information Management Association &amp; NORC
 at the University of Chicago. (2023). Health information workforce
 survey report.

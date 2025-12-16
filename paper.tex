@@ -506,7 +506,7 @@ However, the sector faces unique challenges that distinguish it from
 other data-intensive industries. Unlike technology or financial
 services, healthcare combines complex clinical workflows, extensive
 regulatory requirements, and a workforce with limited technical training
-but deep domain expertise.
+but deep domain expertise {[}I11{]}.
 
 The Healthcare Information Management Systems Society (HIMSS) Analytics
 Maturity Assessment Model (AMAM) provides the industry standard for
@@ -561,10 +561,10 @@ require SQL expertise, statistical knowledge, and familiarity with
 complex database schemas, capabilities that clinical staff neither
 possess nor have time to develop. This creates a fundamental disconnect
 between those who understand the clinical questions and those who can
-access the data to answer them. Drawing on principles from code
-modernization, AI-assisted interfaces can bridge this gap by
-transforming legacy technical requirements into natural language
-interactions {[}I8{]}.
+access the data to answer them {[}A14{]}, {[}A15{]}, {[}A16{]}. Drawing
+on principles from code modernization, AI-assisted interfaces can bridge
+this gap by transforming legacy technical requirements into natural
+language interactions {[}I8{]}.
 
 \subsubsection{Institutional Memory Loss from Workforce
 Turnover}\label{institutional-memory-loss-from-workforce-turnover}
@@ -835,6 +835,74 @@ verification followed the methodology documented in the reference
 verification process, which identified and removed 5 likely AI-generated
 fabrications and 29 unused references from the original draft.
 
+\subsection{Grey Literature Quality
+Assessment}\label{grey-literature-quality-assessment}
+
+Grey literature sources were assessed using the AACODS checklist
+(Tyndall, 2010) {[}A31{]}, which evaluates Authority, Accuracy,
+Coverage, Objectivity, Date, and Significance. Sources with vendor
+sponsorship were retained when no independent alternative existed but
+flagged in-text. Table 1 summarizes the assessment.
+
+\textbf{Table 1: AACODS Assessment of Industry Sources}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0988}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1358}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1235}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1235}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1605}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0741}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1728}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1111}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Authority
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Accuracy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Coverage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Objectivity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Date
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Significance
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Include
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+{[}I1{]} HIMSS AMAM & High (industry standards body) & Verifiable &
+Global & High & 2024 & High & Yes \\
+{[}I2{]} Snowdon/HIMSS & High (HIMSS officer) & Verifiable & N/A & High
+& 2024 & Medium & Yes \\
+{[}I3{]} Health Catalyst & Medium (vendor) & Unverifiable & US & Low &
+2020 & Medium & Yes* \\
+{[}I4{]} Berkshire NHS & High (NHS trust) & Verifiable & Single site &
+High & 2024 & High & Yes \\
+{[}I5{]} Forrester/Microsoft & Medium (analyst firm) & Unverifiable &
+Enterprise & Low (sponsor) & 2024 & Medium & Yes* \\
+{[}I6{]} Oracle & Low (vendor) & Unverifiable & N/A & Low & 2024 & Low &
+Yes* \\
+{[}I7{]} Precedence Research & Medium (market research) & Unverifiable &
+Global & Medium & 2024 & Medium & Yes \\
+{[}I8{]} Anthropic & Medium (vendor) & Verifiable & N/A & Medium & 2025
+& Low & Yes \\
+{[}I9{]} IBM Newsroom & High (journalism) & Verifiable & N/A & High &
+2022 & High & Yes \\
+{[}I10{]} CNBC/Haven & High (journalism) & Verifiable & N/A & High &
+2021 & High & Yes \\
+{[}I11{]} AHIMA/NORC & High (professional assoc + academic) & Verifiable
+& US & High & 2023 & High & Yes \\
+\end{longtable}
+
+*Vendor sponsorship or low objectivity noted in manuscript text.
+
 \subsection{Methodological
 Limitations}\label{methodological-limitations}
 
@@ -847,10 +915,11 @@ This narrative review has inherent limitations:
   selective rather than exhaustive; relevant studies may have been
   missed
 \item
-  \textbf{No formal quality assessment}: No standardized quality
-  assessment tool (e.g., GRADE, Cochrane Risk of Bias) was applied;
-  quality judgments were based on publication venue, methodological
-  transparency, and verification of claims
+  \textbf{Limited formal quality assessment}: Grey literature sources
+  were assessed using the AACODS checklist; however, no standardized
+  quality assessment tool (e.g., GRADE, Cochrane Risk of Bias) was
+  applied to peer-reviewed sources, as these tools are designed for
+  clinical intervention studies rather than narrative reviews
 \item
   \textbf{Single author synthesis}: Evidence synthesis reflects a single
   author's interpretation, which may introduce perspective bias
@@ -981,9 +1050,9 @@ adoption. The study reveals that healthcare enterprises struggle with
 technology selection, resource allocation, and organizational readiness
 for data-driven decision making.
 
-Health Catalyst's Healthcare Analytics Adoption Model {[}I3{]}
-corroborates these findings, documenting that most healthcare
-organizations remain at Stages 0-3, characterized by:
+Health Catalyst's Healthcare Analytics Adoption Model {[}I3{]}, a
+vendor-produced framework, corroborates these findings, documenting that
+most healthcare organizations remain at Stages 0-3, characterized by:
 
 \begin{itemize}
 \tightlist
@@ -1012,7 +1081,7 @@ recruiting and retaining professionals with the right analytical skills,
 while the need for big data specialists with analytical capabilities
 continues to grow {[}A16{]}. Traditional approaches to analytics require
 extensive technical expertise that healthcare professionals typically
-lack, creating a fundamental barrier to analytics adoption.
+lack, creating a fundamental barrier to analytics adoption {[}I11{]}.
 
 \subsection{3. Healthcare Workforce Turnover and Knowledge
 Loss}\label{healthcare-workforce-turnover-and-knowledge-loss}
@@ -1033,9 +1102,9 @@ measured the impact of knowledge loss in a longitudinal study, finding
 that the total financial cost to address problems caused by knowledge
 loss reached three times the organization's annual salary budget,
 including increased training costs, productivity losses, and project
-delays. Industry analysis corroborates these findings, documenting
-turnover costs at 0.5-2.0 times annual salary with knowledge-intensive
-positions reaching the higher end {[}I6{]}.
+delays. Vendor analysis from Oracle {[}I6{]} corroborates these
+findings, documenting turnover costs at 0.5-2.0 times annual salary with
+knowledge-intensive positions reaching the higher end.
 
 Technical and analytics staff face even more severe turnover challenges.
 Ang and Slaughter {[}A10{]} found that IT professionals at healthcare
@@ -2463,6 +2532,9 @@ information systems. \emph{Health Policy}, 125(12), 1517-1526. DOI:
 10.1016/j.healthpol.2021.09.006.
 https://www.sciencedirect.com/science/article/pii/S0168851021002396
 
+{[}A31{]} Tyndall, J. (2010). AACODS Checklist. Flinders University.
+https://dspace.flinders.edu.au/jspui/bitstream/2328/3326/4/AACODS\_Checklist.pdf
+
 \subsection{Industry Sources}\label{industry-sources}
 
 {[}I1{]} HIMSS Analytics. (2024). Analytics maturity assessment model
@@ -2503,7 +2575,7 @@ https://newsroom.ibm.com/2022-01-21-Francisco-Partners-to-Acquire-IBMs-Healthcar
 
 {[}I10{]} LaVito, A. (2021). Haven, the Amazon-Berkshire-JPMorgan
 venture to disrupt healthcare, is disbanding after 3 years. \emph{CNBC}.
-https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding.html
+https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html
 
 {[}I11{]} American Health Information Management Association \& NORC at
 the University of Chicago. (2023). Health information workforce survey
