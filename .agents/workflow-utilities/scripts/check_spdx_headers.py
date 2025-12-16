@@ -44,12 +44,7 @@ def should_check_file(path: Path) -> bool:
     if path.suffix != ".py":
         return False
 
-    # Skip empty __init__.py files (they don't need headers)
-    if path.name == "__init__.py":
-        content = path.read_text()
-        if not content.strip():
-            return False
-
+    # All Python files require SPDX headers, including __init__.py
     return True
 
 

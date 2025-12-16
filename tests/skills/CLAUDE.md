@@ -11,11 +11,12 @@ children: []
 
 ## Purpose
 
-Tests for validating workflow skills functionality. Contains 289 tests covering:
+Tests for validating workflow skills functionality. Contains 316 tests covering:
 - VCS provider detection and adapters (GitHub, Azure DevOps)
 - Semantic versioning calculation
 - Release and PR workflow automation
 - Quality gates enforcement
+- SPDX license header validation
 
 ## Contents
 
@@ -28,6 +29,7 @@ Tests for validating workflow skills functionality. Contains 289 tests covering:
 - `test_pr_workflow.py` - PR workflow tests (40 tests)
 - `test_quality_gates.py` - Quality gates tests (27 tests)
 - `test_quality_enforcer.py` - Quality enforcer tests (4 tests)
+- `test_check_spdx_headers.py` - SPDX license header validation tests (27 tests)
 - `test_release_integration.py` - Release workflow integration tests (14 tests)
 - `test_pr_integration.py` - PR workflow integration tests (19 tests)
 
