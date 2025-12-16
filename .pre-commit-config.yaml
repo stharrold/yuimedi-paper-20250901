@@ -52,3 +52,11 @@ repos:
         language: python
         files: ^\.claude/skills/
         pass_filenames: false
+
+      # Check SPDX license headers on Python files
+      - id: spdx-headers
+        name: Check SPDX license headers
+        entry: python .claude/skills/workflow-utilities/scripts/check_spdx_headers.py
+        language: python
+        types: [python]
+        pass_filenames: false

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Tests for pr_workflow.py functionality.
 
 Tests the PR workflow script that handles the feature-to-contrib-to-develop

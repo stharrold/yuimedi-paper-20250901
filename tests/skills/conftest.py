@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Pytest fixtures for workflow skills tests.
 
 Provides reusable fixtures for:
