@@ -1,6 +1,6 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-15 07:09:26 UTC
+**Generated:** 2025-12-15 23:02:19 UTC
 
 ## Summary
 
@@ -9,9 +9,9 @@
 | Total References | 41 |
 | Academic [A*] | 30 |
 | Industry [I*] | 11 |
-| Total Citations | 88 |
-| Accessible URLs | 22 |
-| Broken URLs | 19 |
+| Total Citations | 90 |
+| Accessible URLs | 23 |
+| Broken URLs | 18 |
 | Missing URLs | 0 |
 | Orphaned Citations | 0 |
 | Unused References | 1 |
@@ -47,7 +47,6 @@ References with inaccessible URLs:
 | [A29] | https://www.acpjournals.org/doi/10.7326/M19-0871 | HTTP 403: Forbidden |
 | [A30] | https://www.sciencedirect.com/science/article/pii/S016885102... | HTTP 403: Forbidden |
 | [I1] | https://www.himss.org/maturity-models/amam/ | HTTP 403: Forbidden |
-| [I9] | https://www.wsj.com/articles/ibm-to-sell-watson-health-asset... | HTTP 401: HTTP Forbidden |
 | [I10] | https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-j... | HTTP 404: Not Found |
 
 ## All References
@@ -95,7 +94,7 @@ References with inaccessible URLs:
 | [I6] | industry | OK (200) |
 | [I7] | industry | OK (200) |
 | [I8] | industry | OK (200) |
-| [I9] | industry | Failed: HTTP 401: HTTP Forbidden |
+| [I9] | industry | OK (200) |
 | [I10] | industry | Failed: HTTP 404: Not Found |
 | [I11] | industry | OK (200) |
 
