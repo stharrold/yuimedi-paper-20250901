@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """CLI interface for academic literature review workflow.
 
 Provides Click commands for managing literature reviews including

@@ -1,13 +1,13 @@
 # YuiQuery Healthcare Analytics Research
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 Research whitepaper on natural language to SQL in healthcare - a comprehensive analysis of conversational AI platforms for healthcare analytics addressing low analytics maturity, workforce turnover, and technical barriers in natural language query processing.
 
 ## 📄 Research Documents
 
-**[Main Research Paper](paper.md)** - Comprehensive academic research paper on YuiQuery healthcare analytics with 34 verified citations
+**[Main Research Paper](paper.md)** - Comprehensive academic research paper on YuiQuery healthcare analytics with 41 verified citations
 
 ## 🚀 Quick Access
 
@@ -40,7 +40,7 @@ This repository contains research documentation for YuiQuery, a conversational A
 ├── README.md                   # Project overview and quick start guide
 ├── CLAUDE.md                   # AI assistant instructions and project context
 ├── CONTRIBUTING.md             # Contribution guidelines
-├── LICENSE                     # MIT License (code) / CC BY 4.0 (research content)
+├── LICENSE                     # Apache 2.0 (code) / CC BY 4.0 (research content)
 │
 ├── project-management/         # Project management documentation
 │   ├── risks/                  # Risk assessment and mitigation

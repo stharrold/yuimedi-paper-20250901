@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Interactive BMAD planning tool - creates requirements.md, architecture.md, epics.md.
 
 This script runs interactively in the main repository on contrib/<gh-user> branch and:

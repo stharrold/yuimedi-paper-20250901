@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """VCS provider abstraction for workflow scripts.
 
 This module provides a unified interface for interacting with different VCS providers

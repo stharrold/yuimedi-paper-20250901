@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Domain services - business logic that doesn't fit in entities."""
 
 from lit_review.domain.services.bibtex_parser import BibtexParser

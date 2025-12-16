@@ -26,7 +26,7 @@
         "clean architecture",
         "test-driven development"
     ],
-    "license": "MIT",
+    "license": "Apache-2.0",
     "access_right": "open",
     "language": "eng",
     "communities": [{"identifier": "zenodo"}],

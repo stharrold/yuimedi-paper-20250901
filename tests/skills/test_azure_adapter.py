@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Tests for Azure DevOps VCS adapter.
 
 Tests the azure_adapter.py module which provides Azure DevOps CLI operations.

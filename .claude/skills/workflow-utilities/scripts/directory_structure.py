@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Create standard directory structure with CLAUDE.md, README.md, ARCHIVED/."""
 
 import sys

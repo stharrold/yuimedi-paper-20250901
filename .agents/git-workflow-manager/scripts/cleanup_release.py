@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Delete release branch after successful release and back-merge.
 
 This script implements Step 5.7 of Phase 5 (Release Workflow) as documented

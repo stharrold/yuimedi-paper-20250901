@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Generate missing CLAUDE.md files for directory hierarchy.
 
 This script scans the repository for directories missing CLAUDE.md files

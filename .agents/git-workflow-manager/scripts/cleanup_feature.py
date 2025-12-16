@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Cleanup feature worktree and optionally archive TODO.
 
 This script ensures proper cleanup: (optional) Archive TODO → Delete worktree → Delete branches.

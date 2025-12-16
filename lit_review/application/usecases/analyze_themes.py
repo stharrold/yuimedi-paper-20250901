@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Analyze themes use case using TF-IDF and hierarchical clustering.
 
 This use case extracts themes from a collection of papers using:

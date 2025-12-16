@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """AI analyzer port interface for theme extraction and synthesis.
 
 This port defines the contract for AI-powered analysis services that can

@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """PubMed API adapter using Biopython's Entrez module.
 
 Implements the SearchService port for PubMed with proper rate limiting,

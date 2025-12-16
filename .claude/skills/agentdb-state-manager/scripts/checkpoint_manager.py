@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Manage context checkpoints in AgentDB.
 
 IMPORTANT: This script generates SQL statements for demonstration and debugging

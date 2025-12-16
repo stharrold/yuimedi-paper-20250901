@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Semi-automated documentation sync tool for skill updates.
 
 This script helps propagate changes across documentation files when a skill is updated:

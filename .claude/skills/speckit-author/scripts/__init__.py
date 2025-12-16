@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """SpecKit Author Scripts
 
 Interactive tools for creating and managing SpecKit specifications.

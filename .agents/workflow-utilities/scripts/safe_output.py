@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Safe cross-platform output utilities with ASCII-only symbols.
 
 Uses ASCII-only characters for maximum compatibility with:

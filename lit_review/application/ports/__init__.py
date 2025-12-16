@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Application ports - abstract interfaces for external dependencies."""
 
 from lit_review.application.ports.ai_analyzer import AIAnalyzer, ThemeHierarchy

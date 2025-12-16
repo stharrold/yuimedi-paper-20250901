@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-License-Identifier: Apache-2.0
 """Create a new workflow skill with official documentation validation.
 
 This script automates the creation of new skills in the workflow system. It:
