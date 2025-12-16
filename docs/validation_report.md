@@ -1,6 +1,6 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-16 02:42:23 UTC
+**Generated:** 2025-12-16 04:01:31 UTC
 
 ## Summary
 
@@ -10,8 +10,8 @@
 | Academic [A*] | 30 |
 | Industry [I*] | 11 |
 | Total Citations | 89 |
-| Accessible URLs | 23 |
-| Broken URLs | 18 |
+| Accessible URLs | 24 |
+| Broken URLs | 17 |
 | Missing URLs | 0 |
 | Orphaned Citations | 0 |
 | Unused References | 1 |
@@ -47,7 +47,6 @@ References with inaccessible URLs:
 | [A29] | https://www.acpjournals.org/doi/10.7326/M19-0871 | HTTP 403: Forbidden |
 | [A30] | https://www.sciencedirect.com/science/article/pii/S016885102... | HTTP 403: Forbidden |
 | [I1] | https://www.himss.org/maturity-models/amam/ | HTTP 403: Forbidden |
-| [I10] | https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-j... | HTTP 404: Not Found |
 
 ## All References
 
@@ -95,7 +94,7 @@ References with inaccessible URLs:
 | [I7] | industry | OK (200) |
 | [I8] | industry | OK (200) |
 | [I9] | industry | OK (200) |
-| [I10] | industry | Failed: HTTP 404: Not Found |
+| [I10] | industry | OK (200) |
 | [I11] | industry | OK (200) |
 
 </details>

@@ -883,7 +883,7 @@ Yuimedi provided funding for the author's time writing and researching this manu
 
 [I9] IBM. (2022). Francisco Partners to Acquire IBM's Healthcare Data and Analytics Assets. *IBM Newsroom*. https://newsroom.ibm.com/2022-01-21-Francisco-Partners-to-Acquire-IBMs-Healthcare-Data-and-Analytics-Assets
 
-[I10] LaVito, A. (2021). Haven, the Amazon-Berkshire-JPMorgan venture to disrupt healthcare, is disbanding after 3 years. *CNBC*. https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding.html
+[I10] LaVito, A. (2021). Haven, the Amazon-Berkshire-JPMorgan venture to disrupt healthcare, is disbanding after 3 years. *CNBC*. https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html
 
 [I11] American Health Information Management Association & NORC at the University of Chicago. (2023). Health information workforce survey report. https://www.ahima.org/news-publications/press-room-press-releases/2023-press-releases/health-information-workforce-shortages-persist-as-ai-shows-promise-ahima-survey-reveals/
 
