@@ -1,16 +1,16 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-16 04:16:02 UTC
+**Generated:** 2025-12-16 04:35:47 UTC
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total References | 41 |
-| Academic [A*] | 30 |
+| Total References | 42 |
+| Academic [A*] | 31 |
 | Industry [I*] | 11 |
-| Total Citations | 94 |
-| Accessible URLs | 24 |
+| Total Citations | 106 |
+| Accessible URLs | 25 |
 | Broken URLs | 17 |
 | Missing URLs | 0 |
 | Orphaned Citations | 0 |
@@ -85,6 +85,7 @@ References with inaccessible URLs:
 | [A28] | academic | OK (200) |
 | [A29] | academic | Failed: HTTP 403: Forbidden |
 | [A30] | academic | Failed: HTTP 403: Forbidden |
+| [A31] | academic | OK (200) |
 | [I1] | industry | Failed: HTTP 403: Forbidden |
 | [I2] | industry | OK (200) |
 | [I3] | industry | OK (200) |
