@@ -34,6 +34,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Paper classification:** Narrative review with original analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
 
+**Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ppr_review/20251215_AACODS-Grey-Literature.md` for assessment table.
+
 ## Essential Commands
 
 ```bash
@@ -59,7 +61,7 @@ uv run academic-review status <review-id>  # Check review status
 # Testing
 uv run pytest                              # Run all tests
 uv run pytest tests/lit_review/ -v         # Literature review tests only
-uv run pytest tests/skills/ -v             # Workflow skills tests (289 tests)
+uv run pytest tests/skills/ -v             # Workflow skills tests (316 tests)
 uv run pytest --cov=lit_review             # With coverage
 uv run pytest -k "test_paper" -v           # Run single test by name
 uv run pytest -m "not integration"         # Skip integration tests (default in CI)

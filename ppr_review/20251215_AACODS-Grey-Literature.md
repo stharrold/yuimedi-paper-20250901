@@ -60,9 +60,9 @@ For flagged sources, add qualifier:
 ## Checklist
 
 ```
-[ ] Add Section 3.6 Grey Literature Quality Assessment
-[ ] Add AACODS table
-[ ] Add [A36] Tyndall citation
-[ ] Revise in-text references for [I3], [I5], [I6]
-[ ] Verify all industry source URLs still accessible
+[x] Add Grey Literature Quality Assessment subsection
+[x] Add AACODS table
+[x] Add [A31] Tyndall citation (corrected from [A36])
+[x] Revise in-text references for [I3], [I6] (note: [I5] already had vendor notes)
+[x] Verify all industry source URLs still accessible (10/11 OK, [I1] returns 403 due to bot detection)
 ```

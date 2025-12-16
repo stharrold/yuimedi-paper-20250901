@@ -1,6 +1,6 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-16 00:24:04 UTC
+**Generated:** 2025-12-16 05:19:24 UTC
 
 ## Summary
 
@@ -9,9 +9,9 @@
 | Total References | 41 |
 | Academic [A*] | 30 |
 | Industry [I*] | 11 |
-| Total Citations | 89 |
-| Accessible URLs | 22 |
-| Broken URLs | 19 |
+| Total Citations | 106 |
+| Accessible URLs | 24 |
+| Broken URLs | 17 |
 | Missing URLs | 0 |
 | Orphaned Citations | 0 |
 | Unused References | 1 |
@@ -43,12 +43,10 @@ References with inaccessible URLs:
 | [A17] | https://www.redjournal.org/article/S0360-3016(16)00260-1/ful... | HTTP 403: Forbidden |
 | [A21] | https://pubsonline.informs.org/doi/abs/10.1287/educ.2023.025... | HTTP 403: Forbidden |
 | [A24] | https://doi.org/10.1108/JKM-08-2016-0338 | HTTP 403: Forbidden |
-| [A26] | https://digilib.uinsgd.ac.id/5114/ | URL Error: timed out |
-| [A27] | https://academic.oup.com/jamia/article/14/6/687/750453 | HTTP 403: Forbidden |
-| [A29] | https://www.acpjournals.org/doi/10.7326/M19-0871 | HTTP 403: Forbidden |
-| [A30] | https://www.sciencedirect.com/science/article/pii/S016885102... | HTTP 403: Forbidden |
+| [A26] | https://academic.oup.com/jamia/article/14/6/687/750453 | HTTP 403: Forbidden |
+| [A28] | https://www.acpjournals.org/doi/10.7326/M19-0871 | HTTP 403: Forbidden |
+| [A29] | https://www.sciencedirect.com/science/article/pii/S016885102... | HTTP 403: Forbidden |
 | [I1] | https://www.himss.org/maturity-models/amam/ | HTTP 403: Forbidden |
-| [I10] | https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-j... | HTTP 404: Not Found |
 
 ## All References
 
@@ -82,11 +80,11 @@ References with inaccessible URLs:
 | [A23] | academic | OK (200) |
 | [A24] | academic | Failed: HTTP 403: Forbidden |
 | [A25] | academic | OK (200) |
-| [A26] | academic | Failed: URL Error: timed out |
-| [A27] | academic | Failed: HTTP 403: Forbidden |
-| [A28] | academic | OK (200) |
+| [A26] | academic | Failed: HTTP 403: Forbidden |
+| [A27] | academic | OK (200) |
+| [A28] | academic | Failed: HTTP 403: Forbidden |
 | [A29] | academic | Failed: HTTP 403: Forbidden |
-| [A30] | academic | Failed: HTTP 403: Forbidden |
+| [A30] | academic | OK (200) |
 | [I1] | industry | Failed: HTTP 403: Forbidden |
 | [I2] | industry | OK (200) |
 | [I3] | industry | OK (200) |
@@ -96,7 +94,7 @@ References with inaccessible URLs:
 | [I7] | industry | OK (200) |
 | [I8] | industry | OK (200) |
 | [I9] | industry | OK (200) |
-| [I10] | industry | Failed: HTTP 404: Not Found |
+| [I10] | industry | OK (200) |
 | [I11] | industry | OK (200) |
 
 </details>
