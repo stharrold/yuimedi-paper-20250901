@@ -216,7 +216,7 @@ This framework emerged iteratively from the literature rather than being pre-spe
 
 ## Grey Literature Quality Assessment
 
-Grey literature sources were assessed using the AACODS checklist (Tyndall, 2010) [A31], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table 1 summarizes the assessment.
+Grey literature sources were assessed using the AACODS checklist (Tyndall, 2010) [A30], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table 1 summarizes the assessment.
 
 **Table 1: AACODS Assessment of Industry Sources**
 
@@ -382,9 +382,9 @@ Despite clear evidence of healthcare's analytics challenges and available techno
 
 ### Failed Standardization Approaches
 
-Large-scale efforts to standardize healthcare data and analytics have consistently encountered fundamental barriers. Academic research identifies a persistent tension between achieving short-term institutional solutions and pursuing long-term global interoperability, with standardization complexity arising from diverse community interests and technical issues [A27]. Data standardization faces three primary technological obstacles: metadata uncertainties, data transfer challenges, and missing data, compounded by legacy data collection methods that have created a "patchwork" of inconsistent organizational practices [A28].
+Large-scale efforts to standardize healthcare data and analytics have consistently encountered fundamental barriers. Academic research identifies a persistent tension between achieving short-term institutional solutions and pursuing long-term global interoperability, with standardization complexity arising from diverse community interests and technical issues [A26]. Data standardization faces three primary technological obstacles: metadata uncertainties, data transfer challenges, and missing data, compounded by legacy data collection methods that have created a "patchwork" of inconsistent organizational practices [A27].
 
-These challenges manifest in clinical practice through workflow variability. Even within the same institution, clinical workflows vary significantly, and transitions to standardized systems often cause profound disruptions to existing processes [A29]. At the institutional level, data fragmentation across different organizations creates barriers to linkage, access, and care continuity, while governance issues including unclear responsibilities and weak collaboration compound the problem [A30].
+These challenges manifest in clinical practice through workflow variability. Even within the same institution, clinical workflows vary significantly, and transitions to standardized systems often cause profound disruptions to existing processes [A28]. At the institutional level, data fragmentation across different organizations creates barriers to linkage, access, and care continuity, while governance issues including unclear responsibilities and weak collaboration compound the problem [A29].
 
 High-profile industry failures illustrate these research findings. Multi-billion dollar investments in healthcare AI have been divested after failing to achieve clinical adoption [I9], and a joint venture backed by major corporations controlling healthcare spending for over one million employees disbanded after three years without achieving its goals [I10]. These failures share the common pattern identified in academic literature: attempting to impose standardized solutions across institutions with fundamentally unique data definitions, business rules, and clinical workflows.
 
@@ -875,17 +875,15 @@ Yuimedi provided funding for the author's time writing and researching this manu
 
 [A25] Benbya, H., Passiante, G., & Belbaly, N. A. (2004). Corporate portal: A tool for knowledge management synchronization. *International Journal of Information Management*, 24(3), 201-220. DOI: 10.1016/j.ijinfomgt.2003.12.012. https://doi.org/10.1016/j.ijinfomgt.2003.12.012
 
-[A26] Aulawi, H., Ramdhani, M. A., Slamet, C., Ainisyifa, H., & Darmalaksana, W. (2017). Functional need analysis of knowledge portal design in higher education institution. *International Journal of Soft Computing*, 12(2), 132-141. https://digilib.uinsgd.ac.id/5114/
+[A26] Richesson, R. L., & Krischer, J. P. (2007). Data standards in clinical research: Gaps, overlaps, challenges and future directions. *Journal of the American Medical Informatics Association*, 14(6), 687-696. DOI: 10.1197/jamia.M2470. https://academic.oup.com/jamia/article/14/6/687/750453
 
-[A27] Richesson, R. L., & Krischer, J. P. (2007). Data standards in clinical research: Gaps, overlaps, challenges and future directions. *Journal of the American Medical Informatics Association*, 14(6), 687-696. DOI: 10.1197/jamia.M2470. https://academic.oup.com/jamia/article/14/6/687/750453
+[A27] Gal, M. S., & Rubinfeld, D. L. (2019). Data standardization. *New York University Law Review*, 94(4), 737-770. https://www.nyulawreview.org/issues/volume-94-number-4/data-standardization/
 
-[A28] Gal, M. S., & Rubinfeld, D. L. (2019). Data standardization. *New York University Law Review*, 94(4), 737-770. https://www.nyulawreview.org/issues/volume-94-number-4/data-standardization/
+[A28] Zheng, K., Ratwani, R. M., & Adler-Milstein, J. (2020). Studying workflow and workarounds in electronic health record-supported work to improve health system performance. *Annals of Internal Medicine*, 172(11 Suppl), S116-S122. DOI: 10.7326/M19-0871. https://www.acpjournals.org/doi/10.7326/M19-0871
 
-[A29] Zheng, K., Ratwani, R. M., & Adler-Milstein, J. (2020). Studying workflow and workarounds in electronic health record-supported work to improve health system performance. *Annals of Internal Medicine*, 172(11 Suppl), S116-S122. DOI: 10.7326/M19-0871. https://www.acpjournals.org/doi/10.7326/M19-0871
+[A29] Bogaert, P., Verschuuren, M., Van Oyen, H., & Van Oers, H. (2021). Identifying common enablers and barriers in European health information systems. *Health Policy*, 125(12), 1517-1526. DOI: 10.1016/j.healthpol.2021.09.006. https://www.sciencedirect.com/science/article/pii/S0168851021002396
 
-[A30] Bogaert, P., Verschuuren, M., Van Oyen, H., & Van Oers, H. (2021). Identifying common enablers and barriers in European health information systems. *Health Policy*, 125(12), 1517-1526. DOI: 10.1016/j.healthpol.2021.09.006. https://www.sciencedirect.com/science/article/pii/S0168851021002396
-
-[A31] Tyndall, J. (2010). AACODS Checklist. Flinders University. https://dspace.flinders.edu.au/jspui/bitstream/2328/3326/4/AACODS_Checklist.pdf
+[A30] Tyndall, J. (2010). AACODS Checklist. Flinders University. https://dspace.flinders.edu.au/jspui/bitstream/2328/3326/4/AACODS_Checklist.pdf
 
 ## Industry Sources
 
