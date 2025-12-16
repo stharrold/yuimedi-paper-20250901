@@ -1,6 +1,6 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-16 04:01:31 UTC
+**Generated:** 2025-12-16 04:09:54 UTC
 
 ## Summary
 
@@ -9,7 +9,7 @@
 | Total References | 41 |
 | Academic [A*] | 30 |
 | Industry [I*] | 11 |
-| Total Citations | 89 |
+| Total Citations | 92 |
 | Accessible URLs | 24 |
 | Broken URLs | 17 |
 | Missing URLs | 0 |
