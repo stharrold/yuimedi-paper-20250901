@@ -12,7 +12,7 @@ abstract: |
   we demonstrate that natural language interfaces can democratize analytics access while preserving
   institutional knowledge. Healthcare-specific text-to-SQL benchmarks show significant progress,
   though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings.
-  Healthcare IT staff turnover of ~34%—the highest among IT sectors—creates institutional memory loss, while low-code implementations demonstrate significant efficiency gains and cost savings. The convergence of technical advances in NL2SQL generation, analytics
+  Healthcare IT staff turnover of ~34% (as of 2004)—the highest among IT sectors at that time—creates institutional memory loss, while low-code implementations demonstrate significant efficiency gains and cost savings. The convergence of technical advances in NL2SQL generation, analytics
   maturity challenges in healthcare organizations, and workforce turnover creates conditions
   warranting organizational assessment of conversational AI platforms with appropriate governance.
   This paper contributes a three-pillar analytical framework and positions healthcare conversational
@@ -204,7 +204,7 @@ Figure 1 illustrates the literature selection process, showing progression from 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.png}
+\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.jpg}
 \caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 41 sources (30 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
