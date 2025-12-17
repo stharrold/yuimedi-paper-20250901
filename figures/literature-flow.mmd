@@ -15,8 +15,7 @@ flowchart TD
     subgraph SC["SCREENING"]
         A --> D{"Title/Abstract<br/>Screening<br/>(n = 570)"}
         D -->|"Excluded"| E["Records excluded<br/>(n = 480)<br/>• Not relevant to framework<br/>• Outside scope<br/>• Non-English"]
-        D -->|"Sought for retrieval"| F["Reports sought<br/>for retrieval<br/>(n = 90)"]
-        F --> H{"Full-text<br/>Eligibility<br/>Assessment<br/>(n = 90)"}
+        D -->|"Passed screening"| H{"Full-text<br/>Eligibility<br/>Assessment<br/>(n = 90)"}
         H -->|"Excluded"| I["Reports excluded<br/>(n = 46)<br/>• No verifiable DOI/URL (n = 18)<br/>• Vendor marketing only (n = 15)<br/>• Methodological concerns (n = 13)"]
     end
 
