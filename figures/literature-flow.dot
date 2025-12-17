@@ -1,0 +1,67 @@
+digraph LiteratureFlow { // DIAGRAM_BEGIN
+
+    // PRISMA 2020 Literature Selection Flow
+    // Total: 570 identified → 41 included (529 excluded)
+
+    label="PRISMA 2020 Literature Selection Flow";
+    labelloc="t";
+
+    // Identification
+    subgraph cluster_ID {
+        label="Identification";
+
+        A1 [label="Crossref\n(n=285)", shape="cylinder"];
+        A2 [label="PubMed\n(n=142)", shape="cylinder"];
+        A3 [label="ArXiv\n(n=71)", shape="cylinder"];
+        A4 [label="Semantic Scholar\n(n=72)", shape="cylinder"];
+        A [label="Articles identified\nafter deduplication\n(n=570)", shape="box"];
+    }
+
+    // Screening
+    subgraph cluster_SC {
+        label="Screening";
+
+        D [label="Title/abstract\nscreening\n(n=570)", shape="diamond"];
+        E [label="Articles excluded (n=480)\n- Not relevant to framework\n- Outside scope\n- Non-English", shape="box"];
+        H [label="Full-text eligibility\nscreening (n=90)", shape="diamond"];
+        I [label="Articles excluded (n=46)\n- No verifiable DOI/URL (n=18)\n- Vendor marketing only (n=15)\n- Methodological concerns (n=13)", shape="box"];
+    }
+
+    // Quality assessment
+    subgraph cluster_QA {
+        label="Quality assessment";
+
+        J [label="Source\nclassification\n(n=44)", shape="diamond"];
+        L [label="AACODS\nchecklist\n(n=14)", shape="diamond"];
+        N [label="Articles excluded (n=3)\n- Low objectivity\n- Insufficient detail", shape="box"];
+    }
+
+    // Included
+    subgraph cluster_IN {
+        label="Included";
+
+        O [label="Final corpus (n=41)\nAcademic: 30\nIndustry: 11", shape="box"];
+    }
+
+    // Edges - IDENTIFICATION
+    A1 -> A;
+    A2 -> A;
+    A3 -> A;
+    A4 -> A;
+
+    // Edges - SCREENING
+    A -> D;
+    D -> E [label="Excluded"];
+    D -> H [label="Passed"];
+    H -> I [label="Excluded"];
+
+    // Edges - QUALITY ASSESSMENT
+    H -> J [label="Passed"];
+    J -> L [label="Grey literature"];
+    L -> N [label="Excluded"];
+
+    // Edges - INCLUDED
+    J -> O [label="Academic"];
+    L -> O [label="Passed"];
+
+} // DIAGRAM_END

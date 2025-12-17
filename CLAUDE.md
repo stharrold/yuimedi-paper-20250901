@@ -222,16 +222,18 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 - `figures/*.jpg` - Generated from Mermaid `.mmd` sources (JPG format for cross-platform consistency)
 - Versioned for reproducibility and release tagging
 
-**Figure generation:** Generate JPG from Mermaid source:
+**Figure generation:** Generate from Mermaid or DOT source:
 ```bash
-# Step 1: Generate PNG from Mermaid
+# Mermaid (.mmd) → JPG
 npx --yes @mermaid-js/mermaid-cli@latest -i figures/<name>.mmd -o figures/<name>.png
-
-# Step 2: Convert PNG to JPG (choose based on OS)
 # macOS:
 sips -s format jpeg figures/<name>.png --out figures/<name>.jpg && rm figures/<name>.png
 # Linux/Container:
 convert figures/<name>.png figures/<name>.jpg && rm figures/<name>.png
+
+# DOT (.dot) → SVG/PNG (requires graphviz)
+podman-compose run --rm dev dot -Tsvg figures/<name>.dot -o figures/<name>.dot.svg
+podman-compose run --rm dev dot -Tpng figures/<name>.dot -o figures/<name>.dot.png
 ```
 
 **Excluded via .gitignore:**

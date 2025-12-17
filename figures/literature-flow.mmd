@@ -3,31 +3,32 @@ flowchart TD
     %% PRISMA 2020 Flow Diagram for Literature Selection
     %% Aligned with lit_review academic-literature-review workflow
     %% Total: 570 identified → 41 included (529 excluded)
+    %% Icons: fa:fa-database, fa:fa-file-alt, fa:fa-filter, fa:fa-clipboard-check, fa:fa-sitemap
 
     subgraph ID["IDENTIFICATION"]
-        A1[("Crossref<br/>(n = 285)")] --> A
-        A2[("PubMed<br/>(n = 142)")] --> A
-        A3[("ArXiv<br/>(n = 71)")] --> A
-        A4[("Semantic Scholar<br/>(n = 72)")] --> A
-        A["Records identified<br/>after deduplication<br/>(n = 570)"]
+        A1[("fa:fa-database Crossref<br/>(n = 285)")] --> A
+        A2[("fa:fa-database PubMed<br/>(n = 142)")] --> A
+        A3[("fa:fa-database ArXiv<br/>(n = 71)")] --> A
+        A4[("fa:fa-database Semantic Scholar<br/>(n = 72)")] --> A
+        A["fa:fa-file-alt Articles identified<br/>after deduplication<br/>(n = 570)"]
     end
 
     subgraph SC["SCREENING"]
-        A --> D{"Title/Abstract<br/>Screening<br/>(n = 570)"}
-        D -->|"Excluded"| E["Records excluded<br/>(n = 480)<br/>• Not relevant to framework<br/>• Outside scope<br/>• Non-English"]
-        D -->|"Passed screening"| H{"Full-text<br/>Eligibility<br/>Assessment<br/>(n = 90)"}
-        H -->|"Excluded"| I["Reports excluded<br/>(n = 46)<br/>• No verifiable DOI/URL (n = 18)<br/>• Vendor marketing only (n = 15)<br/>• Methodological concerns (n = 13)"]
+        A --> D{"fa:fa-filter Title/abstract<br/>screening<br/>(n = 570)"}
+        D -->|"Excluded"| E["fa:fa-file-alt Articles excluded<br/>(n = 480)<br/>• Not relevant to framework<br/>• Outside scope<br/>• Non-English"]
+        D -->|"Passed"| H{"fa:fa-clipboard-check Full-text<br/>eligibility<br/>screening<br/>(n = 90)"}
+        H -->|"Excluded"| I["fa:fa-file-alt Articles excluded<br/>(n = 46)<br/>• No verifiable DOI/URL (n = 18)<br/>• Vendor marketing only (n = 15)<br/>• Methodological concerns (n = 13)"]
     end
 
     subgraph QA["QUALITY ASSESSMENT"]
-        H -->|"Assessed for quality"| J{"Source<br/>Classification<br/>(n = 44)"}
-        J -->|"Grey literature"| L{"AACODS<br/>Checklist<br/>(n = 14)"}
-        L -->|"Failed"| N["Excluded<br/>(n = 3)<br/>• Low objectivity<br/>• Insufficient detail"]
+        H -->|"Passed"| J{"fa:fa-sitemap Source<br/>classification<br/>(n = 44)"}
+        J -->|"Grey literature"| L{"fa:fa-clipboard-check AACODS<br/>checklist<br/>(n = 14)"}
+        L -->|"Excluded"| N["fa:fa-file-alt Articles excluded<br/>(n = 3)<br/>• Low objectivity<br/>• Insufficient detail"]
     end
 
     subgraph IN["INCLUDED"]
-        J -->|"Academic (n = 30)"| O[("Final Corpus<br/>(n = 41)<br/>Academic: 30<br/>Industry: 11")]
-        L -->|"Passed (n = 11)"| O
+        J -->|"Academic"| O["fa:fa-file-alt Final corpus<br/>(n = 41)<br/>Academic: 30<br/>Industry: 11"]
+        L -->|"Passed"| O
     end
 
     %% Styling - neutral palette matching architecture.jpg

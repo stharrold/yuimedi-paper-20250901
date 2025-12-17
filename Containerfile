@@ -14,6 +14,7 @@ LABEL description="YuiQuery research development environment with uv + Python 3.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
+    graphviz \
     && rm -rf /var/lib/apt/lists/*
 
 # Install GitHub CLI for workflow automation (gh pr, gh issue, etc.)
