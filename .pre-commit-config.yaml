@@ -13,6 +13,7 @@ repos:
       - id: check-json
       - id: check-added-large-files
         args: ['--maxkb=500']
+        exclude: ^figures/architecture-edited\.png$
       - id: check-merge-conflict
       - id: detect-private-key
 

@@ -89,6 +89,7 @@ npj_digital-medicine_*.pdf
 
 # Large uncompressed images (use .jpg versions instead)
 figures/*.png
+!figures/architecture-edited.png
 
 # Claude state database files
 .claude-state/*.duckdb
