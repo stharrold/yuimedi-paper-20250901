@@ -219,9 +219,23 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 ### Generated Files Strategy
 **Committed to git (intentional):**
 - `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
+- `figures/*.jpg` - Generated from Mermaid `.mmd` sources (JPG format for cross-platform consistency)
 - Versioned for reproducibility and release tagging
 
+**Figure generation:** Generate JPG from Mermaid source:
+```bash
+# Step 1: Generate PNG from Mermaid
+npx --yes @mermaid-js/mermaid-cli@latest -i figures/<name>.mmd -o figures/<name>.png
+
+# Step 2: Convert PNG to JPG (choose based on OS)
+# macOS:
+sips -s format jpeg figures/<name>.png --out figures/<name>.jpg && rm figures/<name>.png
+# Linux/Container:
+convert figures/<name>.png figures/<name>.jpg && rm figures/<name>.png
+```
+
 **Excluded via .gitignore:**
+- `figures/*.png` - Intermediate PNG files (local generation differences)
 - `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
 - `.claude-state/*.duckdb` - Local database files
 
