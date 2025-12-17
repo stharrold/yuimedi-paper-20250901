@@ -1,33 +1,47 @@
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f5f5f5', 'primaryTextColor': '#333', 'primaryBorderColor': '#999', 'lineColor': '#1E3A5F', 'secondaryColor': '#e8e8e8', 'tertiaryColor': '#fff'}}}%%
 flowchart TD
-    %% Literature Selection Flow with Consistent Counts
-    %% Grand Total: 570 = 41 (included) + 529 (excluded)
+    %% PRISMA 2020 Flow Diagram for Literature Selection
+    %% Aligned with lit_review academic-literature-review workflow
+    %% Total: 570 identified → 41 included (529 excluded)
 
-    A[("Database Search<br/>(n = 570)")] --> B{"Title/Abstract<br/>Screening"}
-    B -->|"Excluded (n = 480)<br/>Not relevant to<br/>three-pillar framework"| C[Excluded]
-    B -->|"Potentially relevant<br/>(n = 90)"| D{"Full-text<br/>Review"}
-    D -->|"Excluded (n = 46)<br/>• No verifiable DOI/URL<br/>• Vendor marketing only<br/>• Methodological concerns"| E[Excluded]
-    D -->|"Included<br/>(n = 44)"| F{"Source<br/>Classification"}
-    F -->|"Grey Literature<br/>(n = 14)"| G["AACODS<br/>Assessment"]
-    F -->|"Academic<br/>(n = 30)"| H["Peer-reviewed<br/>Sources"]
-    G -->|"Passed (n = 11)"| I[("Final Corpus<br/>(n = 41)<br/>30 academic<br/>11 industry")]
-    G -->|"Failed (n = 3)<br/>Low objectivity"| J[Excluded]
-    H --> I
-
-    %% Count verification annotations
-    subgraph Legend["Count Verification"]
-        L1["Stage 1: 570 = 480 + 90 ✓"]
-        L2["Stage 2: 90 = 46 + 44 ✓"]
-        L3["Stage 3: 44 = 30 + 14 ✓"]
-        L4["Stage 4: 14 = 11 + 3 ✓"]
-        L5["Final: 30 + 11 = 41 ✓"]
-        L6["Excluded: 480 + 46 + 3 = 529"]
+    subgraph ID["IDENTIFICATION"]
+        A1[("Crossref<br/>n = 285")] --> A
+        A2[("PubMed<br/>n = 142")] --> A
+        A3[("ArXiv<br/>n = 71")] --> A
+        A4[("Semantic Scholar<br/>n = 72")] --> A
+        A["Records identified<br/>from databases<br/>(n = 570)"]
+        A --> B["Duplicate records<br/>removed<br/>(n = 0)"]
+        B --> C["Records after<br/>deduplication<br/>(n = 570)"]
     end
 
-    %% Neutral color palette matching architecture.jpg
-    style A fill:#f5f5f5,stroke:#1E3A5F
-    style I fill:#e8e8e8,stroke:#1E3A5F
-    style C fill:#f5f5f5,stroke:#999
+    subgraph SC["SCREENING"]
+        C --> D{"Title/Abstract<br/>Screening"}
+        D -->|"Excluded<br/>(n = 480)"| E["Records excluded<br/>• Not relevant to framework<br/>• Outside scope<br/>• Non-English"]
+        D -->|"Sought for retrieval<br/>(n = 90)"| F["Reports sought<br/>for retrieval"]
+        F --> G["Reports not<br/>retrieved<br/>(n = 0)"]
+        F --> H{"Full-text<br/>Eligibility<br/>Assessment"}
+        H -->|"Excluded (n = 46)"| I["Reports excluded<br/>• No verifiable DOI/URL (n = 18)<br/>• Vendor marketing only (n = 15)<br/>• Methodological concerns (n = 13)"]
+    end
+
+    subgraph QA["QUALITY ASSESSMENT"]
+        H -->|"Assessed for quality<br/>(n = 44)"| J{"Source<br/>Classification"}
+        J -->|"Academic sources<br/>(n = 30)"| K["Peer-reviewed<br/>publications"]
+        J -->|"Grey literature<br/>(n = 14)"| L{"AACODS<br/>Checklist"}
+        L -->|"Passed (n = 11)"| M["Industry reports<br/>meeting quality<br/>threshold"]
+        L -->|"Failed (n = 3)"| N["Excluded<br/>• Low objectivity<br/>• Insufficient detail"]
+    end
+
+    subgraph IN["INCLUDED"]
+        K --> O[("Final Corpus<br/>(n = 41)<br/>Academic: 30<br/>Industry: 11")]
+        M --> O
+    end
+
+    %% Styling - neutral palette matching architecture.jpg
+    style ID fill:#f5f5f5,stroke:#1E3A5F
+    style SC fill:#f5f5f5,stroke:#1E3A5F
+    style QA fill:#f5f5f5,stroke:#1E3A5F
+    style IN fill:#e8e8e8,stroke:#1E3A5F
     style E fill:#f5f5f5,stroke:#999
-    style J fill:#f5f5f5,stroke:#999
-    style Legend fill:#fff,stroke:#999
+    style I fill:#f5f5f5,stroke:#999
+    style N fill:#f5f5f5,stroke:#999
+    style G fill:#f5f5f5,stroke:#999
