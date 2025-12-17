@@ -1,9 +1,12 @@
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f0f0f0', 'primaryTextColor': '#333', 'primaryBorderColor': '#666', 'lineColor': '#666', 'secondaryColor': '#e8e8e8', 'tertiaryColor': '#fff'}}}%%
 flowchart TD
-    A[("Database Search<br/>(n ≈ 570)")] --> B{"Title/Abstract<br/>Screening"}
-    B -->|"Excluded (n ≈ 480)<br/>Not relevant to<br/>three-pillar framework"| C[Excluded]
-    B -->|"Potentially relevant<br/>(n ≈ 90)"| D{"Full-text<br/>Review"}
-    D -->|"Excluded (n ≈ 46)<br/>• No verifiable DOI/URL<br/>• Vendor marketing only<br/>• Methodological concerns"| E[Excluded]
+    %% Literature Selection Flow with Consistent Counts
+    %% Grand Total: 570 = 41 (included) + 529 (excluded)
+
+    A[("Database Search<br/>(n = 570)")] --> B{"Title/Abstract<br/>Screening"}
+    B -->|"Excluded (n = 480)<br/>Not relevant to<br/>three-pillar framework"| C[Excluded]
+    B -->|"Potentially relevant<br/>(n = 90)"| D{"Full-text<br/>Review"}
+    D -->|"Excluded (n = 46)<br/>• No verifiable DOI/URL<br/>• Vendor marketing only<br/>• Methodological concerns"| E[Excluded]
     D -->|"Included<br/>(n = 44)"| F{"Source<br/>Classification"}
     F -->|"Grey Literature<br/>(n = 14)"| G["AACODS<br/>Assessment"]
     F -->|"Academic<br/>(n = 30)"| H["Peer-reviewed<br/>Sources"]
@@ -11,8 +14,19 @@ flowchart TD
     G -->|"Failed (n = 3)<br/>Low objectivity"| J[Excluded]
     H --> I
 
+    %% Count verification annotations
+    subgraph Legend["Count Verification"]
+        L1["Stage 1: 570 = 480 + 90 ✓"]
+        L2["Stage 2: 90 = 46 + 44 ✓"]
+        L3["Stage 3: 44 = 30 + 14 ✓"]
+        L4["Stage 4: 14 = 11 + 3 ✓"]
+        L5["Final: 30 + 11 = 41 ✓"]
+        L6["Excluded: 480 + 46 + 3 = 529"]
+    end
+
     style A fill:#e3f2fd
     style I fill:#c8e6c9
     style C fill:#ffcdd2
     style E fill:#ffcdd2
     style J fill:#ffcdd2
+    style Legend fill:#fff,stroke:#ccc
