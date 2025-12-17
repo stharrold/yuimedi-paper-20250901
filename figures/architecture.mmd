@@ -1,13 +1,41 @@
-graph TD
-    A[Clinical User] -->|Natural Language Query| B[Conversational AI Interface]
-    B --> C[Healthcare NLP Engine]
-    C --> D[Context-Aware SQL Generation]
-    D --> E[Healthcare Data Warehouse]
-    E --> F[Intelligent Response Generation]
-    F --> G[Contextual Insights & Visualizations]
-    G --> A
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f5f5f5', 'primaryTextColor': '#333', 'primaryBorderColor': '#999', 'lineColor': '#1E3A5F', 'secondaryColor': '#e8e8e8', 'tertiaryColor': '#fff'}}}%%
+flowchart TD
+    %% Healthcare Analytics Architecture
+    %% Clinical User queries flowing through AI processing to insights
 
-    H[Institutional Knowledge Base] --> C
-    I[Healthcare Ontologies] --> C
-    J[Organizational Memory] --> H
-    K[Best Practices Repository] --> H
+    subgraph UI["User Interaction Layer"]
+        A["👤 Clinical User"] -->|"1. Initiates"| B["📄 Natural Language Query"]
+        B -->|"2. Transmits"| C["🤖 Conversational AI Interface"]
+    end
+
+    subgraph Knowledge["Knowledge Support Infrastructure"]
+        D[("Organizational Memory")] --> G[("Institutional Knowledge Base")]
+        E[("Best Practices Repository")] --> G
+        F["📚 Healthcare Ontologies"]
+    end
+
+    subgraph Engine["Analytics Processing Core"]
+        H["⚙️ Healthcare NLP Engine"] -->|"4. Interprets & Feeds"| I["📝 Context-Aware SQL Generation"]
+    end
+
+    J[("🗄️ Healthcare Data Warehouse")]
+
+    subgraph Output["Insight Delivery"]
+        K["⚡ Intelligent Response Generation"] -->|"7. Processes"| L["📊 Contextual Insights & Visualizations"]
+    end
+
+    %% Main flow
+    C -->|"3. Connects to"| H
+    I -->|"5. Queries"| J
+    J -->|"6. Returns Data"| K
+    L -->|"8. Feedback Loop"| A
+
+    %% Knowledge injection (dashed)
+    G -.->|"Provides Context"| H
+    F -.->|"Provides Semantics"| H
+
+    %% Styling
+    style UI fill:#f5f5f5,stroke:#999
+    style Knowledge fill:#f5f5f5,stroke:#999
+    style Engine fill:#f5f5f5,stroke:#999
+    style Output fill:#f5f5f5,stroke:#999
