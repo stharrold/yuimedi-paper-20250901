@@ -1,5 +1,7 @@
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f5f5f5', 'primaryTextColor': '#333', 'primaryBorderColor': '#999', 'lineColor': '#1E3A5F', 'secondaryColor': '#e8e8e8', 'tertiaryColor': '#fff'}}}%%
-flowchart TD
+---
+title: PRISMA 2020 Literature Selection Flow
+---
+flowchart LR
     %% PRISMA 2020 Flow Diagram for Literature Selection
     %% Aligned with lit_review academic-literature-review workflow
     %% Total: 570 identified → 41 included (529 excluded)
@@ -30,12 +32,3 @@ flowchart TD
         J -->|"Academic"| O["fa:fa-file-alt Final corpus<br/>(n = 41)<br/>Academic: 30<br/>Industry: 11"]
         L -->|"Passed"| O
     end
-
-    %% Styling - neutral palette matching architecture.jpg
-    style ID fill:#f5f5f5,stroke:#1E3A5F
-    style SC fill:#f5f5f5,stroke:#1E3A5F
-    style QA fill:#f5f5f5,stroke:#1E3A5F
-    style IN fill:#e8e8e8,stroke:#1E3A5F
-    style E fill:#f5f5f5,stroke:#999
-    style I fill:#f5f5f5,stroke:#999
-    style N fill:#f5f5f5,stroke:#999
