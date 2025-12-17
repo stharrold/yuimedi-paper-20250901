@@ -21,15 +21,13 @@ flowchart TD
 
     subgraph QA["QUALITY ASSESSMENT"]
         H -->|"Assessed for quality"| J{"Source<br/>Classification<br/>(n = 44)"}
-        J -->|"Academic sources"| K["Peer-reviewed<br/>publications<br/>(n = 30)"]
         J -->|"Grey literature"| L{"AACODS<br/>Checklist<br/>(n = 14)"}
-        L -->|"Passed"| M["Industry reports<br/>meeting quality<br/>threshold<br/>(n = 11)"]
         L -->|"Failed"| N["Excluded<br/>(n = 3)<br/>• Low objectivity<br/>• Insufficient detail"]
     end
 
     subgraph IN["INCLUDED"]
-        K --> O[("Final Corpus<br/>(n = 41)<br/>Academic: 30<br/>Industry: 11")]
-        M --> O
+        J -->|"Academic (n = 30)"| O[("Final Corpus<br/>(n = 41)<br/>Academic: 30<br/>Industry: 11")]
+        L -->|"Passed (n = 11)"| O
     end
 
     %% Styling - neutral palette matching architecture.jpg
