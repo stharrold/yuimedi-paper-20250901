@@ -32,9 +32,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Citation verification:** All citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
 
-**Paper classification:** Narrative review with original analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
+**Paper classification:** Narrative review with original three-pillar analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
 
 **Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ppr_review/20251215_AACODS-Grey-Literature.md` for assessment table.
+
+**Paper 1 structure (post-revision):** Executive Summary → Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Sections 5-6 (Proposed Solution, Evaluation) were intentionally removed to transform paper from solution-advocacy to pure analytical framework.
 
 ## Essential Commands
 
@@ -206,8 +208,9 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 ## Key Patterns
 
 ### Citations
-- Academic: `[A1]`, `[A2]`, etc.
-- Industry: `[I1]`, `[I2]`, etc.
+- Academic: `[A1]`, `[A2]`, etc. (30 sources)
+- Industry: `[I1]`, `[I2]`, etc. (11 sources)
+- Key dated citation: [A10] (2004 turnover data) - always qualify with temporal context
 
 ### File Naming
 - Historical files: `YYYYMMDDTHHMMSSZ_` prefix
@@ -216,9 +219,17 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 ### Generated Files Strategy
 **Committed to git (intentional):**
 - `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
+- `figures/*.jpg` - Generated from Mermaid `.mmd` sources (JPG format for cross-platform consistency)
 - Versioned for reproducibility and release tagging
 
+**Figure generation:** Generate JPG from Mermaid source with:
+```bash
+npx --yes @mermaid-js/mermaid-cli@latest -i figures/<name>.mmd -o figures/<name>.png
+sips -s format jpeg figures/<name>.png --out figures/<name>.jpg && rm figures/<name>.png
+```
+
 **Excluded via .gitignore:**
+- `figures/*.png` - Intermediate PNG files (local generation differences)
 - `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
 - `.claude-state/*.duckdb` - Local database files
 
@@ -228,7 +239,11 @@ Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
 ### Three-Pillar Framework
 All research connects to: (1) analytics maturity, (2) workforce turnover, (3) technical barriers.
 
+**Framework documentation:** See `paper.md` "Framework Development and Validation" section for development process, theoretical grounding (Table 3: HIMSS AMAM/DIKW alignment), and validation approach.
+
 **Planning documents:** `planning/<feature-slug>/` in repository (committed to version control)
+
+**Submission materials:** `ppr_review/` contains expert-review-checklist.md, osf-registration-draft.md, arxiv-submission-checklist.md, zenodo-submission-checklist.md
 
 ## Healthcare Domain Context
 
