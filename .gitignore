@@ -121,3 +121,5 @@ cabal.project.local~
 
 .gemini/
 gha-creds-*.json
+figures/literature-flow.mmd.vmp.svg
+figures/literature-flow.mmd.vscode-mermaid-preview.svg

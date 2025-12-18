@@ -55,7 +55,33 @@ convert figures/<name>.png figures/<name>.jpg && rm figures/<name>.png
 | `architecture.mmd` | Healthcare analytics architecture diagram |
 | `literature-flow.mmd` | PRISMA 2020 literature selection flow |
 
+## Publication-Ready Outputs
+
+For academic journal submission, optimized versions are generated from VS Code Mermaid Preview SVG exports:
+
+| File | Size | Description |
+|------|------|-------------|
+| `literature-flow.mmd.vmp.svg` | ~518KB | Original VS Code Mermaid Preview export |
+| `literature-flow.mmd.vmp.clean.svg` | ~42KB | Optimized: FA CSS removed, grayscale |
+| `literature-flow.mmd.vmp.300dpi.png` | ~423KB | 300 DPI raster for standard print |
+| `literature-flow.mmd.vmp.600dpi.png` | ~632KB | 600 DPI raster for high-quality print |
+| `literature-flow.mmd.vmp.pdf` | ~79KB | Vector PDF for publication |
+
+### Optimization Script
+
+```bash
+# Generate optimized SVG (grayscale, Font Awesome CSS removed)
+python scripts/optimize_svg_for_publication.py figures/literature-flow.mmd.vmp.svg figures/literature-flow.mmd.vmp.clean.svg
+
+# Generate high-resolution PNG (requires sharp-cli)
+npx --yes sharp-cli -i figures/literature-flow.mmd.vmp.clean.svg --density 300 -o figures/literature-flow.mmd.vmp.300dpi.png
+npx --yes sharp-cli -i figures/literature-flow.mmd.vmp.clean.svg --density 600 -o figures/literature-flow.mmd.vmp.600dpi.png
+
+# Generate vector PDF (requires librsvg2-bin in container)
+podman-compose run --rm dev bash -c "apt-get install -y -qq librsvg2-bin && rsvg-convert -f pdf -o figures/literature-flow.mmd.vmp.pdf figures/literature-flow.mmd.vmp.clean.svg"
+```
+
 ## Git Tracking
 
-- **Tracked:** `.mmd`, `.dot`, `.jpg`, `.svg` (sources and final outputs)
+- **Tracked:** `.mmd`, `.dot`, `.jpg`, `.svg`, `.pdf` (sources and final outputs)
 - **Ignored:** `.png` intermediates (per root `.gitignore`)
