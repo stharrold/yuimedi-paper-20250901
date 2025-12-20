@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 15 answered, 14 unanswered
+**Status:** 16 answered, 13 unanswered
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -61,6 +61,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What is the average tenure for IT staff at healthcare provider institutions? | Paper1 | — | [`Research_What-is-the-average-tenure-for-IT-staff-at-healthcare-provider-institutions.md`](Research_What-is-the-average-tenure-for-IT-staff-at-healthcare-provider-institutions.md) |
 | What is the cost of turnover in terms of annual salary? | Paper1 | — | [`Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md`](Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md) |
 | What is the average time to train a healthcare IT employee? | Paper1 | — | [`Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md`](Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md) |
+| How does Nonaka's SECI model apply to organizational knowledge capture in analytics? | Paper1,Paper2 | [#372](https://github.com/stharrold/yuimedi-paper-20250901/issues/372) | [`Research_How-does-Nonakas-SECI-model-apply-to-organizational knowledge-capture-in-analytics.md`](Research_How-does-Nonakas-SECI-model-apply-to-organizational%20knowledge-capture-in-analytics.md) |
 
 ### Healthcare Analytics Challenges
 
@@ -89,12 +90,6 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 | How have vector embeddings been used for schema matching or column selection? | Paper2 | [#368](https://github.com/stharrold/yuimedi-paper-20250901/issues/368) | Partial | [`Research_How-have-vector-embeddings-been-used-for-schema-matching-or-column-selection.md`](Research_How-have-vector-embeddings-been-used-for-schema-matching-or-column-selection.md) |
 | What is the state of the art in semantic table/column matching for NL2SQL? | Paper2 | [#368](https://github.com/stharrold/yuimedi-paper-20250901/issues/368) | Unanswered | |
 
-### Knowledge Management Theory
-
-| Question | Scope | Issue | Status | Notes |
-|----------|-------|-------|--------|-------|
-| How does Nonaka's SECI model apply to organizational knowledge capture in analytics? | Paper1,Paper2 | [#372](https://github.com/stharrold/yuimedi-paper-20250901/issues/372) | Unanswered | Follow-up: How have others operationalized tacit-to-explicit knowledge conversion in software systems? |
-
 ### Institutional Learning and Query Reuse
 
 | Question | Scope | Issue | Status | Notes |
@@ -115,8 +110,8 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 | Question | Scope | Issue | Status | Notes |
 |----------|-------|-------|--------|-------|
 | What quantitative efficiency metrics (time savings, task completion rates) have been reported for low-code or conversational AI in healthcare? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | → Gap | Added to paper.md "Gaps in Current Literature" |
-| What peer-reviewed (non-vendor-sponsored) evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Unanswered | |
-| How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Unanswered | |
+| What peer-reviewed (non-vendor-sponsored) evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | Healthcare AI evidence found (10 papers); low-code platform evidence = Gap. See [`Research_What-peer-reviewed-evidence-exists-for-cost-reductions-from-healthcare-AI-low-code-implementations.md`](Research_What-peer-reviewed-evidence-exists-for-cost-reductions-from-healthcare-AI-low-code-implementations.md) |
+| How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | General NL2SQL productivity evidence found (67% latency reduction, 10K+ users); healthcare-specific measurement = Gap. See [`Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md`](Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md) |
 | What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Unanswered | |
 
 ### Clinical Safety and Security
@@ -146,7 +141,10 @@ All `Research_*.md` files in this directory:
 | `Research_Do-healthcare-organizations-struggle-to-keep-pace-with-changes-in-analytics.md` | Healthcare analytics adoption lag | Paper1 |
 | `Research_has-schema-discovery-been-applied-to-healthcare-databases-specifically.md` | Schema discovery in healthcare | Paper2 |
 | `Research_How-do-existing-approaches-validate-discovered-database-relationships-precision-recall.md` | Relationship validation methods | Paper2 |
+| `Research_How-does-Nonakas-SECI-model-apply-to-organizational knowledge-capture-in-analytics.md` | SECI model for knowledge capture | Paper1,Paper2 |
 | `Research_How-have-vector-embeddings-been-used-for-schema-matching-or-column-selection.md` | Vector embeddings for schema matching | Paper2 |
+| `Research_What-peer-reviewed-evidence-exists-for-cost-reductions-from-healthcare-AI-low-code-implementations.md` | Healthcare AI cost reduction evidence | Paper1 |
+| `Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md` | NL2SQL productivity evidence | Paper1,Paper2 |
 | `Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md` | NL2SQL benchmark accuracy | Paper1,Paper2 |
 | `Research_What-algorithms-exist-for-automatic-primary-foreign-key-discovery-from-database-metadata.md` | PK/FK discovery algorithms | Paper2 |
 | `Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md` | Low-code/AI ROI evidence | Paper1 |
