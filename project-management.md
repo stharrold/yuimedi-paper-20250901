@@ -760,21 +760,79 @@ Total PTO needed: 10 days across 30 weeks
 - Feminist Review: £130 (~$165) per review ([Feminist Review](https://femrev.wordpress.com/2022/05/24/feminist-review-peer-review-honorariums/))
 - **Budget if using academic rates: $450-600 total** (3 reviews × $150-200)
 
-**Publication & Distribution Costs:**
-- Preprint servers (arXiv, medRxiv, SSRN): **$0**
+**Publication & Distribution Costs (Updated Dec 2025):**
+
+### Paper 1: Three-Pillar Framework (~$6,948 total)
+
+| Phase | Item | Cost | Hours |
+|-------|------|------|-------|
+| **Pre-submission** | Scientific Editing | ~$3,500 | - |
+| | Graphical Abstract | $349 | - |
+| | Video Byte | $349 | - |
+| | Manuscript preparation | - | 6-8 hrs |
+| **Revision** | Address reviewer feedback | - | 9-18 hrs |
+| **Acceptance** | JMIR APC | $2,750 | - |
+| **Total** | | **~$6,948** | **15-26 hrs** |
+
+- Submission deadline: Dec 31, 2025
+- Expected acceptance: ~Apr 15, 2026
+
+### Paper 2: Reference Implementation (~$6,600-$6,900 total)
+
+| Phase | Item | Cost | Hours |
+|-------|------|------|-------|
+| **Pre-submission** | Scientific Editing | ~$3,500 | - |
+| | Graphical Abstract | $349 | - |
+| | GCP Infrastructure | $0-300 | - |
+| | Implementation & manuscript | - | 83-98 hrs |
+| **Revision** | Address reviewer feedback | - | 9-30 hrs |
+| **Acceptance** | JMIR APC | $2,750 | - |
+| **Total** | | **~$6,600-$6,900** | **92-128 hrs** |
+
+- Submission deadline: Jan 31, 2026
+- Expected acceptance: ~May 15, 2026
+
+### Why Scientific Editing (~$3,500/paper)
+
+| Metric | Without Editing | With Editing | Savings |
+|--------|-----------------|--------------|---------|
+| Expected decision | Major Revisions | Minor Revisions | Less rework |
+| Revision hours | 13-30 hrs | 9-18 hrs | 4-12 hrs |
+| Calendar time | 8-12 weeks | 3-6 weeks | 5-6 weeks |
+
+Provider: [Springer Nature Scientific Editing](https://authorservices.springernature.com/scientific-editing/)
+
+### Combined Budget Summary
+
+| Paper | Cost | Hours |
+|-------|------|-------|
+| Paper 1 | ~$6,948 | 15-26 hrs |
+| Paper 2 | ~$6,600-$6,900 | 92-128 hrs |
+| Paper 3 (estimate) | ~$6,000-$7,000 | 70-100 hrs |
+| **Total** | **~$19,500-$20,850** | **177-254 hrs** |
+
+Remaining from $33,495 approved budget: ~$12,600-$14,000 for contingencies
+
+### Decision Points for Budget Approval
+
+1. **Approve Paper 1 budget** (~$6,600 + 6-8 hrs pre-submission)? □
+2. **Approve Paper 2 budget** (~$6,600-$6,900 + 83-98 hrs pre-submission)? □
+3. **Confirm Jan 31, 2026** Paper 2 deadline? □
+4. **Approve ~$4,198 immediate spend** for Paper 1 services (Scientific Editing + Graphical Abstract + Video Byte)? □
+
+### Other Publication Costs
+- Preprint servers (arXiv): **$0**
 - ResearchGate, Zenodo uploads: **$0**
-- JMIR publication fee (if accepted): **~$3,000**
-- AHIMA Journal submission: **$0** (possible page charges if accepted)
 - Conference registrations (optional): **$500-1,000** per conference
-- **Realistic publication budget: $0-4,000** (depending on journal selection)
 
 Note: Samuel Harrold self-funds Claude subscription ($200/month)
 
-### Review Checkpoints
-- **2025-10-02**: Paper 1 internal review (YuiMedi team leads)
-- **2025-12-18**: Paper 2 internal review (YuiMedi team leads)
-- **2026-02-26**: Paper 3 internal review (YuiMedi team leads)
-- **2026-03-01 to 2026-03-31**: External SME reviews (all papers)
+### Review Checkpoints (Updated Dec 2025)
+- **2025-12-31**: Paper 1 submission to arXiv + JMIR
+- **2026-01-31**: Paper 2 submission to arXiv + JMIR
+- **2026-03-15**: Paper 3 submission to arXiv + JMIR
+- **~Apr 15, 2026**: Paper 1 expected acceptance
+- **~May 15, 2026**: Paper 2 expected acceptance
 
 ### Risk Mitigation
 
