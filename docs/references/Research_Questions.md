@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 16 answered, 13 unanswered
+**Status:** 16 answered, 12 unanswered (1 newly partial)
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -112,7 +112,7 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 | What quantitative efficiency metrics (time savings, task completion rates) have been reported for low-code or conversational AI in healthcare? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | → Gap | Added to paper.md "Gaps in Current Literature" |
 | What peer-reviewed (non-vendor-sponsored) evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | Healthcare AI evidence found (10 papers); low-code platform evidence = Gap. See [`Research_What-peer-reviewed-evidence-exists-for-cost-reductions-from-healthcare-AI-low-code-implementations.md`](Research_What-peer-reviewed-evidence-exists-for-cost-reductions-from-healthcare-AI-low-code-implementations.md) |
 | How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | General NL2SQL productivity evidence found (67% latency reduction, 10K+ users); healthcare-specific measurement = Gap. See [`Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md`](Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md) |
-| What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Unanswered | |
+| What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | EUC satisfaction/effectiveness frameworks found (EUCS, TTF, SEM); Callinan & Perry (2024) CSFs most relevant; healthcare-specific citizen developer metrics = Gap. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
 
 ### Clinical Safety and Security
 
@@ -153,6 +153,7 @@ All `Research_*.md` files in this directory:
 | `Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md` | Healthcare IT training time | Paper1 |
 | `Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md` | Turnover cost estimates | Paper1 |
 | `Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md` | Knowledge portal paradigm | Paper1,Paper2 |
+| `Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md` | Citizen developer productivity measurement | Paper1 |
 | `Research_What-NL2SQL-datasets-exist-for-healthcare.md` | Healthcare NL2SQL datasets | Paper2 |
 | `Research_What-NL2SQL-systems-have-been-applied-to-healthcare-databases.md` | Healthcare NL2SQL systems | Paper1,Paper2 |
 | `Research_What-tools-exist-for-degrading-data-quality-for-testing.md` | Data quality degradation tools | Paper2 |

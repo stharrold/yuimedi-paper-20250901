@@ -1,44 +1,78 @@
-# Academic Research Literature Search and Synthesis Workflow (v3.1)
+# Academic Research Literature Search and Synthesis Workflow (v4.0)
 
-> **Revision Notes (v3.1):** Updated based on practical execution experience. Key changes include simplified URL extraction, improved account switching guidance, clarified vscode.dev file handling, and refined timing estimates.
+> **Revision Notes (v4.0):** Renamed from search-scholar.md. Added Research_Questions.md integration for automatic question selection, local filesystem saving, status updates, and GitHub issue management. Preserved all v3.1 Google Scholar Labs functionality.
 
-You are assisting with an academic research workflow to search for scholarly literature using Google Scholar Labs and synthesize findings.
+You are assisting with an academic research workflow to search for scholarly literature using Google Scholar Labs, synthesize findings, and update project tracking.
 
 ## Inputs
 
-- **research_question**: The specific research or business question to search for in academic literature. Can be a single question or a range (e.g., "question 1", "questions 1-5", "questions 3, 7, 12").
+- **mode**: How to select the research question
+  - `"next"`: Auto-select highest priority unanswered question from Research_Questions.md
+  - `"question"`: Use the provided research_question text directly
+  - `"questions"`: Process a range (e.g., "1-5") or list (e.g., "3, 7, 12") from Research_Questions.md
+- **research_question**: (Required if mode != "next") The specific question text or range
 - **sort_by**: (Optional) How to order results: "relevance" | "citations". Default: "relevance"
 - **early_completion**: (Optional) If true and 8+ results found after 90 seconds, proceed with partial results. Default: false
 
 ## Workflow Steps
 
-### 1. Navigate to Google Scholar Labs
+### Step 0: Select Research Question (NEW in v4.0)
+
+**If mode="next":**
+1. Read `docs/references/Research_Questions.md`
+2. Parse the "Unanswered Questions" section
+3. Select highest priority question using these criteria (in order):
+   - **Scope priority**: Paper1 > Paper2 > Paper3 (earlier deadlines first)
+   - **Status priority**: "Unanswered" > "Partial" (skip "→ Gap" - already confirmed missing)
+   - **Has GitHub issue**: Prefer questions with linked issues for tracking
+4. Extract from the selected question:
+   - Question text
+   - Scope (Paper1/Paper2/Paper3)
+   - GitHub issue number (if any)
+   - Category section name
+
+**If mode="question":**
+- Use the provided research_question text directly
+- Check Research_Questions.md to find matching entry for scope/issue info
+
+**If mode="questions":**
+- Parse the range (e.g., "1-5") or list (e.g., "3, 7, 12")
+- Map to questions in Research_Questions.md by their order in the Unanswered section
+- Process each sequentially
+
+### Step 1: Navigate to Google Scholar Labs
 
 - Go to https://scholar.google.com/scholar_labs/search
 - If an existing session is open, click "+ New session" in the left sidebar to start fresh
 
-### 1b. Verify Account Availability (NEW)
+### Step 1b: Verify Account Availability
 
 - **Before submitting your query**, check if the current account has available searches
 - If "Daily limit reached" message appears at the bottom of the page:
-1. Click the profile icon (top-right corner)
-2. Select an alternate Google account from the dropdown
-3. Wait for the page to reload with the new account
+  1. Click the profile icon (top-right corner)
+  2. Select an alternate Google account from the dropdown
+  3. Wait for the page to reload with the new account
 - Multiple Google accounts can extend daily search capacity
 
-### 2. Parse Research Questions
+### Step 2: Parse Research Questions
 
 - If a range is specified (e.g., "questions 1-5"), identify all individual questions from the source file
 - If multiple questions specified (e.g., "questions 3, 7, 12"), parse the list
 - Process each question sequentially, creating a separate output file for each
 
-### 3. Submit the Research Question
+### Step 3: Submit the Research Question
 
 - Locate the "Ask Scholar" input field at the bottom of the page
 - Enter the research question exactly as provided
 - Click the send arrow button to submit
 
-### 4. Wait for Search Completion (typically 1-2 minutes, maximum 5 minutes)
+**Query Formulation Tips:**
+- Remove question words ("What", "How", "Why") if needed
+- Add domain qualifiers: "healthcare", "clinical", "medical informatics"
+- Try both specific and broader terms
+- Include methodological terms: "systematic review", "benchmark", "evaluation"
+
+### Step 4: Wait for Search Completion (typically 1-2 minutes, maximum 5 minutes)
 
 - Monitor the status indicator in the left sidebar
 - Progress stages: "Analyzing your question" → "Looking for results..." → "Evaluated X top results" → "Found X relevant results" ✓
@@ -53,10 +87,10 @@ You are assisting with an academic research workflow to search for scholarly lit
 **Edge Case Handling:**
 - If Scholar Labs displays "Scholar Labs is currently not designed for queries like this" or "Search stopped," proceed with whatever results were found
 - If no results, inform the user and suggest reformulating the question using these strategies:
-- Rephrase as a how/what question
-- Split into more specific sub-questions
-- Remove jargon or acronyms
-- Add domain context (e.g., "in healthcare databases")
+  - Rephrase as a how/what question
+  - Split into more specific sub-questions
+  - Remove jargon or acronyms
+  - Add domain context (e.g., "in healthcare databases")
 
 **Interpreting Status Messages:**
 - "Found X relevant results" ✓ = Complete success
@@ -64,7 +98,7 @@ You are assisting with an academic research workflow to search for scholarly lit
 - "Not designed for queries like this" + no results = Reformulate query
 - Error messages = Retry once, then reformulate
 
-### 5. Extract Paper URLs (SIMPLIFIED)
+### Step 5: Extract Paper URLs (SIMPLIFIED)
 
 **Primary Method (Recommended):**
 - Use `read_page` with `filter: interactive` to extract full paper URLs directly from the results page
@@ -79,7 +113,7 @@ You are assisting with an academic research workflow to search for scholarly lit
 
 **Note:** The primary method saves 2-3 minutes per search compared to clicking through every paper.
 
-### 6. Extract and Format Results
+### Step 6: Extract and Format Results
 
 - Use `get_page_text` to capture all result content from Scholar Labs
 - Extract full paper URLs from Step 5
@@ -90,20 +124,13 @@ You are assisting with an academic research workflow to search for scholarly lit
 - Note any "Cached" labels (indicates Google has a cached version if original source unavailable)
 - Format results using the template below
 
-### 7. Save Results to vscode.dev
+### Step 7: Save Results Locally (CHANGED in v4.0)
 
 **File Storage:**
-- All results are saved to vscode.dev (browser-based VS Code)
-- Files are stored in browser local storage
+- Save directly to `docs/references/Research_<slug>.md` using the Write tool
+- No longer uses vscode.dev - files are written to the local filesystem
 
-**Important vscode.dev Limitations:**
-- Without opening a local folder, files are saved as "Untitled-X" in browser storage
-- To save with a specific filename, you have three options:
-1. **Open a local folder first** via "Open Folder", then create files with proper names
-2. **Use File → Save As** to download directly to your filesystem with the correct name
-3. **Copy all content** (Cmd/Ctrl+A, Cmd/Ctrl+C) and paste into a local text editor
-
-**Filename Convention (for reference):**
+**Filename Convention:**
 - Use the full research question text
 - Convert to lowercase
 - Replace whitespaces with hyphens
@@ -115,27 +142,82 @@ You are assisting with an academic research workflow to search for scholarly lit
 - "What is NL2SQL?" → `Research_what-is-nl2sql.md`
 - "Has schema discovery been applied to healthcare databases specifically?" → `Research_has-schema-discovery-been-applied-to-healthcare-databases-specifically.md`
 
-**⚠️ IMPORTANT:** Remind user to download the file via File → Save As before closing the browser tab.
+**Determine Status:**
+- **Answered**: 5+ peer-reviewed sources directly addressing the question
+- **Partial**: 1-4 sources OR sources only partially address the question
+- **Gap**: No relevant sources found after multiple query variations
 
-### 8. Repeat for Multiple Questions
+### Step 8: Update Research_Questions.md (NEW in v4.0)
 
-- If multiple questions were specified, click "+ New session" and repeat steps 3-7 for each question
+Based on the determined status:
+
+**If Answered:**
+1. Move the question from "Unanswered Questions" to the appropriate "Answered Questions" subsection
+2. Add the link to the new Research_*.md file
+3. Remove from Unanswered section
+
+**If Partial:**
+1. Keep in "Unanswered Questions" section
+2. Update Status column to "Partial"
+3. Add Notes with brief summary and link to Research_*.md file
+
+**If Gap:**
+1. Keep in "Unanswered Questions" section
+2. Update Status column to "→ Gap"
+3. Add Notes: "Added to paper.md 'Gaps in Current Literature'"
+
+**Always update the "Research File Index" table at the bottom of Research_Questions.md.**
+
+### Step 9: Update GitHub Issue (NEW in v4.0)
+
+If the question has a linked GitHub issue:
+
+```bash
+gh issue comment <NUMBER> --body "## Research Update
+
+**Question:** <question text>
+**Status:** Answered/Partial/Gap
+**Research File:** docs/references/Research_<slug>.md
+
+### Summary
+<2-3 sentence summary of findings>
+
+### Key Sources Found
+- Author (Year): <title> - <one-line relevance>
+- ...
+
+### Next Steps
+<If partial/gap, what additional research is needed>"
+```
+
+If status is "Answered" AND all questions in that issue are now resolved:
+```bash
+gh issue close <NUMBER> --comment "All research questions resolved. See Research_*.md files for details."
+```
+
+### Step 10: Repeat for Multiple Questions
+
+- If multiple questions were specified, click "+ New session" and repeat steps 3-9 for each question
 - Track progress and report: "Completed question X of Y"
+- Aggregate GitHub issue updates when multiple questions share the same issue
 
 ---
 
 ## Timing Expectations
 
 **Per Question:**
+- Question selection (if mode="next"): 30 seconds
 - Account verification/switching (if needed): 30-60 seconds
 - Search: 1-2 minutes
 - URL extraction (using read_page): 30 seconds - 1 minute
 - Formatting and saving: 1-2 minutes
-- **Total: 4-6 minutes per question**
+- Research_Questions.md update: 30 seconds
+- GitHub issue update: 30 seconds
+- **Total: 5-7 minutes per question**
 
 **For Multiple Questions:**
 - Add ~1 minute overhead per additional question for session management
-- Example: 5 questions ≈ 25-35 minutes total
+- Example: 5 questions ≈ 30-40 minutes total
 
 ---
 
@@ -146,17 +228,23 @@ All sections are required. Do not skip or abbreviate any section.
 ```markdown
 # Research Question: [Full question text]
 
+**Status:** Answered | Partial | Gap
+**Scope:** Paper1, Paper2, Paper3
+**GitHub Issue:** #XXX (or "None")
 **Source:** Google Scholar Labs
 **Date:** [Current date]
 **Results Found:** [X] relevant papers
 **Sorted By:** [Relevance/Citations]
 **Search Duration:** [X minutes/seconds]
+**Search Queries Used:**
+- "query 1"
+- "query 2"
 
 ---
 
 ## Summary of Findings
 
-[Brief 2-3 sentence overview of what the search found, including the date range of papers and dominant research themes]
+[Brief 2-3 sentence overview of what the search found, including the date range of papers and dominant research themes. Clearly state whether literature answers the question, partially answers it, or reveals a gap.]
 
 ---
 
@@ -214,6 +302,20 @@ All sections are required. Do not skip or abbreviate any section.
 
 ---
 
+## Relevance to Three-Pillar Framework
+
+1. **Analytics maturity:** [How findings relate to healthcare analytics maturity challenges]
+2. **Workforce turnover:** [How findings relate to institutional knowledge loss]
+3. **Technical barriers:** [How findings relate to NL2SQL and technical implementation challenges]
+
+---
+
+## Gaps Identified
+
+[List any sub-questions or aspects NOT answered by the literature found]
+
+---
+
 ## Suggested Follow-up Questions
 
 **From Scholar Labs:**
@@ -231,13 +333,13 @@ All sections are required. Do not skip or abbreviate any section.
 
 ```bibtex
 @article{author1_year_keyword,
-title={Paper Title},
+    title={Paper Title},
     author={Author Names},
     journal={Journal Name},
-        year={Year},
-        volume={},
-            pages={},
-            doi={}
+    year={Year},
+    volume={},
+    pages={},
+    doi={}
 }
 
 [Repeat for each paper...]
@@ -254,30 +356,37 @@ title={Paper Title},
 - **URLs can be extracted directly from the page** using `read_page`—click-through is usually not necessary
 - The "More results" button may appear even when errors occur; rely on the checkmark status indicator
 - Some papers may show "Cached" labels indicating Google's cached version is available
-- **Files in vscode.dev are stored in browser local storage; remind user to download via File → Save As for a permanent local copy**
+- **Files are saved directly to the local filesystem** at `docs/references/Research_*.md`
+- **Research_Questions.md is updated automatically** after each question is researched
+- **GitHub issues are commented on** with research summaries
 
 ---
 
 ## Example Usage
 
-**Single question:**
+**Auto-select next priority question:**
 ```
-/search-scholar "What algorithms exist for automatic primary key/foreign key discovery from database metadata?"
+/scholar:research-question next
+```
+
+**Single specific question:**
+```
+/scholar:research-question "What algorithms exist for automatic primary key/foreign key discovery from database metadata?"
 ```
 
 **Multiple questions by range:**
 ```
-/search-scholar questions 1-5
+/scholar:research-question questions 1-5
 ```
 
 **Specific questions:**
 ```
-/search-scholar questions 3, 7, 12
+/scholar:research-question questions 3, 7, 12
 ```
 
 **With options:**
 ```
-/search-scholar question 1 sort_by:citations early_completion:true
+/scholar:research-question next sort_by:citations early_completion:true
 ```
 
 ---
@@ -292,19 +401,40 @@ When processing multiple questions, provide a summary at the end:
 **Questions Processed:** X of Y
 **Total Papers Found:** [sum]
 **Total Time:** [X minutes]
+
+**Results by Status:**
+- Answered: X questions
+- Partial: X questions
+- Gap: X questions
+
 **Files Created:**
-1. Research_[question-one-full-text].md (10 papers)
-2. Research_[question-two-full-text].md (8 papers)
-3. Research_[question-three-full-text].md (10 papers)
+1. Research_[question-one-slug].md (10 papers) - Answered
+2. Research_[question-two-slug].md (3 papers) - Partial
+3. Research_[question-three-slug].md (0 papers) - Gap
+
+**GitHub Issues Updated:**
+- #XXX: Commented with findings for 2 questions
+- #YYY: Closed (all questions resolved)
 
 **Failed Searches:** [list any questions that returned no results with suggested reformulations]
-
-**Reminder:** Files are stored in browser local storage. Use File → Save As to download each file before closing the browser.
 ```
 
 ---
 
 ## Changelog
+
+**v4.0 (December 2025):**
+- Renamed from search-scholar.md to research-question.md
+- Added Step 0: Research_Questions.md integration for automatic question selection
+- Added priority selection: Paper1 > Paper2 > Paper3 (by deadline)
+- Changed Step 7: Local filesystem saving (replaces vscode.dev workflow)
+- Added Step 8: Research_Questions.md status updates after research
+- Added Step 9: GitHub issue commenting and closing
+- Added status determination logic (Answered: 5+ sources, Partial: 1-4 sources, Gap: 0 sources)
+- Added "Relevance to Three-Pillar Framework" section to output template
+- Added "Gaps Identified" section to output template
+- Added mode parameter: "next" | "question" | "questions"
+- Preserved all v3.1 Google Scholar Labs search functionality
 
 **v3.1 (December 2025):**
 - Added Step 1b for proactive account availability verification
@@ -323,4 +453,4 @@ When processing multiple questions, provide a summary at the end:
 - Added realistic timing expectations (5-7 minutes per question)
 - Enhanced status message interpretation guide
 - Made all output sections required (no optional sections)
-- Removed quick mode option—comprehensive output only}
+- Removed quick mode option—comprehensive output only
