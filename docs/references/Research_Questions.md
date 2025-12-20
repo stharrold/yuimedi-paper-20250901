@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 16 answered, 12 unanswered (1 newly partial)
+**Status:** 16 answered, 17 unanswered (1 newly partial)
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -113,6 +113,26 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 | What peer-reviewed (non-vendor-sponsored) evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | Healthcare AI evidence found (10 papers); low-code platform evidence = Gap. See [`Research_What-peer-reviewed-evidence-exists-for-cost-reductions-from-healthcare-AI-low-code-implementations.md`](Research_What-peer-reviewed-evidence-exists-for-cost-reductions-from-healthcare-AI-low-code-implementations.md) |
 | How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | General NL2SQL productivity evidence found (67% latency reduction, 10K+ users); healthcare-specific measurement = Gap. See [`Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md`](Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md) |
 | What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | EUC satisfaction/effectiveness frameworks found (EUCS, TTF, SEM); Callinan & Perry (2024) CSFs most relevant; healthcare-specific citizen developer metrics = Gap. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
+
+### Code Modernization and NL Interfaces
+
+| Question | Scope | Issue | Status | Notes |
+|----------|-------|-------|--------|-------|
+| What evidence supports applying code modernization principles to natural language interfaces for legacy data access? | Paper1 | [#377](https://github.com/stharrold/yuimedi-paper-20250901/issues/377) | Unanswered | Support for claim re: [I8] |
+
+### Knowledge Transfer and Documentation
+
+| Question | Scope | Issue | Status | Notes |
+|----------|-------|-------|--------|-------|
+| What evidence exists that tacit analytical knowledge is difficult to document and transfer through traditional means? | Paper1 | [#378](https://github.com/stharrold/yuimedi-paper-20250901/issues/378) | Unanswered | Support for institutional memory loss claim |
+
+### Clinical Impact and Healthcare Delivery
+
+| Question | Scope | Issue | Status | Notes |
+|----------|-------|-------|--------|-------|
+| What evidence links healthcare analytics maturity gaps to patient care quality and clinical outcomes? | Paper1 | [#379](https://github.com/stharrold/yuimedi-paper-20250901/issues/379) | Unanswered | Support for "patient outcomes" claim |
+| What evidence links healthcare workforce turnover and institutional knowledge loss to care continuity? | Paper1 | [#380](https://github.com/stharrold/yuimedi-paper-20250901/issues/380) | Unanswered | Support for "care continuity" claim |
+| What evidence demonstrates that analytics challenges have measurable implications for healthcare delivery? | Paper1 | [#381](https://github.com/stharrold/yuimedi-paper-20250901/issues/381) | Unanswered | Support for "healthcare delivery" claim |
 
 ### Clinical Safety and Security
 
