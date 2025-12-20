@@ -249,7 +249,7 @@ These academic whitepapers establish Yuimedi's intellectual authority in healthc
 ### Paper 2: Proof of Concept
 **Purpose:** Demonstrate YuiQuery's capability with worst-case data scenarios
 
-**Thesis:** Paper 1 proposes a theoretical framework for NL2SQL in healthcare—but theory alone won't convince peer reviewers. Paper 2 provides the empirical validation: measurable accuracy rates, cache hit metrics, and statistical analysis on 1M+ synthetic patients. Without this evidence, our claims about "institutional learning" and "knowledge preservation" remain unsubstantiated.
+**Thesis:** Paper 1 proposes a theoretical framework for NL2SQL in healthcare, but theory alone won't convince peer reviewers. Paper 2 provides the empirical validation: measurable accuracy rates, cache hit metrics, and statistical analysis on 1M+ synthetic patients. Without this evidence, our claims about "institutional learning" and "knowledge preservation" remain unsubstantiated.
 
 **Goals:**
 - Show YuiQuery can work with healthcare datasets lacking column names and data dictionaries
@@ -259,13 +259,13 @@ These academic whitepapers establish Yuimedi's intellectual authority in healthc
 **Key Message:** Even with poor data quality standards, AI-enabled tools like YuiQuery can programmatically infer business interpretations
 
 #### Why Open-Source Reference Implementation?
-Paper 2 requires building a reproducible, open-source reference implementation—not using the proprietary YuiQuery platform. Peer reviewers and readers must be able to validate our claims independently.
+Paper 2 requires building a reproducible, open-source reference implementation, not using the proprietary YuiQuery platform. Peer reviewers and readers must be able to validate our claims independently.
 
-**Important distinction:** This reference implementation is a prototype for academic validation—it lacks the enterprise governance, security, and compliance features that YuiQuery provides. The paper proves the framework works; YuiQuery is the production-ready product with HIPAA compliance, audit logging, and institutional controls.
+**Important distinction:** This reference implementation is a prototype for academic validation. It lacks the enterprise governance, security, and compliance features that YuiQuery provides. The paper proves the framework works; YuiQuery is the production-ready product with HIPAA compliance, audit logging, and institutional controls.
 
 #### Why GCP (vs Azure)?
 We chose Google Cloud (Vertex AI + BigQuery) over Azure for this prototype:
-- **BigQuery** is serverless with a public datasets feature—reviewers can access the same data without cluster setup
+- **BigQuery** is serverless with a public datasets feature, so reviewers can access the same data without cluster setup
 - **Vertex AI** has native Claude API integration and Model Garden flexibility (no Azure OpenAI waitlist)
 - **Simpler stack** (2 services vs. Azure's 3+ with complex networking)
 - **Reproducibility-friendly**: Colab notebooks integrate natively, generous free tier (1TB queries/month)
@@ -275,7 +275,7 @@ We chose Google Cloud (Vertex AI + BigQuery) over Azure for this prototype:
 1. **Algorithm to identify primary/foreign keys** from database metadata (no schema docs needed)
 2. **Vectorized Synthea data catalog** for probabilistic column matching (no column descriptions needed)
 3. **Institutional learning mechanism** with cache hit metrics (builds documentation organically)
-4. **First NL2SQL benchmark on Synthea synthetic data** with intentionally degraded schema (50+ queries, 1M patients) — tests robustness to undocumented databases, unlike existing benchmarks (MIMICSQL, EHRSQL) that use well-documented schemas
+4. **First NL2SQL benchmark on Synthea synthetic data** with intentionally degraded schema (50+ queries, 1M patients), which tests robustness to undocumented databases, unlike existing benchmarks (MIMICSQL, EHRSQL) that use well-documented schemas
 5. **Reproducible accuracy metrics** with statistical analysis on GCP (BigQuery + Vertex AI)
 
 #### Research Questions Paper 2 Will Answer

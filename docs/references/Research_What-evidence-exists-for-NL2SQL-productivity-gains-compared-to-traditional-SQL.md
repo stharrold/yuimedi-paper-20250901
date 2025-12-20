@@ -44,7 +44,7 @@ Peer-reviewed evidence strongly supports NL2SQL productivity gains over traditio
 
 **Authors:** K Parashar, A Dev, A Kumar, D Khatri
 **Publication:** arXiv preprint arXiv:2504.09288, 2025
-**Citations:** —
+**Citations:** -
 
 **Key Points:**
 - **67% Reduction in Query Latency:** Demonstrates a 67% reduction in query latency compared to manual scripting when using the AI framework for autonomous SQL generation
@@ -93,7 +93,7 @@ Peer-reviewed evidence strongly supports NL2SQL productivity gains over traditio
 
 **Authors:** H Sanyal, S Shukla, R Agrawal
 **Publication:** 2021 6th International Conference on Communication and Electronics Systems (ICCES)
-**Citations:** —
+**Citations:** -
 
 **Key Points:**
 - Explains that traditional SQL development is complex, time-consuming, and often inaccurate, requiring dedicated human resources

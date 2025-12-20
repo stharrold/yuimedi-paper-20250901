@@ -26,7 +26,7 @@ Samuel T Harrold (Indiana University Health; Yuimedi Corp.)
 
 ### Description
 
-This narrative review synthesizes evidence from three research domains—natural language to SQL (NL2SQL) generation, healthcare analytics maturity, and workforce turnover—to develop a novel analytical framework for understanding healthcare analytics challenges. The primary contribution is the "three-pillar framework" that reveals interconnections between technical, organizational, and workforce dimensions of healthcare analytics.
+This narrative review synthesizes evidence from three research domains (natural language to SQL (NL2SQL) generation, healthcare analytics maturity, and workforce turnover) to develop a novel analytical framework for understanding healthcare analytics challenges. The primary contribution is the "three-pillar framework" that reveals interconnections between technical, organizational, and workforce dimensions of healthcare analytics.
 
 ### Hypotheses/Research Questions
 
@@ -81,7 +81,7 @@ Final corpus: 41 sources (30 academic, 11 industry/grey literature)
 
 ### Sample Size Rationale
 
-Sample size was determined by thematic saturation—continued searching yielded diminishing returns of novel information relevant to the three-pillar framework.
+Sample size was determined by thematic saturation: continued searching yielded diminishing returns of novel information relevant to the three-pillar framework.
 
 ---
 

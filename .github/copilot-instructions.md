@@ -205,6 +205,16 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 - `NCBI_EMAIL` - Email for PubMed API (required by NCBI policy)
 - `NCBI_API_KEY` - NCBI API key for PubMed (optional, enables 10 req/sec vs 3 req/sec)
 
+## Writing Style
+
+**Never use em-dashes (—).** Replace with appropriate grammatical structures:
+- Parenthetical asides: use commas or parentheses
+- Explanations/elaborations: use colons
+- Contrast or pivots: use semicolons or new sentences
+- Emphasis: restructure with clauses or conjunctions
+
+**Excluded from this rule:** `standards/` directory (external journal content).
+
 ## Key Patterns
 
 ### Writing Style

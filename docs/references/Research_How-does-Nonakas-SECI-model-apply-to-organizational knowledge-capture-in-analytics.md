@@ -8,7 +8,7 @@
 
 ## Summary of Findings
 
-Nonaka's SECI model (Socialization, Externalization, Combination, Internalization) provides a theoretical framework for understanding how tacit knowledge becomes explicit and institutionalized within organizations. In analytics contexts, the model has been applied to explain knowledge transformation across business intelligence maturity levels, with recent work exploring how AI tools can enhance the externalization process—converting tacit analytical knowledge into explicit, reusable forms. The KMSP-Q questionnaire offers an empirically validated instrument for operationalizing SECI constructs. Key applications include: data mining techniques mapping to internalization stages for actionable insights, big data environments supporting combination and internalization modes, and knowledge-intensive clusters using SECI processes for external knowledge acquisition.
+Nonaka's SECI model (Socialization, Externalization, Combination, Internalization) provides a theoretical framework for understanding how tacit knowledge becomes explicit and institutionalized within organizations. In analytics contexts, the model has been applied to explain knowledge transformation across business intelligence maturity levels, with recent work exploring how AI tools can enhance the externalization process, converting tacit analytical knowledge into explicit, reusable forms. The KMSP-Q questionnaire offers an empirically validated instrument for operationalizing SECI constructs. Key applications include: data mining techniques mapping to internalization stages for actionable insights, big data environments supporting combination and internalization modes, and knowledge-intensive clusters using SECI processes for external knowledge acquisition.
 
 ---
 
@@ -42,7 +42,7 @@ Nonaka's SECI model (Socialization, Externalization, Combination, Internalizatio
 
 **Authors:** P Kašparová, T Michalová
 **Publication:** Journal of Intelligence, 2023
-**Citations:** —
+**Citations:** -
 
 **Key Points:**
 - Explores opportunities for engaging business intelligence at different organizational maturity levels using the SECI knowledge model framework
@@ -81,7 +81,7 @@ Nonaka's SECI model (Socialization, Externalization, Combination, Internalizatio
 
 **Authors:** S Kamoun-Chouk, H Berger, BH Sie
 **Publication:** International Conference on Knowledge Management, 2017 (Springer)
-**Citations:** —
+**Citations:** -
 
 **Key Points:**
 - Explains the SECI model processes (Socialization, Externalization, Combination, and Internalization) for creating and transforming knowledge within enterprises, presenting a dynamic spiral ascent model where employees share knowledge and transform individual knowledge into collective knowledge
@@ -99,7 +99,7 @@ Nonaka's SECI model (Socialization, Externalization, Combination, Internalizatio
 **Key Points:**
 - Assesses the applicability of the SECI model (Nonaka and Takeuchi) to the processes of external knowledge acquisition for firms located on knowledge-intensive clusters
 - **Knowledge Capture from External Sources:** Explores the theoretical postulates of the SECI model regarding organizational knowledge capture from external sources, specifically in knowledge-intensive clusters
-- **Three Acquisition Processes:** Shows that external knowledge acquisition occurs through three different processes—socialization, externalization, and explicit knowledge processing (combining combination and internalization)—which have similarities and differences with the original SECI model
+- **Three Acquisition Processes:** Shows that external knowledge acquisition occurs through three different processes (socialization, externalization, and explicit knowledge processing, which combines combination and internalization) that have similarities and differences with the original SECI model
 
 ---
 
@@ -110,7 +110,7 @@ Nonaka's SECI model (Socialization, Externalization, Combination, Internalizatio
 **Citations:** 82
 
 **Key Points:**
-- Explains the SECI model's four modes—Socialization, Externalization, Combination, and Internalization—as a theoretical framework for knowledge management in lean product development, which involves capturing and transforming knowledge
+- Explains the SECI model's four modes (Socialization, Externalization, Combination, and Internalization) as a theoretical framework for knowledge management in lean product development, which involves capturing and transforming knowledge
 - **Empirical Application of SECI:** Shows how the SECI model can be applied empirically to analyze knowledge creation practices (specifically using "obeya" as a tool) within an organization, contributing an example from the automotive industry
 - **Knowledge Conversion Processes:** Informs that the four modes of the SECI model involve conversions: Externalization converts tacit knowledge into explicit forms (like diagrams or models), and Internalization converts explicit knowledge back into individual or group-level tacit knowledge (organizational routines)
 
