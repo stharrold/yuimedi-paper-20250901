@@ -214,7 +214,7 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 
 ### File Naming
 - Historical files: `YYYYMMDDTHHMMSSZ_` prefix
-- Project management: UPPERCASE (`DECISION_LOG.json`)
+- Project management: UPPERCASE (e.g., archived `DECISION_LOG.json` → `ARCHIVED/`)
 
 ### Generated Files Strategy
 **Committed to git (intentional):**
@@ -263,14 +263,19 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 **Three-paper series** targeting JMIR Medical Informatics:
 
-| Paper | Focus | Due Date |
-|-------|-------|----------|
-| 1 | Three-Pillar Analytical Framework | Dec 31, 2025 |
-| 2 | Reference Implementation (GCP/Synthea) | Jan 31, 2026 |
-| 3 | FHIR/OMOP Schema Mapping | Mar 15, 2026 |
+| Paper | Focus | Due Date | Budget |
+|-------|-------|----------|--------|
+| 1 | Three-Pillar Analytical Framework | Dec 31, 2025 | ~$6,948 |
+| 2 | Reference Implementation (GCP/Synthea) | Jan 31, 2026 | ~$6,600-$6,900 |
+| 3 | FHIR/OMOP Schema Mapping | Mar 15, 2026 | ~$6,000-$7,000 |
 
+**Why JMIR (not npj Digital Medicine):** Open-source GCP/Synthea approach eliminates commercial COI concerns. See `ppr_review/20251215_Revision-Strategy-Milestones.md`.
+
+**Key documents:**
 - Revision strategy: `ppr_review/20251215_Revision-Strategy-Milestones.md`
-- Journal policies: `standards/npj_digital-medicine_about*.md`
+- Budget breakdown: `project-management.md` (Publication & Distribution Costs section)
+- Status updates: `status-updates.md` (reverse-chronological log)
+- Research questions: `docs/references/Research_Questions_Paper-2.md`
 - Submission guide: `docs/journal-submission-guide.md`
 
 **Preprint strategy:**

@@ -38,7 +38,7 @@ Research questions for Google Scholar literature search supporting Paper 2.
 
 ### Schema Discovery and Validation
 
-7. How have vector embeddings been used for schema matching or column selection?
+7. How have vector embeddings been used for schema matching or column selection? | /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901/docs/references/Research_How-have-vector-embeddings-been-used-for-schema-matching-or-column-selection.md
 8. What is the state of the art in semantic table/column matching for NL2SQL?
 
 ### Knowledge Management Theory
