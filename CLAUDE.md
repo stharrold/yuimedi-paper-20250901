@@ -275,7 +275,7 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 - Revision strategy: `ppr_review/20251215_Revision-Strategy-Milestones.md`
 - Budget breakdown: `project-management.md` (Publication & Distribution Costs section)
 - Status updates: `status-updates.md` (reverse-chronological log)
-- Research questions: `docs/references/Research_Questions_Paper-2.md`
+- Research questions: `docs/references/Research_Questions.md`
 - Submission guide: `docs/journal-submission-guide.md`
 
 **Preprint strategy:**
