@@ -65,25 +65,45 @@ def get_worktree_path() -> str | None:
 
 
 def get_database_path() -> Path:
-    """Get path to AgentDB database.
+    """Get path to shared AgentDB database in main repository.
+
+    Always returns the main repository's AgentDB path, ensuring all
+    worktrees share the same workflow state.
 
     Returns:
-        Path to agentdb.duckdb in .claude-state/
+        Path to agentdb.duckdb in main repo's .claude-state/
     """
-    # Try to find .claude-state in current dir or parent
+    # Try to use shared worktree_context module
+    try:
+        script_dir = Path(__file__).parent
+        worktree_utils = script_dir.parent.parent / "workflow-utilities" / "scripts"
+        sys.path.insert(0, str(worktree_utils))
+        from worktree_context import get_shared_agentdb_path
+
+        return get_shared_agentdb_path()
+    except (ImportError, RuntimeError):
+        pass
+
+    # Fallback: use git worktree list to find main repo
+    try:
+        result = subprocess.check_output(
+            ["git", "worktree", "list", "--porcelain"],
+            text=True,
+            stderr=subprocess.PIPE,
+        )
+        # First worktree line is the main repo
+        for line in result.strip().split("\n"):
+            if line.startswith("worktree "):
+                main_repo = Path(line.split(" ", 1)[1])
+                state_dir = main_repo / ".claude-state"
+                state_dir.mkdir(parents=True, exist_ok=True)
+                return state_dir / "agentdb.duckdb"
+    except subprocess.CalledProcessError:
+        pass
+
+    # Last resort fallback: current directory
     cwd = Path.cwd()
-
-    # Check current directory
     state_dir = cwd / ".claude-state"
-    if state_dir.exists():
-        return state_dir / "agentdb.duckdb"
-
-    # Check parent (if in worktree)
-    parent_state = cwd.parent / ".claude-state"
-    if parent_state.exists():
-        return parent_state / "agentdb.duckdb"
-
-    # Default to current directory's .claude-state
     state_dir.mkdir(parents=True, exist_ok=True)
     return state_dir / "agentdb.duckdb"
 
