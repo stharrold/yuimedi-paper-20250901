@@ -140,11 +140,30 @@ Peer-reviewed evidence strongly supports NL2SQL productivity gains over traditio
 
 ---
 
+## Additional Evidence (December 2025 Validation Search)
+
+### Controlled User Study: SQL-LLM vs Traditional SQL (arXiv 2511.14718)
+
+**Authors:** Researchers from University of Trento / NIST
+**Publication:** arXiv, 2025
+
+**Key Points:**
+- **Controlled evaluation** with 20 participants completing realistic database querying tasks across 12 queries each
+- **10-30% reduction in query completion times** (mean: 418s vs 629s, p=0.036)
+- **Improved accuracy from 50% to 75%** (p=0.002)
+- Study compared SQL-LLM (a state-of-the-art NLIDB) to Snowflake (traditional SQL analytics tool)
+- **Healthcare noted as future research domain** for cross-domain generalization to production databases with larger, more complex schemas
+
+This user study provides the strongest controlled evidence to date for NL2SQL productivity gains with statistical significance.
+
+---
+
 ## Key Themes and Observations
 
 1. **Quantified Productivity Gains:**
    - 67% reduction in query latency vs. manual scripting (Parashar et al.)
    - 32.6% decrease in latency with usage scaling (Bajpoti et al.)
+   - **10-30% reduction in completion time** with 50%→75% accuracy improvement (User Study, 2025)
    - Survey confirms text-to-SQL is "less time-consuming" than traditional methods (Tomova et al.)
 
 2. **Industry-Scale Validation:**

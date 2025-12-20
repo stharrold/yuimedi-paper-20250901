@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 16 answered, 17 unanswered (1 newly partial)
+**Status:** 17 answered, 21 unanswered
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -43,6 +43,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What NL2SQL systems have been applied to healthcare databases? | Paper1,Paper2 | — | [`Research_What-NL2SQL-systems-have-been-applied-to-healthcare-databases.md`](Research_What-NL2SQL-systems-have-been-applied-to-healthcare-databases.md) |
 | What accuracy rates have been achieved for NL2SQL on clinical data? | Paper1,Paper2 | — | [`Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md`](Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md) |
 | What NL2SQL datasets exist for healthcare? | Paper2 | — | [`Research_What-NL2SQL-datasets-exist-for-healthcare.md`](Research_What-NL2SQL-datasets-exist-for-healthcare.md) |
+| What is the state of the art in semantic table/column matching for NL2SQL? | Paper2 | [#368](https://github.com/stharrold/yuimedi-paper-20250901/issues/368) | [`Research_semantic-table-column-matching-nl2sql.md`](Research_semantic-table-column-matching-nl2sql.md) |
 
 ### Schema Discovery
 
@@ -88,7 +89,6 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 | Question | Scope | Issue | Status | Notes |
 |----------|-------|-------|--------|-------|
 | How have vector embeddings been used for schema matching or column selection? | Paper2 | [#368](https://github.com/stharrold/yuimedi-paper-20250901/issues/368) | Partial | [`Research_How-have-vector-embeddings-been-used-for-schema-matching-or-column-selection.md`](Research_How-have-vector-embeddings-been-used-for-schema-matching-or-column-selection.md) |
-| What is the state of the art in semantic table/column matching for NL2SQL? | Paper2 | [#368](https://github.com/stharrold/yuimedi-paper-20250901/issues/368) | Unanswered | |
 
 ### Institutional Learning and Query Reuse
 
@@ -176,5 +176,6 @@ All `Research_*.md` files in this directory:
 | `Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md` | Citizen developer productivity measurement | Paper1 |
 | `Research_What-NL2SQL-datasets-exist-for-healthcare.md` | Healthcare NL2SQL datasets | Paper2 |
 | `Research_What-NL2SQL-systems-have-been-applied-to-healthcare-databases.md` | Healthcare NL2SQL systems | Paper1,Paper2 |
+| `Research_semantic-table-column-matching-nl2sql.md` | Semantic table/column matching for NL2SQL | Paper2 |
 | `Research_What-tools-exist-for-degrading-data-quality-for-testing.md` | Data quality degradation tools | Paper2 |
 | `Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md` | Standardization failure analysis | Paper1 |
