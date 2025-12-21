@@ -96,6 +96,8 @@ def get_database_path() -> Path | None:
                     return db_path
                 return None
     except subprocess.CalledProcessError:
+        # If git worktree inspection fails (e.g., not in a git repo), fall through
+        # to the last-resort current-directory check below.
         pass
 
     # Last resort fallback: check current directory
