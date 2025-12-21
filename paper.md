@@ -176,18 +176,18 @@ Literature was identified through multiple channels between January 2023 and Dec
 
 Search terms were organized around the three-pillar framework:
 
-- Analytics maturity: "healthcare analytics maturity," "HIMSS AMAM," "analytics standardization," "low-code healthcare," "conversational AI platforms"
-- Workforce turnover: "nursing turnover," "healthcare IT tenure," "turnover cost," "institutional memory," "knowledge portal," "SECI model"
-- Technical barriers: "NL2SQL healthcare," "text-to-SQL clinical," "MIMICSQL," "EHRSQL," "schema discovery," "semantic column matching"
+- Analytics maturity: "healthcare analytics maturity," "HIMSS AMAM," "analytics adoption," "analytics standardization failure," "low-code healthcare ROI," "conversational AI platforms"
+- Workforce turnover: "nursing turnover," "healthcare IT tenure," "IT training time," "turnover cost salary," "institutional memory loss," "knowledge portal," "knowledge capture," "SECI model analytics"
+- Technical barriers: "NL2SQL healthcare," "text-to-SQL clinical," "MIMICSQL," "EHRSQL," "NL2SQL accuracy," "NL2SQL productivity," "schema discovery," "PK/FK discovery," "semantic column matching," "vector embeddings schema"
 
 **Table 2: Literature Search Strategy**
 
 | Database | Primary Search Terms | Date Range | Initial Results | After Screening |
 |----------|---------------------|------------|-----------------|-----------------|
-| Crossref | "healthcare analytics maturity" OR "HIMSS AMAM" OR "NL2SQL clinical" OR "knowledge portal" | 2015-current | 285 | 15 |
-| PubMed | ("nursing turnover" OR "healthcare IT tenure") AND "institutional memory" OR "analytics adoption" | 2015-current | 142 | 12 |
-| arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "semantic matching") | 2020-current | 71 | 6 |
-| Semantic Scholar | "NL2SQL healthcare" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
+| Crossref | "healthcare analytics maturity" OR "HIMSS AMAM" OR "NL2SQL clinical" OR "knowledge portal" OR "low-code ROI" | 2015-current | 285 | 15 |
+| PubMed | ("nursing turnover" OR "healthcare IT tenure" OR "IT training time") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
+| arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "PK/FK discovery" OR "semantic matching" OR "vector embeddings") | 2020-current | 71 | 6 |
+| Semantic Scholar | "NL2SQL healthcare" OR "NL2SQL productivity" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
 | **Total** | | | **570** | **41** |
 
 *Note: Initial results shown after deduplication across databases. Final corpus includes 30 academic and 11 industry sources.*
