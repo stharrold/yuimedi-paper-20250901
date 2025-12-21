@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 20 answered, 18 unanswered
+**Status:** 21 answered, 17 unanswered
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -75,6 +75,12 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md`](Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md) |
 | What evidence supports applying code modernization principles to natural language interfaces for legacy data access? | Paper1 | [#377](https://github.com/stharrold/yuimedi-paper-20250901/issues/377) | [`Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md`](Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md) |
 
+### Knowledge Transfer and Tacit Knowledge
+
+| Question | Scope | Issue | Research File |
+|----------|-------|-------|---------------|
+| What evidence exists that tacit analytical knowledge is difficult to document and transfer through traditional means? | Paper1 | [#378](https://github.com/stharrold/yuimedi-paper-20250901/issues/378) | [`Research_What-evidence-exists-that-tacit-analytical-knowledge-is-difficult-to-document-and-transfer-through-traditional-means.md`](Research_What-evidence-exists-that-tacit-analytical-knowledge-is-difficult-to-document-and-transfer-through-traditional-means.md) |
+
 ### Testing & Validation
 
 | Question | Scope | Issue | Research File |
@@ -116,12 +122,6 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 | What peer-reviewed (non-vendor-sponsored) evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Answered | **LOW-CODE GAP FILLED:** 10 papers found (177-250% ROI, 67-70% dev time reduction). See [`Research_low-code-platform-healthcare-cost-roi-evidence.md`](Research_low-code-platform-healthcare-cost-roi-evidence.md). Combined with prior AI evidence → moved to Answered. |
 | How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Answered | **NL2SQL HEALTHCARE GAP FILLED:** 10 papers found with healthcare-specific metrics: 63% self-service analytics adoption increase, 37% data retrieval time reduction, 10-30% query completion time reduction, 2.7x-6.7x speedup, 10x-60x effort reduction. See [`Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md`](Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md) → moved to Answered. |
 | What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | **UPDATED 2025-12-20:** 20 papers found (10 original + 10 supplementary). NEW quantitative metrics: 67% dev time reduction (Mogili 2025), 50% IT backlog decrease (Salvatore 2024), CD Score index (Waszkowski 2025, Nature). Gap CONFIRMED: No validated healthcare-specific citizen developer productivity instrument. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
-
-### Knowledge Transfer and Documentation
-
-| Question | Scope | Issue | Status | Notes |
-|----------|-------|-------|--------|-------|
-| What evidence exists that tacit analytical knowledge is difficult to document and transfer through traditional means? | Paper1 | [#378](https://github.com/stharrold/yuimedi-paper-20250901/issues/378) | Unanswered | Support for institutional memory loss claim |
 
 ### Clinical Impact and Healthcare Delivery
 
@@ -179,3 +179,4 @@ All `Research_*.md` files in this directory:
 | `Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md` | Standardization failure analysis | Paper1 |
 | `Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md` | NL2SQL healthcare productivity measurement | Paper1,Paper2 |
 | `Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md` | Code modernization for NL interfaces | Paper1 |
+| `Research_What-evidence-exists-that-tacit-analytical-knowledge-is-difficult-to-document-and-transfer-through-traditional-means.md` | Tacit knowledge documentation difficulty | Paper1 |
