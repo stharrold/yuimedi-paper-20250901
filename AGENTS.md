@@ -60,13 +60,13 @@ uv run academic-review init <review-id>    # Initialize new review
 uv run academic-review search <review-id>  # Execute search stage
 uv run academic-review status <review-id>  # Check review status
 
-# Testing
+# Testing (758 tests total: 415 lit_review + 316 skills + 27 other)
 uv run pytest                              # Run all tests
-uv run pytest tests/lit_review/ -v         # Literature review tests only
+uv run pytest tests/lit_review/ -v         # Literature review tests (415 tests)
 uv run pytest tests/skills/ -v             # Workflow skills tests (316 tests)
 uv run pytest --cov=lit_review             # With coverage
 uv run pytest -k "test_paper" -v           # Run single test by name
-uv run pytest -m "not integration"         # Skip integration tests (default in CI)
+uv run pytest -m "not integration"         # Skip integration tests (pre-push default)
 
 # Skills coverage (targeted modules)
 uv run pytest tests/skills/ \
@@ -213,8 +213,9 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 - Key dated citation: [A10] (2004 turnover data) - always qualify with temporal context
 
 ### File Naming
-- Historical files: `YYYYMMDDTHHMMSSZ_` prefix
-- Project management: UPPERCASE (e.g., archived `DECISION_LOG.json` → `ARCHIVED/`)
+- Historical files: `YYYYMMDDTHHMMSSZ_` prefix (ISO 8601 UTC)
+- Project management: UPPERCASE names (`DECISION_LOG.json`, `TODO.md`)
+- Deprecated files: Move to local `ARCHIVED/` subdirectory
 
 ### Generated Files Strategy
 **Committed to git (intentional):**
@@ -260,13 +261,13 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 **Three-paper series** targeting JMIR Medical Informatics:
 
-| Paper | Focus | Due Date | Budget |
-|-------|-------|----------|--------|
-| 1 | Three-Pillar Analytical Framework | Dec 31, 2025 | ~$6,948 |
-| 2 | Reference Implementation (GCP/Synthea) | Jan 31, 2026 | ~$6,600-$6,900 |
-| 3 | FHIR/OMOP Schema Mapping | Mar 15, 2026 | ~$6,000-$7,000 |
+| Paper | Focus | Due Date |
+|-------|-------|----------|
+| 1 | Three-Pillar Analytical Framework | Dec 31, 2025 |
+| 2 | Reference Implementation (GCP/Synthea) | Jan 31, 2026 |
+| 3 | FHIR/OMOP Schema Mapping | Mar 15, 2026 |
 
-**Why JMIR (not npj Digital Medicine):** Open-source GCP/Synthea approach eliminates commercial COI concerns. See `ppr_review/20251215_Revision-Strategy-Milestones.md`.
+**Why JMIR (not npj Digital Medicine):** Open-source GCP/Synthea approach eliminates commercial COI concerns.
 
 **Key documents:**
 - Revision strategy: `ppr_review/20251215_Revision-Strategy-Milestones.md`
