@@ -254,7 +254,7 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 **Framework documentation:** See `paper.md` "Framework Development and Validation" section for development process, theoretical grounding (Table 3: HIMSS AMAM/DIKW alignment), and validation approach.
 
-**Assessment rubric:** Table 2 in paper.md provides a 10-indicator rubric with Lower/Moderate/Higher Risk thresholds for organizational self-assessment. Each indicator is evidence-anchored to citations.
+**Assessment rubric:** Table 4 in paper.md provides a 10-indicator rubric with Lower/Moderate/Higher Risk thresholds for organizational self-assessment. Each indicator is evidence-anchored to citations.
 
 **Planning documents:** `planning/<feature-slug>/` in repository (committed to version control)
 

@@ -536,9 +536,9 @@ The three-pillar framework provides a structured approach for organizational sel
 
 ### Three-Pillar Assessment Rubric
 
-The three-pillar framework enables organizational self-assessment to determine readiness for and potential benefit from NL2SQL and conversational AI interventions. Table 2 provides an evidence-based rubric where each indicator anchors to reviewed literature. Organizations scoring predominantly "Higher Risk" across pillars face compounding challenges that NL2SQL platforms are specifically designed to address: democratizing data access (Technical Barriers), preserving institutional knowledge (Workforce Dynamics), and accelerating maturity advancement (Analytics Maturity).
+The three-pillar framework enables organizational self-assessment to determine readiness for and potential benefit from NL2SQL and conversational AI interventions. Table 4 provides an evidence-based rubric where each indicator anchors to reviewed literature. Organizations scoring predominantly "Higher Risk" across pillars face compounding challenges that NL2SQL platforms are specifically designed to address: democratizing data access (Technical Barriers), preserving institutional knowledge (Workforce Dynamics), and accelerating maturity advancement (Analytics Maturity).
 
-**Table 2: Three-Pillar Organizational Assessment Rubric**
+**Table 4: Three-Pillar Organizational Assessment Rubric**
 
 | Pillar | Indicator | Lower Risk | Moderate Risk | Higher Risk | Evidence |
 |--------|-----------|------------|---------------|-------------|----------|
