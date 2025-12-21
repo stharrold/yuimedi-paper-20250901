@@ -234,7 +234,7 @@ This framework emerged iteratively from the literature rather than being pre-spe
 
 ## Grey Literature Quality Assessment
 
-Grey literature sources were assessed using the AACODS checklist (Tyndall, 2010) [A30], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table 1 summarizes the assessment.
+Grey literature sources were assessed using the AACODS checklist [A30], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table 1 summarizes the assessment.
 
 \begin{sidewaystable}
 \centering
