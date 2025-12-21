@@ -132,13 +132,13 @@ This paper makes three contributions to the healthcare informatics literature:
 
 1. **Three-Pillar Analytical Framework**: We synthesize evidence from three previously disconnected research domains (healthcare analytics maturity, workforce turnover, and natural language processing) into a unified analytical framework that reveals how these challenges interconnect and compound each other: low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery from either.
 
-2. **Healthcare Knowledge Portal Architecture**: Drawing on established knowledge management literature [A25, A26], we position conversational AI platforms as healthcare knowledge portals, which are systems that provide mechanisms for knowledge acquisition, storage, sharing, and utilization. This framing addresses the institutional memory crisis in healthcare by embedding organizational expertise within AI systems rather than relying on individual staff retention. Figure 2 illustrates this architecture, showing how clinical users interact with a conversational AI interface that draws on organizational knowledge infrastructure to generate contextual insights.
+2. **Healthcare Knowledge Portal Architecture**: Drawing on established knowledge management literature [A25, A26], we position conversational AI platforms as healthcare knowledge portals, which are systems that provide mechanisms for knowledge acquisition, storage, sharing, and utilization. This framing addresses the institutional memory crisis in healthcare by embedding organizational expertise within AI systems rather than relying on individual staff retention. Figure 1 illustrates this architecture, showing how clinical users interact with a conversational AI interface that draws on organizational knowledge infrastructure to generate contextual insights.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth,keepaspectratio]{figures/architecture.mmd.png}
-\caption{Healthcare Analytics Architecture. The diagram illustrates the flow from clinical user natural language queries through a conversational AI interface, leveraging organizational memory and healthcare ontologies via a healthcare NLP engine for context-aware SQL generation against a healthcare data warehouse, ultimately delivering contextual insights with a feedback loop to the user.}
+\caption{Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation against a healthcare data warehouse, ultimately delivering contextual insights with a feedback loop to the user. Dashed lines show knowledge injection paths where organizational memory and healthcare ontologies provide context and semantics to the NLP engine.}
 \label{fig:architecture}
 \end{figure}
 ```
@@ -189,19 +189,11 @@ Search terms were organized around the three-pillar framework:
 - Workforce turnover: "healthcare IT tenure," "IT training time," "turnover cost salary," "institutional memory loss," "knowledge portal," "knowledge capture," "SECI model analytics"
 - Technical barriers: "NL2SQL healthcare," "text-to-SQL clinical," "MIMICSQL," "EHRSQL," "NL2SQL accuracy," "NL2SQL productivity," "schema discovery," "PK/FK discovery," "semantic column matching," "vector embeddings schema"
 
-**Table 2: Literature Search Strategy**
+**Search Results:**
 
-| Database | Primary Search Terms | Date Range | Initial Results | After Screening |
-|----------|---------------------|------------|-----------------|-----------------|
-| Crossref | "healthcare analytics maturity" OR "HIMSS AMAM" OR "NL2SQL clinical" OR "knowledge portal" OR "low-code ROI" | 2015-current | 285 | 15 |
-| PubMed | ("healthcare IT tenure" OR "IT training time" OR "turnover cost salary") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
-| arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "PK/FK discovery" OR "semantic matching" OR "vector embeddings") | 2020-current | 71 | 6 |
-| Semantic Scholar | "NL2SQL healthcare" OR "NL2SQL productivity" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
-| **Total** | | | **570** | **79** |
+Searches across all databases yielded 570 initial results after deduplication. Crossref searches for terms including "healthcare analytics maturity," "HIMSS AMAM," "NL2SQL clinical," "knowledge portal," and "low-code ROI" (2015-current) returned 285 results, of which 15 passed screening. PubMed searches combining workforce terms ("healthcare IT tenure," "IT training time," "turnover cost salary") with analytics terms ("institutional memory," "analytics adoption," "knowledge capture") (2015-current) yielded 142 results with 12 passing screening. arXiv searches in cs.CL and cs.DB categories for "text-to-SQL" combined with technical terms ("MIMICSQL," "EHRSQL," "schema discovery," "PK/FK discovery," "semantic matching," "vector embeddings") (2020-current) produced 71 results with 6 passing screening. Semantic Scholar searches for "NL2SQL healthcare," "NL2SQL productivity," "conversational AI clinical," and "SECI model analytics" (2015-current) returned 72 results with 8 passing screening. The final corpus includes 68 academic and 11 industry sources (79 total).
 
-*Note: Initial results shown after deduplication across databases. Final corpus includes 68 academic and 11 industry sources.*
-
-Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 79 sources.
+Figure 2 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 79 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
