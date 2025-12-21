@@ -99,6 +99,8 @@ def get_database_path() -> Path:
                 state_dir.mkdir(parents=True, exist_ok=True)
                 return state_dir / "agentdb.duckdb"
     except subprocess.CalledProcessError:
+        # If git worktree inspection fails (e.g., not a git repository), fall back
+        # to using the current directory's .claude-state/ as the AgentDB location.
         pass
 
     # Last resort fallback: current directory

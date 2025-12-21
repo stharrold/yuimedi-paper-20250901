@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 22 answered, 16 unanswered
+**Status:** 28 answered, 13 unanswered/partial
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -44,6 +44,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What accuracy rates have been achieved for NL2SQL on clinical data? | Paper1,Paper2 | — | [`Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md`](Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md) |
 | What NL2SQL datasets exist for healthcare? | Paper2 | — | [`Research_What-NL2SQL-datasets-exist-for-healthcare.md`](Research_What-NL2SQL-datasets-exist-for-healthcare.md) |
 | What is the state of the art in semantic table/column matching for NL2SQL? | Paper2 | [#368](https://github.com/stharrold/yuimedi-paper-20250901/issues/368) | [`Research_semantic-table-column-matching-nl2sql.md`](Research_semantic-table-column-matching-nl2sql.md) |
+| What healthcare benchmarks exist for latest foundation models (GPT-5, Claude Opus 4.5)? | Paper1 | — | [`Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-GPT5-Claude-Opus-4.5.md`](Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-GPT5-Claude-Opus-4.5.md) |
 
 ### Schema Discovery
 
@@ -63,6 +64,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What is the cost of turnover in terms of annual salary? | Paper1 | — | [`Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md`](Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md) |
 | What is the average time to train a healthcare IT employee? | Paper1 | — | [`Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md`](Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md) |
 | How does Nonaka's SECI model apply to organizational knowledge capture in analytics? | Paper1,Paper2 | [#372](https://github.com/stharrold/yuimedi-paper-20250901/issues/372) | [`Research_How-does-Nonakas-SECI-model-apply-to-organizational knowledge-capture-in-analytics.md`](Research_How-does-Nonakas-SECI-model-apply-to-organizational%20knowledge-capture-in-analytics.md) |
+| What contemporary empirical research measures healthcare IT turnover rates? | Paper1 | — | [`Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md`](Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md) |
 
 ### Healthcare Analytics Challenges
 
@@ -74,6 +76,8 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What peer-reviewed evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_low-code-platform-healthcare-cost-roi-evidence.md`](Research_low-code-platform-healthcare-cost-roi-evidence.md) |
 | How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md`](Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md) |
 | What evidence supports applying code modernization principles to natural language interfaces for legacy data access? | Paper1 | [#377](https://github.com/stharrold/yuimedi-paper-20250901/issues/377) | [`Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md`](Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md) |
+| What quantitative efficiency metrics have been reported for low-code or conversational AI in healthcare analytics? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_What-quantitative-efficiency-metrics-have-been-reported-for-low-code-or-conversational-AI-in-healthcare-analytics.md`](Research_What-quantitative-efficiency-metrics-have-been-reported-for-low-code-or-conversational-AI-in-healthcare-analytics.md) |
+| What efficiency metrics have been reported for NL2SQL or conversational analytics in healthcare? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md`](Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md) |
 
 ### Knowledge Transfer and Tacit Knowledge
 
@@ -86,6 +90,8 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | Question | Scope | Issue | Research File |
 |----------|-------|-------|---------------|
 | What evidence links healthcare analytics maturity gaps to patient care quality and clinical outcomes? | Paper1 | [#379](https://github.com/stharrold/yuimedi-paper-20250901/issues/379) | [`Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md`](Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md) |
+| What evidence links healthcare workforce turnover and institutional knowledge loss to care continuity? | Paper1 | [#380](https://github.com/stharrold/yuimedi-paper-20250901/issues/380) | [`Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md`](Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md) |
+| What evidence demonstrates that analytics challenges have measurable implications for healthcare delivery? | Paper1 | [#381](https://github.com/stharrold/yuimedi-paper-20250901/issues/381) | [`Research_What-evidence-demonstrates-that-analytics-challenges-have-measurable-implications-for-healthcare-delivery.md`](Research_What-evidence-demonstrates-that-analytics-challenges-have-measurable-implications-for-healthcare-delivery.md) |
 
 ### Testing & Validation
 
@@ -124,17 +130,7 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 
 | Question | Scope | Issue | Status | Notes |
 |----------|-------|-------|--------|-------|
-| What quantitative efficiency metrics (time savings, task completion rates) have been reported for low-code or conversational AI in healthcare? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | → Gap | Added to paper.md "Gaps in Current Literature" |
-| What peer-reviewed (non-vendor-sponsored) evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Answered | **LOW-CODE GAP FILLED:** 10 papers found (177-250% ROI, 67-70% dev time reduction). See [`Research_low-code-platform-healthcare-cost-roi-evidence.md`](Research_low-code-platform-healthcare-cost-roi-evidence.md). Combined with prior AI evidence → moved to Answered. |
-| How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Answered | **NL2SQL HEALTHCARE GAP FILLED:** 10 papers found with healthcare-specific metrics: 63% self-service analytics adoption increase, 37% data retrieval time reduction, 10-30% query completion time reduction, 2.7x-6.7x speedup, 10x-60x effort reduction. See [`Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md`](Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md) → moved to Answered. |
-| What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | **UPDATED 2025-12-20:** 20 papers found (10 original + 10 supplementary). NEW quantitative metrics: 67% dev time reduction (Mogili 2025), 50% IT backlog decrease (Salvatore 2024), CD Score index (Waszkowski 2025, Nature). Gap CONFIRMED: No validated healthcare-specific citizen developer productivity instrument. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
-
-### Clinical Impact and Healthcare Delivery
-
-| Question | Scope | Issue | Status | Notes |
-|----------|-------|-------|--------|-------|
-| What evidence links healthcare workforce turnover and institutional knowledge loss to care continuity? | Paper1 | [#380](https://github.com/stharrold/yuimedi-paper-20250901/issues/380) | Unanswered | Support for "care continuity" claim |
-| What evidence demonstrates that analytics challenges have measurable implications for healthcare delivery? | Paper1 | [#381](https://github.com/stharrold/yuimedi-paper-20250901/issues/381) | Unanswered | Support for "healthcare delivery" claim |
+| What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | **UPDATED 2025-12-20:** 20 papers found. Gap CONFIRMED: No validated healthcare-specific citizen developer productivity instrument. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
 
 ### Clinical Safety and Security
 
@@ -186,3 +182,5 @@ All `Research_*.md` files in this directory:
 | `Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md` | Code modernization for NL interfaces | Paper1 |
 | `Research_What-evidence-exists-that-tacit-analytical-knowledge-is-difficult-to-document-and-transfer-through-traditional-means.md` | Tacit knowledge documentation difficulty | Paper1 |
 | `Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md` | Analytics maturity and patient outcomes | Paper1 |
+| `Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md` | Workforce turnover and care continuity | Paper1 |
+| `Research_What-evidence-demonstrates-that-analytics-challenges-have-measurable-implications-for-healthcare-delivery.md` | Analytics challenges and healthcare delivery | Paper1 |
