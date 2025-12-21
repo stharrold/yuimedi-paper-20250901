@@ -1,7 +1,7 @@
 ---
 title: "Natural Language to SQL in Healthcare: Bridging Analytics Maturity Gaps, Workforce Turnover, and Technical Barriers Through Conversational AI Platforms"
 author: "Samuel T Harrold, Yuimedi"
-correspondence: "https://us.yuimedi.com/contact-us/ (include 'NL2SQL paper' in message)"
+correspondence: "samuel.harrold@yuimedi.com"
 date: "December 2025"
 version: "1.0.0"
 abstract: |
@@ -333,7 +333,7 @@ The framework is descriptive rather than prescriptive; it provides an analytical
 
 # Literature Review: Natural Language Analytics in Healthcare - Evidence for Institutional Memory Preservation
 
-This narrative review examines evidence supporting the implementation of natural language analytics platforms in healthcare systems. Drawing from peer-reviewed research, industry reports, and benchmark datasets identified through the methodology described in the previous section, we synthesize findings across three domains. Analysis reveals three critical findings: (1) natural language to SQL generation has evolved significantly but faces healthcare-specific challenges requiring specialized solutions, (2) healthcare analytics maturity remains critically low with most organizations struggling at basic stages, and (3) healthcare workforce turnover creates institutional memory loss that traditional approaches fail to address. The evidence strongly supports conversational AI platforms as a solution to these interconnected challenges.
+This narrative review examines evidence supporting the implementation of natural language analytics platforms in healthcare systems. Drawing from peer-reviewed research, industry reports, and benchmark datasets identified through the methodology described in Section 2 (Methodology), we synthesize findings across three domains. Analysis reveals three critical findings: (1) natural language to SQL generation has evolved significantly but faces healthcare-specific challenges requiring specialized solutions, (2) healthcare analytics maturity remains low with most organizations struggling at basic stages, and (3) healthcare workforce turnover creates institutional memory loss that traditional approaches fail to address. The evidence strongly supports conversational AI platforms as a solution to these interconnected challenges.
 
 ## Current State of Natural Language to SQL Generation
 
@@ -693,7 +693,7 @@ Healthcare's commitment to avoiding harm is best served by evidence-based evalua
 
 # Acknowledgments
 
-This manuscript was prepared with assistance from Claude Code (Claude Opus 4.5, Anthropic). Claude Code assisted with manuscript editing and refinement, reference verification (including identification of fabricated citations that were removed per Issue #261), validation script development, and documentation workflow automation. In accordance with Nature Portfolio editorial policy, Claude does not meet authorship criteria; the author (S.T.H.) takes full responsibility for the final content, conducted the research, and verified all claims and citations. Figure 1 was created with assistance from Google Gemini, as noted in the figure caption.
+The author (S.T.H.) takes full responsibility for the final content, conducted the research, and verified all claims and citations. Claude Code (Claude Opus 4.5, Anthropic) assisted with manuscript editing and refinement.
 
 # Author Contributions
 
@@ -701,7 +701,7 @@ S.T.H. conceived the research, conducted the literature review, and wrote the ma
 
 # Competing Interests
 
-The author declares the following competing interests: Samuel T Harrold is a contract product advisor at Yuimedi, Inc.., which develops healthcare analytics software including conversational AI platforms relevant to this review's subject matter. The author is also employed as a Data Scientist at Indiana University Health. This paper presents an analytical framework derived from published literature and does not evaluate or recommend specific commercial products, including those of the author's affiliated organizations. The views expressed are the author's own and do not represent the official positions of Indiana University Health or Yuimedi, Inc.. This research was conducted independently without funding from any affiliated organization.
+The author declares the following competing interests: Samuel T Harrold is a contract product advisor at Yuimedi, Inc., which develops healthcare analytics software including conversational AI platforms relevant to this review's subject matter. The author is also employed as a Data Scientist at Indiana University Health. This paper presents an analytical framework derived from published literature and does not evaluate or recommend specific commercial products, including those of the author's affiliated organizations. The views expressed are the author's own and do not represent the official positions of Indiana University Health or Yuimedi, Inc. This research was conducted independently without funding from any affiliated organization.
 
 # Data Availability
 
