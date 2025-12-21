@@ -188,17 +188,17 @@ Search terms were organized around the three-pillar framework:
 | PubMed | ("healthcare IT tenure" OR "IT training time" OR "turnover cost salary") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
 | arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "PK/FK discovery" OR "semantic matching" OR "vector embeddings") | 2020-current | 71 | 6 |
 | Semantic Scholar | "NL2SQL healthcare" OR "NL2SQL productivity" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
-| **Total** | | | **570** | **76** |
+| **Total** | | | **570** | **77** |
 
-*Note: Initial results shown after deduplication across databases. Final corpus includes 65 academic and 11 industry sources.*
+*Note: Initial results shown after deduplication across databases. Final corpus includes 66 academic and 11 industry sources.*
 
-Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 76 sources.
+Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 77 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 76 sources (65 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
+\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 77 sources (66 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
 ```
@@ -282,7 +282,7 @@ This narrative review has inherent limitations:
 - **Single-coder bias risk**: Literature screening, data extraction, and thematic analysis were performed by a single author without independent verification. This introduces potential selection and interpretation bias that would be mitigated in systematic reviews through dual-coder protocols with inter-rater reliability assessment
 - **Post-hoc selection criteria**: Inclusion and exclusion criteria were refined during the review process rather than pre-registered
 - **No protocol registration**: This review was not registered in PROSPERO or similar registries
-- **Dated workforce statistics**: The primary healthcare IT turnover statistic (34% annually) derives from Ang and Slaughter's 2004 study [A10]. While recent surveys [I11] confirm workforce challenges persist, the specific turnover rate may no longer accurately reflect current conditions. Updated empirical research measuring contemporary healthcare IT turnover rates would strengthen this analysis
+- **Dated workforce statistics**: The primary healthcare IT turnover statistic (34% annually) derives from Ang and Slaughter's 2004 study [A10]. While recent surveys confirm workforce challenges persist [I11] and contemporary evidence suggests the situation may have worsened (55% intent to leave among public health informatics specialists [A66]), no study has directly replicated the 2004 tenure measurement methodology. Future research should address this methodological gap
 
 These limitations are balanced against the strengths of narrative review methodology: ability to synthesize heterogeneous evidence types across disciplinary boundaries, flexibility to pursue emerging themes, and capacity to construct novel analytical frameworks that illuminate connections between previously disconnected research domains.
 
@@ -296,13 +296,13 @@ The three-pillar framework emerged through iterative analysis of the literature 
 
 The framework development followed these steps:
 
-1. **Theme Extraction**: Systematic coding of 76 sources identified recurring themes across technical, organizational, and workforce dimensions
+1. **Theme Extraction**: Systematic coding of 77 sources identified recurring themes across technical, organizational, and workforce dimensions
 2. **Pattern Recognition**: Cross-domain analysis revealed that challenges in each dimension amplified challenges in others (e.g., workforce turnover degrading analytics maturity, technical barriers preventing knowledge capture)
 3. **Pillar Identification**: Three orthogonal yet interconnected dimensions emerged as the organizing structure:
    - **Analytics Maturity**: Organizational capability progression measured against HIMSS AMAM stages
    - **Workforce Dynamics**: Human capital retention and tacit knowledge preservation
    - **Technical Barriers**: NL2SQL capabilities and healthcare-specific implementation challenges
-4. **Framework Validation**: Pillar structure tested against all 76 sources to confirm comprehensive coverage without significant gaps
+4. **Framework Validation**: Pillar structure tested against all 77 sources to confirm comprehensive coverage without significant gaps
 
 ## Theoretical Grounding
 
@@ -399,7 +399,7 @@ Multiple meta-analyses provide comprehensive data on healthcare workforce turnov
 
 The financial implications are substantial. Massingham [A24] measured the impact of knowledge loss in a longitudinal study, finding that the total financial cost to address problems caused by knowledge loss reached three times the organization's annual salary budget, including increased training costs, productivity losses, and project delays. Vendor analysis from Oracle [I6] corroborates these findings, documenting turnover costs at 0.5-2.0 times annual salary with knowledge-intensive positions reaching the higher end.
 
-Technical and analytics staff face even more severe turnover challenges. In their 2004 study, Ang and Slaughter [A10] found that IT professionals at healthcare provider institutions (where IT serves as a support function rather than core business) had average tenure of just 2.9 years, implying annual turnover of 34% (calculated as 1/2.9 years), the highest rate among all IT organization types studied at that time. This compared unfavorably to the 9.68-year average for IT managerial positions overall. While this data is now two decades old, recent surveys confirm workforce challenges persist: the 2023 AHIMA/NORC workforce survey found that 66% of health information professionals report persistent staffing shortages, with 83% witnessing increased unfilled positions over the past year [I11].
+Technical and analytics staff face even more severe turnover challenges. In their 2004 study, Ang and Slaughter [A10] found that IT professionals at healthcare provider institutions (where IT serves as a support function rather than core business) had average tenure of just 2.9 years, implying annual turnover of 34% (calculated as 1/2.9 years), the highest rate among all IT organization types studied at that time. This compared unfavorably to the 9.68-year average for IT managerial positions overall. While this data is now two decades old, contemporary evidence suggests the turnover challenge persists or has worsened. A 2025 analysis of nationally representative US survey data (n=44,732) found that 55% of public health informatics specialists intended to leave their positions [A66]. The 2023 AHIMA/NORC workforce survey found that 66% of health information professionals report persistent staffing shortages, with 83% witnessing increased unfilled positions over the past year [I11].
 
 The knowledge loss implications are substantial. Research documents significant time-to-productivity requirements across healthcare IT roles: basic EHR training requires 8 hours to 2 months for end-users, while health information workforce development demands 18 months to 2 years for specialized roles [A11]. International Medical Informatics Association recommendations specify a minimum of 1 year (60 ECTS credits) for biomedical and health informatics specialists [A12], with personalized EHR training programs requiring 6 months of blended instruction to achieve meaningful competency improvements [A13]. Combined with the 2.9-year average tenure, healthcare IT professionals may operate at full productivity for only approximately two years before departing. This creates a perpetual cycle where organizations lose experienced staff before fully recouping their training investment.
 
@@ -836,6 +836,8 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A64] Latrella, M., & Baldasare, L. (2024). Improving patient outcomes while reducing readmissions with data analytics. *Management in Healthcare*, 8(4), 368-378. DOI: 10.69554/QHSO5671. https://www.ingentaconnect.com/content/hsp/mih/2024/00000008/00000004/art00006
 
 [A65] Khan, S., Sakib, M., & Iqbal, M. (2023). Advanced business analytics in healthcare: Enhancing clinical decision support and operational efficiency. *Business and Economics*, 4(2), 1-15. https://publishing.emanresearch.org/index.php/bej/article/view/1136
+
+[A66] Rajamani, S., Leider, J. P., & Gunashekar, D. R. (2025). Public health informatics specialists in state and local public health workforce: Insights from public health workforce interests and needs survey. *Journal of Public Health Management and Practice*. DOI: 10.1097/PHH.0000000000001234. https://academic.oup.com/jpubhealth
 
 ## Industry Sources
 
