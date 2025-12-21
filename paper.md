@@ -15,8 +15,7 @@ abstract: |
   Healthcare IT staff turnover of ~34% (as of 2004), the highest among IT sectors at that time, creates institutional memory loss, while low-code implementations demonstrate significant efficiency gains and cost savings. The convergence of technical advances in NL2SQL generation, analytics
   maturity challenges in healthcare organizations, and workforce turnover creates conditions
   warranting organizational assessment of conversational AI platforms with appropriate governance.
-  This paper contributes a three-pillar analytical framework and positions healthcare conversational
-  AI as a knowledge portal architecture for institutional memory preservation.
+  This paper contributes a three-pillar analytical framework (analytics maturity, workforce turnover, technical barriers) and positions healthcare conversational AI as a knowledge portal architecture for institutional memory preservation.
 keywords: [healthcare analytics, natural language processing, SQL generation, institutional memory, conversational AI, healthcare informatics, workforce turnover, analytics maturity]
 license: "CC BY 4.0"
 license-url: "https://creativecommons.org/licenses/by/4.0/"
