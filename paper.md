@@ -244,22 +244,33 @@ Grey literature sources were assessed using the AACODS checklist (Tyndall, 2010)
 \hline
 \textbf{Source} & \textbf{Authority} & \textbf{Accuracy} & \textbf{Coverage} & \textbf{Objectivity} & \textbf{Date} & \textbf{Significance} & \textbf{Include} \\
 \hline
-{[}I1{]} HIMSS AMAM & High (industry standards body) & Verifiable & Global & High & 2024 & High & Yes \\
-{[}I2{]} Snowdon/HIMSS & High (HIMSS officer) & Verifiable & N/A & High & 2024 & Medium & Yes \\
-{[}I3{]} Health Catalyst & Medium (vendor) & Unverifiable & US & Low & 2020 & Medium & Yes* \\
-{[}I4{]} Berkshire NHS & High (NHS trust) & Verifiable & Single site & High & 2024 & High & Yes \\
-{[}I5{]} Forrester/Microsoft & Medium (analyst firm) & Unverifiable & Enterprise & Low (sponsor) & 2024 & Medium & Yes* \\
-{[}I6{]} Oracle & Low (vendor) & Unverifiable & N/A & Low & 2024 & Low & Yes* \\
-{[}I7{]} Precedence Research & Medium (market research) & Unverifiable & Global & Medium & 2024 & Medium & Yes \\
-{[}I8{]} Anthropic & Medium (vendor) & Verifiable & N/A & Medium & 2025 & Low & Yes \\
-{[}I9{]} IBM Newsroom & High (journalism) & Verifiable & N/A & High & 2022 & High & Yes \\
-{[}I10{]} CNBC/Haven & High (journalism) & Verifiable & N/A & High & 2021 & High & Yes \\
-{[}I11{]} AHIMA/NORC & High (professional assoc + academic) & Verifiable & US & High & 2023 & High & Yes \\
+{[}I1{]} HIMSS AMAM & High$^\dagger$ & Verifiable & Global & High & 2024 & High & Yes \\
+{[}I2{]} Snowdon/HIMSS & High$^\ddagger$ & Verifiable & N/A & High & 2024 & Medium & Yes \\
+{[}I3{]} Health Catalyst & Medium$^\S$ & Unverifiable & US & Low & 2020 & Medium & Yes* \\
+{[}I4{]} Berkshire NHS & High$^\P$ & Verifiable & Single site & High & 2024 & High & Yes \\
+{[}I5{]} Forrester/Microsoft & Medium$^\|$ & Unverifiable & Enterprise & Low$^\diamondsuit$ & 2024 & Medium & Yes* \\
+{[}I6{]} Oracle & Low$^\S$ & Unverifiable & N/A & Low & 2024 & Low & Yes* \\
+{[}I7{]} Precedence Research & Medium$^\#$ & Unverifiable & Global & Medium & 2024 & Medium & Yes \\
+{[}I8{]} Anthropic & Medium$^\S$ & Verifiable & N/A & Medium & 2025 & Low & Yes \\
+{[}I9{]} IBM Newsroom & High$^{**}$ & Verifiable & N/A & High & 2022 & High & Yes \\
+{[}I10{]} CNBC/Haven & High$^{**}$ & Verifiable & N/A & High & 2021 & High & Yes \\
+{[}I11{]} AHIMA/NORC & High$^{\dagger\dagger}$ & Verifiable & US & High & 2023 & High & Yes \\
 \hline
 \end{tabular}
 \label{tab:aacods}
 
-\footnotesize *Vendor sponsorship or low objectivity noted in manuscript text.
+\footnotesize
+$^\dagger$Industry standards body.
+$^\ddagger$HIMSS officer.
+$^\S$Vendor.
+$^\P$NHS trust.
+$^\|$Analyst firm.
+$^\#$Market research.
+$^{**}$Journalism.
+\\
+$^{\dagger\dagger}$Professional association + academic.
+$^\diamondsuit$Sponsor.
+*Vendor sponsorship or low objectivity noted in manuscript text.
 \end{sidewaystable}
 
 ## Methodological Limitations
