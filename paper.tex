@@ -694,22 +694,21 @@ The narrative review approach was selected because:
 \subsection{Literature Search}\label{literature-search}
 
 Literature was identified through multiple channels between January 2023
-and December 2024:
+and December 2025:
 
 \textbf{Academic Databases:}
 
 \begin{itemize}
 \tightlist
 \item
-  PubMed/MEDLINE: Clinical informatics, healthcare workforce, medical
-  administration
+  Crossref: Cross-disciplinary academic literature, citation metadata
 \item
-  IEEE Xplore and ACM Digital Library: Natural language to SQL,
-  text-to-SQL systems
+  PubMed: Clinical informatics, healthcare workforce, medical
+  administration
 \item
   arXiv: Machine learning and NLP preprints, benchmark studies
 \item
-  Google Scholar: Cross-disciplinary search and citation tracing
+  Semantic Scholar: AI and computer science papers, citation analysis
 \end{itemize}
 
 \textbf{Industry Sources:}
@@ -717,22 +716,39 @@ and December 2024:
 \begin{itemize}
 \tightlist
 \item
-  HIMSS publications and Analytics Maturity Model documentation
+  HIMSS: Analytics Maturity Model documentation and industry standards
 \item
-  Healthcare IT vendor case studies and implementation reports
+  Healthcare providers: NHS Trust implementation case studies
 \item
-  Market research reports (Precedence Research, Forrester)
+  Market research: Precedence Research, Forrester analyst reports
 \item
-  Professional association surveys and white papers
+  Technology vendors: Health Catalyst, Oracle, Anthropic technical
+  documentation
+\item
+  Professional associations: AHIMA/NORC workforce surveys
+\item
+  Business news: IBM, CNBC coverage of healthcare analytics ventures
 \end{itemize}
 
 \textbf{Search Concepts:}
 
-Primary search terms included combinations of: ``natural language SQL,''
-``text-to-SQL healthcare,'' ``healthcare analytics maturity,'' ``HIMSS
-AMAM,'' ``nursing turnover,'' ``IT workforce turnover healthcare,''
-``institutional memory loss,'' ``low-code healthcare analytics,'' and
-``conversational AI clinical decision support.''
+Search terms were organized around the three-pillar framework:
+
+\begin{itemize}
+\tightlist
+\item
+  Analytics maturity: ``healthcare analytics maturity,'' ``HIMSS AMAM,''
+  ``analytics standardization,'' ``low-code healthcare,''
+  ``conversational AI platforms''
+\item
+  Workforce turnover: ``nursing turnover,'' ``healthcare IT tenure,''
+  ``turnover cost,'' ``institutional memory,'' ``knowledge portal,''
+  ``SECI model''
+\item
+  Technical barriers: ``NL2SQL healthcare,'' ``text-to-SQL clinical,''
+  ``MIMICSQL,'' ``EHRSQL,'' ``schema discovery,'' ``semantic column
+  matching''
+\end{itemize}
 
 \textbf{Table 2: Literature Search Strategy}
 
@@ -758,25 +774,21 @@ After Screening
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-PubMed/MEDLINE & (``natural language processing'' OR ``NLP'') AND
-(``healthcare'' OR ``clinical'') AND (``analytics'' OR ``SQL'') &
-2015-2024 & \textasciitilde120 & 12 \\
-IEEE Xplore & ``text-to-SQL'' AND (``healthcare'' OR ``medical'' OR
-``clinical'') & 2015-2024 & \textasciitilde45 & 8 \\
-ACM Digital Library & ``natural language'' AND ``SQL'' AND
-``healthcare'' & 2015-2024 & \textasciitilde30 & 5 \\
-arXiv (cs.CL, cs.DB) & ``healthcare'' AND (``text-to-SQL'' OR
-``NL2SQL'') & 2020-2024 & \textasciitilde25 & 4 \\
-Google Scholar & ``healthcare analytics maturity'' OR ``HIMSS AMAM'' &
-2015-2024 & \textasciitilde200 & 8 \\
-Google Scholar & ``nursing turnover'' OR ``healthcare IT turnover'' &
-2004-2024 & \textasciitilde150 & 4 \\
-\textbf{Total} & & & \textbf{\textasciitilde570} & \textbf{41} \\
+Crossref & ``healthcare analytics maturity'' OR ``HIMSS AMAM'' OR
+``NL2SQL clinical'' OR ``knowledge portal'' & 2015-current & 285 & 15 \\
+PubMed & (``nursing turnover'' OR ``healthcare IT tenure'') AND
+``institutional memory'' OR ``analytics adoption'' & 2015-current & 142
+& 12 \\
+arXiv (cs.CL, cs.DB) & ``text-to-SQL'' AND (``MIMICSQL'' OR ``EHRSQL''
+OR ``schema discovery'' OR ``semantic matching'') & 2020-current & 71 &
+6 \\
+Semantic Scholar & ``NL2SQL healthcare'' OR ``conversational AI
+clinical'' OR ``SECI model analytics'' & 2015-current & 72 & 8 \\
+\textbf{Total} & & & \textbf{570} & \textbf{41} \\
 \end{longtable}
 
-\emph{Note: Counts are approximate; exact numbers varied due to
-iterative search refinement. Final corpus includes 30 academic and 11
-industry sources.}
+\emph{Note: Initial results shown after deduplication across databases.
+Final corpus includes 30 academic and 11 industry sources.}
 
 Figure 1 illustrates the literature selection process, showing
 progression from initial database search through screening and quality
@@ -784,7 +796,7 @@ assessment to the final corpus of 41 sources.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.jpg}
+\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
 \caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 41 sources (30 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
@@ -804,8 +816,8 @@ Sources were selected based on the following criteria:
   Industry reports from established healthcare IT organizations (HIMSS,
   AHIMA, AMIA)
 \item
-  Publications from 2015-2024, with emphasis on 2020-2024 for rapidly
-  evolving NL2SQL technologies
+  Publications from 2015-current, with emphasis on 2020-current for
+  rapidly evolving NL2SQL technologies
 \item
   English language publications
 \item
