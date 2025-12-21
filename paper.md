@@ -177,7 +177,7 @@ Literature was identified through multiple channels between January 2023 and Dec
 Search terms were organized around the three-pillar framework:
 
 - Analytics maturity: "healthcare analytics maturity," "HIMSS AMAM," "analytics adoption," "analytics standardization failure," "low-code healthcare ROI," "conversational AI platforms"
-- Workforce turnover: "nursing turnover," "healthcare IT tenure," "IT training time," "turnover cost salary," "institutional memory loss," "knowledge portal," "knowledge capture," "SECI model analytics"
+- Workforce turnover: "healthcare IT tenure," "IT training time," "turnover cost salary," "institutional memory loss," "knowledge portal," "knowledge capture," "SECI model analytics"
 - Technical barriers: "NL2SQL healthcare," "text-to-SQL clinical," "MIMICSQL," "EHRSQL," "NL2SQL accuracy," "NL2SQL productivity," "schema discovery," "PK/FK discovery," "semantic column matching," "vector embeddings schema"
 
 **Table 2: Literature Search Strategy**
@@ -185,7 +185,7 @@ Search terms were organized around the three-pillar framework:
 | Database | Primary Search Terms | Date Range | Initial Results | After Screening |
 |----------|---------------------|------------|-----------------|-----------------|
 | Crossref | "healthcare analytics maturity" OR "HIMSS AMAM" OR "NL2SQL clinical" OR "knowledge portal" OR "low-code ROI" | 2015-current | 285 | 15 |
-| PubMed | ("nursing turnover" OR "healthcare IT tenure" OR "IT training time") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
+| PubMed | ("healthcare IT tenure" OR "IT training time" OR "turnover cost salary") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
 | arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "PK/FK discovery" OR "semantic matching" OR "vector embeddings") | 2020-current | 71 | 6 |
 | Semantic Scholar | "NL2SQL healthcare" OR "NL2SQL productivity" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
 | **Total** | | | **570** | **41** |
@@ -292,7 +292,7 @@ This paper's primary contribution is the three-pillar analytical framework for u
 
 ## Framework Development Process
 
-The three-pillar framework emerged through iterative analysis of the literature corpus. Initial review identified numerous disconnected research streams: NL2SQL technical advances, HIMSS maturity models, nursing turnover meta-analyses, knowledge management theory, and healthcare IT implementation case studies. These appeared as isolated topics until thematic analysis revealed recurring patterns of interdependence.
+The three-pillar framework emerged through iterative analysis of the literature corpus. Initial review identified numerous disconnected research streams: NL2SQL technical advances, HIMSS maturity models, healthcare workforce turnover studies, knowledge management theory, and healthcare IT implementation case studies. These appeared as isolated topics until thematic analysis revealed recurring patterns of interdependence.
 
 The framework development followed these steps:
 
@@ -308,13 +308,22 @@ The framework development followed these steps:
 
 The three-pillar framework aligns with established models in healthcare informatics and knowledge management:
 
-**Table 3: Framework Alignment with Established Models**
-
-| Three Pillars | HIMSS AMAM Alignment | DIKW Hierarchy | Knowledge Management |
-|---------------|----------------------|----------------|----------------------|
-| Analytics Maturity | Stages 0-7 progression | Data → Information | Organizational learning |
-| Workforce Dynamics | Implicit in advanced stages | Knowledge (tacit) → Wisdom | Tacit knowledge transfer |
-| Technical Barriers | Stage 6-7 requirements | Information → Knowledge | Knowledge codification |
+```{=latex}
+\begin{table}[htbp]
+\centering
+\caption{Framework Alignment with Established Models}
+\label{tab:framework-alignment}
+\begin{tabular}{llll}
+\toprule
+\textbf{Three Pillars} & \textbf{HIMSS AMAM Alignment} & \textbf{DIKW Hierarchy} & \textbf{Knowledge Management} \\
+\midrule
+Analytics Maturity & Stages 0-7 progression & Data → Information & Organizational learning \\
+Workforce Dynamics & Implicit in advanced stages & Knowledge (tacit) → Wisdom & Tacit knowledge transfer \\
+Technical Barriers & Stage 6-7 requirements & Information → Knowledge & Knowledge codification \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
 
 The HIMSS Analytics Maturity Assessment Model [I1] provides organizational benchmarks but does not explicitly address workforce knowledge retention. The Data-Information-Knowledge-Wisdom (DIKW) hierarchy explains the progression from raw data to actionable insight, but standard formulations do not address institutional memory loss. The three-pillar framework synthesizes these perspectives, positioning workforce dynamics as the critical enabler connecting data access (analytics maturity) with organizational wisdom (knowledge preservation).
 

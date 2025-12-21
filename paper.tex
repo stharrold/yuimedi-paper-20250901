@@ -126,6 +126,8 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{graphicx}
 \usepackage{xurl}
+\usepackage{rotating}
+\usepackage{booktabs}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -738,16 +740,17 @@ Search terms were organized around the three-pillar framework:
 \tightlist
 \item
   Analytics maturity: ``healthcare analytics maturity,'' ``HIMSS AMAM,''
-  ``analytics standardization,'' ``low-code healthcare,''
-  ``conversational AI platforms''
+  ``analytics adoption,'' ``analytics standardization failure,''
+  ``low-code healthcare ROI,'' ``conversational AI platforms''
 \item
-  Workforce turnover: ``nursing turnover,'' ``healthcare IT tenure,''
-  ``turnover cost,'' ``institutional memory,'' ``knowledge portal,''
-  ``SECI model''
+  Workforce turnover: ``healthcare IT tenure,'' ``IT training time,''
+  ``turnover cost salary,'' ``institutional memory loss,'' ``knowledge
+  portal,'' ``knowledge capture,'' ``SECI model analytics''
 \item
   Technical barriers: ``NL2SQL healthcare,'' ``text-to-SQL clinical,''
-  ``MIMICSQL,'' ``EHRSQL,'' ``schema discovery,'' ``semantic column
-  matching''
+  ``MIMICSQL,'' ``EHRSQL,'' ``NL2SQL accuracy,'' ``NL2SQL
+  productivity,'' ``schema discovery,'' ``PK/FK discovery,'' ``semantic
+  column matching,'' ``vector embeddings schema''
 \end{itemize}
 
 \textbf{Table 2: Literature Search Strategy}
@@ -775,15 +778,17 @@ After Screening
 \bottomrule\noalign{}
 \endlastfoot
 Crossref & ``healthcare analytics maturity'' OR ``HIMSS AMAM'' OR
-``NL2SQL clinical'' OR ``knowledge portal'' & 2015-current & 285 & 15 \\
-PubMed & (``nursing turnover'' OR ``healthcare IT tenure'') AND
-``institutional memory'' OR ``analytics adoption'' & 2015-current & 142
-& 12 \\
+``NL2SQL clinical'' OR ``knowledge portal'' OR ``low-code ROI'' &
+2015-current & 285 & 15 \\
+PubMed & (``healthcare IT tenure'' OR ``IT training time'' OR ``turnover
+cost salary'') AND (``institutional memory'' OR ``analytics adoption''
+OR ``knowledge capture'') & 2015-current & 142 & 12 \\
 arXiv (cs.CL, cs.DB) & ``text-to-SQL'' AND (``MIMICSQL'' OR ``EHRSQL''
-OR ``schema discovery'' OR ``semantic matching'') & 2020-current & 71 &
-6 \\
-Semantic Scholar & ``NL2SQL healthcare'' OR ``conversational AI
-clinical'' OR ``SECI model analytics'' & 2015-current & 72 & 8 \\
+OR ``schema discovery'' OR ``PK/FK discovery'' OR ``semantic matching''
+OR ``vector embeddings'') & 2020-current & 71 & 6 \\
+Semantic Scholar & ``NL2SQL healthcare'' OR ``NL2SQL productivity'' OR
+``conversational AI clinical'' OR ``SECI model analytics'' &
+2015-current & 72 & 8 \\
 \textbf{Total} & & & \textbf{570} & \textbf{41} \\
 \end{longtable}
 
@@ -859,78 +864,53 @@ Evidence was synthesized thematically around the three-pillar framework:
 \end{enumerate}
 
 This framework emerged iteratively from the literature rather than being
-pre-specified, consistent with narrative review methodology. Citation
-verification followed the methodology documented in the reference
-verification process, which identified and removed 5 likely AI-generated
-fabrications and 29 unused references from the original draft.
+pre-specified, consistent with narrative review methodology.
 
 \subsection{Grey Literature Quality
 Assessment}\label{grey-literature-quality-assessment}
 
 Grey literature sources were assessed using the AACODS checklist
-(Tyndall, 2010) {[}A30{]}, which evaluates Authority, Accuracy,
-Coverage, Objectivity, Date, and Significance. Sources with vendor
-sponsorship were retained when no independent alternative existed but
-flagged in-text. Table 1 summarizes the assessment.
+{[}A30{]}, which evaluates Authority, Accuracy, Coverage, Objectivity,
+Date, and Significance. Sources with vendor sponsorship were retained
+when no independent alternative existed but flagged in-text. Table
+\ref{tab:aacods} summarizes the assessment.
 
-\textbf{Table 1: AACODS Assessment of Industry Sources}
+\begin{sidewaystable}
+\centering
+\caption{AACODS Assessment of Industry Sources}
+\small
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{Source} & \textbf{Authority} & \textbf{Accuracy} & \textbf{Coverage} & \textbf{Objectivity} & \textbf{Date} & \textbf{Significance} & \textbf{Include} \\
+\hline
+{[}I1{]} HIMSS AMAM & High$^\dagger$ & Verifiable & Global & High & 2024 & High & Yes \\
+{[}I2{]} Snowdon/HIMSS & High$^\ddagger$ & Verifiable & N/A & High & 2024 & Medium & Yes \\
+{[}I3{]} Health Catalyst & Medium$^\S$ & Unverifiable & US & Low & 2020 & Medium & Yes* \\
+{[}I4{]} Berkshire NHS & High$^\P$ & Verifiable & Single site & High & 2024 & High & Yes \\
+{[}I5{]} Forrester/Microsoft & Medium$^\|$ & Unverifiable & Enterprise & Low$^\diamondsuit$ & 2024 & Medium & Yes* \\
+{[}I6{]} Oracle & Low$^\S$ & Unverifiable & N/A & Low & 2024 & Low & Yes* \\
+{[}I7{]} Precedence Research & Medium$^\#$ & Unverifiable & Global & Medium & 2024 & Medium & Yes \\
+{[}I8{]} Anthropic & Medium$^\S$ & Verifiable & N/A & Medium & 2025 & Low & Yes \\
+{[}I9{]} IBM Newsroom & High$^{**}$ & Verifiable & N/A & High & 2022 & High & Yes \\
+{[}I10{]} CNBC/Haven & High$^{**}$ & Verifiable & N/A & High & 2021 & High & Yes \\
+{[}I11{]} AHIMA/NORC & High$^{\dagger\dagger}$ & Verifiable & US & High & 2023 & High & Yes \\
+\hline
+\end{tabular}
+\label{tab:aacods}
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0988}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1358}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1235}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1235}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1605}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0741}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1728}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1111}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Source
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Authority
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Accuracy
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Coverage
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Objectivity
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Date
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Significance
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Include
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-{[}I1{]} HIMSS AMAM & High (industry standards body) & Verifiable &
-Global & High & 2024 & High & Yes \\
-{[}I2{]} Snowdon/HIMSS & High (HIMSS officer) & Verifiable & N/A & High
-& 2024 & Medium & Yes \\
-{[}I3{]} Health Catalyst & Medium (vendor) & Unverifiable & US & Low &
-2020 & Medium & Yes* \\
-{[}I4{]} Berkshire NHS & High (NHS trust) & Verifiable & Single site &
-High & 2024 & High & Yes \\
-{[}I5{]} Forrester/Microsoft & Medium (analyst firm) & Unverifiable &
-Enterprise & Low (sponsor) & 2024 & Medium & Yes* \\
-{[}I6{]} Oracle & Low (vendor) & Unverifiable & N/A & Low & 2024 & Low &
-Yes* \\
-{[}I7{]} Precedence Research & Medium (market research) & Unverifiable &
-Global & Medium & 2024 & Medium & Yes \\
-{[}I8{]} Anthropic & Medium (vendor) & Verifiable & N/A & Medium & 2025
-& Low & Yes \\
-{[}I9{]} IBM Newsroom & High (journalism) & Verifiable & N/A & High &
-2022 & High & Yes \\
-{[}I10{]} CNBC/Haven & High (journalism) & Verifiable & N/A & High &
-2021 & High & Yes \\
-{[}I11{]} AHIMA/NORC & High (professional assoc + academic) & Verifiable
-& US & High & 2023 & High & Yes \\
-\end{longtable}
-
+\footnotesize
+$^\dagger$Industry standards body.
+$^\ddagger$HIMSS officer.
+$^\S$Vendor.
+$^\P$NHS trust.
+$^\|$Analyst firm.
+$^\#$Market research.
+$^{**}$Journalism.
+\\
+$^{\dagger\dagger}$Professional association + academic.
+$^\diamondsuit$Sponsor.
 *Vendor sponsorship or low objectivity noted in manuscript text.
+\end{sidewaystable}
 
 \subsection{Methodological
 Limitations}\label{methodological-limitations}
@@ -981,9 +961,11 @@ connections between previously disconnected research domains.
 Validation}\label{framework-development-and-validation}
 
 This paper's primary contribution is the three-pillar analytical
-framework for understanding healthcare analytics challenges. This
-section documents the framework's development process and theoretical
-grounding.
+framework for understanding healthcare analytics challenges: (1)
+analytics maturity gaps, (2) workforce turnover and institutional memory
+loss, and (3) technical barriers in natural language to SQL generation.
+This section documents the framework's development process and
+theoretical grounding.
 
 \subsection{Framework Development
 Process}\label{framework-development-process}
@@ -991,7 +973,7 @@ Process}\label{framework-development-process}
 The three-pillar framework emerged through iterative analysis of the
 literature corpus. Initial review identified numerous disconnected
 research streams: NL2SQL technical advances, HIMSS maturity models,
-nursing turnover meta-analyses, knowledge management theory, and
+healthcare workforce turnover studies, knowledge management theory, and
 healthcare IT implementation case studies. These appeared as isolated
 topics until thematic analysis revealed recurring patterns of
 interdependence.
@@ -1036,34 +1018,20 @@ The framework development followed these steps:
 The three-pillar framework aligns with established models in healthcare
 informatics and knowledge management:
 
-\textbf{Table 3: Framework Alignment with Established Models}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2933}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2133}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2933}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Three Pillars
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-HIMSS AMAM Alignment
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-DIKW Hierarchy
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Knowledge Management
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Analytics Maturity & Stages 0-7 progression & Data → Information &
-Organizational learning \\
-Workforce Dynamics & Implicit in advanced stages & Knowledge (tacit) →
-Wisdom & Tacit knowledge transfer \\
-Technical Barriers & Stage 6-7 requirements & Information → Knowledge &
-Knowledge codification \\
-\end{longtable}
+\begin{table}[htbp]
+\centering
+\caption{Framework Alignment with Established Models}
+\label{tab:framework-alignment}
+\begin{tabular}{llll}
+\toprule
+\textbf{Three Pillars} & \textbf{HIMSS AMAM Alignment} & \textbf{DIKW Hierarchy} & \textbf{Knowledge Management} \\
+\midrule
+Analytics Maturity & Stages 0-7 progression & Data → Information & Organizational learning \\
+Workforce Dynamics & Implicit in advanced stages & Knowledge (tacit) → Wisdom & Tacit knowledge transfer \\
+Technical Barriers & Stage 6-7 requirements & Information → Knowledge & Knowledge codification \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The HIMSS Analytics Maturity Assessment Model {[}I1{]} provides
 organizational benchmarks but does not explicitly address workforce

@@ -63,3 +63,4 @@ header-includes:
   - \usepackage{graphicx}
   - \usepackage{xurl}
   - \usepackage{rotating}
+  - \usepackage{booktabs}
