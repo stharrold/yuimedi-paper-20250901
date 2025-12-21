@@ -313,13 +313,13 @@ The three-pillar framework aligns with established models in healthcare informat
 \centering
 \caption{Framework Alignment with Established Models}
 \label{tab:framework-alignment}
-\begin{tabular}{llll}
+\begin{tabular}{p{3cm}p{3.5cm}p{3.5cm}p{3.5cm}}
 \toprule
 \textbf{Three Pillars} & \textbf{HIMSS AMAM Alignment} & \textbf{DIKW Hierarchy} & \textbf{Knowledge Management} \\
 \midrule
-Analytics Maturity & Stages 0-7 progression & Data → Information & Organizational learning \\
-Workforce Dynamics & Implicit in advanced stages & Knowledge (tacit) → Wisdom & Tacit knowledge transfer \\
-Technical Barriers & Stage 6-7 requirements & Information → Knowledge & Knowledge codification \\
+Analytics Maturity & Stages 0-7 progression & Data \newline → Information & Organizational learning \\
+Workforce Dynamics & Implicit in advanced stages & Knowledge (tacit) \newline → Wisdom & Tacit knowledge transfer \\
+Technical Barriers & Stage 6-7 requirements & Information \newline → Knowledge & Knowledge codification \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -472,7 +472,7 @@ Despite substantial evidence supporting conversational AI in healthcare analytic
 3. **Governance frameworks**: Limited research on optimal governance models for democratized analytics
 4. **Training methodologies**: Best practices for transitioning from traditional to conversational analytics lack empirical validation
 5. **Integration patterns**: Architectural guidance for incorporating conversational AI into existing healthcare IT ecosystems remains sparse
-6. **Long-term productivity tracking**: While peer-reviewed studies now document immediate productivity gains (63% self-service adoption increase, 37% data retrieval time reduction, 10-30% query completion time improvement [A35, A36, A37, A38]), longitudinal studies tracking sustained productivity improvements over multiple years remain limited
+6. **Long-term productivity tracking**: While peer-reviewed studies now document immediate productivity gains (63% self-service adoption increase, 37% data retrieval time reduction, 10-30% query completion time improvement [A35], [A36], [A37], [A38]), longitudinal studies tracking sustained productivity improvements over multiple years remain limited
 
 ## Why the Problem Persists
 
@@ -573,20 +573,32 @@ The three-pillar framework provides a structured approach for organizational sel
 
 The three-pillar framework enables organizational self-assessment to determine readiness for and potential benefit from NL2SQL and conversational AI interventions. Table 4 provides an evidence-based rubric where each indicator anchors to reviewed literature. Organizations scoring predominantly "Higher Risk" across pillars face compounding challenges that NL2SQL platforms are specifically designed to address: democratizing data access (Technical Barriers), preserving institutional knowledge (Workforce Dynamics), and accelerating maturity advancement (Analytics Maturity).
 
-**Table 4: Three-Pillar Organizational Assessment Rubric**
-
-| Pillar | Indicator | Lower Risk | Moderate Risk | Higher Risk | Evidence |
-|--------|-----------|------------|---------------|-------------|----------|
-| **Analytics Maturity** | HIMSS AMAM Stage | Stages 5-7: Predictive analytics, AI integration | Stages 3-4: Integrated warehouse, standardized definitions | Stages 0-2: Fragmented data, limited reporting (majority of organizations) | [I1], [I3] |
-| | Self-service analytics | Widespread; clinical staff access data directly | Partial; BI tools available but underutilized | None; all analytics require IT intervention | [I4], [A14] |
-| | AI/NL interface availability | Natural language query capability deployed | Pilot programs or evaluation underway | No NL2SQL or conversational analytics capability | [A5], [A6] |
-| **Workforce Dynamics** | Annual IT turnover rate | <15% | 15-30% | >30% (exceeds 2004 healthcare IT baseline) | [A10] |
-| | Knowledge concentration | Distributed expertise; documented processes | Partial documentation; some cross-training | Critical expertise held by ≤3 individuals | [A25], [A26] |
-| | Time-to-productivity for new hires | <6 months with structured onboarding | 6-18 months | >18 months (specialized health informatics roles) | [A11], [A12], [A13] |
-| | Tacit knowledge capture | Expertise embedded in systems/AI | Partial documentation exists | Person-dependent; undocumented tribal knowledge | [A25] |
-| **Technical Barriers** | Data access requirements | Natural language or visual query interfaces | IT queue for complex queries; basic self-service | SQL/technical expertise required for all queries | [A14], [A15], [A16] |
-| | Interoperability status | Unified data platform; real-time integration | Partial integration; some automated feeds | Fragmented systems; manual reconciliation required | [A27], [A29] |
-| | Skills gap severity | Sufficient analysts across departments | Acknowledged deficit with mitigation plans | Critical shortage preventing data utilization | [A15], [A16] |
+```{=latex}
+\begin{sidewaystable}[p]
+\centering
+\caption{Three-Pillar Organizational Assessment Rubric}
+\label{tab:assessment-rubric}
+\footnotesize
+\begin{tabular}{p{2.2cm}p{2.5cm}p{4cm}p{4cm}p{4.5cm}p{1.8cm}}
+\toprule
+\textbf{Pillar} & \textbf{Indicator} & \textbf{Lower Risk} & \textbf{Moderate Risk} & \textbf{Higher Risk} & \textbf{Evidence} \\
+\midrule
+\textbf{Analytics Maturity} & HIMSS AMAM Stage & Stages 5-7: Predictive analytics, AI integration & Stages 3-4: Integrated warehouse, standardized definitions & Stages 0-2: Fragmented data, limited reporting (majority of organizations) & [I1], [I3] \\
+& Self-service analytics & Widespread; clinical staff access data directly & Partial; BI tools available but underutilized & None; all analytics require IT intervention & [I4], [A14] \\
+& AI/NL interface availability & Natural language query capability deployed & Pilot programs or evaluation underway & No NL2SQL or conversational analytics capability & [A5], [A6] \\
+\midrule
+\textbf{Workforce Dynamics} & Annual IT turnover rate & <15\% & 15-30\% & >30\% (exceeds 2004 healthcare IT baseline) & [A10] \\
+& Knowledge concentration & Distributed expertise; documented processes & Partial documentation; some cross-training & Critical expertise held by $\leq$3 individuals & [A25], [A26] \\
+& Time-to-productivity for new hires & <6 months with structured onboarding & 6-18 months & >18 months (specialized health informatics roles) & [A11], [A12], [A13] \\
+& Tacit knowledge capture & Expertise embedded in systems/AI & Partial documentation exists & Person-dependent; undocumented tribal knowledge & [A25] \\
+\midrule
+\textbf{Technical Barriers} & Data access requirements & Natural language or visual query interfaces & IT queue for complex queries; basic self-service & SQL/technical expertise required for all queries & [A14], [A15], [A16] \\
+& Interoperability status & Unified data platform; real-time integration & Partial integration; some automated feeds & Fragmented systems; manual reconciliation required & [A27], [A29] \\
+& Skills gap severity & Sufficient analysts across departments & Acknowledged deficit with mitigation plans & Critical shortage preventing data utilization & [A15], [A16] \\
+\bottomrule
+\end{tabular}
+\end{sidewaystable}
+```
 
 **Convergence Assessment and NL2SQL Indication:**
 
@@ -689,7 +701,7 @@ S.T.H. conceived the research, conducted the literature review, and wrote the ma
 
 # Competing Interests
 
-The author declares the following competing interests: Samuel T Harrold is a contract product advisor at Yuimedi Corp., which develops healthcare analytics software including conversational AI platforms relevant to this review's subject matter. The author is also employed as a Data Scientist at Indiana University Health. This paper presents an analytical framework derived from published literature and does not evaluate or recommend specific commercial products, including those of the author's affiliated organizations. The views expressed are the author's own and do not represent the official positions of Indiana University Health or Yuimedi Corp. This research was conducted independently without funding from any affiliated organization.
+The author declares the following competing interests: Samuel T Harrold is a contract product advisor at Yuimedi, Inc.., which develops healthcare analytics software including conversational AI platforms relevant to this review's subject matter. The author is also employed as a Data Scientist at Indiana University Health. This paper presents an analytical framework derived from published literature and does not evaluate or recommend specific commercial products, including those of the author's affiliated organizations. The views expressed are the author's own and do not represent the official positions of Indiana University Health or Yuimedi, Inc.. This research was conducted independently without funding from any affiliated organization.
 
 # Data Availability
 

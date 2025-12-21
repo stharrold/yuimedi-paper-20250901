@@ -1,26 +1,26 @@
-%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false}, 'themeVariables': { 'primaryColor': '#f5f5f5', 'primaryTextColor': '#333', 'primaryBorderColor': '#999', 'lineColor': '#1E3A5F', 'secondaryColor': '#e8e8e8', 'tertiaryColor': '#fff'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '14px'}}}%%
 flowchart TD
     %% Healthcare Analytics Architecture
     %% Clinical User queries flowing through AI processing to insights
 
-    subgraph UI["User Interaction Layer"]
+    subgraph UI["<b>User Interaction Layer</b>"]
         A["Clinical User"] -->|"1. Initiates"| B["Natural Language Query"]
         B -->|"2. Transmits"| C["Conversational AI Interface"]
     end
 
-    subgraph Knowledge["Knowledge Infrastructure"]
+    subgraph Knowledge["<b>Knowledge Infrastructure</b>"]
         D[("Organizational Memory")] --> G[("Institutional Knowledge Base")]
         E[("Best Practices Repository")] --> G
         F["Healthcare Ontologies"]
     end
 
-    subgraph Engine["Analytics Processing Core"]
+    subgraph Engine["<b>Analytics Processing Core</b>"]
         H["Healthcare NLP Engine"] -->|"4. Interprets & Feeds"| I["Context-Aware SQL Generation"]
     end
 
     J[("Healthcare Data Warehouse")]
 
-    subgraph Output["Insight Delivery"]
+    subgraph Output["<b>Insight Delivery</b>"]
         K["Intelligent Response Generation"] -->|"7. Processes"| L["Contextual Insights & Visualizations"]
     end
 
@@ -34,8 +34,8 @@ flowchart TD
     G -.->|"Provides Context"| H
     F -.->|"Provides Semantics"| H
 
-    %% Styling
-    style UI fill:#f5f5f5,stroke:#999
-    style Knowledge fill:#f5f5f5,stroke:#999
-    style Engine fill:#f5f5f5,stroke:#999
-    style Output fill:#f5f5f5,stroke:#999
+    %% Styling - Grayscale
+    style UI fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style Knowledge fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style Engine fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style Output fill:#e8e8e8,stroke:#666,stroke-width:2px

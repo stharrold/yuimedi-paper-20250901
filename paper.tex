@@ -642,7 +642,9 @@ literature:
   from three previously disconnected research domains (healthcare
   analytics maturity, workforce turnover, and natural language
   processing) into a unified analytical framework that reveals how these
-  challenges interconnect and compound each other.
+  challenges interconnect and compound each other: low maturity
+  accelerates turnover, turnover degrades maturity, and technical
+  barriers prevent recovery from either.
 \item
   \textbf{Healthcare Knowledge Portal Architecture}: Drawing on
   established knowledge management literature {[}A25, A26{]}, we
@@ -1037,13 +1039,13 @@ informatics and knowledge management:
 \centering
 \caption{Framework Alignment with Established Models}
 \label{tab:framework-alignment}
-\begin{tabular}{llll}
+\begin{tabular}{p{3cm}p{3.5cm}p{3.5cm}p{3.5cm}}
 \toprule
 \textbf{Three Pillars} & \textbf{HIMSS AMAM Alignment} & \textbf{DIKW Hierarchy} & \textbf{Knowledge Management} \\
 \midrule
-Analytics Maturity & Stages 0-7 progression & Data → Information & Organizational learning \\
-Workforce Dynamics & Implicit in advanced stages & Knowledge (tacit) → Wisdom & Tacit knowledge transfer \\
-Technical Barriers & Stage 6-7 requirements & Information → Knowledge & Knowledge codification \\
+Analytics Maturity & Stages 0-7 progression & Data \newline → Information & Organizational learning \\
+Workforce Dynamics & Implicit in advanced stages & Knowledge (tacit) \newline → Wisdom & Tacit knowledge transfer \\
+Technical Barriers & Stage 6-7 requirements & Information \newline → Knowledge & Knowledge codification \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1061,7 +1063,7 @@ preservation).
 \subsection{Framework Scope and
 Limitations}\label{framework-scope-and-limitations}
 
-The framework is descriptive rather than prescriptive: it provides an
+The framework is descriptive rather than prescriptive; it provides an
 analytical lens for understanding healthcare analytics challenges but
 does not mandate specific solutions. Future research should empirically
 validate pillar interdependencies through longitudinal organizational
@@ -1336,7 +1338,7 @@ with personalized EHR training programs requiring 6 months of blended
 instruction to achieve meaningful competency improvements {[}A13{]}.
 Combined with the 2.9-year average tenure, healthcare IT professionals
 may operate at full productivity for only approximately two years before
-departing, which creates a perpetual cycle where organizations lose
+departing. This creates a perpetual cycle where organizations lose
 experienced staff before fully recouping their training investment.
 
 The impact on care continuity is well-documented. Clinical handover
@@ -1594,9 +1596,9 @@ analytics, several research gaps persist:
   \textbf{Long-term productivity tracking}: While peer-reviewed studies
   now document immediate productivity gains (63\% self-service adoption
   increase, 37\% data retrieval time reduction, 10-30\% query completion
-  time improvement {[}A35, A36, A37, A38{]}), longitudinal studies
-  tracking sustained productivity improvements over multiple years
-  remain limited
+  time improvement {[}A35{]}, {[}A36{]}, {[}A37{]}, {[}A38{]}),
+  longitudinal studies tracking sustained productivity improvements over
+  multiple years remain limited
 \end{enumerate}
 
 \subsection{Why the Problem Persists}\label{why-the-problem-persists}
@@ -1877,6 +1879,80 @@ organizational self-assessment:
   unanswered due to technical barriers?
 \end{enumerate}
 
+\subsubsection{Three-Pillar Assessment
+Rubric}\label{three-pillar-assessment-rubric}
+
+The three-pillar framework enables organizational self-assessment to
+determine readiness for and potential benefit from NL2SQL and
+conversational AI interventions. Table 4 provides an evidence-based
+rubric where each indicator anchors to reviewed literature.
+Organizations scoring predominantly ``Higher Risk'' across pillars face
+compounding challenges that NL2SQL platforms are specifically designed
+to address: democratizing data access (Technical Barriers), preserving
+institutional knowledge (Workforce Dynamics), and accelerating maturity
+advancement (Analytics Maturity).
+
+\begin{sidewaystable}[p]
+\centering
+\caption{Three-Pillar Organizational Assessment Rubric}
+\label{tab:assessment-rubric}
+\footnotesize
+\begin{tabular}{p{2.2cm}p{2.5cm}p{4cm}p{4cm}p{4.5cm}p{1.8cm}}
+\toprule
+\textbf{Pillar} & \textbf{Indicator} & \textbf{Lower Risk} & \textbf{Moderate Risk} & \textbf{Higher Risk} & \textbf{Evidence} \\
+\midrule
+\textbf{Analytics Maturity} & HIMSS AMAM Stage & Stages 5-7: Predictive analytics, AI integration & Stages 3-4: Integrated warehouse, standardized definitions & Stages 0-2: Fragmented data, limited reporting (majority of organizations) & [I1], [I3] \\
+& Self-service analytics & Widespread; clinical staff access data directly & Partial; BI tools available but underutilized & None; all analytics require IT intervention & [I4], [A14] \\
+& AI/NL interface availability & Natural language query capability deployed & Pilot programs or evaluation underway & No NL2SQL or conversational analytics capability & [A5], [A6] \\
+\midrule
+\textbf{Workforce Dynamics} & Annual IT turnover rate & <15\% & 15-30\% & >30\% (exceeds 2004 healthcare IT baseline) & [A10] \\
+& Knowledge concentration & Distributed expertise; documented processes & Partial documentation; some cross-training & Critical expertise held by $\leq$3 individuals & [A25], [A26] \\
+& Time-to-productivity for new hires & <6 months with structured onboarding & 6-18 months & >18 months (specialized health informatics roles) & [A11], [A12], [A13] \\
+& Tacit knowledge capture & Expertise embedded in systems/AI & Partial documentation exists & Person-dependent; undocumented tribal knowledge & [A25] \\
+\midrule
+\textbf{Technical Barriers} & Data access requirements & Natural language or visual query interfaces & IT queue for complex queries; basic self-service & SQL/technical expertise required for all queries & [A14], [A15], [A16] \\
+& Interoperability status & Unified data platform; real-time integration & Partial integration; some automated feeds & Fragmented systems; manual reconciliation required & [A27], [A29] \\
+& Skills gap severity & Sufficient analysts across departments & Acknowledged deficit with mitigation plans & Critical shortage preventing data utilization & [A15], [A16] \\
+\bottomrule
+\end{tabular}
+\end{sidewaystable}
+
+\textbf{Convergence Assessment and NL2SQL Indication:}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3288}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1644}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5068}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Organizational Profile
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Assessment
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+NL2SQL/Conversational AI Relevance
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+All pillars Lower Risk & Continuous improvement stance & Opportunistic;
+enhancement rather than necessity \\
+1 pillar Higher Risk & Targeted intervention needed & Address specific
+pillar; monitor for spillover \\
+2 pillars Higher Risk & Compounding effects likely & Strong indication
+for comprehensive assessment \\
+All 3 pillars Higher Risk & Self-reinforcing degradation cycle & Urgent
+evaluation warranted; NL2SQL addresses all three dimensions
+simultaneously \\
+\end{longtable}
+
+NL2SQL platforms specifically target the convergence condition: they
+reduce Technical Barriers by eliminating SQL requirements, mitigate
+Workforce Dynamics risks by encoding expertise in queryable systems, and
+accelerate Analytics Maturity by enabling citizen developer
+participation {[}I4{]}. Organizations at Higher Risk across multiple
+pillars represent the primary use case for conversational AI adoption.
+
 \subsubsection{Implementation
 Considerations}\label{implementation-considerations}
 
@@ -1905,8 +1981,8 @@ This narrative review synthesized evidence across three interconnected
 domains: natural language to SQL generation, healthcare analytics
 maturity, and workforce-driven institutional memory loss. The findings
 illuminate a tension central to healthcare's approach to emerging
-technologies, a tension captured in the ancient principle \emph{primum
-non nocere}: ``First, do no harm.''
+technologies, captured in the ancient principle \emph{primum non
+nocere}: ``First, do no harm.''
 
 \subsection{The Dual Dimensions of
 Harm}\label{the-dual-dimensions-of-harm}
@@ -1957,7 +2033,8 @@ through:
   synthesizes previously disconnected evidence from healthcare analytics
   maturity, workforce management, and natural language processing
   research, revealing how these challenges interconnect and compound
-  each other.
+  each other: low maturity accelerates turnover, turnover degrades
+  maturity, and technical barriers prevent recovery from either.
 \item
   \textbf{Knowledge Portal Application}: By applying established
   knowledge portal theory {[}A25, A26{]} to healthcare conversational
@@ -2113,7 +2190,7 @@ wrote the manuscript.
 \section{Competing Interests}\label{competing-interests}
 
 The author declares the following competing interests: Samuel T Harrold
-is a contract product advisor at Yuimedi Corp., which develops
+is a contract product advisor at Yuimedi, Inc.., which develops
 healthcare analytics software including conversational AI platforms
 relevant to this review's subject matter. The author is also employed as
 a Data Scientist at Indiana University Health. This paper presents an
@@ -2121,7 +2198,7 @@ analytical framework derived from published literature and does not
 evaluate or recommend specific commercial products, including those of
 the author's affiliated organizations. The views expressed are the
 author's own and do not represent the official positions of Indiana
-University Health or Yuimedi Corp.~This research was conducted
+University Health or Yuimedi, Inc.. This research was conducted
 independently without funding from any affiliated organization.
 
 \section{Data Availability}\label{data-availability}

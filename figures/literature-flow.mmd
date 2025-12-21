@@ -1,13 +1,11 @@
----
-title: PRISMA 2020 Literature Selection Flow
----
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '14px'}}}%%
 flowchart TD
     %% PRISMA 2020 Flow Diagram for Literature Selection
     %% Aligned with lit_review academic-literature-review workflow
     %% Total: 570 identified + 38 targeted → 79 included
     %% Note: Generate PNG via mermaid.live for proper font rendering
 
-    subgraph ID["Identification"]
+    subgraph ID["<b>Identification</b>"]
         A1[("Crossref<br/>n = 285")] --> A
         A2[("PubMed<br/>n = 142")] --> A
         A3[("ArXiv<br/>n = 71")] --> A
@@ -15,25 +13,32 @@ flowchart TD
         A["Articles identified<br/>after deduplication<br/>n = 570"]
     end
 
-    subgraph SC["Screening"]
+    subgraph SC["<b>Screening</b>"]
         A --> D{"Title/abstract<br/>screening<br/>n = 570"}
         D -->|"Excluded"| E["Articles excluded<br/>n = 480"]
         D -->|"Passed"| H{"Full-text<br/>eligibility<br/>n = 90"}
         H -->|"Excluded"| I["Articles excluded<br/>n = 46"]
     end
 
-    subgraph QA["Quality Assessment"]
+    subgraph QA["<b>Quality Assessment</b>"]
         H -->|"Passed"| J{"Source<br/>classification<br/>n = 44"}
         J -->|"Grey literature"| L{"AACODS<br/>checklist<br/>n = 14"}
         L -->|"Excluded"| N["Articles excluded<br/>n = 3"]
     end
 
-    subgraph TS["Targeted Searches"]
+    subgraph TS["<b>Targeted Searches</b>"]
         T1["Supplementary<br/>literature searches<br/>n = 38"]
     end
 
-    subgraph IN["Included"]
+    subgraph IN["<b>Included</b>"]
         J -->|"Academic"| O["Final corpus<br/>n = 79<br/>Academic: 68<br/>Industry: 11"]
         L -->|"Passed"| O
         T1 --> O
     end
+
+    %% Styling - Grayscale
+    style ID fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style SC fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style QA fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style TS fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style IN fill:#d0d0d0,stroke:#444,stroke-width:2px
