@@ -132,7 +132,16 @@ This paper makes three contributions to the healthcare informatics literature:
 
 1. **Three-Pillar Analytical Framework**: We synthesize evidence from three previously disconnected research domains (healthcare analytics maturity, workforce turnover, and natural language processing) into a unified analytical framework that reveals how these challenges interconnect and compound each other: low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery from either.
 
-2. **Healthcare Knowledge Portal Architecture**: Drawing on established knowledge management literature [A25, A26], we position conversational AI platforms as healthcare knowledge portals, which are systems that provide mechanisms for knowledge acquisition, storage, sharing, and utilization. This framing addresses the institutional memory crisis in healthcare by embedding organizational expertise within AI systems rather than relying on individual staff retention.
+2. **Healthcare Knowledge Portal Architecture**: Drawing on established knowledge management literature [A25, A26], we position conversational AI platforms as healthcare knowledge portals, which are systems that provide mechanisms for knowledge acquisition, storage, sharing, and utilization. This framing addresses the institutional memory crisis in healthcare by embedding organizational expertise within AI systems rather than relying on individual staff retention. Figure 2 illustrates this architecture, showing how clinical users interact with a conversational AI interface that draws on organizational knowledge infrastructure to generate contextual insights.
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth,keepaspectratio]{figures/architecture.mmd.png}
+\caption{Healthcare Analytics Architecture. The diagram illustrates the flow from clinical user natural language queries through a conversational AI interface, leveraging organizational memory and healthcare ontologies via a healthcare NLP engine for context-aware SQL generation against a healthcare data warehouse, ultimately delivering contextual insights with a feedback loop to the user.}
+\label{fig:architecture}
+\end{figure}
+```
 
 3. **Convergence Thesis**: We demonstrate that the simultaneous occurrence of technical advances in NL2SQL, low analytics maturity, and high workforce turnover creates conditions warranting organizational assessment. This convergence positions conversational AI as a potential mechanism for institutional knowledge preservation, though implementation decisions require organization-specific evaluation.
 

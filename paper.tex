@@ -653,7 +653,23 @@ literature:
   storage, sharing, and utilization. This framing addresses the
   institutional memory crisis in healthcare by embedding organizational
   expertise within AI systems rather than relying on individual staff
-  retention.
+  retention. Figure 2 illustrates this architecture, showing how
+  clinical users interact with a conversational AI interface that draws
+  on organizational knowledge infrastructure to generate contextual
+  insights.
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth,keepaspectratio]{figures/architecture.mmd.png}
+\caption{Healthcare Analytics Architecture. The diagram illustrates the flow from clinical user natural language queries through a conversational AI interface, leveraging organizational memory and healthcare ontologies via a healthcare NLP engine for context-aware SQL generation against a healthcare data warehouse, ultimately delivering contextual insights with a feedback loop to the user.}
+\label{fig:architecture}
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
 \item
   \textbf{Convergence Thesis}: We demonstrate that the simultaneous
   occurrence of technical advances in NL2SQL, low analytics maturity,
