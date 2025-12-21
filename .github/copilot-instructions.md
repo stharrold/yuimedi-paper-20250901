@@ -219,17 +219,15 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 ### Generated Files Strategy
 **Committed to git (intentional):**
 - `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
-- `figures/*.jpg` - Generated from Mermaid `.mmd` sources (JPG format for cross-platform consistency)
+- `figures/*` - All figure assets (source `.mmd`/`.dot`, generated `.jpg`/`.png`/`.svg`/`.pdf`)
 - Versioned for reproducibility and release tagging
 
 **Figure generation:** Generate from Mermaid or DOT source:
 ```bash
-# Mermaid (.mmd) → JPG
+# Mermaid (.mmd) → PNG/JPG
 npx --yes @mermaid-js/mermaid-cli@latest -i figures/<name>.mmd -o figures/<name>.png
-# macOS:
-sips -s format jpeg figures/<name>.png --out figures/<name>.jpg && rm figures/<name>.png
-# Linux/Container:
-convert figures/<name>.png figures/<name>.jpg && rm figures/<name>.png
+# macOS (optional JPG conversion):
+sips -s format jpeg figures/<name>.png --out figures/<name>.jpg
 
 # DOT (.dot) → SVG/PNG (requires graphviz)
 podman-compose run --rm dev dot -Tsvg figures/<name>.dot -o figures/<name>.dot.svg
@@ -237,7 +235,6 @@ podman-compose run --rm dev dot -Tpng figures/<name>.dot -o figures/<name>.dot.p
 ```
 
 **Excluded via .gitignore:**
-- `figures/*.png` - Intermediate PNG files (local generation differences)
 - `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
 - `.claude-state/*.duckdb` - Local database files
 
