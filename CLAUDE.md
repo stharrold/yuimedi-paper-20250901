@@ -36,7 +36,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ppr_review/20251215_AACODS-Grey-Literature.md` for assessment table.
 
-**Paper 1 structure (post-revision):** Executive Summary → Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Sections 5-6 (Proposed Solution, Evaluation) were intentionally removed to transform paper from solution-advocacy to pure analytical framework.
+**Paper 1 structure (npj-aligned):** Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Executive Summary removed (redundant with YAML abstract); Sections 5-6 (Proposed Solution, Evaluation) previously removed to transform paper from solution-advocacy to pure analytical framework.
 
 ## Essential Commands
 

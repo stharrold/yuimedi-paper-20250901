@@ -74,16 +74,6 @@ pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.pdf \
   --number-sections
 -->
 
-# Executive Summary
-
-Healthcare organizations face a convergence of challenges that affect their ability to leverage data for improved patient outcomes and operational efficiency. This research examines evidence across three interconnected domains: persistently low healthcare analytics maturity, significant institutional memory loss from workforce turnover, and technical barriers preventing clinical professionals from accessing their own data.
-
-Through systematic review of academic and industry sources, we demonstrate that few healthcare organizations worldwide have achieved advanced analytics maturity, while healthcare IT staff turnover was measured at 34% (as of 2004) [A10], the highest among IT sectors at that time, creating institutional memory loss with knowledge loss costs reaching three times annual salary budgets [A24]. Simultaneously, natural language to SQL (NL2SQL) technologies have matured sufficiently to address healthcare's unique technical barriers, though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings [A6].
-
-Conversational AI platforms directly address this convergence by democratizing analytics access through natural language interfaces while functioning as healthcare knowledge portals [A25] that preserve institutional knowledge through encoded expertise. Evidence from healthcare implementations shows significant improvements in efficiency, with organizations like Berkshire Healthcare NHS Trust reporting over 800 citizen developers creating solutions [I4], and Forrester Research documenting 206% ROI from low-code implementations [I5].
-
-This review identifies an analytical framework connecting these challenges. The three-pillar model presented herein offers healthcare organizations a structured approach for assessing their analytics capabilities, workforce knowledge vulnerabilities, and technical barriers to data access.
-
 # Introduction
 
 ## Background
