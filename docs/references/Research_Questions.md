@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 18 answered, 20 unanswered
+**Status:** 19 answered, 19 unanswered
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -72,6 +72,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | Why have large-scale efforts to standardize healthcare analytics failed? | Paper1 | — | [`Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md`](Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md) |
 | What are the financial benefits of low-code and conversational AI platforms? | Paper1 | — | [`Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md`](Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md) |
 | What peer-reviewed evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_low-code-platform-healthcare-cost-roi-evidence.md`](Research_low-code-platform-healthcare-cost-roi-evidence.md) |
+| How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md`](Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md) |
 
 ### Testing & Validation
 
@@ -112,7 +113,7 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 |----------|-------|-------|--------|-------|
 | What quantitative efficiency metrics (time savings, task completion rates) have been reported for low-code or conversational AI in healthcare? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | → Gap | Added to paper.md "Gaps in Current Literature" |
 | What peer-reviewed (non-vendor-sponsored) evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Answered | **LOW-CODE GAP FILLED:** 10 papers found (177-250% ROI, 67-70% dev time reduction). See [`Research_low-code-platform-healthcare-cost-roi-evidence.md`](Research_low-code-platform-healthcare-cost-roi-evidence.md). Combined with prior AI evidence → moved to Answered. |
-| How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | General NL2SQL productivity evidence found (67% latency reduction, 10K+ users); healthcare-specific measurement = Gap. See [`Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md`](Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md) |
+| How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Answered | **NL2SQL HEALTHCARE GAP FILLED:** 10 papers found with healthcare-specific metrics: 63% self-service analytics adoption increase, 37% data retrieval time reduction, 10-30% query completion time reduction, 2.7x-6.7x speedup, 10x-60x effort reduction. See [`Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md`](Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md) → moved to Answered. |
 | What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | EUC satisfaction/effectiveness frameworks found (EUCS, TTF, SEM); Callinan & Perry (2024) CSFs most relevant; healthcare-specific citizen developer metrics = Gap. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
 
 ### Code Modernization and NL Interfaces
@@ -181,3 +182,4 @@ All `Research_*.md` files in this directory:
 | `Research_semantic-table-column-matching-nl2sql.md` | Semantic table/column matching for NL2SQL | Paper2 |
 | `Research_What-tools-exist-for-degrading-data-quality-for-testing.md` | Data quality degradation tools | Paper2 |
 | `Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md` | Standardization failure analysis | Paper1 |
+| `Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md` | NL2SQL healthcare productivity measurement | Paper1,Paper2 |
