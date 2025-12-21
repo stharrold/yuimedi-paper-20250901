@@ -188,17 +188,17 @@ Search terms were organized around the three-pillar framework:
 | PubMed | ("healthcare IT tenure" OR "IT training time" OR "turnover cost salary") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
 | arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "PK/FK discovery" OR "semantic matching" OR "vector embeddings") | 2020-current | 71 | 6 |
 | Semantic Scholar | "NL2SQL healthcare" OR "NL2SQL productivity" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
-| **Total** | | | **570** | **60** |
+| **Total** | | | **570** | **64** |
 
-*Note: Initial results shown after deduplication across databases. Final corpus includes 49 academic and 11 industry sources.*
+*Note: Initial results shown after deduplication across databases. Final corpus includes 53 academic and 11 industry sources.*
 
-Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 60 sources.
+Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 64 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 60 sources (49 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
+\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 64 sources (53 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
 ```
@@ -296,13 +296,13 @@ The three-pillar framework emerged through iterative analysis of the literature 
 
 The framework development followed these steps:
 
-1. **Theme Extraction**: Systematic coding of 60 sources identified recurring themes across technical, organizational, and workforce dimensions
+1. **Theme Extraction**: Systematic coding of 64 sources identified recurring themes across technical, organizational, and workforce dimensions
 2. **Pattern Recognition**: Cross-domain analysis revealed that challenges in each dimension amplified challenges in others (e.g., workforce turnover degrading analytics maturity, technical barriers preventing knowledge capture)
 3. **Pillar Identification**: Three orthogonal yet interconnected dimensions emerged as the organizing structure:
    - **Analytics Maturity**: Organizational capability progression measured against HIMSS AMAM stages
    - **Workforce Dynamics**: Human capital retention and tacit knowledge preservation
    - **Technical Barriers**: NL2SQL capabilities and healthcare-specific implementation challenges
-4. **Framework Validation**: Pillar structure tested against all 60 sources to confirm comprehensive coverage without significant gaps
+4. **Framework Validation**: Pillar structure tested against all 64 sources to confirm comprehensive coverage without significant gaps
 
 ## Theoretical Grounding
 
@@ -405,7 +405,7 @@ The knowledge loss implications are substantial. Research documents significant 
 
 The concept of institutional memory in healthcare has received increasing attention. Institutional memory encompasses the collective knowledge, experiences, and expertise that enables organizational effectiveness. Healthcare organizations typically lack formal mechanisms for knowledge preservation, relying instead on person-to-person transfer that fails during rapid turnover. Cultural and regulatory obstacles for data sharing further limit the ability of healthcare organizations to achieve the full potential of their data assets [A17].
 
-When experienced analysts, clinical informatics professionals, or data-savvy clinicians leave, they take with them irreplaceable knowledge about data definitions, business rules, analytical approaches, and organizational context. This knowledge proves extremely difficult to document and transfer through traditional means.
+When experienced analysts, clinical informatics professionals, or data-savvy clinicians leave, they take with them irreplaceable knowledge about data definitions, business rules, analytical approaches, and organizational context. Research on tacit knowledge transfer provides strong evidence that this knowledge is inherently difficult to document through traditional means. Empirical studies demonstrate that learning related to tacit knowledge is often not captured in formal post-project review reports [A50], and conventional mechanisms such as documents, blueprints, and procedures fail because tacit knowledge is not easily codified [A51]. Research across multiple industries consistently shows that written reports and databases fail to convey key learning from expert teams [A52], while experts often lack the skills, motivation, or time to document their expertise, and even when documentation is attempted, essential aspects are lost due to lack of shared experience between experts and novices [A53].
 
 ### Inadequacy of Traditional Approaches
 
@@ -800,6 +800,14 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A48] Arora, A. (2025). Challenges of Integrating Artificial Intelligence in Legacy Systems and Potential Solutions for Seamless Integration. *SSRN*, 5268176. https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5268176
 
 [A49] Khandelwal, A. P. (2025). AI-Driven Mainframe Modernization: Unlocking Legacy Data for Cloud Analytics. *Journal of Engineering and Computer Sciences*. https://sarcouncil.com/2025/06/ai-driven-mainframe-modernization-unlocking-legacy-data-for-cloud-analytics
+
+[A50] Goffin, K., & Koners, U. (2011). Tacit knowledge, lessons learnt, and new product development. *Journal of Product Innovation Management*, 28(2), 300-318. DOI: 10.1111/j.1540-5885.2010.00798.x. https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-5885.2010.00798.x
+
+[A51] Foos, T., Schum, G., & Rothenberg, S. (2006). Tacit knowledge transfer and the knowledge disconnect. *Journal of Knowledge Management*, 10(1), 6-18. DOI: 10.1108/13673270610650067. https://www.emerald.com/insight/content/doi/10.1108/13673270610650067/full/html
+
+[A52] Goffin, K., Koners, U., Baxter, D., & Van der Hoven, C. (2010). Managing lessons learned and tacit knowledge in new product development. *Research-Technology Management*, 53(4), 39-51. DOI: 10.1080/08956308.2010.11657637. https://www.tandfonline.com/doi/abs/10.1080/08956308.2010.11657637
+
+[A53] Rintala, N., & Hyttinen, L. (2006). Methods for sharing tacit nuclear knowledge and expertise. *International Journal of Nuclear Knowledge Management*, 2(2), 157-168. DOI: 10.1504/IJNKM.2006.009880. https://www.inderscienceonline.com/doi/abs/10.1504/IJNKM.2006.009880
 
 ## Industry Sources
 
