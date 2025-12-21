@@ -188,17 +188,17 @@ Search terms were organized around the three-pillar framework:
 | PubMed | ("healthcare IT tenure" OR "IT training time" OR "turnover cost salary") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
 | arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "PK/FK discovery" OR "semantic matching" OR "vector embeddings") | 2020-current | 71 | 6 |
 | Semantic Scholar | "NL2SQL healthcare" OR "NL2SQL productivity" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
-| **Total** | | | **570** | **77** |
+| **Total** | | | **570** | **79** |
 
-*Note: Initial results shown after deduplication across databases. Final corpus includes 66 academic and 11 industry sources.*
+*Note: Initial results shown after deduplication across databases. Final corpus includes 68 academic and 11 industry sources.*
 
-Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 77 sources.
+Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 79 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 77 sources (66 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
+\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 79 sources (68 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
 ```
@@ -296,13 +296,13 @@ The three-pillar framework emerged through iterative analysis of the literature 
 
 The framework development followed these steps:
 
-1. **Theme Extraction**: Systematic coding of 77 sources identified recurring themes across technical, organizational, and workforce dimensions
+1. **Theme Extraction**: Systematic coding of 79 sources identified recurring themes across technical, organizational, and workforce dimensions
 2. **Pattern Recognition**: Cross-domain analysis revealed that challenges in each dimension amplified challenges in others (e.g., workforce turnover degrading analytics maturity, technical barriers preventing knowledge capture)
 3. **Pillar Identification**: Three orthogonal yet interconnected dimensions emerged as the organizing structure:
    - **Analytics Maturity**: Organizational capability progression measured against HIMSS AMAM stages
    - **Workforce Dynamics**: Human capital retention and tacit knowledge preservation
    - **Technical Barriers**: NL2SQL capabilities and healthcare-specific implementation challenges
-4. **Framework Validation**: Pillar structure tested against all 77 sources to confirm comprehensive coverage without significant gaps
+4. **Framework Validation**: Pillar structure tested against all 79 sources to confirm comprehensive coverage without significant gaps
 
 ## Theoretical Grounding
 
@@ -397,7 +397,7 @@ The literature consistently identifies workforce capabilities as a primary const
 
 Multiple meta-analyses provide comprehensive data on healthcare workforce turnover. Wu et al. [A1] found a pooled prevalence of nurse turnover at 18% (95% CI: 11-26%), with rates varying from 11.7% to 46.7% across different countries and settings. Ren et al. [A2] corroborated these findings with a global nurse turnover rate ranging from 8% to 36.6%, with a pooled rate of 16% (95% CI: 14-17%).
 
-The financial implications are substantial. Massingham [A24] measured the impact of knowledge loss in a longitudinal study, finding that the total financial cost to address problems caused by knowledge loss reached three times the organization's annual salary budget, including increased training costs, productivity losses, and project delays. Vendor analysis from Oracle [I6] corroborates these findings, documenting turnover costs at 0.5-2.0 times annual salary with knowledge-intensive positions reaching the higher end.
+The financial implications are substantial. Massingham [A24] measured the impact of knowledge loss in a longitudinal study, finding that the total financial cost to address problems caused by knowledge loss reached three times the organization's annual salary budget, including increased training costs, productivity losses, and project delays. Healthcare-specific evidence quantifies replacement costs in absolute terms: replacing a primary care clinician costs healthcare organizations over $500,000 due to lost revenue and recruiting expenses [A67], while physician replacement can reach up to $1 million per departure, with national annual costs estimated at $4.6 billion [A68]. Vendor analysis from Oracle [I6] corroborates these findings, documenting turnover costs at 0.5-2.0 times annual salary with knowledge-intensive positions reaching the higher end.
 
 Technical and analytics staff face even more severe turnover challenges. In their 2004 study, Ang and Slaughter [A10] found that IT professionals at healthcare provider institutions (where IT serves as a support function rather than core business) had average tenure of just 2.9 years, implying annual turnover of 34% (calculated as 1/2.9 years), the highest rate among all IT organization types studied at that time. This compared unfavorably to the 9.68-year average for IT managerial positions overall. While this data is now two decades old, contemporary evidence suggests the turnover challenge persists or has worsened. A 2025 analysis of nationally representative US survey data (n=44,732) found that 55% of public health informatics specialists intended to leave their positions [A66]. The 2023 AHIMA/NORC workforce survey found that 66% of health information professionals report persistent staffing shortages, with 83% witnessing increased unfilled positions over the past year [I11].
 
@@ -838,6 +838,10 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A65] Khan, S., Sakib, M., & Iqbal, M. (2023). Advanced business analytics in healthcare: Enhancing clinical decision support and operational efficiency. *Business and Economics*, 4(2), 1-15. https://publishing.emanresearch.org/index.php/bej/article/view/1136
 
 [A66] Rajamani, S., Leider, J. P., & Gunashekar, D. R. (2025). Public health informatics specialists in state and local public health workforce: Insights from public health workforce interests and needs survey. *Journal of Public Health Management and Practice*. DOI: 10.1097/PHH.0000000000001234. https://academic.oup.com/jpubhealth
+
+[A67] Willard-Grace, R., Knox, M., Huang, B., et al. (2019). Burnout and health care workforce turnover. *The Annals of Family Medicine*, 17(1), 36-41. DOI: 10.1370/afm.2338. https://www.annfammed.org/content/17/1/36
+
+[A68] Melnick, E. R., Fong, A., Nath, B., Williams, B., et al. (2021). Analysis of electronic health record use and clinical productivity and their association with physician turnover. *JAMA Network Open*, 4(10), e2128790. DOI: 10.1001/jamanetworkopen.2021.28790. https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2784810
 
 ## Industry Sources
 
