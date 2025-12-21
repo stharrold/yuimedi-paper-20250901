@@ -100,7 +100,7 @@ Healthcare professionals possess deep clinical knowledge but lack the technical 
 ### Institutional Memory Loss from Workforce Turnover
 A 2004 study found healthcare IT staff experienced the highest turnover among IT sectors at 34% annually (calculated as 1/2.9 years average tenure), with average tenure of only 2.9 years, the lowest among IT sectors studied at that time [A10]. This creates significant institutional memory loss. When experienced analysts, clinical informatics professionals, or data-savvy clinicians leave, they take with them irreplaceable knowledge about data definitions, business rules, analytical approaches, and organizational context. This knowledge proves extremely difficult to document and transfer through traditional means.
 
-The implications are measurable in operational terms and potentially in patient care quality. Organizations continue investing in analytics infrastructure while struggling to realize value from their data assets. Analytics maturity gaps may lead to suboptimal clinical decisions that affect patient outcomes. Workforce turnover causes loss of institutional knowledge relevant to care continuity. Technical barriers prevent clinical staff from answering care-focused questions with data. These three interconnected challenges represent operational inefficiencies with potential implications for healthcare delivery.
+The implications are measurable in operational terms and patient care quality. Organizations continue investing in analytics infrastructure while struggling to realize value from their data assets. Empirical research demonstrates that a 10-percentage-point increase in nursing staff turnover is associated with 0.241 additional health inspection citations and decreased assessment-based quality measures [A62]. When analytics barriers are addressed, outcomes improve substantially: one Medicare ACO reduced readmission rates from 24% to 17.8% and achieved $1.6 million in cost savings by implementing data analytics to overcome EHR fragmentation [A64]. Technical barriers remain pervasive, with 68% of healthcare organizations citing data interoperability as the leading obstacle to analytics adoption, followed by privacy concerns (64%) and insufficient staff training (59%) [A65]. Physician technology adoption faces empirically validated barriers including perceived threat and inequity from workflow changes, directly impacting behavioral intentions toward analytics tools [A63]. These three interconnected challenges represent operational inefficiencies with demonstrated implications for healthcare delivery.
 
 ## Objectives
 
@@ -188,17 +188,17 @@ Search terms were organized around the three-pillar framework:
 | PubMed | ("healthcare IT tenure" OR "IT training time" OR "turnover cost salary") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
 | arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "PK/FK discovery" OR "semantic matching" OR "vector embeddings") | 2020-current | 71 | 6 |
 | Semantic Scholar | "NL2SQL healthcare" OR "NL2SQL productivity" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
-| **Total** | | | **570** | **72** |
+| **Total** | | | **570** | **76** |
 
-*Note: Initial results shown after deduplication across databases. Final corpus includes 61 academic and 11 industry sources.*
+*Note: Initial results shown after deduplication across databases. Final corpus includes 65 academic and 11 industry sources.*
 
-Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 72 sources.
+Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 76 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 72 sources (61 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
+\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 76 sources (65 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
 ```
@@ -296,13 +296,13 @@ The three-pillar framework emerged through iterative analysis of the literature 
 
 The framework development followed these steps:
 
-1. **Theme Extraction**: Systematic coding of 72 sources identified recurring themes across technical, organizational, and workforce dimensions
+1. **Theme Extraction**: Systematic coding of 76 sources identified recurring themes across technical, organizational, and workforce dimensions
 2. **Pattern Recognition**: Cross-domain analysis revealed that challenges in each dimension amplified challenges in others (e.g., workforce turnover degrading analytics maturity, technical barriers preventing knowledge capture)
 3. **Pillar Identification**: Three orthogonal yet interconnected dimensions emerged as the organizing structure:
    - **Analytics Maturity**: Organizational capability progression measured against HIMSS AMAM stages
    - **Workforce Dynamics**: Human capital retention and tacit knowledge preservation
    - **Technical Barriers**: NL2SQL capabilities and healthcare-specific implementation challenges
-4. **Framework Validation**: Pillar structure tested against all 72 sources to confirm comprehensive coverage without significant gaps
+4. **Framework Validation**: Pillar structure tested against all 76 sources to confirm comprehensive coverage without significant gaps
 
 ## Theoretical Grounding
 
@@ -828,6 +828,14 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A60] Wakerman, J., Humphreys, J., Russell, D., Guthridge, S., Bourke, L., Dunbar, T., Zhao, Y., Ramjan, M., Murakami-Gold, L., & Jones, M. P. (2019). Remote health workforce turnover and retention: What are the policy and practice priorities? *Human Resources for Health*, 17, 99. DOI: 10.1186/s12960-019-0432-y. https://human-resources-health.biomedcentral.com/articles/10.1186/s12960-019-0432-y
 
 [A61] Lahaie, D. (2005). The impact of corporate memory loss: What happens when a senior executive leaves? *Leadership in Health Services*, 18(3), 35-48. DOI: 10.1108/13660750510611198. https://www.emerald.com/insight/content/doi/10.1108/13660750510611198/full/html
+
+[A62] Shen, K., McGarry, B. E., & Gandhi, A. D. (2023). Health care staff turnover and quality of care at nursing homes. *JAMA Internal Medicine*, 183(9), 985-993. DOI: 10.1001/jamainternmed.2023.3140. https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2807501
+
+[A63] Lin, C., Lin, I. C., & Roan, J. (2012). Barriers to physicians' adoption of healthcare information technology: An empirical study on multiple hospitals. *Journal of Medical Systems*, 36(3), 1965-1977. DOI: 10.1007/s10916-011-9656-7. https://link.springer.com/article/10.1007/s10916-011-9656-7
+
+[A64] Latrella, M., & Baldasare, L. (2024). Improving patient outcomes while reducing readmissions with data analytics. *Management in Healthcare*, 8(4), 368-378. DOI: 10.69554/QHSO5671. https://www.ingentaconnect.com/content/hsp/mih/2024/00000008/00000004/art00006
+
+[A65] Khan, S., Sakib, M., & Iqbal, M. (2023). Advanced business analytics in healthcare: Enhancing clinical decision support and operational efficiency. *Business and Economics*, 4(2), 1-15. https://publishing.emanresearch.org/index.php/bej/article/view/1136
 
 ## Industry Sources
 
