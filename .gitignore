@@ -87,9 +87,7 @@ docs/references/*.pdf
 # Journal policy PDFs (downloaded from publisher sites)
 npj_digital-medicine_*.pdf
 
-# Large uncompressed images (use .jpg versions instead)
-figures/*.png
-!figures/architecture-edited.png
+# (All figures now tracked - removed PNG exclusion)
 
 # Claude state database files
 .claude-state/*.duckdb
@@ -121,5 +119,3 @@ cabal.project.local~
 
 .gemini/
 gha-creds-*.json
-figures/literature-flow.mmd.vmp.svg
-figures/literature-flow.mmd.vscode-mermaid-preview.svg

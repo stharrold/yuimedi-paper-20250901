@@ -12,8 +12,7 @@ repos:
       - id: check-yaml
       - id: check-json
       - id: check-added-large-files
-        args: ['--maxkb=500']
-        exclude: ^figures/architecture-edited\.png$
+        args: ['--maxkb=10240']  # 10MB limit for figure assets
       - id: check-merge-conflict
       - id: detect-private-key
 
