@@ -17,7 +17,7 @@
 <g id="clust2" class="cluster">
 <title>cluster_Knowledge</title>
 <polygon fill="#f5f5f5" stroke="#000000" points="8,-767 8,-915 600,-915 600,-767 8,-767"/>
-<text text-anchor="middle" x="304" y="-899.8" font-family="Times,serif" font-size="14.00">Knowledge Support Infrastructure</text>
+<text text-anchor="middle" x="304" y="-899.8" font-family="Times,serif" font-size="14.00">Knowledge Infrastructure</text>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_Engine</title>
