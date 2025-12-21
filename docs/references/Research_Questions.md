@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 17 answered, 21 unanswered
+**Status:** 18 answered, 20 unanswered
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -71,6 +71,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | Do healthcare organizations struggle to keep pace with changes in analytics? | Paper1 | — | [`Research_Do-healthcare-organizations-struggle-to-keep-pace-with-changes-in-analytics.md`](Research_Do-healthcare-organizations-struggle-to-keep-pace-with-changes-in-analytics.md) |
 | Why have large-scale efforts to standardize healthcare analytics failed? | Paper1 | — | [`Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md`](Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md) |
 | What are the financial benefits of low-code and conversational AI platforms? | Paper1 | — | [`Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md`](Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md) |
+| What peer-reviewed evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_low-code-platform-healthcare-cost-roi-evidence.md`](Research_low-code-platform-healthcare-cost-roi-evidence.md) |
 
 ### Testing & Validation
 
@@ -110,7 +111,7 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 | Question | Scope | Issue | Status | Notes |
 |----------|-------|-------|--------|-------|
 | What quantitative efficiency metrics (time savings, task completion rates) have been reported for low-code or conversational AI in healthcare? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | → Gap | Added to paper.md "Gaps in Current Literature" |
-| What peer-reviewed (non-vendor-sponsored) evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | Healthcare AI evidence found (10 papers); low-code platform evidence = Gap. See [`Research_What-peer-reviewed-evidence-exists-for-cost-reductions-from-healthcare-AI-low-code-implementations.md`](Research_What-peer-reviewed-evidence-exists-for-cost-reductions-from-healthcare-AI-low-code-implementations.md) |
+| What peer-reviewed (non-vendor-sponsored) evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Answered | **LOW-CODE GAP FILLED:** 10 papers found (177-250% ROI, 67-70% dev time reduction). See [`Research_low-code-platform-healthcare-cost-roi-evidence.md`](Research_low-code-platform-healthcare-cost-roi-evidence.md). Combined with prior AI evidence → moved to Answered. |
 | How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | General NL2SQL productivity evidence found (67% latency reduction, 10K+ users); healthcare-specific measurement = Gap. See [`Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md`](Research_What-evidence-exists-for-NL2SQL-productivity-gains-compared-to-traditional-SQL.md) |
 | What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | EUC satisfaction/effectiveness frameworks found (EUCS, TTF, SEM); Callinan & Perry (2024) CSFs most relevant; healthcare-specific citizen developer metrics = Gap. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
 
@@ -174,6 +175,7 @@ All `Research_*.md` files in this directory:
 | `Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md` | Turnover cost estimates | Paper1 |
 | `Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md` | Knowledge portal paradigm | Paper1,Paper2 |
 | `Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md` | Citizen developer productivity measurement | Paper1 |
+| `Research_low-code-platform-healthcare-cost-roi-evidence.md` | Low-code platform healthcare ROI evidence | Paper1 |
 | `Research_What-NL2SQL-datasets-exist-for-healthcare.md` | Healthcare NL2SQL datasets | Paper2 |
 | `Research_What-NL2SQL-systems-have-been-applied-to-healthcare-databases.md` | Healthcare NL2SQL systems | Paper1,Paper2 |
 | `Research_semantic-table-column-matching-nl2sql.md` | Semantic table/column matching for NL2SQL | Paper2 |

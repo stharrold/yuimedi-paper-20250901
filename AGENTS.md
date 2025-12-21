@@ -275,7 +275,7 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 - Research questions: `docs/references/Research_Questions.md` (linked to GitHub issues via `research` label)
 - Submission guide: `docs/journal-submission-guide.md`
 
-**Research question tracking:** All literature review questions are tracked in `docs/references/Research_Questions.md` with scope (Paper1/Paper2/Paper3), linked GitHub issues, and status (Answered/Unanswered/Gap). Use `gh issue list --label "research"` to see all research-related issues.
+**Research question tracking:** All literature review questions are tracked in `docs/references/Research_Questions.md` with scope (Paper1/Paper2/Paper3), linked GitHub issues, and status (Answered/Unanswered/Gap). Use `gh issue list --label "research"` to see all research-related issues. Use `/scholar:research-question` skill for Google Scholar Labs searches.
 
 **Preprint strategy:**
 - arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY
