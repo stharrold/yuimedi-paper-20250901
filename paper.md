@@ -154,21 +154,23 @@ The narrative review approach was selected because:
 
 ## Literature Search
 
-Literature was identified through multiple channels between January 2023 and December 2024:
+Literature was identified through multiple channels between January 2023 and December 2025:
 
 **Academic Databases:**
 
-- PubMed/MEDLINE: Clinical informatics, healthcare workforce, medical administration
-- IEEE Xplore and ACM Digital Library: Natural language to SQL, text-to-SQL systems
+- Crossref: Cross-disciplinary academic literature, citation metadata
+- PubMed: Clinical informatics, healthcare workforce, medical administration
 - arXiv: Machine learning and NLP preprints, benchmark studies
-- Google Scholar: Cross-disciplinary search and citation tracing
+- Semantic Scholar: AI and computer science papers, citation analysis
 
 **Industry Sources:**
 
-- HIMSS publications and Analytics Maturity Model documentation
-- Healthcare IT vendor case studies and implementation reports
-- Market research reports (Precedence Research, Forrester)
-- Professional association surveys and white papers
+- HIMSS: Analytics Maturity Model documentation and industry standards
+- Healthcare providers: NHS Trust implementation case studies
+- Market research: Precedence Research, Forrester analyst reports
+- Technology vendors: Health Catalyst, Oracle, Anthropic technical documentation
+- Professional associations: AHIMA/NORC workforce surveys
+- Business news: IBM, CNBC coverage of healthcare analytics ventures
 
 **Search Concepts:**
 
@@ -178,15 +180,13 @@ Primary search terms included combinations of: "natural language SQL," "text-to-
 
 | Database | Primary Search Terms | Date Range | Initial Results | After Screening |
 |----------|---------------------|------------|-----------------|-----------------|
-| PubMed/MEDLINE | ("natural language processing" OR "NLP") AND ("healthcare" OR "clinical") AND ("analytics" OR "SQL") | 2015-2024 | ~120 | 12 |
-| IEEE Xplore | "text-to-SQL" AND ("healthcare" OR "medical" OR "clinical") | 2015-2024 | ~45 | 8 |
-| ACM Digital Library | "natural language" AND "SQL" AND "healthcare" | 2015-2024 | ~30 | 5 |
-| arXiv (cs.CL, cs.DB) | "healthcare" AND ("text-to-SQL" OR "NL2SQL") | 2020-2024 | ~25 | 4 |
-| Google Scholar | "healthcare analytics maturity" OR "HIMSS AMAM" | 2015-2024 | ~200 | 8 |
-| Google Scholar | "nursing turnover" OR "healthcare IT turnover" | 2004-2024 | ~150 | 4 |
-| **Total** | | | **~570** | **41** |
+| Crossref | ("natural language" AND "SQL") OR ("healthcare analytics" AND "maturity") OR ("NL2SQL" AND "clinical") | 2015-current | 285 | 15 |
+| PubMed | ("natural language processing" OR "NLP") AND ("healthcare" OR "clinical") AND ("analytics" OR "SQL") | 2015-current | 142 | 12 |
+| arXiv (cs.CL, cs.DB) | "healthcare" AND ("text-to-SQL" OR "NL2SQL") OR "clinical informatics" | 2020-current | 71 | 6 |
+| Semantic Scholar | ("NL2SQL" OR "text-to-SQL") AND ("healthcare" OR "medical") OR "healthcare workforce turnover" | 2015-current | 72 | 8 |
+| **Total** | | | **570** | **41** |
 
-*Note: Counts are approximate; exact numbers varied due to iterative search refinement. Final corpus includes 30 academic and 11 industry sources.*
+*Note: Initial results shown after deduplication across databases. Final corpus includes 30 academic and 11 industry sources.*
 
 Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 41 sources.
 
@@ -207,7 +207,7 @@ Sources were selected based on the following criteria:
 
 - Peer-reviewed publications in healthcare informatics, medical informatics, computer science, or health services research
 - Industry reports from established healthcare IT organizations (HIMSS, AHIMA, AMIA)
-- Publications from 2015-2024, with emphasis on 2020-2024 for rapidly evolving NL2SQL technologies
+- Publications from 2015-current, with emphasis on 2020-current for rapidly evolving NL2SQL technologies
 - English language publications
 - Sources with verifiable DOIs, URLs, or institutional attribution
 
