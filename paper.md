@@ -174,16 +174,20 @@ Literature was identified through multiple channels between January 2023 and Dec
 
 **Search Concepts:**
 
-Primary search terms included combinations of: "natural language SQL," "text-to-SQL healthcare," "healthcare analytics maturity," "HIMSS AMAM," "nursing turnover," "IT workforce turnover healthcare," "institutional memory loss," "low-code healthcare analytics," and "conversational AI clinical decision support."
+Search terms were organized around the three-pillar framework:
+
+- Analytics maturity: "healthcare analytics maturity," "HIMSS AMAM," "analytics standardization," "low-code healthcare," "conversational AI platforms"
+- Workforce turnover: "nursing turnover," "healthcare IT tenure," "turnover cost," "institutional memory," "knowledge portal," "SECI model"
+- Technical barriers: "NL2SQL healthcare," "text-to-SQL clinical," "MIMICSQL," "EHRSQL," "schema discovery," "semantic column matching"
 
 **Table 2: Literature Search Strategy**
 
 | Database | Primary Search Terms | Date Range | Initial Results | After Screening |
 |----------|---------------------|------------|-----------------|-----------------|
-| Crossref | ("natural language" AND "SQL") OR ("healthcare analytics" AND "maturity") OR ("NL2SQL" AND "clinical") | 2015-current | 285 | 15 |
-| PubMed | ("natural language processing" OR "NLP") AND ("healthcare" OR "clinical") AND ("analytics" OR "SQL") | 2015-current | 142 | 12 |
-| arXiv (cs.CL, cs.DB) | "healthcare" AND ("text-to-SQL" OR "NL2SQL") OR "clinical informatics" | 2020-current | 71 | 6 |
-| Semantic Scholar | ("NL2SQL" OR "text-to-SQL") AND ("healthcare" OR "medical") OR "healthcare workforce turnover" | 2015-current | 72 | 8 |
+| Crossref | "healthcare analytics maturity" OR "HIMSS AMAM" OR "NL2SQL clinical" OR "knowledge portal" | 2015-current | 285 | 15 |
+| PubMed | ("nursing turnover" OR "healthcare IT tenure") AND "institutional memory" OR "analytics adoption" | 2015-current | 142 | 12 |
+| arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "semantic matching") | 2020-current | 71 | 6 |
+| Semantic Scholar | "NL2SQL healthcare" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
 | **Total** | | | **570** | **41** |
 
 *Note: Initial results shown after deduplication across databases. Final corpus includes 30 academic and 11 industry sources.*
