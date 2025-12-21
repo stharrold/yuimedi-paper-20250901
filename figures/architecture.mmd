@@ -4,24 +4,24 @@ flowchart TD
     %% Clinical User queries flowing through AI processing to insights
 
     subgraph UI["User Interaction Layer"]
-        A["👤 Clinical User"] -->|"1. Initiates"| B["📄 Natural Language Query"]
-        B -->|"2. Transmits"| C["🤖 Conversational AI Interface"]
+        A["Clinical User"] -->|"1. Initiates"| B["Natural Language Query"]
+        B -->|"2. Transmits"| C["Conversational AI Interface"]
     end
 
     subgraph Knowledge["Knowledge Support Infrastructure"]
         D[("Organizational Memory")] --> G[("Institutional Knowledge Base")]
         E[("Best Practices Repository")] --> G
-        F["📚 Healthcare Ontologies"]
+        F["Healthcare Ontologies"]
     end
 
     subgraph Engine["Analytics Processing Core"]
-        H["⚙️ Healthcare NLP Engine"] -->|"4. Interprets & Feeds"| I["📝 Context-Aware SQL Generation"]
+        H["Healthcare NLP Engine"] -->|"4. Interprets & Feeds"| I["Context-Aware SQL Generation"]
     end
 
-    J[("🗄️ Healthcare Data Warehouse")]
+    J[("Healthcare Data Warehouse")]
 
     subgraph Output["Insight Delivery"]
-        K["⚡ Intelligent Response Generation"] -->|"7. Processes"| L["📊 Contextual Insights & Visualizations"]
+        K["Intelligent Response Generation"] -->|"7. Processes"| L["Contextual Insights & Visualizations"]
     end
 
     %% Main flow

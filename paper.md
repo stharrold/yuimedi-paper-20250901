@@ -197,7 +197,7 @@ Figure 1 illustrates the literature selection process, showing progression from 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.jpg}
+\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
 \caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 41 sources (30 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}

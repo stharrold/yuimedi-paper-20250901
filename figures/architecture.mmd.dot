@@ -1,0 +1,77 @@
+// Healthcare Analytics Architecture - DOT version
+// Generated from architecture.mmd
+digraph architecture {
+    rankdir=TB;
+    node [shape=box, style="filled,rounded", fillcolor="#f5f5f5", fontname="Helvetica"];
+    edge [fontname="Helvetica", color="#1E3A5F"];
+
+    // User Interaction Layer
+    subgraph cluster_UI {
+        label="User Interaction Layer";
+        style=filled;
+        fillcolor="#f5f5f5";
+        color="#999";
+
+        A [label="Clinical User"];
+        B [label="Natural Language Query"];
+        C [label="Conversational AI Interface"];
+
+        A -> B [label="1. Initiates"];
+        B -> C [label="2. Transmits"];
+    }
+
+    // Knowledge Support Infrastructure
+    subgraph cluster_Knowledge {
+        label="Knowledge Support Infrastructure";
+        style=filled;
+        fillcolor="#f5f5f5";
+        color="#999";
+
+        D [label="Organizational Memory", shape=cylinder];
+        E [label="Best Practices Repository", shape=cylinder];
+        F [label="Healthcare Ontologies"];
+        G [label="Institutional Knowledge Base", shape=cylinder];
+
+        D -> G;
+        E -> G;
+    }
+
+    // Analytics Processing Core
+    subgraph cluster_Engine {
+        label="Analytics Processing Core";
+        style=filled;
+        fillcolor="#f5f5f5";
+        color="#999";
+
+        H [label="Healthcare NLP Engine"];
+        I [label="Context-Aware SQL Generation"];
+
+        H -> I [label="4. Interprets & Feeds"];
+    }
+
+    // Data Warehouse
+    J [label="Healthcare Data Warehouse", shape=cylinder];
+
+    // Insight Delivery
+    subgraph cluster_Output {
+        label="Insight Delivery";
+        style=filled;
+        fillcolor="#f5f5f5";
+        color="#999";
+
+        K [label="Intelligent Response Generation"];
+        L [label="Contextual Insights & Visualizations"];
+
+        K -> L [label="7. Processes"];
+    }
+
+    // Main flow
+    C -> H [label="3. Connects to"];
+    I -> J [label="5. Queries"];
+    J -> K [label="6. Returns Data"];
+    L -> A [label="8. Feedback Loop"];
+
+    // Knowledge injection (dashed)
+    G -> H [style=dashed, label="Provides Context"];
+    F -> H [style=dashed, label="Provides Semantics"];
+}
