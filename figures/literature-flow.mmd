@@ -4,7 +4,7 @@ title: PRISMA 2020 Literature Selection Flow
 flowchart TD
     %% PRISMA 2020 Flow Diagram for Literature Selection
     %% Aligned with lit_review academic-literature-review workflow
-    %% Total: 570 identified → 41 included (529 excluded)
+    %% Total: 570 identified + 38 targeted → 79 included
     %% Note: Generate PNG via mermaid.live for proper font rendering
 
     subgraph ID["Identification"]
@@ -28,7 +28,12 @@ flowchart TD
         L -->|"Excluded"| N["Articles excluded<br/>n = 3"]
     end
 
+    subgraph TS["Targeted Searches"]
+        T1["Supplementary<br/>literature searches<br/>n = 38"]
+    end
+
     subgraph IN["Included"]
-        J -->|"Academic"| O["Final corpus<br/>n = 41<br/>Academic: 30<br/>Industry: 11"]
+        J -->|"Academic"| O["Final corpus<br/>n = 79<br/>Academic: 68<br/>Industry: 11"]
         L -->|"Passed"| O
+        T1 --> O
     end
