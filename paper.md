@@ -188,17 +188,17 @@ Search terms were organized around the three-pillar framework:
 | PubMed | ("healthcare IT tenure" OR "IT training time" OR "turnover cost salary") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
 | arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "PK/FK discovery" OR "semantic matching" OR "vector embeddings") | 2020-current | 71 | 6 |
 | Semantic Scholar | "NL2SQL healthcare" OR "NL2SQL productivity" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
-| **Total** | | | **570** | **68** |
+| **Total** | | | **570** | **72** |
 
-*Note: Initial results shown after deduplication across databases. Final corpus includes 57 academic and 11 industry sources.*
+*Note: Initial results shown after deduplication across databases. Final corpus includes 61 academic and 11 industry sources.*
 
-Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 68 sources.
+Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 72 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 68 sources (57 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
+\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 72 sources (61 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
 ```
@@ -296,13 +296,13 @@ The three-pillar framework emerged through iterative analysis of the literature 
 
 The framework development followed these steps:
 
-1. **Theme Extraction**: Systematic coding of 68 sources identified recurring themes across technical, organizational, and workforce dimensions
+1. **Theme Extraction**: Systematic coding of 72 sources identified recurring themes across technical, organizational, and workforce dimensions
 2. **Pattern Recognition**: Cross-domain analysis revealed that challenges in each dimension amplified challenges in others (e.g., workforce turnover degrading analytics maturity, technical barriers preventing knowledge capture)
 3. **Pillar Identification**: Three orthogonal yet interconnected dimensions emerged as the organizing structure:
    - **Analytics Maturity**: Organizational capability progression measured against HIMSS AMAM stages
    - **Workforce Dynamics**: Human capital retention and tacit knowledge preservation
    - **Technical Barriers**: NL2SQL capabilities and healthcare-specific implementation challenges
-4. **Framework Validation**: Pillar structure tested against all 68 sources to confirm comprehensive coverage without significant gaps
+4. **Framework Validation**: Pillar structure tested against all 72 sources to confirm comprehensive coverage without significant gaps
 
 ## Theoretical Grounding
 
@@ -402,6 +402,8 @@ The financial implications are substantial. Massingham [A24] measured the impact
 Technical and analytics staff face even more severe turnover challenges. In their 2004 study, Ang and Slaughter [A10] found that IT professionals at healthcare provider institutions (where IT serves as a support function rather than core business) had average tenure of just 2.9 years, implying annual turnover of 34% (calculated as 1/2.9 years), the highest rate among all IT organization types studied at that time. This compared unfavorably to the 9.68-year average for IT managerial positions overall. While this data is now two decades old, recent surveys confirm workforce challenges persist: the 2023 AHIMA/NORC workforce survey found that 66% of health information professionals report persistent staffing shortages, with 83% witnessing increased unfilled positions over the past year [I11].
 
 The knowledge loss implications are substantial. Research documents significant time-to-productivity requirements across healthcare IT roles: basic EHR training requires 8 hours to 2 months for end-users, while health information workforce development demands 18 months to 2 years for specialized roles [A11]. International Medical Informatics Association recommendations specify a minimum of 1 year (60 ECTS credits) for biomedical and health informatics specialists [A12], with personalized EHR training programs requiring 6 months of blended instruction to achieve meaningful competency improvements [A13]. Combined with the 2.9-year average tenure, healthcare IT professionals may operate at full productivity for only approximately two years before departing. This creates a perpetual cycle where organizations lose experienced staff before fully recouping their training investment.
+
+The impact on care continuity is well-documented. Clinical handover disruption is internationally recognized as a patient safety priority because it represents a fundamental disruption to continuity of care and is prone to errors [A58]. Empirical studies demonstrate that nursing unit turnover reduces workgroup learning and is associated with increased patient falls, medication errors, and reduced patient satisfaction [A59]. International evidence links high workforce turnover to poorer continuity of care, particularly in remote health services, with measurable outcomes including increased hospitalizations and years of life lost [A60]. When senior executives and knowledge workers depart, organizations experience "corporate memory loss" that undermines organizational continuity and effectiveness [A61].
 
 ### Institutional Memory Loss
 
@@ -818,6 +820,14 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A56] Wang, Y., Kung, L. A., Gupta, S., & Ozdemir, S. (2019). Leveraging big data analytics to improve quality of care in healthcare organizations: A configurational perspective. *British Journal of Management*, 30(2), 362-388. DOI: 10.1111/1467-8551.12332. https://onlinelibrary.wiley.com/doi/abs/10.1111/1467-8551.12332
 
 [A57] Gomes, J., & Romão, M. (2025). Evaluating maturity models in healthcare information systems: A comprehensive review. *Healthcare*, 13(1), 1-20. DOI: 10.3390/healthcare13010001. https://www.mdpi.com/2227-9032/13/1/1
+
+[A58] Rangachari, P., & Woods, J. L. (2020). Preserving organizational resilience, patient safety, and staff retention during COVID-19 requires a holistic consideration of the psychological safety of healthcare workers. *International Journal of Environmental Research and Public Health*, 17(12), 4267. DOI: 10.3390/ijerph17124267. https://www.mdpi.com/1660-4601/17/12/4267
+
+[A59] Bae, S. H., Mark, B., & Fried, B. (2010). Impact of nursing unit turnover on patient outcomes in hospitals. *Journal of Nursing Scholarship*, 42(1), 40-49. DOI: 10.1111/j.1547-5069.2009.01319.x. https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1547-5069.2009.01319.x
+
+[A60] Wakerman, J., Humphreys, J., Russell, D., Guthridge, S., Bourke, L., Dunbar, T., Zhao, Y., Ramjan, M., Murakami-Gold, L., & Jones, M. P. (2019). Remote health workforce turnover and retention: What are the policy and practice priorities? *Human Resources for Health*, 17, 99. DOI: 10.1186/s12960-019-0432-y. https://human-resources-health.biomedcentral.com/articles/10.1186/s12960-019-0432-y
+
+[A61] Lahaie, D. (2005). The impact of corporate memory loss: What happens when a senior executive leaves? *Leadership in Health Services*, 18(3), 35-48. DOI: 10.1108/13660750510611198. https://www.emerald.com/insight/content/doi/10.1108/13660750510611198/full/html
 
 ## Industry Sources
 
