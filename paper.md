@@ -188,17 +188,17 @@ Search terms were organized around the three-pillar framework:
 | PubMed | ("healthcare IT tenure" OR "IT training time" OR "turnover cost salary") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
 | arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "PK/FK discovery" OR "semantic matching" OR "vector embeddings") | 2020-current | 71 | 6 |
 | Semantic Scholar | "NL2SQL healthcare" OR "NL2SQL productivity" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
-| **Total** | | | **570** | **41** |
+| **Total** | | | **570** | **45** |
 
-*Note: Initial results shown after deduplication across databases. Final corpus includes 30 academic and 11 industry sources.*
+*Note: Initial results shown after deduplication across databases. Final corpus includes 34 academic and 11 industry sources.*
 
-Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 41 sources.
+Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 45 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 41 sources (30 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
+\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 45 sources (34 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
 ```
@@ -296,13 +296,13 @@ The three-pillar framework emerged through iterative analysis of the literature 
 
 The framework development followed these steps:
 
-1. **Theme Extraction**: Systematic coding of 41 sources identified recurring themes across technical, organizational, and workforce dimensions
+1. **Theme Extraction**: Systematic coding of 45 sources identified recurring themes across technical, organizational, and workforce dimensions
 2. **Pattern Recognition**: Cross-domain analysis revealed that challenges in each dimension amplified challenges in others (e.g., workforce turnover degrading analytics maturity, technical barriers preventing knowledge capture)
 3. **Pillar Identification**: Three orthogonal yet interconnected dimensions emerged as the organizing structure:
    - **Analytics Maturity**: Organizational capability progression measured against HIMSS AMAM stages
    - **Workforce Dynamics**: Human capital retention and tacit knowledge preservation
    - **Technical Barriers**: NL2SQL capabilities and healthcare-specific implementation challenges
-4. **Framework Validation**: Pillar structure tested against all 41 sources to confirm comprehensive coverage without significant gaps
+4. **Framework Validation**: Pillar structure tested against all 45 sources to confirm comprehensive coverage without significant gaps
 
 ## Theoretical Grounding
 
@@ -429,9 +429,9 @@ These principles align with conversational AI approaches that embed institutiona
 
 Academic research provides growing evidence for both conversational AI and low-code approaches in healthcare, technologies that share the goal of reducing technical barriers to data-driven decision making. On the conversational AI side, Sezgin et al. [A19] demonstrated that GPT-3-powered chatbots can reduce overhead at clinics, while Jiao et al. [A20] found AI adoption leads to cost savings through improved service delivery and shorter hospitalization lengths. Dai and Abramoff [A21] explain that AI generates predictions affordably, enabling earlier care that potentially prevents costly interventions.
 
-Low-code implementations provide parallel evidence for the benefits of barrier reduction. Berkshire Healthcare NHS Trust [I4] reports over 800 "citizen developers" (and over 1,600 total users) now creating solutions using Microsoft Power Platform. The NHS program demonstrates that healthcare professionals without IT expertise can use low-code tools to create custom solutions and apps, streamlining operations and enabling data-driven decisions. This evidence supports the broader principle that reducing technical barriers, whether through visual development or natural language interfaces, enables healthcare domain experts to leverage data directly. Industry-sponsored research from Forrester [I5] projects 206% three-year ROI from low-code implementations, though these figures should be interpreted with caution given vendor sponsorship.
+Low-code implementations provide parallel evidence for the benefits of barrier reduction. Berkshire Healthcare NHS Trust [I4] reports over 800 "citizen developers" (and over 1,600 total users) now creating solutions using Microsoft Power Platform. The NHS program demonstrates that healthcare professionals without IT expertise can use low-code tools to create custom solutions and apps, streamlining operations and enabling data-driven decisions. This evidence supports the broader principle that reducing technical barriers, whether through visual development or natural language interfaces, enables healthcare domain experts to leverage data directly. A systematic literature review of 17 peer-reviewed papers identified cost and time minimization as the most frequently discussed benefits of low-code development, with healthcare among the primary implementation domains [A31]. Industry-sponsored research from Forrester [I5] projects 206% three-year ROI from low-code implementations; peer-reviewed studies report similar findings, with healthcare institutions achieving 177% ROI over 36 months while reducing development time by 67% and technical resource requirements by 58% [A33], and small healthcare clinics achieving 250% cumulative ROI over three years [A34].
 
-Healthcare-specific studies show concrete benefits across both approaches: Pennington [A22] found AI in revenue cycle management accelerated payment cycles from 90 days to 40 days, while Atobatele et al. [A23] documented how low-code platforms enable non-technical staff to build applications, leading to efficiency gains. These findings collectively demonstrate that technologies enabling non-technical users to interact with complex systems, whether through visual interfaces or natural language, produce measurable organizational benefits.
+Healthcare-specific studies show concrete benefits across both approaches: Pennington [A22] found AI in revenue cycle management accelerated payment cycles from 90 days to 40 days, while Atobatele et al. [A23] documented how low-code platforms enable non-technical staff to build applications, leading to efficiency gains. Rapid application development using low-code characteristics enabled an mHealth app for COVID-19 remote care that saved 2,822 hospital bed-days for 400 enrolled patients [A32]. These findings collectively demonstrate that technologies enabling non-technical users to interact with complex systems, whether through visual interfaces or natural language, produce measurable organizational benefits.
 
 ## Implications for Healthcare Organizations
 
@@ -443,7 +443,7 @@ The literature reveals clear alignment between conversational AI platforms and h
 
 Academic research documents multiple pathways to ROI for barrier-reducing technologies in healthcare. Conversational AI implementations show direct benefits: Jiao et al. [A20] found that AI-driven efficiency gains, including shorter hospitalization lengths, translate into financial and operational benefits for healthcare providers; Pennington [A22] documented that AI in revenue cycle management accelerated payment cycles from 90 to 40 days, improving cash flow; and Sezgin et al. [A19] proposed chatbot implementations that reduce clinic overhead.
 
-Low-code platform ROI provides analogous evidence for the value of technical barrier reduction. Industry-sponsored research from Forrester [I5] projects 206% three-year ROI from Power Platform implementations; however, these figures should be interpreted cautiously given vendor sponsorship. While low-code and conversational AI differ in implementation approach, both generate returns through the same mechanism: enabling domain experts to accomplish tasks previously requiring specialized technical staff. Market research supports continued investment in accessible analytics: Precedence Research [I7] projects the healthcare analytics market to grow from $64.49 billion in 2025 to $369.66 billion by 2034 (21.41% CAGR).
+Low-code platform ROI provides analogous evidence for the value of technical barrier reduction. Industry-sponsored research from Forrester [I5] projects 206% three-year ROI from Power Platform implementations. Peer-reviewed studies corroborate these findings: a systematic review identified cost and time reduction as the most frequently discussed benefits across 17 studies [A31], healthcare institutions report 177% ROI over 36 months with 67% faster development [A33], and small healthcare clinics document 250% cumulative three-year ROI [A34]. While low-code and conversational AI differ in implementation approach, both generate returns through the same mechanism: enabling domain experts to accomplish tasks previously requiring specialized technical staff. Market research supports continued investment in accessible analytics: Precedence Research [I7] projects the healthcare analytics market to grow from $64.49 billion in 2025 to $369.66 billion by 2034 (21.41% CAGR).
 
 ### Risk Mitigation Through Knowledge Preservation
 
@@ -752,6 +752,14 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A29] Bogaert, P., Verschuuren, M., Van Oyen, H., & Van Oers, H. (2021). Identifying common enablers and barriers in European health information systems. *Health Policy*, 125(12), 1517-1526. DOI: 10.1016/j.healthpol.2021.09.006. https://www.sciencedirect.com/science/article/pii/S0168851021002396
 
 [A30] Tyndall, J. (2010). AACODS Checklist. Flinders University. https://dspace.flinders.edu.au/jspui/bitstream/2328/3326/4/AACODS_Checklist.pdf
+
+[A31] El Kamouchi, H., & Kissi, M. (2023). Low-code/No-code Development: A systematic literature review. *2023 14th International Conference on Computing Communication and Networking Technologies (ICCCNT)*, IEEE. DOI: 10.1109/ICCCNT56998.2023.10373712. https://ieeexplore.ieee.org/abstract/document/10373712/
+
+[A32] Tan, J. P. Y., Tan, M. W. J., Towle, R. M., Lee, J. S. W., et al. (2023). mHealth app to facilitate remote care for patients with COVID-19: rapid development of the DrCovid+ app. *JMIR Formative Research*, 7, e38555. DOI: 10.2196/38555. https://formative.jmir.org/2023/1/e38555
+
+[A33] Mogili, V. B. (2025). Healthcare and Finance Transformation through Enterprise Content, Low-Code, and Automation: A Multinational Technology Corporation's Approach. *Journal of Engineering and Computer Sciences*. https://sarcouncil.com/download-article/SJECS-209-_2025-630-636.pdf
+
+[A34] Pervaiz, H., & Ijaz, R. (2025). Leveraging Low-Code/No-Code Platforms for Rapid Digital Transformation in Small and Medium-sized Enterprises (SMEs). *Multidisciplinary Journal of Science, Technology & Business*. https://imjstb.com/index.php/Journal/article/view/95
 
 ## Industry Sources
 
