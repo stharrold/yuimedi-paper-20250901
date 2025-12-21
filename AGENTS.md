@@ -25,7 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 41 verified citations (30 academic, 11 industry) addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 79 verified citations (68 academic, 11 industry) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
@@ -205,16 +205,6 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 - `NCBI_EMAIL` - Email for PubMed API (required by NCBI policy)
 - `NCBI_API_KEY` - NCBI API key for PubMed (optional, enables 10 req/sec vs 3 req/sec)
 
-## Writing Style
-
-**Never use em-dashes (—).** Replace with appropriate grammatical structures:
-- Parenthetical asides: use commas or parentheses
-- Explanations/elaborations: use colons
-- Contrast or pivots: use semicolons or new sentences
-- Emphasis: restructure with clauses or conjunctions
-
-**Excluded from this rule:** `standards/` directory (external journal content).
-
 ## Key Patterns
 
 ### Writing Style
@@ -223,15 +213,16 @@ podman-compose run --rm dev uv run python <script>  # Run any script
   - Colons for definitions: "barrier: the gap between..."
   - Semicolons for related clauses: "descriptive; it provides..."
   - Parentheses for asides: "(backed by Amazon)"
+- **Excluded from this rule:** `standards/` directory (external journal content)
 
 ### Citations
-- Academic: `[A1]`, `[A2]`, etc. (30 sources)
+- Academic: `[A1]`, `[A2]`, etc. (68 sources)
 - Industry: `[I1]`, `[I2]`, etc. (11 sources)
 - Key dated citation: [A10] (2004 turnover data) - always qualify with temporal context
 
 ### File Naming
 - Historical files: `YYYYMMDDTHHMMSSZ_` prefix (ISO 8601 UTC)
-- Project management: UPPERCASE names (`DECISION_LOG.json`, `TODO.md`)
+- Project management: UPPERCASE names
 - Deprecated files: Move to local `ARCHIVED/` subdirectory
 
 ### Generated Files Strategy
@@ -318,6 +309,6 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 All Python source files include SPDX headers:
 ```python
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 Yuimedi, Inc.
 # SPDX-License-Identifier: Apache-2.0
 ```
