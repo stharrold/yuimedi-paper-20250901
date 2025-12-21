@@ -288,7 +288,7 @@ These limitations are balanced against the strengths of narrative review methodo
 
 # Framework Development and Validation
 
-This paper's primary contribution is the three-pillar analytical framework for understanding healthcare analytics challenges. This section documents the framework's development process and theoretical grounding.
+This paper's primary contribution is the three-pillar analytical framework for understanding healthcare analytics challenges: (1) analytics maturity gaps, (2) workforce turnover and institutional memory loss, and (3) technical barriers in natural language to SQL generation. This section documents the framework's development process and theoretical grounding.
 
 ## Framework Development Process
 
