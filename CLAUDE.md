@@ -207,6 +207,13 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 
 ## Key Patterns
 
+### Writing Style
+- **NEVER use em-dashes (—)**. Replace with:
+  - Commas for parenthetical insertions: "34% [A10], the highest rate, creates..."
+  - Colons for definitions: "barrier: the gap between..."
+  - Semicolons for related clauses: "descriptive; it provides..."
+  - Parentheses for asides: "(backed by Amazon)"
+
 ### Citations
 - Academic: `[A1]`, `[A2]`, etc. (30 sources)
 - Industry: `[I1]`, `[I2]`, etc. (11 sources)
@@ -243,9 +250,11 @@ podman-compose run --rm dev dot -Tpng figures/<name>.dot -o figures/<name>.dot.p
 Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
 
 ### Three-Pillar Framework
-All research connects to: (1) analytics maturity, (2) workforce turnover, (3) technical barriers.
+All research connects to: (1) analytics maturity, (2) workforce turnover, (3) technical barriers. The framework reveals how these challenges interconnect and compound each other: low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery from either.
 
 **Framework documentation:** See `paper.md` "Framework Development and Validation" section for development process, theoretical grounding (Table 3: HIMSS AMAM/DIKW alignment), and validation approach.
+
+**Assessment rubric:** Table 2 in paper.md provides a 10-indicator rubric with Lower/Moderate/Higher Risk thresholds for organizational self-assessment. Each indicator is evidence-anchored to citations.
 
 **Planning documents:** `planning/<feature-slug>/` in repository (committed to version control)
 
