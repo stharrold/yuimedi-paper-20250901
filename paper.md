@@ -341,7 +341,7 @@ This narrative review examines evidence supporting the implementation of natural
 
 Recent systematic reviews document the rapid evolution of natural language to SQL (NL2SQL) technologies. Ziletti and D'Ambrosi [A6] demonstrate that retrieval augmented generation (RAG) approaches significantly improve query accuracy when applied to electronic health records (EHRs), though they note that "current language models are not yet sufficiently accurate for unsupervised use" in clinical settings. Their work on the MIMIC-3 dataset shows that integrating medical coding steps into the text-to-SQL process improves performance over simple prompting approaches.
 
-Recent benchmarking studies [A8, A9] examining LLM-based systems for healthcare identify unique challenges: medical terminology, characterized by abbreviations, synonyms, and context-dependent meanings, remains a barrier to accurate query generation. Evaluations of state-of-the-art LLMs including GPT-4 and Claude 3.5 show that even top-performing models achieve only 69-73% accuracy on clinical tasks, with significant gaps remaining between benchmark performance and real clinical readiness.
+Recent benchmarking studies [A8], [A9] examining LLM-based systems for healthcare identify unique challenges: medical terminology, characterized by abbreviations, synonyms, and context-dependent meanings, remains a barrier to accurate query generation. Evaluations of state-of-the-art LLMs including GPT-4 and Claude 3.5 show that even top-performing models achieve only 69-73% accuracy on clinical tasks, with significant gaps remaining between benchmark performance and real clinical readiness.
 
 ### Healthcare-Specific Challenges
 
@@ -353,7 +353,7 @@ Wang et al. [A5] demonstrate that healthcare NL2SQL methods must move beyond the
 
 Recent advances show promise in addressing these challenges. The TREQS/MIMICSQL dataset development [A5] and EHRSQL benchmark [A3] provide question-SQL pairs specifically for healthcare, featuring questions in natural, free-form language. This approach acknowledges that healthcare queries often require multiple logical steps: population selection, temporal relationships, aggregation statistics, and mathematical operations.
 
-However, significant limitations persist. Benchmarking studies [A8, A9] conclude that while LLMs show capability in healthcare tasks, most models struggle with complex clinical reasoning. The MedAgentBench evaluation found even the best-performing model (Claude 3.5 Sonnet) achieved only 69.67% success rate on medical agent tasks, highlighting the gap between current capabilities and clinical readiness.
+However, significant limitations persist. Benchmarking studies [A8], [A9] conclude that while LLMs show capability in healthcare tasks, most models struggle with complex clinical reasoning. The MedAgentBench evaluation found even the best-performing model (Claude 3.5 Sonnet) achieved only 69.67% success rate on medical agent tasks, highlighting the gap between current capabilities and clinical readiness.
 
 ## State of Healthcare Analytics Maturity
 
@@ -365,7 +365,7 @@ Snowdon [I2], Chief Scientific Research Officer at HIMSS, emphasizes that "analy
 
 ### Barriers to Analytics Adoption
 
-A systematic literature review of big data analytics in healthcare by Kamble et al. [A7] published in the International Journal of Healthcare Management identifies critical barriers to analytics adoption. The study reveals that healthcare enterprises struggle with technology selection, resource allocation, and organizational readiness for data-driven decision making.
+A systematic literature review of big data analytics in healthcare by Kamble et al. [A7] identifies critical barriers to analytics adoption. The study reveals that healthcare enterprises struggle with technology selection, resource allocation, and organizational readiness for data-driven decision making.
 
 Health Catalyst's Healthcare Analytics Adoption Model [I3], a vendor-produced framework, corroborates these findings, documenting that most healthcare organizations remain at Stages 0-3, characterized by:
 
@@ -377,7 +377,7 @@ Health Catalyst's Healthcare Analytics Adoption Model [I3], a vendor-produced fr
 
 ### The Analytics Skills Gap
 
-The literature consistently identifies workforce capabilities as a primary constraint. Healthcare organizations face mounting challenges in extracting meaningful insights from the vast amount of unstructured clinical text data generated daily [A4]. There is an acknowledged problem in health services where organizations cannot make good use of available data due to a deficit in skilled analysts across all sectors and levels [A15]. Organizations face critical challenges in recruiting and retaining professionals with the right analytical skills, while the need for big data specialists with analytical capabilities continues to grow [A16]. Traditional approaches to analytics require extensive technical expertise that healthcare professionals typically lack, creating a fundamental barrier to analytics adoption [I11].
+The literature consistently identifies workforce capabilities as a primary constraint. Healthcare organizations face mounting challenges in extracting meaningful insights from the vast amount of unstructured clinical text data generated daily [A4]. There is an acknowledged problem in health services where organizations cannot make good use of available data due to a deficit in skilled analysts across all sectors and levels [A15]. Organizations face critical challenges in recruiting and retaining professionals with the right analytical skills, while the need for big data specialists with analytical capabilities continues to grow [A16]. Traditional approaches to analytics require extensive technical expertise and time that healthcare professionals typically lack, creating a fundamental barrier to analytics adoption [I11].
 
 ## Healthcare Workforce Turnover and Knowledge Loss
 
