@@ -230,11 +230,11 @@ Evidence was synthesized thematically around the three-pillar framework:
 2. **Workforce turnover**: Evidence on nursing and IT staff turnover rates, institutional memory loss, and knowledge transfer challenges
 3. **Technical barriers**: Evidence on NL2SQL benchmarks, healthcare-specific NLP challenges, and low-code implementation patterns
 
-This framework emerged iteratively from the literature rather than being pre-specified, consistent with narrative review methodology. Citation verification followed the methodology documented in the reference verification process, which identified and removed 5 likely AI-generated fabrications and 29 unused references from the original draft.
+This framework emerged iteratively from the literature rather than being pre-specified, consistent with narrative review methodology.
 
 ## Grey Literature Quality Assessment
 
-Grey literature sources were assessed using the AACODS checklist [A30], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table 1 summarizes the assessment.
+Grey literature sources were assessed using the AACODS checklist [A30], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table \ref{tab:aacods} summarizes the assessment.
 
 \begin{sidewaystable}
 \centering
