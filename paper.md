@@ -188,17 +188,17 @@ Search terms were organized around the three-pillar framework:
 | PubMed | ("healthcare IT tenure" OR "IT training time" OR "turnover cost salary") AND ("institutional memory" OR "analytics adoption" OR "knowledge capture") | 2015-current | 142 | 12 |
 | arXiv (cs.CL, cs.DB) | "text-to-SQL" AND ("MIMICSQL" OR "EHRSQL" OR "schema discovery" OR "PK/FK discovery" OR "semantic matching" OR "vector embeddings") | 2020-current | 71 | 6 |
 | Semantic Scholar | "NL2SQL healthcare" OR "NL2SQL productivity" OR "conversational AI clinical" OR "SECI model analytics" | 2015-current | 72 | 8 |
-| **Total** | | | **570** | **53** |
+| **Total** | | | **570** | **56** |
 
-*Note: Initial results shown after deduplication across databases. Final corpus includes 42 academic and 11 industry sources.*
+*Note: Initial results shown after deduplication across databases. Final corpus includes 45 academic and 11 industry sources.*
 
-Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 53 sources.
+Figure 1 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 56 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 53 sources (42 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
+\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 56 sources (45 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
 ```
@@ -296,13 +296,13 @@ The three-pillar framework emerged through iterative analysis of the literature 
 
 The framework development followed these steps:
 
-1. **Theme Extraction**: Systematic coding of 53 sources identified recurring themes across technical, organizational, and workforce dimensions
+1. **Theme Extraction**: Systematic coding of 56 sources identified recurring themes across technical, organizational, and workforce dimensions
 2. **Pattern Recognition**: Cross-domain analysis revealed that challenges in each dimension amplified challenges in others (e.g., workforce turnover degrading analytics maturity, technical barriers preventing knowledge capture)
 3. **Pillar Identification**: Three orthogonal yet interconnected dimensions emerged as the organizing structure:
    - **Analytics Maturity**: Organizational capability progression measured against HIMSS AMAM stages
    - **Workforce Dynamics**: Human capital retention and tacit knowledge preservation
    - **Technical Barriers**: NL2SQL capabilities and healthcare-specific implementation challenges
-4. **Framework Validation**: Pillar structure tested against all 53 sources to confirm comprehensive coverage without significant gaps
+4. **Framework Validation**: Pillar structure tested against all 56 sources to confirm comprehensive coverage without significant gaps
 
 ## Theoretical Grounding
 
@@ -361,7 +361,7 @@ Emerging research documents quantifiable productivity gains from NL2SQL implemen
 
 Clinical-specific natural language interfaces demonstrate significant efficiency improvements. Criteria2Query, a natural language interface for clinical database cohort definition, achieves fully automated query formulation in an average of 1.22 seconds per criterion, enabling researchers to query EHR data without mastering database query languages [A35]. User studies show NL2SQL systems reduce query completion times by 10-30% compared to traditional SQL platforms while improving accuracy from 50% to 75%, with users recovering from errors 30-40 seconds faster [A38].
 
-The most substantial productivity gains appear in multimodal interfaces. Research on speech-driven database querying demonstrates users can specify SQL queries with an average speedup of 2.7x (up to 6.7x) compared to traditional input methods, with user effort reduced by a factor of 10x to 60x compared to raw typing [A37]. These metrics provide peer-reviewed evidence that complements vendor-sponsored efficiency claims.
+The most substantial productivity gains appear in multimodal interfaces. Research on speech-driven database querying demonstrates users can specify SQL queries with an average speedup of 2.7x (up to 6.7x) compared to traditional input methods, with user effort reduced by a factor of 10x to 60x compared to raw typing [A37]. Healthcare-specific natural language query systems show dramatic improvements: a clinical data analytics language (CliniDAL) reduced complex query formulation from "many days" with SQL to "a few hours" with natural language, with expert users describing SQL as "very tedious and time-consuming" for the same analytical tasks [A43]. NLP-driven data entry systems have achieved 33% time reduction with 15% accuracy improvement in clinical research settings [A44]. Healthcare-specific NL2SQL models such as MedT5SQL achieve 80.63% exact match accuracy on the MIMICSQL benchmark, demonstrating that domain-adapted language models can effectively translate natural language to SQL for clinical databases [A45]. These metrics provide peer-reviewed evidence that complements vendor-sponsored efficiency claims.
 
 ## State of Healthcare Analytics Maturity
 
@@ -784,6 +784,12 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A41] Li, Y., Liang, S., Zhu, B., Liu, X., Li, J., Chen, D., Qin, J., et al. (2023). Feasibility and effectiveness of artificial intelligence-driven conversational agents in healthcare interventions: A systematic review of randomized controlled trials. *International Journal of Medical Informatics*, 178, 105195. DOI: 10.1016/j.ijmedinf.2023.105195. https://www.sciencedirect.com/science/article/pii/S1386505623001296
 
 [A42] Rollwage, M., Habicht, J., Juechems, K., Carrington, B., et al. (2023). Using conversational AI to facilitate mental health assessments and improve clinical efficiency within psychotherapy services: real-world observational study. *JMIR AI*, 2, e44358. DOI: 10.2196/44358. https://ai.jmir.org/2023/1/e44358
+
+[A43] Safari, L., & Patrick, J. D. (2014). Restricted natural language based querying of clinical databases. *Journal of Biomedical Informatics*, 52, 333-353. DOI: 10.1016/j.jbi.2014.08.003. https://www.sciencedirect.com/science/article/pii/S1532046414001592
+
+[A44] Han, J., Chen, K., Fang, L., Zhang, S., & Wang, F. (2019). Improving the efficacy of the data entry process for clinical research with a natural language processing-driven medical information extraction system. *JMIR Medical Informatics*, 7(2), e13331. DOI: 10.2196/13331. https://medinform.jmir.org/2019/2/e13331
+
+[A45] Marshan, A., Almutairi, A. N., Joannou, A., & Bell, D. (2024). MedT5SQL: a transformers-based large language model for text-to-SQL conversion in the healthcare domain. *Frontiers in Big Data*, 7, 1371680. DOI: 10.3389/fdata.2024.1371680. https://www.frontiersin.org/articles/10.3389/fdata.2024.1371680
 
 ## Industry Sources
 
