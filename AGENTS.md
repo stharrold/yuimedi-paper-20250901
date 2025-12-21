@@ -242,15 +242,24 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 
 **Figure generation:** Generate from Mermaid or DOT source:
 ```bash
-# Mermaid (.mmd) → PNG/JPG
-npx --yes @mermaid-js/mermaid-cli@latest -i figures/<name>.mmd -o figures/<name>.png
-# macOS (optional JPG conversion):
-sips -s format jpeg figures/<name>.png --out figures/<name>.jpg
+# Mermaid (.mmd) → PNG (in container for consistent fonts)
+podman-compose run --rm dev npx --yes @mermaid-js/mermaid-cli@latest \
+  -i figures/<name>.mmd -o figures/<name>.mmd.png -p /app/puppeteer-config.json
+
+# Mermaid (.mmd) → SVG
+podman-compose run --rm dev npx --yes @mermaid-js/mermaid-cli@latest \
+  -i figures/<name>.mmd -o figures/<name>.mmd.svg -p /app/puppeteer-config.json
 
 # DOT (.dot) → SVG/PNG (requires graphviz)
-podman-compose run --rm dev dot -Tsvg figures/<name>.dot -o figures/<name>.dot.svg
-podman-compose run --rm dev dot -Tpng figures/<name>.dot -o figures/<name>.dot.png
+podman-compose run --rm dev dot -Tsvg figures/<name>.mmd.dot -o figures/<name>.mmd.dot.svg
+podman-compose run --rm dev dot -Tpng figures/<name>.mmd.dot -o figures/<name>.mmd.dot.png
 ```
+
+**Figure naming convention:** Suffix chain documents derivation:
+- `<name>.mmd` - Mermaid source
+- `<name>.mmd.png` - PNG derived from .mmd
+- `<name>.mmd.dot` - DOT format (alternate)
+- `<name>.mmd.dot.svg` - SVG derived from .dot
 
 **Excluded via .gitignore:**
 - `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
