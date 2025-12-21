@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 22 answered, 16 unanswered
+**Status:** 23 answered, 15 unanswered
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -86,6 +86,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | Question | Scope | Issue | Research File |
 |----------|-------|-------|---------------|
 | What evidence links healthcare analytics maturity gaps to patient care quality and clinical outcomes? | Paper1 | [#379](https://github.com/stharrold/yuimedi-paper-20250901/issues/379) | [`Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md`](Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md) |
+| What evidence links healthcare workforce turnover and institutional knowledge loss to care continuity? | Paper1 | [#380](https://github.com/stharrold/yuimedi-paper-20250901/issues/380) | [`Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md`](Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md) |
 
 ### Testing & Validation
 
@@ -133,7 +134,6 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 
 | Question | Scope | Issue | Status | Notes |
 |----------|-------|-------|--------|-------|
-| What evidence links healthcare workforce turnover and institutional knowledge loss to care continuity? | Paper1 | [#380](https://github.com/stharrold/yuimedi-paper-20250901/issues/380) | Unanswered | Support for "care continuity" claim |
 | What evidence demonstrates that analytics challenges have measurable implications for healthcare delivery? | Paper1 | [#381](https://github.com/stharrold/yuimedi-paper-20250901/issues/381) | Unanswered | Support for "healthcare delivery" claim |
 
 ### Clinical Safety and Security
@@ -186,3 +186,4 @@ All `Research_*.md` files in this directory:
 | `Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md` | Code modernization for NL interfaces | Paper1 |
 | `Research_What-evidence-exists-that-tacit-analytical-knowledge-is-difficult-to-document-and-transfer-through-traditional-means.md` | Tacit knowledge documentation difficulty | Paper1 |
 | `Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md` | Analytics maturity and patient outcomes | Paper1 |
+| `Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md` | Workforce turnover and care continuity | Paper1 |
