@@ -272,7 +272,12 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 ## Healthcare Domain Context
 
-**Required knowledge:** ICD-10, CPT, SNOMED, RxNorm vocabularies; HIMSS AMAM stages; HL7/FHIR standards; HIPAA compliance.
+**Required knowledge:** ICD-10, CPT, SNOMED, RxNorm vocabularies; HIMSS maturity models; HL7/FHIR standards; HIPAA compliance.
+
+**HIMSS maturity models (important distinction):**
+- **EMRAM** (Electronic Medical Record Adoption Model): EHR adoption stages 0-7. Extensive outcome literature exists.
+- **AMAM** (Analytics Maturity Assessment Model): Analytics capability stages. Released October 2024; no peer-reviewed outcome studies yet.
+- Most literature uses EMRAM. When searching for AMAM evidence, note that AMAM-specific studies are a confirmed gap.
 
 **Academic standards:** PRISMA guidelines for systematic reviews (not applicable to this narrative review - see `docs/prisma-assessment.md`); statistical reporting with p-values/CIs; evidence hierarchy prioritizing RCTs.
 
@@ -295,7 +300,12 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 - Research questions: `docs/references/Research_Questions.md` (linked to GitHub issues via `research` label)
 - Submission guide: `docs/journal-submission-guide.md`
 
-**Research question tracking:** All literature review questions are tracked in `docs/references/Research_Questions.md` with scope (Paper1/Paper2/Paper3), linked GitHub issues, and status (Answered/Unanswered/Gap). Use `gh issue list --label "research"` to see all research-related issues. Use `/scholar:research-question` skill for Google Scholar Labs searches.
+**Research question tracking:** All literature review questions are tracked in `docs/references/Research_Questions.md`:
+- **Columns:** Question, Scope (Paper1/Paper2/Paper3), GitHub Issue, Status, Research File link
+- **Status values:** Answered, Partial, Unanswered, → Gap (searched but not found)
+- **Note:** "Merged into paper.md" status is NOT currently tracked (workflow gap)
+- Use `gh issue list --label "research"` to see all research-related issues
+- Use `/scholar:research-question` skill for Google Scholar Labs searches
 
 **Preprint strategy:**
 - arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY

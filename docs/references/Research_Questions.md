@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 28 answered, 13 unanswered/partial
+**Status:** 28 answered, 14 unanswered/partial
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -132,6 +132,12 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 |----------|-------|-------|--------|-------|
 | What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | **UPDATED 2025-12-20:** 20 papers found. Gap CONFIRMED: No validated healthcare-specific citizen developer productivity instrument. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
 
+### Analytics Maturity and Outcomes
+
+| Question | Scope | Issue | Status | Notes |
+|----------|-------|-------|--------|-------|
+| What quantitative evidence links HIMSS AMAM stages to patient outcomes or organizational performance? | Paper1 | — | Partial | **2025-12-22:** 10 papers found but ALL use EMRAM (EHR adoption), not AMAM (analytics maturity). AMAM released Oct 2024, no AMAM-specific outcome studies yet. Gap CONFIRMED for AMAM. See [`Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md`](Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md) |
+
 ### Clinical Safety and Security
 
 | Question | Scope | Issue | Status | Notes |
@@ -184,3 +190,4 @@ All `Research_*.md` files in this directory:
 | `Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md` | Analytics maturity and patient outcomes | Paper1 |
 | `Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md` | Workforce turnover and care continuity | Paper1 |
 | `Research_What-evidence-demonstrates-that-analytics-challenges-have-measurable-implications-for-healthcare-delivery.md` | Analytics challenges and healthcare delivery | Paper1 |
+| `Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md` | HIMSS AMAM/EMRAM stages and patient outcomes | Paper1 |
