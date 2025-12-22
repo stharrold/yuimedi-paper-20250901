@@ -32,14 +32,19 @@ from typing import Any
 
 # Configuration
 PAPER_PATH = Path(__file__).parent.parent / "paper.md"
+BIBTEX_PATH = Path(__file__).parent.parent / "references.bib"
+MAPPING_PATH = Path(__file__).parent / "citation_key_mapping.json"
 REPORT_PATH = Path(__file__).parent.parent / "docs" / "validation_report.md"
 URL_TIMEOUT = 10  # seconds
 MAX_RETRIES = 2
 
-# Citation patterns
+# Citation patterns - support both old [A#]/[I#] and new [@key] formats
 ACADEMIC_PATTERN = re.compile(r"\[A(\d+)\]")
 INDUSTRY_PATTERN = re.compile(r"\[I(\d+)\]")
 CITATION_PATTERN = re.compile(r"\[(A|I)(\d+)\]")
+# New pandoc-citeproc citation pattern: [@key] or [@key1; @key2]
+# Uses \w with Unicode flag to match international characters (e.g., š, ć)
+CITEPROC_CITATION_PATTERN = re.compile(r"\[@([\w]+(?:;\s*@[\w]+)*)\]", re.UNICODE)
 URL_PATTERN = re.compile(r'https?://[^\s<>"]+')
 REFERENCE_LINE_PATTERN = re.compile(r"^\[(A|I)(\d+)\]\s+(.+)$", re.MULTILINE)
 # Pattern to detect LaTeX commands in URLs (e.g., \break, \textit, \href)
@@ -118,8 +123,79 @@ class ValidationResult:
         }
 
 
-def parse_references(paper_content: str) -> dict[str, Reference]:
-    """Parse references from the References section of paper.md."""
+def parse_bibtex_references(bibtex_path: Path) -> dict[str, Reference]:
+    """Parse references from a BibTeX file."""
+    references: dict[str, Reference] = {}
+
+    if not bibtex_path.exists():
+        return references
+
+    content = bibtex_path.read_text()
+
+    # Simple BibTeX parser (stdlib only - no external dependencies)
+    # Pattern to match BibTeX entries: @type{key, ... }
+    entry_pattern = re.compile(r"@(\w+)\{([^,]+),([^@]*?)^\}", re.MULTILINE | re.DOTALL)
+
+    for match in entry_pattern.finditer(content):
+        _entry_type = match.group(1).lower()  # noqa: F841 - kept for future use
+        key = match.group(2).strip()
+        fields_text = match.group(3)
+
+        # Parse fields
+        fields: dict[str, str] = {}
+        # Match field = {value} or field = "value"
+        field_pattern = re.compile(r'(\w+)\s*=\s*[{"]([^}"]*)[}"]')
+        for field_match in field_pattern.finditer(fields_text):
+            field_name = field_match.group(1).lower()
+            field_value = field_match.group(2).strip()
+            fields[field_name] = field_value
+
+        # Extract URL
+        url = fields.get("url")
+
+        # Try to determine type from original note
+        note = fields.get("note", "")
+        original_match = re.search(r"\[([AI])(\d+)\]", note)
+        if original_match:
+            ref_type = "academic" if original_match.group(1) == "A" else "industry"
+            number = int(original_match.group(2))
+        else:
+            # Default to academic, use hash as number
+            ref_type = "academic"
+            number = hash(key) % 1000
+
+        # Build full text from available fields
+        author = fields.get("author", "Unknown")
+        title = fields.get("title", "").strip("{}")
+        year = fields.get("year", "n.d.")
+        journal = fields.get("journal", fields.get("booktitle", ""))
+        full_text = f"{author}. ({year}). {title}. {journal}"
+
+        references[key] = Reference(
+            marker=key,
+            ref_type=ref_type,
+            number=number,
+            full_text=full_text,
+            url=url,
+        )
+
+    return references
+
+
+def parse_references(paper_content: str, bibtex_path: Path | None = None) -> dict[str, Reference]:
+    """Parse references from paper.md or BibTeX file.
+
+    Supports both:
+    - Old format: Manual [A#]/[I#] references in paper.md
+    - New format: BibTeX file with [@key] citations
+    """
+    # Try BibTeX first if available
+    if bibtex_path and bibtex_path.exists():
+        refs = parse_bibtex_references(bibtex_path)
+        if refs:
+            return refs
+
+    # Fall back to old format in paper.md
     references: dict[str, Reference] = {}
 
     # Find the References section
@@ -160,35 +236,67 @@ def parse_references(paper_content: str) -> dict[str, Reference]:
     return references
 
 
-def extract_citations(paper_content: str) -> list[Citation]:
-    """Extract all citations from the paper body (excluding References section)."""
+def extract_citations(paper_content: str, use_citeproc: bool = False) -> list[Citation]:
+    """Extract all citations from the paper body.
+
+    Args:
+        paper_content: The markdown content
+        use_citeproc: If True, use [@key] format; if False, use [A#]/[I#] format
+
+    Returns:
+        List of Citation objects
+    """
     citations: list[Citation] = []
 
-    # Find the References section to exclude it
-    ref_section_match = re.search(r"^# References\s*$", paper_content, re.MULTILINE)
-    body_content = (
-        paper_content[: ref_section_match.start()] if ref_section_match else paper_content
-    )
+    # For old format, exclude References section
+    if not use_citeproc:
+        ref_section_match = re.search(r"^# References\s*$", paper_content, re.MULTILINE)
+        body_content = (
+            paper_content[: ref_section_match.start()] if ref_section_match else paper_content
+        )
+    else:
+        # For citeproc format, use entire content (no manual References section)
+        body_content = paper_content
 
     # Split into lines for context
     lines = body_content.split("\n")
 
     for line_num, line in enumerate(lines, start=1):
-        for match in CITATION_PATTERN.finditer(line):
-            ref_type = match.group(1)
-            number = match.group(2)
-            marker = f"{ref_type}{number}"
+        if use_citeproc:
+            # New format: [@key] or [@key1; @key2]
+            for match in CITEPROC_CITATION_PATTERN.finditer(line):
+                keys_text = match.group(1)
+                # Split on ; to get individual keys
+                keys = [k.strip().lstrip("@") for k in keys_text.split(";")]
 
-            # Get context (the sentence or surrounding text)
-            start = max(0, match.start() - 50)
-            end = min(len(line), match.end() + 50)
-            context = line[start:end].strip()
-            if start > 0:
-                context = "..." + context
-            if end < len(line):
-                context = context + "..."
+                # Get context
+                start = max(0, match.start() - 50)
+                end = min(len(line), match.end() + 50)
+                context = line[start:end].strip()
+                if start > 0:
+                    context = "..." + context
+                if end < len(line):
+                    context = context + "..."
 
-            citations.append(Citation(marker=marker, line_number=line_num, context=context))
+                for key in keys:
+                    citations.append(Citation(marker=key, line_number=line_num, context=context))
+        else:
+            # Old format: [A#] or [I#]
+            for match in CITATION_PATTERN.finditer(line):
+                ref_type = match.group(1)
+                number = match.group(2)
+                marker = f"{ref_type}{number}"
+
+                # Get context (the sentence or surrounding text)
+                start = max(0, match.start() - 50)
+                end = min(len(line), match.end() + 50)
+                context = line[start:end].strip()
+                if start > 0:
+                    context = "..." + context
+                if end < len(line):
+                    context = context + "..."
+
+                citations.append(Citation(marker=marker, line_number=line_num, context=context))
 
     return citations
 
@@ -538,6 +646,12 @@ Examples:
         default=REPORT_PATH,
         help=f"Path for output report (default: {REPORT_PATH})",
     )
+    parser.add_argument(
+        "--bibtex",
+        type=Path,
+        default=BIBTEX_PATH,
+        help=f"Path to BibTeX file (default: {BIBTEX_PATH})",
+    )
 
     args = parser.parse_args()
 
@@ -554,12 +668,28 @@ Examples:
 
     paper_content = args.paper.read_text()
 
+    # Detect citation format
+    # Check for citeproc format ([@key]) vs old format ([A#])
+    has_citeproc = bool(CITEPROC_CITATION_PATTERN.search(paper_content))
+    has_old_format = bool(CITATION_PATTERN.search(paper_content))
+    use_citeproc = has_citeproc and not has_old_format
+
+    if use_citeproc:
+        print("Detected pandoc-citeproc format ([@key] citations)")
+    else:
+        print("Detected legacy format ([A#]/[I#] citations)")
+
     # Initialize result
     result = ValidationResult()
 
     # Parse references
     print("Parsing references...")
-    result.references = parse_references(paper_content)
+    if use_citeproc and args.bibtex.exists():
+        result.references = parse_references(paper_content, args.bibtex)
+        print(f"Loaded references from {args.bibtex}")
+    else:
+        result.references = parse_references(paper_content)
+
     academic_count = sum(1 for r in result.references.values() if r.ref_type == "academic")
     industry_count = sum(1 for r in result.references.values() if r.ref_type == "industry")
     print(
@@ -574,7 +704,7 @@ Examples:
     # Extract citations and check for orphaned/unused
     if args.check_citations or args.all:
         print("\nExtracting citations...")
-        result.citations = extract_citations(paper_content)
+        result.citations = extract_citations(paper_content, use_citeproc=use_citeproc)
         print(f"Found {len(result.citations)} citations in paper body")
 
         result.orphaned_citations, result.unused_references = find_orphaned_and_unused(

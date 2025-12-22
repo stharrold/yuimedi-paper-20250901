@@ -27,6 +27,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 INPUT_FILE="${PROJECT_ROOT}/paper.md"
 METADATA_FILE="${PROJECT_ROOT}/metadata.yaml"
+BIBLIOGRAPHY="${PROJECT_ROOT}/references.bib"
+CSL_FILE="${PROJECT_ROOT}/citation-style.csl"
 OUTPUT_DIR="${PROJECT_ROOT}"
 
 # Eisvogel template configuration
@@ -154,16 +156,21 @@ install_eisvogel() {
     fi
 }
 
-# Build pandoc arguments array (avoids unquoted variable expansion)
-build_pandoc_args() {
-    local -n args_ref=$1
-    args_ref=(
-        "$INPUT_FILE"
-        "--from=markdown+smart"
-    )
+# Build common pandoc arguments string
+# Returns arguments via echo (use with command substitution)
+get_common_pandoc_args() {
+    local args="--from=markdown+smart"
     if [[ -f "$METADATA_FILE" ]]; then
-        args_ref+=("--metadata-file=$METADATA_FILE")
+        args="$args --metadata-file=$METADATA_FILE"
     fi
+    # Add citeproc for bibliography processing
+    if [[ -f "$BIBLIOGRAPHY" ]]; then
+        args="$args --citeproc --bibliography=$BIBLIOGRAPHY"
+        if [[ -f "$CSL_FILE" ]]; then
+            args="$args --csl=$CSL_FILE"
+        fi
+    fi
+    echo "$args"
 }
 
 # Generate PDF
@@ -171,10 +178,11 @@ generate_pdf() {
     local output="${OUTPUT_DIR}/paper.pdf"
     info "Generating PDF: $output"
 
-    local -a pandoc_args
-    build_pandoc_args pandoc_args
+    local common_args
+    common_args=$(get_common_pandoc_args)
 
-    pandoc "${pandoc_args[@]}" \
+    # shellcheck disable=SC2086
+    pandoc "$INPUT_FILE" $common_args \
         --to=pdf \
         --pdf-engine=xelatex \
         --template=eisvogel \
@@ -197,10 +205,11 @@ generate_html() {
     local output="${OUTPUT_DIR}/paper.html"
     info "Generating HTML: $output"
 
-    local -a pandoc_args
-    build_pandoc_args pandoc_args
+    local common_args
+    common_args=$(get_common_pandoc_args)
 
-    pandoc "${pandoc_args[@]}" \
+    # shellcheck disable=SC2086
+    pandoc "$INPUT_FILE" $common_args \
         --to=html5 \
         --standalone \
         --toc \
@@ -221,10 +230,11 @@ generate_docx() {
     local output="${OUTPUT_DIR}/paper.docx"
     info "Generating DOCX: $output"
 
-    local -a pandoc_args
-    build_pandoc_args pandoc_args
+    local common_args
+    common_args=$(get_common_pandoc_args)
 
-    pandoc "${pandoc_args[@]}" \
+    # shellcheck disable=SC2086
+    pandoc "$INPUT_FILE" $common_args \
         --to=docx \
         --toc \
         --toc-depth=3 \
@@ -244,10 +254,11 @@ generate_latex() {
     local output="${OUTPUT_DIR}/paper.tex"
     info "Generating LaTeX: $output"
 
-    local -a pandoc_args
-    build_pandoc_args pandoc_args
+    local common_args
+    common_args=$(get_common_pandoc_args)
 
-    pandoc "${pandoc_args[@]}" \
+    # shellcheck disable=SC2086
+    pandoc "$INPUT_FILE" $common_args \
         --to=latex \
         --template=eisvogel \
         --listings \

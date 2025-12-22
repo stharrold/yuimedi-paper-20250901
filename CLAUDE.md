@@ -215,10 +215,25 @@ podman-compose run --rm dev uv run python <script>  # Run any script
   - Parentheses for asides: "(backed by Amazon)"
 - **Excluded from this rule:** `standards/` directory (external journal content)
 
-### Citations
-- Academic: `[A1]`, `[A2]`, etc. (81 sources)
-- Industry: `[I1]`, `[I2]`, etc. (11 sources)
-- Key dated citation: [A10] (2004 turnover data) - always qualify with temporal context
+### Citations (pandoc-citeproc)
+Uses pandoc-citeproc for automatic bibliography generation:
+- Citation format: `[@key]` (e.g., `[@wu2024]`, `[@himss2024]`)
+- Multiple citations: `[@wu2024; @ren2024]`
+- BibTeX file: `references.bib` (92 entries)
+- CSL style: `citation-style.csl` (Vancouver, numbered citations)
+
+**Key files:**
+- `references.bib` - BibTeX bibliography (auto-generated from paper.md)
+- `citation-style.csl` - Vancouver citation style
+- `scripts/citation_key_mapping.json` - Maps legacy [A#]/[I#] to new keys
+
+**Regenerating bibliography:**
+```bash
+python scripts/convert_references_to_bibtex.py  # Generate references.bib
+python scripts/convert_inline_citations.py      # Convert inline citations
+```
+
+**Citation key convention:** `{firstauthor}{year}{suffix}` (e.g., `wu2024`, `wu2024a`)
 
 ### File Naming
 - Historical files: `YYYYMMDDTHHMMSSZ_` prefix (ISO 8601 UTC)
@@ -228,6 +243,8 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 ### Generated Files Strategy
 **Committed to git (intentional):**
 - `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
+- `references.bib` - BibTeX bibliography (regenerate with `convert_references_to_bibtex.py`)
+- `citation-style.csl` - Vancouver citation style (from Zotero CSL repository)
 - `figures/*` - All figure assets (source `.mmd`/`.dot`, generated `.jpg`/`.png`/`.svg`/`.pdf`)
 - Versioned for reproducibility and release tagging
 
