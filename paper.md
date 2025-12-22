@@ -462,7 +462,7 @@ Low-code platform ROI provides analogous evidence for the value of technical bar
 
 ### Risk Mitigation Through Knowledge Preservation
 
-The literature emphasizes that institutional memory loss represents an existential risk to healthcare analytics programs. Conversational AI platforms mitigate this risk by transforming tacit knowledge into encoded, accessible expertise. This approach aligns with best practices for embedding organizational knowledge in systems rather than individuals, ensuring continuity despite workforce turnover.
+The literature emphasizes that institutional memory loss represents an existential risk to healthcare analytics programs. Conversational AI platforms mitigate this risk by transforming tacit knowledge into encoded, accessible expertise. This approach aligns with Nonaka's SECI model (Socialization, Externalization, Combination, Internalization), which describes organizational knowledge creation as a continuous dialogue between tacit and explicit knowledge [A80]. Recent research demonstrates that AI tools can enhance all four SECI stages, particularly facilitating the externalization process where tacit analytical knowledge becomes explicit, queryable forms [A81]. This theoretical foundation supports embedding organizational knowledge in systems rather than individuals, ensuring continuity despite workforce turnover.
 
 ## Gaps in Current Literature
 
@@ -877,6 +877,10 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A78] Jeyaraman, M. M., Qadar, S. M. Z., Wierzbowski, A., et al. (2018). Return on investment in healthcare leadership development programs. *Leadership in Health Services*, 31(1), 77-97. DOI: 10.1108/LHS-02-2017-0005. https://www.emerald.com/insight/content/doi/10.1108/LHS-02-2017-0005/full/html
 
 [A79] Konrad, I., & Saidizand, A. (2022). Exploring the potential of an IT capability in its bootstrap phase from a task driven onboarding perspective: Insights toward information infrastructure in healthcare. *Master's thesis*, Uppsala University. https://www.diva-portal.org/smash/record.jsf?pid=diva2:1684142
+
+[A80] Farnese, M. L., Barbieri, B., & Chirumbolo, A. (2019). Managing knowledge in organizations: A Nonaka's SECI model operationalization. *Frontiers in Psychology*, 10, 2730. DOI: 10.3389/fpsyg.2019.02730. https://www.frontiersin.org/articles/10.3389/fpsyg.2019.02730
+
+[A81] Zhang, W., Daim, T., & Yalçin, H. (2025). AI challenges conventional knowledge management: Light the way for reframing SECI model and Ba theory. *Journal of Knowledge Management*. DOI: 10.1108/JKM-03-2024-0262. https://www.emerald.com/insight/content/doi/10.1108/JKM-03-2024-0262/full/html
 
 ## Industry Sources
 
