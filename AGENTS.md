@@ -301,9 +301,10 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 - Submission guide: `docs/journal-submission-guide.md`
 
 **Research question tracking:** All literature review questions are tracked in `docs/references/Research_Questions.md`:
-- **Columns:** Question, Scope (Paper1/Paper2/Paper3), GitHub Issue, Status, Research File link
+- **Answered Questions tables:** Question, Scope, Issue, Research File, Merged (citation numbers added to paper.md, e.g., `[A31]-[A34]`)
+- **Unanswered Questions tables:** Question, Scope, Issue, Status, Notes
 - **Status values:** Answered, Partial, Unanswered, → Gap (searched but not found)
-- **Note:** "Merged into paper.md" status is NOT currently tracked (workflow gap)
+- **Merged column:** Shows citation numbers (e.g., `[A66]`, `[A31]-[A34]`) when findings incorporated into paper.md; `-` means not yet merged
 - Use `gh issue list --label "research"` to see all research-related issues
 - Use `/scholar:research-question` skill for Google Scholar Labs searches
 
