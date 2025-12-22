@@ -802,17 +802,17 @@ matching,'' ``vector embeddings'') (2020-current) produced 71 results
 with 6 passing screening. Semantic Scholar searches for ``NL2SQL
 healthcare,'' ``NL2SQL productivity,'' ``conversational AI clinical,''
 and ``SECI model analytics'' (2015-current) returned 72 results with 8
-passing screening. The final corpus includes 74 academic and 11 industry
-sources (85 total).
+passing screening. The final corpus includes 81 academic and 11 industry
+sources (92 total).
 
 Figure 2 illustrates the literature selection process, showing
 progression from initial database search through screening and quality
-assessment to the final corpus of 85 sources.
+assessment to the final corpus of 92 sources.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 85 sources (74 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
+\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 92 sources (81 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
 
@@ -995,7 +995,7 @@ The framework development followed these steps:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Theme Extraction}: Systematic coding of 85 sources identified
+  \textbf{Theme Extraction}: Systematic coding of 92 sources identified
   recurring themes across technical, organizational, and workforce
   dimensions
 \item
@@ -1020,7 +1020,7 @@ The framework development followed these steps:
     healthcare-specific implementation challenges
   \end{itemize}
 \item
-  \textbf{Framework Validation}: Pillar structure tested against all 85
+  \textbf{Framework Validation}: Pillar structure tested against all 92
   sources to confirm comprehensive coverage without significant gaps
 \end{enumerate}
 
@@ -1140,10 +1140,12 @@ Limitations}\label{promising-approaches-and-limitations}
 Recent advances show promise in addressing these challenges. The
 TREQS/MIMICSQL dataset development {[}A5{]} and EHRSQL benchmark
 {[}A3{]} provide question-SQL pairs specifically for healthcare,
-featuring questions in natural, free-form language. This approach
-acknowledges that healthcare queries often require multiple logical
-steps: population selection, temporal relationships, aggregation
-statistics, and mathematical operations.
+featuring questions in natural, free-form language. Multi-modal
+benchmarks such as SM3-Text-to-Query {[}A77{]} extend evaluation beyond
+SQL to support multiple query languages across diverse medical data
+representations. This approach acknowledges that healthcare queries
+often require multiple logical steps: population selection, temporal
+relationships, aggregation statistics, and mathematical operations.
 
 Healthcare-specific benchmarks continue to evolve alongside model
 capabilities. The 2024 MedAgentBench evaluation found Claude 3.5 Sonnet
@@ -1152,10 +1154,14 @@ subsequent 2025 benchmarks show GPT-5 significantly exceeding these
 results, with the SCARE benchmark {[}A72{]} providing 4,200 EHR
 question-SQL pairs across MIMIC-III, MIMIC-IV, and eICU databases
 specifically designed to evaluate post-hoc safety mechanisms for
-clinical text-to-SQL deployment. While these advances narrow the gap
-between benchmark performance and clinical readiness, domain-specific
-challenges in medical terminology and complex clinical reasoning remain
-active research areas.
+clinical text-to-SQL deployment. Graph-empowered approaches combining
+LLMs with structured knowledge representations achieve 94.2\% execution
+accuracy on MIMICSQL {[}A75{]}, demonstrating that domain-specific
+architectural innovations can substantially outperform general-purpose
+models. While these advances narrow the gap between benchmark
+performance and clinical readiness, domain-specific challenges in
+medical terminology and complex clinical reasoning remain active
+research areas.
 
 \subsubsection{Productivity and Efficiency
 Evidence}\label{productivity-and-efficiency-evidence}
@@ -1173,10 +1179,14 @@ efficiency improvements. Criteria2Query, a natural language interface
 for clinical database cohort definition, achieves fully automated query
 formulation in an average of 1.22 seconds per criterion, enabling
 researchers to query EHR data without mastering database query languages
-{[}A35{]}. User studies show NL2SQL systems reduce query completion
-times by 10-30\% compared to traditional SQL platforms while improving
-accuracy from 50\% to 75\%, with users recovering from errors 30-40
-seconds faster {[}A38{]}.
+{[}A35{]}. The system has evolved through three generations: the
+original rule-based approach {[}A35{]}, a human-machine collaboration
+version, and Criteria2Query 3.0, which leverages GPT-4 to generate
+sharable cohort identification queries against OMOP-CDM formatted
+databases {[}A76{]}. User studies show NL2SQL systems reduce query
+completion times by 10-30\% compared to traditional SQL platforms while
+improving accuracy from 50\% to 75\%, with users recovering from errors
+30-40 seconds faster {[}A38{]}.
 
 The most substantial productivity gains appear in multimodal interfaces.
 Research on speech-driven database querying demonstrates users can
@@ -1316,13 +1326,16 @@ that the total financial cost to address problems caused by knowledge
 loss reached three times the organization's annual salary budget,
 including increased training costs, productivity losses, and project
 delays. Healthcare-specific evidence quantifies replacement costs in
-absolute terms: replacing a primary care clinician costs healthcare
-organizations over \$500,000 due to lost revenue and recruiting expenses
-{[}A67{]}, while physician replacement can reach up to \$1 million per
-departure, with national annual costs estimated at \$4.6 billion
-{[}A68{]}. Vendor analysis from Oracle {[}I6{]} corroborates these
-findings, documenting turnover costs at 0.5-2.0 times annual salary with
-knowledge-intensive positions reaching the higher end.
+absolute terms: nurse turnover costs 1.2-1.3 times the registered
+nurse's annual salary, with the highest cost categories being vacancy,
+orientation/training, and new employee productivity loss {[}A78{]};
+replacing a primary care clinician costs healthcare organizations over
+\$500,000 due to lost revenue and recruiting expenses {[}A67{]}; while
+physician replacement can reach up to \$1 million per departure, with
+national annual costs estimated at \$4.6 billion {[}A68{]}. Vendor
+analysis from Oracle {[}I6{]} corroborates these findings, documenting
+turnover costs at 0.5-2.0 times annual salary with knowledge-intensive
+positions reaching the higher end.
 
 Technical and analytics staff face even more severe turnover challenges.
 In their 2004 study, Ang and Slaughter {[}A10{]} found that IT
@@ -1348,11 +1361,15 @@ years for specialized roles {[}A11{]}. International Medical Informatics
 Association recommendations specify a minimum of 1 year (60 ECTS
 credits) for biomedical and health informatics specialists {[}A12{]},
 with personalized EHR training programs requiring 6 months of blended
-instruction to achieve meaningful competency improvements {[}A13{]}.
-Combined with the 2.9-year average tenure, healthcare IT professionals
-may operate at full productivity for only approximately two years before
-departing. This creates a perpetual cycle where organizations lose
-experienced staff before fully recouping their training investment.
+instruction to achieve meaningful competency improvements {[}A13{]}. For
+IT developers and specialists, research suggests up to 3 years are
+required to become fully fluent in complex healthcare IT projects
+{[}A79{]}. Combined with the 2.9-year average tenure, healthcare IT
+professionals may operate at full productivity for only approximately
+two years before departing, and, in the case of IT developers, are
+likely to leave before reaching full fluency. This creates a perpetual
+cycle where organizations lose experienced staff before fully recouping
+their training investment.
 
 The impact on care continuity is well-documented. Clinical handover
 disruption is internationally recognized as a patient safety priority
@@ -1576,9 +1593,16 @@ Preservation}\label{risk-mitigation-through-knowledge-preservation}
 The literature emphasizes that institutional memory loss represents an
 existential risk to healthcare analytics programs. Conversational AI
 platforms mitigate this risk by transforming tacit knowledge into
-encoded, accessible expertise. This approach aligns with best practices
-for embedding organizational knowledge in systems rather than
-individuals, ensuring continuity despite workforce turnover.
+encoded, accessible expertise. This approach aligns with Nonaka's SECI
+model (Socialization, Externalization, Combination, Internalization),
+which describes organizational knowledge creation as a continuous
+dialogue between tacit and explicit knowledge {[}A80{]}. Recent research
+demonstrates that AI tools can enhance all four SECI stages,
+particularly facilitating the externalization process where tacit
+analytical knowledge becomes explicit, queryable forms {[}A81{]}. This
+theoretical foundation supports embedding organizational knowledge in
+systems rather than individuals, ensuring continuity despite workforce
+turnover.
 
 \subsection{Gaps in Current
 Literature}\label{gaps-in-current-literature}
@@ -2643,6 +2667,47 @@ https://link.springer.com/article/10.1007/s10489-023-04567-2
 analytics success in healthcare. \emph{Journal of Business Research},
 70, 287-299. DOI: 10.1016/j.jbusres.2016.08.002.
 https://www.sciencedirect.com/science/article/abs/pii/S0148296316304891
+
+{[}A75{]} Chen, Q., Peng, J., Song, B., Zhou, Y., \& Ji, R. (2025).
+Graph-empowered text-to-SQL generation on electronic medical records.
+\emph{Pattern Recognition}, 158, 111020. DOI:
+10.1016/j.patcog.2024.111020.
+https://www.sciencedirect.com/science/article/pii/S0031320324008197
+
+{[}A76{]} Park, J., Fang, Y., Ta, C., Zhang, G., Idnay, B., Chen, F., et
+al.~(2024). Criteria2Query 3.0: Leveraging generative large language
+models for clinical trial eligibility query generation. \emph{Journal of
+Biomedical Informatics}, 154, 104649. DOI: 10.1016/j.jbi.2024.104649.
+https://www.sciencedirect.com/science/article/pii/S1532046424000650
+
+{[}A77{]} Sivasubramaniam, S., Osei-Akoto, C., Zhang, Y., Stockinger,
+K., \& Fürst, J. (2024). SM3-Text-to-Query: Synthetic multi-model
+medical text-to-query benchmark. \emph{Advances in Neural Information
+Processing Systems}, 37. https://arxiv.org/abs/2411.05521
+
+{[}A78{]} Jones, C. B. (2005). The costs of nurse turnover, Part 2:
+Application of the nursing turnover cost calculation methodology.
+\emph{Journal of Nursing Administration}, 35(1), 41-49. DOI:
+10.1097/00005110-200501000-00014.
+https://journals.lww.com/jonajournal/abstract/2005/01000/the\_costs\_of\_nurse\_turnover\_\_part\_2\_\_application.14.aspx
+
+{[}A79{]} Konrad, I., \& Saidizand, A. (2022). Exploring the potential
+of an IT capability in its bootstrap phase from a task driven onboarding
+perspective: Insights toward information infrastructure in healthcare.
+\emph{Master's thesis}, Uppsala University.
+https://www.diva-portal.org/smash/record.jsf?pid=diva2:1684142
+
+{[}A80{]} Farnese, M. L., Barbieri, B., \& Chirumbolo, A. (2019).
+Managing knowledge in organizations: A Nonaka's SECI model
+operationalization. \emph{Frontiers in Psychology}, 10, 2730. DOI:
+10.3389/fpsyg.2019.02730.
+https://www.frontiersin.org/articles/10.3389/fpsyg.2019.02730
+
+{[}A81{]} Zhang, W., Daim, T., \& Yalçin, H. (2025). AI challenges
+conventional knowledge management: Light the way for reframing SECI
+model and Ba theory. \emph{Journal of Knowledge Management}. DOI:
+10.1108/JKM-03-2024-0262.
+https://www.emerald.com/insight/content/doi/10.1108/JKM-03-2024-0262/full/html
 
 \subsection{Industry Sources}\label{industry-sources}
 

@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 28 answered, 13 unanswered/partial
+**Status:** 32 answered, 14 unanswered/partial
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -93,6 +93,15 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What evidence links healthcare workforce turnover and institutional knowledge loss to care continuity? | Paper1 | [#380](https://github.com/stharrold/yuimedi-paper-20250901/issues/380) | [`Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md`](Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md) | [A58]-[A61] |
 | What evidence demonstrates that analytics challenges have measurable implications for healthcare delivery? | Paper1 | [#381](https://github.com/stharrold/yuimedi-paper-20250901/issues/381) | [`Research_What-evidence-demonstrates-that-analytics-challenges-have-measurable-implications-for-healthcare-delivery.md`](Research_What-evidence-demonstrates-that-analytics-challenges-have-measurable-implications-for-healthcare-delivery.md) | [A67]-[A68] |
 
+### Data Quality and Schema Documentation
+
+| Question | Scope | Issue | Research File | Merged |
+|----------|-------|-------|---------------|--------|
+| What is the relationship between healthcare analytics maturity levels and data quality metrics? | Paper1 | — | [`Research_what-is-the-relationship-between-healthcare-analytics-maturity-levels-and-data-quality-metrics.md`](Research_what-is-the-relationship-between-healthcare-analytics-maturity-levels-and-data-quality-metrics.md) | - |
+| What is the prevalence of data quality issues (incorrect values, missing data, duplicate records) in healthcare databases, and how does this vary by organizational analytics maturity? | Paper1 | — | [`Research_what-is-the-prevalence-of-data-quality-issues-in-healthcare-databases-and-how-does-this-vary-by-organizational-analytics-maturity.md`](Research_what-is-the-prevalence-of-data-quality-issues-in-healthcare-databases-and-how-does-this-vary-by-organizational-analytics-maturity.md) | - |
+| What evidence exists that domain expertise (clinical knowledge) is required to identify and correct data quality issues in healthcare databases that automated tools cannot detect? | Paper1 | — | [`Research_what-evidence-exists-that-domain-expertise-is-required-to-identify-data-quality-issues-in-healthcare-databases.md`](Research_what-evidence-exists-that-domain-expertise-is-required-to-identify-data-quality-issues-in-healthcare-databases.md) | - |
+| How common are undocumented or poorly documented database schemas (missing metadata, business rules, PK/FK relationships) in healthcare organizations? | Paper1,Paper2 | — | [`Research_how-common-are-undocumented-database-schemas-in-healthcare-organizations.md`](Research_how-common-are-undocumented-database-schemas-in-healthcare-organizations.md) | - |
+
 ### Testing & Validation
 
 | Question | Scope | Issue | Research File | Merged |
@@ -131,6 +140,12 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 | Question | Scope | Issue | Status | Notes |
 |----------|-------|-------|--------|-------|
 | What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | **UPDATED 2025-12-20:** 20 papers found. Gap CONFIRMED: No validated healthcare-specific citizen developer productivity instrument. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
+
+### Analytics Maturity and Outcomes
+
+| Question | Scope | Issue | Status | Notes |
+|----------|-------|-------|--------|-------|
+| What quantitative evidence links HIMSS AMAM stages to patient outcomes or organizational performance? | Paper1 | — | Partial | **2025-12-22:** 10 papers found but ALL use EMRAM (EHR adoption), not AMAM (analytics maturity). AMAM released Oct 2024, no AMAM-specific outcome studies yet. Gap CONFIRMED for AMAM. See [`Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md`](Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md) |
 
 ### Clinical Safety and Security
 
@@ -184,3 +199,8 @@ All `Research_*.md` files in this directory:
 | `Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md` | Analytics maturity and patient outcomes | Paper1 |
 | `Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md` | Workforce turnover and care continuity | Paper1 |
 | `Research_What-evidence-demonstrates-that-analytics-challenges-have-measurable-implications-for-healthcare-delivery.md` | Analytics challenges and healthcare delivery | Paper1 |
+| `Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md` | HIMSS AMAM/EMRAM stages and patient outcomes | Paper1 |
+| `Research_what-is-the-relationship-between-healthcare-analytics-maturity-levels-and-data-quality-metrics.md` | Analytics maturity and data quality relationship | Paper1 |
+| `Research_what-is-the-prevalence-of-data-quality-issues-in-healthcare-databases-and-how-does-this-vary-by-organizational-analytics-maturity.md` | Data quality issues prevalence in healthcare | Paper1 |
+| `Research_what-evidence-exists-that-domain-expertise-is-required-to-identify-data-quality-issues-in-healthcare-databases.md` | Domain expertise for healthcare data quality | Paper1 |
+| `Research_how-common-are-undocumented-database-schemas-in-healthcare-organizations.md` | Undocumented schemas prevalence in healthcare | Paper1,Paper2 |
