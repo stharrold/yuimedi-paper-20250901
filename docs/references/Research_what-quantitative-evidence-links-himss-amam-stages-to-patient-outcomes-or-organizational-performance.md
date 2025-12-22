@@ -3,9 +3,9 @@
 **Status:** Partial
 **Scope:** Paper1
 **GitHub Issue:** None
-**Source:** Google Scholar Labs
-**Date:** 2025-12-22
-**Results Found:** 10 relevant papers
+**Source:** Google Scholar Labs + Web Search (Industry)
+**Date:** 2025-12-22 (Academic), 2025-12-22 (Industry sources added)
+**Results Found:** 10 relevant papers + 4 industry sources
 **Sorted By:** Relevance
 **Search Duration:** ~2 minutes
 **Search Queries Used:**
@@ -423,3 +423,83 @@ Book chapter discussing the importance of studies linking Digital Health Maturit
     publisher={Elsevier}
 }
 ```
+
+---
+
+## Industry Sources (Web Search, 2025-12-22)
+
+### I1. Analytics Maturity Assessment Model (AMAM) - HIMSS Official
+
+**Source:** HIMSS
+**Date:** 2024-2025
+**Link:** https://www.himss.org/maturity-models/amam/
+
+**Key Information:**
+- AMAM24 officially launched **October 2, 2024** at HIMSS APAC Health Conference & Exhibition
+- Earlier version now referred to as "AMAM Classic"; modernized version is "AMAM24"
+- Framework helps health systems evaluate and improve analytics strategy, data governance, and AI technology use
+
+---
+
+### I2. Newly Improved AMAM Centered on Patient Outcomes
+
+**Source:** HIMSS Global Knowledge Center
+**Date:** 2024
+**Link:** https://gkc.himss.org/news/newly-improved-analytics-maturity-assessment-model-amam-centered-patient-outcomes-improve-ai
+
+**Key Information:**
+- **Outcomes-focused approach:** Shifts goal from simply having data to understanding and using it for measurable value
+- Focus areas: clinical care, operational efficiency, measurable value delivery
+- Directly addresses outcomes, governance, privacy measures, analytics lifecycle, and culture of responsible analytics
+
+---
+
+### I3. New HIMSS AMAM Supports Smart AI Deployments
+
+**Source:** Healthcare IT News
+**Date:** 2024
+**Link:** https://www.healthcareitnews.com/news/new-himss-analytics-maturity-assessment-model-supports-smart-ai-deployments
+
+**Key Information:**
+- **8-stage maturity model (Stages 0-7)** like other HIMSS maturity models
+- Early stages (0-3): Basic data governance, quality measures, data repositories, dashboards, visualizations
+- Advanced stages (6-7): Predictive analytics for care decisions, AI/ML integration, real-time clinical decision support
+- Stage 7 includes: Population health outcome monitoring, health equity programs
+
+**First Stage 7 Achievement:**
+- **King Abdulaziz Medical City-Riyadh** became first facility globally to achieve Stage 7 on AMAM24 (announced June 3, 2025)
+
+---
+
+### I4. AMAM at HIMSS24 APAC - Enhanced Model Details
+
+**Source:** Healthcare IT News
+**Date:** 2024
+**Link:** https://www.healthcareitnews.com/news/asia/himss24-apac-adoption-model-analytics-maturity-gets-facelift
+
+**Key Information:**
+- Enhanced AMAM examines **outcomes and impacts specific to workforce**: usability of analytics tools, rates of adoption
+- Helps health systems maximize analytics capabilities with **measurable ROI and technical roadmap**
+- Boosts team analytics literacy, ensures patient data transparency
+- Strengthens data governance for consistent information management across sites
+- At advanced stages, supports scalable, data-driven decisions and population health improvements
+
+**Expert Quote (Anne Snowdon, HIMSS Chief Scientific Research Officer):**
+> "Analytics is the only possibility an organization has in understanding their outcomes. Analytics, at both the patient care level and at the organizational level, is the range of tools that help transform organizations' data from simple data points into insights and knowledge to inform decisions."
+
+---
+
+## Industry Sources Summary
+
+Industry sources confirm:
+
+| Finding | Source |
+|---------|--------|
+| AMAM24 launched October 2, 2024 | HIMSS Official |
+| 8-stage model (0-7) | Healthcare IT News |
+| Outcomes-focused (clinical care, operational efficiency) | HIMSS GKC |
+| First Stage 7: King Abdulaziz Medical City-Riyadh (June 2025) | Healthcare IT News |
+| Workforce metrics: tool usability, adoption rates | Healthcare IT News |
+| AI/ML integration at Stages 6-7 | Healthcare IT News |
+
+**Gap Status Update:** Industry sources confirm AMAM24 is outcomes-focused with measurable ROI emphasis, but **no peer-reviewed outcome studies yet exist** linking AMAM stages to patient outcomes or organizational performance. The first Stage 7 achievement (June 2025) is too recent for outcome data. Academic evidence remains limited to EMRAM (EHR adoption), not AMAM (analytics maturity).

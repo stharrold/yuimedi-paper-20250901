@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 28 answered, 14 unanswered/partial
+**Status:** 28 answered, 18 unanswered/partial
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -137,6 +137,15 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 | Question | Scope | Issue | Status | Notes |
 |----------|-------|-------|--------|-------|
 | What quantitative evidence links HIMSS AMAM stages to patient outcomes or organizational performance? | Paper1 | — | Partial | **2025-12-22:** 10 papers found but ALL use EMRAM (EHR adoption), not AMAM (analytics maturity). AMAM released Oct 2024, no AMAM-specific outcome studies yet. Gap CONFIRMED for AMAM. See [`Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md`](Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md) |
+| What is the relationship between healthcare analytics maturity levels and data quality metrics? | Paper1 | — | Unanswered | |
+
+### Data Quality and Schema Documentation
+
+| Question | Scope | Issue | Status | Notes |
+|----------|-------|-------|--------|-------|
+| What is the prevalence of data quality issues (incorrect values, missing data, duplicate records) in healthcare databases, and how does this vary by organizational analytics maturity? | Paper1 | — | Unanswered | |
+| What evidence exists that domain expertise (clinical knowledge) is required to identify and correct data quality issues in healthcare databases that automated tools cannot detect? | Paper1 | — | Unanswered | |
+| How common are undocumented or poorly documented database schemas (missing metadata, business rules, PK/FK relationships) in healthcare organizations? | Paper1,Paper2 | — | Unanswered | |
 
 ### Clinical Safety and Security
 
