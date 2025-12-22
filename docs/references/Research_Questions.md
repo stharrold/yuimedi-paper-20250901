@@ -58,7 +58,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 
 | Question | Scope | Issue | Research File | Merged |
 |----------|-------|-------|---------------|--------|
-| What is the knowledge portal paradigm and how has it been implemented? | Paper1,Paper2 | - | [`Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md`](Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md) | - |
+| What is the knowledge portal paradigm and how has it been implemented? | Paper1,Paper2 | - | [`Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md`](Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md) | [A25] |
 | What core components define an effective institutional knowledge portal? | Paper2 | - | [`Research_What-core-components-define-an-effective-institutional-knowledge-portal.md`](Research_What-core-components-define-an-effective-institutional-knowledge-portal.md) | - |
 | What is the average tenure for IT staff at healthcare provider institutions? | Paper1 | - | [`Research_What-is-the-average-tenure-for-IT-staff-at-healthcare-provider-institutions.md`](Research_What-is-the-average-tenure-for-IT-staff-at-healthcare-provider-institutions.md) | [A10] |
 | What is the cost of turnover in terms of annual salary? | Paper1 | - | [`Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md`](Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md) | [A78] |
