@@ -191,15 +191,15 @@ Search terms were organized around the three-pillar framework:
 
 **Search Results:**
 
-Searches across all databases yielded 570 initial results after deduplication. Crossref searches for terms including "healthcare analytics maturity," "HIMSS AMAM," "NL2SQL clinical," "knowledge portal," and "low-code ROI" (2015-current) returned 285 results, of which 15 passed screening. PubMed searches combining workforce terms ("healthcare IT tenure," "IT training time," "turnover cost salary") with analytics terms ("institutional memory," "analytics adoption," "knowledge capture") (2015-current) yielded 142 results with 12 passing screening. arXiv searches in cs.CL and cs.DB categories for "text-to-SQL" combined with technical terms ("MIMICSQL," "EHRSQL," "schema discovery," "PK/FK discovery," "semantic matching," "vector embeddings") (2020-current) produced 71 results with 6 passing screening. Semantic Scholar searches for "NL2SQL healthcare," "NL2SQL productivity," "conversational AI clinical," and "SECI model analytics" (2015-current) returned 72 results with 8 passing screening. The final corpus includes 73 academic and 11 industry sources (84 total).
+Searches across all databases yielded 570 initial results after deduplication. Crossref searches for terms including "healthcare analytics maturity," "HIMSS AMAM," "NL2SQL clinical," "knowledge portal," and "low-code ROI" (2015-current) returned 285 results, of which 15 passed screening. PubMed searches combining workforce terms ("healthcare IT tenure," "IT training time," "turnover cost salary") with analytics terms ("institutional memory," "analytics adoption," "knowledge capture") (2015-current) yielded 142 results with 12 passing screening. arXiv searches in cs.CL and cs.DB categories for "text-to-SQL" combined with technical terms ("MIMICSQL," "EHRSQL," "schema discovery," "PK/FK discovery," "semantic matching," "vector embeddings") (2020-current) produced 71 results with 6 passing screening. Semantic Scholar searches for "NL2SQL healthcare," "NL2SQL productivity," "conversational AI clinical," and "SECI model analytics" (2015-current) returned 72 results with 8 passing screening. The final corpus includes 74 academic and 11 industry sources (85 total).
 
-Figure 2 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 84 sources.
+Figure 2 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 85 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 84 sources (73 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
+\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 85 sources (74 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
 ```
@@ -297,13 +297,13 @@ The three-pillar framework emerged through iterative analysis of the literature 
 
 The framework development followed these steps:
 
-1. **Theme Extraction**: Systematic coding of 84 sources identified recurring themes across technical, organizational, and workforce dimensions
+1. **Theme Extraction**: Systematic coding of 85 sources identified recurring themes across technical, organizational, and workforce dimensions
 2. **Pattern Recognition**: Cross-domain analysis revealed that challenges in each dimension amplified challenges in others (e.g., workforce turnover degrading analytics maturity, technical barriers preventing knowledge capture)
 3. **Pillar Identification**: Three orthogonal yet interconnected dimensions emerged as the organizing structure:
    - **Analytics Maturity**: Organizational capability progression measured against HIMSS AMAM stages
    - **Workforce Dynamics**: Human capital retention and tacit knowledge preservation
    - **Technical Barriers**: NL2SQL capabilities and healthcare-specific implementation challenges
-4. **Framework Validation**: Pillar structure tested against all 84 sources to confirm comprehensive coverage without significant gaps
+4. **Framework Validation**: Pillar structure tested against all 85 sources to confirm comprehensive coverage without significant gaps
 
 ## Theoretical Grounding
 
@@ -372,7 +372,7 @@ Code modernization principles directly inform these productivity gains. Foundati
 
 The Healthcare Information Management Systems Society (HIMSS) Analytics Maturity Assessment Model (AMAM) provides the industry standard for measuring analytics capabilities. Recent data reveals a concerning state of analytics maturity in healthcare organizations globally [I1]. The newly revised AMAM24 model, launched in October 2024, represents a significant evolution from the original framework.
 
-Snowdon [I2], Chief Scientific Research Officer at HIMSS, emphasizes that "analytics as a discipline has changed dramatically in the last five to 10 years," yet healthcare organizations struggle to keep pace [A14]. Research confirms healthcare's adoption of analytics often lags behind other sectors such as retail and banking, partly due to the complexity of implementing new technology in clinical environments. The newly revised AMAM model shifts focus from technical capabilities to outcomes, measuring the real impact of analytics on patient care, system-wide operations, and governance.
+Snowdon [I2], Chief Scientific Research Officer at HIMSS, emphasizes that "analytics as a discipline has changed dramatically in the last five to 10 years," yet healthcare organizations struggle to keep pace [A14]. Research confirms healthcare's adoption of analytics often lags behind other sectors such as retail and banking, partly due to the complexity of implementing new technology in clinical environments [A14], [A74]. The newly revised AMAM model shifts focus from technical capabilities to outcomes, measuring the real impact of analytics on patient care, system-wide operations, and governance.
 
 Quantitative evidence links analytics maturity directly to patient outcomes. Cross-sectional studies using the HIMSS Electronic Medical Record Adoption Model (EMRAM) demonstrate that hospitals with advanced digital maturity (levels 6-7) have 3.25 times higher odds of achieving better Leapfrog Group Hospital Safety Grades compared to hospitals at EMRAM level 0, with significantly reduced infection rates and fewer adverse events [A54]. Similarly, high-maturity hospitals have 1.8 to 2.24 times higher odds of achieving higher patient experience ratings [A55]. Big data analytics capabilities, combined with complementary organizational resources and analytical personnel skills, improve readmission rates and patient satisfaction [A56], while poor-quality data (a component of lower maturity) results in diagnostic errors, ineffective treatments, and compromised patient care [A57].
 
@@ -865,6 +865,8 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A72] Lee, G., Chay, W., & Choi, E. (2025). SCARE: A benchmark for SQL correction and question answerability classification for reliable EHR question answering. *arXiv preprint*, arXiv:2511.17559. https://arxiv.org/abs/2511.17559
 
 [A73] Saha, B. K., Gordon, P., & Gillbrand, T. (2023). NLINQ: A natural language interface for querying network performance. *Applied Intelligence*, 53, 1-15. DOI: 10.1007/s10489-023-04567-2. https://link.springer.com/article/10.1007/s10489-023-04567-2
+
+[A74] Wang, Y., & Hajli, N. (2017). Exploring the path to big data analytics success in healthcare. *Journal of Business Research*, 70, 287-299. DOI: 10.1016/j.jbusres.2016.08.002. https://www.sciencedirect.com/science/article/abs/pii/S0148296316304891
 
 ## Industry Sources
 
