@@ -352,7 +352,7 @@ Wang et al. [A5] demonstrate that healthcare NL2SQL methods must move beyond the
 
 ### Promising Approaches and Limitations
 
-Recent advances show promise in addressing these challenges. The TREQS/MIMICSQL dataset development [A5] and EHRSQL benchmark [A3] provide question-SQL pairs specifically for healthcare, featuring questions in natural, free-form language. This approach acknowledges that healthcare queries often require multiple logical steps: population selection, temporal relationships, aggregation statistics, and mathematical operations.
+Recent advances show promise in addressing these challenges. The TREQS/MIMICSQL dataset development [A5] and EHRSQL benchmark [A3] provide question-SQL pairs specifically for healthcare, featuring questions in natural, free-form language. Multi-modal benchmarks such as SM3-Text-to-Query [A77] extend evaluation beyond SQL to support multiple query languages across diverse medical data representations. This approach acknowledges that healthcare queries often require multiple logical steps: population selection, temporal relationships, aggregation statistics, and mathematical operations.
 
 Healthcare-specific benchmarks continue to evolve alongside model capabilities. The 2024 MedAgentBench evaluation found Claude 3.5 Sonnet achieved 69.67% success rate on medical agent tasks [A8], [A9]; subsequent 2025 benchmarks show GPT-5 significantly exceeding these results, with the SCARE benchmark [A72] providing 4,200 EHR question-SQL pairs across MIMIC-III, MIMIC-IV, and eICU databases specifically designed to evaluate post-hoc safety mechanisms for clinical text-to-SQL deployment. Graph-empowered approaches combining LLMs with structured knowledge representations achieve 94.2% execution accuracy on MIMICSQL [A75], demonstrating that domain-specific architectural innovations can substantially outperform general-purpose models. While these advances narrow the gap between benchmark performance and clinical readiness, domain-specific challenges in medical terminology and complex clinical reasoning remain active research areas.
 
@@ -871,6 +871,8 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A75] Chen, Q., Peng, J., Song, B., Zhou, Y., & Ji, R. (2025). Graph-empowered text-to-SQL generation on electronic medical records. *Pattern Recognition*, 158, 111020. DOI: 10.1016/j.patcog.2024.111020. https://www.sciencedirect.com/science/article/pii/S0031320324008197
 
 [A76] Park, J., Fang, Y., Ta, C., Zhang, G., Idnay, B., Chen, F., et al. (2024). Criteria2Query 3.0: Leveraging generative large language models for clinical trial eligibility query generation. *Journal of Biomedical Informatics*, 154, 104649. DOI: 10.1016/j.jbi.2024.104649. https://www.sciencedirect.com/science/article/pii/S1532046424000650
+
+[A77] Sivasubramaniam, S., Osei-Akoto, C. E., Nguyen, T., & Srinivasan, B. V. (2024). SM3-Text-to-Query: Synthetic multi-model medical text-to-query benchmark. *Advances in Neural Information Processing Systems*, 37. https://proceedings.neurips.cc/paper_files/paper/2024/hash/sm3-text-to-query
 
 ## Industry Sources
 
