@@ -5,17 +5,7 @@ correspondence: "samuel.harrold@yuimedi.com"
 date: "December 2025"
 version: "1.0.0"
 abstract: |
-  This research examines the evidence for implementing conversational AI platforms
-  in healthcare analytics, addressing three critical challenges: low healthcare analytics maturity,
-  workforce turnover with institutional memory loss, and technical barriers in natural language
-  to SQL generation. Through review of peer-reviewed benchmarking studies and industry implementations,
-  we demonstrate that natural language interfaces can democratize analytics access while preserving
-  institutional knowledge. Healthcare-specific text-to-SQL benchmarks show significant progress,
-  though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings.
-  Healthcare IT staff turnover of ~34% (as of 2004), the highest among IT sectors at that time, creates institutional memory loss, while low-code implementations demonstrate significant efficiency gains and cost savings. The convergence of technical advances in NL2SQL generation, analytics
-  maturity challenges in healthcare organizations, and workforce turnover creates conditions
-  warranting organizational assessment of conversational AI platforms with appropriate governance.
-  This paper contributes a three-pillar analytical framework (analytics maturity, workforce turnover, technical barriers) and positions healthcare conversational AI as a knowledge portal architecture for institutional memory preservation.
+  Healthcare organizations face three interconnected challenges that form a compounding cycle: low analytics maturity (only 39 organizations globally have achieved HIMSS AMAM Stage 6-7), high workforce turnover (34% annually for healthcare IT staff as of 2004), and technical barriers in natural language to SQL generation. This research demonstrates that conversational AI platforms can break this cycle by serving as knowledge portals: systems that capture validated natural language question and SQL pairs, preserving institutional expertise independent of individual staff retention. Through the validated query cycle, domain experts confirm generated SQL queries, creating durable knowledge artifacts that persist in organizational memory. When experienced analysts leave, their analytical expertise remains embedded in validated query pairs rather than being lost. Healthcare-specific text-to-SQL benchmarks show significant progress, though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings, requiring human validation. This paper contributes a three-pillar analytical framework showing how these challenges compound each other, and introduces the knowledge portal architecture with its six-step validated query cycle as the mechanism for institutional memory preservation.
 keywords: [healthcare analytics, natural language processing, SQL generation, institutional memory, conversational AI, healthcare informatics, workforce turnover, analytics maturity]
 license: "CC BY 4.0"
 license-url: "https://creativecommons.org/licenses/by/4.0/"
@@ -132,18 +122,45 @@ This paper makes three contributions to the healthcare informatics literature:
 
 1. **Three-Pillar Analytical Framework**: We synthesize evidence from three previously disconnected research domains (healthcare analytics maturity, workforce turnover, and natural language processing) into a unified analytical framework that reveals how these challenges interconnect and compound each other: low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery from either.
 
-2. **Healthcare Knowledge Portal Architecture**: Drawing on established knowledge management literature [@benbya2004; @richesson2007], we position conversational AI platforms as healthcare knowledge portals, which are systems that provide mechanisms for knowledge acquisition, storage, sharing, and utilization. This framing addresses the institutional memory crisis in healthcare by embedding organizational expertise within AI systems rather than relying on individual staff retention. Figure 1 illustrates this architecture, showing how clinical users interact with a conversational AI interface that draws on organizational knowledge infrastructure to generate contextual insights.
+2. **Healthcare Knowledge Portal Architecture**: Drawing on established knowledge management literature [@benbya2004; @richesson2007], we position conversational AI platforms as healthcare knowledge portals that preserve institutional expertise through a validated query cycle. This architecture addresses institutional memory loss through six steps: (1) domain experts ask natural language questions, (2) the system generates candidate SQL, (3) experts validate and correct the SQL, (4) validated NL+SQL pairs are stored in organizational memory, (5) future queries retrieve validated pairs, and (6) knowledge persists independent of staff tenure. Figure 1 illustrates this architecture, and Figure 2 details the validated query cycle.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth,keepaspectratio]{figures/architecture.mmd.png}
-\caption{Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation against a healthcare data warehouse, ultimately delivering contextual insights with a feedback loop to the user. Dashed lines show knowledge injection paths where organizational memory and healthcare ontologies provide context and semantics to the NLP engine.}
+\caption{Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation against a healthcare data warehouse, ultimately delivering contextual insights. The critical validation step (dotted line) shows domain experts confirming or correcting generated SQL before results are trusted. Validated NL+SQL pairs flow to organizational memory (dashed line), where they persist independent of staff tenure and inform future query generation.}
 \label{fig:architecture}
 \end{figure}
 ```
 
-3. **Convergence Thesis**: We demonstrate that the simultaneous occurrence of technical advances in NL2SQL, low analytics maturity, and high workforce turnover creates conditions warranting organizational assessment. This convergence positions conversational AI as a potential mechanism for institutional knowledge preservation, though implementation decisions require organization-specific evaluation.
+3. **Convergence Thesis**: The simultaneous occurrence of technical advances in NL2SQL, low analytics maturity, and high workforce turnover enables conversational AI to break the compounding cycle by capturing validated analytical knowledge at the point of expert interaction. Unlike traditional documentation that becomes stale, validated query pairs represent executable, tested knowledge that new staff can immediately use. This positions conversational AI not merely as a query interface but as an institutional memory preservation mechanism.
+
+### The Validated Query Cycle
+
+The knowledge portal architecture preserves institutional expertise through a six-step validated query cycle (Figure 2):
+
+1. **Query**: A domain expert (clinician, analyst, or administrator) asks a natural language question about organizational data, such as "What was our 30-day readmission rate for heart failure patients last quarter?"
+
+2. **Generation**: The conversational AI system generates candidate SQL code from the natural language input, leveraging healthcare ontologies and organizational schema knowledge to produce syntactically correct queries.
+
+3. **Validation**: The domain expert reviews the generated SQL and its results, confirming correctness or providing corrections. This human-in-the-loop step is essential because current NL2SQL models are "not yet sufficiently accurate for unsupervised use" in clinical settings [@wu2024].
+
+4. **Storage**: Once validated, the NL+SQL pair is stored in organizational memory as a durable knowledge artifact. This pair represents tested, executable knowledge: a verified mapping from a business question to the correct data retrieval logic.
+
+5. **Retrieval**: When future users ask similar questions, the system retrieves relevant validated pairs, either returning exact matches or using them to inform new query generation. This reduces dependence on individual expertise.
+
+6. **Persistence**: When the original expert leaves the organization, their analytical knowledge remains embedded in validated query pairs. New staff inherit executable knowledge rather than starting from scratch or relying on incomplete documentation.
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth,keepaspectratio]{figures/knowledge-cycle.mmd.png}
+\caption{The Validated Query Cycle. Domain experts ask natural language questions (1), the system generates candidate SQL (2), experts validate results (3), validated pairs are stored (4), future queries retrieve validated knowledge (5), and expertise persists through staff turnover (6). This cycle breaks the compounding effect where turnover erases institutional memory.}
+\label{fig:knowledge-cycle}
+\end{figure}
+```
+
+This cycle breaks the compounding effect identified in the three-pillar framework: turnover no longer erases analytical knowledge because expertise is embedded in validated query pairs rather than individual memory. Low-maturity organizations can accelerate advancement by accumulating validated queries, and technical barriers are reduced because new staff access proven query patterns rather than recreating analytical logic.
 
 ## Document Structure
 
@@ -570,6 +587,16 @@ The evidence review identifies several priority areas for future investigation:
 1. **Organizational Transformation Studies**: Research on how conversational AI platforms reshape healthcare organizational capabilities
 2. **Clinical Outcome Impact Assessment**: Studies linking improved analytics access to patient care outcomes
 3. **Cross-Institution Knowledge Portals**: Investigation of federated approaches enabling knowledge sharing across healthcare organizations while maintaining privacy and security requirements
+
+## The Validated Query Cycle as Knowledge Preservation
+
+The validated query cycle introduced in this paper differs fundamentally from traditional knowledge management approaches in healthcare. Traditional approaches rely on documentation: analysts write procedures, create data dictionaries, and maintain query libraries. However, documentation suffers from three critical weaknesses: it becomes stale as systems evolve, it captures procedural knowledge but not contextual judgment, and it requires active maintenance that often lapses after staff transitions.
+
+Validated query pairs address each weakness. First, validated pairs are executable: they can be tested against current data to verify continued correctness, unlike static documentation. Second, validated pairs capture the complete mapping from business question to data retrieval logic, embedding the contextual judgment that documentation typically omits (why this join, why this filter, why this aggregation). Third, validation happens at the point of use rather than as a separate maintenance task: every confirmed query becomes a knowledge artifact without additional documentation effort.
+
+This mechanism also differs from traditional query logging or usage analytics. Query logs capture what was asked, but not whether the answer was correct. Validated query pairs capture expert confirmation that the SQL correctly answers the business question. This distinction is critical for institutional memory: organizations need to know not just what queries were run, but which queries produced trusted, verified answers.
+
+Governance requirements for the validated query cycle include: defining who can validate queries (domain expertise requirements), establishing validation workflows (review processes for high-stakes queries), managing query versioning (as schemas evolve), and implementing retrieval policies (when to return exact matches versus inform new generation). Organizations implementing conversational AI platforms should design these governance structures before deployment rather than retrofitting them after knowledge accumulation begins.
 
 ## Implications for Healthcare Organizations
 
