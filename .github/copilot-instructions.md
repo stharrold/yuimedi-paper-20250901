@@ -25,7 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 85 verified citations (74 academic, 11 industry) addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 92 verified citations (81 academic, 11 industry) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
@@ -216,7 +216,7 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 - **Excluded from this rule:** `standards/` directory (external journal content)
 
 ### Citations
-- Academic: `[A1]`, `[A2]`, etc. (74 sources)
+- Academic: `[A1]`, `[A2]`, etc. (81 sources)
 - Industry: `[I1]`, `[I2]`, etc. (11 sources)
 - Key dated citation: [A10] (2004 turnover data) - always qualify with temporal context
 
