@@ -22,6 +22,76 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+# Unicode to ASCII transliteration map for citation keys
+UNICODE_TO_ASCII = {
+    "á": "a",
+    "à": "a",
+    "â": "a",
+    "ä": "a",
+    "ã": "a",
+    "å": "a",
+    "ą": "a",
+    "ć": "c",
+    "č": "c",
+    "ç": "c",
+    "đ": "d",
+    "ď": "d",
+    "é": "e",
+    "è": "e",
+    "ê": "e",
+    "ë": "e",
+    "ě": "e",
+    "ę": "e",
+    "í": "i",
+    "ì": "i",
+    "î": "i",
+    "ï": "i",
+    "ł": "l",
+    "ń": "n",
+    "ň": "n",
+    "ñ": "n",
+    "ó": "o",
+    "ò": "o",
+    "ô": "o",
+    "ö": "o",
+    "õ": "o",
+    "ø": "o",
+    "ř": "r",
+    "ś": "s",
+    "š": "s",
+    "ş": "s",
+    "ť": "t",
+    "ú": "u",
+    "ù": "u",
+    "û": "u",
+    "ü": "u",
+    "ů": "u",
+    "ý": "y",
+    "ÿ": "y",
+    "ź": "z",
+    "ž": "z",
+    "ż": "z",
+    "ß": "ss",
+    "æ": "ae",
+    "œ": "oe",
+}
+
+
+def transliterate_to_ascii(text: str) -> str:
+    """Transliterate Unicode characters to ASCII for citation keys.
+
+    This ensures citation keys are compatible with all tools and avoid
+    encoding issues in BibTeX processing.
+    """
+    result = []
+    for char in text:
+        if char in UNICODE_TO_ASCII:
+            result.append(UNICODE_TO_ASCII[char])
+        elif ord(char) < 128:  # ASCII range
+            result.append(char)
+        # Skip non-ASCII characters not in map
+    return "".join(result)
+
 
 @dataclass
 class Reference:
@@ -54,7 +124,8 @@ def extract_first_author_lastname(authors: str) -> str:
         "Snowdon, A." -> "snowdon"
     """
     # Handle organizational authors (no comma before first word)
-    if "," not in authors.split()[0] if authors.split() else True:
+    words = authors.split()
+    if not words or "," not in words[0]:
         # Likely organizational author - use first significant word
         org_name = authors.split(".")[0].split(",")[0].strip()
         # Remove common prefixes/suffixes
@@ -69,7 +140,7 @@ def extract_first_author_lastname(authors: str) -> str:
 
     # Standard author format: "LastName, F., ..."
     first_author = authors.split(",")[0].strip()
-    return first_author.lower().replace(" ", "").replace("-", "")
+    return transliterate_to_ascii(first_author.lower().replace(" ", "").replace("-", ""))
 
 
 def parse_reference_line(line: str) -> Reference | None:
@@ -122,6 +193,7 @@ def parse_reference_line(line: str) -> Reference | None:
     volume = None
     issue = None
     pages = None
+    # Default to 'article'; may be overridden below if a more specific type is detected
     entry_type = "article"
     booktitle = None
     publisher = None
@@ -214,21 +286,135 @@ def generate_citation_key(ref: Reference, existing_keys: dict[str, int]) -> str:
 
     if count == 0:
         return base_key
-    # Use a, b, c, ... for duplicates
-    suffix = chr(ord("a") + count - 1) if count < 26 else f"{count}"
+    # Use a, b, c, ... z for duplicates 1-26, then numeric suffixes
+    suffix = chr(ord("a") + count - 1) if count <= 26 else f"{count}"
     return f"{base_key}{suffix}"
 
 
+# Unicode to LaTeX encoding map for proper rendering in BibTeX
+UNICODE_TO_LATEX = {
+    "á": r"\'a",
+    "à": r"\`a",
+    "â": r"\^a",
+    "ä": r"\"a",
+    "ã": r"\~a",
+    "å": r"\aa",
+    "ą": r"\k{a}",
+    "Á": r"\'A",
+    "À": r"\`A",
+    "Â": r"\^A",
+    "Ä": r"\"A",
+    "Ã": r"\~A",
+    "Å": r"\AA",
+    "Ą": r"\k{A}",
+    "ć": r"\'c",
+    "č": r"\v{c}",
+    "ç": r"\c{c}",
+    "Ć": r"\'C",
+    "Č": r"\v{C}",
+    "Ç": r"\c{C}",
+    "đ": r"\dj",
+    "ď": r"\v{d}",
+    "Đ": r"\DJ",
+    "Ď": r"\v{D}",
+    "é": r"\'e",
+    "è": r"\`e",
+    "ê": r"\^e",
+    "ë": r"\"e",
+    "ě": r"\v{e}",
+    "ę": r"\k{e}",
+    "É": r"\'E",
+    "È": r"\`E",
+    "Ê": r"\^E",
+    "Ë": r"\"E",
+    "Ě": r"\v{E}",
+    "Ę": r"\k{E}",
+    "í": r"\'i",
+    "ì": r"\`i",
+    "î": r"\^i",
+    "ï": r"\"i",
+    "Í": r"\'I",
+    "Ì": r"\`I",
+    "Î": r"\^I",
+    "Ï": r"\"I",
+    "ł": r"\l",
+    "Ł": r"\L",
+    "ń": r"\'n",
+    "ň": r"\v{n}",
+    "ñ": r"\~n",
+    "Ń": r"\'N",
+    "Ň": r"\v{N}",
+    "Ñ": r"\~N",
+    "ó": r"\'o",
+    "ò": r"\`o",
+    "ô": r"\^o",
+    "ö": r"\"o",
+    "õ": r"\~o",
+    "ø": r"\o",
+    "Ó": r"\'O",
+    "Ò": r"\`O",
+    "Ô": r"\^O",
+    "Ö": r"\"O",
+    "Õ": r"\~O",
+    "Ø": r"\O",
+    "ř": r"\v{r}",
+    "Ř": r"\v{R}",
+    "ś": r"\'s",
+    "š": r"\v{s}",
+    "ş": r"\c{s}",
+    "Ś": r"\'S",
+    "Š": r"\v{S}",
+    "Ş": r"\c{S}",
+    "ť": r"\v{t}",
+    "Ť": r"\v{T}",
+    "ú": r"\'u",
+    "ù": r"\`u",
+    "û": r"\^u",
+    "ü": r"\"u",
+    "ů": r"\r{u}",
+    "Ú": r"\'U",
+    "Ù": r"\`U",
+    "Û": r"\^U",
+    "Ü": r"\"U",
+    "Ů": r"\r{U}",
+    "ý": r"\'y",
+    "ÿ": r"\"y",
+    "Ý": r"\'Y",
+    "Ÿ": r"\"Y",
+    "ź": r"\'z",
+    "ž": r"\v{z}",
+    "ż": r"\.z",
+    "Ź": r"\'Z",
+    "Ž": r"\v{Z}",
+    "Ż": r"\.Z",
+    "ß": r"\ss",
+    "æ": r"\ae",
+    "œ": r"\oe",
+    "Æ": r"\AE",
+    "Œ": r"\OE",
+}
+
+
 def escape_bibtex(text: str) -> str:
-    """Escape special characters for BibTeX."""
+    """Escape special characters for BibTeX, including Unicode to LaTeX."""
     if not text:
         return ""
-    # Escape special chars
+    # First, escape special LaTeX chars (before Unicode conversion)
     text = text.replace("&", r"\&")
     text = text.replace("%", r"\%")
     text = text.replace("_", r"\_")
     text = text.replace("#", r"\#")
     text = text.replace("$", r"\$")
+
+    # Convert Unicode characters to LaTeX equivalents
+    result = []
+    for char in text:
+        if char in UNICODE_TO_LATEX:
+            result.append(UNICODE_TO_LATEX[char])
+        else:
+            result.append(char)
+    text = "".join(result)
+
     # Protect uppercase letters in titles
     # (BibTeX lowercases titles by default in some styles)
     # Only protect isolated uppercase words

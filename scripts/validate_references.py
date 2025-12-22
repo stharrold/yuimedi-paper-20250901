@@ -265,9 +265,8 @@ def extract_citations(paper_content: str, use_citeproc: bool = False) -> list[Ci
         if use_citeproc:
             # New format: [@key] or [@key1; @key2]
             for match in CITEPROC_CITATION_PATTERN.finditer(line):
-                keys_text = match.group(1)
-                # Split on ; to get individual keys
-                keys = [k.strip().lstrip("@") for k in keys_text.split(";")]
+                # Extract all citation keys from the match (each prefixed with @)
+                keys = re.findall(r"@([\w]+)", match.group(0))
 
                 # Get context
                 start = max(0, match.start() - 50)

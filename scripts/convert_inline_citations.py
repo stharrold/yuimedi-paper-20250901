@@ -79,7 +79,8 @@ def convert_citation(match: re.Match, mapping: dict[str, str]) -> str:
             new_keys.append(part)
 
     if len(new_keys) == 1:
-        return f"[@{new_keys[0].lstrip('@')}]"
+        # new_keys already contains @ prefix, so just format it
+        return f"[{new_keys[0]}]"
     return "[" + "; ".join(new_keys) + "]"
 
 
