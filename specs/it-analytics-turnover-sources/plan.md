@@ -194,7 +194,7 @@ Expand Problem Statement with IT turnover details.
 > Healthcare workforce turnover rates of 15-36% annually [A1, A2] create devastating institutional memory loss.
 
 **Revised:**
-> Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 34% annually (calculated as 1/2.9 years), with average tenure of only 2.9 years—the lowest among IT sectors studied [A11].
+> Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 34% annually (calculated as 1/2.9 years), with average tenure of only 2.9 years, the lowest among IT sectors studied [A11].
 
 **Acceptance Criteria:**
 - [ ] IT-specific data with citation
@@ -214,7 +214,7 @@ Expand Problem Statement with IT turnover details.
 Add new paragraph on IT/technical staff turnover to Literature Review section.
 
 **New Paragraph:**
-> Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years, implying annual turnover of 34% (1/2.9 years), the highest rate among all IT organization types studied. Das et al. [A12] documented hospital IT personnel tenure of 4-6 years, still considerably shorter than the 9.68-year average for IT managerial positions overall.
+> Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions (where IT serves as a support function rather than core business) have average tenure of just 2.9 years, implying annual turnover of 34% (1/2.9 years), the highest rate among all IT organization types studied. Das et al. [A12] documented hospital IT personnel tenure of 4-6 years, still considerably shorter than the 9.68-year average for IT managerial positions overall.
 
 **Acceptance Criteria:**
 - [ ] Both [A11] and [A12] cited

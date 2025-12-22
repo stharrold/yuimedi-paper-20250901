@@ -83,5 +83,4 @@ podman-compose run --rm dev bash -c "apt-get install -y -qq librsvg2-bin && rsvg
 
 ## Git Tracking
 
-- **Tracked:** `.mmd`, `.dot`, `.jpg`, `.svg`, `.pdf` (sources and final outputs)
-- **Ignored:** `.png` intermediates (per root `.gitignore`)
+- **Tracked:** `.mmd`, `.dot`, `.png`, `.jpg`, `.svg`, `.pdf` (sources and outputs)

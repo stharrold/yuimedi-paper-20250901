@@ -352,8 +352,8 @@ All sections are required. Do not skip or abbreviate any section.
 
 - Google Scholar Labs typically completes searches in 1-2 minutes
 - Results typically include up to 10 relevant papers with detailed summaries
-- If the query type is not supported, Scholar Labs will indicate this—proceed with available results or suggest query reformulation
-- **URLs can be extracted directly from the page** using `read_page`—click-through is usually not necessary
+- If the query type is not supported, Scholar Labs will indicate this; proceed with available results or suggest query reformulation
+- **URLs can be extracted directly from the page** using `read_page`, so click-through is usually not necessary
 - The "More results" button may appear even when errors occur; rely on the checkmark status indicator
 - Some papers may show "Cached" labels indicating Google's cached version is available
 - **Files are saved directly to the local filesystem** at `docs/references/Research_*.md`
@@ -453,4 +453,4 @@ When processing multiple questions, provide a summary at the end:
 - Added realistic timing expectations (5-7 minutes per question)
 - Enhanced status message interpretation guide
 - Made all output sections required (no optional sections)
-- Removed quick mode option—comprehensive output only
+- Removed quick mode option; comprehensive output only

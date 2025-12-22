@@ -1,34 +1,44 @@
----
-title: PRISMA 2020 Literature Selection Flow
----
-flowchart LR
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '10pt'}}}%%
+flowchart TD
     %% PRISMA 2020 Flow Diagram for Literature Selection
     %% Aligned with lit_review academic-literature-review workflow
-    %% Total: 570 identified → 41 included (529 excluded)
-    %% Icons: fa:fa-database, fa:fa-file-alt, fa:fa-filter, fa:fa-clipboard-check, fa:fa-sitemap
+    %% Total: 570 identified + 38 targeted → 79 included
+    %% Note: Generate PNG via mermaid.live for proper font rendering
 
-    subgraph ID["Identification"]
-        A1[("fa:fa-database Crossref<br/>(n = 285)")] --> A
-        A2[("fa:fa-database PubMed<br/>(n = 142)")] --> A
-        A3[("fa:fa-database ArXiv<br/>(n = 71)")] --> A
-        A4[("fa:fa-database Semantic Scholar<br/>(n = 72)")] --> A
-        A["fa:fa-file-alt Articles identified<br/>after deduplication<br/>(n = 570)"]
+    subgraph ID["<b>Identification</b>"]
+        A1[("Crossref<br/>n = 285")] --> A
+        A2[("PubMed<br/>n = 142")] --> A
+        A3[("ArXiv<br/>n = 71")] --> A
+        A4[("Semantic Scholar<br/>n = 72")] --> A
+        A["Articles identified<br/>after deduplication<br/>n = 570"]
     end
 
-    subgraph SC["Screening"]
-        A --> D{"fa:fa-filter Title/abstract<br/>screening<br/>(n = 570)"}
-        D -->|"Excluded"| E["fa:fa-file-alt Articles excluded<br/>(n = 480)<br/>• Not relevant to framework<br/>• Outside scope<br/>• Non-English"]
-        D -->|"Passed"| H{"fa:fa-clipboard-check Full-text<br/>eligibility<br/>screening<br/>(n = 90)"}
-        H -->|"Excluded"| I["fa:fa-file-alt Articles excluded<br/>(n = 46)<br/>• No verifiable DOI/URL (n = 18)<br/>• Vendor marketing only (n = 15)<br/>• Methodological concerns (n = 13)"]
+    subgraph SC["<b>Screening</b>"]
+        A --> D{"Title/abstract<br/>screening<br/>n = 570"}
+        D -->|"Excluded"| E["Articles excluded<br/>n = 480"]
+        D -->|"Passed"| H{"Full-text<br/>eligibility<br/>n = 90"}
+        H -->|"Excluded"| I["Articles excluded<br/>n = 46"]
     end
 
-    subgraph QA["Quality Assessment"]
-        H -->|"Passed"| J{"fa:fa-sitemap Source<br/>classification<br/>(n = 44)"}
-        J -->|"Grey literature"| L{"fa:fa-clipboard-check AACODS<br/>checklist<br/>(n = 14)"}
-        L -->|"Excluded"| N["fa:fa-file-alt Articles excluded<br/>(n = 3)<br/>• Low objectivity<br/>• Insufficient detail"]
+    subgraph QA["<b>Quality Assessment</b>"]
+        H -->|"Passed"| J{"Source<br/>classification<br/>n = 44"}
+        J -->|"Grey literature"| L{"AACODS<br/>checklist<br/>n = 14"}
+        L -->|"Excluded"| N["Articles excluded<br/>n = 3"]
     end
 
-    subgraph IN["Included"]
-        J -->|"Academic"| O["fa:fa-file-alt Final corpus<br/>(n = 41)<br/>Academic: 30<br/>Industry: 11"]
+    subgraph TS["<b>Targeted Searches</b>"]
+        T1["Supplementary<br/>literature searches<br/>n = 38"]
+    end
+
+    subgraph IN["<b>Included</b>"]
+        J -->|"Academic"| O["Final corpus<br/>n = 85<br/>Academic: 74<br/>Industry: 11"]
         L -->|"Passed"| O
+        T1 --> O
     end
+
+    %% Styling - Grayscale
+    style ID fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style SC fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style QA fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style TS fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style IN fill:#e8e8e8,stroke:#666,stroke-width:2px

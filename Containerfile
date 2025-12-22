@@ -36,7 +36,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     texlive-fonts-extra \
     lmodern \
     fonts-dejavu \
+    fonts-noto-core \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js and Chromium for Mermaid CLI diagram generation
+# Use system Chromium to avoid architecture issues with Puppeteer's bundled Chrome
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y --no-install-recommends nodejs chromium && \
+    rm -rf /var/lib/apt/lists/*
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 # Install Eisvogel template for academic PDF formatting
 # Pin to specific version for reproducibility and verify installation

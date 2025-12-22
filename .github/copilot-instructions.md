@@ -25,7 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 41 verified citations (30 academic, 11 industry) addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 85 verified citations (74 academic, 11 industry) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
@@ -36,7 +36,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ppr_review/20251215_AACODS-Grey-Literature.md` for assessment table.
 
-**Paper 1 structure (post-revision):** Executive Summary → Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Sections 5-6 (Proposed Solution, Evaluation) were intentionally removed to transform paper from solution-advocacy to pure analytical framework.
+**Paper 1 structure (npj-aligned):** Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Executive Summary removed (redundant with YAML abstract); Sections 5-6 (Proposed Solution, Evaluation) previously removed to transform paper from solution-advocacy to pure analytical framework.
 
 ## Essential Commands
 
@@ -213,15 +213,16 @@ podman-compose run --rm dev uv run python <script>  # Run any script
   - Colons for definitions: "barrier: the gap between..."
   - Semicolons for related clauses: "descriptive; it provides..."
   - Parentheses for asides: "(backed by Amazon)"
+- **Excluded from this rule:** `standards/` directory (external journal content)
 
 ### Citations
-- Academic: `[A1]`, `[A2]`, etc. (30 sources)
+- Academic: `[A1]`, `[A2]`, etc. (74 sources)
 - Industry: `[I1]`, `[I2]`, etc. (11 sources)
 - Key dated citation: [A10] (2004 turnover data) - always qualify with temporal context
 
 ### File Naming
 - Historical files: `YYYYMMDDTHHMMSSZ_` prefix (ISO 8601 UTC)
-- Project management: UPPERCASE names (`DECISION_LOG.json`, `TODO.md`)
+- Project management: UPPERCASE names
 - Deprecated files: Move to local `ARCHIVED/` subdirectory
 
 ### Generated Files Strategy
@@ -232,15 +233,24 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 
 **Figure generation:** Generate from Mermaid or DOT source:
 ```bash
-# Mermaid (.mmd) → PNG/JPG
-npx --yes @mermaid-js/mermaid-cli@latest -i figures/<name>.mmd -o figures/<name>.png
-# macOS (optional JPG conversion):
-sips -s format jpeg figures/<name>.png --out figures/<name>.jpg
+# Mermaid (.mmd) → PNG (in container for consistent fonts)
+podman-compose run --rm dev npx --yes @mermaid-js/mermaid-cli@latest \
+  -i figures/<name>.mmd -o figures/<name>.mmd.png -p /app/puppeteer-config.json
+
+# Mermaid (.mmd) → SVG
+podman-compose run --rm dev npx --yes @mermaid-js/mermaid-cli@latest \
+  -i figures/<name>.mmd -o figures/<name>.mmd.svg -p /app/puppeteer-config.json
 
 # DOT (.dot) → SVG/PNG (requires graphviz)
-podman-compose run --rm dev dot -Tsvg figures/<name>.dot -o figures/<name>.dot.svg
-podman-compose run --rm dev dot -Tpng figures/<name>.dot -o figures/<name>.dot.png
+podman-compose run --rm dev dot -Tsvg figures/<name>.mmd.dot -o figures/<name>.mmd.dot.svg
+podman-compose run --rm dev dot -Tpng figures/<name>.mmd.dot -o figures/<name>.mmd.dot.png
 ```
+
+**Figure naming convention:** Suffix chain documents derivation:
+- `<name>.mmd` - Mermaid source
+- `<name>.mmd.png` - PNG derived from .mmd
+- `<name>.mmd.dot` - DOT format (alternate)
+- `<name>.mmd.dot.svg` - SVG derived from .dot
 
 **Excluded via .gitignore:**
 - `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
@@ -299,6 +309,6 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 All Python source files include SPDX headers:
 ```python
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 Yuimedi, Inc.
 # SPDX-License-Identifier: Apache-2.0
 ```
