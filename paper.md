@@ -340,9 +340,9 @@ This narrative review examines evidence supporting the implementation of natural
 
 ### Evolution and Technical Advances
 
-Recent systematic reviews document the rapid evolution of natural language to SQL (NL2SQL) technologies. Ziletti and D'Ambrosi [A6] demonstrate that retrieval augmented generation (RAG) approaches significantly improve query accuracy when applied to electronic health records (EHRs), though they note that "current language models are not yet sufficiently accurate for unsupervised use" in clinical settings. Their work on the MIMIC-3 dataset shows that integrating medical coding steps into the text-to-SQL process improves performance over simple prompting approaches.
+Recent systematic reviews document the rapid evolution of natural language to SQL (NL2SQL) technologies. Ziletti and D'Ambrosi [A6] demonstrate that retrieval augmented generation (RAG) approaches significantly improve query accuracy when applied to electronic health records (EHRs), though they note that "current language models are not yet sufficiently accurate for unsupervised use" in clinical settings; this assessment, based on 2024 models, has been challenged by late-2025 benchmarks showing GPT-5 exceeds physician baselines on standardized medical reasoning tasks [A69], [A71], though human oversight remains recommended for clinical safety. Their work on the MIMIC-3 dataset shows that integrating medical coding steps into the text-to-SQL process improves performance over simple prompting approaches.
 
-Recent benchmarking studies [A8], [A9] examining LLM-based systems for healthcare identify unique challenges: medical terminology, characterized by abbreviations, synonyms, and context-dependent meanings, remains a barrier to accurate query generation. Evaluations of state-of-the-art LLMs including GPT-4 and Claude 3.5 show that even top-performing models achieve only 69-73% accuracy on clinical tasks, with significant gaps remaining between benchmark performance and real clinical readiness.
+Benchmarking studies from 2024 [A8], [A9] examining LLM-based systems for healthcare identify unique challenges: medical terminology, characterized by abbreviations, synonyms, and context-dependent meanings, remains a barrier to accurate query generation. Evaluations of GPT-4 and Claude 3.5 showed 69-73% accuracy on clinical tasks; however, late-2025 models demonstrate substantial improvements. GPT-5 achieves over 80% accuracy on neurosurgical board examinations and surpasses physician performance on multimodal medical reasoning benchmarks by 15-29% [A69]. On healthcare-specific NL2SQL tasks, GPT-5 achieves 64.6% execution accuracy on the MIMICSQL dataset [A70], while the HealthBench benchmark (developed with 262 physicians across 26 specialties) shows GPT-5 hallucination rates of 0.7-1.0%, representing a 4-6x improvement over previous models [A71].
 
 ### Healthcare-Specific Challenges
 
@@ -354,7 +354,7 @@ Wang et al. [A5] demonstrate that healthcare NL2SQL methods must move beyond the
 
 Recent advances show promise in addressing these challenges. The TREQS/MIMICSQL dataset development [A5] and EHRSQL benchmark [A3] provide question-SQL pairs specifically for healthcare, featuring questions in natural, free-form language. This approach acknowledges that healthcare queries often require multiple logical steps: population selection, temporal relationships, aggregation statistics, and mathematical operations.
 
-However, significant limitations persist. Benchmarking studies [A8], [A9] conclude that while LLMs show capability in healthcare tasks, most models struggle with complex clinical reasoning. The MedAgentBench evaluation found even the best-performing model (Claude 3.5 Sonnet) achieved only 69.67% success rate on medical agent tasks, highlighting the gap between current capabilities and clinical readiness.
+Healthcare-specific benchmarks continue to evolve alongside model capabilities. The 2024 MedAgentBench evaluation found Claude 3.5 Sonnet achieved 69.67% success rate on medical agent tasks [A8], [A9]; subsequent 2025 benchmarks show GPT-5 significantly exceeding these results, with the SCARE benchmark [A72] providing 4,200 EHR question-SQL pairs across MIMIC-III, MIMIC-IV, and eICU databases specifically designed to evaluate post-hoc safety mechanisms for clinical text-to-SQL deployment. While these advances narrow the gap between benchmark performance and clinical readiness, domain-specific challenges in medical terminology and complex clinical reasoning remain active research areas.
 
 ### Productivity and Efficiency Evidence
 
@@ -855,6 +855,14 @@ Yuimedi provided funding for the author's time writing and researching this manu
 [A67] Willard-Grace, R., Knox, M., Huang, B., et al. (2019). Burnout and health care workforce turnover. *The Annals of Family Medicine*, 17(1), 36-41. DOI: 10.1370/afm.2338. https://www.annfammed.org/content/17/1/36
 
 [A68] Melnick, E. R., Fong, A., Nath, B., Williams, B., et al. (2021). Analysis of electronic health record use and clinical productivity and their association with physician turnover. *JAMA Network Open*, 4(10), e2128790. DOI: 10.1001/jamanetworkopen.2021.28790. https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2784810
+
+[A69] Wang, S., Hu, M., Li, Q., Safari, M., & Yang, X. (2025). Capabilities of GPT-5 on multimodal medical reasoning. *arXiv preprint*, arXiv:2508.08224. https://arxiv.org/abs/2508.08224
+
+[A70] Blašković, L., Tanković, N., & Lorencin, I. (2025). Robust clinical querying with local LLMs: Lexical challenges in NL2SQL and RAG-QA on EHRs. *Big Data and Cognitive Computing*, 9(3), 124. DOI: 10.3390/bdcc9030124. https://www.mdpi.com/2504-2289/9/3/124
+
+[A71] OpenAI. (2025). HealthBench: A benchmark for evaluating LLMs in healthcare. *arXiv preprint*, arXiv:2505.08775. https://arxiv.org/abs/2505.08775
+
+[A72] Lee, G., Chay, W., & Choi, E. (2025). SCARE: A benchmark for SQL correction and question answerability classification for reliable EHR question answering. *arXiv preprint*, arXiv:2511.17559. https://arxiv.org/abs/2511.17559
 
 ## Industry Sources
 
