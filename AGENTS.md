@@ -25,7 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 92 verified citations (81 academic, 11 industry) addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 92 verified citations (81 academic [A1-A81], 11 industry [I1-I11]) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
@@ -272,7 +272,12 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 ## Healthcare Domain Context
 
-**Required knowledge:** ICD-10, CPT, SNOMED, RxNorm vocabularies; HIMSS AMAM stages; HL7/FHIR standards; HIPAA compliance.
+**Required knowledge:** ICD-10, CPT, SNOMED, RxNorm vocabularies; HIMSS maturity models; HL7/FHIR standards; HIPAA compliance.
+
+**HIMSS maturity models (important distinction):**
+- **EMRAM** (Electronic Medical Record Adoption Model): EHR adoption stages 0-7. Extensive outcome literature exists.
+- **AMAM** (Analytics Maturity Assessment Model): Analytics capability stages. Released October 2024; no peer-reviewed outcome studies yet.
+- Most literature uses EMRAM. When searching for AMAM evidence, note that AMAM-specific studies are a confirmed gap.
 
 **Academic standards:** PRISMA guidelines for systematic reviews (not applicable to this narrative review - see `docs/prisma-assessment.md`); statistical reporting with p-values/CIs; evidence hierarchy prioritizing RCTs.
 
@@ -295,7 +300,13 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 - Research questions: `docs/references/Research_Questions.md` (linked to GitHub issues via `research` label)
 - Submission guide: `docs/journal-submission-guide.md`
 
-**Research question tracking:** All literature review questions are tracked in `docs/references/Research_Questions.md` with scope (Paper1/Paper2/Paper3), linked GitHub issues, and status (Answered/Unanswered/Gap). Use `gh issue list --label "research"` to see all research-related issues. Use `/scholar:research-question` skill for Google Scholar Labs searches.
+**Research question tracking:** All literature review questions are tracked in `docs/references/Research_Questions.md`:
+- **Answered Questions tables:** Question, Scope, Issue, Research File, Merged (citation numbers added to paper.md, e.g., `[A31]-[A34]`)
+- **Unanswered Questions tables:** Question, Scope, Issue, Status, Notes
+- **Status values:** Answered, Partial, Unanswered, → Gap (searched but not found)
+- **Merged column:** Shows citation numbers (e.g., `[A66]`, `[A31]-[A34]`) when findings incorporated into paper.md; `-` means not yet merged
+- Use `gh issue list --label "research"` to see all research-related issues
+- Use `/scholar:research-question` skill for Google Scholar Labs searches
 
 **Preprint strategy:**
 - arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY
