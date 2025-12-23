@@ -4,7 +4,6 @@ flowchart TB
     %% Shows how validated NL+SQL pairs break the three-pillar compounding cycle
 
     subgraph CYCLE["<b>Validated Query Cycle</b>"]
-        direction LR
         Q["1. QUERY<br/>Domain expert asks<br/>natural language question"]
         G["2. GENERATION<br/>System generates<br/>candidate SQL"]
         V{"3. VALIDATION<br/>Expert confirms or<br/>corrects SQL"}
@@ -14,7 +13,6 @@ flowchart TB
     end
 
     subgraph PILLARS["<b>Three-Pillar Compounding Cycle (BROKEN)</b>"]
-        direction LR
         M["Low Analytics<br/>Maturity"]
         T["Workforce<br/>Turnover"]
         B["Technical<br/>Barriers"]

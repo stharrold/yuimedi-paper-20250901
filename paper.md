@@ -162,7 +162,7 @@ The knowledge portal architecture preserves institutional expertise through a si
 ```{=latex}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth,keepaspectratio]{figures/knowledge-cycle.mmd.png}
+\includegraphics[width=0.5\textwidth,keepaspectratio]{figures/knowledge-cycle.mmd.png}
 \caption{The Validated Query Cycle. Domain experts ask natural language questions (1), the system generates candidate SQL (2), experts validate results (3), validated pairs are stored (4), future queries retrieve validated knowledge (5), and expertise persists through staff turnover (6). This cycle breaks the compounding effect where turnover erases institutional memory.}
 \label{fig:knowledge-cycle}
 \end{figure}
