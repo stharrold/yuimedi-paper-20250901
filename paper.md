@@ -721,18 +721,6 @@ Throughout this assessment, quality patient care must remain the primary metric.
 
 This framework acknowledges that optimal decisions will vary by organizational context. Healthcare systems with stable analytics teams and mature data infrastructure face different risk profiles than those experiencing rapid turnover and limited analytics capabilities. The evidence does not prescribe universal solutions but provides structured approaches for context-specific evaluation.
 
-## Future Research Directions
-
-Several research gaps limit the ability to provide definitive organizational guidance:
-
-1. **Reference implementation validation**: Empirical validation using synthetic data (Synthea) and healthcare-specific benchmarks (EHRSQL, MIMICSQL) would establish reproducible baselines for NL2SQL accuracy in clinical contexts
-
-2. **Healthcare terminology and schema mapping**: Programmatic integration with standardized vocabularies (SNOMED CT, LOINC, RxNorm) and interoperability standards (FHIR, OMOP CDM) requires systematic investigation to reduce implementation burden
-
-3. **Longitudinal outcomes**: Most implementation studies span 6-24 months; multi-year institutional knowledge preservation effects remain understudied
-
-4. **Governance frameworks**: Optimal approaches for balancing analytics democratization with data quality and clinical safety standards need development
-
 ## Closing Reflection
 
 *Primum non nocere* ultimately requires healthcare organizations to make evidence-based judgments about both action and inaction. This review contributes a three-pillar analytical framework to support those judgments, synthesizing evidence on analytics maturity, workforce dynamics, and technical capabilities.
