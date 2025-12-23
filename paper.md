@@ -5,7 +5,15 @@ correspondence: "samuel.harrold@yuimedi.com"
 date: "December 2025"
 version: "1.0.0"
 abstract: |
-  Healthcare organizations face three interconnected challenges that form a compounding cycle: low analytics maturity (only 39 organizations globally have achieved HIMSS AMAM Stage 6-7), high workforce turnover (34% annually for healthcare IT staff as of 2004), and technical barriers in natural language to SQL generation. This research demonstrates that conversational AI platforms can break this cycle by serving as knowledge portals: systems that capture validated natural language question and SQL pairs, preserving institutional expertise independent of individual staff retention. Through the validated query cycle, domain experts confirm generated SQL queries, creating durable knowledge artifacts that persist in organizational memory. When experienced analysts leave, their analytical expertise remains embedded in validated query pairs rather than being lost. Healthcare-specific text-to-SQL benchmarks show significant progress, though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings, requiring human validation. This paper contributes a three-pillar analytical framework showing how these challenges compound each other, and introduces the knowledge portal architecture with its six-step validated query cycle as the mechanism for institutional memory preservation.
+  **Background:** Healthcare organizations face three interconnected challenges that form a compounding cycle: low analytics maturity (only 39 organizations globally have achieved HIMSS AMAM Stage 6-7), high workforce turnover (34% annually for healthcare IT staff as of 2004), and technical barriers in natural language to SQL generation. When these challenges interact, they create institutional memory loss that threatens data-driven healthcare transformation.
+
+  **Objective:** This research examines the evidence for implementing conversational AI platforms as knowledge portals to break this compounding cycle by preserving institutional analytics expertise independent of individual staff retention.
+
+  **Methods:** We conducted a narrative literature review of peer-reviewed studies and industry reports on natural language to SQL generation, healthcare analytics maturity, and workforce turnover. Grey literature sources were assessed using the AACODS checklist. Evidence was synthesized through a three-pillar analytical framework examining how these challenges interconnect and compound each other.
+
+  **Results:** Healthcare-specific text-to-SQL benchmarks (EHRSQL, SM3-Text-to-Query) show significant progress, though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings, requiring human validation through the validated query cycle. Most healthcare organizations remain at HIMSS AMAM Stages 0-3 with limited predictive capabilities. Healthcare IT turnover significantly exceeds other IT sectors, creating measurable institutional memory loss. The validated query cycle addresses this through six steps: domain experts ask questions, the system generates candidate SQL, experts validate and correct the SQL, validated pairs are stored in organizational memory, future queries retrieve validated pairs, and knowledge persists independent of staff tenure.
+
+  **Conclusions:** The convergence of technical advances in NL2SQL generation, analytics maturity challenges, and workforce turnover creates conditions warranting organizational assessment of conversational AI platforms with appropriate governance. This paper contributes a three-pillar analytical framework and positions healthcare conversational AI as a knowledge portal architecture with a validated query cycle mechanism for institutional memory preservation.
 keywords: [healthcare analytics, natural language processing, SQL generation, institutional memory, conversational AI, healthcare informatics, workforce turnover, analytics maturity]
 license: "CC BY 4.0"
 license-url: "https://creativecommons.org/licenses/by/4.0/"
@@ -739,7 +747,7 @@ The author (S.T.H.) takes full responsibility for the final content, conducted t
 
 S.T.H. conceived the research, conducted the literature review, and wrote the manuscript.
 
-# Competing Interests
+# Conflicts of Interest
 
 The author declares the following competing interests: Samuel T Harrold is a contract product advisor at Yuimedi, Inc., which develops healthcare analytics software including conversational AI platforms relevant to this review's subject matter. The author is also employed as a Data Scientist at Indiana University Health. This paper presents an analytical framework derived from published literature and does not evaluate or recommend specific commercial products, including those of the author's affiliated organizations. The views expressed are the author's own and do not represent the official positions of Indiana University Health or Yuimedi, Inc. This research was conducted independently without funding from any affiliated organization.
 
@@ -754,6 +762,26 @@ Not applicable. No custom code was developed for this research.
 # Funding
 
 Yuimedi provided funding for the author's time writing and researching this manuscript.
+
+# Abbreviations
+
+AACODS: Authority, Accuracy, Coverage, Objectivity, Date, Significance
+ACO: Accountable Care Organization
+AI: Artificial Intelligence
+AMAM: Analytics Maturity Assessment Model
+CPT: Current Procedural Terminology
+DAMAF: Data Analytics Maturity Assessment Framework
+DIKW: Data-Information-Knowledge-Wisdom
+EHR: Electronic Health Record
+EMRAM: Electronic Medical Record Adoption Model
+HDQM2: Healthcare Data Quality Maturity Model
+HIMSS: Healthcare Information Management Systems Society
+ICD: International Classification of Diseases
+IT: Information Technology
+LLM: Large Language Model
+NL2SQL: Natural Language to SQL
+RAG: Retrieval-Augmented Generation
+SQL: Structured Query Language
 
 # Appendices
 
