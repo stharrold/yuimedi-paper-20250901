@@ -507,7 +507,11 @@ class TestValidateAbbreviationsUsage:
         result = validate_abbreviations_usage(ABBREV_CONTENT_MISSING, config)
 
         assert result["valid"] is False
-        assert "HIMSS" in result["missing_abbrevs"] or "SQL" in result["missing_abbrevs"]
+        # HIMSS appears 3 times in ABBREV_CONTENT_MISSING but is not listed
+        # AI appears 3 times and IS listed, so should not be in missing
+        # SQL appears 0 times in ABBREV_CONTENT_MISSING
+        assert "HIMSS" in result["missing_abbrevs"]
+        assert "AI" not in result["missing_abbrevs"]  # AI is listed in the section
 
     def test_no_abbreviations_section(self):
         """Should return error when no Abbreviations section."""

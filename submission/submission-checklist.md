@@ -21,9 +21,10 @@
 - [x] **No Legacy Citations**: No [A#]/[I#] format
 
 ### Figures
-- [x] **Format**: PNG files (8 figures)
-- [x] **Architecture diagram**: figures/architecture.mmd.png
-- [x] **Knowledge cycle**: figures/knowledge-cycle.mmd.png
+- [x] **Format**: PNG files (3 figures used in paper)
+- [x] **Architecture diagram**: `figures/architecture.mmd.png`
+- [x] **Knowledge cycle**: `figures/knowledge-cycle.mmd.png`
+- [x] **Literature flow**: `figures/literature-flow.mmd.png`
 - [ ] **Captions**: Verify captions in JMIR metadata system (sentence case, no "Figure X" prefix)
 - [ ] **Upload**: Upload PNG files as supplementary figures in JMIR system
 

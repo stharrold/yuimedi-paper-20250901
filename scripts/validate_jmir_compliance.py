@@ -211,6 +211,10 @@ def validate_imrd_structure(content: str) -> dict:
             - missing_sections (list[str]): List of missing IMRD sections
     """
     # Pattern matches level-1 headers (# Section Name)
+    # JMIR allows flexibility in section naming for Review articles:
+    # - "Methodology" is accepted as equivalent to "Methods"
+    # - "Literature Review" or "Framework Development" sections serve as Results
+    #   for narrative reviews (which synthesize evidence rather than report new data)
     imrd_patterns = {
         "Introduction": r"^# Introduction\s*$",
         "Methods": r"^# (Methods?|Methodology)\s*$",
@@ -276,15 +280,25 @@ def validate_ai_disclosure(content: str) -> dict:
         r"AI assist",
     ]
 
-    tools_found = []
+    # Collect actual matched text (not patterns) for each AI-related pattern
+    tools_found: list[str] = []
     for pattern in ai_patterns:
-        if re.search(pattern, ack_content, re.IGNORECASE):
-            tools_found.append(pattern)
+        for match in re.finditer(pattern, ack_content, re.IGNORECASE):
+            tools_found.append(match.group(0))
+
+    # De-duplicate while preserving order and original casing
+    seen_lower: set[str] = set()
+    unique_tools: list[str] = []
+    for tool in tools_found:
+        key = tool.lower()
+        if key not in seen_lower:
+            seen_lower.add(key)
+            unique_tools.append(tool)
 
     return {
         "has_acknowledgments": True,
-        "has_ai_disclosure": len(tools_found) > 0,
-        "ai_tools_mentioned": tools_found,
+        "has_ai_disclosure": len(unique_tools) > 0,
+        "ai_tools_mentioned": unique_tools,
     }
 
 
@@ -357,16 +371,14 @@ def validate_figure_format(base_path: Path) -> dict:
     for file in figures_dir.iterdir():
         if file.suffix.lower() in image_extensions:
             all_figures.append(file.name)
+            # Only flag non-PNG files that are NOT source-derived (no .mmd or .dot in name)
+            # Source-derived files like diagram.mmd.svg are intermediate build artifacts
             if file.suffix.lower() != ".png":
-                non_png.append(file.name)
+                if ".mmd" not in file.name and ".dot" not in file.name:
+                    non_png.append(file.name)
 
     return {
-        "valid": len(non_png) == 0
-        or all(
-            # Allow source files (.mmd, .dot) to have non-PNG derivatives
-            ".mmd" in f or ".dot" in f
-            for f in non_png
-        ),
+        "valid": len(non_png) == 0,
         "png_count": len([f for f in all_figures if f.endswith(".png")]),
         "non_png_figures": non_png,
         "all_figures": all_figures,
@@ -414,8 +426,11 @@ def validate_abbreviations_usage(content: str, config_path: Path | None = None) 
     config = config_path or default_config
 
     known_abbrevs = {}
+    config_missing = False
     if config.exists():
         known_abbrevs = json.loads(config.read_text())
+    else:
+        config_missing = True
 
     # Count abbreviation usage in paper (excluding the Abbreviations section itself)
     paper_without_abbrev_section = content.replace(abbrev_section, "")
@@ -430,12 +445,15 @@ def validate_abbreviations_usage(content: str, config_path: Path | None = None) 
             if abbrev not in listed:
                 missing.append(abbrev)
 
-    return {
+    result = {
         "valid": len(missing) == 0,
         "listed_abbrevs": listed,
         "missing_abbrevs": missing,
         "usage_counts": usage_counts,
     }
+    if config_missing:
+        result["warning"] = f"Config file {config} not found; abbreviation checking limited"
+    return result
 
 
 def main() -> int:
@@ -599,6 +617,8 @@ def main() -> int:
         print(
             f"  {abbr_str} All frequent abbreviations listed: {len(abbrevs['listed_abbrevs'])} abbreviations"
         )
+        if abbrevs.get("warning"):
+            print(f"      ⚠ Warning: {abbrevs['warning']}")
         if abbrevs["missing_abbrevs"]:
             print(f"      Missing (used ≥3 times): {', '.join(abbrevs['missing_abbrevs'])}")
             all_valid = False
