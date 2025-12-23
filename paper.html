@@ -282,26 +282,42 @@ Through Conversational AI Platforms</h1>
 <p class="date">December 2025</p>
 <div class="abstract">
 <div class="abstract-title">Abstract</div>
-<p>Healthcare organizations face three interconnected challenges that
-form a compounding cycle: low analytics maturity (only 39 organizations
-globally have achieved HIMSS AMAM Stage 6-7), high workforce turnover
-(34% annually for healthcare IT staff as of 2004), and technical
-barriers in natural language to SQL generation. This research
-demonstrates that conversational AI platforms can break this cycle by
-serving as knowledge portals: systems that capture validated natural
-language question and SQL pairs, preserving institutional expertise
-independent of individual staff retention. Through the validated query
-cycle, domain experts confirm generated SQL queries, creating durable
-knowledge artifacts that persist in organizational memory. When
-experienced analysts leave, their analytical expertise remains embedded
-in validated query pairs rather than being lost. Healthcare-specific
-text-to-SQL benchmarks show significant progress, though current models
-are “not yet sufficiently accurate for unsupervised use” in clinical
-settings, requiring human validation. This paper contributes a
-three-pillar analytical framework showing how these challenges compound
-each other, and introduces the knowledge portal architecture with its
-six-step validated query cycle as the mechanism for institutional memory
-preservation.</p>
+<p><strong>Background:</strong> Healthcare organizations face three
+interconnected challenges that form a compounding cycle: low analytics
+maturity (only 39 organizations globally have achieved HIMSS AMAM Stage
+6-7), high workforce turnover (34% annually for healthcare IT staff as
+of 2004), and technical barriers in natural language to SQL generation.
+When these challenges interact, they create institutional memory loss
+that threatens data-driven healthcare transformation.</p>
+<p><strong>Objective:</strong> This research examines the evidence for
+implementing conversational AI platforms as knowledge portals to break
+this compounding cycle by preserving institutional analytics expertise
+independent of individual staff retention.</p>
+<p><strong>Methods:</strong> We conducted a narrative literature review
+of peer-reviewed studies and industry reports on natural language to SQL
+generation, healthcare analytics maturity, and workforce turnover. Grey
+literature sources were assessed using the AACODS checklist. Evidence
+was synthesized through a three-pillar analytical framework examining
+how these challenges interconnect and compound each other.</p>
+<p><strong>Results:</strong> Healthcare-specific text-to-SQL benchmarks
+(EHRSQL, SM3-Text-to-Query) show significant progress, though current
+models are “not yet sufficiently accurate for unsupervised use” in
+clinical settings, requiring human validation through the validated
+query cycle. Most healthcare organizations remain at HIMSS AMAM Stages
+0-3 with limited predictive capabilities. Healthcare IT turnover
+significantly exceeds other IT sectors, creating measurable
+institutional memory loss. The validated query cycle addresses this
+through six steps: domain experts ask questions, the system generates
+candidate SQL, experts validate and correct the SQL, validated pairs are
+stored in organizational memory, future queries retrieve validated
+pairs, and knowledge persists independent of staff tenure.</p>
+<p><strong>Conclusions:</strong> The convergence of technical advances
+in NL2SQL generation, analytics maturity challenges, and workforce
+turnover creates conditions warranting organizational assessment of
+conversational AI platforms with appropriate governance. This paper
+contributes a three-pillar analytical framework and positions healthcare
+conversational AI as a knowledge portal architecture with a validated
+query cycle mechanism for institutional memory preservation.</p>
 </div>
 </header>
 <nav id="TOC" role="doc-toc">
@@ -633,39 +649,42 @@ class="toc-section-number">6.6</span> Closing Reflection</a></li>
 class="toc-section-number">7</span> Acknowledgments</a></li>
 <li><a href="#author-contributions" id="toc-author-contributions"><span
 class="toc-section-number">8</span> Author Contributions</a></li>
-<li><a href="#competing-interests" id="toc-competing-interests"><span
-class="toc-section-number">9</span> Competing Interests</a></li>
+<li><a href="#conflicts-of-interest"
+id="toc-conflicts-of-interest"><span class="toc-section-number">9</span>
+Conflicts of Interest</a></li>
 <li><a href="#data-availability" id="toc-data-availability"><span
 class="toc-section-number">10</span> Data Availability</a></li>
 <li><a href="#code-availability" id="toc-code-availability"><span
 class="toc-section-number">11</span> Code Availability</a></li>
 <li><a href="#funding" id="toc-funding"><span
 class="toc-section-number">12</span> Funding</a></li>
+<li><a href="#abbreviations" id="toc-abbreviations"><span
+class="toc-section-number">13</span> Abbreviations</a></li>
 <li><a href="#appendices" id="toc-appendices"><span
-class="toc-section-number">13</span> Appendices</a>
+class="toc-section-number">14</span> Appendices</a>
 <ul>
 <li><a href="#appendix-a-healthcare-analytics-glossary"
 id="toc-appendix-a-healthcare-analytics-glossary"><span
-class="toc-section-number">13.1</span> Appendix A: Healthcare Analytics
+class="toc-section-number">14.1</span> Appendix A: Healthcare Analytics
 Glossary</a></li>
 <li><a
 href="#appendix-b-himss-analytics-maturity-assessment-model-amam-stages"
 id="toc-appendix-b-himss-analytics-maturity-assessment-model-amam-stages"><span
-class="toc-section-number">13.2</span> Appendix B: HIMSS Analytics
+class="toc-section-number">14.2</span> Appendix B: HIMSS Analytics
 Maturity Assessment Model (AMAM) Stages</a></li>
 <li><a href="#appendix-c-healthcare-nl2sql-query-examples"
 id="toc-appendix-c-healthcare-nl2sql-query-examples"><span
-class="toc-section-number">13.3</span> Appendix C: Healthcare NL2SQL
+class="toc-section-number">14.3</span> Appendix C: Healthcare NL2SQL
 Query Examples</a>
 <ul>
 <li><a href="#patient-population-analysis"
 id="toc-patient-population-analysis"><span
-class="toc-section-number">13.3.1</span> Patient Population
+class="toc-section-number">14.3.1</span> Patient Population
 Analysis</a></li>
 <li><a href="#operational-metrics" id="toc-operational-metrics"><span
-class="toc-section-number">13.3.2</span> Operational Metrics</a></li>
+class="toc-section-number">14.3.2</span> Operational Metrics</a></li>
 <li><a href="#quality-metrics" id="toc-quality-metrics"><span
-class="toc-section-number">13.3.3</span> Quality Metrics</a></li>
+class="toc-section-number">14.3.3</span> Quality Metrics</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -2566,8 +2585,8 @@ refinement.</p>
 class="header-section-number">8</span> Author Contributions</h1>
 <p>S.T.H. conceived the research, conducted the literature review, and
 wrote the manuscript.</p>
-<h1 data-number="9" id="competing-interests"><span
-class="header-section-number">9</span> Competing Interests</h1>
+<h1 data-number="9" id="conflicts-of-interest"><span
+class="header-section-number">9</span> Conflicts of Interest</h1>
 <p>The author declares the following competing interests: Samuel T
 Harrold is a contract product advisor at Yuimedi, Inc., which develops
 healthcare analytics software including conversational AI platforms
@@ -2593,11 +2612,24 @@ class="header-section-number">11</span> Code Availability</h1>
 class="header-section-number">12</span> Funding</h1>
 <p>Yuimedi provided funding for the author’s time writing and
 researching this manuscript.</p>
-<h1 data-number="13" id="appendices"><span
-class="header-section-number">13</span> Appendices</h1>
-<h2 data-number="13.1"
+<h1 data-number="13" id="abbreviations"><span
+class="header-section-number">13</span> Abbreviations</h1>
+<p>AACODS: Authority, Accuracy, Coverage, Objectivity, Date,
+Significance ACO: Accountable Care Organization AI: Artificial
+Intelligence AMAM: Analytics Maturity Assessment Model CPT: Current
+Procedural Terminology DAMAF: Data Analytics Maturity Assessment
+Framework DIKW: Data-Information-Knowledge-Wisdom EHR: Electronic Health
+Record EMRAM: Electronic Medical Record Adoption Model HDQM2: Healthcare
+Data Quality Maturity Model HIMSS: Healthcare Information Management
+Systems Society ICD: International Classification of Diseases IT:
+Information Technology LLM: Large Language Model NL2SQL: Natural
+Language to SQL RAG: Retrieval-Augmented Generation SQL: Structured
+Query Language</p>
+<h1 data-number="14" id="appendices"><span
+class="header-section-number">14</span> Appendices</h1>
+<h2 data-number="14.1"
 id="appendix-a-healthcare-analytics-glossary"><span
-class="header-section-number">13.1</span> Appendix A: Healthcare
+class="header-section-number">14.1</span> Appendix A: Healthcare
 Analytics Glossary</h2>
 <table>
 <colgroup>
@@ -2658,9 +2690,9 @@ retrieval with text generation</td>
 </tr>
 </tbody>
 </table>
-<h2 data-number="13.2"
+<h2 data-number="14.2"
 id="appendix-b-himss-analytics-maturity-assessment-model-amam-stages"><span
-class="header-section-number">13.2</span> Appendix B: HIMSS Analytics
+class="header-section-number">14.2</span> Appendix B: HIMSS Analytics
 Maturity Assessment Model (AMAM) Stages</h2>
 <table>
 <colgroup>
@@ -2728,12 +2760,12 @@ Maturity Assessment Model (AMAM) Stages</h2>
 </tr>
 </tbody>
 </table>
-<h2 data-number="13.3"
+<h2 data-number="14.3"
 id="appendix-c-healthcare-nl2sql-query-examples"><span
-class="header-section-number">13.3</span> Appendix C: Healthcare NL2SQL
+class="header-section-number">14.3</span> Appendix C: Healthcare NL2SQL
 Query Examples</h2>
-<h3 data-number="13.3.1" id="patient-population-analysis"><span
-class="header-section-number">13.3.1</span> Patient Population
+<h3 data-number="14.3.1" id="patient-population-analysis"><span
+class="header-section-number">14.3.1</span> Patient Population
 Analysis</h3>
 <p><strong>Natural Language</strong>: “Show me all diabetic patients
 over 65 who had an HbA1c test in the last 6 months”</p>
@@ -2747,8 +2779,8 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#c
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> p.age <span class="op">&gt;</span> <span class="dv">65</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> l.test_name <span class="op">=</span> <span class="st">&#39;HbA1c&#39;</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> l.test_date <span class="op">&gt;=</span> DATE_SUB(<span class="fu">CURRENT_DATE</span>, <span class="dt">INTERVAL</span> <span class="dv">6</span> <span class="dt">MONTH</span>)</span></code></pre></div>
-<h3 data-number="13.3.2" id="operational-metrics"><span
-class="header-section-number">13.3.2</span> Operational Metrics</h3>
+<h3 data-number="14.3.2" id="operational-metrics"><span
+class="header-section-number">14.3.2</span> Operational Metrics</h3>
 <p><strong>Natural Language</strong>: “What is the average length of
 stay for cardiac surgery patients this year?”</p>
 <p><strong>Generated SQL</strong>:</p>
@@ -2759,8 +2791,8 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#c
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> p.cpt_code <span class="kw">IN</span> (<span class="st">&#39;33510&#39;</span>, <span class="st">&#39;33511&#39;</span>, <span class="st">&#39;33512&#39;</span>)  <span class="co">-- Cardiac surgery codes</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> a.admission_date <span class="op">&gt;=</span> <span class="st">&#39;2025-01-01&#39;</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> a.discharge_date <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span></code></pre></div>
-<h3 data-number="13.3.3" id="quality-metrics"><span
-class="header-section-number">13.3.3</span> Quality Metrics</h3>
+<h3 data-number="14.3.3" id="quality-metrics"><span
+class="header-section-number">14.3.3</span> Quality Metrics</h3>
 <p><strong>Natural Language</strong>: “How many patients were readmitted
 within 30 days of discharge for heart failure?”</p>
 <p><strong>Generated SQL</strong>:</p>

@@ -60,3 +60,11 @@ repos:
         language: python
         types: [python]
         pass_filenames: false
+
+      # Validate JMIR Medical Informatics compliance
+      - id: validate-jmir-compliance
+        name: Validate JMIR compliance
+        entry: python scripts/validate_jmir_compliance.py
+        language: python
+        files: ^(paper\.md|metadata\.yaml)$
+        pass_filenames: false

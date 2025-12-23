@@ -28,7 +28,7 @@ numbersections: true
 
 # Bibliography (pandoc-citeproc)
 bibliography: references.bib
-csl: citation-style.csl
+csl: citation-style-ama.csl
 link-citations: true
 suppress-bibliography: false
 

@@ -25,7 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 92 verified citations (81 academic, 11 industry) addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 92 verified citations (pandoc-citeproc format) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
@@ -220,17 +220,17 @@ Uses pandoc-citeproc for automatic bibliography generation:
 - Citation format: `[@key]` (e.g., `[@wu2024]`, `[@himss2024]`)
 - Multiple citations: `[@wu2024; @ren2024]`
 - BibTeX file: `references.bib` (92 entries)
-- CSL style: `citation-style.csl` (Vancouver, numbered citations)
+- CSL style: `citation-style-ama.csl` (AMA 11th edition for JMIR compliance)
 
 **Key files:**
-- `references.bib` - BibTeX bibliography (auto-generated from paper.md)
-- `citation-style.csl` - Vancouver citation style
-- `scripts/citation_key_mapping.json` - Maps legacy [A#]/[I#] to new keys
+- `references.bib` - BibTeX bibliography
+- `citation-style-ama.csl` - AMA citation style (JMIR requirement)
+- `citation-style.csl` - Vancouver citation style (legacy, kept for reference)
 
-**Regenerating bibliography:**
+**JMIR compliance validation:**
 ```bash
-python scripts/convert_references_to_bibtex.py  # Generate references.bib
-python scripts/convert_inline_citations.py      # Convert inline citations
+python scripts/validate_jmir_compliance.py      # Check abstract, sections, CSL
+python scripts/extract_abbreviations.py         # Generate abbreviations list
 ```
 
 **Citation key convention:** `{firstauthor}{year}{suffix}` (e.g., `wu2024`, `wu2024a`)
@@ -243,8 +243,8 @@ python scripts/convert_inline_citations.py      # Convert inline citations
 ### Generated Files Strategy
 **Committed to git (intentional):**
 - `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
-- `references.bib` - BibTeX bibliography (regenerate with `convert_references_to_bibtex.py`)
-- `citation-style.csl` - Vancouver citation style (from Zotero CSL repository)
+- `references.bib` - BibTeX bibliography (92 entries)
+- `citation-style-ama.csl` - AMA 11th edition (JMIR requirement, from Zotero CSL repository)
 - `figures/*` - All figure assets (source `.mmd`/`.dot`, generated `.jpg`/`.png`/`.svg`/`.pdf`)
 - Versioned for reproducibility and release tagging
 
@@ -318,10 +318,10 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 - Submission guide: `docs/journal-submission-guide.md`
 
 **Research question tracking:** All literature review questions are tracked in `docs/references/Research_Questions.md`:
-- **Answered Questions tables:** Question, Scope, Issue, Research File, Merged (citation numbers added to paper.md, e.g., `[A31]-[A34]`)
+- **Answered Questions tables:** Question, Scope, Issue, Research File, Merged
 - **Unanswered Questions tables:** Question, Scope, Issue, Status, Notes
 - **Status values:** Answered, Partial, Unanswered, → Gap (searched but not found)
-- **Merged column:** Shows citation numbers (e.g., `[A66]`, `[A31]-[A34]`) when findings incorporated into paper.md; `-` means not yet merged
+- **Merged column:** Shows citation range (e.g., `[@wu2024]-[@ren2024]`) when findings incorporated into paper.md; `-` means not yet merged
 - Use `gh issue list --label "research"` to see all research-related issues
 - Use `/scholar:research-question` skill for Google Scholar Labs searches
 
