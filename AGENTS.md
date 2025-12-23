@@ -25,7 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 92 verified citations (pandoc-citeproc format) addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 108 verified citations (pandoc-citeproc format) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
@@ -60,7 +60,7 @@ uv run academic-review init <review-id>    # Initialize new review
 uv run academic-review search <review-id>  # Execute search stage
 uv run academic-review status <review-id>  # Check review status
 
-# Testing (758 tests total: 415 lit_review + 316 skills + 27 other)
+# Testing (796 tests total: 415 lit_review + 316 skills + 65 other)
 uv run pytest                              # Run all tests
 uv run pytest tests/lit_review/ -v         # Literature review tests (415 tests)
 uv run pytest tests/skills/ -v             # Workflow skills tests (316 tests)
@@ -243,7 +243,7 @@ python scripts/extract_abbreviations.py         # Generate abbreviations list
 ### Generated Files Strategy
 **Committed to git (intentional):**
 - `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
-- `references.bib` - BibTeX bibliography (92 entries)
+- `references.bib` - BibTeX bibliography (108 entries)
 - `citation-style-ama.csl` - AMA 11th edition (JMIR requirement, from Zotero CSL repository)
 - `figures/*` - All figure assets (source `.mmd`/`.dot`, generated `.jpg`/`.png`/`.svg`/`.pdf`)
 - Versioned for reproducibility and release tagging
