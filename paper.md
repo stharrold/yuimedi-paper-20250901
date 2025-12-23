@@ -853,4 +853,4 @@ FROM (
 
 *This work is licensed under a Creative Commons Attribution 4.0 International License.*
 
-*Correspondence: https://us.yuimedi.com/contact-us/ (include "NL2SQL paper" in message)*
+*Correspondence: samuel.harrold@yuimedi.com*
