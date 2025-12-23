@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2025 Yuimedi, Inc.
 # SPDX-License-Identifier: Apache-2.0
 """
-Extract abbreviations from paper.md used >=3 times.
+Extract abbreviations from paper.md.
 Output: Markdown abbreviations section for JMIR compliance.
 
 Uses Python stdlib only - no external dependencies.
@@ -83,7 +83,7 @@ def main() -> None:
     section = format_abbreviations_section(abbrevs)
 
     print(section)
-    print(f"\n# Found {len(abbrevs)} abbreviations used >=3 times")
+    print(f"\n# Found {len(abbrevs)} abbreviations")
 
     # Also show all abbreviations with counts for reference
     print("\n# All abbreviations found (with counts):")
