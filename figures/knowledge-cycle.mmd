@@ -13,9 +13,9 @@ flowchart TB
     end
 
     subgraph PILLARS["<b>Three Pillars (Cycle Broken)</b>"]
-        M["Low Analytics<br/>Maturity"]
-        T["Workforce<br/>Turnover"]
-        B["Technical<br/>Barriers"]
+        M["Analytics<br/>Maturity"]
+        T["Workforce<br/>Retention"]
+        B["Technical<br/>Accessibility"]
     end
 
     %% Main cycle flow (left to right)
@@ -27,10 +27,10 @@ flowchart TB
     R --> P
     P -.->|"New expert uses<br/>validated queries"| Q
 
-    %% How cycle breaks each pillar (vertical connections)
-    S -.->|"Accelerates<br/>advancement"| M
-    P -.->|"Preserves<br/>expertise"| T
-    R -.->|"Reduces<br/>barriers"| B
+    %% How cycle advances each pillar (vertical connections)
+    S -.->|"Advances"| M
+    P -.->|"Enables"| T
+    R -.->|"Improves"| B
 
     %% Styling - Grayscale
     style CYCLE fill:#e8e8e8,stroke:#666,stroke-width:2px
