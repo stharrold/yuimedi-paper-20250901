@@ -1,9 +1,10 @@
 %%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '10pt'}}}%%
-flowchart TD
+flowchart TB
     %% Validated Query Cycle - Knowledge Preservation Mechanism
     %% Shows how validated NL+SQL pairs break the three-pillar compounding cycle
 
     subgraph CYCLE["<b>Validated Query Cycle</b>"]
+        direction LR
         Q["1. QUERY<br/>Domain expert asks<br/>natural language question"]
         G["2. GENERATION<br/>System generates<br/>candidate SQL"]
         V{"3. VALIDATION<br/>Expert confirms or<br/>corrects SQL"}
@@ -13,12 +14,13 @@ flowchart TD
     end
 
     subgraph PILLARS["<b>Three-Pillar Compounding Cycle (BROKEN)</b>"]
+        direction LR
         M["Low Analytics<br/>Maturity"]
         T["Workforce<br/>Turnover"]
         B["Technical<br/>Barriers"]
     end
 
-    %% Main cycle flow
+    %% Main cycle flow (left to right)
     Q --> G
     G --> V
     V -->|"Correct"| S
@@ -27,7 +29,7 @@ flowchart TD
     R --> P
     P -.->|"New expert uses<br/>validated queries"| Q
 
-    %% How cycle breaks each pillar
+    %% How cycle breaks each pillar (vertical connections)
     S -.->|"Accelerates<br/>advancement"| M
     P -.->|"Preserves<br/>expertise"| T
     R -.->|"Reduces<br/>barriers"| B
