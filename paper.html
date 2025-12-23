@@ -268,10 +268,10 @@ AI, healthcare informatics, workforce turnover, analytics maturity" />
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  
-  
-  
-  
+
+
+
+
 </head>
 <body>
 <header id="title-block-header">
@@ -638,12 +638,8 @@ class="toc-section-number">6.3</span> Key Findings</a></li>
 id="toc-implications-for-organizational-assessment"><span
 class="toc-section-number">6.4</span> Implications for Organizational
 Assessment</a></li>
-<li><a href="#future-research-directions-1"
-id="toc-future-research-directions-1"><span
-class="toc-section-number">6.5</span> Future Research
-Directions</a></li>
 <li><a href="#closing-reflection" id="toc-closing-reflection"><span
-class="toc-section-number">6.6</span> Closing Reflection</a></li>
+class="toc-section-number">6.5</span> Closing Reflection</a></li>
 </ul></li>
 <li><a href="#acknowledgments" id="toc-acknowledgments"><span
 class="toc-section-number">7</span> Acknowledgments</a></li>
@@ -1078,7 +1074,7 @@ screening. Semantic Scholar searches for “NL2SQL healthcare,” “NL2SQL
 productivity,” “conversational AI clinical,” and “SECI model analytics”
 (2015-current) returned 72 results with 8 passing screening. The final
 corpus includes 81 academic and 11 industry sources (92 total).</p>
-<p>Figure 2 illustrates the literature selection process, showing
+<p>Figure 3 illustrates the literature selection process, showing
 progression from initial database search through screening and quality
 assessment to the final corpus of 92 sources.</p>
 <h2 data-number="2.3" id="source-selection"><span
@@ -2017,6 +2013,23 @@ data-cites="ipeirotis2025">(<a href="#ref-ipeirotis2025"
 role="doc-biblioref">35</a>)</span>), longitudinal studies tracking
 sustained productivity improvements over multiple years remain
 limited</li>
+<li><strong>Citizen developer productivity methodology</strong>: No
+validated healthcare-specific instrument exists for measuring citizen
+developer productivity. While Berkshire NHS reports 800+ citizen
+developers <span class="citation" data-cites="berkshire2024">(<a
+href="#ref-berkshire2024" role="doc-biblioref">92</a>)</span>, the
+methodology for quantifying their productivity contributions lacks
+standardization across studies</li>
+<li><strong>AMAM-specific outcome evidence</strong>: The HIMSS Analytics
+Maturity Assessment Model (AMAM) was released in October 2024; existing
+outcome studies linking maturity stages to patient outcomes use the
+older EMRAM (EHR adoption) model <span class="citation"
+data-cites="snowdon2024 snowdon2024a">(<a href="#ref-snowdon2024"
+role="doc-biblioref">44</a>,<a href="#ref-snowdon2024a"
+role="doc-biblioref">45</a>)</span>. As of this review, AMAM-specific
+outcome studies remain very limited, providing only emerging evidence
+for analytics maturity (as distinct from EHR adoption) impact on
+outcomes</li>
 </ol>
 <h2 data-number="4.7" id="why-the-problem-persists"><span
 class="header-section-number">4.7</span> Why the Problem Persists</h2>
@@ -2324,13 +2337,168 @@ class="header-section-number">5.5.2</span> Three-Pillar Assessment
 Rubric</h3>
 <p>The three-pillar framework enables organizational self-assessment to
 determine readiness for and potential benefit from NL2SQL and
-conversational AI interventions. Table 4 provides an evidence-based
+conversational AI interventions. Table 3 provides an evidence-based
 rubric where each indicator anchors to reviewed literature.
 Organizations scoring predominantly “Higher Risk” across pillars face
 compounding challenges that NL2SQL platforms are specifically designed
 to address: democratizing data access (Technical Barriers), preserving
 institutional knowledge (Workforce Dynamics), and accelerating maturity
 advancement (Analytics Maturity).</p>
+<p><strong>Table 3: Three-Pillar Organizational Assessment
+Rubric</strong></p>
+<p><strong>Analytics Maturity Indicators:</strong></p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 19%" />
+<col style="width: 24%" />
+<col style="width: 21%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Indicator</th>
+<th>Lower Risk</th>
+<th>Moderate Risk</th>
+<th>Higher Risk</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>HIMSS AMAM Stage</td>
+<td>Stages 5-7: Predictive analytics, AI integration</td>
+<td>Stages 3-4: Integrated warehouse, standardized definitions</td>
+<td>Stages 0-2: Fragmented data, limited reporting</td>
+<td><span class="citation" data-cites="himss2024 health2020">(<a
+href="#ref-himss2024" role="doc-biblioref">2</a>,<a
+href="#ref-health2020" role="doc-biblioref">49</a>)</span></td>
+</tr>
+<tr class="even">
+<td>Self-service analytics</td>
+<td>Widespread; clinical staff access data directly</td>
+<td>Partial; BI tools available but underutilized</td>
+<td>None; all analytics require IT intervention</td>
+<td><span class="citation" data-cites="berkshire2024 wang2018">(<a
+href="#ref-wang2018" role="doc-biblioref">4</a>,<a
+href="#ref-berkshire2024" role="doc-biblioref">92</a>)</span></td>
+</tr>
+<tr class="odd">
+<td>AI/NL interface availability</td>
+<td>Natural language query capability deployed</td>
+<td>Pilot programs or evaluation underway</td>
+<td>No NL2SQL or conversational analytics</td>
+<td><span class="citation" data-cites="wang2020 ziletti2024">(<a
+href="#ref-ziletti2024" role="doc-biblioref">20</a>,<a
+href="#ref-wang2020" role="doc-biblioref">27</a>)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Workforce Dynamics Indicators:</strong></p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 19%" />
+<col style="width: 24%" />
+<col style="width: 21%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Indicator</th>
+<th>Lower Risk</th>
+<th>Moderate Risk</th>
+<th>Higher Risk</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Annual IT turnover rate</td>
+<td>&lt;15%</td>
+<td>15-30%</td>
+<td>&gt;30% (exceeds 2004 healthcare IT baseline)</td>
+<td><span class="citation" data-cites="ang2004">(<a href="#ref-ang2004"
+role="doc-biblioref">3</a>)</span></td>
+</tr>
+<tr class="even">
+<td>Knowledge concentration</td>
+<td>Distributed expertise; documented processes</td>
+<td>Partial documentation; some cross-training</td>
+<td>Critical expertise held by ≤3 individuals</td>
+<td><span class="citation" data-cites="benbya2004 richesson2007">(<a
+href="#ref-benbya2004" role="doc-biblioref">15</a>,<a
+href="#ref-richesson2007" role="doc-biblioref">16</a>)</span></td>
+</tr>
+<tr class="odd">
+<td>Time-to-productivity</td>
+<td>&lt;6 months with structured onboarding</td>
+<td>6-18 months</td>
+<td>&gt;18 months (specialized health informatics roles)</td>
+<td><span class="citation"
+data-cites="ledikwe2013 mantas2010 musa2023">(<a href="#ref-ledikwe2013"
+role="doc-biblioref">72</a>–<a href="#ref-musa2023"
+role="doc-biblioref">74</a>)</span></td>
+</tr>
+<tr class="even">
+<td>Tacit knowledge capture</td>
+<td>Expertise embedded in systems/AI</td>
+<td>Partial documentation exists</td>
+<td>Person-dependent; undocumented tribal knowledge</td>
+<td><span class="citation" data-cites="benbya2004">(<a
+href="#ref-benbya2004" role="doc-biblioref">15</a>)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Technical Barriers Indicators:</strong></p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 19%" />
+<col style="width: 24%" />
+<col style="width: 21%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Indicator</th>
+<th>Lower Risk</th>
+<th>Moderate Risk</th>
+<th>Higher Risk</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data access requirements</td>
+<td>Natural language or visual query interfaces</td>
+<td>IT queue for complex queries; basic self-service</td>
+<td>SQL/technical expertise required for all queries</td>
+<td><span class="citation"
+data-cites="wang2018 bardsley2016 pesqueira2020">(<a
+href="#ref-wang2018" role="doc-biblioref">4</a>–<a
+href="#ref-pesqueira2020" role="doc-biblioref">6</a>)</span></td>
+</tr>
+<tr class="even">
+<td>Interoperability status</td>
+<td>Unified data platform; real-time integration</td>
+<td>Partial integration; some automated feeds</td>
+<td>Fragmented systems; manual reconciliation required</td>
+<td><span class="citation" data-cites="gal2019 bogaert2021">(<a
+href="#ref-gal2019" role="doc-biblioref">104</a>,<a
+href="#ref-bogaert2021" role="doc-biblioref">106</a>)</span></td>
+</tr>
+<tr class="odd">
+<td>Skills gap severity</td>
+<td>Sufficient analysts across departments</td>
+<td>Acknowledged deficit with mitigation plans</td>
+<td>Critical shortage preventing data utilization</td>
+<td><span class="citation" data-cites="bardsley2016 pesqueira2020">(<a
+href="#ref-bardsley2016" role="doc-biblioref">5</a>,<a
+href="#ref-pesqueira2020" role="doc-biblioref">6</a>)</span></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Convergence Assessment and NL2SQL Indication:</strong></p>
 <table>
 <colgroup>
@@ -2537,28 +2705,8 @@ and mature data infrastructure face different risk profiles than those
 experiencing rapid turnover and limited analytics capabilities. The
 evidence does not prescribe universal solutions but provides structured
 approaches for context-specific evaluation.</p>
-<h2 data-number="6.5" id="future-research-directions-1"><span
-class="header-section-number">6.5</span> Future Research Directions</h2>
-<p>Several research gaps limit the ability to provide definitive
-organizational guidance:</p>
-<ol type="1">
-<li><p><strong>Reference implementation validation</strong>: Empirical
-validation using synthetic data (Synthea) and healthcare-specific
-benchmarks (EHRSQL, MIMICSQL) would establish reproducible baselines for
-NL2SQL accuracy in clinical contexts</p></li>
-<li><p><strong>Healthcare terminology and schema mapping</strong>:
-Programmatic integration with standardized vocabularies (SNOMED CT,
-LOINC, RxNorm) and interoperability standards (FHIR, OMOP CDM) requires
-systematic investigation to reduce implementation burden</p></li>
-<li><p><strong>Longitudinal outcomes</strong>: Most implementation
-studies span 6-24 months; multi-year institutional knowledge
-preservation effects remain understudied</p></li>
-<li><p><strong>Governance frameworks</strong>: Optimal approaches for
-balancing analytics democratization with data quality and clinical
-safety standards need development</p></li>
-</ol>
-<h2 data-number="6.6" id="closing-reflection"><span
-class="header-section-number">6.6</span> Closing Reflection</h2>
+<h2 data-number="6.5" id="closing-reflection"><span
+class="header-section-number">6.5</span> Closing Reflection</h2>
 <p><em>Primum non nocere</em> ultimately requires healthcare
 organizations to make evidence-based judgments about both action and
 inaction. This review contributes a three-pillar analytical framework to
@@ -2596,8 +2744,7 @@ analytical framework derived from published literature and does not
 evaluate or recommend specific commercial products, including those of
 the author’s affiliated organizations. The views expressed are the
 author’s own and do not represent the official positions of Indiana
-University Health or Yuimedi, Inc. This research was conducted
-independently without funding from any affiliated organization.</p>
+University Health or Yuimedi, Inc.</p>
 <h1 data-number="10" id="data-availability"><span
 class="header-section-number">10</span> Data Availability</h1>
 <p>This is a narrative review synthesizing existing literature. No
@@ -2810,8 +2957,7 @@ class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#c
 <hr />
 <p><em>This work is licensed under a Creative Commons Attribution 4.0
 International License.</em></p>
-<p><em>Correspondence: https://us.yuimedi.com/contact-us/ (include
-“NL2SQL paper” in message)</em></p>
+<p><em>Correspondence: samuel.harrold@yuimedi.com</em></p>
 <div id="refs" class="references csl-bib-body" role="list">
 <div id="ref-american2023" class="csl-entry" role="listitem">
 <div class="csl-left-margin">1. </div><div class="csl-right-inline">NORC

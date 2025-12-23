@@ -162,8 +162,8 @@ The knowledge portal architecture preserves institutional expertise through a si
 ```{=latex}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth,keepaspectratio]{figures/knowledge-cycle.mmd.png}
-\caption{The Validated Query Cycle. Domain experts ask natural language questions (1), the system generates candidate SQL (2), experts validate results (3), validated pairs are stored (4), future queries retrieve validated knowledge (5), and expertise persists through staff turnover (6). This cycle breaks the compounding effect where turnover erases institutional memory.}
+\includegraphics[width=0.5\textwidth,keepaspectratio]{figures/knowledge-cycle.mmd.png}
+\caption{The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) experts validate results, (4) validated pairs are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.}
 \label{fig:knowledge-cycle}
 \end{figure}
 ```
@@ -218,7 +218,7 @@ Search terms were organized around the three-pillar framework:
 
 Searches across all databases yielded 570 initial results after deduplication. Crossref searches for terms including "healthcare analytics maturity," "HIMSS AMAM," "NL2SQL clinical," "knowledge portal," and "low-code ROI" (2015-current) returned 285 results, of which 15 passed screening. PubMed searches combining workforce terms ("healthcare IT tenure," "IT training time," "turnover cost salary") with analytics terms ("institutional memory," "analytics adoption," "knowledge capture") (2015-current) yielded 142 results with 12 passing screening. arXiv searches in cs.CL and cs.DB categories for "text-to-SQL" combined with technical terms ("MIMICSQL," "EHRSQL," "schema discovery," "PK/FK discovery," "semantic matching," "vector embeddings") (2020-current) produced 71 results with 6 passing screening. Semantic Scholar searches for "NL2SQL healthcare," "NL2SQL productivity," "conversational AI clinical," and "SECI model analytics" (2015-current) returned 72 results with 8 passing screening. The final corpus includes 81 academic and 11 industry sources (92 total).
 
-Figure 2 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 92 sources.
+Figure 3 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 92 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -511,6 +511,8 @@ Despite substantial evidence supporting conversational AI in healthcare analytic
 4. **Training methodologies**: Best practices for transitioning from traditional to conversational analytics lack empirical validation
 5. **Integration patterns**: Architectural guidance for incorporating conversational AI into existing healthcare IT ecosystems remains sparse
 6. **Long-term productivity tracking**: While peer-reviewed studies now document immediate productivity gains (63% self-service adoption increase, 37% data retrieval time reduction, 10-30% query completion time improvement [@yuan2019], [@dadi2025], [@shah2020], [@ipeirotis2025]), longitudinal studies tracking sustained productivity improvements over multiple years remain limited
+7. **Citizen developer productivity methodology**: No validated healthcare-specific instrument exists for measuring citizen developer productivity. While Berkshire NHS reports 800+ citizen developers [@berkshire2024], the methodology for quantifying their productivity contributions lacks standardization across studies
+8. **AMAM-specific outcome evidence**: The HIMSS Analytics Maturity Assessment Model (AMAM) was released in October 2024; existing outcome studies linking maturity stages to patient outcomes use the older EMRAM (EHR adoption) model [@snowdon2024; @snowdon2024a]. As of this review, AMAM-specific outcome studies remain very limited, providing only emerging evidence for analytics maturity (as distinct from EHR adoption) impact on outcomes
 
 ## Why the Problem Persists
 
@@ -619,34 +621,34 @@ The three-pillar framework provides a structured approach for organizational sel
 
 ### Three-Pillar Assessment Rubric
 
-The three-pillar framework enables organizational self-assessment to determine readiness for and potential benefit from NL2SQL and conversational AI interventions. Table 4 provides an evidence-based rubric where each indicator anchors to reviewed literature. Organizations scoring predominantly "Higher Risk" across pillars face compounding challenges that NL2SQL platforms are specifically designed to address: democratizing data access (Technical Barriers), preserving institutional knowledge (Workforce Dynamics), and accelerating maturity advancement (Analytics Maturity).
+The three-pillar framework enables organizational self-assessment to determine readiness for and potential benefit from NL2SQL and conversational AI interventions. Table 3 provides an evidence-based rubric where each indicator anchors to reviewed literature. Organizations scoring predominantly "Higher Risk" across pillars face compounding challenges that NL2SQL platforms are specifically designed to address: democratizing data access (Technical Barriers), preserving institutional knowledge (Workforce Dynamics), and accelerating maturity advancement (Analytics Maturity).
 
-```{=latex}
-\begin{sidewaystable}[p]
-\centering
-\caption{Three-Pillar Organizational Assessment Rubric}
-\label{tab:assessment-rubric}
-\footnotesize
-\begin{tabular}{p{2.2cm}p{2.5cm}p{4cm}p{4cm}p{4.5cm}p{1.8cm}}
-\toprule
-\textbf{Pillar} & \textbf{Indicator} & \textbf{Lower Risk} & \textbf{Moderate Risk} & \textbf{Higher Risk} & \textbf{Evidence} \\
-\midrule
-\textbf{Analytics Maturity} & HIMSS AMAM Stage & Stages 5-7: Predictive analytics, AI integration & Stages 3-4: Integrated warehouse, standardized definitions & Stages 0-2: Fragmented data, limited reporting (majority of organizations) & [@himss2024], [@health2020] \\
-& Self-service analytics & Widespread; clinical staff access data directly & Partial; BI tools available but underutilized & None; all analytics require IT intervention & [@berkshire2024], [@wang2018] \\
-& AI/NL interface availability & Natural language query capability deployed & Pilot programs or evaluation underway & No NL2SQL or conversational analytics capability & [@wang2020], [@ziletti2024] \\
-\midrule
-\textbf{Workforce Dynamics} & Annual IT turnover rate & <15\% & 15-30\% & >30\% (exceeds 2004 healthcare IT baseline) & [@ang2004] \\
-& Knowledge concentration & Distributed expertise; documented processes & Partial documentation; some cross-training & Critical expertise held by $\leq$3 individuals & [@benbya2004], [@richesson2007] \\
-& Time-to-productivity for new hires & <6 months with structured onboarding & 6-18 months & >18 months (specialized health informatics roles) & [@ledikwe2013], [@mantas2010], [@musa2023] \\
-& Tacit knowledge capture & Expertise embedded in systems/AI & Partial documentation exists & Person-dependent; undocumented tribal knowledge & [@benbya2004] \\
-\midrule
-\textbf{Technical Barriers} & Data access requirements & Natural language or visual query interfaces & IT queue for complex queries; basic self-service & SQL/technical expertise required for all queries & [@wang2018], [@bardsley2016], [@pesqueira2020] \\
-& Interoperability status & Unified data platform; real-time integration & Partial integration; some automated feeds & Fragmented systems; manual reconciliation required & [@gal2019], [@bogaert2021] \\
-& Skills gap severity & Sufficient analysts across departments & Acknowledged deficit with mitigation plans & Critical shortage preventing data utilization & [@bardsley2016], [@pesqueira2020] \\
-\bottomrule
-\end{tabular}
-\end{sidewaystable}
-```
+**Table 3: Three-Pillar Organizational Assessment Rubric**
+
+**Analytics Maturity Indicators:**
+
+| Indicator | Lower Risk | Moderate Risk | Higher Risk | Evidence |
+|-----------|------------|---------------|-------------|----------|
+| HIMSS AMAM Stage | Stages 5-7: Predictive analytics, AI integration | Stages 3-4: Integrated warehouse, standardized definitions | Stages 0-2: Fragmented data, limited reporting | [@himss2024; @health2020] |
+| Self-service analytics | Widespread; clinical staff access data directly | Partial; BI tools available but underutilized | None; all analytics require IT intervention | [@berkshire2024; @wang2018] |
+| AI/NL interface availability | Natural language query capability deployed | Pilot programs or evaluation underway | No NL2SQL or conversational analytics | [@wang2020; @ziletti2024] |
+
+**Workforce Dynamics Indicators:**
+
+| Indicator | Lower Risk | Moderate Risk | Higher Risk | Evidence |
+|-----------|------------|---------------|-------------|----------|
+| Annual IT turnover rate | <15% | 15-30% | >30% (exceeds 2004 healthcare IT baseline) | [@ang2004] |
+| Knowledge concentration | Distributed expertise; documented processes | Partial documentation; some cross-training | Critical expertise held by ≤3 individuals | [@benbya2004; @richesson2007] |
+| Time-to-productivity | <6 months with structured onboarding | 6-18 months | >18 months (specialized health informatics roles) | [@ledikwe2013; @mantas2010; @musa2023] |
+| Tacit knowledge capture | Expertise embedded in systems/AI | Partial documentation exists | Person-dependent; undocumented tribal knowledge | [@benbya2004] |
+
+**Technical Barriers Indicators:**
+
+| Indicator | Lower Risk | Moderate Risk | Higher Risk | Evidence |
+|-----------|------------|---------------|-------------|----------|
+| Data access requirements | Natural language or visual query interfaces | IT queue for complex queries; basic self-service | SQL/technical expertise required for all queries | [@wang2018; @bardsley2016; @pesqueira2020] |
+| Interoperability status | Unified data platform; real-time integration | Partial integration; some automated feeds | Fragmented systems; manual reconciliation required | [@gal2019; @bogaert2021] |
+| Skills gap severity | Sufficient analysts across departments | Acknowledged deficit with mitigation plans | Critical shortage preventing data utilization | [@bardsley2016; @pesqueira2020] |
 
 **Convergence Assessment and NL2SQL Indication:**
 
@@ -719,18 +721,6 @@ Throughout this assessment, quality patient care must remain the primary metric.
 
 This framework acknowledges that optimal decisions will vary by organizational context. Healthcare systems with stable analytics teams and mature data infrastructure face different risk profiles than those experiencing rapid turnover and limited analytics capabilities. The evidence does not prescribe universal solutions but provides structured approaches for context-specific evaluation.
 
-## Future Research Directions
-
-Several research gaps limit the ability to provide definitive organizational guidance:
-
-1. **Reference implementation validation**: Empirical validation using synthetic data (Synthea) and healthcare-specific benchmarks (EHRSQL, MIMICSQL) would establish reproducible baselines for NL2SQL accuracy in clinical contexts
-
-2. **Healthcare terminology and schema mapping**: Programmatic integration with standardized vocabularies (SNOMED CT, LOINC, RxNorm) and interoperability standards (FHIR, OMOP CDM) requires systematic investigation to reduce implementation burden
-
-3. **Longitudinal outcomes**: Most implementation studies span 6-24 months; multi-year institutional knowledge preservation effects remain understudied
-
-4. **Governance frameworks**: Optimal approaches for balancing analytics democratization with data quality and clinical safety standards need development
-
 ## Closing Reflection
 
 *Primum non nocere* ultimately requires healthcare organizations to make evidence-based judgments about both action and inaction. This review contributes a three-pillar analytical framework to support those judgments, synthesizing evidence on analytics maturity, workforce dynamics, and technical capabilities.
@@ -749,7 +739,7 @@ S.T.H. conceived the research, conducted the literature review, and wrote the ma
 
 # Conflicts of Interest
 
-The author declares the following competing interests: Samuel T Harrold is a contract product advisor at Yuimedi, Inc., which develops healthcare analytics software including conversational AI platforms relevant to this review's subject matter. The author is also employed as a Data Scientist at Indiana University Health. This paper presents an analytical framework derived from published literature and does not evaluate or recommend specific commercial products, including those of the author's affiliated organizations. The views expressed are the author's own and do not represent the official positions of Indiana University Health or Yuimedi, Inc. This research was conducted independently without funding from any affiliated organization.
+The author declares the following competing interests: Samuel T Harrold is a contract product advisor at Yuimedi, Inc., which develops healthcare analytics software including conversational AI platforms relevant to this review's subject matter. The author is also employed as a Data Scientist at Indiana University Health. This paper presents an analytical framework derived from published literature and does not evaluate or recommend specific commercial products, including those of the author's affiliated organizations. The views expressed are the author's own and do not represent the official positions of Indiana University Health or Yuimedi, Inc.
 
 # Data Availability
 
@@ -863,4 +853,4 @@ FROM (
 
 *This work is licensed under a Creative Commons Attribution 4.0 International License.*
 
-*Correspondence: https://us.yuimedi.com/contact-us/ (include "NL2SQL paper" in message)*
+*Correspondence: samuel.harrold@yuimedi.com*
