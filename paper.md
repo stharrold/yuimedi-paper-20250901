@@ -511,6 +511,8 @@ Despite substantial evidence supporting conversational AI in healthcare analytic
 4. **Training methodologies**: Best practices for transitioning from traditional to conversational analytics lack empirical validation
 5. **Integration patterns**: Architectural guidance for incorporating conversational AI into existing healthcare IT ecosystems remains sparse
 6. **Long-term productivity tracking**: While peer-reviewed studies now document immediate productivity gains (63% self-service adoption increase, 37% data retrieval time reduction, 10-30% query completion time improvement [@yuan2019], [@dadi2025], [@shah2020], [@ipeirotis2025]), longitudinal studies tracking sustained productivity improvements over multiple years remain limited
+7. **Citizen developer productivity methodology**: No validated healthcare-specific instrument exists for measuring citizen developer productivity. While Berkshire NHS reports 800+ citizen developers [@berkshire2024], the methodology for quantifying their productivity contributions lacks standardization across studies
+8. **AMAM-specific outcome evidence**: The HIMSS Analytics Maturity Assessment Model (AMAM) was released in October 2024; existing outcome studies linking maturity stages to patient outcomes use the older EMRAM (EHR adoption) model [@snowdon2024; @snowdon2024a]. AMAM-specific outcome studies are not yet available, limiting evidence for analytics maturity (as distinct from EHR adoption) impact on outcomes
 
 ## Why the Problem Persists
 
