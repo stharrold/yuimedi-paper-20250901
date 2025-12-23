@@ -1,6 +1,6 @@
 # Reference Validation Report
 
-**Generated:** 2025-12-16 05:19:24 UTC
+**Generated:** 2025-12-21 16:37:20 UTC
 
 ## Summary
 
@@ -9,20 +9,14 @@
 | Total References | 41 |
 | Academic [A*] | 30 |
 | Industry [I*] | 11 |
-| Total Citations | 106 |
+| Total Citations | 90 |
 | Accessible URLs | 24 |
 | Broken URLs | 17 |
 | Missing URLs | 0 |
 | Orphaned Citations | 0 |
-| Unused References | 1 |
+| Unused References | 0 |
 
 ## Issues
-
-### Unused References
-
-References defined but never cited in the paper body:
-
-- [A26]
 
 ### Broken URLs
 

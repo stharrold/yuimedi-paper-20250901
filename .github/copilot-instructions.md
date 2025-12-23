@@ -25,7 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 41 verified citations (30 academic, 11 industry) addressing:
+**Primary deliverable:** `paper.md` - Academic research paper with 108 verified citations (pandoc-citeproc format) addressing:
 1. Low healthcare analytics maturity
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
@@ -36,7 +36,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ppr_review/20251215_AACODS-Grey-Literature.md` for assessment table.
 
-**Paper 1 structure (post-revision):** Executive Summary → Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Sections 5-6 (Proposed Solution, Evaluation) were intentionally removed to transform paper from solution-advocacy to pure analytical framework.
+**Paper 1 structure (npj-aligned):** Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Executive Summary removed (redundant with YAML abstract); Sections 5-6 (Proposed Solution, Evaluation) previously removed to transform paper from solution-advocacy to pure analytical framework.
 
 ## Essential Commands
 
@@ -60,13 +60,13 @@ uv run academic-review init <review-id>    # Initialize new review
 uv run academic-review search <review-id>  # Execute search stage
 uv run academic-review status <review-id>  # Check review status
 
-# Testing
+# Testing (796 tests total: 415 lit_review + 316 skills + 65 other)
 uv run pytest                              # Run all tests
-uv run pytest tests/lit_review/ -v         # Literature review tests only
+uv run pytest tests/lit_review/ -v         # Literature review tests (415 tests)
 uv run pytest tests/skills/ -v             # Workflow skills tests (316 tests)
 uv run pytest --cov=lit_review             # With coverage
 uv run pytest -k "test_paper" -v           # Run single test by name
-uv run pytest -m "not integration"         # Skip integration tests (default in CI)
+uv run pytest -m "not integration"         # Skip integration tests (pre-push default)
 
 # Skills coverage (targeted modules)
 uv run pytest tests/skills/ \
@@ -207,35 +207,69 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 
 ## Key Patterns
 
-### Citations
-- Academic: `[A1]`, `[A2]`, etc. (30 sources)
-- Industry: `[I1]`, `[I2]`, etc. (11 sources)
-- Key dated citation: [A10] (2004 turnover data) - always qualify with temporal context
+### Writing Style
+- **NEVER use em-dashes (—)**. Replace with:
+  - Commas for parenthetical insertions: "34% [A10], the highest rate, creates..."
+  - Colons for definitions: "barrier: the gap between..."
+  - Semicolons for related clauses: "descriptive; it provides..."
+  - Parentheses for asides: "(backed by Amazon)"
+- **Excluded from this rule:** `standards/` directory (external journal content)
+
+### Citations (pandoc-citeproc)
+Uses pandoc-citeproc for automatic bibliography generation:
+- Citation format: `[@key]` (e.g., `[@wu2024]`, `[@himss2024]`)
+- Multiple citations: `[@wu2024; @ren2024]`
+- BibTeX file: `references.bib` (92 entries)
+- CSL style: `citation-style-ama.csl` (AMA 11th edition for JMIR compliance)
+
+**Key files:**
+- `references.bib` - BibTeX bibliography
+- `citation-style-ama.csl` - AMA citation style (JMIR requirement)
+- `citation-style.csl` - Vancouver citation style (legacy, kept for reference)
+
+**JMIR compliance validation:**
+```bash
+python scripts/validate_jmir_compliance.py      # Check abstract, sections, CSL
+python scripts/extract_abbreviations.py         # Generate abbreviations list
+```
+
+**Citation key convention:** `{firstauthor}{year}{suffix}` (e.g., `wu2024`, `wu2024a`)
 
 ### File Naming
-- Historical files: `YYYYMMDDTHHMMSSZ_` prefix
-- Project management: UPPERCASE (`DECISION_LOG.json`)
+- Historical files: `YYYYMMDDTHHMMSSZ_` prefix (ISO 8601 UTC)
+- Project management: UPPERCASE names
+- Deprecated files: Move to local `ARCHIVED/` subdirectory
 
 ### Generated Files Strategy
 **Committed to git (intentional):**
 - `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
-- `figures/*.jpg` - Generated from Mermaid `.mmd` sources (JPG format for cross-platform consistency)
+- `references.bib` - BibTeX bibliography (108 entries)
+- `citation-style-ama.csl` - AMA 11th edition (JMIR requirement, from Zotero CSL repository)
+- `figures/*` - All figure assets (source `.mmd`/`.dot`, generated `.jpg`/`.png`/`.svg`/`.pdf`)
 - Versioned for reproducibility and release tagging
 
-**Figure generation:** Generate JPG from Mermaid source:
+**Figure generation:** Generate from Mermaid or DOT source:
 ```bash
-# Step 1: Generate PNG from Mermaid
-npx --yes @mermaid-js/mermaid-cli@latest -i figures/<name>.mmd -o figures/<name>.png
+# Mermaid (.mmd) → PNG (in container for consistent fonts)
+podman-compose run --rm dev npx --yes @mermaid-js/mermaid-cli@latest \
+  -i figures/<name>.mmd -o figures/<name>.mmd.png -p /app/puppeteer-config.json
 
-# Step 2: Convert PNG to JPG (choose based on OS)
-# macOS:
-sips -s format jpeg figures/<name>.png --out figures/<name>.jpg && rm figures/<name>.png
-# Linux/Container:
-convert figures/<name>.png figures/<name>.jpg && rm figures/<name>.png
+# Mermaid (.mmd) → SVG
+podman-compose run --rm dev npx --yes @mermaid-js/mermaid-cli@latest \
+  -i figures/<name>.mmd -o figures/<name>.mmd.svg -p /app/puppeteer-config.json
+
+# DOT (.dot) → SVG/PNG (requires graphviz)
+podman-compose run --rm dev dot -Tsvg figures/<name>.mmd.dot -o figures/<name>.mmd.dot.svg
+podman-compose run --rm dev dot -Tpng figures/<name>.mmd.dot -o figures/<name>.mmd.dot.png
 ```
 
+**Figure naming convention:** Suffix chain documents derivation:
+- `<name>.mmd` - Mermaid source
+- `<name>.mmd.png` - PNG derived from .mmd
+- `<name>.mmd.dot` - DOT format (alternate)
+- `<name>.mmd.dot.svg` - SVG derived from .dot
+
 **Excluded via .gitignore:**
-- `figures/*.png` - Intermediate PNG files (local generation differences)
 - `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
 - `.claude-state/*.duckdb` - Local database files
 
@@ -243,9 +277,11 @@ convert figures/<name>.png figures/<name>.jpg && rm figures/<name>.png
 Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
 
 ### Three-Pillar Framework
-All research connects to: (1) analytics maturity, (2) workforce turnover, (3) technical barriers.
+All research connects to: (1) analytics maturity, (2) workforce turnover, (3) technical barriers. The framework reveals how these challenges interconnect and compound each other: low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery from either.
 
 **Framework documentation:** See `paper.md` "Framework Development and Validation" section for development process, theoretical grounding (Table 3: HIMSS AMAM/DIKW alignment), and validation approach.
+
+**Assessment rubric:** Table 4 in paper.md provides a 10-indicator rubric with Lower/Moderate/Higher Risk thresholds for organizational self-assessment. Each indicator is evidence-anchored to citations.
 
 **Planning documents:** `planning/<feature-slug>/` in repository (committed to version control)
 
@@ -253,7 +289,12 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 ## Healthcare Domain Context
 
-**Required knowledge:** ICD-10, CPT, SNOMED, RxNorm vocabularies; HIMSS AMAM stages; HL7/FHIR standards; HIPAA compliance.
+**Required knowledge:** ICD-10, CPT, SNOMED, RxNorm vocabularies; HIMSS maturity models; HL7/FHIR standards; HIPAA compliance.
+
+**HIMSS maturity models (important distinction):**
+- **EMRAM** (Electronic Medical Record Adoption Model): EHR adoption stages 0-7. Extensive outcome literature exists.
+- **AMAM** (Analytics Maturity Assessment Model): Analytics capability stages. Released October 2024; no peer-reviewed outcome studies yet.
+- Most literature uses EMRAM. When searching for AMAM evidence, note that AMAM-specific studies are a confirmed gap.
 
 **Academic standards:** PRISMA guidelines for systematic reviews (not applicable to this narrative review - see `docs/prisma-assessment.md`); statistical reporting with p-values/CIs; evidence hierarchy prioritizing RCTs.
 
@@ -267,9 +308,22 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 | 2 | Reference Implementation (GCP/Synthea) | Jan 31, 2026 |
 | 3 | FHIR/OMOP Schema Mapping | Mar 15, 2026 |
 
+**Why JMIR (not npj Digital Medicine):** Open-source GCP/Synthea approach eliminates commercial COI concerns.
+
+**Key documents:**
 - Revision strategy: `ppr_review/20251215_Revision-Strategy-Milestones.md`
-- Journal policies: `standards/npj_digital-medicine_about*.md`
+- Budget breakdown: `project-management.md` (Publication & Distribution Costs section)
+- Status updates: `status-updates.md` (reverse-chronological log)
+- Research questions: `docs/references/Research_Questions.md` (linked to GitHub issues via `research` label)
 - Submission guide: `docs/journal-submission-guide.md`
+
+**Research question tracking:** All literature review questions are tracked in `docs/references/Research_Questions.md`:
+- **Answered Questions tables:** Question, Scope, Issue, Research File, Merged
+- **Unanswered Questions tables:** Question, Scope, Issue, Status, Notes
+- **Status values:** Answered, Partial, Unanswered, → Gap (searched but not found)
+- **Merged column:** Shows citation range (e.g., `[@wu2024]-[@ren2024]`) when findings incorporated into paper.md; `-` means not yet merged
+- Use `gh issue list --label "research"` to see all research-related issues
+- Use `/scholar:research-question` skill for Google Scholar Labs searches
 
 **Preprint strategy:**
 - arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY
@@ -283,6 +337,6 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 All Python source files include SPDX headers:
 ```python
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 Yuimedi, Inc.
 # SPDX-License-Identifier: Apache-2.0
 ```

@@ -113,7 +113,7 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 > Healthcare workforce turnover rates of 15-36% annually [A1, A2] create devastating institutional memory loss.
 
 **Updated Text:**
-> Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 34% annually (calculated as 1/2.9 years), with average tenure of only 2.9 years—the lowest among IT organization types studied [A11].
+> Healthcare nursing turnover rates of 8-36% annually [A1, A2] create devastating institutional memory loss. IT staff at healthcare providers experience even higher turnover at 34% annually (calculated as 1/2.9 years), with average tenure of only 2.9 years, the lowest among IT organization types studied [A11].
 
 **Rationale:** Adds IT-specific detail with comparison context
 
@@ -122,7 +122,7 @@ This feature addresses GitHub Issue #275: Find sources for non-clinical staff (I
 ### 5. Literature Review (After Line ~195)
 
 **New Paragraph:**
-> Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions—where IT serves as a support function rather than core business—have average tenure of just 2.9 years, implying annual turnover of 34% (1/2.9 years), the highest rate among all IT organization types studied. This compares unfavorably to the 9.68-year average for IT managerial positions overall, highlighting the particular vulnerability of healthcare IT departments to knowledge loss.
+> Technical and analytics staff face even more severe turnover challenges. Ang and Slaughter [A11] found that IT professionals at healthcare provider institutions (where IT serves as a support function rather than core business) have average tenure of just 2.9 years, implying annual turnover of 34% (1/2.9 years), the highest rate among all IT organization types studied. This compares unfavorably to the 9.68-year average for IT managerial positions overall, highlighting the particular vulnerability of healthcare IT departments to knowledge loss.
 
 **Note:** [A12] Das et al. (2010) was listed as a secondary source but deferred from this implementation. The [A11] citation provides sufficient evidence for the IT turnover claims.
 

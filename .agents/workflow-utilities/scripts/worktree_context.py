@@ -217,6 +217,49 @@ def get_agentdb_path() -> Path:
     return db_path.resolve()
 
 
+def get_shared_agentdb_path() -> Path:
+    """Get the path to the shared AgentDB in the main repository.
+
+    Unlike get_agentdb_path() which returns the worktree-local database,
+    this function ALWAYS returns the main repository's AgentDB path.
+    This ensures all worktrees share the same workflow state.
+
+    For worktrees: Returns main_repo/.claude-state/agentdb.duckdb
+    For main repo: Returns .claude-state/agentdb.duckdb
+
+    Returns:
+        Absolute path to the shared agentdb.duckdb in the main repository.
+
+    Raises:
+        RuntimeError: If not in a git repository.
+
+    Example:
+        >>> # From worktree at /path/to/repo_feature_my-feature
+        >>> db_path = get_shared_agentdb_path()
+        >>> print(db_path)
+        /path/to/repo/.claude-state/agentdb.duckdb
+    """
+    ctx = get_worktree_context()
+
+    if ctx.is_worktree:
+        # Get main repo path from git_common_dir
+        main_repo = ctx.git_common_dir.parent
+        state_dir = main_repo / ".claude-state"
+    else:
+        # Already in main repo
+        state_dir = ctx.worktree_root / ".claude-state"
+
+    # Ensure state directory exists
+    state_dir.mkdir(exist_ok=True)
+
+    # Create .gitignore if not exists
+    gitignore_path = state_dir / ".gitignore"
+    if not gitignore_path.exists():
+        gitignore_path.write_text("# Ignore all files in state directory\n*\n")
+
+    return state_dir / "agentdb.duckdb"
+
+
 def get_main_repo_path() -> Path | None:
     """Get the main repository path when running from a worktree.
 

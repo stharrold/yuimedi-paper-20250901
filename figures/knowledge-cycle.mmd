@@ -1,0 +1,37 @@
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '10pt'}}}%%
+flowchart TB
+    %% Validated Query Cycle - Knowledge Preservation Mechanism
+    %% Shows how validated NL+SQL pairs break the three-pillar compounding cycle
+
+    subgraph CYCLE["<b>Validated Query Cycle</b>"]
+        Q["1. QUERY<br/>Domain expert asks<br/>natural language question"]
+        G["2. GENERATION<br/>System generates<br/>candidate SQL"]
+        V{"3. VALIDATION<br/>Expert confirms or<br/>corrects SQL"}
+        S["4. STORAGE<br/>Validated NL+SQL pair<br/>stored in memory"]
+        R["5. RETRIEVAL<br/>Future queries match<br/>validated pairs"]
+        P["6. PERSISTENCE<br/>Knowledge survives<br/>staff turnover"]
+    end
+
+    subgraph PILLARS["<b>Three Pillars (Cycle Broken)</b>"]
+        M["Analytics<br/>Maturity"]
+        T["Workforce<br/>Retention"]
+        B["Technical<br/>Accessibility"]
+    end
+
+    %% Main cycle flow (left to right)
+    Q --> G
+    G --> V
+    V -->|"Correct"| S
+    V -->|"Incorrect"| G
+    S --> R
+    R --> P
+    P -.->|"New expert uses<br/>validated queries"| Q
+
+    %% How cycle advances each pillar (vertical connections)
+    S -.->|"Advances"| M
+    P -.->|"Enables"| T
+    R -.->|"Improves"| B
+
+    %% Styling - Grayscale
+    style CYCLE fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style PILLARS fill:#e8e8e8,stroke:#666,stroke-width:2px,stroke-dasharray:5 5

@@ -1,8 +1,8 @@
 # GitHub Project Setup Guide - YuiQuery Whitepapers
-**VERSION: 3.0 - REMEDIATED**
-**Last Updated: 2025-09-03**
-**Implementation Status: COMPLETE**
-**Success Probability: 60% (was 20%)**
+**VERSION: 4.1 - CURRENT**
+**Last Updated: 2025-12-18**
+**Implementation Status: ACTIVE**
+**Success Probability: 75%**
 
 ## 📖 Quick Navigation
 **For Executives:** [Business Case](#business-case--competitive-analysis) | [Investment Analysis](#investment-analysis) | [Executive Dashboard](#executive-dashboard)
@@ -96,28 +96,37 @@
   - Paper 2: Algorithm accuracy exceeding 85%
   - Paper 3: Successful mapping to minimum 3 systems
 
-## Implementation Status (Updated: 2025-09-03)
-- [COMPLETE] Backup developer assignment (Completed Sept 3)
-- [COMPLETE] GitHub milestones created (Sept 3)
-- [COMPLETE] Archive organization (Sept 3)
-- [PENDING] Budget approval for [$33,495 total](project-management/budget/budget-final.json)
-- [PENDING] Repository creation at yuimedi/yuiquery-whitepapers
-- [PENDING] IRB determination filing
+## Implementation Status (Updated: 2025-12-18)
+- [COMPLETE] Backup developer assignment (Sept 3, 2025)
+- [COMPLETE] GitHub milestones created (Sept 3, 2025)
+- [COMPLETE] Archive organization (Sept 3, 2025)
+- [COMPLETE] Budget approval ($33,495 total)
+- [COMPLETE] Repository active at stharrold/yuimedi-paper-20250901
+- [COMPLETE] IRB determination: Not required (pre-anonymized data)
 - [COMPLETE] Remediation plan developed
-- [COMPLETE] [Risk register created](project-management/risks/risk-register-v2.csv)
-- [COMPLETE] [Quality gates defined](project-management/quality-gates.md)
+- [COMPLETE] Risk register created
+- [COMPLETE] Quality gates defined
+- [COMPLETE] Paper 1 draft complete (in revision)
+- [COMPLETE] Task management migrated to GitHub Issues (Nov 21, 2025)
+- [COMPLETE] Workflow system upgraded to v5.15.0 (Dec 10, 2025)
+- [COMPLETE] Paper 1 revisions (22 issues closed)
+- [COMPLETE] Paper 2 detailed work breakdown (Dec 18, 2025; 83-98 hrs, $5,939-$6,937)
+- [PENDING] Paper 2 implementation (target: Jan 31, 2026)
+- [PENDING] Paper 3 implementation (target: Mar 15, 2026)
 
 ## Executive Dashboard
 
 | Key Metric | Status | Business Impact |
 |------------|--------|-----------------|
-| Budget Approval | 🟡 PENDING | Blocks September start date |
-| Thought Leadership | 🟢 ON TRACK | 60% success probability with validated methodology |
-| Competitive Position | 🟢 FIRST MOVER | 6-month lead vs major competitors |
-| Partnership Pipeline | 🟢 READY | Speaking opportunities from Paper 1 publication |
-| Risk Mitigation | 🟢 COMPLETE | Single point of failure eliminated |
+| Budget Approval | 🟢 COMPLETE | Project funded and active |
+| Paper 1 (Framework) | 🟢 READY FOR SUBMISSION | Target: Dec 31, 2025 (6-8 hrs remaining) |
+| Paper 2 (Reference Impl) | 🔵 PLANNED | Target submission: Jan 31, 2026 |
+| Paper 3 (Schema Mapping) | 🔵 PLANNED | Target submission: Mar 15, 2026 |
+| Task Tracking | 🟢 ACTIVE | 29 open issues in GitHub Issues |
+| Competitive Position | 🟢 FIRST MOVER | Maintaining lead in healthcare AI analytics |
 
-**Next Executive Decision:** Budget approval required by September 6, 2025
+**Current Focus:** Paper 1 submission (6-8 hours remaining)
+**Task Management:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
 
 ## Timeline Overview
 **Start Date:** 2025-09-02
@@ -128,10 +137,11 @@
 ## Related Documents & Resources
 
 ### 📋 Project Management
-- **[Master TODO Tracking](TODO_FOR_AI.json)** - Detailed task list with GitHub integration
-- **[Human-Readable Tasks](TODO_FOR_HUMAN.md)** - Current priority overview
-- **[Decision Log](DECISION_LOG.json)** - Historical decision tracking and rationale
+- **[GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)** - Primary task tracking (29 open issues)
+- **[TODO.md](TODO.md)** - Migration documentation and system overview
 - **[Quality Gates](project-management/quality-gates.md)** - Milestone success criteria
+- **[Revision Strategy](ppr_review/20251215_Revision-Strategy-Milestones.md)** - Three-paper publication milestones
+- **[Status Updates](status-updates.md)** - Reverse-chronological status log
 
 ### 💰 Budget & Resources
 - **[Final Budget Breakdown](project-management/budget/budget-final.json)** - Detailed $33,495 allocation
@@ -144,7 +154,7 @@
 - **[Risk Scoring Matrix](project-management/risk-scoring-matrix.csv)** - Impact/probability framework
 
 ### 📄 Research Content
-- **[Main Research Paper](paper.md)** - Current Paper 1 draft (111 citations)
+- **[Main Research Paper](paper.md)** - Paper 1 (41 verified citations)
 - **[Paper 1 Research](docs/paper1/README.md)** - Literature review methodology
 - **[Paper 2 Research](docs/paper2/README.md)** - Proof of concept framework
 - **[Paper 3 Research](docs/paper3/README.md)** - FHIR mapping specifications
@@ -163,35 +173,42 @@
 - **[Project Backups](ARCHIVED/backups/)** - Previous document versions
 - **[TODO History](ARCHIVED/todo-history/)** - Task tracking evolution
 
-**CRITICAL CHANGES:**
-- Paper 1 deadline: 2025-09-30 (allows October publication)
-- Paper 2 deadline: 2026-01-10 (holiday buffer - moved per issue #46)
-- Paper 3 deadline: 2026-03-15 (Q1 2026 completion)
+**CURRENT DEADLINES (Updated Dec 2025):**
+- Paper 1 deadline: 2025-12-31 (revision complete, arXiv submission)
+- Paper 2 deadline: 2026-01-31 (reference implementation with GCP/Synthea)
+- Paper 3 deadline: 2026-03-15 (FHIR/OMOP schema mapping)
+- Target journal: JMIR Medical Informatics (primary), arXiv cs.CL (preprint)
 - Note: Conference abstracts (HIMSS, AMIA) are optional and separate from whitepaper publication
+
+**Why JMIR Medical Informatics (not npj Digital Medicine):**
+- **COI mitigation:** Open-source GCP/Synthea approach eliminates commercial competing interests concerns
+- npj Digital Medicine requires transparent disclosure of Yuimedi affiliation, which could bias reviewer perception
+- JMIR Medical Informatics has broader scope for analytical frameworks and reference implementations
+- **Impact Factor:** 4.2 (2024)
+- **Article Processing Charge:** $2,495-$3,495
+- **Review timeline:** 4-6 weeks (faster than npj's 178 days to acceptance)
+- See `ppr_review/20251215_Revision-Strategy-Milestones.md` for full rationale
 
 ## Project Management: Single Source of Truth ✅
 
-**PRIMARY SYSTEM**: This document (`project-management.md`) serves as the **authoritative project hub**
+**PRIMARY SYSTEM**: GitHub Issues serves as the **authoritative task tracker**
 
-**TMP Validation Integration**: Based on validated test cases from [archived validation work](ARCHIVED/TMP-yuiquery-update-sept2025_20250903T075200Z.md):
-- **Test Case #1**: Primary/foreign key discovery → Algorithm development milestones
-- **Test Case #2**: Design pattern memory recall → Validation methodology checkpoints
-- **Test Case #3**: Business object detection → Research phase deliverables
-- **Test Case #4**: Synthea data integrity → Quality validation gates for Paper 2
-
-**Streamlined Task Management**:
-- **GitHub Issues**: Technical task tracking with bidirectional sync
-- **TODO_FOR_AI.json**: Detailed task metadata and dependencies
-- **TODO_FOR_HUMAN.md**: Priority overview and quality assurance checklist
+**Current Architecture** (as of Dec 2025):
+- **GitHub Issues**: Primary task tracking with priority labels (P0-Critical, P1-High, P2-Medium)
 - **This Document**: Strategic context, timelines, and executive dashboard
+- **ppr_review/**: Submission materials and review checklists
+- **planning/**: Feature-specific planning documents
 
-**GitHub Projects**: [Backup system available](ARCHIVED/github-projects-integration-20250903T074900Z.md) but **not primary workflow**
+**Historical Systems** (archived):
+- DECISION_LOG.json → [ARCHIVED/20251218T044737Z_DECISION_LOG.json](ARCHIVED/20251218T044737Z_DECISION_LOG.json)
+- TODO_FOR_AI.json → [ARCHIVED/TODO/](ARCHIVED/TODO/)
+- GitHub Projects integration → [ARCHIVED/github-projects-integration-20250903T074900Z.md](ARCHIVED/github-projects-integration-20250903T074900Z.md)
 
 ## Revised Scope (30% Reduction)
 - **Paper 1:** 70 hours (was 100)
-- **Paper 2:** 70 hours (was 100)
+- **Paper 2:** 83-98 hours (was 70; revised Dec 2025 based on detailed work breakdown)
 - **Paper 3:** 70 hours (was 100)
-- **Total:** 210 hours (was 330)
+- **Total:** 223-238 hours (was 210)
 
 Deliverables reduced to:
 - MUST: Academic paper only
@@ -231,12 +248,57 @@ These academic whitepapers establish Yuimedi's intellectual authority in healthc
 
 ### Paper 2: Proof of Concept
 **Purpose:** Demonstrate YuiQuery's capability with worst-case data scenarios
+
+**Thesis:** Paper 1 proposes a theoretical framework for NL2SQL in healthcare, but theory alone won't convince peer reviewers. Paper 2 provides the empirical validation: measurable accuracy rates, cache hit metrics, and statistical analysis on 1M+ synthetic patients. Without this evidence, our claims about "institutional learning" and "knowledge preservation" remain unsubstantiated.
+
 **Goals:**
 - Show YuiQuery can work with healthcare datasets lacking column names and data dictionaries
 - Programmatically infer primary/foreign keys and build data models
 - Achieve semantic understanding of fields from value distributions
 
 **Key Message:** Even with poor data quality standards, AI-enabled tools like YuiQuery can programmatically infer business interpretations
+
+#### Why Open-Source Reference Implementation?
+Paper 2 requires building a reproducible, open-source reference implementation, not using the proprietary YuiQuery platform. Peer reviewers and readers must be able to validate our claims independently.
+
+**Important distinction:** This reference implementation is a prototype for academic validation. It lacks the enterprise governance, security, and compliance features that YuiQuery provides. The paper proves the framework works; YuiQuery is the production-ready product with HIPAA compliance, audit logging, and institutional controls.
+
+#### Why GCP (vs Azure)?
+We chose Google Cloud (Vertex AI + BigQuery) over Azure for this prototype:
+- **BigQuery** is serverless with a public datasets feature, so reviewers can access the same data without cluster setup
+- **Vertex AI** has native Claude API integration and Model Garden flexibility (no Azure OpenAI waitlist)
+- **Simpler stack** (2 services vs. Azure's 3+ with complex networking)
+- **Reproducibility-friendly**: Colab notebooks integrate natively, generous free tier (1TB queries/month)
+- **Google Cloud for Research** credits program lowers cost barriers
+
+#### Paper 2 Contributions
+1. **Algorithm to identify primary/foreign keys** from database metadata (no schema docs needed)
+2. **Vectorized Synthea data catalog** for probabilistic column matching (no column descriptions needed)
+3. **Institutional learning mechanism** with cache hit metrics (builds documentation organically)
+4. **First NL2SQL benchmark on Synthea synthetic data** with intentionally degraded schema (50+ queries, 1M patients), which tests robustness to undocumented databases, unlike existing benchmarks (MIMICSQL, EHRSQL) that use well-documented schemas
+5. **Reproducible accuracy metrics** with statistical analysis on GCP (BigQuery + Vertex AI)
+
+#### Research Questions Paper 2 Will Answer
+
+*Core Effectiveness*
+1. How accurately can the system generate correct SQL from natural language queries on healthcare data?
+2. What is the accuracy rate on Synthea's 19-table schema with 1M+ patients?
+
+*PK/FK Discovery Algorithm*
+3. Can the algorithm reliably identify primary/foreign keys from database metadata alone (no documentation)?
+4. What is the precision/recall of discovered relationships vs. ground truth?
+
+*Vector Data Catalog*
+5. Does vectorized semantic matching improve table/column selection compared to keyword matching?
+6. How well does the vector catalog map ambiguous terms (e.g., "blood sugar") to correct columns?
+
+*Institutional Learning*
+7. Do cache hit rates increase over time as analysts validate queries?
+8. What efficiency gains result from query memoization?
+
+*Programmatic Unification*
+9. Can the system map local schemas to standard terminologies (SNOMED, LOINC) without manual mapping?
+10. What coverage/accuracy does programmatic terminology mapping achieve?
 
 **Success Metrics:**
 - Algorithm achieves >85% accuracy in schema inference
@@ -361,23 +423,44 @@ Week 9 (2025-09-26 to 2025-10-02): Revisions, formatting, submission [10h]
 ```
 
 ### Paper 2: Proof of Concept
-**Duration:** 2025-10-03 to 2025-12-18 (11 weeks)
+**Duration:** 2025-12-18 to 2026-01-31 (~6 weeks)
+**Budget:** 83-98 hours (revised Dec 2025)
+**Target:** npj Digital Medicine "Impact of Agentic AI on Care Delivery" collection (deadline Mar 12, 2026)
+
 ```markdown
-Week 1-2 (2025-10-03 to 2025-10-16): Data acquisition, design [20h]
-  Note: Using pre-anonymized institutional data (no IRB required)
-Week 3-4 (2025-10-17 to 2025-10-30): Algorithm implementation [20h]
-  Reference: 30% effort overrun typical (https://en.wikipedia.org/wiki/Software_development_effort_estimation)
-  **CRITICAL WEEK: Consider 2 days PTO for 20h total**
-Week 5-6 (2025-10-31 to 2025-11-13): Testing, debugging [20h]
-Week 7-8 (2025-11-14 to 2025-11-27): Experiments, metrics [20h]
-Week 9-10 (2025-11-28 to 2025-12-11): Statistical analysis [20h]
-  Reference: 13% of 177h total effort (https://pmc.ncbi.nlm.nih.gov/articles/PMC4174175/)
-  **CRITICAL WEEK: Consider 2 days PTO for 20h total**
-  Deliverable: Draft conference abstract for technical healthcare conferences
-Week 11 (2025-12-12 to 2025-12-18): Write methodology, results [10h]
-  Reference: 22% manuscript preparation (https://pmc.ncbi.nlm.nih.gov/articles/PMC4174175/)
-  Deliverables: Technical blog post, demo webinar materials
+Phase 1: Infrastructure Setup (7-14 hrs)
+  - Download/configure Synthea SyntheticMass (~1M patients)
+  - Design GCP architecture (Vertex AI, BigQuery, Cloud Functions)
+  - Load Synthea data to BigQuery
+  - Setup open-source repository
+
+Phase 2: Core Implementation (16-25 hrs)
+  - Implement query memoization system
+  - Implement institutional learning loop
+  - Define cache hit rate metrics
+
+Phase 3: Research & Documentation (12-21 hrs)
+  - Literature review: Knowledge portal paradigm, SECI model
+  - Add Clinical Safety Considerations section
+  - Add Security Architecture section (NIST, HITRUST, HIPAA)
+
+Phase 4: Validation & Benchmarking (17-30 hrs)
+  - Design empirical validation framework
+  - Create test query set (50+ queries)
+  - Execute benchmarking experiments
+  - Statistical analysis with confidence intervals
+
+Phase 5: Manuscript & Review (10-19 hrs)
+  - Draft Paper 2 manuscript
+  - Expert review + revisions
 ```
+
+**Risk Factors:**
+| Risk | Impact | Likelihood | Mitigation |
+|------|--------|------------|------------|
+| GCP setup complexity | +10-20 hrs | Medium | Start infrastructure early; have fallback to local testing |
+| LLM accuracy <85% target | +10-15 hrs tuning | Medium | Budget tuning time; define acceptable accuracy threshold |
+| Synthea schema complexity | +5-10 hrs | Low | Leverage existing Synthea experience from Paper 1 |
 
 ### Paper 3: Meta-level Schema Mapping
 **Duration:** 2025-12-19 to 2026-02-26 (10 weeks)
@@ -545,13 +628,15 @@ gh issue create --title "..." --label "..." --milestone "..."
 | Deadline Risk | < 20% | (Hours_Remaining / Weeks_Remaining) / 10 |
 | Dependency Blocks | 0 | Count(Blocked Issues) |
 
-## 10. Recent Progress (September 2025)
-- ✅ Created standardized ARCHIVED/ directory structure
-- ✅ Moved 17 historical files to organized archive with UTC timestamps
-- ✅ Created 3 GitHub milestones with proper descriptions and deadlines
-- ✅ Established backup developer documentation and RACI matrix
-- ✅ Fixed sync script issues and established bidirectional GitHub/TODO sync
-- ✅ Closed duplicate GitHub issues and cleaned up task tracking
+## 10. Recent Progress (December 2025)
+- ✅ Paper 1 revisions complete (22 issues closed, ready for submission)
+- ✅ Paper 1 contains 41 verified citations (30 academic, 11 industry)
+- ✅ Task management migrated from local TODO files to GitHub Issues (Nov 21, 2025)
+- ✅ Workflow system upgraded to v5.15.0 (Dec 10, 2025)
+- ✅ AACODS grey literature quality assessment completed (Dec 15, 2025)
+- ✅ Revision strategy and milestones documented (Dec 15, 2025)
+- ✅ Submission checklists prepared (arXiv, Zenodo, OSF)
+- ✅ Expert review checklist created for Paper 1 validation
 
 ---
 ## 🔧 OPERATIONAL IMPLEMENTATION GUIDE
@@ -675,21 +760,79 @@ Total PTO needed: 10 days across 30 weeks
 - Feminist Review: £130 (~$165) per review ([Feminist Review](https://femrev.wordpress.com/2022/05/24/feminist-review-peer-review-honorariums/))
 - **Budget if using academic rates: $450-600 total** (3 reviews × $150-200)
 
-**Publication & Distribution Costs:**
-- Preprint servers (arXiv, medRxiv, SSRN): **$0**
+**Publication & Distribution Costs (Updated Dec 2025):**
+
+### Paper 1: Three-Pillar Framework (~$6,948 total)
+
+| Phase | Item | Cost | Hours |
+|-------|------|------|-------|
+| **Pre-submission** | Scientific Editing | ~$3,500 | - |
+| | Graphical Abstract | $349 | - |
+| | Video Byte | $349 | - |
+| | Manuscript preparation | - | 6-8 hrs |
+| **Revision** | Address reviewer feedback | - | 9-18 hrs |
+| **Acceptance** | JMIR APC | $2,750 | - |
+| **Total** | | **~$6,948** | **15-26 hrs** |
+
+- Submission deadline: Dec 31, 2025
+- Expected acceptance: ~Apr 15, 2026
+
+### Paper 2: Reference Implementation (~$6,600-$6,900 total)
+
+| Phase | Item | Cost | Hours |
+|-------|------|------|-------|
+| **Pre-submission** | Scientific Editing | ~$3,500 | - |
+| | Graphical Abstract | $349 | - |
+| | GCP Infrastructure | $0-300 | - |
+| | Implementation & manuscript | - | 83-98 hrs |
+| **Revision** | Address reviewer feedback | - | 9-30 hrs |
+| **Acceptance** | JMIR APC | $2,750 | - |
+| **Total** | | **~$6,600-$6,900** | **92-128 hrs** |
+
+- Submission deadline: Jan 31, 2026
+- Expected acceptance: ~May 15, 2026
+
+### Why Scientific Editing (~$3,500/paper)
+
+| Metric | Without Editing | With Editing | Savings |
+|--------|-----------------|--------------|---------|
+| Expected decision | Major Revisions | Minor Revisions | Less rework |
+| Revision hours | 13-30 hrs | 9-18 hrs | 4-12 hrs |
+| Calendar time | 8-12 weeks | 3-6 weeks | 5-6 weeks |
+
+Provider: [Springer Nature Scientific Editing](https://authorservices.springernature.com/scientific-editing/)
+
+### Combined Budget Summary
+
+| Paper | Cost | Hours |
+|-------|------|-------|
+| Paper 1 | ~$6,948 | 15-26 hrs |
+| Paper 2 | ~$6,600-$6,900 | 92-128 hrs |
+| Paper 3 (estimate) | ~$6,000-$7,000 | 70-100 hrs |
+| **Total** | **~$19,500-$20,850** | **177-254 hrs** |
+
+Remaining from $33,495 approved budget: ~$12,600-$14,000 for contingencies
+
+### Decision Points for Budget Approval
+
+1. **Approve Paper 1 budget** (~$6,600 + 6-8 hrs pre-submission)? □
+2. **Approve Paper 2 budget** (~$6,600-$6,900 + 83-98 hrs pre-submission)? □
+3. **Confirm Jan 31, 2026** Paper 2 deadline? □
+4. **Approve ~$4,198 immediate spend** for Paper 1 services (Scientific Editing + Graphical Abstract + Video Byte)? □
+
+### Other Publication Costs
+- Preprint servers (arXiv): **$0**
 - ResearchGate, Zenodo uploads: **$0**
-- JMIR publication fee (if accepted): **~$3,000**
-- AHIMA Journal submission: **$0** (possible page charges if accepted)
 - Conference registrations (optional): **$500-1,000** per conference
-- **Realistic publication budget: $0-4,000** (depending on journal selection)
 
 Note: Samuel Harrold self-funds Claude subscription ($200/month)
 
-### Review Checkpoints
-- **2025-10-02**: Paper 1 internal review (YuiMedi team leads)
-- **2025-12-18**: Paper 2 internal review (YuiMedi team leads)
-- **2026-02-26**: Paper 3 internal review (YuiMedi team leads)
-- **2026-03-01 to 2026-03-31**: External SME reviews (all papers)
+### Review Checkpoints (Updated Dec 2025)
+- **2025-12-31**: Paper 1 submission to arXiv + JMIR
+- **2026-01-31**: Paper 2 submission to arXiv + JMIR
+- **2026-03-15**: Paper 3 submission to arXiv + JMIR
+- **~Apr 15, 2026**: Paper 1 expected acceptance
+- **~May 15, 2026**: Paper 2 expected acceptance
 
 ### Risk Mitigation
 
@@ -919,5 +1062,5 @@ gh api graphql -f query='mutation {
 - World Economic Forum (by invitation/partnership only)
 
 ---
-*Last Updated: 2025-09-03*
-*Next Review: 2025-09-10*
+*Last Updated: 2025-12-18*
+*Next Review: 2025-12-31 (Paper 1 submission deadline)*

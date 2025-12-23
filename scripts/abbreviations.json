@@ -1,0 +1,20 @@
+{
+  "AACODS": "Authority, Accuracy, Coverage, Objectivity, Date, Significance",
+  "ACO": "Accountable Care Organization",
+  "AI": "Artificial Intelligence",
+  "AMAM": "Analytics Maturity Assessment Model",
+  "API": "Application Programming Interface",
+  "CPT": "Current Procedural Terminology",
+  "DAMAF": "Data Analytics Maturity Assessment Framework",
+  "DIKW": "Data-Information-Knowledge-Wisdom",
+  "EHR": "Electronic Health Record",
+  "EMRAM": "Electronic Medical Record Adoption Model",
+  "HDQM2": "Healthcare Data Quality Maturity Model",
+  "HIMSS": "Healthcare Information Management Systems Society",
+  "ICD": "International Classification of Diseases",
+  "IT": "Information Technology",
+  "LLM": "Large Language Model",
+  "NL2SQL": "Natural Language to SQL",
+  "RAG": "Retrieval-Augmented Generation",
+  "SQL": "Structured Query Language"
+}

@@ -346,7 +346,7 @@ Reference: https://example.com/clean/path
 
 
 class TestWithRealPaper:
-    """Integration tests using the actual paper.md."""
+    """Integration tests using the actual paper.md with pandoc-citeproc format."""
 
     @pytest.fixture
     def paper_content(self, repo_root: Path) -> str:
@@ -356,9 +356,17 @@ class TestWithRealPaper:
             pytest.skip("paper.md not found")
         return paper_path.read_text()
 
-    def test_parses_real_paper(self, paper_content: str):
-        """Should successfully parse references from real paper."""
-        refs = parse_references(paper_content)
+    @pytest.fixture
+    def bibtex_path(self, repo_root: Path) -> Path:
+        """Get the BibTeX file path."""
+        bib_path = repo_root / "references.bib"
+        if not bib_path.exists():
+            pytest.skip("references.bib not found")
+        return bib_path
+
+    def test_parses_real_paper(self, paper_content: str, bibtex_path: Path):
+        """Should successfully parse references from BibTeX file."""
+        refs = parse_references(paper_content, bibtex_path)
 
         # Paper should have references
         assert len(refs) > 0
@@ -371,16 +379,17 @@ class TestWithRealPaper:
         assert industry > 0, "Should have industry references"
 
     def test_extracts_real_citations(self, paper_content: str):
-        """Should extract citations from real paper body."""
-        citations = extract_citations(paper_content)
+        """Should extract citations from real paper body using pandoc-citeproc format."""
+        # Use citeproc format since paper.md now uses [@key] citations
+        citations = extract_citations(paper_content, use_citeproc=True)
 
         # Paper should have citations in body
         assert len(citations) > 0
 
-    def test_no_orphaned_citations(self, paper_content: str):
+    def test_no_orphaned_citations(self, paper_content: str, bibtex_path: Path):
         """Real paper should have no orphaned citations."""
-        refs = parse_references(paper_content)
-        citations = extract_citations(paper_content)
+        refs = parse_references(paper_content, bibtex_path)
+        citations = extract_citations(paper_content, use_citeproc=True)
 
         orphaned, _ = find_orphaned_and_unused(refs, citations)
 

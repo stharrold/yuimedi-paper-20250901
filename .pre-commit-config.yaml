@@ -12,7 +12,7 @@ repos:
       - id: check-yaml
       - id: check-json
       - id: check-added-large-files
-        args: ['--maxkb=500']
+        args: ['--maxkb=10240']  # 10MB limit for figure assets
       - id: check-merge-conflict
       - id: detect-private-key
 
@@ -59,4 +59,12 @@ repos:
         entry: python .claude/skills/workflow-utilities/scripts/check_spdx_headers.py
         language: python
         types: [python]
+        pass_filenames: false
+
+      # Validate JMIR Medical Informatics compliance
+      - id: validate-jmir-compliance
+        name: Validate JMIR compliance
+        entry: python scripts/validate_jmir_compliance.py
+        language: python
+        files: ^(paper\.md|metadata\.yaml)$
         pass_filenames: false
