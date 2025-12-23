@@ -1,5 +1,15 @@
 # JMIR Medical Informatics Submission Checklist
 
+## Quick Validation
+
+Run before submission to verify JMIR compliance:
+
+```bash
+python scripts/validate_jmir_compliance.py
+```
+
+Expected output: `✓ COMPLIANT - Ready for JMIR submission`
+
 ## Pre-Submission (Completed)
 
 ### Manuscript Content

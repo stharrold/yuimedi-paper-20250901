@@ -363,6 +363,15 @@ def validate_figure_format(base_path: Path) -> dict:
             "note": "No figures directory found",
         }
 
+    if not figures_dir.is_dir():
+        return {
+            "valid": True,
+            "png_count": 0,
+            "non_png_figures": [],
+            "all_figures": [],
+            "note": "figures path exists but is not a directory",
+        }
+
     # Find all image files
     image_extensions = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".pdf", ".tiff"}
     all_figures = []
@@ -439,7 +448,8 @@ def validate_abbreviations_usage(content: str, config_path: Path | None = None) 
     missing = []
 
     for abbrev in known_abbrevs:
-        count = len(re.findall(rf"\b{abbrev}\b", paper_without_abbrev_section))
+        # Use re.escape() in case abbreviations contain regex metacharacters (e.g., C++, AI/ML)
+        count = len(re.findall(rf"\b{re.escape(abbrev)}\b", paper_without_abbrev_section))
         if count >= 3:
             usage_counts[abbrev] = count
             if abbrev not in listed:
