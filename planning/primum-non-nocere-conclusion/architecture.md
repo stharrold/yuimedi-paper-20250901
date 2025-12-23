@@ -111,7 +111,7 @@ opportunity.
 This narrative review synthesized evidence across three interconnected domains:
 natural language to SQL generation, healthcare analytics maturity, and
 workforce-driven institutional memory loss. The findings illuminate a tension
-central to healthcare's approach to emerging technologies—captured in the
+central to healthcare's approach to emerging technologies, captured in the
 ancient principle *primum non nocere*: "First, do no harm."
 ```
 
@@ -170,8 +170,8 @@ this review provides a structured approach for this dual evaluation.
 **Current:**
 ```markdown
 3. **Strategic Convergence Thesis**: The identification of this unique strategic
-inflection point—where technical advances, organizational challenges, and
-workforce dynamics converge—provides healthcare leaders with evidence-based
+inflection point (where technical advances, organizational challenges, and
+workforce dynamics converge) provides healthcare leaders with evidence-based
 justification for conversational AI investment as a strategic imperative rather
 than a convenience technology.
 ```
@@ -304,8 +304,8 @@ The evidence does not prescribe universal adoption of any technology. Rather,
 it establishes the scope and interconnection of challenges that organizations
 must address through whatever means align with their specific contexts,
 capabilities, and risk tolerances. The ongoing harms documented in this
-review—institutional memory loss, analytics capability gaps, and technical
-barriers to data access—merit the same careful consideration as the risks of
+review (institutional memory loss, analytics capability gaps, and technical
+barriers to data access) merit the same careful consideration as the risks of
 new technology adoption.
 
 Healthcare's commitment to avoiding harm is best served by evidence-based

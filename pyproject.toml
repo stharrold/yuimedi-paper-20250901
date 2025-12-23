@@ -31,6 +31,7 @@ classifiers = [
 # Runtime dependencies for lit_review package
 dependencies = [
     "click>=8.0.0",
+    "graphviz>=0.20.0", # Diagram generation (requires system graphviz binary)
     "httpx>=0.24.0", # Async HTTP client (replaces requests)
     "pydantic>=2.0.0",
     "python-dotenv>=0.19.0",

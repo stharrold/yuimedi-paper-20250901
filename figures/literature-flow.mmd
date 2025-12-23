@@ -1,18 +1,44 @@
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f0f0f0', 'primaryTextColor': '#333', 'primaryBorderColor': '#666', 'lineColor': '#666', 'secondaryColor': '#e8e8e8', 'tertiaryColor': '#fff'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '10pt'}}}%%
 flowchart TD
-    A[("Database Search<br/>(n ≈ 570)")] --> B{"Title/Abstract<br/>Screening"}
-    B -->|"Excluded (n ≈ 480)<br/>Not relevant to<br/>three-pillar framework"| C[Excluded]
-    B -->|"Potentially relevant<br/>(n ≈ 90)"| D{"Full-text<br/>Review"}
-    D -->|"Excluded (n ≈ 46)<br/>• No verifiable DOI/URL<br/>• Vendor marketing only<br/>• Methodological concerns"| E[Excluded]
-    D -->|"Included<br/>(n = 44)"| F{"Source<br/>Classification"}
-    F -->|"Grey Literature<br/>(n = 14)"| G["AACODS<br/>Assessment"]
-    F -->|"Academic<br/>(n = 30)"| H["Peer-reviewed<br/>Sources"]
-    G -->|"Passed (n = 11)"| I[("Final Corpus<br/>(n = 41)<br/>30 academic<br/>11 industry")]
-    G -->|"Failed (n = 3)<br/>Low objectivity"| J[Excluded]
-    H --> I
+    %% PRISMA 2020 Flow Diagram for Literature Selection
+    %% Aligned with lit_review academic-literature-review workflow
+    %% Total: 570 identified + 45 targeted → 92 included
+    %% Note: Generate PNG via mermaid.live for proper font rendering
 
-    style A fill:#e3f2fd
-    style I fill:#c8e6c9
-    style C fill:#ffcdd2
-    style E fill:#ffcdd2
-    style J fill:#ffcdd2
+    subgraph ID["<b>Identification</b>"]
+        A1[("Crossref<br/>n = 285")] --> A
+        A2[("PubMed<br/>n = 142")] --> A
+        A3[("ArXiv<br/>n = 71")] --> A
+        A4[("Semantic Scholar<br/>n = 72")] --> A
+        A["Articles identified<br/>after deduplication<br/>n = 570"]
+    end
+
+    subgraph SC["<b>Screening</b>"]
+        A --> D{"Title/abstract<br/>screening<br/>n = 570"}
+        D -->|"Excluded"| E["Articles excluded<br/>n = 480"]
+        D -->|"Passed"| H{"Full-text<br/>eligibility<br/>n = 90"}
+        H -->|"Excluded"| I["Articles excluded<br/>n = 46"]
+    end
+
+    subgraph QA["<b>Quality Assessment</b>"]
+        H -->|"Passed"| J{"Source<br/>classification<br/>n = 44"}
+        J -->|"Grey literature"| L{"AACODS<br/>checklist<br/>n = 14"}
+        L -->|"Excluded"| N["Articles excluded<br/>n = 3"]
+    end
+
+    subgraph TS["<b>Targeted Searches</b>"]
+        T1["Supplementary<br/>literature searches<br/>n = 45"]
+    end
+
+    subgraph IN["<b>Included</b>"]
+        J -->|"Academic"| O["Final corpus<br/>n = 92<br/>Academic: 81<br/>Industry: 11"]
+        L -->|"Passed"| O
+        T1 --> O
+    end
+
+    %% Styling - Grayscale
+    style ID fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style SC fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style QA fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style TS fill:#e8e8e8,stroke:#666,stroke-width:2px
+    style IN fill:#e8e8e8,stroke:#666,stroke-width:2px

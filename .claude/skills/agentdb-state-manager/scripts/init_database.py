@@ -39,16 +39,19 @@ WORKFLOW_STATES_PATH = Path(__file__).parent.parent / "templates" / "workflow-st
 
 
 def get_default_db_path() -> Path:
-    """Get default database path in worktree state directory.
+    """Get default database path in main repository's state directory.
+
+    Always returns the main repository's AgentDB path, ensuring all
+    worktrees share the same workflow state.
 
     Returns:
-        Path to agentdb.duckdb in .claude-state/ directory.
+        Path to agentdb.duckdb in main repo's .claude-state/ directory.
         Falls back to current directory if worktree detection fails.
     """
     try:
-        from worktree_context import get_state_dir
+        from worktree_context import get_shared_agentdb_path
 
-        return get_state_dir() / "agentdb.duckdb"
+        return get_shared_agentdb_path()
     except (ImportError, RuntimeError):
         # Fallback for non-git environments or missing module
         return Path("agentdb.duckdb")
