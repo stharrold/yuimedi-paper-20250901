@@ -218,7 +218,7 @@ Search terms were organized around the three-pillar framework:
 
 Searches across all databases yielded 570 initial results after deduplication. Crossref searches for terms including "healthcare analytics maturity," "HIMSS AMAM," "NL2SQL clinical," "knowledge portal," and "low-code ROI" (2015-current) returned 285 results, of which 15 passed screening. PubMed searches combining workforce terms ("healthcare IT tenure," "IT training time," "turnover cost salary") with analytics terms ("institutional memory," "analytics adoption," "knowledge capture") (2015-current) yielded 142 results with 12 passing screening. arXiv searches in cs.CL and cs.DB categories for "text-to-SQL" combined with technical terms ("MIMICSQL," "EHRSQL," "schema discovery," "PK/FK discovery," "semantic matching," "vector embeddings") (2020-current) produced 71 results with 6 passing screening. Semantic Scholar searches for "NL2SQL healthcare," "NL2SQL productivity," "conversational AI clinical," and "SECI model analytics" (2015-current) returned 72 results with 8 passing screening. The final corpus includes 81 academic and 11 industry sources (92 total).
 
-Figure 2 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 92 sources.
+Figure 3 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 92 sources.
 
 ```{=latex}
 \begin{figure}[htbp]
