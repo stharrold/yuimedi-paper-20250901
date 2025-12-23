@@ -163,7 +163,7 @@ The knowledge portal architecture preserves institutional expertise through a si
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth,keepaspectratio]{figures/knowledge-cycle.mmd.png}
-\caption{The Validated Query Cycle. Domain experts ask natural language questions (1), the system generates candidate SQL (2), experts validate results (3), validated pairs are stored (4), future queries retrieve validated knowledge (5), and expertise persists through staff turnover (6). This cycle breaks the compounding effect where turnover erases institutional memory.}
+\caption{The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) experts validate results, (4) validated pairs are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.}
 \label{fig:knowledge-cycle}
 \end{figure}
 ```
@@ -512,7 +512,7 @@ Despite substantial evidence supporting conversational AI in healthcare analytic
 5. **Integration patterns**: Architectural guidance for incorporating conversational AI into existing healthcare IT ecosystems remains sparse
 6. **Long-term productivity tracking**: While peer-reviewed studies now document immediate productivity gains (63% self-service adoption increase, 37% data retrieval time reduction, 10-30% query completion time improvement [@yuan2019], [@dadi2025], [@shah2020], [@ipeirotis2025]), longitudinal studies tracking sustained productivity improvements over multiple years remain limited
 7. **Citizen developer productivity methodology**: No validated healthcare-specific instrument exists for measuring citizen developer productivity. While Berkshire NHS reports 800+ citizen developers [@berkshire2024], the methodology for quantifying their productivity contributions lacks standardization across studies
-8. **AMAM-specific outcome evidence**: The HIMSS Analytics Maturity Assessment Model (AMAM) was released in October 2024; existing outcome studies linking maturity stages to patient outcomes use the older EMRAM (EHR adoption) model [@snowdon2024; @snowdon2024a]. AMAM-specific outcome studies are not yet available, limiting evidence for analytics maturity (as distinct from EHR adoption) impact on outcomes
+8. **AMAM-specific outcome evidence**: The HIMSS Analytics Maturity Assessment Model (AMAM) was released in October 2024; existing outcome studies linking maturity stages to patient outcomes use the older EMRAM (EHR adoption) model [@snowdon2024; @snowdon2024a]. As of this review, AMAM-specific outcome studies remain very limited, providing only emerging evidence for analytics maturity (as distinct from EHR adoption) impact on outcomes
 
 ## Why the Problem Persists
 
