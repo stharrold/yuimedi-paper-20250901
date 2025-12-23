@@ -26,6 +26,12 @@ toc: true
 toc-depth: 3
 numbersections: true
 
+# Bibliography (pandoc-citeproc)
+bibliography: references.bib
+csl: citation-style.csl
+link-citations: true
+suppress-bibliography: false
+
 # Links
 colorlinks: true
 linkcolor: "blue"

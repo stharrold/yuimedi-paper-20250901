@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 32 answered, 14 unanswered/partial
+**Status:** 36 answered (4 merged 2025-12-22), 14 unanswered/partial
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -97,10 +97,10 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 
 | Question | Scope | Issue | Research File | Merged |
 |----------|-------|-------|---------------|--------|
-| What is the relationship between healthcare analytics maturity levels and data quality metrics? | Paper1 | — | [`Research_what-is-the-relationship-between-healthcare-analytics-maturity-levels-and-data-quality-metrics.md`](Research_what-is-the-relationship-between-healthcare-analytics-maturity-levels-and-data-quality-metrics.md) | - |
-| What is the prevalence of data quality issues (incorrect values, missing data, duplicate records) in healthcare databases, and how does this vary by organizational analytics maturity? | Paper1 | — | [`Research_what-is-the-prevalence-of-data-quality-issues-in-healthcare-databases-and-how-does-this-vary-by-organizational-analytics-maturity.md`](Research_what-is-the-prevalence-of-data-quality-issues-in-healthcare-databases-and-how-does-this-vary-by-organizational-analytics-maturity.md) | - |
-| What evidence exists that domain expertise (clinical knowledge) is required to identify and correct data quality issues in healthcare databases that automated tools cannot detect? | Paper1 | — | [`Research_what-evidence-exists-that-domain-expertise-is-required-to-identify-data-quality-issues-in-healthcare-databases.md`](Research_what-evidence-exists-that-domain-expertise-is-required-to-identify-data-quality-issues-in-healthcare-databases.md) | - |
-| How common are undocumented or poorly documented database schemas (missing metadata, business rules, PK/FK relationships) in healthcare organizations? | Paper1,Paper2 | — | [`Research_how-common-are-undocumented-database-schemas-in-healthcare-organizations.md`](Research_how-common-are-undocumented-database-schemas-in-healthcare-organizations.md) | - |
+| What is the relationship between healthcare analytics maturity levels and data quality metrics? | Paper1 | — | [`Research_what-is-the-relationship-between-healthcare-analytics-maturity-levels-and-data-quality-metrics.md`](Research_what-is-the-relationship-between-healthcare-analytics-maturity-levels-and-data-quality-metrics.md) | [@carvalho2019; @pintovalverde2013; @gokalp2023; @lismont2017] |
+| What is the prevalence of data quality issues (incorrect values, missing data, duplicate records) in healthcare databases, and how does this vary by organizational analytics maturity? | Paper1 | — | [`Research_what-is-the-prevalence-of-data-quality-issues-in-healthcare-databases-and-how-does-this-vary-by-organizational-analytics-maturity.md`](Research_what-is-the-prevalence-of-data-quality-issues-in-healthcare-databases-and-how-does-this-vary-by-organizational-analytics-maturity.md) | [@yang2021; @arts2002; @mccoy2013; @zhang2024] |
+| What evidence exists that domain expertise (clinical knowledge) is required to identify and correct data quality issues in healthcare databases that automated tools cannot detect? | Paper1 | — | [`Research_what-evidence-exists-that-domain-expertise-is-required-to-identify-data-quality-issues-in-healthcare-databases.md`](Research_what-evidence-exists-that-domain-expertise-is-required-to-identify-data-quality-issues-in-healthcare-databases.md) | [@rahman2020; @sirgo2018; @shi2021] |
+| How common are undocumented or poorly documented database schemas (missing metadata, business rules, PK/FK relationships) in healthcare organizations? | Paper1,Paper2 | — | [`Research_how-common-are-undocumented-database-schemas-in-healthcare-organizations.md`](Research_how-common-are-undocumented-database-schemas-in-healthcare-organizations.md) | [@dugas2016; @bokov2017; @ulrich2022; @lucyk2017; @hovenga2013] |
 
 ### Testing & Validation
 
