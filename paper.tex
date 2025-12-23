@@ -2192,7 +2192,7 @@ Rubric}\label{three-pillar-assessment-rubric}
 
 The three-pillar framework enables organizational self-assessment to
 determine readiness for and potential benefit from NL2SQL and
-conversational AI interventions. Table 4 provides an evidence-based
+conversational AI interventions. Table 3 provides an evidence-based
 rubric where each indicator anchors to reviewed literature.
 Organizations scoring predominantly ``Higher Risk'' across pillars face
 compounding challenges that NL2SQL platforms are specifically designed
@@ -2200,30 +2200,122 @@ to address: democratizing data access (Technical Barriers), preserving
 institutional knowledge (Workforce Dynamics), and accelerating maturity
 advancement (Analytics Maturity).
 
-\begin{sidewaystable}[p]
-\centering
-\caption{Three-Pillar Organizational Assessment Rubric}
-\label{tab:assessment-rubric}
-\footnotesize
-\begin{tabular}{p{2.2cm}p{2.5cm}p{4cm}p{4cm}p{4.5cm}p{1.8cm}}
-\toprule
-\textbf{Pillar} & \textbf{Indicator} & \textbf{Lower Risk} & \textbf{Moderate Risk} & \textbf{Higher Risk} & \textbf{Evidence} \\
-\midrule
-\textbf{Analytics Maturity} & HIMSS AMAM Stage & Stages 5-7: Predictive analytics, AI integration & Stages 3-4: Integrated warehouse, standardized definitions & Stages 0-2: Fragmented data, limited reporting (majority of organizations) & [@himss2024], [@health2020] \\
-& Self-service analytics & Widespread; clinical staff access data directly & Partial; BI tools available but underutilized & None; all analytics require IT intervention & [@berkshire2024], [@wang2018] \\
-& AI/NL interface availability & Natural language query capability deployed & Pilot programs or evaluation underway & No NL2SQL or conversational analytics capability & [@wang2020], [@ziletti2024] \\
-\midrule
-\textbf{Workforce Dynamics} & Annual IT turnover rate & <15\% & 15-30\% & >30\% (exceeds 2004 healthcare IT baseline) & [@ang2004] \\
-& Knowledge concentration & Distributed expertise; documented processes & Partial documentation; some cross-training & Critical expertise held by $\leq$3 individuals & [@benbya2004], [@richesson2007] \\
-& Time-to-productivity for new hires & <6 months with structured onboarding & 6-18 months & >18 months (specialized health informatics roles) & [@ledikwe2013], [@mantas2010], [@musa2023] \\
-& Tacit knowledge capture & Expertise embedded in systems/AI & Partial documentation exists & Person-dependent; undocumented tribal knowledge & [@benbya2004] \\
-\midrule
-\textbf{Technical Barriers} & Data access requirements & Natural language or visual query interfaces & IT queue for complex queries; basic self-service & SQL/technical expertise required for all queries & [@wang2018], [@bardsley2016], [@pesqueira2020] \\
-& Interoperability status & Unified data platform; real-time integration & Partial integration; some automated feeds & Fragmented systems; manual reconciliation required & [@gal2019], [@bogaert2021] \\
-& Skills gap severity & Sufficient analysts across departments & Acknowledged deficit with mitigation plans & Critical shortage preventing data utilization & [@bardsley2016], [@pesqueira2020] \\
-\bottomrule
-\end{tabular}
-\end{sidewaystable}
+\textbf{Table 3: Three-Pillar Organizational Assessment Rubric}
+
+\textbf{Analytics Maturity Indicators:}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1803}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1967}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2459}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2131}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1639}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Indicator
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lower Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Moderate Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Higher Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Evidence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+HIMSS AMAM Stage & Stages 5-7: Predictive analytics, AI integration &
+Stages 3-4: Integrated warehouse, standardized definitions & Stages 0-2:
+Fragmented data, limited reporting &
+(\citeproc{ref-himss2024}{2},\citeproc{ref-health2020}{49}) \\
+Self-service analytics & Widespread; clinical staff access data directly
+& Partial; BI tools available but underutilized & None; all analytics
+require IT intervention &
+(\citeproc{ref-wang2018}{4},\citeproc{ref-berkshire2024}{92}) \\
+AI/NL interface availability & Natural language query capability
+deployed & Pilot programs or evaluation underway & No NL2SQL or
+conversational analytics &
+(\citeproc{ref-ziletti2024}{20},\citeproc{ref-wang2020}{27}) \\
+\end{longtable}
+
+\textbf{Workforce Dynamics Indicators:}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1803}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1967}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2459}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2131}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1639}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Indicator
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lower Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Moderate Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Higher Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Evidence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Annual IT turnover rate & \textless15\% & 15-30\% & \textgreater30\%
+(exceeds 2004 healthcare IT baseline) & (\citeproc{ref-ang2004}{3}) \\
+Knowledge concentration & Distributed expertise; documented processes &
+Partial documentation; some cross-training & Critical expertise held by
+≤3 individuals &
+(\citeproc{ref-benbya2004}{15},\citeproc{ref-richesson2007}{16}) \\
+Time-to-productivity & \textless6 months with structured onboarding &
+6-18 months & \textgreater18 months (specialized health informatics
+roles) &
+(\citeproc{ref-ledikwe2013}{72}--\citeproc{ref-musa2023}{74}) \\
+Tacit knowledge capture & Expertise embedded in systems/AI & Partial
+documentation exists & Person-dependent; undocumented tribal knowledge &
+(\citeproc{ref-benbya2004}{15}) \\
+\end{longtable}
+
+\textbf{Technical Barriers Indicators:}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1803}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1967}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2459}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2131}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1639}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Indicator
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lower Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Moderate Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Higher Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Evidence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Data access requirements & Natural language or visual query interfaces &
+IT queue for complex queries; basic self-service & SQL/technical
+expertise required for all queries &
+(\citeproc{ref-wang2018}{4}--\citeproc{ref-pesqueira2020}{6}) \\
+Interoperability status & Unified data platform; real-time integration &
+Partial integration; some automated feeds & Fragmented systems; manual
+reconciliation required &
+(\citeproc{ref-gal2019}{104},\citeproc{ref-bogaert2021}{106}) \\
+Skills gap severity & Sufficient analysts across departments &
+Acknowledged deficit with mitigation plans & Critical shortage
+preventing data utilization &
+(\citeproc{ref-bardsley2016}{5},\citeproc{ref-pesqueira2020}{6}) \\
+\end{longtable}
 
 \textbf{Convergence Assessment and NL2SQL Indication:}
 
