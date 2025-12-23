@@ -10,43 +10,49 @@ Uses Python stdlib only - no external dependencies.
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 
+# Path to abbreviations configuration file
+ABBREVIATIONS_JSON = Path(__file__).parent / "abbreviations.json"
 
-def extract_abbreviations(paper_path: Path, min_count: int = 1) -> dict[str, tuple[str, int]]:
+
+def load_known_abbreviations(config_path: Path | None = None) -> dict[str, str]:
     """
-    Find abbreviations in format: "full term (ABBREV)"
-    Return: {abbrev: (full_term, count)}
+    Load known abbreviations from JSON configuration file.
+
+    Args:
+        config_path: Path to JSON file. Defaults to scripts/abbreviations.json.
+
+    Returns:
+        dict mapping abbreviation to full term (e.g., {"AI": "Artificial Intelligence"})
+    """
+    path = config_path or ABBREVIATIONS_JSON
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text())
+
+
+def extract_abbreviations(
+    paper_path: Path, min_count: int = 1, config_path: Path | None = None
+) -> dict[str, tuple[str, int]]:
+    """
+    Find abbreviations in paper content and count occurrences.
 
     Args:
         paper_path: Path to paper.md
         min_count: Minimum number of times abbreviation must appear (default: 1)
+        config_path: Path to abbreviations JSON config. Defaults to scripts/abbreviations.json.
+
+    Returns:
+        dict mapping abbreviation to tuple of (full_term, count).
+        Example: {"AI": ("Artificial Intelligence", 15)}
     """
     content = paper_path.read_text()
 
-    # Known abbreviation definitions (manually curated for accuracy)
-    # Format: ABBREV -> full term
-    known_abbrevs = {
-        "AACODS": "Authority, Accuracy, Coverage, Objectivity, Date, Significance",
-        "ACO": "Accountable Care Organization",
-        "AI": "Artificial Intelligence",
-        "AMAM": "Analytics Maturity Assessment Model",
-        "API": "Application Programming Interface",
-        "CPT": "Current Procedural Terminology",
-        "DAMAF": "Data Analytics Maturity Assessment Framework",
-        "DIKW": "Data-Information-Knowledge-Wisdom",
-        "EHR": "Electronic Health Record",
-        "EMRAM": "Electronic Medical Record Adoption Model",
-        "HDQM2": "Healthcare Data Quality Maturity Model",
-        "HIMSS": "Healthcare Information Management Systems Society",
-        "ICD": "International Classification of Diseases",
-        "IT": "Information Technology",
-        "LLM": "Large Language Model",
-        "NL2SQL": "Natural Language to SQL",
-        "RAG": "Retrieval-Augmented Generation",
-        "SQL": "Structured Query Language",
-    }
+    # Load known abbreviations from configuration file
+    known_abbrevs = load_known_abbreviations(config_path)
 
     # Count occurrences of each abbreviation in the content
     abbrev_dict: dict[str, tuple[str, int]] = {}
@@ -60,7 +66,20 @@ def extract_abbreviations(paper_path: Path, min_count: int = 1) -> dict[str, tup
 
 
 def format_abbreviations_section(abbrevs: dict[str, tuple[str, int]]) -> str:
-    """Generate markdown section."""
+    """
+    Generate markdown abbreviations section for JMIR compliance.
+
+    Args:
+        abbrevs: dict mapping abbreviation to (full_term, count) tuple.
+
+    Returns:
+        Markdown-formatted string with header and alphabetically sorted abbreviations.
+        Example:
+            # Abbreviations
+
+            AI: Artificial Intelligence
+            EHR: Electronic Health Record
+    """
     lines = ["# Abbreviations", ""]
 
     # Sort alphabetically

@@ -20,8 +20,10 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 
 from extract_abbreviations import (  # noqa: E402
+    ABBREVIATIONS_JSON,
     extract_abbreviations,
     format_abbreviations_section,
+    load_known_abbreviations,
 )
 
 # Sample content for testing
@@ -95,6 +97,47 @@ def all_abbrevs_file(tmp_path: Path) -> Path:
     paper_path = tmp_path / "paper.md"
     paper_path.write_text(CONTENT_WITH_ALL_ABBREVS)
     return paper_path
+
+
+class TestLoadKnownAbbreviations:
+    """Tests for load_known_abbreviations function."""
+
+    def test_loads_from_default_path(self):
+        """Should load abbreviations from default JSON file."""
+        result = load_known_abbreviations()
+
+        assert len(result) > 0
+        assert "AI" in result
+        assert result["AI"] == "Artificial Intelligence"
+
+    def test_loads_from_custom_path(self, tmp_path: Path):
+        """Should load abbreviations from custom JSON file."""
+        custom_json = tmp_path / "custom.json"
+        custom_json.write_text('{"TEST": "Test Abbreviation"}')
+
+        result = load_known_abbreviations(custom_json)
+
+        assert result == {"TEST": "Test Abbreviation"}
+
+    def test_returns_empty_dict_for_missing_file(self, tmp_path: Path):
+        """Should return empty dict if JSON file doesn't exist."""
+        missing_path = tmp_path / "nonexistent.json"
+
+        result = load_known_abbreviations(missing_path)
+
+        assert result == {}
+
+    def test_default_json_file_exists(self):
+        """The default abbreviations.json should exist."""
+        assert ABBREVIATIONS_JSON.exists()
+
+    def test_default_json_has_expected_abbreviations(self):
+        """Default JSON should have all expected healthcare abbreviations."""
+        result = load_known_abbreviations()
+
+        expected = ["HIMSS", "EHR", "NL2SQL", "AMAM", "EMRAM", "SQL", "AI", "LLM"]
+        for abbrev in expected:
+            assert abbrev in result, f"Missing expected abbreviation: {abbrev}"
 
 
 class TestExtractAbbreviations:

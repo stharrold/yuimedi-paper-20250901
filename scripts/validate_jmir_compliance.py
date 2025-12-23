@@ -22,9 +22,23 @@ from pathlib import Path
 
 
 def validate_abstract_structure(content: str) -> dict:
-    """Check for 5-section abstract with JMIR headers."""
+    """
+    Check for 5-section abstract with JMIR headers.
+
+    Args:
+        content: Full paper.md content including YAML frontmatter.
+
+    Returns:
+        dict with keys:
+            - valid (bool): True if all 5 sections present
+            - missing_headers (list[str]): List of missing section headers
+            - word_count (int): Total words in abstract (excluding formatting)
+            - within_limit (bool): True if word_count <= 450
+            - error (str, optional): Error message if abstract not found
+    """
+    # More robust pattern: match abstract until next YAML field or end of frontmatter
     abstract_match = re.search(
-        r"abstract:\s*\|(.+?)^(?:keywords:|license:|lang:|---)",
+        r"^abstract:\s*\|\s*(.+?)^(?=\w+:|---)",
         content,
         re.DOTALL | re.MULTILINE,
     )
@@ -57,7 +71,17 @@ def validate_abstract_structure(content: str) -> dict:
 
 
 def validate_required_sections(content: str) -> dict:
-    """Check for required JMIR end sections."""
+    """
+    Check for required JMIR end sections.
+
+    Args:
+        content: Full paper.md content.
+
+    Returns:
+        dict mapping section name to bool indicating presence.
+        Keys: "Funding", "Conflicts of Interest", "Data Availability",
+              "Author Contributions", "Abbreviations"
+    """
     required = {
         "Funding": r"^# Funding\s*$",
         "Conflicts of Interest": r"^# Conflicts of Interest\s*$",
@@ -74,7 +98,18 @@ def validate_required_sections(content: str) -> dict:
 
 
 def validate_csl_configuration(metadata_content: str) -> dict:
-    """Check metadata.yaml CSL configuration."""
+    """
+    Check metadata.yaml CSL configuration for JMIR compliance.
+
+    Args:
+        metadata_content: Content of metadata.yaml file.
+
+    Returns:
+        dict with keys:
+            - bibliography_configured (bool): True if references.bib configured
+            - csl_configured (bool): True if any CSL file configured
+            - ama_style (bool): True if AMA 11th edition CSL configured
+    """
     has_bib = bool(re.search(r"bibliography:\s*references\.bib", metadata_content))
     has_csl = bool(re.search(r"csl:\s*citation-style", metadata_content))
     is_ama = bool(re.search(r"csl:\s*citation-style-ama\.csl", metadata_content))
@@ -87,7 +122,18 @@ def validate_csl_configuration(metadata_content: str) -> dict:
 
 
 def validate_no_old_citations(content: str) -> dict:
-    """Check that old [A#] and [I#] citation format is not present."""
+    """
+    Check that old [A#] and [I#] citation format is not present.
+
+    Args:
+        content: Full paper.md content.
+
+    Returns:
+        dict with keys:
+            - clean (bool): True if no legacy citations found
+            - old_academic_count (int): Number of [A#] citations found
+            - old_industry_count (int): Number of [I#] citations found
+    """
     old_academic = re.findall(r"\[A\d+\]", content)
     old_industry = re.findall(r"\[I\d+\]", content)
 
