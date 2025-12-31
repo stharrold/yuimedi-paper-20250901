@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Record workflow transitions in AgentDB.
 
@@ -65,47 +65,28 @@ def get_worktree_path() -> str | None:
 
 
 def get_database_path() -> Path:
-    """Get path to shared AgentDB database in main repository.
-
-    Always returns the main repository's AgentDB path, ensuring all
-    worktrees share the same workflow state.
+    """Get path to AgentDB database, resolving symlinks/hard links.
 
     Returns:
-        Path to agentdb.duckdb in main repo's .claude-state/
+        Resolved path to agentdb.duckdb in .claude-state/
     """
-    # Try to use shared worktree_context module
-    try:
-        script_dir = Path(__file__).parent
-        worktree_utils = script_dir.parent.parent / "workflow-utilities" / "scripts"
-        sys.path.insert(0, str(worktree_utils))
-        from worktree_context import get_shared_agentdb_path
-
-        return get_shared_agentdb_path()
-    except (ImportError, RuntimeError):
-        pass
-
-    # Fallback: use git worktree list to find main repo
-    try:
-        result = subprocess.check_output(
-            ["git", "worktree", "list", "--porcelain"],
-            text=True,
-            stderr=subprocess.PIPE,
-        )
-        # First worktree line is the main repo
-        for line in result.strip().split("\n"):
-            if line.startswith("worktree "):
-                main_repo = Path(line.split(" ", 1)[1])
-                state_dir = main_repo / ".claude-state"
-                state_dir.mkdir(parents=True, exist_ok=True)
-                return state_dir / "agentdb.duckdb"
-    except subprocess.CalledProcessError:
-        # If git worktree inspection fails (e.g., not a git repository), fall back
-        # to using the current directory's .claude-state/ as the AgentDB location.
-        pass
-
-    # Last resort fallback: current directory
+    # Try to find .claude-state in current dir or parent
     cwd = Path.cwd()
+
+    # Check current directory
     state_dir = cwd / ".claude-state"
+    if state_dir.exists():
+        db_path = state_dir / "agentdb.duckdb"
+        # Resolve to follow symlinks/hard links when file exists
+        return db_path.resolve() if db_path.exists() else db_path
+
+    # Check parent (if in worktree)
+    parent_state = cwd.parent / ".claude-state"
+    if parent_state.exists():
+        db_path = parent_state / "agentdb.duckdb"
+        return db_path.resolve() if db_path.exists() else db_path
+
+    # Default to current directory's .claude-state
     state_dir.mkdir(parents=True, exist_ok=True)
     return state_dir / "agentdb.duckdb"
 
@@ -205,7 +186,7 @@ def record_sync(
         metadata_json,
     )
 
-    # Execute using DuckDB CLI or Python
+    # Execute using DuckDB Python module
     try:
         import duckdb
 
@@ -213,33 +194,12 @@ def record_sync(
         conn.execute(sql, params)
         conn.close()
     except ImportError:
-        # Fallback to CLI if duckdb not available
-        # Note: CLI fallback uses escaped values for safety
-        escaped_sql = f"""
-        INSERT INTO agent_synchronizations (
-            sync_id, agent_id, worktree_path, sync_type,
-            source_location, target_location, pattern, status,
-            created_at, completed_at, created_by, metadata
-        ) VALUES (
-            '{sync_id}',
-            'claude-code',
-            {f"'{worktree}'" if worktree else "NULL"},
-            '{sync_type}',
-            '{source.replace("'", "''")}',
-            '{target.replace("'", "''")}',
-            '{pattern}',
-            'completed',
-            '{timestamp}',
-            '{timestamp}',
-            'claude-code',
-            '{metadata_json.replace("'", "''")}'
-        );
-        """
-        result = subprocess.run(
-            ["duckdb", str(db_path), "-c", escaped_sql], capture_output=True, text=True
+        # DuckDB not installed - provide clear error message
+        print(
+            "Error: DuckDB Python module not installed.\nInstall with: uv add duckdb  OR  uv sync\n\nAgentDB state tracking requires the duckdb package.",
+            file=sys.stderr,
         )
-        if result.returncode != 0:
-            raise RuntimeError(f"Database error: {result.stderr}")
+        raise RuntimeError("DuckDB not available. Run 'uv sync' to install dependencies.")
 
     return sync_id
 
@@ -295,7 +255,7 @@ Examples:
             metadata=metadata,
         )
 
-        print(f"✓ Recorded sync: {sync_id}")
+        print(f"[OK] Recorded sync: {sync_id}")
         print(f"  Type: {args.sync_type}")
         print(f"  Pattern: {args.pattern}")
         if args.source:

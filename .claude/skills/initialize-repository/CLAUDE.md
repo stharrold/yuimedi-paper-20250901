@@ -30,9 +30,10 @@ Initialize-repository is a **meta-skill (Phase 0)** that bootstraps new reposito
 ```
 .claude/skills/initialize-repository/
 ├── scripts/
-│   ├── initialize_repository.py  # Main initialization script (993 lines)
-│   └── __init__.py              # Package initialization (version 1.0.1)
-├── SKILL.md                      # Complete skill documentation (558 lines)
+│   ├── initialize_repository.py  # Bootstrap NEW repos (interactive Q&A)
+│   ├── apply_workflow.py         # Apply workflow to EXISTING repos (clone-and-apply)
+│   └── __init__.py              # Package initialization
+├── SKILL.md                      # Complete skill documentation
 ├── CLAUDE.md                     # This file
 ├── README.md                     # Human-readable overview
 ├── CHANGELOG.md                  # Version history
@@ -41,9 +42,9 @@ Initialize-repository is a **meta-skill (Phase 0)** that bootstraps new reposito
     └── README.md
 ```
 
-## Key Script
+## Key Scripts
 
-### initialize_repository.py
+### initialize_repository.py (Bootstrap NEW repos)
 
 **Purpose:** Interactive tool to bootstrap new repositories with complete workflow system (9 skills, documentation, standards)
 
@@ -201,6 +202,62 @@ python .claude/skills/initialize-repository/scripts/initialize_repository.py \
 
 ---
 
+### apply_workflow.py (Apply to EXISTING repos)
+
+**Purpose:** Apply workflow system from a cloned template repository to an existing repository. Designed for the "clone and apply" use case.
+
+**When to use:** When you have an existing repository and want to add the workflow system by cloning stharrold-templates locally.
+
+**Invocation:**
+```bash
+cd my-repo
+mkdir -p .tmp
+git clone https://github.com/stharrold/stharrold-templates.git .tmp/stharrold-templates
+
+python .tmp/stharrold-templates/.claude/skills/initialize-repository/scripts/apply_workflow.py \
+  .tmp/stharrold-templates .
+
+# Or with --force to overwrite without prompting:
+python .tmp/stharrold-templates/.claude/skills/initialize-repository/scripts/apply_workflow.py \
+  .tmp/stharrold-templates . --force
+```
+
+**What it does:**
+
+1. Validates source has `.claude/skills/` and `.claude/commands/`
+2. Validates target is a git repository
+3. Prompts before overwriting existing `.claude/` (unless `--force`)
+4. Copies `.claude/skills/` (all skills)
+5. Copies `.claude/commands/` (v6 workflow commands)
+6. Copies `WORKFLOW.md`, `CONTRIBUTING.md`
+7. Merges `pyproject.toml` (adds dev dependencies, preserves existing)
+8. Merges `.gitignore` (appends workflow patterns, deduplicates)
+
+**Key differences from initialize_repository.py:**
+
+| Aspect | initialize_repository.py | apply_workflow.py |
+|--------|--------------------------|-------------------|
+| Target | New (empty) repos | Existing repos |
+| Q&A | Interactive (13+ questions) | Minimal (just confirm) |
+| Config files | Generates new | Merges with existing |
+| Git setup | Creates branches | Preserves existing |
+| .tmp cleanup | N/A | Keeps clone |
+
+**Flags:**
+
+| Flag | Behavior |
+|------|----------|
+| (none) | Prompts if `.claude/` exists |
+| `--force` | Deletes existing `.claude/` entirely, copies fresh |
+
+**Exit codes:**
+- 0: Success
+- 1: Source validation failed
+- 2: Target validation failed
+- 3: User cancelled
+
+---
+
 ## Usage by Claude Code
 
 ### When to Call This Meta-Skill
@@ -255,6 +312,44 @@ python .claude/skills/initialize-repository/scripts/initialize_repository.py \
    - User navigates to new repository
    - User starts Phase 1 (BMAD planning)
    - This meta-skill is not used again in new repository
+
+---
+
+### When to Call apply_workflow.py
+
+**Context:** User has an existing repository and wants to apply the workflow system from a cloned template
+
+**User says:**
+- "Apply the workflow in .tmp/stharrold-templates to this repo"
+- "Apply the workflow in X to Y"
+- "Copy the workflow from the cloned templates"
+- "Install the v6 workflow commands"
+
+**Claude Code should:**
+
+1. **Recognize apply-to-existing context:**
+   ```python
+   # User has cloned stharrold-templates to .tmp/
+   # User wants to apply workflow to EXISTING repo
+   ```
+
+2. **Call the script:**
+   ```bash
+   python .tmp/stharrold-templates/.claude/skills/initialize-repository/scripts/apply_workflow.py \
+     .tmp/stharrold-templates .
+   ```
+
+3. **Or with --force (if user says "overwrite" or "replace"):**
+   ```bash
+   python .tmp/stharrold-templates/.claude/skills/initialize-repository/scripts/apply_workflow.py \
+     .tmp/stharrold-templates . --force
+   ```
+
+4. **After script completes:**
+   - Review changes: `git status`
+   - Install dependencies: `uv sync`
+   - Start using v6 workflow: `/workflow:v6_1_worktree "feature"`
+   - Optional cleanup: `rm -rf .tmp/`
 
 ---
 

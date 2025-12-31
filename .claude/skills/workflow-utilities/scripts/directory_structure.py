@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Create standard directory structure with CLAUDE.md, README.md, ARCHIVED/."""
 
@@ -166,7 +166,7 @@ related_skills:{skills_yaml}
             body += f"- {skill}\n"
 
         claude_md.write_text(frontmatter + body)
-        print(f"✓ Created {claude_md}")
+        print(f"[OK] Created {claude_md}")
 
     # Create README.md
     readme_md = dir_path / "README.md"
@@ -220,7 +220,7 @@ children:{children_readme_yaml}
             body += f"- **[{parent_readme}]({parent_readme})** - Parent directory documentation\n"
 
         readme_md.write_text(frontmatter + body)
-        print(f"✓ Created {readme_md}")
+        print(f"[OK] Created {readme_md}")
 
     # Create ARCHIVED/ subdirectory (unless this IS archived)
     if not is_archived:
@@ -230,7 +230,7 @@ children:{children_readme_yaml}
         # Recursively create structure for ARCHIVED
         create_directory_structure(archived_dir, is_archived=True)
 
-    print(f"✓ Directory structure complete: {dir_path}")
+    print(f"[OK] Directory structure complete: {dir_path}")
 
 
 if __name__ == "__main__":

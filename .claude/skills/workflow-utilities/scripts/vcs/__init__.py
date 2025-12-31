@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """VCS provider abstraction for workflow scripts.
 
@@ -35,7 +35,7 @@ def get_vcs_adapter() -> BaseVCSAdapter:
     """Get appropriate VCS adapter based on configuration and context.
 
     Detection order:
-    1. Load .vcs_config.yaml if exists → use specified provider
+    1. Load .vcs_config.yaml if exists -> use specified provider
     2. Detect from git remote URL
     3. Default to GitHub (backward compatibility)
 
@@ -65,7 +65,7 @@ def get_vcs_adapter() -> BaseVCSAdapter:
                 if not repository:
                     # Warn when extraction fails - adapter will default to project name
                     print(
-                        f"⚠️  Warning: Could not extract repository name from git remote.\n"
+                        f"[WARN]  Warning: Could not extract repository name from git remote.\n"
                         f"   Repository will default to project name ('{project}').\n"
                         f"   If your Azure DevOps repository name differs from project name,\n"
                         f"   add 'repository' to .vcs_config.yaml:\n"

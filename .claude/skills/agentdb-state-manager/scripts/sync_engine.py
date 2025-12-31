@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """MIT Agent Synchronization Pattern - Core Engine
 
@@ -181,9 +181,9 @@ class SynchronizationEngine:
         """Resolve ${trigger_state.path} placeholders in action spec.
 
         Template Syntax:
-        - Simple path: ${trigger_state.field} → extract top-level field
-        - Nested path: ${trigger_state.coverage.percentage} → nested access
-        - Missing path: ${trigger_state.nonexistent} → null + warning log
+        - Simple path: ${trigger_state.field} -> extract top-level field
+        - Nested path: ${trigger_state.coverage.percentage} -> nested access
+        - Missing path: ${trigger_state.nonexistent} -> null + warning log
 
         Args:
             action_spec: Action specification with ${...} placeholders
@@ -236,7 +236,7 @@ class SynchronizationEngine:
         Examples:
             pattern = {"coverage": {"percentage": 85}}
             state = {"coverage": {"percentage": 85, "lines": 1234}, "lint": "pass"}
-            result = True  # state ⊃ pattern
+            result = True  # state => pattern
 
             pattern = {"lint": "fail"}
             state = {"lint": "pass"}
@@ -441,7 +441,7 @@ class SynchronizationEngine:
         execution_id = str(uuid4())
 
         # Resolve parameters from trigger state
-        # Example: "${trigger_state.coverage.percentage}" → 85
+        # Example: "${trigger_state.coverage.percentage}" -> 85
         action_spec = {"action": sync["target_action"], "agent_id": sync["target_agent_id"]}
         resolved_params = self._resolve_params(action_spec, trigger_state)
 
@@ -492,9 +492,7 @@ class SynchronizationEngine:
         # For now, just record the execution
 
         logger.info(
-            f"Sync recorded: {sync['trigger_agent_id']}.{sync['trigger_action']} "
-            f"→ {sync['target_agent_id']}.{sync['target_action']} "
-            f"(execution_id={execution_id})"
+            f"Sync recorded: {sync['trigger_agent_id']}.{sync['trigger_action']} -> {sync['target_agent_id']}.{sync['target_action']} (execution_id={execution_id})"
         )
 
         return execution_id
@@ -535,8 +533,7 @@ class SynchronizationEngine:
         matching_syncs = self._find_matching_syncs(agent_id, action, state_snapshot)
 
         logger.info(
-            f"Agent action: {agent_id}.{action} (flow_token={flow_token}) "
-            f"matched {len(matching_syncs)} sync rules"
+            f"Agent action: {agent_id}.{action} (flow_token={flow_token}) matched {len(matching_syncs)} sync rules"
         )
 
         for sync in matching_syncs:
@@ -552,8 +549,7 @@ class SynchronizationEngine:
 
             if existing:
                 logger.info(
-                    f"Idempotency: Sync {sync['sync_id']} already executed "
-                    f"(hash={prov_hash[:8]}...)"
+                    f"Idempotency: Sync {sync['sync_id']} already executed (hash={prov_hash[:8]}...)"
                 )
                 continue
 
@@ -566,7 +562,7 @@ class SynchronizationEngine:
                     prov_hash=prov_hash,
                 )
                 execution_ids.append(execution_id)
-                logger.info(f"Triggered sync {sync['sync_id']} → execution {execution_id}")
+                logger.info(f"Triggered sync {sync['sync_id']} -> execution {execution_id}")
             except Exception as e:
                 # Log error but don't raise (append-only paradigm)
                 logger.error(f"Failed to execute sync {sync['sync_id']}: {e}", exc_info=True)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Create annotated tag on main branch after release merge.
 
@@ -65,8 +65,7 @@ def verify_branch_exists(branch_name):
         )
     except subprocess.CalledProcessError:
         raise ValueError(
-            f"Branch '{branch_name}' does not exist. "
-            f"Use 'git branch -a' to list available branches."
+            f"Branch '{branch_name}' does not exist. Use 'git branch -a' to list available branches."
         )
 
 
@@ -105,8 +104,7 @@ def verify_tag_not_exists(version):
 
         if result.stdout.strip():
             raise ValueError(
-                f"Tag '{version}' already exists on remote. "
-                f"Use 'git ls-remote --tags origin' to list remote tags."
+                f"Tag '{version}' already exists on remote. Use 'git ls-remote --tags origin' to list remote tags."
             )
 
     except subprocess.CalledProcessError as e:
@@ -171,8 +169,7 @@ def verify_branch_up_to_date(branch_name):
 
         if behind_count > 0:
             raise RuntimeError(
-                f"Branch '{branch_name}' is {behind_count} commit(s) behind origin/{branch_name}. "
-                f"Please pull latest changes first."
+                f"Branch '{branch_name}' is {behind_count} commit(s) behind origin/{branch_name}. Please pull latest changes first."
             )
 
     except subprocess.CalledProcessError as e:
@@ -384,14 +381,14 @@ def main():
         release_url = create_github_release(version)
 
         # Success output
-        print(f"\n✓ Checked out {branch} branch")
-        print(f"✓ Pulled latest changes (commit {commit_sha})")
-        print(f"✓ Created annotated tag: {version}")
+        print(f"\n[OK] Checked out {branch} branch")
+        print(f"[OK] Pulled latest changes (commit {commit_sha})")
+        print(f"[OK] Created annotated tag: {version}")
         print(f'  Message: "{tag_message}"')
-        print("✓ Pushed tag to origin")
+        print("[OK] Pushed tag to origin")
 
         if release_url:
-            print(f"✓ GitHub release created: {release_url}")
+            print(f"[OK] GitHub release created: {release_url}")
         else:
             print("  GitHub release: skipped (gh CLI not available or failed)")
 

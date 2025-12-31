@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Delete release branch after successful release and back-merge.
 
@@ -69,8 +69,7 @@ def verify_branch_exists(branch_name):
         )
     except subprocess.CalledProcessError:
         raise ValueError(
-            f"Branch '{branch_name}' does not exist. "
-            f"Use 'git branch -a' to list available branches."
+            f"Branch '{branch_name}' does not exist. Use 'git branch -a' to list available branches."
         )
 
 
@@ -126,8 +125,7 @@ def verify_tag_on_branch(version, branch_name):
 
         if branch_name not in branches:
             raise ValueError(
-                f"Tag '{version}' not on {branch_name}. Release merge incomplete. "
-                f"Ensure release PR was merged to {branch_name}."
+                f"Tag '{version}' not on {branch_name}. Release merge incomplete. Ensure release PR was merged to {branch_name}."
             )
 
     except subprocess.CalledProcessError as e:
@@ -187,9 +185,7 @@ def delete_local_branch(branch_name):
 
         if "not fully merged" in error_msg:
             raise RuntimeError(
-                f"Branch '{branch_name}' is not fully merged. "
-                f"This indicates release workflow is incomplete. "
-                f"Safety check failed - branch not deleted."
+                f"Branch '{branch_name}' is not fully merged. This indicates release workflow is incomplete. Safety check failed - branch not deleted."
             )
         else:
             raise RuntimeError(f"Failed to delete local branch: {error_msg}") from e
@@ -331,16 +327,16 @@ def main():
             print(f"  Note: No TODO file found for {version}", file=sys.stderr)
 
         # Success output
-        print(f"\n✓ Verified tag {version} exists")
-        print("✓ Verified tag on main branch")
-        print("✓ Verified back-merge to develop complete")
-        print(f"✓ Deleted local branch: {release_branch}")
-        print(f"✓ Deleted remote branch: origin/{release_branch}")
+        print(f"\n[OK] Verified tag {version} exists")
+        print("[OK] Verified tag on main branch")
+        print("[OK] Verified back-merge to develop complete")
+        print(f"[OK] Deleted local branch: {release_branch}")
+        print(f"[OK] Deleted remote branch: origin/{release_branch}")
 
         if todo_path:
-            print(f"✓ Archived: {todo_path.name}")
+            print(f"[OK] Archived: {todo_path.name}")
 
-        print(f"✓ Release workflow complete for {version}")
+        print(f"[OK] Release workflow complete for {version}")
 
         print("\nNext steps:")
         print(

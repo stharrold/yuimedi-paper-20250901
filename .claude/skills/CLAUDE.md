@@ -1,16 +1,13 @@
 ---
 type: claude-context
 directory: .claude/skills
-purpose: Modular skill implementations (9 skills) for workflow automation.
+purpose: Modular skill implementations (6 skills) for workflow automation.
 parent: ../CLAUDE.md
 sibling_readme: null
 children:
   - agentdb-state-manager/CLAUDE.md
-  - bmad-planner/CLAUDE.md
   - git-workflow-manager/CLAUDE.md
   - initialize-repository/CLAUDE.md
-  - quality-enforcer/CLAUDE.md
-  - speckit-author/CLAUDE.md
   - tech-stack-adapter/CLAUDE.md
   - workflow-orchestrator/CLAUDE.md
   - workflow-utilities/CLAUDE.md
@@ -20,7 +17,12 @@ children:
 
 ## Purpose
 
-Modular skill implementations (9 skills) for workflow automation.
+Modular skill implementations (6 skills) for v6 workflow automation.
+
+**Archived skills** (see `ARCHIVED/`):
+- bmad-planner - Replaced by feature-dev plugin
+- speckit-author - Replaced by feature-dev plugin
+- quality-enforcer - Replaced by feature-dev code review
 
 ## Contents
 

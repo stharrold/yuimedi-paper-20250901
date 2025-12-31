@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Verify workflow context - ensures commands run in correct location/branch.
 
 This script validates that workflow commands are executed in the correct
 context (main repo vs worktree, correct branch prefix).
+
+For steps 5, 6, 7 (main repo steps), also detects pending worktrees with
+unmerged commits and prints non-blocking warnings.
 
 Usage:
     # Explicit flags
@@ -15,25 +18,40 @@ Usage:
     python verify_workflow_context.py --step 2   # Worktree, feature/*
     python verify_workflow_context.py --step 3   # Worktree, feature/*
     python verify_workflow_context.py --step 4   # Worktree, feature/*
-    python verify_workflow_context.py --step 5   # Main repo, contrib/*
-    python verify_workflow_context.py --step 6   # Main repo, contrib/*
-    python verify_workflow_context.py --step 7   # Main repo, release/*
+    python verify_workflow_context.py --step 5   # Main repo, contrib/* + pending worktree check
+    python verify_workflow_context.py --step 6   # Main repo, contrib/* + pending worktree check
+    python verify_workflow_context.py --step 7   # Main repo, contrib/* + pending worktree check
 
 Exit codes:
-    0 - Context validation passed
+    0 - Context validation passed (pending worktree warnings are non-blocking)
     1 - Context validation failed
+    2 - Pending worktrees detected in --strict mode (for CI enforcement)
 """
 
 import argparse
+import json
 import subprocess
 import sys
 from pathlib import Path
+from typing import TypedDict
 
 # Safe cross-platform output
 try:
-    from .safe_output import format_check, format_cross, safe_print
+    from .safe_output import format_check, format_cross, format_warning, safe_print
 except ImportError:
-    from safe_output import format_check, format_cross, safe_print
+    from safe_output import format_check, format_cross, format_warning, safe_print
+
+
+class PendingWorktree(TypedDict):
+    """Information about a pending worktree with unmerged commits."""
+
+    worktree_path: str
+    branch: str
+    commits_ahead: int
+    workflow_step: int | None
+    prunable: bool
+    error: str | None
+
 
 # Step definitions: (require_worktree, require_main_repo, branch_prefix, step_name)
 STEP_REQUIREMENTS = {
@@ -47,15 +65,184 @@ STEP_REQUIREMENTS = {
 }
 
 
-def run_command(cmd: list[str]) -> str | None:
+def run_command(cmd: list[str], cwd: Path | None = None) -> str | None:
     """Run command and return output or None on error."""
     try:
-        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True, cwd=cwd)
         return result.stdout.strip()
     except subprocess.CalledProcessError:
         return None
     except FileNotFoundError:
         return None
+
+
+def detect_pending_worktrees(repo_root: Path | None = None) -> list[PendingWorktree]:
+    """Detect active worktrees with commits ahead of their base branch.
+
+    Args:
+        repo_root: Path to main repository root. If None, auto-detect.
+
+    Returns:
+        List of PendingWorktree dicts with worktree information.
+    """
+    if repo_root is None:
+        root_str = run_command(["git", "rev-parse", "--show-toplevel"])
+        if not root_str:
+            return []
+        repo_root = Path(root_str)
+
+    # Get current branch of main repo (base for comparison)
+    base_branch = run_command(["git", "branch", "--show-current"], cwd=repo_root)
+    if not base_branch:
+        return []
+
+    # Parse git worktree list --porcelain
+    result = run_command(["git", "worktree", "list", "--porcelain"], cwd=repo_root)
+    if not result:
+        return []
+
+    pending: list[PendingWorktree] = []
+    current_worktree: dict[str, str | bool] = {}
+
+    for line in result.split("\n"):
+        if line.startswith("worktree "):
+            # Start of new worktree entry
+            if current_worktree:
+                # Process previous worktree
+                wt = _process_worktree_entry(current_worktree, repo_root, base_branch)
+                if wt:
+                    pending.append(wt)
+            current_worktree = {"path": line.split(" ", 1)[1]}
+        elif line.startswith("branch refs/heads/"):
+            current_worktree["branch"] = line.replace("branch refs/heads/", "")
+        elif line == "prunable":
+            current_worktree["prunable"] = True
+        elif line == "bare":
+            current_worktree["bare"] = True
+        elif line == "detached":
+            current_worktree["detached"] = True
+
+    # Process last worktree entry
+    if current_worktree:
+        wt = _process_worktree_entry(current_worktree, repo_root, base_branch)
+        if wt:
+            pending.append(wt)
+
+    return pending
+
+
+def _process_worktree_entry(
+    entry: dict[str, str | bool],
+    repo_root: Path,
+    base_branch: str,
+) -> PendingWorktree | None:
+    """Process a single worktree entry and check for pending commits.
+
+    Args:
+        entry: Parsed worktree entry with path, branch, etc.
+        repo_root: Path to main repository root.
+        base_branch: Base branch name for comparison.
+
+    Returns:
+        PendingWorktree dict if worktree has pending commits, None otherwise.
+    """
+    path = Path(str(entry.get("path", "")))
+    branch = str(entry.get("branch", ""))
+    prunable = bool(entry.get("prunable", False))
+
+    # Skip main repo worktree
+    if path.resolve() == repo_root.resolve():
+        return None
+
+    # Skip non-feature branches
+    if not branch.startswith("feature/"):
+        return None
+
+    # Skip prunable worktrees (orphaned)
+    if prunable:
+        return PendingWorktree(
+            worktree_path=str(path),
+            branch=branch,
+            commits_ahead=-1,
+            workflow_step=None,
+            prunable=True,
+            error="Worktree is prunable (orphaned)",
+        )
+
+    # Count commits ahead of base branch
+    commits_ahead = 0
+    error = None
+    try:
+        count_result = subprocess.run(
+            ["git", "rev-list", "--count", f"{base_branch}..{branch}"],
+            check=True,
+            capture_output=True,
+            text=True,
+            cwd=repo_root,
+        )
+        commits_ahead = int(count_result.stdout.strip())
+    except (subprocess.CalledProcessError, ValueError) as e:
+        error = f"Could not count commits: {e}"
+        commits_ahead = -1
+
+    # Only return worktrees with commits ahead
+    if commits_ahead <= 0 and not error:
+        return None
+
+    # Read workflow.json for step info
+    workflow_step = None
+    workflow_json = path / ".claude-state" / "workflow.json"
+    if workflow_json.exists():
+        try:
+            with open(workflow_json) as f:
+                data = json.load(f)
+                workflow_step = data.get("current_step")
+        except (json.JSONDecodeError, OSError):
+            # Ignore errors reading workflow.json - step info is optional metadata
+            pass
+
+    return PendingWorktree(
+        worktree_path=str(path),
+        branch=branch,
+        commits_ahead=commits_ahead,
+        workflow_step=workflow_step,
+        prunable=prunable,
+        error=error,
+    )
+
+
+def print_pending_worktree_warnings(pending: list[PendingWorktree]) -> None:
+    """Print warnings about pending worktrees.
+
+    Args:
+        pending: List of PendingWorktree dicts to print warnings for.
+    """
+    safe_print("")
+    safe_print("=" * 70)
+    safe_print(format_warning("PENDING WORKTREES DETECTED"))
+    safe_print("=" * 70)
+
+    for wt in pending:
+        safe_print("")
+        safe_print(f"  Branch: {wt['branch']}")
+        safe_print(f"  Path: {wt['worktree_path']}")
+
+        if wt["commits_ahead"] >= 0:
+            safe_print(f"  Commits ahead: {wt['commits_ahead']}")
+        elif wt["error"]:
+            safe_print(f"  Error: {wt['error']}")
+
+        if wt["workflow_step"] is not None:
+            step_name = STEP_REQUIREMENTS.get(
+                wt["workflow_step"], (None, None, None, f"step {wt['workflow_step']}")
+            )[3]
+            safe_print(f"  Workflow step: {wt['workflow_step']} ({step_name})")
+
+    safe_print("")
+    safe_print("=" * 70)
+    safe_print("These worktrees have unmerged commits.")
+    safe_print("Consider running /5_integrate with the worktree path argument.")
+    safe_print("=" * 70)
 
 
 def get_repo_root() -> Path | None:
@@ -195,6 +382,11 @@ Step shortcuts:
         action="store_true",
         help="Only output on failure",
     )
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Exit with code 2 if pending worktrees are detected (for CI enforcement)",
+    )
 
     args = parser.parse_args()
 
@@ -227,6 +419,20 @@ Step shortcuts:
             else:
                 safe_print(format_check("Context valid"))
             safe_print(f"  {message}")
+
+        # Detect pending worktrees for steps 5, 6, 7 (main repo steps)
+        if args.step in (5, 6, 7):
+            pending = detect_pending_worktrees()
+            pending_with_commits = [w for w in pending if w["commits_ahead"] > 0]
+            if pending_with_commits:
+                print_pending_worktree_warnings(pending_with_commits)
+                # In strict mode, exit with code 2 for CI enforcement
+                if args.strict:
+                    safe_print("")
+                    safe_print(format_cross("STRICT MODE: Pending worktrees block release"))
+                    safe_print("Use --no-strict or resolve pending worktrees before proceeding.")
+                    sys.exit(2)
+
         sys.exit(0)
     else:
         safe_print("=" * 70)

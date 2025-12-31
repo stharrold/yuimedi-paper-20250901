@@ -13,8 +13,8 @@ children:
   - tools/CLAUDE.md
 related_skills:
   - workflow-orchestrator
-  - quality-enforcer
   - git-workflow-manager
+  - agentdb-state-manager
 ---
 
 # CLAUDE.md
@@ -57,9 +57,6 @@ python scripts/validate_references.py --all  # Reference validation + URL checks
 uv run ruff format . && uv run ruff check --fix .  # Format + lint
 uv run mypy scripts/ lit_review/           # Type checking
 
-# Full quality gates (before PRs)
-python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
-
 # Literature review workflow
 uv run academic-review --help              # CLI for systematic reviews
 uv run academic-review init <review-id>    # Initialize new review
@@ -77,7 +74,6 @@ uv run pytest -m "not integration"         # Skip integration tests (pre-push de
 # Skills coverage (targeted modules)
 uv run pytest tests/skills/ \
   --cov=.claude/skills/git-workflow-manager/scripts \
-  --cov=.claude/skills/quality-enforcer/scripts \
   --cov=.claude/skills/workflow-utilities/scripts/vcs \
   --cov-report=term
 
@@ -92,34 +88,35 @@ gh issue view <number>                     # Task details
 podman-compose run --rm dev ./scripts/build_paper.sh  # Generate in container
 ```
 
-## Workflow System (for feature development)
+## Workflow System (v6)
 
-7-step workflow for implementing new features:
+Streamlined 4-phase workflow using Claude's feature-dev plugin:
 
 ```bash
-# Step 1: Create feature specification and planning documents
-/workflow:1_specify  # Creates planning/ documents and GitHub issue
+# Step 1: Create feature worktree
+/workflow:v6_1_worktree "feature description"
+# Creates branch: feature/{timestamp}_{slug}
+# Creates worktree: ../{project}_feature_{timestamp}_{slug}/
 
-# Step 2: Design implementation in isolated worktree
-/workflow:2_plan     # Run from feature worktree after creation
+# Step 2: Develop in worktree (run from worktree, not main repo)
+cd <worktree-path>
+/feature-dev:feature-dev "feature description"
+# Handles: codebase understanding, planning, implementation, code review
 
-# Step 3: Generate task breakdown
-/workflow:3_tasks    # Creates detailed implementation tasks
+# Step 3: Integrate to develop
+/workflow:v6_2_integrate "feature/YYYYMMDDTHHMMSSZ_slug"
+# PR feature->contrib, cleanup worktree, PR contrib->develop
 
-# Step 4: Execute implementation
-/workflow:4_implement  # Automated task execution with quality gates
+# Step 4: Release to main
+/workflow:v6_3_release           # Auto-calculate version
+/workflow:v6_3_release v1.2.0    # Explicit version
 
-# Step 5: Integrate to develop branch
-/workflow:5_integrate  # Create and merge PR to develop
-
-# Step 6: Release to production
-/workflow:6_release    # Create release branch, tag, deploy
-
-# Step 7: Backmerge and cleanup
-/workflow:7_backmerge  # Sync changes back to develop and contrib
+# Step 5: Backmerge and cleanup
+/workflow:v6_4_backmerge
+# PR release->develop, rebase contrib, delete release branch
 ```
 
-**Note:** Workflow skills (`.claude/skills/`) are for major releases and complex git operations, not daily editing tasks.
+**Note:** Workflow skills are for major releases and complex git operations, not daily editing tasks. See `WORKFLOW.md` for details.
 
 ## Branch Strategy
 
@@ -178,10 +175,17 @@ Hooks run automatically on every commit:
 - Validate YAML/JSON structure
 - Check for large files, merge conflicts, private keys
 - Run ruff format/lint on Python files
-- Sync AI configs: `.claude/` → `.agents/`, `CLAUDE.md` → `AGENTS.md`
 
 ### Workflow Skills
-9 skills in `.claude/skills/` for major releases and complex git operations. **Don't use for daily edits.**
+6 skills in `.claude/skills/` for major releases and complex git operations:
+- `workflow-orchestrator` - Main coordinator
+- `git-workflow-manager` - Worktrees, PRs, semantic versioning
+- `tech-stack-adapter` - Python/uv detection
+- `workflow-utilities` - Archive, directory structure
+- `agentdb-state-manager` - Workflow state tracking (DuckDB)
+- `initialize-repository` - Bootstrap new repos
+
+**Archived skills** (replaced by feature-dev plugin): bmad-planner, speckit-author, quality-enforcer
 
 ### CI/CD
 
@@ -329,7 +333,6 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 - **Status values:** Answered, Partial, Unanswered, → Gap (searched but not found)
 - **Merged column:** Shows citation range (e.g., `[@wu2024]-[@ren2024]`) when findings incorporated into paper.md; `-` means not yet merged
 - Use `gh issue list --label "research"` to see all research-related issues
-- Use `/scholar:research-question` skill for Google Scholar Labs searches
 
 **Preprint strategy:**
 - arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY

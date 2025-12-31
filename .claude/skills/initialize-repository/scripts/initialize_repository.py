@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Initialize a new repository with the workflow system from a source repository.
 
@@ -549,7 +549,7 @@ This repository uses a skill-based workflow system. See [WORKFLOW.md](WORKFLOW.m
      feature my-feature {config.gh_user} --todo-file ../TODO_feature_*.md
    ```
 
-4. **Implement and test** (≥80% coverage required)
+4. **Implement and test** (>=80% coverage required)
 
 5. **Quality gates**:
    ```bash
@@ -672,7 +672,7 @@ uv add --dev <package-name>
 # Run all tests
 uv run pytest
 
-# Run with coverage (≥80% required)
+# Run with coverage (>=80% required)
 uv run pytest --cov=src --cov-fail-under=80
 
 # Lint code
@@ -699,13 +699,13 @@ uv run ruff format src/
 ## Git Branch Structure
 
 ```
-main                           ← Production (tagged vX.Y.Z)
-  ↑
-develop                        ← Integration branch
-  ↑
-contrib/{config.gh_user}       ← Personal contribution
-  ↑
-feature/<timestamp>_<slug>    ← Isolated feature (worktree)
+main                           <- Production (tagged vX.Y.Z)
+  ^
+develop                        <- Integration branch
+  ^
+contrib/{config.gh_user}       <- Personal contribution
+  ^
+feature/<timestamp>_<slug>    <- Isolated feature (worktree)
 ```
 
 ## Related Documentation
@@ -999,7 +999,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initialized repository with skill-based workflow architecture
 - 8 specialized skills for development workflow
-- Quality gates enforcement (≥80% coverage)
+- Quality gates enforcement (>=80% coverage)
 - Git-flow + GitHub-flow hybrid with worktrees
 - Documentation system with WORKFLOW.md, CLAUDE.md, CONTRIBUTING.md
 """
@@ -1133,13 +1133,13 @@ def phase4_git_initialization(target_path: Path, config: RepositoryConfig) -> No
 
 Initialized {config.name} with skill-based workflow architecture:
 - 8 specialized skills for development workflow
-- Quality gates enforcement (≥80% coverage)
+- Quality gates enforcement (>=80% coverage)
 - Git-flow + GitHub-flow hybrid with worktrees
 - Complete documentation system
 
 Repository purpose: {config.purpose}
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+[BOT] Generated with [Claude Code](https://claude.com/claude-code)
 
 Co-Authored-By: Claude <noreply@anthropic.com>
 """
@@ -1296,7 +1296,7 @@ def print_summary(target_path: Path, config: RepositoryConfig) -> None:
     print("  - CLAUDE.md - Claude Code interaction guide")
     print("  - CONTRIBUTING.md - Contributor guidelines")
 
-    print(f"\n{Colors.GREEN}🎉 Happy coding!{Colors.END}\n")
+    print(f"\n{Colors.GREEN}[DONE] Happy coding!{Colors.END}\n")
 
 
 def main() -> None:

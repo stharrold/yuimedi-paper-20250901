@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
-"""Create release branch from base branch with TODO file generation.
+"""Create release branch from base branch.
 
 This script implements Step 5.1 of Phase 5 (Release Workflow) as documented
-in WORKFLOW.md. It creates a release branch following git-flow conventions,
-validates the version, and generates a TODO file for tracking release tasks.
+in WORKFLOW.md. It creates a release branch following git-flow conventions
+and validates the version.
+
+Note: TODO file generation is deprecated. Use GitHub Issues for task tracking.
 
 Usage:
     python create_release.py <version> <base_branch> [--yes]
@@ -25,12 +27,7 @@ import argparse
 import re
 import subprocess
 import sys
-from datetime import UTC, datetime
 from pathlib import Path
-
-# Add VCS module to path
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"))
-from vcs import get_vcs_adapter
 
 # Constants with documented rationale
 RELEASE_BRANCH_PREFIX = "release/"
@@ -38,9 +35,6 @@ RELEASE_BRANCH_PREFIX = "release/"
 
 VERSION_PATTERN = r"^v\d+\.\d+\.\d+$"
 # Rationale: Enforce semantic versioning (vMAJOR.MINOR.PATCH) for consistency
-
-TIMESTAMP_FORMAT = "%Y%m%dT%H%M%SZ"
-# Rationale: Compact ISO8601 format that remains intact when parsed by underscores/hyphens
 
 
 def validate_version_format(version):
@@ -73,8 +67,7 @@ def check_working_directory_clean():
 
         if result.stdout.strip():
             raise RuntimeError(
-                "Working directory has uncommitted changes. "
-                "Please commit or stash changes before creating release branch."
+                "Working directory has uncommitted changes. Please commit or stash changes before creating release branch."
             )
 
     except subprocess.CalledProcessError as e:
@@ -97,8 +90,7 @@ def verify_branch_exists(branch_name):
         )
     except subprocess.CalledProcessError:
         raise ValueError(
-            f"Base branch '{branch_name}' does not exist. "
-            f"Use 'git branch -a' to list available branches."
+            f"Base branch '{branch_name}' does not exist. Use 'git branch -a' to list available branches."
         )
 
 
@@ -185,13 +177,13 @@ def confirm_version_mismatch(provided_version, recommended_version, auto_confirm
 
     if auto_confirm:
         print(
-            f"⚠️  Version mismatch: provided {provided_version}, recommended {recommended_version}",
+            f"[WARN]  Version mismatch: provided {provided_version}, recommended {recommended_version}",
             file=sys.stderr,
         )
         print(f"Continuing with {provided_version} (--yes flag enabled)", file=sys.stderr)
         return True
 
-    print("\n⚠️  Version Mismatch Warning", file=sys.stderr)
+    print("\n[WARN]  Version Mismatch Warning", file=sys.stderr)
     print(f"Provided version:    {provided_version}", file=sys.stderr)
     print(f"Recommended version: {recommended_version}", file=sys.stderr)
     print(
@@ -254,233 +246,10 @@ def create_release_branch(version, base_branch):
         ) from e
 
 
-def create_todo_file(version, base_branch, base_commit):
-    """
-    Create TODO file for release workflow tracking.
-
-    Args:
-        version: Release version (e.g., 'v1.1.0')
-        base_branch: Base branch name (e.g., 'develop')
-        base_commit: Base commit SHA
-
-    Returns:
-        Path to created TODO file
-
-    Raises:
-        RuntimeError: If TODO file creation fails
-    """
-    timestamp = datetime.now(UTC).strftime(TIMESTAMP_FORMAT)
-    version_slug = version.replace(".", "-")
-    todo_filename = f"TODO_release_{timestamp}_{version_slug}.md"
-
-    repo_root = Path(
-        subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip()
-    )
-
-    todo_path = repo_root / todo_filename
-
-    # Get VCS user (GitHub/Azure DevOps)
-    try:
-        vcs = get_vcs_adapter()
-        github_user = vcs.get_current_user()
-    except Exception:
-        github_user = "unknown"
-
-    # Create TODO content
-    created_timestamp = datetime.now(UTC).isoformat().replace("+00:00", "Z")
-
-    todo_content = f"""---
-type: workflow-manifest
-workflow_type: release
-slug: {version_slug}
-timestamp: {timestamp}
-github_user: {github_user}
-
-metadata:
-  title: "Release {version}"
-  description: "Release workflow for version {version} from {base_branch}"
-  created: "{created_timestamp}"
-  base_branch: "{base_branch}"
-  base_commit: "{base_commit}"
-  stack: python
-  package_manager: uv
-  test_framework: pytest
-  containers: []
-
-workflow_progress:
-  phase: 5
-  current_step: "5.2"
-  last_task: null
-  last_update: "{created_timestamp}"
-  status: "qa"
-
-quality_gates:
-  test_coverage: 80
-  tests_passing: false
-  build_successful: false
-  linting_clean: false
-  types_clean: false
-  semantic_version: "{version}"
-
-tasks:
-  qa:
-    - id: qa_001
-      description: "Run full test suite with coverage"
-      status: pending
-      files: []
-      dependencies: []
-    - id: qa_002
-      description: "Verify all quality gates pass"
-      status: pending
-      files: []
-      dependencies: [qa_001]
-    - id: qa_003
-      description: "Update documentation (README, CHANGELOG)"
-      status: pending
-      files:
-        - README.md
-        - CHANGELOG.md
-      dependencies: []
-    - id: qa_004
-      description: "Update version in pyproject.toml"
-      status: pending
-      files:
-        - pyproject.toml
-      dependencies: []
-
-  integration:
-    - id: int_001
-      description: "Create PR: release/{version} → main"
-      status: pending
-      files: []
-      dependencies: [qa_001, qa_002, qa_003, qa_004]
-    - id: int_002
-      description: "User merges PR in GitHub UI"
-      status: pending
-      files: []
-      dependencies: [int_001]
-    - id: int_003
-      description: "Tag release on main"
-      status: pending
-      files: []
-      dependencies: [int_002]
-    - id: int_004
-      description: "Back-merge release to develop"
-      status: pending
-      files: []
-      dependencies: [int_003]
-    - id: int_005
-      description: "Cleanup release branch"
-      status: pending
-      files: []
-      dependencies: [int_004]
----
-
-# TODO: Release {version}
-
-**Type:** release
-**Slug:** {version_slug}
-**Created:** {created_timestamp}
-**Base Branch:** {base_branch}
-**Base Commit:** {base_commit}
-**GitHub User:** {github_user}
-
-## Overview
-
-Release workflow for version {version} created from {base_branch} branch.
-
-## Current Status
-
-**Phase:** Release Workflow (5)
-**Current Step:** 5.2 - Quality Assurance
-**Last Updated:** {created_timestamp}
-
-## Release Tasks
-
-### Phase 5.2: Quality Assurance
-
-- [ ] **qa_001**: Run full test suite with coverage
-  - Command: `uv run pytest --cov=src --cov-report=term --cov-fail-under=80`
-
-- [ ] **qa_002**: Verify all quality gates pass
-  - Test coverage ≥ 80%
-  - All tests passing
-  - Build successful
-  - Linting clean (ruff)
-  - Type checking clean (mypy)
-
-- [ ] **qa_003**: Update documentation (README, CHANGELOG)
-  - Document new features and changes
-  - Update version numbers
-
-- [ ] **qa_004**: Update version in pyproject.toml
-  - Set version to {version}
-
-### Phase 5.3-5.7: Integration and Cleanup
-
-- [ ] **int_001**: Create PR: release/{version} → main
-  - Command: `gh pr create --base main --title "Release {version}"`
-
-- [ ] **int_002**: User merges PR in GitHub UI
-  - Manual step: Review and merge in GitHub
-
-- [ ] **int_003**: Tag release on main
-  - Command: `python .claude/skills/git-workflow-manager/scripts/tag_release.py {version} main`
-
-- [ ] **int_004**: Back-merge release to develop
-  - Command: `python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop`
-
-- [ ] **int_005**: Cleanup release branch
-  - Command: `python .claude/skills/git-workflow-manager/scripts/cleanup_release.py {version}`
-
-## Quality Gates
-
-- [ ] Test coverage ≥ 80%
-- [ ] All tests passing
-- [ ] Build successful
-- [ ] Linting clean (ruff)
-- [ ] Type checking clean (mypy)
-- [ ] Containers healthy (if applicable)
-
-## Workflow Commands
-
-```bash
-# Update task status
-python .claude/skills/workflow-utilities/scripts/todo_updater.py {todo_filename} <task_id> <status>
-
-# Run quality gates
-python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
-
-# Create PR to main
-gh pr create --base main --title "Release {version}" --body "Release {version} from {base_branch}"
-
-# Tag release (after merge)
-python .claude/skills/git-workflow-manager/scripts/tag_release.py {version} main
-
-# Back-merge to develop
-python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop
-
-# Cleanup release branch
-python .claude/skills/git-workflow-manager/scripts/cleanup_release.py {version}
-```
-
-## Status History
-
-- {created_timestamp}: Release branch created from {base_branch} ({base_commit})
-"""
-
-    try:
-        todo_path.write_text(todo_content)
-        return todo_path
-
-    except Exception as e:
-        raise RuntimeError(f"Failed to create TODO file at {todo_path}: {e}") from e
-
-
 def main():
     """Main entry point for create_release.py script."""
     parser = argparse.ArgumentParser(
-        description="Create release branch from base branch with TODO file generation",
+        description="Create release branch from base branch",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -522,18 +291,13 @@ For more information, see WORKFLOW.md Phase 5 (Release Workflow).
         print("Creating release branch...", file=sys.stderr)
         branch_name, base_commit = create_release_branch(version, base_branch)
 
-        # Step 4: Create TODO File
-        print("Creating TODO file...", file=sys.stderr)
-        todo_path = create_todo_file(version, base_branch, base_commit)
-
         # Success output
-        print(f"\n✓ Created release branch: {branch_name}")
-        print(f"✓ Base: {base_branch} (commit {base_commit})")
-        print(f"✓ TODO file: {todo_path.name}")
-        print("✓ Ready for final QA and documentation updates")
+        print(f"\n[OK] Created release branch: {branch_name}")
+        print(f"[OK] Base: {base_branch} (commit {base_commit})")
+        print("[OK] Ready for final QA and documentation updates")
         print("\nNext steps:")
         print(
-            "  1. Run quality gates: python .claude/skills/quality-enforcer/scripts/run_quality_gates.py"
+            "  1. Run quality gates: uv run python .claude/skills/quality-enforcer/scripts/run_quality_gates.py"
         )
         print("  2. Update documentation and version in pyproject.toml")
         print(f"  3. Create PR to main: gh pr create --base main --title 'Release {version}'")

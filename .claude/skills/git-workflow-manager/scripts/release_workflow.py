@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """
 Release Workflow Script
@@ -7,7 +7,7 @@ Release Workflow Script
 Creates a release from develop branch and deploys to production.
 
 Usage:
-    podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/release_workflow.py <step>
+    uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py <step>
 
 Steps:
     create-release  - Create release branch from develop
@@ -23,13 +23,11 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Add workflow-utilities to path for container_utils
+# Add workflow-utilities to path for safe_output
 sys.path.insert(
     0,
     str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"),
 )
-
-from container_utils import get_command_prefix
 
 # Safe cross-platform output
 from safe_output import safe_print
@@ -37,7 +35,7 @@ from safe_output import safe_print
 
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
     """Run a command and return the result."""
-    safe_print(f"  → {' '.join(cmd)}")
+    safe_print(f"  -> {' '.join(cmd)}")
     return subprocess.run(cmd, capture_output=True, text=True, check=check)
 
 
@@ -60,9 +58,7 @@ def get_contrib_branch() -> str:
     username = result.stdout.strip()
     if not username:
         raise RuntimeError(
-            "Failed to get GitHub username. Ensure you are authenticated:\n"
-            "  gh auth login\n\n"
-            "Or specify the contrib branch explicitly."
+            "Failed to get GitHub username. Ensure you are authenticated:\n  gh auth login\n\nOr specify the contrib branch explicitly."
         )
     return f"contrib/{username}"
 
@@ -80,10 +76,10 @@ def return_to_editable_branch() -> bool:
     result = run_cmd(["git", "checkout", contrib], check=False)
 
     if result.returncode != 0:
-        safe_print(f"✗ Failed to checkout {contrib}: {result.stderr}")
+        safe_print(f"[FAIL] Failed to checkout {contrib}: {result.stderr}")
         return False
 
-    safe_print(f"✓ Now on editable branch: {contrib}")
+    safe_print(f"[OK] Now on editable branch: {contrib}")
     return True
 
 
@@ -112,11 +108,10 @@ def run_quality_gates() -> bool:
     script_path = Path(".claude/skills/quality-enforcer/scripts/run_quality_gates.py")
 
     if not script_path.exists():
-        safe_print("⚠  Quality gates script not found, skipping")
+        safe_print("[WARN]  Quality gates script not found, skipping")
         return True
 
-    prefix = get_command_prefix()
-    result = subprocess.run(prefix + ["python", str(script_path)], check=False)
+    result = subprocess.run(["uv", "run", "python", str(script_path)], check=False)
 
     return result.returncode == 0
 
@@ -142,24 +137,24 @@ def step_create_release(version: str = None) -> bool:
     # Check if release branch already exists
     result = run_cmd(["git", "branch", "-r", "--list", f"origin/{release_branch}"], check=False)
     if result.stdout.strip():
-        safe_print(f"⚠  Release branch {release_branch} already exists")
+        safe_print(f"[WARN]  Release branch {release_branch} already exists")
         return True
 
     # Create release branch from develop
     safe_print(f"\n[Branch] Creating {release_branch} from develop...")
     result = run_cmd(["git", "checkout", "-b", release_branch, "origin/develop"], check=False)
     if result.returncode != 0:
-        safe_print(f"✗ Failed to create branch: {result.stderr}")
+        safe_print(f"[FAIL] Failed to create branch: {result.stderr}")
         return False
 
     # Push branch
     safe_print(f"\n[Push] Pushing {release_branch}...")
     result = run_cmd(["git", "push", "-u", "origin", release_branch], check=False)
     if result.returncode != 0:
-        safe_print(f"✗ Push failed: {result.stderr}")
+        safe_print(f"[FAIL] Push failed: {result.stderr}")
         return False
 
-    safe_print(f"✓ Step 1 complete: Created {release_branch}")
+    safe_print(f"[OK] Step 1 complete: Created {release_branch}")
     return True
 
 
@@ -170,10 +165,10 @@ def step_run_gates() -> bool:
     safe_print("=" * 60)
 
     if not run_quality_gates():
-        safe_print("✗ Quality gates failed. Fix issues before proceeding.")
+        safe_print("[FAIL] Quality gates failed. Fix issues before proceeding.")
         return False
 
-    safe_print("✓ Step 2 complete: Quality gates passed")
+    safe_print("[OK] Step 2 complete: Quality gates passed")
     return True
 
 
@@ -185,7 +180,7 @@ def step_pr_main() -> bool:
 
     current = get_current_branch()
     if not current.startswith("release/"):
-        safe_print(f"✗ Must be on release branch (current: {current})")
+        safe_print(f"[FAIL] Must be on release branch (current: {current})")
         return False
 
     version = current.replace("release/", "")
@@ -203,19 +198,19 @@ def step_pr_main() -> bool:
             "--title",
             f"Release {version}",
             "--body",
-            f"Release {version}\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+            f"Release {version}\n\n[BOT] Generated with [Claude Code](https://claude.com/claude-code)",
         ],
         check=False,
     )
 
     if result.returncode != 0:
         if "already exists" in result.stderr:
-            safe_print("⚠  PR already exists")
+            safe_print("[WARN]  PR already exists")
         else:
-            safe_print(f"✗ PR creation failed: {result.stderr}")
+            safe_print(f"[FAIL] PR creation failed: {result.stderr}")
             return False
 
-    safe_print(f"✓ Step 3 complete: PR created {current} -> main")
+    safe_print(f"[OK] Step 3 complete: PR created {current} -> main")
     safe_print("\nNext: Merge PR in GitHub, then run: release_workflow.py tag-release")
     return True
 
@@ -240,7 +235,7 @@ def step_tag_release() -> bool:
             version = branches[-1].strip().replace("origin/release/", "")
 
     if not version:
-        safe_print("✗ Could not determine version. Specify release branch.")
+        safe_print("[FAIL] Could not determine version. Specify release branch.")
         return False
 
     # Checkout main and pull
@@ -253,21 +248,21 @@ def step_tag_release() -> bool:
     result = run_cmd(["git", "tag", "-a", version, "-m", f"Release {version}"], check=False)
     if result.returncode != 0:
         if "already exists" in result.stderr:
-            safe_print(f"⚠  Tag {version} already exists")
+            safe_print(f"[WARN]  Tag {version} already exists")
         else:
-            safe_print(f"✗ Tag creation failed: {result.stderr}")
+            safe_print(f"[FAIL] Tag creation failed: {result.stderr}")
             return False
 
     # Push tag
     safe_print(f"\n[Push] Pushing tag {version}...")
     result = run_cmd(["git", "push", "origin", version], check=False)
     if result.returncode != 0:
-        safe_print(f"⚠  Tag push warning: {result.stderr}")
+        safe_print(f"[WARN]  Tag push warning: {result.stderr}")
 
     # Return to editable branch
     return_to_editable_branch()
 
-    safe_print(f"✓ Step 4 complete: Tagged {version} on main")
+    safe_print(f"[OK] Step 4 complete: Tagged {version} on main")
     safe_print("\nNext: Run backmerge_workflow.py to sync release back to develop")
     return True
 
@@ -318,12 +313,12 @@ def run_full_workflow(version: str = None):
     for name, func in steps:
         safe_print(f"\n>>> Running step: {name}")
         if not func():
-            safe_print(f"\n✗ Workflow stopped at step: {name}")
+            safe_print(f"\n[FAIL] Workflow stopped at step: {name}")
             return_to_editable_branch()
             return False
 
     safe_print("\n" + "=" * 60)
-    safe_print("✓ RELEASE WORKFLOW COMPLETE (awaiting PR merge)")
+    safe_print("[OK] RELEASE WORKFLOW COMPLETE (awaiting PR merge)")
     safe_print("After PR merge, run: release_workflow.py tag-release")
     safe_print("=" * 60)
     return True

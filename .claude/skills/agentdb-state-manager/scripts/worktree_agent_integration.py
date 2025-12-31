@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """MIT Agent Synchronization Pattern - Integration Layer (Phase 3)
 
@@ -88,7 +88,7 @@ class FlowTokenManager:
         if cwd.name.startswith("german_feature_"):
             # Extract branch name from worktree directory
             # Example: german_feature_20251117T024349Z_phase-3-integration
-            #   → feature/20251117T024349Z_phase-3-integration
+            #   -> feature/20251117T024349Z_phase-3-integration
             parts = cwd.name.split(
                 "_", 2
             )  # ["german", "feature", "20251117T024349Z_phase-3-integration"]
@@ -127,9 +127,9 @@ class FlowTokenManager:
         """Extract issue number from flow token if present.
 
         Patterns:
-        - issue-123 → 123
-        - feature/20251117_issue-123-description → 123
-        - contrib/stharrold → None
+        - issue-123 -> 123
+        - feature/20251117_issue-123-description -> 123
+        - contrib/stharrold -> None
 
         Args:
             flow_token: Flow token string
@@ -388,8 +388,7 @@ class ComplianceWrapper:
             # Additional compliance check: PHI without explicit justification
             if phi_detected and not has_explicit_justification:
                 logger.error(
-                    f"COMPLIANCE VIOLATION: PHI detected but no explicit justification provided! "
-                    f"agent={agent_id}, action={action}, flow_token={flow_token}"
+                    f"COMPLIANCE VIOLATION: PHI detected but no explicit justification provided! agent={agent_id}, action={action}, flow_token={flow_token}"
                 )
 
             return execution_ids
@@ -420,8 +419,8 @@ class SyncEngineFactory:
         """Create sync engine instance if enabled.
 
         Feature Flag:
-        - SYNC_ENGINE_ENABLED=true → Create and return engine
-        - SYNC_ENGINE_ENABLED=false (default) → Return None
+        - SYNC_ENGINE_ENABLED=true -> Create and return engine
+        - SYNC_ENGINE_ENABLED=false (default) -> Return None
 
         Singleton Pattern:
         - Cache instance per db_path
@@ -578,8 +577,7 @@ async def trigger_sync_completion(
         )
 
         logger.info(
-            f"Sync triggered: agent={agent_id}, action={action}, "
-            f"flow_token={flow_token}, executions={len(execution_ids)}"
+            f"Sync triggered: agent={agent_id}, action={action}, flow_token={flow_token}, executions={len(execution_ids)}"
         )
 
         # TODO (Phase 4): Execute target actions

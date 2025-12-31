@@ -1,7 +1,7 @@
 ---
 type: claude-context
 directory: .claude/commands/workflow
-purpose: 7-phase workflow commands (/1_specify through /7_backmerge plus orchestrator).
+purpose: 4-phase v6 workflow commands using Claude's feature-dev plugin.
 parent: ../CLAUDE.md
 sibling_readme: null
 children:
@@ -12,15 +12,30 @@ children:
 
 ## Purpose
 
-7-phase workflow commands (/1_specify through /7_backmerge plus orchestrator).
+4-phase v6 workflow commands using Claude's feature-dev plugin for streamlined development.
+
+## v6 Workflow Flow
+
+```
+/workflow:v6_1_worktree "feature description"
+    | creates worktree, user runs /feature-dev in worktree
+    v
+/workflow:v6_2_integrate "feature/YYYYMMDDTHHMMSSZ_slug"
+    | PR feature->contrib->develop
+    v
+/workflow:v6_3_release
+    | create release, PR to main, tag
+    v
+/workflow:v6_4_backmerge
+    | PR release->develop, rebase contrib, cleanup
+```
 
 ## Contents
 
-- `1_specify.md` - Documentation
-- `2_plan.md` - Documentation
-- `3_tasks.md` - Documentation
-- `4_implement.md` - Documentation
-- `5_integrate.md` - Documentation
+- `v6_1_worktree.md` - Create worktree for feature-dev
+- `v6_2_integrate.md` - Integrate feature to develop
+- `v6_3_release.md` - Release to production
+- `v6_4_backmerge.md` - Sync release to develop
 
 ## Related
 

@@ -27,16 +27,6 @@ repos:
   # Local hooks for repository-specific checks
   - repo: local
     hooks:
-      # Sync AI configuration files (CLAUDE.md → AGENTS.md, .agents/)
-      # This hook runs FIRST to ensure derived files are synced before other checks
-      - id: sync-ai-config
-        name: Sync AI configuration (CLAUDE.md → AGENTS.md, .agents/)
-        entry: python .claude/skills/workflow-utilities/scripts/sync_ai_config.py sync
-        language: python
-        files: ^(CLAUDE\.md|\.claude/)
-        pass_filenames: false
-        stages: [pre-commit]
-
       # Check CLAUDE.md frontmatter
       - id: claude-md-frontmatter
         name: Check CLAUDE.md has YAML frontmatter

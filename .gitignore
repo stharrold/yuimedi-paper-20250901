@@ -119,3 +119,8 @@ cabal.project.local~
 
 .gemini/
 gha-creds-*.json
+
+# Workflow system
+.claude-state/
+*.duckdb
+*.duckdb.wal

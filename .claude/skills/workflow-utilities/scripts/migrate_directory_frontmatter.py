@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Migrate existing CLAUDE.md and README.md files to include YAML frontmatter."""
 
@@ -157,7 +157,7 @@ def migrate_claude_md(file_path: Path, dry_run: bool = False) -> bool:
 
     # Check if already has frontmatter
     if has_yaml_frontmatter(content):
-        print(f"  ⊘ {file_path} (already has frontmatter)")
+        print(f"  [-] {file_path} (already has frontmatter)")
         return False
 
     dir_path = file_path.parent
@@ -247,10 +247,10 @@ related_skills:{skills_yaml}
     new_content = frontmatter + content
 
     if dry_run:
-        print(f"  ✓ {file_path} (would add frontmatter)")
+        print(f"  [OK] {file_path} (would add frontmatter)")
     else:
         file_path.write_text(new_content)
-        print(f"  ✓ {file_path}")
+        print(f"  [OK] {file_path}")
 
     return True
 
@@ -273,7 +273,7 @@ def migrate_readme_md(file_path: Path, dry_run: bool = False) -> bool:
 
     # Check if already has frontmatter
     if has_yaml_frontmatter(content):
-        print(f"  ⊘ {file_path} (already has frontmatter)")
+        print(f"  [-] {file_path} (already has frontmatter)")
         return False
 
     dir_path = file_path.parent
@@ -341,10 +341,10 @@ children:{children_readme_yaml}
     new_content = frontmatter + content
 
     if dry_run:
-        print(f"  ✓ {file_path} (would add frontmatter)")
+        print(f"  [OK] {file_path} (would add frontmatter)")
     else:
         file_path.write_text(new_content)
-        print(f"  ✓ {file_path}")
+        print(f"  [OK] {file_path}")
 
     return True
 

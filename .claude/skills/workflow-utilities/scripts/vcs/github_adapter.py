@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """GitHub VCS adapter using gh CLI.
 
@@ -72,9 +72,7 @@ class GitHubAdapter(BaseVCSAdapter):
         except subprocess.CalledProcessError as e:
             error_msg = e.stderr.strip() if e.stderr else str(e)
             raise RuntimeError(
-                f"Failed to get GitHub username. "
-                f"Make sure you're authenticated: gh auth login\n"
-                f"Error: {error_msg}"
+                f"Failed to get GitHub username. Make sure you're authenticated: gh auth login\nError: {error_msg}"
             )
         except subprocess.TimeoutExpired:
             raise RuntimeError("Timeout while getting GitHub username")

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """
 Backmerge Workflow Script
@@ -10,11 +10,11 @@ Uses the release/* branch directly to PR to develop (no separate backmerge branc
 This requires the release branch to still exist when running step 7.
 
 Pattern:
-    release/vX.Y.Z ──PR──> develop
-                    └──> (delete release/* after merge)
+    release/vX.Y.Z --PR--> develop
+                    `----> (delete release/* after merge)
 
 Usage:
-    podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py <step>
+    uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py <step>
 
 Steps:
     pr-develop      - Create PR from release branch to develop
@@ -40,7 +40,7 @@ from safe_output import safe_print
 
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
     """Run a command and return the result."""
-    safe_print(f"  → {' '.join(cmd)}")
+    safe_print(f"  -> {' '.join(cmd)}")
     return subprocess.run(cmd, capture_output=True, text=True, check=check)
 
 
@@ -70,10 +70,10 @@ def return_to_editable_branch() -> bool:
     result = run_cmd(["git", "checkout", contrib], check=False)
 
     if result.returncode != 0:
-        safe_print(f"✗ Failed to checkout {contrib}: {result.stderr}")
+        safe_print(f"[FAIL] Failed to checkout {contrib}: {result.stderr}")
         return False
 
-    safe_print(f"✓ Now on editable branch: {contrib}")
+    safe_print(f"[OK] Now on editable branch: {contrib}")
     return True
 
 
@@ -131,7 +131,7 @@ def step_pr_develop(version: str | None = None) -> bool:
     Requires the release/* branch to exist. PRs directly from release to develop.
     """
     safe_print("\n" + "=" * 60)
-    safe_print("STEP 1: PR Release → Develop")
+    safe_print("STEP 1: PR Release -> Develop")
     safe_print("=" * 60)
 
     # Determine version from latest tag if not provided
@@ -139,7 +139,9 @@ def step_pr_develop(version: str | None = None) -> bool:
         version = get_latest_version()
 
     if not version:
-        safe_print("✗ Could not determine version (no tags on origin/main?). Specify --version.")
+        safe_print(
+            "[FAIL] Could not determine version (no tags on origin/main?). Specify --version."
+        )
         return False
 
     safe_print(f"  Backmerging version: {version}")
@@ -150,7 +152,7 @@ def step_pr_develop(version: str | None = None) -> bool:
     # Find release branch
     release_branch = find_release_branch(version)
     if not release_branch:
-        safe_print(f"✗ Release branch release/{version} not found.")
+        safe_print(f"[FAIL] Release branch release/{version} not found.")
         safe_print("  Step 7 requires the release branch to exist.")
         safe_print("  If the release branch was already deleted, you may need to:")
         safe_print(f"    1. Recreate it from main: git checkout -b release/{version} origin/main")
@@ -166,12 +168,12 @@ def step_pr_develop(version: str | None = None) -> bool:
 
     # Handle git rev-list command failure
     if result.returncode != 0:
-        safe_print(f"✗ Failed to check commits behind: {result.stderr}")
+        safe_print(f"[FAIL] Failed to check commits behind: {result.stderr}")
         return_to_editable_branch()
         return False
 
     if commits_behind == "0":
-        safe_print("⚠  develop is already up to date with main")
+        safe_print("[WARN]  develop is already up to date with main")
         return_to_editable_branch()
         return True
 
@@ -186,12 +188,12 @@ def step_pr_develop(version: str | None = None) -> bool:
             ["git", "checkout", "-b", release_branch, f"origin/{release_branch}"], check=False
         )
         if result.returncode != 0:
-            safe_print(f"✗ Failed to checkout {release_branch}: {result.stderr}")
+            safe_print(f"[FAIL] Failed to checkout {release_branch}: {result.stderr}")
             return_to_editable_branch()
             return False
 
     # Create PR
-    safe_print(f"\n[PR] Creating PR: {release_branch} → develop...")
+    safe_print(f"\n[PR] Creating PR: {release_branch} -> develop...")
     result = run_cmd(
         [
             "gh",
@@ -202,7 +204,7 @@ def step_pr_develop(version: str | None = None) -> bool:
             "--head",
             release_branch,
             "--title",
-            f"backmerge: {version} → develop",
+            f"backmerge: {version} -> develop",
             "--body",
             f"""## Summary
 
@@ -210,25 +212,25 @@ Backmerge release {version} to develop.
 
 Keeps develop in sync with production.
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)""",
+[BOT] Generated with [Claude Code](https://claude.com/claude-code)""",
         ],
         check=False,
     )
 
     if result.returncode != 0:
         if "already exists" in result.stderr:
-            safe_print("⚠  PR already exists")
+            safe_print("[WARN]  PR already exists")
             return_to_editable_branch()
             return True
         else:
-            safe_print(f"✗ PR creation failed: {result.stderr}")
+            safe_print(f"[FAIL] PR creation failed: {result.stderr}")
             return_to_editable_branch()
             return False
 
     # Return to editable branch
     return_to_editable_branch()
 
-    safe_print(f"✓ Step 1 complete: PR created {release_branch} → develop")
+    safe_print(f"[OK] Step 1 complete: PR created {release_branch} -> develop")
     safe_print("\nNext: Merge PR in GitHub, then run: backmerge_workflow.py rebase-contrib")
     return True
 
@@ -249,13 +251,13 @@ def step_rebase_contrib() -> bool:
     safe_print(f"\n[Checkout] Switching to {contrib}...")
     result = run_cmd(["git", "checkout", contrib], check=False)
     if result.returncode != 0:
-        safe_print(f"✗ Failed to checkout {contrib}: {result.stderr}")
+        safe_print(f"[FAIL] Failed to checkout {contrib}: {result.stderr}")
         return False
 
     # Check for uncommitted changes
     result = run_cmd(["git", "status", "--porcelain"], check=False)
     if result.stdout.strip():
-        safe_print("✗ Uncommitted changes detected. Commit or stash before rebase.")
+        safe_print("[FAIL] Uncommitted changes detected. Commit or stash before rebase.")
         return False
 
     # DIVERGENCE CHECK: Ensure local and remote are not diverged
@@ -270,7 +272,9 @@ def step_rebase_contrib() -> bool:
         if len(counts) == 2:
             local_ahead, remote_ahead = int(counts[0]), int(counts[1])
             if local_ahead > 0 and remote_ahead > 0:
-                safe_print(f"✗ DIVERGENCE DETECTED: {contrib} has diverged from origin/{contrib}")
+                safe_print(
+                    f"[FAIL] DIVERGENCE DETECTED: {contrib} has diverged from origin/{contrib}"
+                )
                 safe_print(f"  Local has {local_ahead} commits not on remote")
                 safe_print(f"  Remote has {remote_ahead} commits not on local")
                 safe_print("\n  To resolve, choose one of:")
@@ -283,17 +287,17 @@ def step_rebase_contrib() -> bool:
                 safe_print(f"  Remote is {remote_ahead} commits ahead, pulling first...")
                 pull_result = run_cmd(["git", "pull", "--rebase", "origin", contrib], check=False)
                 if pull_result.returncode != 0:
-                    safe_print(f"✗ Pull failed: {pull_result.stderr}")
+                    safe_print(f"[FAIL] Pull failed: {pull_result.stderr}")
                     safe_print("  Resolve manually, then retry.")
                     return False
-                safe_print("  ✓ Synced with remote")
+                safe_print("  [OK] Synced with remote")
 
     # Rebase on develop
     safe_print(f"\n[Rebase] Rebasing {contrib} onto origin/develop...")
     result = run_cmd(["git", "rebase", "origin/develop"], check=False)
 
     if result.returncode != 0:
-        safe_print("⚠  Rebase conflict detected!")
+        safe_print("[WARN]  Rebase conflict detected!")
         safe_print("  Resolve conflicts manually, then run:")
         safe_print("    git rebase --continue")
         safe_print("    git push --force-with-lease")
@@ -304,10 +308,10 @@ def step_rebase_contrib() -> bool:
     result = run_cmd(["git", "push", "--force-with-lease", "origin", contrib], check=False)
 
     if result.returncode != 0:
-        safe_print(f"✗ Push failed: {result.stderr}")
+        safe_print(f"[FAIL] Push failed: {result.stderr}")
         return False
 
-    safe_print(f"✓ Step 2 complete: {contrib} rebased on develop")
+    safe_print(f"[OK] Step 2 complete: {contrib} rebased on develop")
     return True
 
 
@@ -322,7 +326,7 @@ def step_cleanup_release(version: str | None = None) -> bool:
         version = get_latest_version()
 
     if not version:
-        safe_print("⚠  No version found, skipping cleanup")
+        safe_print("[WARN]  No version found, skipping cleanup")
         return True
 
     # Make sure we're not on a branch we're about to delete
@@ -337,9 +341,9 @@ def step_cleanup_release(version: str | None = None) -> bool:
         if "remote ref does not exist" in result.stderr:
             safe_print("  Release branch already deleted or never existed")
         else:
-            safe_print(f"⚠  Release branch delete warning: {result.stderr}")
+            safe_print(f"[WARN]  Release branch delete warning: {result.stderr}")
 
-    safe_print("✓ Step 3 complete: Release branch cleaned up")
+    safe_print("[OK] Step 3 complete: Release branch cleaned up")
     return True
 
 
@@ -373,22 +377,22 @@ def show_status() -> None:
     run_cmd(["git", "fetch", "origin"], check=False)
     result = run_cmd(["git", "rev-list", "--count", "origin/develop..origin/main"], check=False)
     if result.returncode != 0:
-        safe_print(f"⚠  Could not check develop status: {result.stderr.strip()}")
+        safe_print(f"[WARN]  Could not check develop status: {result.stderr.strip()}")
         behind_main = None
     else:
         behind_main = result.stdout.strip()
     if behind_main and behind_main != "0":
-        safe_print(f"\n⚠  develop is {behind_main} commits behind main")
+        safe_print(f"\n[WARN]  develop is {behind_main} commits behind main")
 
     # Check if contrib is behind develop
     result = run_cmd(["git", "rev-list", "--count", f"{contrib}..origin/develop"], check=False)
     if result.returncode != 0:
-        safe_print(f"⚠  Could not check {contrib} status: {result.stderr.strip()}")
+        safe_print(f"[WARN]  Could not check {contrib} status: {result.stderr.strip()}")
         behind_develop = None
     else:
         behind_develop = result.stdout.strip()
     if behind_develop and behind_develop != "0":
-        safe_print(f"⚠  {contrib} is {behind_develop} commits behind develop")
+        safe_print(f"[WARN]  {contrib} is {behind_develop} commits behind develop")
 
     # Determine next step
     safe_print("\n" + "-" * 40)
@@ -396,7 +400,7 @@ def show_status() -> None:
         if release_branch:
             safe_print("Next step: backmerge_workflow.py pr-develop")
         else:
-            safe_print("⚠  develop behind main but no release branch found.")
+            safe_print("[WARN]  develop behind main but no release branch found.")
             safe_print("    Recreate release branch from main if needed.")
     elif behind_develop and behind_develop != "0":
         safe_print("Next step: backmerge_workflow.py rebase-contrib")
@@ -413,7 +417,7 @@ def run_full_workflow(version: str | None = None) -> bool:
     safe_print("=" * 60)
 
     # Note: pr-develop requires manual PR merge, so we split the workflow
-    safe_print("\n⚠  Full workflow requires manual PR merge between steps.")
+    safe_print("\n[WARN]  Full workflow requires manual PR merge between steps.")
     safe_print("Running pr-develop first...")
 
     if not step_pr_develop(version):

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Version consistency validator for WORKFLOW.md and SKILL.md files.
 
@@ -177,7 +177,7 @@ class VersionValidator:
         # Store version for cross-reference checks
         self.skill_versions[skill_name] = (version, skill_md)
 
-        self.log(f"✓ {skill_name}: version {version}")
+        self.log(f"[OK] {skill_name}: version {version}")
 
         return True
 
@@ -239,7 +239,7 @@ class VersionValidator:
             )
             return False
 
-        self.log(f"✓ WORKFLOW.md: version {workflow_version}")
+        self.log(f"[OK] WORKFLOW.md: version {workflow_version}")
 
         # Check for skill references in phase sections
         # Look for patterns like: [bmad-planner](/.claude/skills/bmad-planner/SKILL.md)
@@ -289,7 +289,7 @@ class VersionValidator:
                 )
                 return False
 
-            self.log(f"✓ TODO.md: version {version}")
+            self.log(f"[OK] TODO.md: version {version}")
         else:
             self.log("  TODO.md: no version field (optional)")
 
@@ -324,7 +324,7 @@ class VersionValidator:
                         str(claude_md), f"Invalid version format in reference: '{version}'"
                     )
 
-            self.log(f"✓ CLAUDE.md: found {len(version_refs)} version references")
+            self.log(f"[OK] CLAUDE.md: found {len(version_refs)} version references")
         else:
             self.log("  CLAUDE.md: no explicit version references found (may be OK)")
 
@@ -341,14 +341,14 @@ class VersionValidator:
         print("=" * 70)
 
         if self.errors:
-            print(f"\n❌ {len(self.errors)} ERROR(S) found:\n")
+            print(f"\n[FAIL] {len(self.errors)} ERROR(S) found:\n")
             for error in self.errors:
                 print(f"  {error}")
         else:
-            print("\n✓ No errors found")
+            print("\n[OK] No errors found")
 
         if self.warnings:
-            print(f"\n⚠ {len(self.warnings)} WARNING(S) found:\n")
+            print(f"\n[WARN] {len(self.warnings)} WARNING(S) found:\n")
             for warning in self.warnings:
                 print(f"  {warning}")
 
@@ -440,10 +440,10 @@ def main():
 
     # Exit with appropriate code
     if success:
-        print("✓ All validation checks passed!")
+        print("[OK] All validation checks passed!")
         sys.exit(0)
     else:
-        print("❌ Validation failed - please fix errors above")
+        print("[FAIL] Validation failed - please fix errors above")
         sys.exit(1)
 
 

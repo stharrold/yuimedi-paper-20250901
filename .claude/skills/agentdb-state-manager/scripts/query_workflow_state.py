@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Query current workflow phase from AgentDB.
 
@@ -19,7 +19,6 @@ Feature: 008-workflow-skill-integration
 import argparse
 import json
 import subprocess
-import sys
 from pathlib import Path
 
 # Phase mapping from pattern to phase number and name
@@ -58,53 +57,25 @@ def get_worktree_path() -> str | None:
 
 
 def get_database_path() -> Path | None:
-    """Get path to shared AgentDB database in main repository.
-
-    Always returns the main repository's AgentDB path, ensuring all
-    worktrees share the same workflow state.
+    """Get path to AgentDB database, resolving symlinks/hard links.
 
     Returns:
-        Path to agentdb.duckdb in main repo's .claude-state/, or None if not found
+        Resolved path to agentdb.duckdb or None if not found
     """
-    # Try to use shared worktree_context module
-    try:
-        script_dir = Path(__file__).parent
-        worktree_utils = script_dir.parent.parent / "workflow-utilities" / "scripts"
-        sys.path.insert(0, str(worktree_utils))
-        from worktree_context import get_shared_agentdb_path
-
-        db_path = get_shared_agentdb_path()
-        if db_path.exists():
-            return db_path
-        return None
-    except (ImportError, RuntimeError):
-        pass
-
-    # Fallback: use git worktree list to find main repo
-    try:
-        result = subprocess.check_output(
-            ["git", "worktree", "list", "--porcelain"],
-            text=True,
-            stderr=subprocess.PIPE,
-        )
-        # First worktree line is the main repo
-        for line in result.strip().split("\n"):
-            if line.startswith("worktree "):
-                main_repo = Path(line.split(" ", 1)[1])
-                db_path = main_repo / ".claude-state" / "agentdb.duckdb"
-                if db_path.exists():
-                    return db_path
-                return None
-    except subprocess.CalledProcessError:
-        # If git worktree inspection fails (e.g., not in a git repo), fall through
-        # to the last-resort current-directory check below.
-        pass
-
-    # Last resort fallback: check current directory
     cwd = Path.cwd()
+
+    # Check current directory
     state_dir = cwd / ".claude-state"
-    if (state_dir / "agentdb.duckdb").exists():
-        return state_dir / "agentdb.duckdb"
+    db_path = state_dir / "agentdb.duckdb"
+    if db_path.exists():
+        # Resolve to follow symlinks and get canonical path
+        return db_path.resolve()
+
+    # Check parent (if in worktree)
+    parent_state = cwd.parent / ".claude-state"
+    parent_db_path = parent_state / "agentdb.duckdb"
+    if parent_db_path.exists():
+        return parent_db_path.resolve()
 
     return None
 
@@ -397,8 +368,8 @@ Examples:
     if args.all:
         db_path = get_database_path()
         if db_path is None:
-            print("Error: No AgentDB found", file=sys.stderr)
-            sys.exit(1)
+            print("Error: No AgentDB found", file=__import__("sys").stderr)
+            __import__("sys").exit(1)
 
         records = query_all_sessions(db_path, args.limit)
         if args.format == "json":

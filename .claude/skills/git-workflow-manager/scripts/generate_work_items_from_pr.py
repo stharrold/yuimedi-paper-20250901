@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Generate work-items from unresolved PR conversations.
 
@@ -399,7 +399,7 @@ class PRFeedbackWorkItemGenerator:
 
             # If labels don't exist, retry without labels
             if "not found" in error_msg.lower() and "label" in error_msg.lower():
-                print("    ⚠️  Labels not found, creating issue without labels...")
+                print("    [WARN]  Labels not found, creating issue without labels...")
                 try:
                     issue_url = subprocess.check_output(
                         [
@@ -526,7 +526,7 @@ class PRFeedbackWorkItemGenerator:
             conversations: List of conversation dictionaries
         """
         if not conversations:
-            print("\n✓ No unresolved conversations found!")
+            print("\n[OK] No unresolved conversations found!")
             return
 
         print("\n" + "=" * 80)
@@ -548,24 +548,24 @@ class PRFeedbackWorkItemGenerator:
 
         # Display general conversations
         if general_conversations:
-            print("\n📌 GENERAL COMMENTS")
+            print("\n[PIN] GENERAL COMMENTS")
             print("-" * 80)
             for i, conv in enumerate(general_conversations, 1):
                 print(f"\n[{i}] {conv['author']} wrote:")
                 print(f"    {conv['body'][:100]}{'...' if len(conv['body']) > 100 else ''}")
-                print(f"    🔗 {conv['url']}")
+                print(f"    [LINK] {conv['url']}")
 
         # Display file-specific conversations
         if file_groups:
-            print("\n📄 FILE-SPECIFIC COMMENTS")
+            print("\n[FILE] FILE-SPECIFIC COMMENTS")
             print("-" * 80)
             for file_path, file_convs in sorted(file_groups.items()):
                 print(f"\n  {file_path}")
                 for conv in file_convs:
                     line_info = f" (line {conv['line']})" if conv.get("line") else ""
-                    print(f"    • {conv['author']}{line_info}:")
+                    print(f"    * {conv['author']}{line_info}:")
                     print(f"      {conv['body'][:100]}{'...' if len(conv['body']) > 100 else ''}")
-                    print(f"      🔗 {conv['url']}")
+                    print(f"      [LINK] {conv['url']}")
 
         print("\n" + "=" * 80 + "\n")
 
@@ -596,10 +596,10 @@ def generate_work_items_from_pr(pr_number: int, dry_run: bool = False) -> int:
         return 1
 
     generator = PRFeedbackWorkItemGenerator(adapter)
-    print(f"\n🔧 Using {generator.provider_name} adapter\n")
+    print(f"\n[FIX] Using {generator.provider_name} adapter\n")
 
     # Fetch unresolved conversations
-    print(f"🔍 Fetching unresolved conversations from PR #{pr_number}...")
+    print(f"[FIND] Fetching unresolved conversations from PR #{pr_number}...")
     try:
         conversations = generator.fetch_unresolved_conversations(pr_number)
     except RuntimeError as e:
@@ -613,7 +613,7 @@ def generate_work_items_from_pr(pr_number: int, dry_run: bool = False) -> int:
         return 0  # Success - no work-items to create
 
     if dry_run:
-        print("ℹ️  Dry run mode - no work-items created")
+        print("[INFO]  Dry run mode - no work-items created")
         print(f"Would create {len(conversations)} work-items with slugs:")
         for i in range(len(conversations)):
             slug = WORK_ITEM_SLUG_PATTERN.format(pr_number=pr_number, sequence=i + 1)
@@ -621,7 +621,7 @@ def generate_work_items_from_pr(pr_number: int, dry_run: bool = False) -> int:
         return 0
 
     # Create work-items
-    print("🔨 Creating work-items...")
+    print("[BUILD] Creating work-items...")
     created_work_items = []
 
     for i, conversation in enumerate(conversations, 1):
@@ -630,25 +630,25 @@ def generate_work_items_from_pr(pr_number: int, dry_run: bool = False) -> int:
                 pr_number, conversation, i
             )
             created_work_items.append((work_item_url, work_item_slug))
-            print(f"  ✓ Created {work_item_slug}: {work_item_url}")
+            print(f"  [OK] Created {work_item_slug}: {work_item_url}")
 
         except RuntimeError as e:
-            print(f"\n  ✗ Failed to create work-item {i}: {e}", file=sys.stderr)
+            print(f"\n  [FAIL] Failed to create work-item {i}: {e}", file=sys.stderr)
             print(f"    Stopping after {len(created_work_items)} successful work-items.")
             break
 
     # Summary
     print("\n" + "=" * 80)
-    print("✅ WORK-ITEM GENERATION COMPLETE")
+    print("[OK] WORK-ITEM GENERATION COMPLETE")
     print("=" * 80)
     print(
         f"\nCreated {len(created_work_items)} work-items from {len(conversations)} conversations:"
     )
     for url, slug in created_work_items:
-        print(f"  • {slug}")
+        print(f"  * {slug}")
         print(f"    {url}")
 
-    print("\n📋 Next steps:")
+    print("\n[LIST] Next steps:")
     print(f"  1. Review and approve PR #{pr_number} in web portal")
     print("  2. For each work-item, create feature worktree:")
     for _, slug in created_work_items:

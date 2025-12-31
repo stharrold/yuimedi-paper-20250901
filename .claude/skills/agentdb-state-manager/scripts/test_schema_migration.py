@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Test schema migration for agentdb_sync_schema.sql
 
@@ -95,14 +95,14 @@ class TestResult:
         self.total += 1
         self.passed += 1
         if verbose:
-            print(f"{Colors.GREEN}✓{Colors.END} {test_name}")
+            print(f"{Colors.GREEN}[OK]{Colors.END} {test_name}")
 
     def add_fail(self, test_name: str, error: str):
         """Record a failing test."""
         self.total += 1
         self.failed += 1
         self.errors.append(f"{test_name}: {error}")
-        print(f"{Colors.RED}✗{Colors.END} {test_name}")
+        print(f"{Colors.RED}[FAIL]{Colors.END} {test_name}")
         print(f"  Error: {error}")
 
     def print_summary(self):
@@ -115,7 +115,7 @@ class TestResult:
         if self.failed > 0:
             print(f"\n{Colors.RED}Failed Tests:{Colors.END}")
             for error in self.errors:
-                print(f"  • {error}")
+                print(f"  * {error}")
 
     def is_success(self) -> bool:
         """Return True if all tests passed."""
@@ -205,7 +205,7 @@ def test_views_exist(conn: duckdb.DuckDBPyConnection, results: TestResult, verbo
 def test_foreign_keys(conn: duckdb.DuckDBPyConnection, results: TestResult, verbose: bool):
     """Test 5: Foreign key constraints work correctly."""
 
-    test_name = "Foreign key: sync_executions.sync_id → agent_synchronizations.sync_id"
+    test_name = "Foreign key: sync_executions.sync_id -> agent_synchronizations.sync_id"
     try:
         # Try to insert into sync_executions with non-existent sync_id
         # This should fail due to foreign key constraint
@@ -231,7 +231,7 @@ def test_foreign_keys(conn: duckdb.DuckDBPyConnection, results: TestResult, verb
     except Exception as e:
         results.add_fail(test_name, str(e))
 
-    test_name = "Foreign key: sync_audit_trail.sync_id → agent_synchronizations.sync_id"
+    test_name = "Foreign key: sync_audit_trail.sync_id -> agent_synchronizations.sync_id"
     try:
         fake_sync_id = generate_uuid()
         fake_audit_id = generate_uuid()
@@ -592,7 +592,7 @@ def test_append_only_audit_trail(
             )
         else:
             results.add_fail(
-                test_name, f"Record count changed after rollback: {initial_count} → {final_count}"
+                test_name, f"Record count changed after rollback: {initial_count} -> {final_count}"
             )
 
     except Exception as e:
@@ -912,10 +912,10 @@ def main():
 
     # Return exit code
     if results.is_success():
-        print(f"\n{Colors.GREEN}{Colors.BOLD}✓ All tests passed!{Colors.END}")
+        print(f"\n{Colors.GREEN}{Colors.BOLD}[OK] All tests passed!{Colors.END}")
         return 0
     else:
-        print(f"\n{Colors.RED}{Colors.BOLD}✗ Some tests failed{Colors.END}")
+        print(f"\n{Colors.RED}{Colors.BOLD}[FAIL] Some tests failed{Colors.END}")
         return 1
 
 

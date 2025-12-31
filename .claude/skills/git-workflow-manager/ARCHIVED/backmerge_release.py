@@ -119,8 +119,7 @@ def verify_branch_exists(branch_name):
         )
     except subprocess.CalledProcessError:
         raise ValueError(
-            f"Branch '{branch_name}' does not exist. "
-            f"Use 'git branch -a' to list available branches."
+            f"Branch '{branch_name}' does not exist. Use 'git branch -a' to list available branches."
         )
 
 
@@ -164,8 +163,7 @@ def check_working_directory_clean():
 
         if result.stdout.strip():
             raise RuntimeError(
-                "Working directory has uncommitted changes. "
-                "Please commit or stash changes before back-merge."
+                "Working directory has uncommitted changes. Please commit or stash changes before back-merge."
             )
 
     except subprocess.CalledProcessError as e:

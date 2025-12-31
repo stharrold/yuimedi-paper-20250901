@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """VCS provider detection and enumeration.
 
@@ -82,9 +82,9 @@ def extract_azure_repo_from_remote() -> str | None:
         Repository name if detected, None otherwise
 
     Example URLs and extracted repo names:
-        - https://dev.azure.com/org/project/_git/repo → repo
-        - git@ssh.dev.azure.com:v3/org/project/repo → repo
-        - https://org.visualstudio.com/project/_git/repo → repo
+        - https://dev.azure.com/org/project/_git/repo -> repo
+        - git@ssh.dev.azure.com:v3/org/project/repo -> repo
+        - https://org.visualstudio.com/project/_git/repo -> repo
     """
     try:
         result = subprocess.run(

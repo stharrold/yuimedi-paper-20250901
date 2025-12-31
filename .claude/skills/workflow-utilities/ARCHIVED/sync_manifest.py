@@ -81,10 +81,7 @@ def parse_todo_filename(filename: str) -> dict[str, str] | None:
     workflow_type, timestamp, slug = match.groups()
 
     # Convert timestamp to ISO8601
-    iso_timestamp = (
-        f"{timestamp[0:4]}-{timestamp[4:6]}-{timestamp[6:8]}T"
-        f"{timestamp[9:11]}:{timestamp[11:13]}:{timestamp[13:15]}Z"
-    )
+    iso_timestamp = f"{timestamp[0:4]}-{timestamp[4:6]}-{timestamp[6:8]}T{timestamp[9:11]}:{timestamp[11:13]}:{timestamp[13:15]}Z"
 
     return {
         "workflow_type": workflow_type,

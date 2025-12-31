@@ -31,15 +31,18 @@ Workflow Utilities provides **shared utilities** for all workflow skills. It inc
 .claude/skills/workflow-utilities/
 ├── scripts/                        # Active utilities
 │   ├── archive_manager.py          # List and extract archives
+│   ├── check_ascii_only.py         # ASCII-only enforcement (Issue #121)
 │   ├── container_utils.py          # Container detection utilities
 │   ├── create_skill.py             # Create new skills
 │   ├── deprecate_files.py          # Archive deprecated files
 │   ├── directory_structure.py      # Create standard directory structure
 │   ├── generate_claude_md.py       # Generate missing CLAUDE.md files
+│   ├── safe_output.py              # ASCII-safe output formatting
 │   ├── sync_skill_docs.py          # Documentation sync
 │   ├── update_claude_md_refs.py    # Update CLAUDE.md children refs
 │   ├── update_claude_references.py # Update CLAUDE.md references
 │   ├── validate_versions.py        # Validate version consistency
+│   ├── verify_workflow_context.py  # Workflow context validation + pending worktree detection
 │   ├── workflow_progress.py        # Workflow progress tracking
 │   ├── worktree_context.py         # Worktree state isolation
 │   ├── vcs/                        # VCS abstraction layer
@@ -134,9 +137,9 @@ python .claude/skills/workflow-utilities/scripts/directory_structure.py \
 
 ### archive_manager.py
 
-**Purpose:** List and extract archived files from ARCHIVED/ directory
+**Purpose:** List, extract, and create archived files in ARCHIVED/ directory
 
-**When to use:** When inspecting archived files, recovering deprecated files, or auditing archives
+**When to use:** When creating archives, inspecting archived files, recovering deprecated files, or auditing archives
 
 **Invocation:**
 ```bash
@@ -146,7 +149,16 @@ python .claude/skills/workflow-utilities/scripts/archive_manager.py list [direct
 # Extract archive to output directory
 python .claude/skills/workflow-utilities/scripts/archive_manager.py \
   extract <archive> [output_dir]
+
+# Create archive from files (keeps originals)
+python .claude/skills/workflow-utilities/scripts/archive_manager.py \
+  create [options] <description> <file1> [file2 ...]
 ```
+
+**Create options:**
+- `--delete` - Delete originals after archiving (same as deprecate_files.py)
+- `--preserve-paths` - Preserve directory structure in archive
+- `--output-dir DIR` - Output directory (default: ARCHIVED)
 
 **Examples:**
 ```bash
@@ -160,17 +172,32 @@ python .claude/skills/workflow-utilities/scripts/archive_manager.py list plannin
 python .claude/skills/workflow-utilities/scripts/archive_manager.py \
   extract ARCHIVED/20251103T143000Z_old-auth-flow.zip \
   restored/
+
+# Create archive (keep originals)
+python .claude/skills/workflow-utilities/scripts/archive_manager.py \
+  create backup-before-refactor src/auth.py tests/test_auth.py
+
+# Create archive and delete originals (same as deprecate)
+python .claude/skills/workflow-utilities/scripts/archive_manager.py \
+  create --delete old-auth-flow src/old_auth.py
+
+# Preserve directory paths in archive
+python .claude/skills/workflow-utilities/scripts/archive_manager.py \
+  create --preserve-paths full-backup src/a/file.py src/b/file.py
 ```
 
 **What it does:**
 1. **List mode:** Scans ARCHIVED/ for .zip files, prints archive names and contents
 2. **Extract mode:** Extracts archive to output directory (default: `restored/`)
+3. **Create mode:** Creates timestamped archive, optionally deletes originals
 
 **Key features:**
-- Validates archive exists
+- Uses absolute paths (dynamically resolved from git root)
+- Validates archive exists before extraction
 - Lists archive contents before extraction
 - Preserves directory structure on extraction
 - Safe extraction (validates zip integrity)
+- Shared `create_archive()` function used by deprecate_files.py
 
 ---
 
@@ -203,6 +230,44 @@ python .claude/skills/workflow-utilities/scripts/validate_versions.py --fix
 - Cross-file consistency checks
 - Verbose mode for detailed reporting
 - Exit code indicates success (0) or failure (1)
+
+---
+
+### verify_workflow_context.py
+
+**Purpose:** Validate workflow context (main repo vs worktree, correct branch) before running slash commands. For steps 5-7, also detects pending worktrees with unmerged commits.
+
+**When to use:** Automatically called by slash commands to ensure correct context
+
+**Invocation:**
+```bash
+# Step shortcuts (recommended)
+python .claude/skills/workflow-utilities/scripts/verify_workflow_context.py --step 5
+
+# Explicit flags
+python .claude/skills/workflow-utilities/scripts/verify_workflow_context.py \
+  --require-main-repo --require-branch contrib/
+```
+
+**What it does:**
+1. Validates location (main repo vs worktree)
+2. Validates branch prefix (contrib/, feature/, release/)
+3. For steps 5-7: Detects pending worktrees with unmerged commits
+4. Prints non-blocking warnings about pending worktrees
+
+**Step requirements:**
+| Step | Location | Branch |
+|------|----------|--------|
+| 1 | Main repo | `contrib/*` |
+| 2-4 | Worktree | `feature/*` |
+| 5-6 | Main repo | `contrib/*` |
+| 7 | Main repo | `contrib/*` |
+
+**Key features:**
+- Non-blocking pending worktree warnings (exit code 0 if context valid)
+- Parses `git worktree list --porcelain` for accurate detection
+- Counts commits ahead using `git rev-list --count`
+- Reads `.claude-state/workflow.json` for workflow step info
 
 ---
 

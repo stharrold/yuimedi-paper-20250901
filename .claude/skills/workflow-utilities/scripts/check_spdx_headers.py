@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Check that Python files have SPDX license headers.
 
@@ -26,10 +26,11 @@ EXCLUDE_DIRS = {
     ".ruff_cache",
     "node_modules",
     "ARCHIVED",
+    ".agents",  # Read-only mirror synced from .claude/skills/
 }
 
 # Required SPDX header lines
-SPDX_COPYRIGHT = "# SPDX-FileCopyrightText: 2025 Yuimedi Corp."
+SPDX_COPYRIGHT = "# SPDX-FileCopyrightText: 2025 stharrold"
 SPDX_LICENSE = "# SPDX-License-Identifier: Apache-2.0"
 
 

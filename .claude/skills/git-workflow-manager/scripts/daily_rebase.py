@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Perform daily rebase workflow.
 
@@ -42,8 +42,7 @@ def daily_rebase(contrib_branch):
     # Input validation
     if not contrib_branch or not contrib_branch.startswith("contrib/"):
         raise ValueError(
-            f"Invalid contrib branch '{contrib_branch}'. "
-            f"Must start with 'contrib/' (e.g., 'contrib/username')"
+            f"Invalid contrib branch '{contrib_branch}'. Must start with 'contrib/' (e.g., 'contrib/username')"
         )
 
     print(f"Rebasing {contrib_branch} onto develop...", file=sys.stderr)
@@ -107,7 +106,7 @@ def daily_rebase(contrib_branch):
                 local_ahead, remote_ahead = int(counts[0]), int(counts[1])
                 if local_ahead > 0 and remote_ahead > 0:
                     print(
-                        f"✗ DIVERGENCE DETECTED: {contrib_branch} has diverged from origin",
+                        f"[FAIL] DIVERGENCE DETECTED: {contrib_branch} has diverged from origin",
                         file=sys.stderr,
                     )
                     print(f"  Local has {local_ahead} commits not on remote", file=sys.stderr)
@@ -138,10 +137,10 @@ def daily_rebase(contrib_branch):
                         check=False,
                     )
                     if pull_result.returncode != 0:
-                        print(f"✗ Pull failed: {pull_result.stderr}", file=sys.stderr)
+                        print(f"[FAIL] Pull failed: {pull_result.stderr}", file=sys.stderr)
                         print("  Resolve manually, then retry.", file=sys.stderr)
                         return False
-                    print("  ✓ Synced with remote", file=sys.stderr)
+                    print("  [OK] Synced with remote", file=sys.stderr)
 
         # Rebase onto origin/develop
         print(f"Rebasing onto {TARGET_BRANCH}...", file=sys.stderr)
@@ -157,11 +156,11 @@ def daily_rebase(contrib_branch):
             capture_output=True,
         )
 
-        print(f"✓ {contrib_branch} successfully rebased onto develop", file=sys.stderr)
+        print(f"[OK] {contrib_branch} successfully rebased onto develop", file=sys.stderr)
         return True
 
     except subprocess.CalledProcessError as e:
-        print("✗ Rebase failed", file=sys.stderr)
+        print("[FAIL] Rebase failed", file=sys.stderr)
         if e.stderr:
             print(f"\nGit error: {e.stderr.strip()}", file=sys.stderr)
 

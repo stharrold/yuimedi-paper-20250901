@@ -78,7 +78,7 @@ Tracks workflow phase transitions via slash command invocations. Each slash comm
 
 **record_sync.py** - Record workflow phase transitions:
 ```bash
-podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
+uv run python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
   --sync-type workflow_transition \
   --pattern phase_1_specify \
   --source "planning/{slug}" \
@@ -87,7 +87,7 @@ podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/
 
 **query_workflow_state.py** - Query current workflow phase:
 ```bash
-podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/query_workflow_state.py \
+uv run python .claude/skills/agentdb-state-manager/scripts/query_workflow_state.py \
   --format json
 ```
 
@@ -106,13 +106,13 @@ Returns:
 **Phase 0 (Setup):**
 ```bash
 # Initialize AgentDB on first use
-podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/init_database.py
+uv run python .claude/skills/agentdb-state-manager/scripts/init_database.py
 ```
 
 **All Phases (After Phase Completion):**
 ```bash
 # Record phase transition (called by each slash command)
-podman-compose run --rm dev python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
+uv run python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
   --sync-type workflow_transition \
   --pattern phase_{N}_{name}
 ```
