@@ -650,19 +650,19 @@ The three-pillar framework enables organizational self-assessment to determine r
 | Interoperability status | Unified data platform; real-time integration | Partial integration; some automated feeds | Fragmented systems; manual reconciliation required | [@gal2019; @bogaert2021] |
 | Skills gap severity | Sufficient analysts across departments | Acknowledged deficit with mitigation plans | Critical shortage preventing data utilization | [@bardsley2016; @pesqueira2020] |
 
-**Convergence Assessment and NL2SQL Indication:**
+**Multi-Pillar Convergence Assessment:**
 
-| Organizational Profile | Assessment | NL2SQL/Conversational AI Relevance |
-|------------------------|------------|-------------------------------------|
-| All pillars Lower Risk | Continuous improvement stance | Opportunistic; enhancement rather than necessity |
-| 1 pillar Higher Risk | Targeted intervention needed | Address specific pillar; monitor for spillover |
-| 2 pillars Higher Risk | Compounding effects likely | Strong indication for comprehensive assessment |
-| All 3 pillars Higher Risk | Self-reinforcing degradation cycle | Urgent evaluation warranted; NL2SQL addresses all three dimensions simultaneously |
+| Organizational Profile | Framework Assessment | Implications for Analysis |
+|------------------------|---------------------|---------------------------|
+| All pillars Lower Risk | Continuous improvement stance | Monitor for emerging challenges; single-pillar focus may suffice |
+| 1 pillar Higher Risk | Isolated challenge | Single-domain intervention may address root cause; watch for spillover effects |
+| 2 pillars Higher Risk | Compounding effects present | Framework reveals interconnections requiring multi-dimensional analysis |
+| All 3 pillars Higher Risk | Self-reinforcing degradation cycle | All three dimensions interact; comprehensive organizational assessment warranted |
 
-NL2SQL platforms specifically target the convergence condition: they reduce Technical Barriers by eliminating SQL requirements, mitigate Workforce Dynamics risks by encoding expertise in queryable systems, and accelerate Analytics Maturity by enabling citizen developer participation [@berkshire2024]. Organizations at Higher Risk across multiple pillars represent the primary use case for conversational AI adoption.
+The framework reveals why convergence matters: organizations facing Higher Risk across multiple pillars experience compounding effects where challenges in one domain exacerbate challenges in others. For example, technical barriers that prevent knowledge capture interact with workforce turnover to accelerate institutional memory loss, which in turn degrades analytics maturity. This multi-pillar perspective explains why single-domain interventions often produce limited results.
 
-### Implementation Considerations
-Evidence from healthcare implementations suggests several factors influence success:
+### Illustrative Application: Implementation Patterns
+When organizations apply the framework to evaluate barrier-reducing technologies, implementation evidence suggests several factors influence outcomes:
 
 - **Governance Framework Development**: New policies and procedures for democratized analytics
 - **Change Management**: Training and support programs to ensure user adoption
