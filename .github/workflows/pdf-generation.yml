@@ -68,7 +68,8 @@ jobs:
           done
 
       - name: Auto-commit updated artifacts
-        if: github.event_name == 'push'
+        # Skip auto-commit on protected branches (main, develop) - they require PRs
+        if: github.event_name == 'push' && !contains(fromJSON('["refs/heads/main", "refs/heads/develop"]'), github.ref)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "build: regenerate paper artifacts [skip ci]"
