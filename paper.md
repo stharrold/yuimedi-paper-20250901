@@ -489,9 +489,9 @@ Healthcare-specific studies show concrete benefits across both approaches: Penni
 
 ### Framework Alignment with Industry Trajectories
 
-The literature reveals clear alignment between conversational AI platforms and healthcare industry trajectories. The revised HIMSS AMAM model [@himss2024] explicitly emphasizes AI readiness and governance frameworks that natural language platforms inherently support. Organizations implementing such platforms can advance multiple maturity stages simultaneously by democratizing analytics while maintaining governance.
+Applied to recent industry literature, the three-pillar framework highlights how barrier-reducing technologies track with broader healthcare analytics trajectories. The revised HIMSS AMAM model [@himss2024] emphasizes AI readiness and governance frameworks, and conversational interfaces for analytics can be understood as one illustrative application of these themes: they aim to democratize access to data while preserving organizational controls, rather than constituting a prescriptive pathway to maturity advancement.
 
-### Evidence for Barrier-Reducing Interventions
+### ROI Evidence Across Barrier-Reducing Approaches
 
 Academic research documents multiple pathways to ROI for barrier-reducing technologies in healthcare. Conversational AI implementations show direct benefits: Jiao et al. [@jiao2023] found that AI-driven efficiency gains, including shorter hospitalization lengths, translate into financial and operational benefits for healthcare providers; Pennington [@pennington2023] documented that AI in revenue cycle management accelerated payment cycles from 90 to 40 days, improving cash flow; and Sezgin et al. [@sezgin2022] proposed chatbot implementations that reduce clinic overhead.
 
@@ -499,7 +499,7 @@ Low-code platform ROI provides analogous evidence for the value of technical bar
 
 ### Knowledge Preservation as Risk Factor
 
-The literature emphasizes that institutional memory loss represents an existential risk to healthcare analytics programs. Conversational AI platforms mitigate this risk by transforming tacit knowledge into encoded, accessible expertise. This approach aligns with Nonaka's SECI model (Socialization, Externalization, Combination, Internalization), which describes organizational knowledge creation as a continuous dialogue between tacit and explicit knowledge [@farnese2019]. Recent research demonstrates that AI tools can enhance all four SECI stages, particularly facilitating the externalization process where tacit analytical knowledge becomes explicit, queryable forms [@zhang2025]. This theoretical foundation supports embedding organizational knowledge in systems rather than individuals, ensuring continuity despite workforce turnover.
+The literature emphasizes that institutional memory loss represents an existential risk to healthcare analytics programs, particularly when critical analytical practices remain tacit and concentrated in a small number of experts. Within our three-pillar framework, this risk appears as a compounding mechanism: workforce turnover erodes tacit expertise, low analytics maturity limits organizations' ability to encode that expertise, and technical barriers constrain efforts to make encoded knowledge broadly accessible. Effective knowledge preservation therefore requires mechanisms that transform tacit analytical knowledge into encoded, shareable, and routinely accessible artifacts. This requirement aligns with Nonaka's SECI model (Socialization, Externalization, Combination, Internalization), which describes organizational knowledge creation as a continuous dialogue between tacit and explicit knowledge [@farnese2019]. Recent research demonstrates that AI tools, including conversational interfaces, can enhance all four SECI stages, particularly facilitating the externalization process where tacit analytical knowledge becomes explicit, queryable forms [@zhang2025]. This theoretical foundation supports embedding organizational knowledge in systems rather than individuals, ensuring continuity despite workforce turnover.
 
 ## Gaps in Current Literature
 
