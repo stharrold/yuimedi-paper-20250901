@@ -36,7 +36,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ppr_review/20251215_AACODS-Grey-Literature.md` for assessment table.
 
-**Paper 1 structure (npj-aligned):** Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Executive Summary removed (redundant with YAML abstract); Sections 5-6 (Proposed Solution, Evaluation) previously removed to transform paper from solution-advocacy to pure analytical framework.
+**Paper 1 structure:** Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Executive Summary removed (redundant with YAML abstract); Sections 5-6 (Proposed Solution, Evaluation) previously removed to transform paper from solution-advocacy to pure analytical framework.
+
+**CRITICAL - Framework-first thesis:** The paper's primary contribution is the three-pillar analytical framework itself, NOT advocacy for conversational AI as a solution. When editing:
+- Frame conversational AI and the validated query cycle as "illustrative applications" of the framework
+- Avoid language like "compelling case for," "evidence-based solution," or "support the adoption of"
+- Subsection headers should be framework-focused, not solution-focused
+- The framework is descriptive (reveals interconnections) rather than prescriptive (recommends solutions)
 
 ## Essential Commands
 

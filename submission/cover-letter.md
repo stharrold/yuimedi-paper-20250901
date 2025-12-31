@@ -10,7 +10,7 @@
 
 Dear Editor,
 
-I am pleased to submit the manuscript titled **"Natural Language to SQL in Healthcare: Bridging Analytics Maturity Gaps, Workforce Turnover, and Technical Barriers Through Conversational AI Platforms"** for consideration as a Review article in JMIR Medical Informatics.
+I am pleased to submit the manuscript titled **"Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Dynamics, and Technical Barriers"** for consideration as a Review article in JMIR Medical Informatics.
 
 ## Background and Significance
 
@@ -22,7 +22,7 @@ This narrative review synthesizes peer-reviewed studies and industry reports fro
 
 ## Principal Findings
 
-The review contributes: (1) a three-pillar analytical framework revealing how low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery; (2) a healthcare knowledge portal architecture positioning conversational AI as institutional memory preservation mechanisms through a validated query cycle; and (3) a convergence thesis explaining why current conditions enable breaking this compounding cycle.
+The review contributes: (1) a three-pillar analytical framework revealing how low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery; (2) consolidated evidence synthesis across all three domains, providing healthcare organizations with a comprehensive resource; and (3) an illustrative application describing the validated query cycle as one example of how the framework might inform technology design for institutional memory preservation.
 
 ## Conflicts of Interest
 
