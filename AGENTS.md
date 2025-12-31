@@ -219,7 +219,7 @@ podman-compose run --rm dev uv run python <script>  # Run any script
 Uses pandoc-citeproc for automatic bibliography generation:
 - Citation format: `[@key]` (e.g., `[@wu2024]`, `[@himss2024]`)
 - Multiple citations: `[@wu2024; @ren2024]`
-- BibTeX file: `references.bib` (92 entries)
+- BibTeX file: `references.bib` (108 entries)
 - CSL style: `citation-style-ama.csl` (AMA 11th edition for JMIR compliance)
 
 **Key files:**
