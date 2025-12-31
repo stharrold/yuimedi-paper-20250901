@@ -14,7 +14,7 @@ abstract: |
   **Results:** Healthcare-specific text-to-SQL benchmarks (EHRSQL, SM3-Text-to-Query) show significant progress, though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings. Most healthcare organizations remain at HIMSS AMAM Stages 0-3 with limited predictive capabilities. Healthcare IT turnover significantly exceeds other IT sectors, creating measurable institutional memory loss. The three-pillar framework reveals compounding dynamics: organizations at low maturity stages experience higher turnover, turnover degrades institutional knowledge needed for maturity advancement, and technical barriers prevent capturing expertise before it is lost.
 
   **Conclusions:** We contribute a three-pillar analytical framework synthesizing evidence on healthcare analytics maturity, workforce dynamics, and technical barriers. The framework reveals compounding effects: low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery. This analytical lens enables organizational self-assessment and informs future research on technology interventions, including conversational AI platforms as one potential application.
-keywords: [analytical framework, analytics maturity, workforce turnover, institutional memory, text-to-SQL, natural language processing, knowledge portal, conversational AI, healthcare analytics, healthcare informatics]
+keywords: [healthcare analytics, healthcare informatics, analytical framework, analytics maturity, workforce turnover, institutional memory, text-to-SQL, natural language processing, knowledge portal, conversational AI]
 license: "CC BY 4.0"
 license-url: "https://creativecommons.org/licenses/by/4.0/"
 lang: en-US
@@ -466,9 +466,9 @@ At its core, bridging technical and domain expertise serves a fundamental patien
 
 Low-code platforms and conversational AI represent complementary approaches to reducing technical barriers in healthcare analytics. Low-code platforms provide visual development environments that accelerate application development and reduce coding requirements, while conversational AI enables natural language interaction with data systems. These approaches share core benefits: both democratize access by enabling non-technical users to perform complex analyses previously requiring data scientist intervention, both accelerate development cycles by abstracting technical complexity, and both produce more self-documenting systems where business logic is expressed in accessible formats rather than specialized code. Evidence from low-code implementations thus informs conversational AI adoption, as both address the same fundamental barrier: the gap between clinical expertise and technical capability.
 
-### Knowledge Preservation Mechanisms
+### Knowledge Preservation Through Embedded Systems
 
-The literature suggests that effective knowledge preservation requires active, embedded systems rather than passive documentation. AI-based platforms can serve as organizational memory systems by:
+The literature suggests that effective knowledge preservation requires active, embedded systems rather than passive documentation. When organizations choose to implement AI-based platforms, these can serve as organizational memory systems by:
 
 - Capturing decision-making patterns through usage
 - Encoding best practices in accessible formats
@@ -662,7 +662,7 @@ The three-pillar framework enables organizational self-assessment to determine r
 The framework reveals why convergence matters: organizations facing Higher Risk across multiple pillars experience compounding effects where challenges in one domain exacerbate challenges in others. For example, technical barriers that prevent knowledge capture interact with workforce turnover to accelerate institutional memory loss, which in turn degrades analytics maturity. This multi-pillar perspective explains why single-domain interventions often produce limited results.
 
 ### Illustrative Application: Implementation Patterns
-When organizations apply the framework to evaluate barrier-reducing technologies, implementation evidence suggests several factors influence outcomes:
+When organizations choose to apply the framework and evaluate barrier-reducing technologies for potential adoption, implementation evidence suggests several factors influence outcomes:
 
 - **Governance Framework Development**: New policies and procedures for democratized analytics
 - **Change Management**: Training and support programs to ensure user adoption
