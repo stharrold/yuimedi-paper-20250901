@@ -15,6 +15,10 @@ related_skills:
   - workflow-orchestrator
   - git-workflow-manager
   - agentdb-state-manager
+archived:
+  - planning/ → ARCHIVED/20260101T171631Z_planning_*.zip
+  - specs/ → ARCHIVED/20260101T172405Z_specs_*.zip
+  - ppr_review/ → ARCHIVED/20260101T171859Z_ppr_review.zip
 ---
 
 # CLAUDE.md
