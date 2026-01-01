@@ -1,8 +1,0 @@
-with_bmad:
-  include_e2e_tests: false
-  include_perf_tests: false
-  include_security_review: false
-  additional_deliverables: ""
-  dependencies: ""
-  skip_db_migrations: true
-  ai_integration: false
