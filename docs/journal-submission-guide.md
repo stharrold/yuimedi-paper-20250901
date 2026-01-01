@@ -176,7 +176,7 @@ This guide provides detailed information on target journals for publishing YuiQu
   - Tutorial/Review (5,000-10,000 words)
 - **Review Timeline**: 4-6 weeks
 - **Publication Fee (APC)**: $2,495-$3,495
-- **Citation Format**: Vancouver style
+- **Citation Format**: AMA style (11th edition)
 - **Language**: English only
 
 **Best Fit**:
