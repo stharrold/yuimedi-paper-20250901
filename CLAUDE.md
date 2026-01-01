@@ -32,7 +32,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Citation verification:** All citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
 
-**Paper classification:** Narrative review with original three-pillar analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/journal-submission-guide.md`.
+**Paper classification:** Narrative review with original three-pillar analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/guides/journal-submission-guide.md`.
 
 **Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ppr_review/20251215_AACODS-Grey-Literature.md` for assessment table.
 
@@ -63,10 +63,10 @@ uv run academic-review init <review-id>    # Initialize new review
 uv run academic-review search <review-id>  # Execute search stage
 uv run academic-review status <review-id>  # Check review status
 
-# Testing (796 tests total: 415 lit_review + 316 skills + 65 other)
+# Testing
 uv run pytest                              # Run all tests
-uv run pytest tests/lit_review/ -v         # Literature review tests (415 tests)
-uv run pytest tests/skills/ -v             # Workflow skills tests (316 tests)
+uv run pytest tests/lit_review/ -v         # Literature review tests
+uv run pytest tests/skills/ -v             # Workflow skills tests
 uv run pytest --cov=lit_review             # With coverage
 uv run pytest -k "test_paper" -v           # Run single test by name
 uv run pytest -m "not integration"         # Skip integration tests (pre-push default)
@@ -165,6 +165,16 @@ Include `Closes #<issue>` in commit body to auto-close GitHub issues.
 - TF-IDF + hierarchical clustering for theme analysis (<30s for 500 papers)
 - Multiple export formats: BibTeX, DOCX, LaTeX, HTML, JSON, Markdown, CSV
 - Optional AI-powered synthesis with fallback to keyword-based approach
+
+### Documentation Structure
+```
+docs/
+├── guides/           # How-to documentation (journal submission, PDF generation, lit_review)
+├── reports/          # Analysis reports (citation audit, PRISMA assessment, validation)
+├── research/         # Literature review notes (38 Research_*.md files)
+├── references/       # Source PDFs (git-crypt encrypted)
+└── paper1/, paper2/, paper3/  # Future paper materials
+```
 
 ### Validation System
 `./validate_documentation.sh` runs 7 tests: file size (30KB limit), cross-references, duplication, command syntax, YAML structure, reference validation (citations in paper.md), and LaTeX-in-URL validation.
@@ -323,7 +333,7 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 - **AMAM** (Analytics Maturity Assessment Model): Analytics capability stages. Released October 2024; no peer-reviewed outcome studies yet.
 - Most literature uses EMRAM. When searching for AMAM evidence, note that AMAM-specific studies are a confirmed gap.
 
-**Academic standards:** PRISMA guidelines for systematic reviews (not applicable to this narrative review - see `docs/prisma-assessment.md`); statistical reporting with p-values/CIs; evidence hierarchy prioritizing RCTs.
+**Academic standards:** PRISMA guidelines for systematic reviews (not applicable to this narrative review - see `docs/reports/prisma-assessment.md`); statistical reporting with p-values/CIs; evidence hierarchy prioritizing RCTs.
 
 ## Publication Strategy
 
@@ -341,10 +351,10 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 - Revision strategy: `ppr_review/20251215_Revision-Strategy-Milestones.md`
 - Budget breakdown: `project-management.md` (Publication & Distribution Costs section)
 - Status updates: `status-updates.md` (reverse-chronological log)
-- Research questions: `docs/references/Research_Questions.md` (linked to GitHub issues via `research` label)
-- Submission guide: `docs/journal-submission-guide.md`
+- Research questions: `docs/research/Research_Questions.md` (linked to GitHub issues via `research` label)
+- Submission guide: `docs/guides/journal-submission-guide.md`
 
-**Research question tracking:** All literature review questions are tracked in `docs/references/Research_Questions.md`:
+**Research question tracking:** All literature review questions are tracked in `docs/research/Research_Questions.md`:
 - **Answered Questions tables:** Question, Scope, Issue, Research File, Merged
 - **Unanswered Questions tables:** Question, Scope, Issue, Status, Notes
 - **Status values:** Answered, Partial, Unanswered, → Gap (searched but not found)
