@@ -10,7 +10,6 @@ docs/
 ├── reports/          # Analysis and audit reports
 ├── research/         # Literature review findings (38 files)
 ├── references/       # Source PDFs (23 files, git-crypt encrypted)
-├── paper1/, paper2/, paper3/  # Future paper materials
 ├── CLAUDE.md         # Claude Code context
 └── README.md         # This file
 ```

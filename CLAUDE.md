@@ -172,8 +172,7 @@ docs/
 ├── guides/           # How-to documentation (journal submission, PDF generation, lit_review)
 ├── reports/          # Analysis reports (citation audit, PRISMA assessment, validation)
 ├── research/         # Literature review notes (38 Research_*.md files)
-├── references/       # Source PDFs (git-crypt encrypted)
-└── paper1/, paper2/, paper3/  # Future paper materials
+└── references/       # Source PDFs (git-crypt encrypted)
 ```
 
 ### Validation System
