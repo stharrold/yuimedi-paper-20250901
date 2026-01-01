@@ -1,0 +1,31 @@
+---
+type: claude-context
+directory: budget
+purpose: Financial planning and tracking
+parent: ../CLAUDE.md
+---
+
+# Claude Code Context: budget
+
+## Purpose
+
+Financial planning and expense tracking for the YuiQuery research project.
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `budget-final.json` | Complete $33,495 budget breakdown |
+| `README.md` | Budget documentation |
+
+## Budget Summary
+
+- Total: $33,495
+- Paper 1: ~$6,948
+- Paper 2: ~$6,600-$6,900
+- Paper 3: ~$6,000-$7,000 (estimate)
+- Contingency: ~$12,600-$14,000
+
+## Related
+
+- **Parent**: [project-management/CLAUDE.md](../CLAUDE.md)
