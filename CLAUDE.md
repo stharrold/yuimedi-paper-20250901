@@ -245,6 +245,23 @@ python scripts/extract_abbreviations.py         # Generate abbreviations list
 
 **Citation key convention:** `{firstauthor}{year}{suffix}` (e.g., `wu2024`, `wu2024a`)
 
+**BibTeX entry format:** Use consistent author formatting with "and" (not `\&`):
+```bibtex
+@article{wu2024,
+  author = {Wu, F., Lao, Y., Feng, Y., and Li, L.},
+  title = {{Title with double braces for case preservation}},
+  year = {2024},
+  journal = {Journal Name},
+  volume = {11},
+  pages = {e2097},
+  doi = {10.1002/nop2.2097},
+  url = {https://...},
+  note = {Original citation: [A1]},
+}
+```
+
+**Reference verification:** When adding/updating citations, verify DOI and URL against Google Scholar or publisher site. The `note` field tracks the original citation marker (A1-A81 academic, I1-I11 industry).
+
 ### File Naming
 - Historical files: `YYYYMMDDTHHMMSSZ_` prefix (ISO 8601 UTC)
 - Project management: UPPERCASE names
