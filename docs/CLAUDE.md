@@ -1,28 +1,35 @@
 ---
 type: claude-context
 directory: docs
-purpose: Documentation artifacts including paper versions, figures, and reference materials
+purpose: Documentation artifacts including guides, reports, research notes, and reference materials
 parent: ../CLAUDE.md
 sibling_readme: README.md
-children:
-  - paper1/CLAUDE.md
-  - paper2/CLAUDE.md
-  - paper3/CLAUDE.md
-  - references/CLAUDE.md
 ---
 
 # Claude Code Context: docs
 
 ## Purpose
 
-Documentation directory containing paper versions, submission guides, and reference materials.
+Documentation directory containing how-to guides, analysis reports, research notes, and reference materials.
+
+## Structure
+
+```
+docs/
+├── guides/           # How-to documentation
+├── reports/          # Analysis and audit reports
+├── research/         # Literature review findings (38 files)
+└── references/       # Source PDFs (git-crypt encrypted)
+```
 
 ## Contents
 
-- `citation-audit-report.md` - Citation verification report
-- `journal-submission-guide.md` - Guide for journal submission
-- `paper1/`, `paper2/`, `paper3/` - Paper research notes
-- `references/` - Reference materials
+| Directory | Purpose | Contents |
+|-----------|---------|----------|
+| `guides/` | How-to documentation | Journal submission, PDF generation, lit_review setup |
+| `reports/` | Analysis reports | Citation audit, PRISMA assessment, validation |
+| `research/` | Research findings | 38 research question notes with citations |
+| `references/` | Source PDFs | 23 reference PDFs (encrypted at rest) |
 
 ## Primary Paper Files (in root directory)
 
@@ -31,10 +38,6 @@ Documentation directory containing paper versions, submission guides, and refere
 - `paper.html` - HTML output
 - `paper.docx` - Word output
 - `paper.tex` - LaTeX output
-
-## Usage
-
-This directory contains supporting documentation for the research paper. The primary paper is `paper.md` in the root directory.
 
 ## Related
 
