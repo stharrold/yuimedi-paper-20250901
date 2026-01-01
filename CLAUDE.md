@@ -57,7 +57,7 @@ python scripts/validate_references.py --all  # Reference validation + URL checks
 uv run ruff format . && uv run ruff check --fix .  # Format + lint
 uv run mypy scripts/ lit_review/           # Type checking
 
-# Literature review workflow
+# Literature review CLI (for systematic reviews, not used for this paper's narrative review)
 uv run academic-review --help              # CLI for systematic reviews
 uv run academic-review init <review-id>    # Initialize new review
 uv run academic-review search <review-id>  # Execute search stage
