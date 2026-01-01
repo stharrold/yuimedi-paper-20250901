@@ -15,17 +15,19 @@ Bash validation scripts for documentation quality enforcement.
 
 ## Contents
 
-5 validation test scripts:
+7 validation tests (5 bash scripts + 2 Python checks):
 
-| Script | Purpose |
-|--------|---------|
-| `test_file_size.sh` | Enforces 30KB limit on modular docs |
-| `test_cross_references.sh` | Validates internal markdown links |
-| `test_content_duplication.sh` | Detects duplicate sections |
-| `test_command_syntax.sh` | Validates bash code blocks |
-| `test_yaml_structure.sh` | Checks JSON/YAML structure |
+| Test | Script | Purpose |
+|------|--------|---------|
+| 1 | `test_file_size.sh` | Enforces 30KB limit on modular docs |
+| 2 | `test_cross_references.sh` | Validates internal markdown links |
+| 3 | `test_content_duplication.sh` | Detects duplicate sections |
+| 4 | `test_command_syntax.sh` | Validates bash code blocks |
+| 5 | `test_yaml_structure.sh` | Checks JSON/YAML structure |
+| 6 | `validate_references.py --check-citations` | Validates paper.md citations against references.bib |
+| 7 | `validate_references.py --check-latex` | Detects LaTeX commands in URLs |
 
-**Orchestrator:** `validate_documentation.sh` (runs all 5 tests)
+**Orchestrator:** `validate_documentation.sh` (runs all 7 tests)
 
 ## Usage
 

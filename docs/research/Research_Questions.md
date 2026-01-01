@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 36 answered (4 merged 2025-12-22), 14 unanswered/partial
+**Status:** 38 answered (6 merged), 14 unanswered/partial
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -72,6 +72,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 |----------|-------|-------|---------------|--------|
 | Do healthcare organizations struggle to keep pace with changes in analytics? | Paper1 | - | [`Research_Do-healthcare-organizations-struggle-to-keep-pace-with-changes-in-analytics.md`](Research_Do-healthcare-organizations-struggle-to-keep-pace-with-changes-in-analytics.md) | [A74] |
 | Why have large-scale efforts to standardize healthcare analytics failed? | Paper1 | - | [`Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md`](Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md) | [A26]-[A28], [I10] |
+| Why did Haven, the Amazon-Berkshire-JPMorgan healthcare venture, disband in 2021? | Paper1 | - | [`Research_Why-did-Haven-the-Amazon-Berkshire-JPMorgan-healthcare-venture-disband-in-2021.md`](Research_Why-did-Haven-the-Amazon-Berkshire-JPMorgan-healthcare-venture-disband-in-2021.md) | [@acchiardo2021; @ozalp2022] |
 | What are the financial benefits of low-code and conversational AI platforms? | Paper1 | - | [`Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md`](Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md) | [A19]-[A23], [A31]-[A34] |
 | What peer-reviewed evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_low-code-platform-healthcare-cost-roi-evidence.md`](Research_low-code-platform-healthcare-cost-roi-evidence.md) | [A31]-[A34] |
 | How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md`](Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md) | [A35]-[A38] |
@@ -141,6 +142,12 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 |----------|-------|-------|--------|-------|
 | What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | **UPDATED 2025-12-20:** 20 papers found. Gap CONFIRMED: No validated healthcare-specific citizen developer productivity instrument. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
 
+### Failed Standardization Case Studies
+
+| Question | Scope | Issue | Status | Notes |
+|----------|-------|-------|--------|-------|
+| Why did IBM sell Watson Health to Francisco Partners in 2022? | Paper1 | - | Answered | [@strickland2019; @yang2020] merged to paper.md |
+
 ### Analytics Maturity and Outcomes
 
 | Question | Scope | Issue | Status | Notes |
@@ -193,6 +200,8 @@ All `Research_*.md` files in this directory:
 | `Research_semantic-table-column-matching-nl2sql.md` | Semantic table/column matching for NL2SQL | Paper2 |
 | `Research_What-tools-exist-for-degrading-data-quality-for-testing.md` | Data quality degradation tools | Paper2 |
 | `Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md` | Standardization failure analysis | Paper1 |
+| `Research_Why-did-Haven-the-Amazon-Berkshire-JPMorgan-healthcare-venture-disband-in-2021.md` | Haven healthcare venture dissolution | Paper1 |
+| `Research_Why-did-IBM-sell-Watson-Health-to-Francisco-Partners-in-2022.md` | IBM Watson Health divestiture | Paper1 |
 | `Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md` | NL2SQL healthcare productivity measurement | Paper1,Paper2 |
 | `Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md` | Code modernization for NL interfaces | Paper1 |
 | `Research_What-evidence-exists-that-tacit-analytical-knowledge-is-difficult-to-document-and-transfer-through-traditional-means.md` | Tacit knowledge documentation difficulty | Paper1 |

@@ -10,6 +10,8 @@ These validation tools automatically check for:
 - **Content Duplication**: Detect accidentally duplicated sections
 - **Command Syntax**: Verify bash code blocks have valid syntax
 - **Structure Validation**: Check JSON/YAML files are well-formed
+- **Reference Validation**: Verify citations in paper.md exist in references.bib
+- **LaTeX-in-URL Detection**: Catch LaTeX escape sequences in URLs
 
 ## 🚀 Quick Start
 
@@ -112,13 +114,40 @@ These validation tools automatically check for:
 - `0` - All files well-formed
 - `1` - Parsing errors detected
 
+### 6. Reference Validation (`validate_references.py --check-citations`)
+**Purpose**: Ensure all citations in paper.md exist in references.bib
+
+**Checks**:
+- Every `[@key]` citation has a matching BibTeX entry
+- Detects undefined references before PDF build fails
+- Validates pandoc-citeproc format citations
+
+**Why**: Missing citations cause build failures and broken references in published papers.
+
+**Exit Codes**:
+- `0` - All citations have matching references
+- `1` - Undefined citations detected
+
+### 7. LaTeX-in-URL Validation (`validate_references.py --check-latex`)
+**Purpose**: Detect LaTeX escape sequences accidentally left in URLs
+
+**Checks**:
+- URLs in references.bib don't contain `\_` or other LaTeX escapes
+- Catches common copy-paste errors from LaTeX documents
+
+**Why**: LaTeX escapes in URLs cause broken links when rendered.
+
+**Exit Codes**:
+- `0` - No LaTeX commands in URLs
+- `1` - LaTeX escapes detected in URLs
+
 ## 🔧 Validation Orchestrator
 
 ### validate_documentation.sh
 **Main Script**: Runs all validation tests in sequence
 
 **Features**:
-- Executes all 5 validation tests
+- Executes all 7 validation tests (5 bash + 2 Python)
 - Aggregates results
 - Provides summary pass/fail status
 - Colorized output for readability
@@ -150,6 +179,14 @@ Test 4: Command syntax validation
 
 Test 5: YAML structure validation
 ✅ All structured files well-formed
+
+Test 6: Reference validation
+Found 110 references (99 academic, 11 industry)
+  ✅ Reference validation passed
+
+Test 7: LaTeX-in-URL validation
+OK: No LaTeX commands found in URLs
+  ✅ LaTeX-in-URL validation passed
 
 === Validation Summary ===
 ✅ PASS: All validation tests passed
@@ -260,8 +297,7 @@ bash -x ./tools/validation/test_command_syntax.sh
 
 - [CLAUDE.md](../../CLAUDE.md) - Project documentation standards
 - [README.md](../../README.md) - Repository overview
-- [CONTRIBUTING.md](../../CONTRIBUTING.md) - Contribution guidelines
-- [Workflow Utilities](../workflow-utilities/) - Other project tools
+- [scripts/validate_references.py](../../scripts/validate_references.py) - Reference validation script
 
 ## 📈 Best Practices
 

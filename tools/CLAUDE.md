@@ -20,14 +20,16 @@ Documentation validation scripts (bash-based tests for doc quality).
 
 ## Subdirectory: validation/
 
-Contains 5 validation test scripts:
+Contains 7 validation tests (5 bash + 2 Python):
 - `test_file_size.sh` - Enforces 30KB limit on modular docs
 - `test_cross_references.sh` - Validates internal markdown links
 - `test_content_duplication.sh` - Detects duplicate sections
 - `test_command_syntax.sh` - Validates bash code blocks
 - `test_yaml_structure.sh` - Checks JSON/YAML structure
+- `validate_references.py --check-citations` - Validates citations in paper.md
+- `validate_references.py --check-latex` - Detects LaTeX commands in URLs
 
-Orchestrator: `validate_documentation.sh` (symlinked from root)
+Orchestrator: `validate_documentation.sh` (symlinked from root, runs all 7 tests)
 
 ## Usage
 
