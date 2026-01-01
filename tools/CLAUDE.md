@@ -1,28 +1,24 @@
 ---
 type: claude-context
 directory: tools
-purpose: Documentation validation scripts and workflow utilities
+purpose: Documentation validation scripts
 parent: ../CLAUDE.md
 sibling_readme: null
 children:
   - validation/CLAUDE.md
-  - workflow-utilities/CLAUDE.md
 ---
 
 # Claude Code Context: tools
 
 ## Purpose
 
-Utility scripts for documentation validation and workflow management.
+Documentation validation scripts (bash-based tests for doc quality).
 
 ## Contents
 
 - `validation/` - Documentation validation test scripts
-- `workflow-utilities/` - Archive management and version checking
 
-## Subdirectories
-
-### validation/
+## Subdirectory: validation/
 
 Contains 5 validation test scripts:
 - `test_file_size.sh` - Enforces 30KB limit on modular docs
@@ -32,10 +28,6 @@ Contains 5 validation test scripts:
 - `test_yaml_structure.sh` - Checks JSON/YAML structure
 
 Orchestrator: `validate_documentation.sh` (symlinked from root)
-
-### workflow-utilities/
-
-Archive management and version checking utilities.
 
 ## Usage
 
@@ -48,6 +40,11 @@ tools/validation/test_file_size.sh
 tools/validation/test_cross_references.sh
 ```
 
+## Archived
+
+- `workflow-utilities/` - Archived 2026-01-01; redundant with `.claude/skills/workflow-utilities/`
+
 ## Related
 
 - **Parent**: [Root CLAUDE.md](../CLAUDE.md)
+- **Workflow utilities**: [.claude/skills/workflow-utilities/](../.claude/skills/workflow-utilities/CLAUDE.md)
