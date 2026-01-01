@@ -30,11 +30,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
 
-**Citation verification:** All citations verified via DOI or authoritative sources. See `specs/fix-paper-references/reference_verification.md` for methodology.
+**Citation verification:** All citations verified via DOI or authoritative sources. Methodology archived in `ARCHIVED/20260101T171645Z_specs_fix-paper-references.zip`.
 
 **Paper classification:** Narrative review with original three-pillar analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/guides/journal-submission-guide.md`.
 
-**Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ppr_review/20251215_AACODS-Grey-Literature.md` for assessment table.
+**Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ARCHIVED/20260101T171859Z_ppr_review.zip` for assessment table.
 
 **Paper 1 structure:** Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Executive Summary removed (redundant with YAML abstract); Sections 5-6 (Proposed Solution, Evaluation) previously removed to transform paper from solution-advocacy to pure analytical framework.
 
@@ -319,9 +319,9 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 
 **Assessment rubric:** Table 4 in paper.md provides a 10-indicator rubric with Lower/Moderate/Higher Risk thresholds for organizational self-assessment. Each indicator is evidence-anchored to citations.
 
-**Planning documents:** `planning/<feature-slug>/` in repository (committed to version control)
+**Planning documents:** Historical planning archived in `ARCHIVED/20260101T171631Z_planning_*.zip`
 
-**Submission materials:** `ppr_review/` contains expert-review-checklist.md, osf-registration-draft.md, arxiv-submission-checklist.md, zenodo-submission-checklist.md
+**Submission materials:** Archived in `ARCHIVED/20260101T171859Z_ppr_review.zip` (expert-review-checklist.md, osf-registration-draft.md, arxiv-submission-checklist.md, zenodo-submission-checklist.md)
 
 ## Healthcare Domain Context
 
@@ -347,7 +347,7 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 **Why JMIR (not npj Digital Medicine):** Open-source GCP/Synthea approach eliminates commercial COI concerns.
 
 **Key documents:**
-- Revision strategy: `ppr_review/20251215_Revision-Strategy-Milestones.md`
+- Revision strategy: Archived in `ARCHIVED/20260101T171859Z_ppr_review.zip`
 - Budget breakdown: `project-management.md` (Publication & Distribution Costs section)
 - Status updates: `status-updates.md` (reverse-chronological log)
 - Research questions: `docs/research/Research_Questions.md` (linked to GitHub issues via `research` label)
