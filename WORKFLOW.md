@@ -1,15 +1,15 @@
-# Workflow Guide - v6 (feature-dev)
+# Workflow Guide - v7x1 (Implementation)
 
-**Version:** 6.0.0
-**Date:** 2025-12-29
-**Architecture:** 4-phase workflow using Gemini's feature-dev plugin
+**Version:** 7.0.0
+**Date:** 2026-01-01
+**Architecture:** 4-phase workflow using built-in Gemini CLI tools
 
 ## Overview
 
-This repository uses a streamlined 4-phase workflow for Python feature development:
+This repository uses a streamlined 4-phase workflow for Python development:
 - **Git-flow hybrid** with worktrees for isolation
-- **Gemini feature-dev plugin** for planning, architecture, and code review
-- **No separate quality gates** (feature-dev handles code quality)
+- **Built-in Gemini CLI tools** for planning, architecture, and implementation
+- **No separate manual quality gates** (Gemini Code Review automated via GitHub Actions)
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ Required tools:
 - **uv** - Python package manager
 - **git** - Version control with worktree support
 - **Python 3.11+** - Language runtime
-- **Gemini Code** - With feature-dev plugin
+- **Gemini Code** - AI development assistant
 
 Verify prerequisites:
 ```bash
@@ -31,59 +31,75 @@ uv --version            # Must be installed
 python3 --version       # Must be 3.11+
 ```
 
-## v6 Workflow
+## Phase 0: Bootstrapping a New Repository
+
+This repository provides a meta-skill to bootstrap other projects with this workflow system.
+
+### From This Repository
+```bash
+python .gemini/skills/initialize-repository/scripts/initialize_repository.py . /path/to/new-repo
+```
+
+### From a Cloned Release
+If you have cloned `stharrold-templates` into a subdirectory (e.g., `.tmp/`):
+```bash
+python .tmp/stharrold-templates/.gemini/skills/initialize-repository/scripts/apply_workflow.py .tmp/stharrold-templates .
+```
+
+## v7x1 Workflow
 
 ```
-/workflow:v6_1_worktree "feature description"
-    | creates worktree, user runs /feature-dev in worktree
+/workflow:v7x1_1-worktree "feature description"
+    | creates worktree, user implements feature in worktree
     v
-/workflow:v6_2_integrate "feature/YYYYMMDDTHHMMSSZ_slug"
-    | PR feature->contrib->develop (no quality gates)
+/workflow:v7x1_2-integrate "feature/YYYYMMDDTHHMMSSZ_slug"
+    | PR feature->contrib->develop
     v
-/workflow:v6_3_release
+/workflow:v7x1_3-release
     | create release, PR to main, tag
     v
-/workflow:v6_4_backmerge
+/workflow:v7x1_4-backmerge
     | PR release->develop, rebase contrib, cleanup
 ```
 
-### Step 1: Create Worktree (`/workflow:v6_1_worktree`)
+### Step 1: Create Worktree (`/workflow:v7x1_1-worktree`)
 
 Creates isolated git worktree for feature development.
 
 ```bash
-/workflow:v6_1_worktree "add user authentication"
+/workflow:v7x1_1-worktree "add user authentication"
 ```
 
 **Output:**
 - Branch: `feature/{timestamp}_{slug}`
 - Worktree: `../{project}_feature_{timestamp}_{slug}/`
 
-**Next steps displayed:** Navigate to worktree and run `/feature-dev`.
+**Next steps displayed:** Navigate to worktree and implement the feature.
 
-### Step 2: Feature Development (`/feature-dev`)
+### Step 2: Feature Implementation
 
-Run in the feature worktree (not main repo):
+Run in the feature worktree (not main repo) using built-in Gemini CLI tools:
 
 ```bash
 cd <worktree-path>
-/feature-dev "add user authentication"
+# Then just chat with Gemini:
+"Implement user authentication with JWT tokens"
 ```
 
-**feature-dev handles:**
+**Gemini handles:**
 - Understanding the codebase
 - Planning the implementation
-- Writing code
-- Code review and refinement
+- Writing code and tests
+- Refinement
 
 No separate planning documents needed.
 
-### Step 3: Integrate (`/workflow:v6_2_integrate`)
+### Step 3: Integrate (`/workflow:v7x1_2-integrate`)
 
-From main repo, after feature-dev is complete:
+From main repo, after implementation is complete:
 
 ```bash
-/workflow:v6_2_integrate "feature/20251229T120000Z_add-user-auth"
+/workflow:v7x1_2-integrate "feature/20251229T120000Z_add-user-auth"
 ```
 
 **Two modes:**
@@ -92,13 +108,13 @@ From main repo, after feature-dev is complete:
 
 **Manual gates:** PRs require approval in GitHub/Azure DevOps UI.
 
-### Step 4: Release (`/workflow:v6_3_release`)
+### Step 4: Release (`/workflow:v7x1_3-release`)
 
 Creates release from develop:
 
 ```bash
-/workflow:v6_3_release           # Auto-calculate version
-/workflow:v6_3_release v1.2.0    # Explicit version
+/workflow:v7x1_3-release           # Auto-calculate version
+/workflow:v7x1_3-release v1.2.0    # Explicit version
 ```
 
 **Creates:**
@@ -106,12 +122,12 @@ Creates release from develop:
 - PR to main (requires approval)
 - Tag on main after merge
 
-### Step 5: Backmerge (`/workflow:v6_4_backmerge`)
+### Step 5: Backmerge (`/workflow:v7x1_4-backmerge`)
 
 Syncs release changes back:
 
 ```bash
-/workflow:v6_4_backmerge
+/workflow:v7x1_4-backmerge
 ```
 
 **Actions:**
@@ -144,16 +160,16 @@ feature/<timestamp>_<slug>    <- Isolated feature (worktree)
 - `feature/*` - Feature development
 
 **Ephemeral branches:**
-- `release/*` - Created in v6_3_release, deleted in v6_4_backmerge
+- `release/*` - Created in `/workflow:v7x1_3-release`, deleted in `/workflow:v7x1_4-backmerge`
 
 ## Key Differences from v1-v7
 
-| Aspect | v1-v7 | v6 |
+| Aspect | v1-v7 | v7x1 |
 |--------|-------|-----|
-| Planning | BMAD documents + SpecKit specs | feature-dev plugin |
-| Quality gates | 5 separate gates | feature-dev code review |
-| Steps | 7 phases | 4 phases |
-| Artifacts | requirements.md, architecture.md, spec.md, plan.md | None (feature-dev handles) |
+| Planning | BMAD documents + SpecKit specs | Built-in Gemini tools |
+| Quality gates | 5 separate gates | Gemini Code Review |
+| Steps | 7 phases | 4 steps |
+| Artifacts | requirements.md, architecture.md, spec.md, plan.md | None (Gemini handles internally) |
 
 ## Skills System
 
