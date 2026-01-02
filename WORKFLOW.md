@@ -162,9 +162,9 @@ feature/<timestamp>_<slug>    <- Isolated feature (worktree)
 **Ephemeral branches:**
 - `release/*` - Created in `/workflow:v7x1_3-release`, deleted in `/workflow:v7x1_4-backmerge`
 
-## Key Differences from v1-v7
+## Key Differences from v1-v6
 
-| Aspect | v1-v7 | v7x1 |
+| Aspect | v1-v6 | v7x1 |
 |--------|-------|-----|
 | Planning | BMAD documents + SpecKit specs | Built-in Gemini tools |
 | Quality gates | 5 separate gates | Gemini Code Review |
