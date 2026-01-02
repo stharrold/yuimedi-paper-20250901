@@ -1277,7 +1277,7 @@ improves performance over simple prompting approaches.</p>
 <p>Benchmarking studies from 2024 <span class="citation"
 data-cites="medagentbench2024">(<a href="#ref-medagentbench2024"
 role="doc-biblioref">23</a>)</span>, <span class="citation"
-data-cites="chen2024">(<a href="#ref-chen2024"
+data-cites="wu2024a">(<a href="#ref-wu2024a"
 role="doc-biblioref">24</a>)</span> examining LLM-based systems for
 healthcare identify unique challenges: medical terminology,
 characterized by abbreviations, synonyms, and context-dependent
@@ -1339,7 +1339,7 @@ capabilities. The 2024 MedAgentBench evaluation found Claude 3.5 Sonnet
 achieved 69.67% success rate on medical agent tasks <span
 class="citation" data-cites="medagentbench2024">(<a
 href="#ref-medagentbench2024" role="doc-biblioref">23</a>)</span>, <span
-class="citation" data-cites="chen2024">(<a href="#ref-chen2024"
+class="citation" data-cites="wu2024a">(<a href="#ref-wu2024a"
 role="doc-biblioref">24</a>)</span>; subsequent 2025 benchmarks show
 GPT-5 significantly exceeding these results, with the SCARE benchmark
 <span class="citation" data-cites="lee2025">(<a href="#ref-lee2025"
@@ -1486,20 +1486,31 @@ data-cites="gomes2025">(<a href="#ref-gomes2025"
 role="doc-biblioref">47</a>)</span>. Note that EMRAM measures EMR
 adoption stages rather than analytics maturity directly; robust digital
 infrastructure is a prerequisite for analytics, but the AMAM model
-addresses the analytics-specific capability gap.</p>
+addresses the analytics-specific capability gap. However, evidence
+explicitly linking the new AMAM framework to outcomes remains sparse.
+Studies relying on older proxies yield mixed results: while some align
+digital maturity with lower staff turnover and reduced errors <span
+class="citation" data-cites="woods2024">(<a href="#ref-woods2024"
+role="doc-biblioref">48</a>)</span>, others find no significant
+association with readmission rates <span class="citation"
+data-cites="saintulysse2021">(<a href="#ref-saintulysse2021"
+role="doc-biblioref">49</a>)</span> or mortality <span class="citation"
+data-cites="martin2019">(<a href="#ref-martin2019"
+role="doc-biblioref">50</a>)</span>, suggesting that maturity alone is
+insufficient without workforce stability.</p>
 <h3 data-number="4.2.2" id="barriers-to-analytics-adoption"><span
 class="header-section-number">4.2.2</span> Barriers to Analytics
 Adoption</h3>
 <p>A systematic literature review of big data analytics in healthcare by
 Kamble et al. <span class="citation" data-cites="kamble2019">(<a
-href="#ref-kamble2019" role="doc-biblioref">48</a>)</span> identifies
+href="#ref-kamble2019" role="doc-biblioref">51</a>)</span> identifies
 critical barriers to analytics adoption. The study reveals that
 healthcare enterprises struggle with technology selection, resource
 allocation, and organizational readiness for data-driven decision
 making.</p>
 <p>Health Catalyst’s Healthcare Analytics Adoption Model <span
 class="citation" data-cites="health2020">(<a href="#ref-health2020"
-role="doc-biblioref">49</a>)</span>, a vendor-produced framework,
+role="doc-biblioref">52</a>)</span>, a vendor-produced framework,
 corroborates these findings, documenting that most healthcare
 organizations remain at Stages 0-3, characterized by:</p>
 <ul>
@@ -1542,73 +1553,73 @@ quality is both a prerequisite for and a dimension of analytics
 maturity; organizations cannot progress to higher maturity stages
 without first addressing data quality issues <span class="citation"
 data-cites="carvalho2019">(<a href="#ref-carvalho2019"
-role="doc-biblioref">50</a>)</span>. Multiple maturity frameworks,
+role="doc-biblioref">53</a>)</span>. Multiple maturity frameworks,
 including the Healthcare Data Quality Maturity Model (HDQM2) and the
 Data Analytics Maturity Assessment Framework (DAMAF), explicitly
 incorporate data quality as a core assessment dimension <span
 class="citation" data-cites="pintovalverde2013 gokalp2023">(<a
-href="#ref-pintovalverde2013" role="doc-biblioref">51</a>,<a
-href="#ref-gokalp2023" role="doc-biblioref">52</a>)</span>. A
+href="#ref-pintovalverde2013" role="doc-biblioref">54</a>,<a
+href="#ref-gokalp2023" role="doc-biblioref">55</a>)</span>. A
 cross-industry survey found that data management and quality issues,
 including lack of documentation, accuracy, and consistency, continue to
 challenge analytics organizations even as they mature, with the specific
 challenges shifting from integration to privacy and documentation
 concerns at higher maturity levels <span class="citation"
 data-cites="lismont2017">(<a href="#ref-lismont2017"
-role="doc-biblioref">53</a>)</span>.</p>
+role="doc-biblioref">56</a>)</span>.</p>
 <p>The prevalence of data quality issues in healthcare databases is
 substantial. A study of the National Cancer Database found missing data
 rates ranging from 39.7% for prostate cancer to 71.0% for non-small cell
 lung cancer <span class="citation" data-cites="yang2021">(<a
-href="#ref-yang2021" role="doc-biblioref">54</a>)</span>. Medical
+href="#ref-yang2021" role="doc-biblioref">57</a>)</span>. Medical
 registry data shows 2.0% to 4.6% inaccurate records and 5% to 6%
 incomplete data <span class="citation" data-cites="arts2002">(<a
-href="#ref-arts2002" role="doc-biblioref">55</a>)</span>. Duplicate
+href="#ref-arts2002" role="doc-biblioref">58</a>)</span>. Duplicate
 patient records affect 0.16% to 15.47% of records across healthcare
 institutions, with wide variation in management practices <span
 class="citation" data-cites="mccoy2013">(<a href="#ref-mccoy2013"
-role="doc-biblioref">56</a>)</span>. Analysis of Medicaid claims data
+role="doc-biblioref">59</a>)</span>. Analysis of Medicaid claims data
 found that 9.74% of data cells contained defects, with issues frequently
 remaining obscure due to separation between data users and producers
 <span class="citation" data-cites="zhang2024">(<a href="#ref-zhang2024"
-role="doc-biblioref">57</a>)</span>.</p>
+role="doc-biblioref">60</a>)</span>.</p>
 <p>Critically, automated data quality tools alone are insufficient for
 healthcare data. Research demonstrates that clinical domain expert
 involvement is necessary at every stage of the data pipeline, including
 curation, cleaning, and analysis <span class="citation"
 data-cites="rahman2020">(<a href="#ref-rahman2020"
-role="doc-biblioref">58</a>)</span>. Automated tools fail to detect
+role="doc-biblioref">61</a>)</span>. Automated tools fail to detect
 context-dependent errors such as mutually exclusive values, definitional
 differences between institutions, or plausibility issues that require
 clinical judgment <span class="citation" data-cites="sirgo2018">(<a
-href="#ref-sirgo2018" role="doc-biblioref">59</a>)</span>. Even
+href="#ref-sirgo2018" role="doc-biblioref">62</a>)</span>. Even
 successful automation requires embedding clinical knowledge; generic
 automated cleaning tools from other domains are unsuitable for clinical
 data, which requires variable-specific rules based on clinical knowledge
 of normal ranges, extreme values, and clinical contexts <span
 class="citation" data-cites="shi2021">(<a href="#ref-shi2021"
-role="doc-biblioref">60</a>)</span>.</p>
+role="doc-biblioref">63</a>)</span>.</p>
 <p>Compounding these challenges, healthcare database schemas are
 frequently undocumented or poorly documented. Commercial EMR systems use
 proprietary data models that are not publicly available, requiring
 “detective work” and reverse-engineering for research data integration
 <span class="citation" data-cites="dugas2016 bokov2017">(<a
-href="#ref-dugas2016" role="doc-biblioref">61</a>,<a
-href="#ref-bokov2017" role="doc-biblioref">62</a>)</span>. A systematic
+href="#ref-dugas2016" role="doc-biblioref">64</a>,<a
+href="#ref-bokov2017" role="doc-biblioref">65</a>)</span>. A systematic
 review found that metadata models are often too complicated for
 healthcare professionals without specific IT skills, resulting in rare
 usage and poorly maintained documentation <span class="citation"
 data-cites="ulrich2022">(<a href="#ref-ulrich2022"
-role="doc-biblioref">63</a>)</span>. Poor chart documentation by
+role="doc-biblioref">66</a>)</span>. Poor chart documentation by
 healthcare providers propagates downstream to administrative data
 quality issues <span class="citation" data-cites="lucyk2017">(<a
-href="#ref-lucyk2017" role="doc-biblioref">64</a>)</span>. Most
+href="#ref-lucyk2017" role="doc-biblioref">67</a>)</span>. Most
 critically, documentation knowledge is lost with staff changes:
 decisions based on poorly documented data represent significant costs
 and risks, with explicit identification of “loss of information with
 staff changes” as a key vulnerability <span class="citation"
 data-cites="hovenga2013">(<a href="#ref-hovenga2013"
-role="doc-biblioref">65</a>)</span>.</p>
+role="doc-biblioref">68</a>)</span>.</p>
 <p>This creates a compounding effect across the three pillars:
 low-maturity organizations have worse data quality and documentation,
 which requires domain expertise to address, but that expertise is lost
@@ -1628,12 +1639,12 @@ role="doc-biblioref">17</a>)</span> found a pooled prevalence of nurse
 turnover at 18% (95% CI: 11-26%), with rates varying from 11.7% to 46.7%
 across different countries and settings. Ren et al. <span
 class="citation" data-cites="ren2024">(<a href="#ref-ren2024"
-role="doc-biblioref">66</a>)</span> corroborated these findings with a
+role="doc-biblioref">69</a>)</span> corroborated these findings with a
 global nurse turnover rate ranging from 8% to 36.6%, with a pooled rate
 of 16% (95% CI: 14-17%).</p>
 <p>The financial implications are substantial. Massingham <span
 class="citation" data-cites="massingham2018">(<a
-href="#ref-massingham2018" role="doc-biblioref">67</a>)</span> measured
+href="#ref-massingham2018" role="doc-biblioref">70</a>)</span> measured
 the impact of knowledge loss in a longitudinal study, finding that the
 total financial cost to address problems caused by knowledge loss
 reached three times the organization’s annual salary budget, including
@@ -1643,17 +1654,17 @@ terms: nurse turnover costs 1.2-1.3 times the registered nurse’s annual
 salary, with the highest cost categories being vacancy,
 orientation/training, and new employee productivity loss <span
 class="citation" data-cites="jones2005">(<a href="#ref-jones2005"
-role="doc-biblioref">68</a>)</span>; replacing a primary care clinician
+role="doc-biblioref">71</a>)</span>; replacing a primary care clinician
 costs healthcare organizations over $500,000 due to lost revenue and
 recruiting expenses <span class="citation"
 data-cites="willardgrace2019">(<a href="#ref-willardgrace2019"
-role="doc-biblioref">69</a>)</span>; while physician replacement can
+role="doc-biblioref">72</a>)</span>; while physician replacement can
 reach up to $1 million per departure, with national annual costs
 estimated at $4.6 billion <span class="citation"
 data-cites="melnick2021">(<a href="#ref-melnick2021"
-role="doc-biblioref">70</a>)</span>. Vendor analysis from Oracle <span
+role="doc-biblioref">73</a>)</span>. Vendor analysis from Oracle <span
 class="citation" data-cites="oracle2024">(<a href="#ref-oracle2024"
-role="doc-biblioref">71</a>)</span> corroborates these findings,
+role="doc-biblioref">74</a>)</span> corroborates these findings,
 documenting turnover costs at 0.5-2.0 times annual salary with
 knowledge-intensive positions reaching the higher end.</p>
 <p>Technical and analytics staff face even more severe turnover
@@ -1682,18 +1693,18 @@ roles: basic EHR training requires 8 hours to 2 months for end-users,
 while health information workforce development demands 18 months to 2
 years for specialized roles <span class="citation"
 data-cites="ledikwe2013">(<a href="#ref-ledikwe2013"
-role="doc-biblioref">72</a>)</span>. International Medical Informatics
+role="doc-biblioref">75</a>)</span>. International Medical Informatics
 Association recommendations specify a minimum of 1 year (60 ECTS
 credits) for biomedical and health informatics specialists <span
 class="citation" data-cites="mantas2010">(<a href="#ref-mantas2010"
-role="doc-biblioref">73</a>)</span>, with personalized EHR training
+role="doc-biblioref">76</a>)</span>, with personalized EHR training
 programs requiring 6 months of blended instruction to achieve meaningful
 competency improvements <span class="citation" data-cites="musa2023">(<a
-href="#ref-musa2023" role="doc-biblioref">74</a>)</span>. For IT
+href="#ref-musa2023" role="doc-biblioref">77</a>)</span>. For IT
 developers and specialists, research suggests up to 3 years are required
 to become fully fluent in complex healthcare IT projects <span
 class="citation" data-cites="konrad2022">(<a href="#ref-konrad2022"
-role="doc-biblioref">75</a>)</span>. Combined with the 2.9-year average
+role="doc-biblioref">78</a>)</span>. Combined with the 2.9-year average
 tenure, healthcare IT professionals may operate at full productivity for
 only approximately two years before departing, and, in the case of IT
 developers, are likely to leave before reaching full fluency. This
@@ -1704,20 +1715,20 @@ disruption is internationally recognized as a patient safety priority
 because it represents a fundamental disruption to continuity of care and
 is prone to errors <span class="citation"
 data-cites="rangachari2020">(<a href="#ref-rangachari2020"
-role="doc-biblioref">76</a>)</span>. Empirical studies demonstrate that
+role="doc-biblioref">79</a>)</span>. Empirical studies demonstrate that
 nursing unit turnover reduces workgroup learning and is associated with
 increased patient falls, medication errors, and reduced patient
 satisfaction <span class="citation" data-cites="bae2010">(<a
-href="#ref-bae2010" role="doc-biblioref">77</a>)</span>. International
+href="#ref-bae2010" role="doc-biblioref">80</a>)</span>. International
 evidence links high workforce turnover to poorer continuity of care,
 particularly in remote health services, with measurable outcomes
 including increased hospitalizations and years of life lost <span
 class="citation" data-cites="wakerman2019">(<a href="#ref-wakerman2019"
-role="doc-biblioref">78</a>)</span>. When senior executives and
+role="doc-biblioref">81</a>)</span>. When senior executives and
 knowledge workers depart, organizations experience “corporate memory
 loss” that undermines organizational continuity and effectiveness <span
 class="citation" data-cites="lahaie2005">(<a href="#ref-lahaie2005"
-role="doc-biblioref">79</a>)</span>.</p>
+role="doc-biblioref">82</a>)</span>.</p>
 <h3 data-number="4.3.2" id="institutional-memory-loss"><span
 class="header-section-number">4.3.2</span> Institutional Memory
 Loss</h3>
@@ -1730,7 +1741,7 @@ that fails during rapid turnover. Cultural and regulatory obstacles for
 data sharing further limit the ability of healthcare organizations to
 achieve the full potential of their data assets <span class="citation"
 data-cites="mayo2016">(<a href="#ref-mayo2016"
-role="doc-biblioref">80</a>)</span>.</p>
+role="doc-biblioref">83</a>)</span>.</p>
 <p>When experienced analysts, clinical informatics professionals, or
 data-savvy clinicians leave, they take with them irreplaceable knowledge
 about data definitions, business rules, analytical approaches, and
@@ -1739,28 +1750,28 @@ strong evidence that this knowledge is inherently difficult to document
 through traditional means. Empirical studies demonstrate that learning
 related to tacit knowledge is often not captured in formal post-project
 review reports <span class="citation" data-cites="goffin2011">(<a
-href="#ref-goffin2011" role="doc-biblioref">81</a>)</span>, and
+href="#ref-goffin2011" role="doc-biblioref">84</a>)</span>, and
 conventional mechanisms such as documents, blueprints, and procedures
 fail because tacit knowledge is not easily codified <span
 class="citation" data-cites="foos2006">(<a href="#ref-foos2006"
-role="doc-biblioref">82</a>)</span>. Research across multiple industries
+role="doc-biblioref">85</a>)</span>. Research across multiple industries
 consistently shows that written reports and databases fail to convey key
 learning from expert teams <span class="citation"
 data-cites="goffin2010">(<a href="#ref-goffin2010"
-role="doc-biblioref">83</a>)</span>, while experts often lack the
+role="doc-biblioref">86</a>)</span>, while experts often lack the
 skills, motivation, or time to document their expertise, and even when
 documentation is attempted, essential aspects are lost due to lack of
 shared experience between experts and novices <span class="citation"
 data-cites="rintala2006">(<a href="#ref-rintala2006"
-role="doc-biblioref">84</a>)</span>.</p>
+role="doc-biblioref">87</a>)</span>.</p>
 <h3 data-number="4.3.3" id="inadequacy-of-traditional-approaches"><span
 class="header-section-number">4.3.3</span> Inadequacy of Traditional
 Approaches</h3>
 <p>The literature demonstrates that conventional knowledge management
 approaches fail in healthcare contexts <span class="citation"
 data-cites="mayo2016 shahbaz2019">(<a href="#ref-mayo2016"
-role="doc-biblioref">80</a>,<a href="#ref-shahbaz2019"
-role="doc-biblioref">85</a>)</span>:</p>
+role="doc-biblioref">83</a>,<a href="#ref-shahbaz2019"
+role="doc-biblioref">88</a>)</span>:</p>
 <ul>
 <li>Traditional knowledge transfer mechanisms show limited
 effectiveness</li>
@@ -1769,7 +1780,7 @@ expertise</li>
 <li>Security concerns and employee resistance to change slow the pace of
 information system acceptance <span class="citation"
 data-cites="shahbaz2019">(<a href="#ref-shahbaz2019"
-role="doc-biblioref">85</a>)</span></li>
+role="doc-biblioref">88</a>)</span></li>
 <li>Person-to-person knowledge transfer fails during rapid turnover
 cycles</li>
 </ul>
@@ -1829,7 +1840,7 @@ AI and low-code approaches in healthcare, technologies that share the
 goal of reducing technical barriers to data-driven decision making. A
 foundational systematic review of AI conversational agents in healthcare
 <span class="citation" data-cites="milneives2020">(<a
-href="#ref-milneives2020" role="doc-biblioref">86</a>)</span>
+href="#ref-milneives2020" role="doc-biblioref">89</a>)</span>
 established that such systems reduce burden on healthcare resources and
 save providers’ time, though the review identified a need for more
 rigorous quantitative validation. Subsequent RCT-based systematic
@@ -1837,28 +1848,28 @@ reviews provide this evidence: a meta-analysis of conversational agent
 interventions reported mean task completion rates of 83% (range 40-100%)
 across healthcare applications <span class="citation"
 data-cites="li2023">(<a href="#ref-li2023"
-role="doc-biblioref">87</a>)</span>. Real-world validation at scale
+role="doc-biblioref">90</a>)</span>. Real-world validation at scale
 comes from a study of conversational AI across nine NHS mental health
 services involving 64,862 patients, demonstrating reduced clinician
 assessment time, shorter patient wait times, and lower dropout rates
 <span class="citation" data-cites="rollwage2023">(<a
-href="#ref-rollwage2023" role="doc-biblioref">88</a>)</span>. On the
+href="#ref-rollwage2023" role="doc-biblioref">91</a>)</span>. On the
 clinical AI side, Sezgin et al. <span class="citation"
 data-cites="sezgin2022">(<a href="#ref-sezgin2022"
-role="doc-biblioref">89</a>)</span> demonstrated that GPT-3-powered
+role="doc-biblioref">92</a>)</span> demonstrated that GPT-3-powered
 chatbots can reduce overhead at clinics, while Jiao et al. <span
 class="citation" data-cites="jiao2023">(<a href="#ref-jiao2023"
-role="doc-biblioref">90</a>)</span> found AI adoption leads to cost
+role="doc-biblioref">93</a>)</span> found AI adoption leads to cost
 savings through improved service delivery and shorter hospitalization
 lengths. Dai and Abramoff <span class="citation"
 data-cites="dai2023">(<a href="#ref-dai2023"
-role="doc-biblioref">91</a>)</span> explain that AI generates
+role="doc-biblioref">94</a>)</span> explain that AI generates
 predictions affordably, enabling earlier care that potentially prevents
 costly interventions.</p>
 <p>Low-code implementations provide parallel evidence for the benefits
 of barrier reduction. Berkshire Healthcare NHS Trust <span
 class="citation" data-cites="berkshire2024">(<a
-href="#ref-berkshire2024" role="doc-biblioref">92</a>)</span> reports
+href="#ref-berkshire2024" role="doc-biblioref">95</a>)</span> reports
 over 800 “citizen developers” (and over 1,600 total users) now creating
 solutions using Microsoft Power Platform. The NHS program demonstrates
 that healthcare professionals without IT expertise can use low-code
@@ -1871,37 +1882,37 @@ peer-reviewed papers identified cost and time minimization as the most
 frequently discussed benefits of low-code development, with healthcare
 among the primary implementation domains <span class="citation"
 data-cites="elkamouchi2023">(<a href="#ref-elkamouchi2023"
-role="doc-biblioref">93</a>)</span>. Controlled experiments quantify
+role="doc-biblioref">96</a>)</span>. Controlled experiments quantify
 these benefits: a comparative study of traditional versus low-code
 development for a healthcare cognitive rehabilitation system found
 low-code required 47.5 hours versus 888 hours for traditional
 development, representing a 94.63% reduction in effort <span
 class="citation" data-cites="aveiro2023">(<a href="#ref-aveiro2023"
-role="doc-biblioref">94</a>)</span>. Industry-sponsored research from
+role="doc-biblioref">97</a>)</span>. Industry-sponsored research from
 Forrester <span class="citation" data-cites="forrester2024">(<a
-href="#ref-forrester2024" role="doc-biblioref">95</a>)</span> projects
+href="#ref-forrester2024" role="doc-biblioref">98</a>)</span> projects
 206% three-year ROI from low-code implementations; peer-reviewed studies
 report similar findings, with healthcare institutions achieving 177% ROI
 over 36 months while reducing development time by 67% and technical
 resource requirements by 58% <span class="citation"
 data-cites="mogili2025">(<a href="#ref-mogili2025"
-role="doc-biblioref">96</a>)</span>, and small healthcare clinics
+role="doc-biblioref">99</a>)</span>, and small healthcare clinics
 achieving 250% cumulative ROI over three years <span class="citation"
 data-cites="pervaiz2025">(<a href="#ref-pervaiz2025"
-role="doc-biblioref">97</a>)</span>.</p>
+role="doc-biblioref">100</a>)</span>.</p>
 <p>Healthcare-specific studies show concrete benefits across both
 approaches: Pennington <span class="citation"
 data-cites="pennington2023">(<a href="#ref-pennington2023"
-role="doc-biblioref">98</a>)</span> found AI in revenue cycle management
-accelerated payment cycles from 90 days to 40 days, while Atobatele et
-al. <span class="citation" data-cites="atobatele2023">(<a
-href="#ref-atobatele2023" role="doc-biblioref">99</a>)</span> documented
-how low-code platforms enable non-technical staff to build applications,
-leading to efficiency gains. Rapid application development using
-low-code characteristics enabled an mHealth app for COVID-19 remote care
-that saved 2,822 hospital bed-days for 400 enrolled patients <span
-class="citation" data-cites="tan2023">(<a href="#ref-tan2023"
-role="doc-biblioref">100</a>)</span>. These findings collectively
+role="doc-biblioref">101</a>)</span> found AI in revenue cycle
+management accelerated payment cycles from 90 days to 40 days, while
+Atobatele et al. <span class="citation" data-cites="atobatele2023">(<a
+href="#ref-atobatele2023" role="doc-biblioref">102</a>)</span>
+documented how low-code platforms enable non-technical staff to build
+applications, leading to efficiency gains. Rapid application development
+using low-code characteristics enabled an mHealth app for COVID-19
+remote care that saved 2,822 hospital bed-days for 400 enrolled patients
+<span class="citation" data-cites="tan2023">(<a href="#ref-tan2023"
+role="doc-biblioref">103</a>)</span>. These findings collectively
 demonstrate that technologies enabling non-technical users to interact
 with complex systems, whether through visual interfaces or natural
 language, produce measurable organizational benefits.</p>
@@ -1931,37 +1942,37 @@ Barrier-Reducing Approaches</h3>
 barrier-reducing technologies in healthcare. Conversational AI
 implementations show direct benefits: Jiao et al. <span class="citation"
 data-cites="jiao2023">(<a href="#ref-jiao2023"
-role="doc-biblioref">90</a>)</span> found that AI-driven efficiency
+role="doc-biblioref">93</a>)</span> found that AI-driven efficiency
 gains, including shorter hospitalization lengths, translate into
 financial and operational benefits for healthcare providers; Pennington
 <span class="citation" data-cites="pennington2023">(<a
-href="#ref-pennington2023" role="doc-biblioref">98</a>)</span>
+href="#ref-pennington2023" role="doc-biblioref">101</a>)</span>
 documented that AI in revenue cycle management accelerated payment
 cycles from 90 to 40 days, improving cash flow; and Sezgin et al. <span
 class="citation" data-cites="sezgin2022">(<a href="#ref-sezgin2022"
-role="doc-biblioref">89</a>)</span> proposed chatbot implementations
+role="doc-biblioref">92</a>)</span> proposed chatbot implementations
 that reduce clinic overhead.</p>
 <p>Low-code platform ROI provides analogous evidence for the value of
 technical barrier reduction. Industry-sponsored research from Forrester
 <span class="citation" data-cites="forrester2024">(<a
-href="#ref-forrester2024" role="doc-biblioref">95</a>)</span> projects
+href="#ref-forrester2024" role="doc-biblioref">98</a>)</span> projects
 206% three-year ROI from Power Platform implementations. Peer-reviewed
 studies corroborate these findings: a systematic review identified cost
 and time reduction as the most frequently discussed benefits across 17
 studies <span class="citation" data-cites="elkamouchi2023">(<a
-href="#ref-elkamouchi2023" role="doc-biblioref">93</a>)</span>,
+href="#ref-elkamouchi2023" role="doc-biblioref">96</a>)</span>,
 healthcare institutions report 177% ROI over 36 months with 67% faster
 development <span class="citation" data-cites="mogili2025">(<a
-href="#ref-mogili2025" role="doc-biblioref">96</a>)</span>, and small
+href="#ref-mogili2025" role="doc-biblioref">99</a>)</span>, and small
 healthcare clinics document 250% cumulative three-year ROI <span
 class="citation" data-cites="pervaiz2025">(<a href="#ref-pervaiz2025"
-role="doc-biblioref">97</a>)</span>. While low-code and conversational
+role="doc-biblioref">100</a>)</span>. While low-code and conversational
 AI differ in implementation approach, both generate returns through the
 same mechanism: enabling domain experts to accomplish tasks previously
 requiring specialized technical staff. Market research supports
 continued investment in accessible analytics: Precedence Research <span
 class="citation" data-cites="precedence2024">(<a
-href="#ref-precedence2024" role="doc-biblioref">101</a>)</span> projects
+href="#ref-precedence2024" role="doc-biblioref">104</a>)</span> projects
 the healthcare analytics market to grow from $64.49 billion in 2025 to
 $369.66 billion by 2034 (21.41% CAGR).</p>
 <h3 data-number="4.5.3" id="knowledge-preservation-as-risk-factor"><span
@@ -1981,13 +1992,13 @@ aligns with Nonaka’s SECI model (Socialization, Externalization,
 Combination, Internalization), which describes organizational knowledge
 creation as a continuous dialogue between tacit and explicit knowledge
 <span class="citation" data-cites="farnese2019">(<a
-href="#ref-farnese2019" role="doc-biblioref">102</a>)</span>. Recent
+href="#ref-farnese2019" role="doc-biblioref">105</a>)</span>. Recent
 research demonstrates that AI tools, including conversational
 interfaces, can enhance all four SECI stages, particularly facilitating
 the externalization process where tacit analytical knowledge becomes
 explicit, queryable forms <span class="citation"
 data-cites="zhang2025">(<a href="#ref-zhang2025"
-role="doc-biblioref">103</a>)</span>. This theoretical foundation
+role="doc-biblioref">106</a>)</span>. This theoretical foundation
 supports embedding organizational knowledge in systems rather than
 individuals, ensuring continuity despite workforce turnover.</p>
 <h2 data-number="4.6" id="gaps-in-current-literature"><span
@@ -2026,7 +2037,7 @@ limited</li>
 validated healthcare-specific instrument exists for measuring citizen
 developer productivity. While Berkshire NHS reports 800+ citizen
 developers <span class="citation" data-cites="berkshire2024">(<a
-href="#ref-berkshire2024" role="doc-biblioref">92</a>)</span>, the
+href="#ref-berkshire2024" role="doc-biblioref">95</a>)</span>, the
 methodology for quantifying their productivity contributions lacks
 standardization across studies</li>
 <li><strong>AMAM-specific outcome evidence</strong>: The HIMSS Analytics
@@ -2060,26 +2071,51 @@ primary technological obstacles: metadata uncertainties, data transfer
 challenges, and missing data, compounded by legacy data collection
 methods that have created a “patchwork” of inconsistent organizational
 practices <span class="citation" data-cites="gal2019">(<a
-href="#ref-gal2019" role="doc-biblioref">104</a>)</span>.</p>
+href="#ref-gal2019" role="doc-biblioref">107</a>)</span>.</p>
 <p>These challenges manifest in clinical practice through workflow
 variability. Even within the same institution, clinical workflows vary
 significantly, and transitions to standardized systems often cause
 profound disruptions to existing processes <span class="citation"
 data-cites="zheng2020">(<a href="#ref-zheng2020"
-role="doc-biblioref">105</a>)</span>. At the institutional level, data
+role="doc-biblioref">108</a>)</span>. At the institutional level, data
 fragmentation across different organizations creates barriers to
 linkage, access, and care continuity, while governance issues including
 unclear responsibilities and weak collaboration compound the problem
 <span class="citation" data-cites="bogaert2021">(<a
-href="#ref-bogaert2021" role="doc-biblioref">106</a>)</span>.</p>
+href="#ref-bogaert2021" role="doc-biblioref">109</a>)</span>.</p>
 <p>High-profile industry events illustrate these documented challenges.
-IBM divested its Watson Health data and analytics assets in 2022 <span
-class="citation" data-cites="ibm2022">(<a href="#ref-ibm2022"
-role="doc-biblioref">107</a>)</span>, and the Haven healthcare venture
+IBM divested its Watson Health data and analytics assets to Francisco
+Partners in 2022 <span class="citation" data-cites="ibm2022">(<a
+href="#ref-ibm2022" role="doc-biblioref">110</a>)</span>, following
+years of underperformance attributed to a fundamental mismatch between
+AI capabilities and clinical reality: the technology encountered the
+“messy reality” of healthcare systems where machines learn from
+structured data but physicians work with unstructured, complex clinical
+information <span class="citation" data-cites="strickland2019">(<a
+href="#ref-strickland2019" role="doc-biblioref">111</a>)</span>.
+Academic analysis identified additional contributing factors including
+suboptimal business performance (only breaking even), a restrictive
+top-down commercialization strategy that limited market reach, and the
+highly-regulated nature of healthcare creating barriers to AI deployment
+<span class="citation" data-cites="yang2020">(<a href="#ref-yang2020"
+role="doc-biblioref">112</a>)</span>. The Haven healthcare venture
 (backed by Amazon, Berkshire Hathaway, and JPMorgan Chase) disbanded in
 2021 after three years <span class="citation"
 data-cites="lavito2021">(<a href="#ref-lavito2021"
-role="doc-biblioref">108</a>)</span>. These outcomes align with the
+role="doc-biblioref">113</a>)</span>, with academic analysis identifying
+multiple contributing factors: even the three founding companies could
+not effectively share health-care cost data with each other, the venture
+never employed more than 75 people (limiting its ability to effect
+industry-wide change), and leadership turnover destabilized
+organizational continuity <span class="citation"
+data-cites="acchiardo2021">(<a href="#ref-acchiardo2021"
+role="doc-biblioref">114</a>)</span>. Research on Big Tech platform
+entry into healthcare positions both Watson Health and Haven within a
+broader pattern of technology companies encountering regulatory
+complexity and institutional resistance when attempting to standardize
+fragmented healthcare systems <span class="citation"
+data-cites="ozalp2022">(<a href="#ref-ozalp2022"
+role="doc-biblioref">115</a>)</span>. These outcomes align with the
 academic literature’s findings: standardized solutions face significant
 barriers when applied across institutions with unique data definitions,
 business rules, and clinical workflows.</p>
@@ -2119,7 +2155,7 @@ of LLM capabilities in healthcare contexts. Studies like MedAgentBench
 <span class="citation" data-cites="medagentbench2024">(<a
 href="#ref-medagentbench2024" role="doc-biblioref">23</a>)</span> and
 comprehensive medical LLM evaluations <span class="citation"
-data-cites="chen2024">(<a href="#ref-chen2024"
+data-cites="wu2024a">(<a href="#ref-wu2024a"
 role="doc-biblioref">24</a>)</span> offer reproducible, quantitative
 performance metrics.</p>
 <h3 data-number="5.1.2" id="real-world-implementation-evidence"><span
@@ -2127,7 +2163,7 @@ class="header-section-number">5.1.2</span> Real-World Implementation
 Evidence</h3>
 <p>The Berkshire Healthcare NHS Trust case <span class="citation"
 data-cites="berkshire2024">(<a href="#ref-berkshire2024"
-role="doc-biblioref">92</a>)</span> demonstrates successful low-code
+role="doc-biblioref">95</a>)</span> demonstrates successful low-code
 adoption in healthcare, with over 800 citizen developers creating
 solutions. This provides concrete evidence that non-technical healthcare
 professionals can effectively use these platforms.</p>
@@ -2145,11 +2181,11 @@ class="header-section-number">5.1.4</span> Strong Economic
 Justification</h3>
 <p>The financial evidence is compelling, with Forrester Research <span
 class="citation" data-cites="forrester2024">(<a
-href="#ref-forrester2024" role="doc-biblioref">95</a>)</span>
+href="#ref-forrester2024" role="doc-biblioref">98</a>)</span>
 documenting 206% three-year ROI from low-code implementations. Market
 growth projections <span class="citation"
 data-cites="precedence2024">(<a href="#ref-precedence2024"
-role="doc-biblioref">101</a>)</span> showing the healthcare analytics
+role="doc-biblioref">104</a>)</span> showing the healthcare analytics
 market expanding from $64.49B to $369.66B by 2034 indicate sustained
 investment demand.</p>
 <h3 data-number="5.1.5" id="honest-assessment-of-limitations"><span
@@ -2160,8 +2196,8 @@ Limitations</h3>
 href="#ref-ziletti2024" role="doc-biblioref">20</a>)</span> note that
 “current language models are not yet sufficiently accurate for
 unsupervised use,” and benchmarking studies <span class="citation"
-data-cites="chen2024 ang2004">(<a href="#ref-ang2004"
-role="doc-biblioref">3</a>,<a href="#ref-chen2024"
+data-cites="wu2024a ang2004">(<a href="#ref-ang2004"
+role="doc-biblioref">3</a>,<a href="#ref-wu2024a"
 role="doc-biblioref">24</a>)</span> show significant gaps between
 benchmark performance and clinical readiness. This honest assessment
 enables appropriate implementation strategies.</p>
@@ -2382,7 +2418,7 @@ Rubric</strong></p>
 <td>Stages 0-2: Fragmented data, limited reporting</td>
 <td><span class="citation" data-cites="himss2024 health2020">(<a
 href="#ref-himss2024" role="doc-biblioref">2</a>,<a
-href="#ref-health2020" role="doc-biblioref">49</a>)</span></td>
+href="#ref-health2020" role="doc-biblioref">52</a>)</span></td>
 </tr>
 <tr class="even">
 <td>Self-service analytics</td>
@@ -2391,7 +2427,7 @@ href="#ref-health2020" role="doc-biblioref">49</a>)</span></td>
 <td>None; all analytics require IT intervention</td>
 <td><span class="citation" data-cites="berkshire2024 wang2018">(<a
 href="#ref-wang2018" role="doc-biblioref">4</a>,<a
-href="#ref-berkshire2024" role="doc-biblioref">92</a>)</span></td>
+href="#ref-berkshire2024" role="doc-biblioref">95</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>AI/NL interface availability</td>
@@ -2447,8 +2483,8 @@ href="#ref-richesson2007" role="doc-biblioref">16</a>)</span></td>
 <td>&gt;18 months (specialized health informatics roles)</td>
 <td><span class="citation"
 data-cites="ledikwe2013 mantas2010 musa2023">(<a href="#ref-ledikwe2013"
-role="doc-biblioref">72</a>–<a href="#ref-musa2023"
-role="doc-biblioref">74</a>)</span></td>
+role="doc-biblioref">75</a>–<a href="#ref-musa2023"
+role="doc-biblioref">77</a>)</span></td>
 </tr>
 <tr class="even">
 <td>Tacit knowledge capture</td>
@@ -2495,8 +2531,8 @@ href="#ref-pesqueira2020" role="doc-biblioref">6</a>)</span></td>
 <td>Partial integration; some automated feeds</td>
 <td>Fragmented systems; manual reconciliation required</td>
 <td><span class="citation" data-cites="gal2019 bogaert2021">(<a
-href="#ref-gal2019" role="doc-biblioref">104</a>,<a
-href="#ref-bogaert2021" role="doc-biblioref">106</a>)</span></td>
+href="#ref-gal2019" role="doc-biblioref">107</a>,<a
+href="#ref-bogaert2021" role="doc-biblioref">109</a>)</span></td>
 </tr>
 <tr class="odd">
 <td>Skills gap severity</td>
@@ -2660,18 +2696,18 @@ data-cites="american2023">(<a href="#ref-american2023"
 role="doc-biblioref">1</a>)</span>. Knowledge loss costs can reach three
 times annual salary budgets <span class="citation"
 data-cites="massingham2018">(<a href="#ref-massingham2018"
-role="doc-biblioref">67</a>)</span>, creating need for knowledge
+role="doc-biblioref">70</a>)</span>, creating need for knowledge
 preservation approaches.</p></li>
 <li><p><strong>Implementation Evidence</strong>: Real-world
 implementations like Berkshire Healthcare NHS Trust <span
 class="citation" data-cites="berkshire2024">(<a
-href="#ref-berkshire2024" role="doc-biblioref">92</a>)</span>
+href="#ref-berkshire2024" role="doc-biblioref">95</a>)</span>
 demonstrate that low-code platforms can enable 800+ citizen developers
 in healthcare settings, with academic research documenting significant
 efficiency improvements and cost reductions <span class="citation"
 data-cites="sezgin2022 jiao2023">(<a href="#ref-sezgin2022"
-role="doc-biblioref">89</a>,<a href="#ref-jiao2023"
-role="doc-biblioref">90</a>)</span>.</p></li>
+role="doc-biblioref">92</a>,<a href="#ref-jiao2023"
+role="doc-biblioref">93</a>)</span>.</p></li>
 </ol>
 <h2 data-number="6.4"
 id="implications-for-organizational-assessment"><span
@@ -2985,11 +3021,11 @@ href="https://dl.acm.org/doi/10.1145/1017114.1017118">https://dl.acm.org/doi/10.
 </div>
 <div id="ref-wang2018" class="csl-entry" role="listitem">
 <div class="csl-left-margin">4. </div><div class="csl-right-inline">Wang
-K Y. <span class="nocase">Big data analytics: Understanding its
-capabilities and potential benefits for healthcare organizations</span>.
-Technological Forecasting and Social Change [Internet]. 2018; Available
-from: <a
-href="https://www.sciencedirect.com/science/article/pii/S0040162516302244">https://www.sciencedirect.com/science/article/pii/S0040162516302244</a></div>
+K Y., Byrd TA. <span class="nocase">Big data analytics: Understanding
+its capabilities and potential benefits for healthcare
+organizations</span>. Technological Forecasting and Social Change
+[Internet]. 2018;126:3–13. Available from: <a
+href="https://www.sciencedirect.com/science/article/pii/S0040162515003692">https://www.sciencedirect.com/science/article/pii/S0040162515003692</a></div>
 </div>
 <div id="ref-bardsley2016" class="csl-entry" role="listitem">
 <div class="csl-left-margin">5. </div><div
@@ -3038,10 +3074,11 @@ href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5268176">https://paper
 </div>
 <div id="ref-shen2023" class="csl-entry" role="listitem">
 <div class="csl-left-margin">11. </div><div
-class="csl-right-inline">Shen M K. <span class="nocase">Health care
-staff turnover and quality of care at nursing homes</span>.
-<span>JAMA</span> Internal Medicine [Internet]. 2023; Available from: <a
-href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2807501">https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2807501</a></div>
+class="csl-right-inline">Shen M K., Gandhi AD. <span
+class="nocase">Health care staff turnover and quality of care at nursing
+homes</span>. <span>JAMA</span> Internal Medicine [Internet].
+2023;183(10):1088–95. Available from: <a
+href="https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2809588">https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2809588</a></div>
 </div>
 <div id="ref-latrella2024" class="csl-entry" role="listitem">
 <div class="csl-left-margin">12. </div><div
@@ -3084,9 +3121,9 @@ href="https://academic.oup.com/jamia/article/14/6/687/750453">https://academic.o
 </div>
 <div id="ref-wu2024" class="csl-entry" role="listitem">
 <div class="csl-left-margin">17. </div><div class="csl-right-inline">Wu
-L Y. <span class="nocase">Worldwide prevalence and associated factors of
-nursing staff turnover: A systematic review and meta-analysis</span>.
-International Journal of Nursing Studies [Internet]. 2024; Available
+L F., Li L. <span class="nocase">Worldwide prevalence and associated
+factors of nursing staff turnover: A systematic review and
+meta-analysis</span>. Nursing Open [Internet]. 2024;11:e2097. Available
 from: <a
 href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10802134/">https://pmc.ncbi.nlm.nih.gov/articles/PMC10802134/</a></div>
 </div>
@@ -3130,27 +3167,26 @@ href="https://arxiv.org/abs/2505.08775">https://arxiv.org/abs/2505.08775</a></di
 </div>
 <div id="ref-medagentbench2024" class="csl-entry" role="listitem">
 <div class="csl-left-margin">23. </div><div
-class="csl-right-inline">Study M. <span class="nocase">MedAgentBench: A
-virtual <span>EHR</span> environment to benchmark medical
-<span>LLM</span> agents</span>. <span>NEJM</span> <span>AI</span>
-[Internet]. 2024; Available from: <a
+class="csl-right-inline">Jiang B Y., Chen JH. <span
+class="nocase">MedAgentBench: A virtual <span>EHR</span> environment to
+benchmark medical <span>LLM</span> agents</span>. <span>NEJM</span>
+<span>AI</span> [Internet]. 2025; Available from: <a
 href="https://ai.nejm.org/doi/full/10.1056/AIdbp2500144">https://ai.nejm.org/doi/full/10.1056/AIdbp2500144</a></div>
 </div>
-<div id="ref-chen2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">24. </div><div
-class="csl-right-inline">Chen et al Z. <span class="nocase">Towards
-evaluating and building versatile large language models for
-medicine</span>. npj Digital Medicine [Internet]. 2024; Available from:
-<a
+<div id="ref-wu2024a" class="csl-entry" role="listitem">
+<div class="csl-left-margin">24. </div><div class="csl-right-inline">Wu
+Q C., Xie W. <span class="nocase">Towards evaluating and building
+versatile large language models for medicine</span>. npj Digital
+Medicine [Internet]. 2025; Available from: <a
 href="https://www.nature.com/articles/s41746-024-01390-4">https://www.nature.com/articles/s41746-024-01390-4</a></div>
 </div>
 <div id="ref-blaskovic2025" class="csl-entry" role="listitem">
 <div class="csl-left-margin">25. </div><div
-class="csl-right-inline">Blašković T L. <span class="nocase">Robust
-clinical querying with local LLMs: Lexical challenges in NL2SQL and
-RAG-QA on EHRs</span>. Big Data and Cognitive Computing [Internet].
-2025; Available from: <a
-href="https://www.mdpi.com/2504-2289/9/3/124">https://www.mdpi.com/2504-2289/9/3/124</a></div>
+class="csl-right-inline">Blašković T L., Lorencin I. <span
+class="nocase">Robust clinical querying with local LLMs: Lexical
+challenges in NL2SQL and RAG-QA on EHRs</span>. Big Data and Cognitive
+Computing [Internet]. 2025;9(10):256. Available from: <a
+href="https://www.mdpi.com/2504-2289/9/10/256">https://www.mdpi.com/2504-2289/9/10/256</a></div>
 </div>
 <div id="ref-navarro2023" class="csl-entry" role="listitem">
 <div class="csl-left-margin">26. </div><div
@@ -3296,12 +3332,12 @@ href="https://www.sciencedirect.com/science/article/abs/pii/S0148296316304891">h
 </div>
 <div id="ref-snowdon2024" class="csl-entry" role="listitem">
 <div class="csl-left-margin">44. </div><div
-class="csl-right-inline">Snowdon H A. <span class="nocase">Digital
-maturity as a predictor of quality and safety outcomes in
-<span>US</span> hospitals: Cross-sectional observational study</span>.
-Journal of Medical Internet Research [Internet]. 2024; Available from:
-<a
-href="https://www.jmir.org/2024/1/e52224">https://www.jmir.org/2024/1/e52224</a></div>
+class="csl-right-inline">Snowdon H A., Wright A. <span
+class="nocase">Digital maturity as a predictor of quality and safety
+outcomes in <span>US</span> hospitals: Cross-sectional observational
+study</span>. Journal of Medical Internet Research [Internet].
+2024;26:e56316. Available from: <a
+href="https://www.jmir.org/2024/1/e56316">https://www.jmir.org/2024/1/e56316</a></div>
 </div>
 <div id="ref-snowdon2024a" class="csl-entry" role="listitem">
 <div class="csl-left-margin">45. </div><div
@@ -3326,8 +3362,34 @@ maturity models in healthcare information systems: A comprehensive
 review</span>. Healthcare [Internet]. 2025; Available from: <a
 href="https://www.mdpi.com/2227-9032/13/1/1">https://www.mdpi.com/2227-9032/13/1/1</a></div>
 </div>
-<div id="ref-kamble2019" class="csl-entry" role="listitem">
+<div id="ref-woods2024" class="csl-entry" role="listitem">
 <div class="csl-left-margin">48. </div><div
+class="csl-right-inline">Woods L, Eden R, Green D, Pearce A. <span
+class="nocase">Impact of digital health on the quadruple aims of
+healthcare: A correlational and longitudinal study (Digimat
+Study)</span>. International Journal of Medical Informatics [Internet].
+2024; Available from: <a
+href="https://www.sciencedirect.com/science/article/pii/S1386505624001916">https://www.sciencedirect.com/science/article/pii/S1386505624001916</a></div>
+</div>
+<div id="ref-saintulysse2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">49. </div><div
+class="csl-right-inline">Saint-Ulysse C. <span class="nocase">The
+Relationship between Hospitals’ Electronic Health Records Maturity and
+Excess Readmission Ratio</span> [Internet]. Walden University
+Dissertations; 2021. Available from: <a
+href="https://scholarworks.waldenu.edu/cgi/viewcontent.cgi?article=12395&amp;context=dissertations">https://scholarworks.waldenu.edu/cgi/viewcontent.cgi?article=12395&amp;context=dissertations</a></div>
+</div>
+<div id="ref-martin2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">50. </div><div
+class="csl-right-inline">Martin G, Clarke J, Liew F, Arora S, King D,
+Aylin P. <span class="nocase">Evaluating the impact of organisational
+digital maturity on clinical outcomes in secondary care in
+England</span>. npj Digital Medicine [Internet]. 2019; Available from:
+<a
+href="https://www.nature.com/articles/s41746-019-0118-9">https://www.nature.com/articles/s41746-019-0118-9</a></div>
+</div>
+<div id="ref-kamble2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">51. </div><div
 class="csl-right-inline">Kamble G S. S. <span class="nocase">A
 systematic perspective on the applications of big data analytics in
 healthcare management</span>. International Journal of Healthcare
@@ -3335,14 +3397,14 @@ Management [Internet]. 2019; Available from: <a
 href="https://www.tandfonline.com/doi/full/10.1080/20479700.2018.1531606">https://www.tandfonline.com/doi/full/10.1080/20479700.2018.1531606</a></div>
 </div>
 <div id="ref-health2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">49. </div><div
+<div class="csl-left-margin">52. </div><div
 class="csl-right-inline">Catalyst H. <span class="nocase">The healthcare
 analytics adoption model: A roadmap to analytic maturity</span>
 [Internet]. 2020. Available from: <a
 href="https://www.healthcatalyst.com/learn/insights/healthcare-analytics-adoption-model-roadmap-analytic-maturity">https://www.healthcatalyst.com/learn/insights/healthcare-analytics-adoption-model-roadmap-analytic-maturity</a></div>
 </div>
 <div id="ref-carvalho2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">50. </div><div
+<div class="csl-left-margin">53. </div><div
 class="csl-right-inline">Carvalho JV, Rocha Á, Vasconcelos J. <a
 href="https://doi.org/10.1016/j.ijinfomgt.2018.07.001"><span
 class="nocase">A health data analytics maturity model for hospitals
@@ -3350,34 +3412,34 @@ information systems</span></a>. International Journal of Information
 Management. 2019;46:278–85. </div>
 </div>
 <div id="ref-pintovalverde2013" class="csl-entry" role="listitem">
-<div class="csl-left-margin">51. </div><div
+<div class="csl-left-margin">54. </div><div
 class="csl-right-inline">Pinto-Valverde J, Pérez-Guardado M. <span
 class="nocase">HDQM2: healthcare data quality maturity model</span>. In:
 Midwest association for information systems conference. 2013. </div>
 </div>
 <div id="ref-gokalp2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">52. </div><div
+<div class="csl-left-margin">55. </div><div
 class="csl-right-inline">Gökalp MO, Gökalp E, Gökalp S. <span
 class="nocase">The development of data analytics maturity assessment
 framework: DAMAF</span>. Journal of Software: Evolution and Process.
 2023;35(4):e2448. </div>
 </div>
 <div id="ref-lismont2017" class="csl-entry" role="listitem">
-<div class="csl-left-margin">53. </div><div
+<div class="csl-left-margin">56. </div><div
 class="csl-right-inline">Lismont J, Vanthienen J, Baesens B, et al.
 <span class="nocase">Defining analytics maturity indicators: A survey
 approach</span>. International Journal of Information Management.
 2017;37(3):114–24. </div>
 </div>
 <div id="ref-yang2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">54. </div><div
+<div class="csl-left-margin">57. </div><div
 class="csl-right-inline">Yang DX, Khera R, Miccio JA, Jairam V, et al.
 <span class="nocase">Prevalence of missing data in the national cancer
 database and association with overall survival</span>. JAMA Network
 Open. 2021;4(3):e211793. </div>
 </div>
 <div id="ref-arts2002" class="csl-entry" role="listitem">
-<div class="csl-left-margin">55. </div><div
+<div class="csl-left-margin">58. </div><div
 class="csl-right-inline">Arts DG, De Keizer NF, et al. <span
 class="nocase">Defining and improving data quality in medical
 registries: a literature review, case study, and generic
@@ -3385,27 +3447,27 @@ framework</span>. Journal of the American Medical Informatics
 Association. 2002;9(6):600–11. </div>
 </div>
 <div id="ref-mccoy2013" class="csl-entry" role="listitem">
-<div class="csl-left-margin">56. </div><div
+<div class="csl-left-margin">59. </div><div
 class="csl-right-inline">McCoy AB, Wright A, Kahn MG, Shapiro JS, et al.
 <span class="nocase">Matching identifiers in electronic health records:
 implications for duplicate records and patient safety</span>. BMJ
 Quality &amp; Safety. 2013;22(3):219–24. </div>
 </div>
 <div id="ref-zhang2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">57. </div><div
+<div class="csl-left-margin">60. </div><div
 class="csl-right-inline">Zhang Y, Callaghan-Koru JA, Koru G. <span
 class="nocase">The challenges and opportunities of continuous data
 quality improvement for healthcare administration data</span>. JAMIA
 Open. 2024;7(2):ooae042. </div>
 </div>
 <div id="ref-rahman2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">58. </div><div
+<div class="csl-left-margin">61. </div><div
 class="csl-right-inline">Rahman P, Nandi A, Hebert C. <span
 class="nocase">Amplifying domain expertise in clinical data
 pipelines</span>. JMIR Medical Informatics. 2020;8(11):e19612. </div>
 </div>
 <div id="ref-sirgo2018" class="csl-entry" role="listitem">
-<div class="csl-left-margin">59. </div><div
+<div class="csl-left-margin">62. </div><div
 class="csl-right-inline">Sirgo G, Esteban F, Gómez J, Moreno G, et al.
 <span class="nocase">Validation of the ICU-DaMa tool for automatically
 extracting variables for minimum dataset and quality indicators: The
@@ -3413,21 +3475,21 @@ importance of data quality assessment</span>. International Journal of
 Medical Informatics. 2018;112:166–72. </div>
 </div>
 <div id="ref-shi2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">60. </div><div class="csl-right-inline">Shi
+<div class="csl-left-margin">63. </div><div class="csl-right-inline">Shi
 X, Prins C, Van Pottelbergh G, Mamouris P, et al. <span
 class="nocase">An automated data cleaning method for Electronic Health
 Records by incorporating clinical knowledge</span>. BMC Medical
 Informatics and Decision Making. 2021;21:1–12. </div>
 </div>
 <div id="ref-dugas2016" class="csl-entry" role="listitem">
-<div class="csl-left-margin">61. </div><div
+<div class="csl-left-margin">64. </div><div
 class="csl-right-inline">Dugas M, Neuhaus P, Meidt A, Doods J, Storck M,
 et al. <span class="nocase">Portal of medical data models: information
 infrastructure for medical research and healthcare</span>. Database.
 2016;2016. </div>
 </div>
 <div id="ref-bokov2017" class="csl-entry" role="listitem">
-<div class="csl-left-margin">62. </div><div
+<div class="csl-left-margin">65. </div><div
 class="csl-right-inline">Bokov AF, Bos AB, Manuel LS, et al. <span
 class="nocase">Using prevalence patterns to discover un-mapped flowsheet
 data in an electronic health record data warehouse</span>. In: 2017 IEEE
@@ -3435,42 +3497,42 @@ data in an electronic health record data warehouse</span>. In: 2017 IEEE
 IEEE; 2017. p. 509–14. </div>
 </div>
 <div id="ref-ulrich2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">63. </div><div
+<div class="csl-left-margin">66. </div><div
 class="csl-right-inline">Ulrich H, Kock-Schoppenhauer AK, et al. <span
 class="nocase">Understanding the nature of metadata: systematic
 review</span>. Journal of Medical Internet Research. 2022;24(1):e25440.
 </div>
 </div>
 <div id="ref-lucyk2017" class="csl-entry" role="listitem">
-<div class="csl-left-margin">64. </div><div
+<div class="csl-left-margin">67. </div><div
 class="csl-right-inline">Lucyk K, Tang K, Quan H. <span
 class="nocase">Barriers to data quality resulting from the process of
 coding health information to administrative data: a qualitative
 study</span>. BMC Health Services Research. 2017;17(1):1–10. </div>
 </div>
 <div id="ref-hovenga2013" class="csl-entry" role="listitem">
-<div class="csl-left-margin">65. </div><div
+<div class="csl-left-margin">68. </div><div
 class="csl-right-inline">Hovenga EJ, Grain H. <span
 class="nocase">Health data and data governance</span>. In: Health
 information governance in a digital environment. IOS Press; 2013. p.
 67–94. </div>
 </div>
 <div id="ref-ren2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">66. </div><div class="csl-right-inline">Ren
+<div class="csl-left-margin">69. </div><div class="csl-right-inline">Ren
 W L. <span class="nocase">Global prevalence of nurse turnover rates: A
 meta-analysis of 21 studies from 14 countries</span>. Journal of Nursing
 Management [Internet]. 2024; Available from: <a
 href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11919231/">https://pmc.ncbi.nlm.nih.gov/articles/PMC11919231/</a></div>
 </div>
 <div id="ref-massingham2018" class="csl-entry" role="listitem">
-<div class="csl-left-margin">67. </div><div
+<div class="csl-left-margin">70. </div><div
 class="csl-right-inline">Massingham PR. <span class="nocase">Measuring
 the impact of knowledge loss: A longitudinal study</span>. Journal of
 Knowledge Management [Internet]. 2018; Available from: <a
 href="https://doi.org/10.1108/JKM-08-2016-0338">https://doi.org/10.1108/JKM-08-2016-0338</a></div>
 </div>
 <div id="ref-jones2005" class="csl-entry" role="listitem">
-<div class="csl-left-margin">68. </div><div
+<div class="csl-left-margin">71. </div><div
 class="csl-right-inline">Jones CB. <span class="nocase">The costs of
 nurse turnover, Part 2: Application of the nursing turnover cost
 calculation methodology</span>. Journal of Nursing Administration
@@ -3478,14 +3540,14 @@ calculation methodology</span>. Journal of Nursing Administration
 href="https://journals.lww.com/jonajournal/abstract/2005/01000/the_costs_of_nurse_turnover__part_2__application.14.aspx">https://journals.lww.com/jonajournal/abstract/2005/01000/the_costs_of_nurse_turnover__part_2__application.14.aspx</a></div>
 </div>
 <div id="ref-willardgrace2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">69. </div><div
+<div class="csl-left-margin">72. </div><div
 class="csl-right-inline">Willard-Grace K R. <span class="nocase">Burnout
 and health care workforce turnover</span>. The Annals of Family Medicine
 [Internet]. 2019; Available from: <a
 href="https://www.annfammed.org/content/17/1/36">https://www.annfammed.org/content/17/1/36</a></div>
 </div>
 <div id="ref-melnick2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">70. </div><div
+<div class="csl-left-margin">73. </div><div
 class="csl-right-inline">Melnick F E. R. <span class="nocase">Analysis
 of electronic health record use and clinical productivity and their
 association with physician turnover</span>. <span>JAMA</span> Network
@@ -3493,13 +3555,13 @@ Open [Internet]. 2021; Available from: <a
 href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2784810">https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2784810</a></div>
 </div>
 <div id="ref-oracle2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">71. </div><div
+<div class="csl-left-margin">74. </div><div
 class="csl-right-inline">Oracle. <span class="nocase">The real cost of
 turnover in healthcare</span> [Internet]. 2024. Available from: <a
 href="https://www.oracle.com/human-capital-management/cost-employee-turnover-healthcare/">https://www.oracle.com/human-capital-management/cost-employee-turnover-healthcare/</a></div>
 </div>
 <div id="ref-ledikwe2013" class="csl-entry" role="listitem">
-<div class="csl-left-margin">72. </div><div
+<div class="csl-left-margin">75. </div><div
 class="csl-right-inline">Ledikwe R J. H. <span
 class="nocase">Establishing a health information workforce: Innovation
 for low- and middle-income countries</span>. Human Resources for Health
@@ -3507,7 +3569,7 @@ for low- and middle-income countries</span>. Human Resources for Health
 href="https://human-resources-health.biomedcentral.com/articles/10.1186/1478-4491-11-35">https://human-resources-health.biomedcentral.com/articles/10.1186/1478-4491-11-35</a></div>
 </div>
 <div id="ref-mantas2010" class="csl-entry" role="listitem">
-<div class="csl-left-margin">73. </div><div
+<div class="csl-left-margin">76. </div><div
 class="csl-right-inline">Mantas A J. <span
 class="nocase">Recommendations of the International Medical Informatics
 Association (IMIA) on education in biomedical and health informatics:
@@ -3516,7 +3578,7 @@ First revision</span>. Methods of Information in Medicine [Internet].
 href="https://pubmed.ncbi.nlm.nih.gov/20054502/">https://pubmed.ncbi.nlm.nih.gov/20054502/</a></div>
 </div>
 <div id="ref-musa2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">74. </div><div
+<div class="csl-left-margin">77. </div><div
 class="csl-right-inline">Musa D S. <span class="nocase">The impact of
 training on electronic health records related knowledge, practical
 competencies, and staff satisfaction: A pre-post intervention study
@@ -3526,7 +3588,7 @@ facility</span>. Journal of Multidisciplinary Healthcare [Internet].
 href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10243608/">https://pmc.ncbi.nlm.nih.gov/articles/PMC10243608/</a></div>
 </div>
 <div id="ref-konrad2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">75. </div><div
+<div class="csl-left-margin">78. </div><div
 class="csl-right-inline">Konrad &amp;S I. <span class="nocase">Exploring
 the potential of an <span>IT</span> capability in its bootstrap phase
 from a task driven onboarding perspective: Insights toward information
@@ -3535,7 +3597,7 @@ Available from: <a
 href="https://www.diva-portal.org/smash/record.jsf?pid=diva2:1684142">https://www.diva-portal.org/smash/record.jsf?pid=diva2:1684142</a></div>
 </div>
 <div id="ref-rangachari2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">76. </div><div
+<div class="csl-left-margin">79. </div><div
 class="csl-right-inline">Rangachari &amp;W P. <span
 class="nocase">Preserving organizational resilience, patient safety, and
 staff retention during COVID-19 requires a holistic consideration of the
@@ -3545,14 +3607,14 @@ from: <a
 href="https://www.mdpi.com/1660-4601/17/12/4267">https://www.mdpi.com/1660-4601/17/12/4267</a></div>
 </div>
 <div id="ref-bae2010" class="csl-entry" role="listitem">
-<div class="csl-left-margin">77. </div><div class="csl-right-inline">Bae
+<div class="csl-left-margin">80. </div><div class="csl-right-inline">Bae
 M S. H. <span class="nocase">Impact of nursing unit turnover on patient
 outcomes in hospitals</span>. Journal of Nursing Scholarship [Internet].
 2010; Available from: <a
 href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1547-5069.2009.01319.x">https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1547-5069.2009.01319.x</a></div>
 </div>
 <div id="ref-wakerman2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">78. </div><div
+<div class="csl-left-margin">81. </div><div
 class="csl-right-inline">Wakerman H J. <span class="nocase">Remote
 health workforce turnover and retention: What are the policy and
 practice priorities?</span> Human Resources for Health [Internet]. 2019;
@@ -3560,7 +3622,7 @@ Available from: <a
 href="https://human-resources-health.biomedcentral.com/articles/10.1186/s12960-019-0432-y">https://human-resources-health.biomedcentral.com/articles/10.1186/s12960-019-0432-y</a></div>
 </div>
 <div id="ref-lahaie2005" class="csl-entry" role="listitem">
-<div class="csl-left-margin">79. </div><div
+<div class="csl-left-margin">82. </div><div
 class="csl-right-inline">Lahaie D. <span class="nocase">The impact of
 corporate memory loss: What happens when a senior executive
 leaves?</span> Leadership in Health Services [Internet]. 2005; Available
@@ -3568,7 +3630,7 @@ from: <a
 href="https://www.emerald.com/insight/content/doi/10.1108/13660750510611198/full/html">https://www.emerald.com/insight/content/doi/10.1108/13660750510611198/full/html</a></div>
 </div>
 <div id="ref-mayo2016" class="csl-entry" role="listitem">
-<div class="csl-left-margin">80. </div><div
+<div class="csl-left-margin">83. </div><div
 class="csl-right-inline">Mayo D C. S. <span class="nocase">How can we
 effect culture change toward data-driven medicine?</span> International
 Journal of Radiation Oncology, Biology, Physics [Internet]. 2016;
@@ -3576,28 +3638,28 @@ Available from: <a
 href="https://www.redjournal.org/article/S0360-3016(16)00260-1/fulltext">https://www.redjournal.org/article/S0360-3016(16)00260-1/fulltext</a></div>
 </div>
 <div id="ref-goffin2011" class="csl-entry" role="listitem">
-<div class="csl-left-margin">81. </div><div
+<div class="csl-left-margin">84. </div><div
 class="csl-right-inline">Goffin &amp;K K. <span class="nocase">Tacit
 knowledge, lessons learnt, and new product development</span>. Journal
 of Product Innovation Management [Internet]. 2011; Available from: <a
 href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-5885.2010.00798.x">https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-5885.2010.00798.x</a></div>
 </div>
 <div id="ref-foos2006" class="csl-entry" role="listitem">
-<div class="csl-left-margin">82. </div><div
+<div class="csl-left-margin">85. </div><div
 class="csl-right-inline">Foos S T. <span class="nocase">Tacit knowledge
 transfer and the knowledge disconnect</span>. Journal of Knowledge
 Management [Internet]. 2006; Available from: <a
 href="https://www.emerald.com/insight/content/doi/10.1108/13673270610650067/full/html">https://www.emerald.com/insight/content/doi/10.1108/13673270610650067/full/html</a></div>
 </div>
 <div id="ref-goffin2010" class="csl-entry" role="listitem">
-<div class="csl-left-margin">83. </div><div
+<div class="csl-left-margin">86. </div><div
 class="csl-right-inline">Goffin K K. <span class="nocase">Managing
 lessons learned and tacit knowledge in new product development</span>.
 Research-Technology Management [Internet]. 2010; Available from: <a
 href="https://www.tandfonline.com/doi/abs/10.1080/08956308.2010.11657637">https://www.tandfonline.com/doi/abs/10.1080/08956308.2010.11657637</a></div>
 </div>
 <div id="ref-rintala2006" class="csl-entry" role="listitem">
-<div class="csl-left-margin">84. </div><div
+<div class="csl-left-margin">87. </div><div
 class="csl-right-inline">Rintala &amp;H N. <span class="nocase">Methods
 for sharing tacit nuclear knowledge and expertise</span>. International
 Journal of Nuclear Knowledge Management [Internet]. 2006; Available
@@ -3605,7 +3667,7 @@ from: <a
 href="https://www.inderscienceonline.com/doi/abs/10.1504/IJNKM.2006.009880">https://www.inderscienceonline.com/doi/abs/10.1504/IJNKM.2006.009880</a></div>
 </div>
 <div id="ref-shahbaz2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">85. </div><div
+<div class="csl-left-margin">88. </div><div
 class="csl-right-inline">Shahbaz G M. <span class="nocase">Investigating
 the adoption of big data analytics in healthcare: The moderating role of
 resistance to change</span>. Journal of Big Data [Internet]. 2019;
@@ -3613,7 +3675,7 @@ Available from: <a
 href="https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0170-y">https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0170-y</a></div>
 </div>
 <div id="ref-milneives2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">86. </div><div
+<div class="csl-left-margin">89. </div><div
 class="csl-right-inline">Milne-Ives DC M. <span class="nocase">The
 effectiveness of artificial intelligence conversational agents in health
 care: systematic review</span>. Journal of Medical Internet Research
@@ -3621,7 +3683,7 @@ care: systematic review</span>. Journal of Medical Internet Research
 href="https://www.jmir.org/2020/10/e20346/">https://www.jmir.org/2020/10/e20346/</a></div>
 </div>
 <div id="ref-li2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">87. </div><div class="csl-right-inline">Li
+<div class="csl-left-margin">90. </div><div class="csl-right-inline">Li
 L Y. <span class="nocase">Feasibility and effectiveness of artificial
 intelligence-driven conversational agents in healthcare interventions: A
 systematic review of randomized controlled trials</span>. International
@@ -3629,7 +3691,7 @@ Journal of Medical Informatics [Internet]. 2023; Available from: <a
 href="https://www.sciencedirect.com/science/article/pii/S1386505623001296">https://www.sciencedirect.com/science/article/pii/S1386505623001296</a></div>
 </div>
 <div id="ref-rollwage2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">88. </div><div
+<div class="csl-left-margin">91. </div><div
 class="csl-right-inline">Rollwage H M. <span class="nocase">Using
 conversational <span>AI</span> to facilitate mental health assessments
 and improve clinical efficiency within psychotherapy services:
@@ -3638,7 +3700,7 @@ real-world observational study</span>. <span>JMIR</span> <span>AI</span>
 href="https://ai.jmir.org/2023/1/e44358">https://ai.jmir.org/2023/1/e44358</a></div>
 </div>
 <div id="ref-sezgin2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">89. </div><div
+<div class="csl-left-margin">92. </div><div
 class="csl-right-inline">Sezgin S E. <span
 class="nocase">Operationalizing and implementing pretrained, large
 artificial intelligence linguistic models in the <span>US</span> health
@@ -3648,7 +3710,7 @@ service model</span>. <span>JMIR</span> Medical Informatics [Internet].
 href="https://medinform.jmir.org/2022/2/e32875">https://medinform.jmir.org/2022/2/e32875</a></div>
 </div>
 <div id="ref-jiao2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">90. </div><div
+<div class="csl-left-margin">93. </div><div
 class="csl-right-inline">Jiao Z W. <span class="nocase">The economic
 value and clinical impact of artificial intelligence in healthcare: A
 scoping literature review</span>. <span>IEEE</span> Access [Internet].
@@ -3656,7 +3718,7 @@ scoping literature review</span>. <span>IEEE</span> Access [Internet].
 href="https://ieeexplore.ieee.org/document/10297311">https://ieeexplore.ieee.org/document/10297311</a></div>
 </div>
 <div id="ref-dai2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">91. </div><div class="csl-right-inline">Dai
+<div class="csl-left-margin">94. </div><div class="csl-right-inline">Dai
 &amp;A T. <span class="nocase">Incorporating artificial intelligence
 into healthcare workflows: Models and insights. In</span>. Tutorials in
 Operations Research: Advancing the Frontiers of OR/MS [Internet]. 2023;
@@ -3664,14 +3726,14 @@ Available from: <a
 href="https://pubsonline.informs.org/doi/abs/10.1287/educ.2023.0257">https://pubsonline.informs.org/doi/abs/10.1287/educ.2023.0257</a></div>
 </div>
 <div id="ref-berkshire2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">92. </div><div
+<div class="csl-left-margin">95. </div><div
 class="csl-right-inline">Trust BHN. <span class="nocase">Empowering
 citizen developers: Low-code success in healthcare</span> [Internet].
 2024. Available from: <a
 href="https://ia.berkshirehealthcare.nhs.uk/citizen-developer-programme">https://ia.berkshirehealthcare.nhs.uk/citizen-developer-programme</a></div>
 </div>
 <div id="ref-elkamouchi2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">93. </div><div class="csl-right-inline">El
+<div class="csl-left-margin">96. </div><div class="csl-right-inline">El
 Kamouchi &amp;K H. <span class="nocase">Low-code/No-code Development: A
 systematic literature review</span>. In: 2023 14th international
 conference on computing communication and networking technologies
@@ -3679,7 +3741,7 @@ conference on computing communication and networking technologies
 href="https://ieeexplore.ieee.org/abstract/document/10373712/">https://ieeexplore.ieee.org/abstract/document/10373712/</a></div>
 </div>
 <div id="ref-aveiro2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">94. </div><div
+<div class="csl-left-margin">97. </div><div
 class="csl-right-inline">Aveiro F D. <span class="nocase">Traditional
 vs. low-code development: comparing needed effort and system complexity
 in the NexusBRaNT experiment</span>. In: 2023 <span>IEEE</span> 25th
@@ -3688,14 +3750,14 @@ from: <a
 href="https://ieeexplore.ieee.org/document/10186753">https://ieeexplore.ieee.org/document/10186753</a></div>
 </div>
 <div id="ref-forrester2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">95. </div><div
+<div class="csl-left-margin">98. </div><div
 class="csl-right-inline">Research F. <span class="nocase">The total
 economic impact of Microsoft Power Apps. Forrester Consulting</span>
 [Internet]. 2024. Available from: <a
 href="https://tei.forrester.com/go/microsoft/powerappstei/?lang=en-us">https://tei.forrester.com/go/microsoft/powerappstei/?lang=en-us</a></div>
 </div>
 <div id="ref-mogili2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">96. </div><div
+<div class="csl-left-margin">99. </div><div
 class="csl-right-inline">Mogili VB. <span class="nocase">Healthcare and
 Finance Transformation through Enterprise Content, Low-Code, and
 Automation: A Multinational Technology Corporation’s Approach</span>.
@@ -3704,7 +3766,7 @@ from: <a
 href="https://sarcouncil.com/download-article/SJECS-209-_2025-630-636.pdf">https://sarcouncil.com/download-article/SJECS-209-_2025-630-636.pdf</a></div>
 </div>
 <div id="ref-pervaiz2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">97. </div><div
+<div class="csl-left-margin">100. </div><div
 class="csl-right-inline">Pervaiz &amp;I H. <span
 class="nocase">Leveraging Low-Code/No-Code Platforms for Rapid Digital
 Transformation in Small and Medium-sized Enterprises (SMEs)</span>.
@@ -3713,7 +3775,7 @@ Multidisciplinary Journal of Science, Technology &amp; Business
 href="https://imjstb.com/index.php/Journal/article/view/95">https://imjstb.com/index.php/Journal/article/view/95</a></div>
 </div>
 <div id="ref-pennington2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">98. </div><div
+<div class="csl-left-margin">101. </div><div
 class="csl-right-inline">Pennington R. <span class="nocase">Artificial
 intelligence (AI) and its opportunity in healthcare organizations
 revenue cycle management (RCM)</span> [Internet] [Master’s thesis].
@@ -3721,7 +3783,7 @@ revenue cycle management (RCM)</span> [Internet] [Master’s thesis].
 href="https://mds.marshall.edu/etd/1824/">https://mds.marshall.edu/etd/1824/</a></div>
 </div>
 <div id="ref-atobatele2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">99. </div><div
+<div class="csl-left-margin">102. </div><div
 class="csl-right-inline">Atobatele A O. K. <span
 class="nocase">Transforming digital health information systems with
 Microsoft Dynamics, SharePoint, and low-code automation
@@ -3730,7 +3792,7 @@ Research Journal [Internet]. 2023; Available from: <a
 href="https://gisrrj.com/paper/GISRRJ236426.pdf">https://gisrrj.com/paper/GISRRJ236426.pdf</a></div>
 </div>
 <div id="ref-tan2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">100. </div><div
+<div class="csl-left-margin">103. </div><div
 class="csl-right-inline">Tan T J. P. Y. <span class="nocase">mHealth app
 to facilitate remote care for patients with COVID-19: rapid development
 of the DrCovid+ app</span>. <span>JMIR</span> Formative Research
@@ -3738,14 +3800,14 @@ of the DrCovid+ app</span>. <span>JMIR</span> Formative Research
 href="https://formative.jmir.org/2023/1/e38555">https://formative.jmir.org/2023/1/e38555</a></div>
 </div>
 <div id="ref-precedence2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">101. </div><div
+<div class="csl-left-margin">104. </div><div
 class="csl-right-inline">Research P. <span class="nocase">Healthcare
 analytics market size and forecast 2025 to 2034</span> [Internet]. 2024.
 Available from: <a
 href="https://www.precedenceresearch.com/healthcare-analytics-market">https://www.precedenceresearch.com/healthcare-analytics-market</a></div>
 </div>
 <div id="ref-farnese2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">102. </div><div
+<div class="csl-left-margin">105. </div><div
 class="csl-right-inline">Farnese B M. L. <span class="nocase">Managing
 knowledge in organizations: A Nonaka’s <span>SECI</span> model
 operationalization</span>. Frontiers in Psychology [Internet]. 2019;
@@ -3753,7 +3815,7 @@ Available from: <a
 href="https://www.frontiersin.org/articles/10.3389/fpsyg.2019.02730">https://www.frontiersin.org/articles/10.3389/fpsyg.2019.02730</a></div>
 </div>
 <div id="ref-zhang2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">103. </div><div
+<div class="csl-left-margin">106. </div><div
 class="csl-right-inline">Zhang D W. <span class="nocase"><span>AI</span>
 challenges conventional knowledge management: Light the way for
 reframing <span>SECI</span> model and Ba theory</span>. Journal of
@@ -3761,14 +3823,14 @@ Knowledge Management [Internet]. 2025; Available from: <a
 href="https://www.emerald.com/insight/content/doi/10.1108/JKM-03-2024-0262/full/html">https://www.emerald.com/insight/content/doi/10.1108/JKM-03-2024-0262/full/html</a></div>
 </div>
 <div id="ref-gal2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">104. </div><div
+<div class="csl-left-margin">107. </div><div
 class="csl-right-inline">Gal &amp;R M. S. <span class="nocase">Data
 standardization</span>. New York University Law Review [Internet]. 2019;
 Available from: <a
 href="https://www.nyulawreview.org/issues/volume-94-number-4/data-standardization/">https://www.nyulawreview.org/issues/volume-94-number-4/data-standardization/</a></div>
 </div>
 <div id="ref-zheng2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">105. </div><div
+<div class="csl-left-margin">108. </div><div
 class="csl-right-inline">Zheng R K. <span class="nocase">Studying
 workflow and workarounds in electronic health record-supported work to
 improve health system performance</span>. Annals of Internal Medicine
@@ -3776,26 +3838,58 @@ improve health system performance</span>. Annals of Internal Medicine
 href="https://www.acpjournals.org/doi/10.7326/M19-0871">https://www.acpjournals.org/doi/10.7326/M19-0871</a></div>
 </div>
 <div id="ref-bogaert2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">106. </div><div
+<div class="csl-left-margin">109. </div><div
 class="csl-right-inline">Bogaert V P. <span class="nocase">Identifying
 common enablers and barriers in European health information
 systems</span>. Health Policy [Internet]. 2021; Available from: <a
 href="https://www.sciencedirect.com/science/article/pii/S0168851021002396">https://www.sciencedirect.com/science/article/pii/S0168851021002396</a></div>
 </div>
 <div id="ref-ibm2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">107. </div><div
+<div class="csl-left-margin">110. </div><div
 class="csl-right-inline">IBM. <span class="nocase">Francisco Partners to
 Acquire IBM’s Healthcare Data and Analytics Assets</span>.
 <span>IBM</span> Newsroom [Internet]. 2022; Available from: <a
 href="https://newsroom.ibm.com/2022-01-21-Francisco-Partners-to-Acquire-IBMs-Healthcare-Data-and-Analytics-Assets">https://newsroom.ibm.com/2022-01-21-Francisco-Partners-to-Acquire-IBMs-Healthcare-Data-and-Analytics-Assets</a></div>
 </div>
+<div id="ref-strickland2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">111. </div><div
+class="csl-right-inline">Strickland E. <span class="nocase">IBM Watson,
+heal thyself: How IBM overpromised and underdelivered on AI health
+care</span>. IEEE Spectrum [Internet]. 2019;56(4):24–31. Available from:
+<a
+href="https://ieeexplore.ieee.org/abstract/document/8678513/">https://ieeexplore.ieee.org/abstract/document/8678513/</a></div>
+</div>
+<div id="ref-yang2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">112. </div><div
+class="csl-right-inline">Yang J, Chesbrough H, Hurmelinna-Laukkanen P.
+<span class="nocase">The rise, fall, and resurrection of IBM Watson
+Health</span> [Internet]. University of Oulu; 2020. Available from: <a
+href="https://oulurepo.oulu.fi/bitstream/handle/10024/27921/nbnfi-fe2020050424858.pdf">https://oulurepo.oulu.fi/bitstream/handle/10024/27921/nbnfi-fe2020050424858.pdf</a></div>
+</div>
 <div id="ref-lavito2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">108. </div><div
+<div class="csl-left-margin">113. </div><div
 class="csl-right-inline">LaVito A. <span class="nocase">Haven, the
 Amazon-Berkshire-JPMorgan venture to disrupt healthcare, is disbanding
 after 3 years</span>. <span>CNBC</span> [Internet]. 2021; Available
 from: <a
 href="https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html">https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html</a></div>
+</div>
+<div id="ref-acchiardo2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">114. </div><div
+class="csl-right-inline">Acchiardo JM, Gunderman RB. <span
+class="nocase">The Failure of Haven Healthcare: Lessons for Radiology
+Learners</span>. Academic Radiology [Internet]. 2021;28(7):1036–7.
+Available from: <a
+href="https://www.academicradiology.org/article/S1076-6332(21)00140-9/abstract">https://www.academicradiology.org/article/S1076-6332(21)00140-9/abstract</a></div>
+</div>
+<div id="ref-ozalp2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">115. </div><div
+class="csl-right-inline">Ozalp H, Ozcan P, Dinckol D. <span
+class="nocase">"Digital colonization" of highly regulated industries: an
+analysis of big tech platforms’ entry into health care</span>.
+California Management Review [Internet]. 2022;64(4):78–107. Available
+from: <a
+href="https://journals.sagepub.com/doi/abs/10.1177/00081256221094307">https://journals.sagepub.com/doi/abs/10.1177/00081256221094307</a></div>
 </div>
 </div>
 </body>
