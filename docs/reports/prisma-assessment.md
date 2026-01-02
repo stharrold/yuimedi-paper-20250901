@@ -62,7 +62,7 @@ PRISMA is not required for:
 **Evidence supporting this classification:**
 
 1. **paper.md (Data Availability section):** "This is a narrative review. No primary datasets were generated or analyzed."
-2. **CLAUDE.md (line 35):** Explicitly states "Narrative review with original analytical framework (NOT a systematic review with meta-analysis)"
+2. **GEMINI.md (line 35):** Explicitly states "Narrative review with original analytical framework (NOT a systematic review with meta-analysis)"
 3. **npj Digital Medicine Review criteria:** Target journal accepts narrative reviews under the "Review" content type, which "narratively summarize recent advances"
 
 ### 3.2 Characteristics Supporting Narrative Review Classification

@@ -10,7 +10,7 @@ docs/
 ├── reports/          # Analysis and audit reports
 ├── research/         # Literature review findings (38 files)
 ├── references/       # Source PDFs (23 files, git-crypt encrypted)
-├── CLAUDE.md         # Claude Code context
+├── GEMINI.md         # Gemini Context context
 └── README.md         # This file
 ```
 

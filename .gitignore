@@ -124,3 +124,5 @@ gha-creds-*.json
 .claude-state/
 *.duckdb
 *.duckdb.wal
+
+.gemini-state/

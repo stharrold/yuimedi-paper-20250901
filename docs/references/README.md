@@ -33,7 +33,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
 **Relevance to Project**:
 - Best practices for AI-assisted research and documentation
 - Claude Code integration patterns used in this repository
-- Modern development workflows referenced in CLAUDE.md
+- Modern development workflows referenced in GEMINI.md
 
 **Citation**:
 ```bibtex
@@ -49,7 +49,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
 ```
 
 **Referenced In**:
-- [`CLAUDE.md`](../../CLAUDE.md) - Development workflow guidance
+- [`GEMINI.md`](../../GEMINI.md) - Development workflow guidance
 - [`README.md`](../../README.md) - Project setup instructions
 - GitHub Issues #126, #137, #151 - Integration tasks
 

@@ -27,26 +27,26 @@ repos:
   # Local hooks for repository-specific checks
   - repo: local
     hooks:
-      # Check CLAUDE.md frontmatter
-      - id: claude-md-frontmatter
-        name: Check CLAUDE.md has YAML frontmatter
-        entry: python .claude/skills/workflow-utilities/scripts/check_claude_md_frontmatter.py
+      # Check GEMINI.md frontmatter
+      - id: gemini-md-frontmatter
+        name: Check GEMINI.md has YAML frontmatter
+        entry: python .gemini/skills/workflow-utilities/scripts/check_gemini_md_frontmatter.py
         language: python
-        files: CLAUDE\.md$
+        files: GEMINI\.md$
         pass_filenames: false
 
       # Verify skill directory structure
       - id: skill-structure
         name: Verify skill directory structure
-        entry: python .claude/skills/workflow-utilities/scripts/check_skill_structure.py
+        entry: python .gemini/skills/workflow-utilities/scripts/check_skill_structure.py
         language: python
-        files: ^\.claude/skills/
+        files: ^\.gemini/skills/
         pass_filenames: false
 
       # Check SPDX license headers on Python files
       - id: spdx-headers
         name: Check SPDX license headers
-        entry: python .claude/skills/workflow-utilities/scripts/check_spdx_headers.py
+        entry: python .gemini/skills/workflow-utilities/scripts/check_spdx_headers.py
         language: python
         types: [python]
         pass_filenames: false

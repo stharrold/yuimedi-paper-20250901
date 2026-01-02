@@ -2,13 +2,13 @@
 
 **Version:** 6.0.0
 **Date:** 2025-12-29
-**Architecture:** 4-phase workflow using Claude's feature-dev plugin
+**Architecture:** 4-phase workflow using Gemini's feature-dev plugin
 
 ## Overview
 
 This repository uses a streamlined 4-phase workflow for Python feature development:
 - **Git-flow hybrid** with worktrees for isolation
-- **Claude feature-dev plugin** for planning, architecture, and code review
+- **Gemini feature-dev plugin** for planning, architecture, and code review
 - **No separate quality gates** (feature-dev handles code quality)
 
 ## Prerequisites
@@ -18,7 +18,7 @@ Required tools:
 - **uv** - Python package manager
 - **git** - Version control with worktree support
 - **Python 3.11+** - Language runtime
-- **Claude Code** - With feature-dev plugin
+- **Gemini Code** - With feature-dev plugin
 
 Verify prerequisites:
 ```bash
@@ -173,6 +173,6 @@ feature/<timestamp>_<slug>    <- Isolated feature (worktree)
 
 ## Related Documentation
 
-- **[CLAUDE.md](CLAUDE.md)** - Main AI context file
+- **[GEMINI.md](GEMINI.md)** - Main AI context file
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture
 - **[CHANGELOG.md](CHANGELOG.md)** - Version history

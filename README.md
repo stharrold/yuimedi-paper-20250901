@@ -38,7 +38,7 @@ This repository contains research documentation for YuiQuery, a conversational A
 .
 ├── paper.md                    # Main research document (comprehensive whitepaper)
 ├── README.md                   # Project overview and quick start guide
-├── CLAUDE.md                   # AI assistant instructions and project context
+├── GEMINI.md                   # AI assistant instructions and project context
 ├── CONTRIBUTING.md             # Contribution guidelines
 ├── LICENSE                     # Apache 2.0 (code) / CC BY 4.0 (research content)
 │

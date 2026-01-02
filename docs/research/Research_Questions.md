@@ -152,7 +152,7 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 
 | Question | Scope | Issue | Status | Notes |
 |----------|-------|-------|--------|-------|
-| What quantitative evidence links HIMSS AMAM stages to patient outcomes or organizational performance? | Paper1 | — | Partial | **2025-12-22:** 10 papers found but ALL use EMRAM (EHR adoption), not AMAM (analytics maturity). AMAM released Oct 2024, no AMAM-specific outcome studies yet. Gap CONFIRMED for AMAM. See [`Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md`](Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md) |
+| What quantitative evidence links HIMSS AMAM stages to patient outcomes or organizational performance? | Paper1 | — | Partial | **UPDATED 2026-01-01:** Searched Scholar Labs. Found Snowdon et al. (2024) linking EMRAM to Leapfrog Safety Grades (3.25x odds). No AMAM-specific outcome studies found. Gap CONFIRMED. See [`Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md`](Research_what-quantitative-evidence-links-himss-amam-stages-to-patient-outcomes-or-organizational-performance.md) |
 
 ### Clinical Safety and Security
 

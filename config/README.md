@@ -216,7 +216,7 @@ uv run python src/analysis/your_analysis.py
 - [Query Optimization Guide](queries/README.md) - SQL templates and patterns
 - [Compliance Documentation](../compliance/README.md) - IRB and HIPAA compliance
 - [Source Code](../src/README.md) - Code using these configurations
-- [CLAUDE.md](../CLAUDE.md) - Project development standards
+- [GEMINI.md](../GEMINI.md) - Project development standards
 
 ## 🧪 Testing Configuration
 

@@ -83,7 +83,7 @@ feature/* (individual features via worktrees)
 
 ```bash
 # Option 1: Using workflow tool (recommended)
-podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/create_worktree.py feature my-feature contrib/stharrold
+podman-compose run --rm dev python .gemini/skills/git-workflow-manager/scripts/create_worktree.py feature my-feature contrib/stharrold
 
 # Option 2: Manual worktree creation
 git worktree add ../stharrold-templates.worktrees/my-feature -b feat/my-feature
@@ -112,14 +112,14 @@ git push origin contrib/stharrold --force-with-lease
 When adding templates for new MCP servers:
 
 1. **Document in docs/guides/**
-   - Create guide following modular CLAUDE.md pattern
+   - Create guide following modular GEMINI.md pattern
    - Keep file size ≤30KB for AI context optimization
    - Include server configuration, credentials, platform compatibility
 
 2. **Test on all platforms:**
-   - Claude Code CLI (`~/.claude.json`)
+   - Gemini Code CLI (`~/.gemini.json`)
    - VS Code MCP Extension (platform-specific paths)
-   - Claude Desktop (platform-specific paths)
+   - Gemini Desktop (platform-specific paths)
 
 3. **Update mcp_manager.py if needed:**
    - Add platform detection logic
@@ -150,11 +150,11 @@ When adding templates for new MCP servers:
 
 ## Documentation Requirements
 
-### Modular CLAUDE.md Pattern
+### Modular GEMINI.md Pattern
 
 All directories must have:
 
-1. **CLAUDE.md** - AI context and navigation
+1. **GEMINI.md** - AI context and navigation
    - YAML frontmatter with type, parent, children
    - Cross-references to related concepts
    - Command examples and workflows
@@ -219,9 +219,9 @@ gh pr create \
 
 Closes #issue-number
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+🤖 Generated with [Gemini Code](https://gemini.com/gemini-code)
 
-Co-Authored-By: Claude <noreply@anthropic.com>
+Co-Authored-By: Gemini <noreply@anthropic.com>
 ```
 
 **Types:** feat, fix, docs, style, refactor, test, chore
@@ -264,7 +264,7 @@ podman-compose run --rm dev pytest --cov=. --cov-report=term
 
 ### Documentation Standards
 
-**CLAUDE.md Files:**
+**GEMINI.md Files:**
 - Purpose-focused (what this directory contains)
 - Command-focused (quick reference)
 - Navigation-focused (where to go next)
@@ -288,8 +288,8 @@ podman-compose run --rm dev pytest test_mcp_deduplication.py
 podman-compose run --rm dev ./validate_documentation.sh
 
 # Workflow tools
-podman-compose run --rm dev python .claude/skills/workflow-utilities/scripts/archive_manager.py list
-podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/semantic_version.py develop v5.0.0
+podman-compose run --rm dev python .gemini/skills/workflow-utilities/scripts/archive_manager.py list
+podman-compose run --rm dev python .gemini/skills/git-workflow-manager/scripts/semantic_version.py develop v5.0.0
 ```
 
 **Automated Testing (CI/CD):**
@@ -299,25 +299,25 @@ podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/s
 
 ## Workflow Tools Integration
 
-This repository includes workflow automation tools in `.claude/skills/`:
+This repository includes workflow automation tools in `.gemini/skills/`:
 
 ### Using Workflow Tools
 
 ```bash
 # Archive management
-podman-compose run --rm dev python .claude/skills/workflow-utilities/scripts/archive_manager.py list
+podman-compose run --rm dev python .gemini/skills/workflow-utilities/scripts/archive_manager.py list
 
 # Directory structure validation
-podman-compose run --rm dev python .claude/skills/workflow-utilities/scripts/directory_structure.py docs/guides/
+podman-compose run --rm dev python .gemini/skills/workflow-utilities/scripts/directory_structure.py docs/guides/
 
 # Version consistency checking
-podman-compose run --rm dev python .claude/skills/workflow-utilities/scripts/validate_versions.py
+podman-compose run --rm dev python .gemini/skills/workflow-utilities/scripts/validate_versions.py
 
 # Semantic versioning
-podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/semantic_version.py develop v5.0.0
+podman-compose run --rm dev python .gemini/skills/git-workflow-manager/scripts/semantic_version.py develop v5.0.0
 
 # Worktree creation
-podman-compose run --rm dev python .claude/skills/git-workflow-manager/scripts/create_worktree.py feature my-feature contrib/stharrold
+podman-compose run --rm dev python .gemini/skills/git-workflow-manager/scripts/create_worktree.py feature my-feature contrib/stharrold
 ```
 
 ### NOT Included from German Workflow
@@ -337,15 +337,15 @@ See `docs/reference/german-workflow-v5.3.0.md` for complete workflow documentati
 
 | To change... | Edit this | NOT this |
 |--------------|-----------|----------|
-| Skills | `.claude/skills/` | `.agents/` |
-| Commands | `.claude/commands/` | N/A |
-| Root instructions | `CLAUDE.md` | `AGENTS.md` |
+| Skills | `.gemini/skills/` | `.agents/` |
+| Commands | `.gemini/commands/` | N/A |
+| Root instructions | `GEMINI.md` | `AGENTS.md` |
 
 ### Why?
 
-- `.claude/` is the **PRIMARY** source
+- `.gemini/` is the **PRIMARY** source
 - `.agents/` is automatically synced (read-only mirror)
-- `AGENTS.md` is automatically generated from `CLAUDE.md`
+- `AGENTS.md` is automatically generated from `GEMINI.md`
 
 Changes to `.agents/` or `AGENTS.md` will be overwritten on next sync.
 
@@ -353,13 +353,13 @@ Changes to `.agents/` or `AGENTS.md` will be overwritten on next sync.
 
 The sync happens:
 1. **Pre-commit hook** - `sync-ai-config` runs automatically
-2. **Manual** - `uv run python .claude/skills/workflow-utilities/scripts/sync_ai_config.py sync`
+2. **Manual** - `uv run python .gemini/skills/workflow-utilities/scripts/sync_ai_config.py sync`
 3. **PR workflow** - `pr_workflow.py sync-agents` during integration
 
 ## Questions or Issues?
 
 - Open an issue on GitHub
-- Check CLAUDE.md for detailed guidance
+- Check GEMINI.md for detailed guidance
 - Review existing PRs for examples
 
 ## License

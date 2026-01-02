@@ -114,7 +114,7 @@ project-management/ (this directory)
 - [Main Project Management Overview](../project-management.md) - Strategic overview and executive summary
 - [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues) - Active task tracking
 - [TODO.md](../TODO.md) - Master workflow manifest
-- [CLAUDE.md](../CLAUDE.md) - Project development standards
+- [GEMINI.md](../GEMINI.md) - Project development standards
 
 ## Governance & Escalation
 

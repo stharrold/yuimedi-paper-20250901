@@ -295,7 +295,7 @@ bash -x ./tools/validation/test_command_syntax.sh
 
 ## 🔗 Related Documentation
 
-- [CLAUDE.md](../../CLAUDE.md) - Project documentation standards
+- [GEMINI.md](../../GEMINI.md) - Project documentation standards
 - [README.md](../../README.md) - Repository overview
 - [scripts/validate_references.py](../../scripts/validate_references.py) - Reference validation script
 

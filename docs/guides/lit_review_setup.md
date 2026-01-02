@@ -361,7 +361,7 @@ uv run mypy lit_review/
 uv run bandit -r lit_review/
 
 # Run all quality gates
-python .claude/skills/quality-enforcer/scripts/run_quality_gates.py
+python .gemini/skills/quality-enforcer/scripts/run_quality_gates.py
 ```
 
 ### 4. Run Tests with Coverage
@@ -384,7 +384,7 @@ After setup is complete:
 
 1. Read [lit_review_workflow.md](lit_review_workflow.md) for usage examples
 2. Try the quick start in [lit_review/README.md](../lit_review/README.md)
-3. Check [CLAUDE.md](../CLAUDE.md) for development guidelines
+3. Check [GEMINI.md](../GEMINI.md) for development guidelines
 
 ## Support
 
