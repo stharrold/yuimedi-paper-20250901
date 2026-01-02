@@ -361,6 +361,14 @@ class="toc-section-number">1.4</span> Contributions</a>
 id="toc-illustrative-application-the-validated-query-cycle"><span
 class="toc-section-number">1.4.1</span> Illustrative Application: The
 Validated Query Cycle</a></li>
+<li><a href="#governance-the-validator-paradox"
+id="toc-governance-the-validator-paradox"><span
+class="toc-section-number">1.4.2</span> Governance: The Validator
+Paradox</a></li>
+<li><a href="#technical-resilience-managing-schema-drift"
+id="toc-technical-resilience-managing-schema-drift"><span
+class="toc-section-number">1.4.3</span> Technical Resilience: Managing
+Schema Drift</a></li>
 </ul></li>
 <li><a href="#document-structure" id="toc-document-structure"><span
 class="toc-section-number">1.5</span> Document Structure</a></li>
@@ -400,7 +408,13 @@ class="toc-section-number">3.2</span> Theoretical Grounding</a></li>
 <li><a href="#framework-scope-and-limitations"
 id="toc-framework-scope-and-limitations"><span
 class="toc-section-number">3.3</span> Framework Scope and
-Limitations</a></li>
+Limitations</a>
+<ul>
+<li><a href="#operational-metrics-for-framework-assessment"
+id="toc-operational-metrics-for-framework-assessment"><span
+class="toc-section-number">3.3.1</span> Operational Metrics for
+Framework Assessment</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#literature-review-evidence-across-the-three-pillars"
 id="toc-literature-review-evidence-across-the-three-pillars"><span
@@ -981,6 +995,47 @@ individual memory. Low-maturity organizations can accelerate advancement
 by accumulating validated queries, and technical barriers are reduced
 because new staff access proven query patterns rather than recreating
 analytical logic.</p>
+<h3 data-number="1.4.2" id="governance-the-validator-paradox"><span
+class="header-section-number">1.4.2</span> Governance: The Validator
+Paradox</h3>
+<p>A critical challenge in this cycle is the “Validator Paradox”: the
+need for experts to validate AI-generated queries despite high turnover
+removing those very experts. To mitigate this, we propose a Tiered Trust
+Protocol:</p>
+<ul>
+<li><strong>Tier 3: Exploratory (Sandbox Only)</strong>: Ad-hoc
+exploration on de-identified data. Self-service validation where the
+user assumes all risk. No decision-making permitted.</li>
+<li><strong>Tier 2: Operational (Departmental)</strong>: Internal
+reporting. Requires peer review by one Senior Analyst before
+automation.</li>
+<li><strong>Tier 1: Clinical Safety (Gold Standard)</strong>: Patient
+care decisions and external reporting. Requires dual-signature
+validation from a Clinical Subject Matter Expert and a Lead Data
+Engineer.</li>
+</ul>
+<p>To prevent “the blind leading the blind,” validators for Tier 1
+queries must be designated <strong>Clinical Data Stewards</strong> with
+verified experience in the specific EHR schema and clinical workflow
+certification.</p>
+<h3 data-number="1.4.3"
+id="technical-resilience-managing-schema-drift"><span
+class="header-section-number">1.4.3</span> Technical Resilience:
+Managing Schema Drift</h3>
+<p>Stored queries face the risk of “Schema Drift,” where database
+updates (e.g., quarterly EHR upgrades) break existing logic. The
+framework addresses this through <strong>Continuous Knowledge
+Integration</strong>:</p>
+<ol type="1">
+<li><strong>Automated Regression Testing</strong>: Every “Gold Standard”
+query is stored with its original natural language question and a
+synthetic “Test Data” expectation.</li>
+<li><strong>Pre-Upgrade Dry Run</strong>: All stored queries are
+executed against upgrade preview environments.</li>
+<li><strong>Drift Detection</strong>: Queries producing result set
+schema or row count variances exceeding 5% are automatically flagged as
+“BROKEN/UNVERIFIED” and disabled until re-validated.</li>
+</ol>
 <h2 data-number="1.5" id="document-structure"><span
 class="header-section-number">1.5</span> Document Structure</h2>
 <p>Following this introduction, the paper proceeds through five main
@@ -1234,6 +1289,27 @@ analytical lens for understanding healthcare analytics challenges but
 does not mandate specific solutions. Future research should empirically
 validate pillar interdependencies through longitudinal organizational
 studies and develop quantitative metrics for framework dimensions.</p>
+<h3 data-number="3.3.1"
+id="operational-metrics-for-framework-assessment"><span
+class="header-section-number">3.3.1</span> Operational Metrics for
+Framework Assessment</h3>
+<p>To operationalize the framework, organizations should establish
+baseline metrics beyond the historical data cited in the literature. We
+propose three diagnostic metrics to quantify current risks:</p>
+<ol type="1">
+<li><strong>Analyst Turnover Rate (ATR)</strong>: Calculated as
+<code>(Departures / Average Headcount) * 100</code> over the trailing 24
+months. Rates exceeding 15% indicate critical institutional memory
+leakage that threatens analytics continuity.</li>
+<li><strong>Knowledge Artifact Ratio (KAR)</strong>: Calculated as
+<code>(Verified Documentation Pages / Total SQL Queries in Production)</code>.
+Ratios below 0.1 indicate a dangerous dependency on “tribal knowledge”
+rather than encoded expertise.</li>
+<li><strong>Onboarding Velocity</strong>: The average number of days for
+a new analyst to deploy their first error-free production query.
+Durations exceeding 45 days suggest structural complexity barriers that
+exacerbate turnover impact.</li>
+</ol>
 <h1 data-number="4"
 id="literature-review-evidence-across-the-three-pillars"><span
 class="header-section-number">4</span> Literature Review: Evidence
@@ -2618,6 +2694,20 @@ maintaining human review of AI-generated outputs <span class="citation"
 data-cites="ziletti2024">(<a href="#ref-ziletti2024"
 role="doc-biblioref">18</a>)</span></li>
 </ul>
+<h4 data-number="5.5.3.1" id="strategic-pilot-selection"><span
+class="header-section-number">5.5.3.1</span> Strategic Pilot
+Selection</h4>
+<p>To mitigate vendor bias and safety risks, the framework suggests a
+specific pilot selection strategy. Organizations should prioritize
+<strong>Billing and Revenue Cycle Management</strong> for initial pilots
+rather than clinical domains. This approach offers three advantages: 1.
+<strong>Lower Safety Risk</strong>: Errors result in financial
+adjustments rather than potential patient harm. 2. <strong>High
+Standardization</strong>: Billing data relies on standardized ontologies
+(CPT/ICD codes) that are more structured than free-text clinical notes.
+3. <strong>Clear ROI</strong>: Impacts on days-in-AR or denial rates
+provide measurable value to leadership, establishing a feedback loop
+where denials serve as ground-truth labels for model improvement.</p>
 <h1 data-number="6" id="conclusion"><span
 class="header-section-number">6</span> Conclusion</h1>
 <p>This narrative review synthesized evidence across three
