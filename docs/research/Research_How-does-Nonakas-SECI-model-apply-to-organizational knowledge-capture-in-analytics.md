@@ -8,7 +8,7 @@
 
 ## Summary of Findings
 
-Nonaka's SECI model (Socialization, Externalization, Combination, Internalization) provides a theoretical framework for understanding how tacit knowledge becomes explicit and institutionalized within organizations. In analytics contexts, the model has been applied to explain knowledge transformation across business intelligence maturity levels, with recent work exploring how AI tools can enhance the externalization process, converting tacit analytical knowledge into explicit, reusable forms. The KMSP-Q questionnaire offers an empirically validated instrument for operationalizing SECI constructs. Key applications include: data mining techniques mapping to internalization stages for actionable insights, big data environments supporting combination and internalization modes, and knowledge-intensive clusters using SECI processes for external knowledge acquisition.
+Nonaka's SECI model (Socialization, Externalization, Combination, Internalization) provides a theoretical framework for understanding how tacit knowledge becomes explicit and institutionalized within organizations. In analytics contexts, the model has been applied to explain knowledge transformation across business intelligence maturity levels, with recent work exploring how AI tools can enhance the externalization process: converting tacit analytical knowledge into explicit, reusable forms. The KMSP-Q questionnaire offers an empirically validated instrument for operationalizing SECI constructs. Key applications include: data mining techniques mapping to internalization stages for actionable insights, big data environments supporting combination and internalization modes, and knowledge-intensive clusters using SECI processes for external knowledge acquisition.
 
 ---
 
@@ -99,7 +99,7 @@ Nonaka's SECI model (Socialization, Externalization, Combination, Internalizatio
 **Key Points:**
 - Assesses the applicability of the SECI model (Nonaka and Takeuchi) to the processes of external knowledge acquisition for firms located on knowledge-intensive clusters
 - **Knowledge Capture from External Sources:** Explores the theoretical postulates of the SECI model regarding organizational knowledge capture from external sources, specifically in knowledge-intensive clusters
-- **Three Acquisition Processes:** Shows that external knowledge acquisition occurs through three different processes (socialization, externalization, and explicit knowledge processing, which combines combination and internalization) that have similarities and differences with the original SECI model
+- **Three Acquisition Processes:** Shows that external knowledge acquisition occurs through three different processes (socialization, externalization, and explicit knowledge processing (combining combination and internalization)), which have similarities and differences with the original SECI model
 
 ---
 

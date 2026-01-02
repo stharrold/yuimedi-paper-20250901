@@ -1,0 +1,40 @@
+# Verified Citations Log
+
+This document tracks citations that have been manually verified against their source documents (PDFs) to ensure accuracy of claims, data, and attribution in `paper.md`.
+
+## Verification Status
+
+| Citation Key | Author (Year) | Source PDF | Verification Date | Verified Claims/Notes | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `ang2004` | Ang & Slaughter (2004) | `2004_Ang_ACM-SIGMIS_IT-Professional-Turnover.pdf` | 2026-01-01 | **Verified:** 2.9 years new-hire tenure expectancy. **Clarified:** Implied ~34% turnover rate refers to new hires (vs 15.5% general). **Context:** IT Users (Support) category. | ✅ Confirmed |
+| `wang2018` | Wang et al. (2018) | `2018_Wang_Tech-Forecasting_Big-Data-Analytics-Healthcare.pdf` | 2026-01-01 | **Verified:** Confirms adoption lag (42% adoption, 16% substantial experience). **Verified:** Confirms architectural complexity and "struggle to gain benefits." **Status:** Citations in `paper.md` are accurate. | ✅ Confirmed |
+| `ziletti2024` | Ziletti & D'Ambrosi (2024) | `2024_Ziletti_arXiv_EHR-RAG-NL2SQL.pdf` | 2026-01-02 | **Verified:** RAG improves accuracy. **Verified:** "not yet sufficiently accurate for unsupervised use". **Corrected:** Dataset changed from MIMIC-3 to DE-SynPUF in `paper.md`. | ✅ Confirmed |
+| `berkshire2024` | Berkshire NHS (2024) | `2024_UK-NHS_Citizen-Developer-Programme.pdf` | 2026-01-02 | **Verified:** Program existence and tools (Power Platform). **Corrected:** Citizen developer count updated from 800 to "more than 1600" based on PDF. | ✅ Confirmed |
+| `american2023` | AHIMA & NORC (2023) | `2023_AHIMA-NORC_Health-Information-Workforce-Survey.pdf` | 2026-01-02 | **Verified:** 66% understaffing rate. **Corrected:** 83% figure clarified to include both "increased" (38%) and "stayed same" (45%) unfilled roles. | ✅ Confirmed |
+| `wu2024` | Wu et al. (2024) | `2024_Wu_Nursing-Open_Nursing-Staff-Turnover-Meta-Analysis.pdf` | 2026-01-02 | **Verified:** 18% pooled nurse turnover. **Clarified:** 11.7-46.7% range in `paper.md` specifically attributed to US studies in the background section. | ✅ Confirmed |
+| `wu2024a` | Wu et al. (2025) | `2025_Wu_npj-Digital-Medicine_Medical-LLM-Evaluation.pdf` | 2026-01-02 | **Verified:** MedS-Bench metrics. Accuracy range 67-70% for complex tasks (Diagnosis/Info Extraction). | ✅ Confirmed |
+| `medagentbench2024` | Jiang et al. (2025) | `2025_Jiang_NEJM-AI_MedAgentBench-EHR-LLM-Agents.pdf` | 2026-01-02 | **Verified:** 69.67% success rate for Claude 3.5 Sonnet v2 on EHR agent tasks. | ✅ Confirmed |
+| `snowdon2024` | Snowdon et al. (2024) | `2024_Snowdon_JMIR_Digital-Maturity-Outcomes.pdf` | 2026-01-02 | **Verified:** Hospitals with EMRAM 6-7 have 3.25x higher odds of better Leapfrog grades. | ✅ Confirmed |
+| `snowdon2024a` | Snowdon et al. (2024) | `2024_Snowdon_Patient-Experience_Digital-Maturity-Strategy.pdf` | 2026-01-02 | **Verified:** 1.8-2.24x higher odds of better patient experience ratings for high-maturity hospitals. | ✅ Confirmed |
+| `snowdon2024b` | Snowdon (2024) | `2024_HealthcareITNews_HIMSS-Launches-Modernised-AMAM.md` | 2026-01-02 | **Verified:** Quote "analytics as a discipline has changed dramatically..." verified via news source. | ✅ Confirmed |
+| `lee2023` | Lee et al. (2023) | `2023_Lee_arXiv_EHRSQL-Text-to-SQL-Benchmark.pdf` | 2026-01-02 | **Verified:** EHRSQL benchmark details. T5 + Schema accuracy (~80% F1 on MIMIC-III/eICU). | ✅ Confirmed |
+| `ledikwe2013` | Ledikwe et al. (2013) | `2013_Ledikwe_HR-For-Health_Health-Information-Workforce.pdf` | 2026-01-02 | **Verified:** Health information workforce development training duration (18 months to 2 years). | ✅ Confirmed |
+| `mantas2010` | Mantas et al. (2010) | `2010_Mantas_Methods-Informatics-Medicine_IMIA-Health-Informatics-Education.pdf` | 2026-01-02 | **Verified:** IMIA recommendation of 60 ECTS credits (~1 year) for health informatics specialists. | ✅ Confirmed |
+| `musa2023` | Musa et al. (2023) | `2023_Musa_JMDH_EHR-Training-Healthcare-Workers.pdf` | 2026-01-02 | **Verified:** 6-month personalized training program duration for EHR competency improvements. | ✅ Confirmed |
+| `navarro2023` | Navarro et al. (2023) | `2023_Navarro_Medical-Informatics_Clinical-NLP-EHR-Systematic-Review.pdf` | 2026-01-02 | **Verified:** Systematic review confirming clinician burnout from administrative EHR tasks and rapid dominance of transformer models in clinical IE. | ✅ Confirmed |
+| `martin2019` | Martin et al. (2019) | `2019_Martin_NPJ-Digital-Med_Digital-Maturity-Outcomes-UK.pdf` | 2026-01-02 | **Verified:** Found no significant relationship between digital maturity and mortality or readmission rates in secondary care. | ✅ Confirmed |
+| `saintulysse2021` | Saint-Ulysse (2021) | `2021_Saint-Ulysse_ProQuest_EHR-Maturity-Readmission.pdf` | 2026-01-02 | **Verified:** Found no significant association between EHR maturity and excess readmission ratio (ERR). | ✅ Confirmed |
+
+## Verification Protocol
+
+1.  **Locate Source:** Ensure PDF exists in `docs/references/` with correct naming convention (`YYYY_Author_Journal_Title.pdf`).
+2.  **Verify Content:** Read the full text to confirm:
+    *   Specific statistics (e.g., turnover rates, sample sizes).
+    *   Context of claims (e.g., do they apply to healthcare specifically?).
+    *   Caveats or limitations (e.g., "new hire" vs "general" turnover).
+3.  **Update `paper.md`:** If discrepancies are found, correct the manuscript.
+4.  **Log Status:** Update this table.
+
+## Next Citations to Verify
+
+| `himss2024` | HIMSS Analytics (2024) | `2024_HealthcareITNews_HIMSS-Launches-Modernised-AMAM.md` | 2026-01-01 | **Verified:** Web search confirms exact global counts: 26 at Stage 6, 13 at Stage 7. **Verified:** Solution sheet in repo confirms 0-7 structure and Oct 2024 AMAM24 update. **Action:** Added `@himss2024news` citation to `paper.md`. | ✅ Confirmed |

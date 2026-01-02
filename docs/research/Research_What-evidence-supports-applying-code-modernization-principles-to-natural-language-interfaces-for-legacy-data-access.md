@@ -160,7 +160,7 @@ Presents the LADDER system architecture that buffers users from underlying datab
 **PDF:** https://sesjournal.com/index.php/1/article/download/417/375
 
 **Abstract/Summary:**
-Suggests three advanced approaches—hybrid NLP and deep learning, federated learning for privacy, and AI-driven dynamic query optimization—to overcome limitations of traditional methods like SQL for non-technical users.
+Suggests three advanced approaches, including hybrid NLP and deep learning, federated learning for privacy, and AI-driven dynamic query optimization, to overcome limitations of traditional methods like SQL for non-technical users.
 
 **Methodology/Approach:** Comparative analysis of NLP approaches
 
