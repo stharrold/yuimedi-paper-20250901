@@ -3,7 +3,7 @@ title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Ana
 author: "Samuel T Harrold, Yuimedi"
 correspondence: "samuel.harrold@yuimedi.com"
 date: "December 2025"
-version: "1.0.0"
+version: "1.19.0"
 abstract: |
   **Background:** Healthcare organizations face three interconnected challenges that form a compounding cycle: low analytics maturity (only 39 organizations globally have achieved HIMSS AMAM Stage 6-7), high workforce turnover (34% annually for healthcare IT staff as of 2004), and technical barriers in natural language to SQL generation. When these challenges interact, they create institutional memory loss that threatens data-driven healthcare transformation.
 
