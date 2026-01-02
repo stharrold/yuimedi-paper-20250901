@@ -795,6 +795,57 @@ accumulating validated queries, and technical barriers are reduced
 because new staff access proven query patterns rather than recreating
 analytical logic.
 
+\subsubsection{Governance: The Validator
+Paradox}\label{governance-the-validator-paradox}
+
+A critical challenge in this cycle is the ``Validator Paradox'': the
+need for experts to validate AI-generated queries despite high turnover
+removing those very experts. To mitigate this, we propose a Tiered Trust
+Protocol:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Tier 3: Exploratory (Sandbox Only)}: Ad-hoc exploration on
+  de-identified data. Self-service validation where the user assumes all
+  risk. No decision-making permitted.
+\item
+  \textbf{Tier 2: Operational (Departmental)}: Internal reporting.
+  Requires peer review by one Senior Analyst before automation.
+\item
+  \textbf{Tier 1: Clinical Safety (Gold Standard)}: Patient care
+  decisions and external reporting. Requires dual-signature validation
+  from a Clinical Subject Matter Expert and a Lead Data Engineer.
+\end{itemize}
+
+To prevent ``the blind leading the blind,'' validators for Tier 1
+queries must be designated \textbf{Clinical Data Stewards} with verified
+experience in the specific EHR schema and clinical workflow
+certification.
+
+\subsubsection{Technical Resilience: Managing Schema
+Drift}\label{technical-resilience-managing-schema-drift}
+
+Stored queries face the risk of ``Schema Drift,'' where database updates
+(e.g., quarterly EHR upgrades) break existing logic. The framework
+addresses this through \textbf{Continuous Knowledge Integration}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Automated Regression Testing}: Every ``Gold Standard'' query
+  is stored with its original natural language question and a synthetic
+  ``Test Data'' expectation.
+\item
+  \textbf{Pre-Upgrade Dry Run}: All stored queries are executed against
+  upgrade preview environments.
+\item
+  \textbf{Drift Detection}: Queries producing result set schema or row
+  count variances exceeding 5\% are automatically flagged as
+  ``BROKEN/UNVERIFIED'' and disabled until re-validated.
+\end{enumerate}
+
 \subsection{Document Structure}\label{document-structure}
 
 Following this introduction, the paper proceeds through five main
@@ -1179,6 +1230,33 @@ analytical lens for understanding healthcare analytics challenges but
 does not mandate specific solutions. Future research should empirically
 validate pillar interdependencies through longitudinal organizational
 studies and develop quantitative metrics for framework dimensions.
+
+\subsubsection{Operational Metrics for Framework
+Assessment}\label{operational-metrics-for-framework-assessment}
+
+To operationalize the framework, organizations should establish baseline
+metrics beyond the historical data cited in the literature. We propose
+three diagnostic metrics to quantify current risks:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Analyst Turnover Rate (ATR)}: Calculated as
+  \passthrough{\lstinline!(Departures / Average Headcount) * 100!} over
+  the trailing 24 months. Rates exceeding 15\% indicate critical
+  institutional memory leakage that threatens analytics continuity.
+\item
+  \textbf{Knowledge Artifact Ratio (KAR)}: Calculated as
+  \passthrough{\lstinline!(Verified Documentation Pages / Total SQL Queries in Production)!}.
+  Ratios below 0.1 indicate a dangerous dependency on ``tribal
+  knowledge'' rather than encoded expertise.
+\item
+  \textbf{Onboarding Velocity}: The average number of days for a new
+  analyst to deploy their first error-free production query. Durations
+  exceeding 45 days suggest structural complexity barriers that
+  exacerbate turnover impact.
+\end{enumerate}
 
 \section{Literature Review: Evidence Across the Three
 Pillars}\label{literature-review-evidence-across-the-three-pillars}
@@ -2433,6 +2511,20 @@ evidence suggests several factors influence outcomes:
   maintaining human review of AI-generated outputs
   (\citeproc{ref-ziletti2024}{18})
 \end{itemize}
+
+\paragraph{Strategic Pilot Selection}\label{strategic-pilot-selection}
+
+To mitigate vendor bias and safety risks, the framework suggests a
+specific pilot selection strategy. Organizations should prioritize
+\textbf{Billing and Revenue Cycle Management} for initial pilots rather
+than clinical domains. This approach offers three advantages: 1.
+\textbf{Lower Safety Risk}: Errors result in financial adjustments
+rather than potential patient harm. 2. \textbf{High Standardization}:
+Billing data relies on standardized ontologies (CPT/ICD codes) that are
+more structured than free-text clinical notes. 3. \textbf{Clear ROI}:
+Impacts on days-in-AR or denial rates provide measurable value to
+leadership, establishing a feedback loop where denials serve as
+ground-truth labels for model improvement.
 
 \section{Conclusion}\label{conclusion}
 
