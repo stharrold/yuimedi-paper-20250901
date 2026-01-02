@@ -80,7 +80,7 @@ class TestArxivAdapter:
 
         mock_client = MagicMock()
         mock_client.__enter__ = MagicMock(return_value=mock_client)
-        mock_client.__exit__ = MagicMock()
+        mock_client.__exit__ = MagicMock(return_value=None)
         mock_client.get.return_value = mock_response
         mock_client_class.return_value = mock_client
 
@@ -106,7 +106,7 @@ class TestArxivAdapter:
 
         mock_client = MagicMock()
         mock_client.__enter__ = MagicMock(return_value=mock_client)
-        mock_client.__exit__ = MagicMock()
+        mock_client.__exit__ = MagicMock(return_value=None)
         mock_client.get.return_value = mock_response
         mock_client_class.return_value = mock_client
 
@@ -136,7 +136,7 @@ class TestArxivAdapter:
 
         mock_client = MagicMock()
         mock_client.__enter__ = MagicMock(return_value=mock_client)
-        mock_client.__exit__ = MagicMock()
+        mock_client.__exit__ = MagicMock(return_value=None)
         mock_client.get.return_value = mock_response
         mock_client_class.return_value = mock_client
 
@@ -170,7 +170,7 @@ class TestArxivAdapter:
 
         mock_client = MagicMock()
         mock_client.__enter__ = MagicMock(return_value=mock_client)
-        mock_client.__exit__ = MagicMock()
+        mock_client.__exit__ = MagicMock(return_value=None)
         mock_client.get.return_value = mock_response
         mock_client_class.return_value = mock_client
 
@@ -193,7 +193,7 @@ class TestArxivAdapter:
 
         mock_client = MagicMock()
         mock_client.__enter__ = MagicMock(return_value=mock_client)
-        mock_client.__exit__ = MagicMock()
+        mock_client.__exit__ = MagicMock(return_value=None)
         mock_client.get.return_value = mock_response
         mock_client_class.return_value = mock_client
 
@@ -216,7 +216,7 @@ class TestArxivAdapter:
 
         mock_client = MagicMock()
         mock_client.__enter__ = MagicMock(return_value=mock_client)
-        mock_client.__exit__ = MagicMock()
+        mock_client.__exit__ = MagicMock(return_value=None)
         mock_client.get.return_value = mock_response
         mock_client_class.return_value = mock_client
 
@@ -238,7 +238,7 @@ class TestArxivAdapter:
 
         mock_client = MagicMock()
         mock_client.__enter__ = MagicMock(return_value=mock_client)
-        mock_client.__exit__ = MagicMock()
+        mock_client.__exit__ = MagicMock(return_value=None)
         mock_client.get.return_value = mock_response
         mock_client_class.return_value = mock_client
 
@@ -268,7 +268,7 @@ class TestArxivAdapter:
 
         mock_client = MagicMock()
         mock_client.__enter__ = MagicMock(return_value=mock_client)
-        mock_client.__exit__ = MagicMock()
+        mock_client.__exit__ = MagicMock(return_value=None)
         # First two calls timeout, third succeeds
         mock_client.get.side_effect = [
             httpx.TimeoutException("Timeout"),
@@ -288,7 +288,7 @@ class TestArxivAdapter:
         """search raises TimeoutError after max retries."""
         mock_client = MagicMock()
         mock_client.__enter__ = MagicMock(return_value=mock_client)
-        mock_client.__exit__ = MagicMock()
+        mock_client.__exit__ = MagicMock(return_value=None)
         mock_client.get.side_effect = httpx.TimeoutException("Timeout")
         mock_client_class.return_value = mock_client
 
@@ -304,7 +304,7 @@ class TestArxivAdapter:
         """search raises ConnectionError on persistent failure."""
         mock_client = MagicMock()
         mock_client.__enter__ = MagicMock(return_value=mock_client)
-        mock_client.__exit__ = MagicMock()
+        mock_client.__exit__ = MagicMock(return_value=None)
         mock_client.get.side_effect = httpx.HTTPError("Network error")
         mock_client_class.return_value = mock_client
 
