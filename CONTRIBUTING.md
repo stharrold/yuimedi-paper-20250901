@@ -7,7 +7,6 @@ Thank you for considering contributing to this project! This document provides g
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
 - [Development Workflow](#development-workflow)
-- [MCP Server Contributions](#mcp-server-contributions)
 - [Documentation Requirements](#documentation-requirements)
 - [Pull Request Process](#pull-request-process)
 - [Quality Standards](#quality-standards)
@@ -16,10 +15,10 @@ Thank you for considering contributing to this project! This document provides g
 
 This project follows a professional and respectful code of conduct:
 
-- Be respectful and inclusive
-- Focus on constructive feedback
-- Prioritize technical accuracy and truthfulness
-- Welcome contributions from all skill levels
+- Be respectful and inclusive.
+- Focus on constructive feedback.
+- Prioritize technical accuracy and truthfulness.
+- Welcome contributions from all skill levels.
 
 ## Getting Started
 
@@ -32,12 +31,13 @@ Ensure you have the required tools installed:
 podman --version          # Container runtime (Podman 4.0+)
 podman-compose --version  # Container orchestration
 git --version             # Version control
+python3 --version         # Python 3.11+
+uv --version              # Python package manager
 
 # VCS Provider CLI (one of):
 gh --version              # GitHub CLI (for GitHub repos)
 # OR
 az --version              # Azure CLI (for Azure DevOps repos)
-az extension add --name azure-devops  # Required extension for Azure DevOps
 ```
 
 ### Initial Setup
@@ -53,19 +53,14 @@ az extension add --name azure-devops  # Required extension for Azure DevOps
    podman-compose build
    ```
 
-3. **Test MCP manager:**
+3. **Install local dependencies:**
    ```bash
-   podman-compose run --rm dev python mcp_manager.py --status
+   uv sync
    ```
 
-4. **Run validation scripts:**
-   ```bash
-   podman-compose run --rm dev ./validate_documentation.sh
-   ```
+## Development Workflow (v7x1)
 
-## Development Workflow
-
-This repository uses a contrib branch workflow for personal contributions:
+This repository uses a streamlined **v7x1** workflow.
 
 ### Branch Structure
 
@@ -74,79 +69,25 @@ main (production)
   ↑
 develop (integration)
   ↑
-contrib/stharrold (active development)
+contrib/stharrold (your editable branch)
   ↑
-feature/* (individual features via worktrees)
+feature/* (isolated worktrees)
 ```
 
-### Creating a Feature Branch
+### Workflow Steps
 
-```bash
-# Option 1: Using workflow tool (recommended)
-podman-compose run --rm dev python .gemini/skills/git-workflow-manager/scripts/create_worktree.py feature my-feature contrib/stharrold
+1. **Create Worktree**: `/workflow:v7x1_1-worktree "feature description"`
+2. **Implement**: Perform implementation using built-in Gemini CLI tools (in worktree).
+3. **Integrate**: `/workflow:v7x1_2-integrate` (in main repo)
+4. **Release**: `/workflow:v7x1_3-release`
+5. **Backmerge**: `/workflow:v7x1_4-backmerge`
 
-# Option 2: Manual worktree creation
-git worktree add ../stharrold-templates.worktrees/my-feature -b feat/my-feature
-```
-
-### Daily Maintenance
+### Manual Maintenance
 
 ```bash
 # Rebase contrib branch onto develop
-git checkout contrib/stharrold
-git fetch origin
-git rebase origin/develop
-git push origin contrib/stharrold --force-with-lease
+uv run python .gemini/skills/git-workflow-manager/scripts/daily_rebase.py contrib/stharrold
 ```
-
-### Pull Request Flow
-
-1. **Feature → contrib/stharrold**: After feature implementation
-2. **contrib/stharrold → develop**: When ready for integration
-3. **develop → main**: For production releases
-
-## MCP Server Contributions
-
-### Adding New MCP Server Templates
-
-When adding templates for new MCP servers:
-
-1. **Document in docs/guides/**
-   - Create guide following modular GEMINI.md pattern
-   - Keep file size ≤30KB for AI context optimization
-   - Include server configuration, credentials, platform compatibility
-
-2. **Test on all platforms:**
-   - Gemini Code CLI (`~/.gemini.json`)
-   - VS Code MCP Extension (platform-specific paths)
-   - Gemini Desktop (platform-specific paths)
-
-3. **Update mcp_manager.py if needed:**
-   - Add platform detection logic
-   - Handle new credential types
-   - Test deduplication logic
-
-### MCP Configuration Standards
-
-**JSON Structure:**
-```json
-{
-  "mcpServers": {  // or "servers" for VS Code
-    "server-name": {
-      "command": "command",
-      "args": ["arg1", "arg2"],
-      "env": {
-        "ENV_VAR": "value"
-      }
-    }
-  }
-}
-```
-
-**Credential Management:**
-- Use keychain/credential manager (not plaintext)
-- Document required environment variables
-- Test with `mcp_manager.py --check-credentials`
 
 ## Documentation Requirements
 
@@ -154,47 +95,22 @@ When adding templates for new MCP servers:
 
 All directories must have:
 
-1. **GEMINI.md** - AI context and navigation
-   - YAML frontmatter with type, parent, children
-   - Cross-references to related concepts
-   - Command examples and workflows
-
-2. **README.md** - Human-readable documentation
-   - YAML frontmatter with directory metadata
-   - Detailed explanations and tutorials
-   - Usage examples
-
-3. **ARCHIVED/** - Deprecated files subdirectory
+1. **GEMINI.md** - AI context and navigation.
+2. **README.md** - Human-readable documentation.
+3. **ARCHIVED/** - Deprecated files subdirectory.
 
 ### File Size Constraints
 
-- All files in `docs/guides/` must be ≤30KB
-- Use modular structure with cross-references
-- ARCHIVED/ uses compressed date-based archives (YYYYMMDD.tar.gz)
-  - Archives are located in the `ARCHIVED/` directory at the repository root
-  - To extract an archive: `tar -xzf ARCHIVED/YYYYMMDD.tar.gz` (Unix-like systems)
-
-### Validation
-
-Before committing documentation changes:
-
-```bash
-./validate_documentation.sh  # Runs all 5 validation tests:
-# - test_file_size.sh (30KB limit)
-# - test_cross_references.sh (internal links)
-# - test_content_duplication.sh (detect duplicates)
-# - test_command_syntax.sh (validate bash commands)
-# - test_yaml_structure.sh (check frontmatter)
-```
+- All files in `docs/guides/` must be ≤30KB.
+- Use modular structure with cross-references.
 
 ## Pull Request Process
 
 ### 1. Create Pull Request
 
-```bash
-# Push feature branch
-git push origin feat/my-feature
+Use the `/workflow:v7x1_2-integrate` command to automate PR creation, or do it manually:
 
+```bash
 # Create PR to contrib/stharrold
 gh pr create \
   --title "feat: descriptive title" \
@@ -204,11 +120,10 @@ gh pr create \
 
 ### 2. PR Requirements
 
-- [ ] All validation scripts pass
-- [ ] MCP manager functional (if Python changes)
-- [ ] Documentation updated
-- [ ] Commit messages follow convention
-- [ ] Dependencies added to pyproject.toml if needed
+- [ ] All CI/CD tests pass.
+- [ ] Gemini Code Review completed.
+- [ ] Documentation updated to reflect changes.
+- [ ] Commit messages follow Conventional Commits.
 
 ### 3. Commit Message Format
 
@@ -217,150 +132,44 @@ gh pr create \
 
 <body>
 
-Closes #issue-number
-
 🤖 Generated with [Gemini Code](https://gemini.com/gemini-code)
-
-Co-Authored-By: Gemini <noreply@anthropic.com>
 ```
 
-**Types:** feat, fix, docs, style, refactor, test, chore
-
-### 4. Review Process
-
-- Self-merge enabled for personal contrib branches
-- Request review for significant changes
-- Address feedback before merge
-
-### 5. After Merge
-
-```bash
-# Cleanup worktree and branches
-git worktree remove ../stharrold-templates.worktrees/my-feature
-git branch -D feat/my-feature
-git push origin --delete feat/my-feature
-```
+**Types:** feat, fix, docs, style, refactor, test, chore.
 
 ## Quality Standards
 
 ### Python Code Standards
 
-**Core Principles:**
-- **Containerized**: Use podman-compose for all development
-- **Cross-platform**: Works on macOS, Linux, Windows
-- **One way to run**: Always use `podman-compose run --rm dev <command>`
-- **Error handling**: Comprehensive try/except with clear messages
+- **Containerized**: Use `podman-compose` for consistency.
+- **One way to run**: Prefer `uv run <command>` or `podman-compose run --rm dev uv run <command>`.
+- **SPDX Headers**: All Python files must have Apache 2.0 license headers.
+- **ASCII-only**: Python files must use only ASCII characters.
 
-**Quality Tools:**
-```bash
-# Linting with ruff
-podman-compose run --rm dev ruff check .
-podman-compose run --rm dev ruff check --fix .
+### Workflow Tools
 
-# Testing with pytest
-podman-compose run --rm dev pytest
-podman-compose run --rm dev pytest --cov=. --cov-report=term
-```
-
-### Documentation Standards
-
-**GEMINI.md Files:**
-- Purpose-focused (what this directory contains)
-- Command-focused (quick reference)
-- Navigation-focused (where to go next)
-- Context-optimized (≤30KB)
-
-**README.md Files:**
-- Explanation-focused (why and how)
-- Tutorial-focused (step-by-step guides)
-- Reference-focused (complete documentation)
-- Human-optimized (no size limit)
-
-### Testing Standards
-
-**Manual Testing:**
-```bash
-# MCP manager functionality
-podman-compose run --rm dev python mcp_manager.py --status
-podman-compose run --rm dev pytest test_mcp_deduplication.py
-
-# Documentation validation
-podman-compose run --rm dev ./validate_documentation.sh
-
-# Workflow tools
-podman-compose run --rm dev python .gemini/skills/workflow-utilities/scripts/archive_manager.py list
-podman-compose run --rm dev python .gemini/skills/git-workflow-manager/scripts/semantic_version.py develop v5.0.0
-```
-
-**Automated Testing (CI/CD):**
-- GitHub Actions runs on push/PR (same podman-compose setup)
-- Azure Pipelines available (same podman-compose setup)
-- Must pass before merge
-
-## Workflow Tools Integration
-
-This repository includes workflow automation tools in `.gemini/skills/`:
-
-### Using Workflow Tools
-
-```bash
-# Archive management
-podman-compose run --rm dev python .gemini/skills/workflow-utilities/scripts/archive_manager.py list
-
-# Directory structure validation
-podman-compose run --rm dev python .gemini/skills/workflow-utilities/scripts/directory_structure.py docs/guides/
-
-# Version consistency checking
-podman-compose run --rm dev python .gemini/skills/workflow-utilities/scripts/validate_versions.py
-
-# Semantic versioning
-podman-compose run --rm dev python .gemini/skills/git-workflow-manager/scripts/semantic_version.py develop v5.0.0
-
-# Worktree creation
-podman-compose run --rm dev python .gemini/skills/git-workflow-manager/scripts/create_worktree.py feature my-feature contrib/stharrold
-```
-
-### NOT Included from German Workflow
-
-The following are intentionally NOT integrated:
-- BMAD planner (Python project focus)
-- SpecKit author (Python project focus)
-- Quality enforcer with pytest (overkill for documentation)
-- AgentDB state manager (external dependency)
-- Full 6-phase workflow orchestrator (not applicable)
-
-See `docs/reference/german-workflow-v5.3.0.md` for complete workflow documentation.
+This repository includes 6 active workflow skills in `.gemini/skills/`:
+- `workflow-orchestrator`: Main coordinator.
+- `git-workflow-manager`: Git automation.
+- `tech-stack-adapter`: Stack detection.
+- `workflow-utilities`: Shared utilities.
+- `agentdb-state-manager`: State tracking.
+- `initialize-repository`: Repository bootstrapping.
 
 ## AI Configuration Guidelines
-
-### Where to Make Changes
 
 | To change... | Edit this | NOT this |
 |--------------|-----------|----------|
 | Skills | `.gemini/skills/` | `.agents/` |
-| Commands | `.gemini/commands/` | N/A |
+| Commands | `.gemini/commands.toml` | N/A |
 | Root instructions | `GEMINI.md` | `AGENTS.md` |
 
-### Why?
-
-- `.gemini/` is the **PRIMARY** source
-- `.agents/` is automatically synced (read-only mirror)
-- `AGENTS.md` is automatically generated from `GEMINI.md`
-
-Changes to `.agents/` or `AGENTS.md` will be overwritten on next sync.
-
-### Sync Mechanism
-
-The sync happens:
-1. **Pre-commit hook** - `sync-ai-config` runs automatically
-2. **Manual** - `uv run python .gemini/skills/workflow-utilities/scripts/sync_ai_config.py sync`
-3. **PR workflow** - `pr_workflow.py sync-agents` during integration
+**Note**: `.agents/` and `AGENTS.md` are automatically synced from `.gemini/` sources.
 
 ## Questions or Issues?
 
-- Open an issue on GitHub
-- Check GEMINI.md for detailed guidance
-- Review existing PRs for examples
+- Open an issue on GitHub.
+- Check `GEMINI.md` for detailed guidance.
 
 ## License
 
