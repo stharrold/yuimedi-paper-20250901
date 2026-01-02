@@ -170,6 +170,24 @@ To demonstrate how the three-pillar framework might inform technology design, we
 
 This cycle breaks the compounding effect identified in the three-pillar framework: turnover no longer erases analytical knowledge because expertise is embedded in validated query pairs rather than individual memory. Low-maturity organizations can accelerate advancement by accumulating validated queries, and technical barriers are reduced because new staff access proven query patterns rather than recreating analytical logic.
 
+### Governance: The Validator Paradox
+
+A critical challenge in this cycle is the "Validator Paradox": the need for experts to validate AI-generated queries despite high turnover removing those very experts. To mitigate this, we propose a Tiered Trust Protocol:
+
+*   **Tier 3: Exploratory (Sandbox Only)**: Ad-hoc exploration on de-identified data. Self-service validation where the user assumes all risk. No decision-making permitted.
+*   **Tier 2: Operational (Departmental)**: Internal reporting. Requires peer review by one Senior Analyst before automation.
+*   **Tier 1: Clinical Safety (Gold Standard)**: Patient care decisions and external reporting. Requires dual-signature validation from a Clinical Subject Matter Expert and a Lead Data Engineer.
+
+To prevent "the blind leading the blind," validators for Tier 1 queries must be designated **Clinical Data Stewards** with verified experience in the specific EHR schema and clinical workflow certification.
+
+### Technical Resilience: Managing Schema Drift
+
+Stored queries face the risk of "Schema Drift," where database updates (e.g., quarterly EHR upgrades) break existing logic. The framework addresses this through **Continuous Knowledge Integration**:
+
+1.  **Automated Regression Testing**: Every "Gold Standard" query is stored with its original natural language question and a synthetic "Test Data" expectation.
+2.  **Pre-Upgrade Dry Run**: All stored queries are executed against upgrade preview environments.
+3.  **Drift Detection**: Queries producing result set schema or row count variances exceeding 5% are automatically flagged as "BROKEN/UNVERIFIED" and disabled until re-validated.
+
 ## Document Structure
 
 Following this introduction, the paper proceeds through five main sections. The Methodology section describes the narrative review approach, literature search strategy, and source selection criteria. The Framework Development section documents how the three-pillar framework emerged from the literature and its theoretical grounding. The Literature Review synthesizes evidence across the three pillar domains: natural language to SQL generation, analytics maturity, and workforce dynamics. The Discussion examines implications, limitations, and future research directions. Finally, the Conclusion summarizes the three-pillar analytical framework as this paper's primary contribution to healthcare informatics literature.
@@ -356,6 +374,14 @@ The HIMSS Analytics Maturity Assessment Model [@himss2024] provides organization
 ## Framework Scope and Limitations
 
 The framework is descriptive rather than prescriptive; it provides an analytical lens for understanding healthcare analytics challenges but does not mandate specific solutions. Future research should empirically validate pillar interdependencies through longitudinal organizational studies and develop quantitative metrics for framework dimensions.
+
+### Operational Metrics for Framework Assessment
+
+To operationalize the framework, organizations should establish baseline metrics beyond the historical data cited in the literature. We propose three diagnostic metrics to quantify current risks:
+
+1.  **Analyst Turnover Rate (ATR)**: Calculated as `(Departures / Average Headcount) * 100` over the trailing 24 months. Rates exceeding 15% indicate critical institutional memory leakage that threatens analytics continuity.
+2.  **Knowledge Artifact Ratio (KAR)**: Calculated as `(Verified Documentation Pages / Total SQL Queries in Production)`. Ratios below 0.1 indicate a dangerous dependency on "tribal knowledge" rather than encoded expertise.
+3.  **Onboarding Velocity**: The average number of days for a new analyst to deploy their first error-free production query. Durations exceeding 45 days suggest structural complexity barriers that exacerbate turnover impact.
 
 # Literature Review: Evidence Across the Three Pillars
 
@@ -662,12 +688,20 @@ The three-pillar framework enables organizational self-assessment to determine r
 The framework reveals why convergence matters: organizations facing Higher Risk across multiple pillars experience compounding effects where challenges in one domain exacerbate challenges in others. For example, technical barriers that prevent knowledge capture interact with workforce turnover to accelerate institutional memory loss, which in turn degrades analytics maturity. This multi-pillar perspective explains why single-domain interventions often produce limited results.
 
 ### Illustrative Application: Implementation Patterns
+
 When organizations choose to apply the framework and evaluate barrier-reducing technologies for potential adoption, implementation evidence suggests several factors influence outcomes:
 
 - **Governance Framework Development**: New policies and procedures for democratized analytics
 - **Change Management**: Training and support programs to ensure user adoption
 - **Phased Deployment**: Gradual rollout beginning with analytics-savvy early adopters
 - **Human Oversight**: Current NL2SQL limitations require maintaining human review of AI-generated outputs [@ziletti2024]
+
+#### Strategic Pilot Selection
+
+To mitigate vendor bias and safety risks, the framework suggests a specific pilot selection strategy. Organizations should prioritize **Billing and Revenue Cycle Management** for initial pilots rather than clinical domains. This approach offers three advantages:
+1.  **Lower Safety Risk**: Errors result in financial adjustments rather than potential patient harm.
+2.  **High Standardization**: Billing data relies on standardized ontologies (CPT/ICD codes) that are more structured than free-text clinical notes.
+3.  **Clear ROI**: Impacts on days-in-AR or denial rates provide measurable value to leadership, establishing a feedback loop where denials serve as ground-truth labels for model improvement.
 
 # Conclusion
 
