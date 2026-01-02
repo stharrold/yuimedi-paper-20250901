@@ -7,7 +7,7 @@ This document tracks citations that have been manually verified against their so
 | Citation Key | Author (Year) | Source PDF | Verification Date | Verified Claims/Notes | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `ang2004` | Ang & Slaughter (2004) | `2004_Ang_ACM-SIGMIS_IT-Professional-Turnover.pdf` | 2026-01-01 | **Verified:** 2.9 years new-hire tenure expectancy. **Clarified:** Implied ~34% turnover rate refers to new hires (vs 15.5% general). **Context:** IT Users (Support) category. | ✅ Confirmed |
-| `wang2018` | Wang et al. (2018) | `2018_Wang_Tech-Forecasting_Big-Data-Analytics-Healthcare.pdf` | 2026-01-01 | PDF added to repo. Pending content verification. | ⚠️ Pending |
+| `wang2018` | Wang et al. (2018) | `2018_Wang_Tech-Forecasting_Big-Data-Analytics-Healthcare.pdf` | 2026-01-01 | **Verified:** Confirms adoption lag (42% adoption, 16% substantial experience). **Verified:** Confirms architectural complexity and "struggle to gain benefits." **Status:** Citations in `paper.md` are accurate. | ✅ Confirmed |
 | `decanio2016` | DeCanio (2016) | `2016_DeCanio_J-Macroeconomics_Robots-and-Humans.pdf` | 2026-01-01 | PDF added to repo. Pending content verification. | ⚠️ Pending |
 
 ## Verification Protocol
