@@ -22,7 +22,7 @@ This document tracks citations that have been manually verified against their so
 
 ## Next Citations to Verify
 
-*   `himss2024` - HIMSS Analytics (2024)
+| `himss2024` | HIMSS Analytics (2024) | `2024_HIMSS_Analytics-Maturity-Adoption-Model.pdf` | 2026-01-01 | **Verified:** Web search confirms exact global counts: 26 at Stage 6, 13 at Stage 7. **Verified:** Solution sheet in repo confirms 0-7 structure and Oct 2024 AMAM24 update. | ✅ Confirmed |
 *   `ziletti2024` - Ziletti & D'Ambrosi (2024)
 *   `berkshire2024` - Berkshire NHS (2024)
 *   `american2023` - AHIMA & NORC (2023)
