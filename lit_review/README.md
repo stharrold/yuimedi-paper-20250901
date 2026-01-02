@@ -2,6 +2,26 @@
 
 A Python-based systematic literature review tool implementing Clean Architecture for rigorous academic claim verification in healthcare research.
 
+## When to Use
+
+| Approach | Use Case | DOI Quality |
+|----------|----------|-------------|
+| `lit_review/` | Systematic reviews (PRISMA-compliant) | API-verified from authoritative sources |
+| Manual curation | Narrative reviews | Requires manual verification |
+
+**This paper** (`paper.md`) used manual curation for its narrative review. The 108 references in `references.bib` were gathered through traditional literature searching, not through this tool.
+
+**Use `lit_review/` when:**
+- Conducting a systematic review with PRISMA methodology
+- Need reproducible, automated multi-database searches
+- Want API-verified DOIs (eliminates manual entry errors)
+- Require structured workflow stages (PLANNING → SEARCH → SCREENING → ANALYSIS → SYNTHESIS)
+
+**Use manual curation when:**
+- Writing narrative reviews or opinion pieces
+- Sources are primarily grey literature or non-indexed
+- Need flexibility outside systematic review methodology
+
 ## Features
 
 - **Multi-Database Search**: Parallel searches across Crossref, PubMed, ArXiv, and Semantic Scholar

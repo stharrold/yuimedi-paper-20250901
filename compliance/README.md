@@ -151,7 +151,7 @@ Presentations should:
 ## 📞 Compliance Contacts
 
 ### Internal Questions
-- Review CLAUDE.md for project standards
+- Review GEMINI.md for project standards
 - Check DECISION_LOG.json for compliance decisions
 - Consult with institutional privacy officer if needed
 

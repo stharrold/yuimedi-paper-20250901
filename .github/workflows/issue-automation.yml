@@ -2,9 +2,9 @@ name: Issue & PR Automation
 
 on:
   issues:
-    types: [opened, edited, labeled, unlabeled]
+    types: [opened, edited]
   pull_request:
-    types: [opened, edited, ready_for_review, labeled, unlabeled]
+    types: [opened, edited, ready_for_review]
 
 jobs:
   label-by-type:
@@ -81,22 +81,29 @@ jobs:
               });
             }
 
-            // Label by paper
-            if (body.includes('paper 1') || body.includes('literature review')) {
+            // Label by paper - check for explicit "paper N" mentions
+            // Use word boundaries to avoid false matches like "paper 10" matching "paper 1"
+            const paper1Match = /\bpaper\s*1\b/i.test(body) || /\bpaper1\b/i.test(body);
+            const paper2Match = /\bpaper\s*2\b/i.test(body) || /\bpaper2\b/i.test(body);
+            const paper3Match = /\bpaper\s*3\b/i.test(body) || /\bpaper3\b/i.test(body);
+
+            if (paper1Match) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['paper-1']
               });
-            } else if (body.includes('paper 2') || body.includes('proof of concept')) {
+            }
+            if (paper2Match) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
                 labels: ['paper-2']
               });
-            } else if (body.includes('paper 3') || body.includes('schema mapping')) {
+            }
+            if (paper3Match) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
