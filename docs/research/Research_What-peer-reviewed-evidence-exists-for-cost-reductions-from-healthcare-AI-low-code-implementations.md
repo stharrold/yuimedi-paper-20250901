@@ -44,7 +44,7 @@ Substantial peer-reviewed evidence exists documenting cost reductions from healt
 
 **Authors:** W Jiao, X Zhang, F D'Souza
 **Publication:** IEEE Access, 2023
-**Citations:** -
+**Citations:** —
 
 **Key Points:**
 - Demonstrates that leveraging AI in human decision-making has the potential to improve multilevel health outcomes, though it notes a shortage of prospective and long-term economic studies
@@ -103,7 +103,7 @@ Substantial peer-reviewed evidence exists documenting cost reductions from healt
 
 **Authors:** S Mohd, R Kaur, T Singh
 **Publication:** Emerald, 2025
-**Citations:** -
+**Citations:** —
 
 **Key Points:**
 - Examines the economic impact of AI in healthcare through a systematic review of studies published between 2019 and 2024, focusing on cost-effectiveness and cost savings
@@ -116,7 +116,7 @@ Substantial peer-reviewed evidence exists documenting cost reductions from healt
 
 **Authors:** D Madhani, P Gujarati
 **Publication:** International Conference on Artificial Intelligence, 2025 (Springer)
-**Citations:** -
+**Citations:** —
 
 **Key Points:**
 - Explains that AI reduces the expense of drug discovery by evaluating biological data and forecasting compound effectiveness, thereby cutting down on time and cost in developing new therapies

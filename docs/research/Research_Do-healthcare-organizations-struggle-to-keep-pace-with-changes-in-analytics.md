@@ -32,7 +32,7 @@ Despite the promise of AI and predictive analytics, persistent obstacles to wide
 
 ## Conclusion
 
-The evidence strongly indicates healthcare organizations face multi-faceted challenges (including skills gaps, cultural resistance, infrastructure limitations, security concerns, and organizational inertia) that collectively impede their ability to keep pace with advances in analytics as a discipline. Addressing these challenges requires coordinated investment in workforce development, cultural transformation, and technological infrastructure.
+The evidence strongly indicates healthcare organizations face multi-faceted challenges—including skills gaps, cultural resistance, infrastructure limitations, security concerns, and organizational inertia—that collectively impede their ability to keep pace with advances in analytics as a discipline. Addressing these challenges requires coordinated investment in workforce development, cultural transformation, and technological infrastructure.
 
 ---
 
