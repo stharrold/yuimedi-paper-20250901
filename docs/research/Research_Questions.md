@@ -40,11 +40,11 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 
 | Question | Scope | Issue | Research File |
 |----------|-------|-------|---------------|
-| What NL2SQL systems have been applied to healthcare databases? | Paper1,Paper2 | — | [`Research_What-NL2SQL-systems-have-been-applied-to-healthcare-databases.md`](Research_What-NL2SQL-systems-have-been-applied-to-healthcare-databases.md) |
-| What accuracy rates have been achieved for NL2SQL on clinical data? | Paper1,Paper2 | — | [`Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md`](Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md) |
-| What NL2SQL datasets exist for healthcare? | Paper2 | — | [`Research_What-NL2SQL-datasets-exist-for-healthcare.md`](Research_What-NL2SQL-datasets-exist-for-healthcare.md) |
+| What NL2SQL systems have been applied to healthcare databases? | Paper1,Paper2 | - | [`Research_What-NL2SQL-systems-have-been-applied-to-healthcare-databases.md`](Research_What-NL2SQL-systems-have-been-applied-to-healthcare-databases.md) |
+| What accuracy rates have been achieved for NL2SQL on clinical data? | Paper1,Paper2 | - | [`Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md`](Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md) |
+| What NL2SQL datasets exist for healthcare? | Paper2 | - | [`Research_What-NL2SQL-datasets-exist-for-healthcare.md`](Research_What-NL2SQL-datasets-exist-for-healthcare.md) |
 | What is the state of the art in semantic table/column matching for NL2SQL? | Paper2 | [#368](https://github.com/stharrold/yuimedi-paper-20250901/issues/368) | [`Research_semantic-table-column-matching-nl2sql.md`](Research_semantic-table-column-matching-nl2sql.md) |
-| What healthcare benchmarks exist for latest foundation models (GPT-5, Claude Opus 4.5)? | Paper1 | — | [`Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-GPT5-Claude-Opus-4.5.md`](Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-GPT5-Claude-Opus-4.5.md) |
+| What healthcare benchmarks exist for latest foundation models (GPT-5, Claude Opus 4.5)? | Paper1 | - | [`Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-GPT5-Claude-Opus-4.5.md`](Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-GPT5-Claude-Opus-4.5.md) |
 
 ### Schema Discovery
 
@@ -58,21 +58,21 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 
 | Question | Scope | Issue | Research File |
 |----------|-------|-------|---------------|
-| What is the knowledge portal paradigm and how has it been implemented? | Paper1,Paper2 | — | [`Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md`](Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md) |
-| What core components define an effective institutional knowledge portal? | Paper2 | — | [`Research_What-core-components-define-an-effective-institutional-knowledge-portal.md`](Research_What-core-components-define-an-effective-institutional-knowledge-portal.md) |
-| What is the average tenure for IT staff at healthcare provider institutions? | Paper1 | — | [`Research_What-is-the-average-tenure-for-IT-staff-at-healthcare-provider-institutions.md`](Research_What-is-the-average-tenure-for-IT-staff-at-healthcare-provider-institutions.md) |
-| What is the cost of turnover in terms of annual salary? | Paper1 | — | [`Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md`](Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md) |
-| What is the average time to train a healthcare IT employee? | Paper1 | — | [`Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md`](Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md) |
+| What is the knowledge portal paradigm and how has it been implemented? | Paper1,Paper2 | - | [`Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md`](Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md) |
+| What core components define an effective institutional knowledge portal? | Paper2 | - | [`Research_What-core-components-define-an-effective-institutional-knowledge-portal.md`](Research_What-core-components-define-an-effective-institutional-knowledge-portal.md) |
+| What is the average tenure for IT staff at healthcare provider institutions? | Paper1 | - | [`Research_What-is-the-average-tenure-for-IT-staff-at-healthcare-provider-institutions.md`](Research_What-is-the-average-tenure-for-IT-staff-at-healthcare-provider-institutions.md) |
+| What is the cost of turnover in terms of annual salary? | Paper1 | - | [`Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md`](Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md) |
+| What is the average time to train a healthcare IT employee? | Paper1 | - | [`Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md`](Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md) |
 | How does Nonaka's SECI model apply to organizational knowledge capture in analytics? | Paper1,Paper2 | [#372](https://github.com/stharrold/yuimedi-paper-20250901/issues/372) | [`Research_How-does-Nonakas-SECI-model-apply-to-organizational knowledge-capture-in-analytics.md`](Research_How-does-Nonakas-SECI-model-apply-to-organizational%20knowledge-capture-in-analytics.md) |
-| What contemporary empirical research measures healthcare IT turnover rates? | Paper1 | — | [`Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md`](Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md) |
+| What contemporary empirical research measures healthcare IT turnover rates? | Paper1 | - | [`Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md`](Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md) |
 
 ### Healthcare Analytics Challenges
 
 | Question | Scope | Issue | Research File |
 |----------|-------|-------|---------------|
-| Do healthcare organizations struggle to keep pace with changes in analytics? | Paper1 | — | [`Research_Do-healthcare-organizations-struggle-to-keep-pace-with-changes-in-analytics.md`](Research_Do-healthcare-organizations-struggle-to-keep-pace-with-changes-in-analytics.md) |
-| Why have large-scale efforts to standardize healthcare analytics failed? | Paper1 | — | [`Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md`](Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md) |
-| What are the financial benefits of low-code and conversational AI platforms? | Paper1 | — | [`Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md`](Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md) |
+| Do healthcare organizations struggle to keep pace with changes in analytics? | Paper1 | - | [`Research_Do-healthcare-organizations-struggle-to-keep-pace-with-changes-in-analytics.md`](Research_Do-healthcare-organizations-struggle-to-keep-pace-with-changes-in-analytics.md) |
+| Why have large-scale efforts to standardize healthcare analytics failed? | Paper1 | - | [`Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md`](Research_Why-have-large-scale-efforts-to-standardize-healthcare-analytics-failed.md) |
+| What are the financial benefits of low-code and conversational AI platforms? | Paper1 | - | [`Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md`](Research_What-are-the-financial-benefits-of-low-code-and-conversational-AI-platforms.md) |
 | What peer-reviewed evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_low-code-platform-healthcare-cost-roi-evidence.md`](Research_low-code-platform-healthcare-cost-roi-evidence.md) |
 | How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md`](Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md) |
 | What evidence supports applying code modernization principles to natural language interfaces for legacy data access? | Paper1 | [#377](https://github.com/stharrold/yuimedi-paper-20250901/issues/377) | [`Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md`](Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md) |
@@ -97,7 +97,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 
 | Question | Scope | Issue | Research File |
 |----------|-------|-------|---------------|
-| What tools exist for degrading data quality for testing? | Paper2 | — | [`Research_What-tools-exist-for-degrading-data-quality-for-testing.md`](Research_What-tools-exist-for-degrading-data-quality-for-testing.md) |
+| What tools exist for degrading data quality for testing? | Paper2 | - | [`Research_What-tools-exist-for-degrading-data-quality-for-testing.md`](Research_What-tools-exist-for-degrading-data-quality-for-testing.md) |
 
 ---
 

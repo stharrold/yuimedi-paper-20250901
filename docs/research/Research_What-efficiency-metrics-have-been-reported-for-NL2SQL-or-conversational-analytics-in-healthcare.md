@@ -43,7 +43,7 @@ Healthcare-specific NL2SQL efficiency metrics are now **substantially documented
 |--------|------------------|-----------------|
 | Exact Match Accuracy | 80.63% | 44.2% |
 | String-Matching Accuracy | 98.937% | 94.26% |
-| Manual Evaluation Accuracy | 90% | — |
+| Manual Evaluation Accuracy | 90% | - |
 
 **Relevance:** Directly addresses healthcare EMR retrieval via NL-to-SQL. MIMICSQL is healthcare-specific benchmark.
 
@@ -173,7 +173,7 @@ Healthcare-specific NL2SQL efficiency metrics are now **substantially documented
 | Metric | NL (CliniDAL) | SQL | Comparison |
 |--------|---------------|-----|------------|
 | Complex Query Time | Few hours | Many days | Orders of magnitude |
-| User Feedback | — | "Very tedious and time-consuming" | Qualitative |
+| User Feedback | - | "Very tedious and time-consuming" | Qualitative |
 
 **Study Design:** Three computer experts composed research questions using both SQL and CliniDAL.
 

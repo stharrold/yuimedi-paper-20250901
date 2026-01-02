@@ -2,7 +2,7 @@
 
 **Status:** Answered (Gap Analysis)
 **Scope:** Paper1
-**GitHub Issue:** —
+**GitHub Issue:** -
 **Source:** Google Scholar Labs
 **Date:** 2025-12-21
 **Results Found:** 10 relevant papers
