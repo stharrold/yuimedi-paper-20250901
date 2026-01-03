@@ -18,3 +18,10 @@ Documentation and context for `interfaces`.
 ## Related
 
 - **Parent**: [Parent Context](../GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: lit_review
+
+**Child Directories:**
+- **[cli/GEMINI.md](cli/GEMINI.md)** - Cli

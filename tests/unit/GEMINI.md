@@ -27,3 +27,10 @@ uv run pytest tests/unit/ -v
 ## Related
 
 - **Parent**: [tests/GEMINI.md](../GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: tests
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived

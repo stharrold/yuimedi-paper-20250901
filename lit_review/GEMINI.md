@@ -87,3 +87,15 @@ uv run pytest tests/lit_review/ --cov=lit_review --cov-report=term-missing
 
 - **Parent**: [Root GEMINI.md](../GEMINI.md)
 - **Spec**: [specs/academic-literature-review-workflow/spec.md](../specs/academic-literature-review-workflow/spec.md)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived
+- **[application/GEMINI.md](application/GEMINI.md)** - Application
+- **[domain/GEMINI.md](domain/GEMINI.md)** - Domain
+- **[infrastructure/GEMINI.md](infrastructure/GEMINI.md)** - Infrastructure
+- **[interfaces/GEMINI.md](interfaces/GEMINI.md)** - Interfaces

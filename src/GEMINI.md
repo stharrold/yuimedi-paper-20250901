@@ -18,3 +18,14 @@ Documentation and context for `src`.
 ## Related
 
 - **Parent**: [Parent Context](../GEMINI.md)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived
+- **[algorithms/GEMINI.md](algorithms/GEMINI.md)** - Algorithms
+- **[analysis/GEMINI.md](analysis/GEMINI.md)** - Analysis
+- **[mapping/GEMINI.md](mapping/GEMINI.md)** - Mapping

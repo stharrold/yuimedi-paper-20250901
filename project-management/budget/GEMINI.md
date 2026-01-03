@@ -29,3 +29,11 @@ Financial planning and expense tracking for the YuiQuery research project.
 ## Related
 
 - **Parent**: [project-management/GEMINI.md](../GEMINI.md)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: project-management
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived

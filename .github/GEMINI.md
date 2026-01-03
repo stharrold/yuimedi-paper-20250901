@@ -18,3 +18,11 @@ Documentation and context for `.github`.
 ## Related
 
 - **Parent**: [Parent Context](../GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[commands/GEMINI.md](commands/GEMINI.md)** - Commands
+- **[workflows/GEMINI.md](workflows/GEMINI.md)** - Workflows

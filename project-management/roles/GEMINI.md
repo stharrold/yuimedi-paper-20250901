@@ -28,3 +28,10 @@ Team structure, responsibility assignments, and contingency planning for the Yui
 ## Related
 
 - **Parent**: [project-management/GEMINI.md](../GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: project-management
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived

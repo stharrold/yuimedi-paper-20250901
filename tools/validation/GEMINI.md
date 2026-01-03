@@ -51,3 +51,11 @@ tools/validation/test_yaml_structure.sh
 ## Related
 
 - **Parent**: [tools/GEMINI.md](../GEMINI.md)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: tools
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived

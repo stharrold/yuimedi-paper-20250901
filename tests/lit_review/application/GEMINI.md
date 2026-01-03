@@ -18,3 +18,10 @@ Documentation and context for `application`.
 ## Related
 
 - **Parent**: [Parent Context](../GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: lit_review
+
+**Child Directories:**
+- **[usecases/GEMINI.md](usecases/GEMINI.md)** - Usecases
