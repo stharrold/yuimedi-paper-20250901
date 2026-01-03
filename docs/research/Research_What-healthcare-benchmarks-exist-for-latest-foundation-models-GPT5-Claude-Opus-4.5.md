@@ -2,7 +2,7 @@
 
 **Status:** Answered
 **Scope:** Paper1
-**GitHub Issue:** —
+**GitHub Issue:** -
 **Source:** Web Search + Google Scholar Labs
 **Date:** 2025-12-21
 **Results Found:** 10 peer-reviewed papers + industry sources
