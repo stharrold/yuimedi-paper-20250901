@@ -18,3 +18,12 @@ Documentation and context for `compliance`.
 ## Related
 
 - **Parent**: [Parent Context](../GEMINI.md)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived
+- **[irb/GEMINI.md](irb/GEMINI.md)** - Irb

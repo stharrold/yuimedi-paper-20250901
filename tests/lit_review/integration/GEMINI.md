@@ -18,3 +18,7 @@ Documentation and context for `integration`.
 ## Related
 
 - **Parent**: [Parent Context](../GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: lit_review

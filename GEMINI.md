@@ -379,3 +379,23 @@ All Python source files include SPDX headers:
 # SPDX-FileCopyrightText: 2025 Yuimedi, Inc.
 # SPDX-License-Identifier: Apache-2.0
 ```
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived
+- **[compliance/GEMINI.md](compliance/GEMINI.md)** - Compliance
+- **[config/GEMINI.md](config/GEMINI.md)** - Config
+- **[docs/GEMINI.md](docs/GEMINI.md)** - Docs
+- **[figures/GEMINI.md](figures/GEMINI.md)** - Figures
+- **[images/GEMINI.md](images/GEMINI.md)** - Images
+- **[lit_review/GEMINI.md](lit_review/GEMINI.md)** - Lit Review
+- **[project-management/GEMINI.md](project-management/GEMINI.md)** - Project Management
+- **[scripts/GEMINI.md](scripts/GEMINI.md)** - Scripts
+- **[src/GEMINI.md](src/GEMINI.md)** - Src
+- **[standards/GEMINI.md](standards/GEMINI.md)** - Standards
+- **[submission/GEMINI.md](submission/GEMINI.md)** - Submission
+- **[tests/GEMINI.md](tests/GEMINI.md)** - Tests
+- **[tools/GEMINI.md](tools/GEMINI.md)** - Tools

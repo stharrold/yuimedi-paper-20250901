@@ -18,3 +18,10 @@ Documentation and context for `standards`.
 ## Related
 
 - **Parent**: [Parent Context](../GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived

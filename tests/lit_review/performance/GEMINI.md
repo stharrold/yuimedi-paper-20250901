@@ -18,3 +18,7 @@ Documentation and context for `performance`.
 ## Related
 
 - **Parent**: [Parent Context](../GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: lit_review

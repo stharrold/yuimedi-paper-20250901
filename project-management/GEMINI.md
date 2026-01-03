@@ -43,3 +43,14 @@ Detailed project management documentation supporting the YuiQuery Healthcare Ana
 
 - **Parent**: [Root GEMINI.md](../GEMINI.md)
 - **Task tracking**: [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived
+- **[budget/GEMINI.md](budget/GEMINI.md)** - Budget
+- **[risks/GEMINI.md](risks/GEMINI.md)** - Risks
+- **[roles/GEMINI.md](roles/GEMINI.md)** - Roles
