@@ -18,3 +18,12 @@ Documentation and context for `domain`.
 ## Related
 
 - **Parent**: [Parent Context](../GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: lit_review
+
+**Child Directories:**
+- **[entities/GEMINI.md](entities/GEMINI.md)** - Entities
+- **[services/GEMINI.md](services/GEMINI.md)** - Services
+- **[values/GEMINI.md](values/GEMINI.md)** - Values

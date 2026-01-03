@@ -50,3 +50,11 @@ tools/validation/test_cross_references.sh
 
 - **Parent**: [Root GEMINI.md](../GEMINI.md)
 - **Workflow utilities**: [.gemini/skills/workflow-utilities/](../.gemini/skills/workflow-utilities/GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived
+- **[validation/GEMINI.md](validation/GEMINI.md)** - Validation

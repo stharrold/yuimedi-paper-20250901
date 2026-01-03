@@ -29,3 +29,11 @@ Risk assessment, tracking, and mitigation strategies for the YuiQuery research p
 
 - **Parent**: [project-management/GEMINI.md](../GEMINI.md)
 - **Methodology**: [risk-assessment-methodology.md](../risk-assessment-methodology.md)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: project-management
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived

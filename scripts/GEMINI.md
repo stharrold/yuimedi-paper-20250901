@@ -54,3 +54,11 @@ python scripts/sync_github_todos.py
 
 - **Parent**: [Root GEMINI.md](../GEMINI.md)
 - **Sibling**: [README.md](README.md)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived

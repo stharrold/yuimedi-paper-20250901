@@ -84,3 +84,10 @@ podman-compose run --rm dev bash -c "apt-get install -y -qq librsvg2-bin && rsvg
 ## Git Tracking
 
 - **Tracked:** `.mmd`, `.dot`, `.png`, `.jpg`, `.svg`, `.pdf` (sources and outputs)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived

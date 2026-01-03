@@ -43,3 +43,15 @@ docs/
 
 - **Parent**: [Root GEMINI.md](../GEMINI.md)
 - **Sibling**: [README.md](README.md)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived
+- **[guides/GEMINI.md](guides/GEMINI.md)** - Guides
+- **[references/GEMINI.md](references/GEMINI.md)** - References
+- **[reports/GEMINI.md](reports/GEMINI.md)** - Reports
+- **[research/GEMINI.md](research/GEMINI.md)** - Research

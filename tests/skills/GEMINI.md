@@ -64,3 +64,10 @@ Key modules with 80%+ coverage:
 ## Related
 
 - **Parent**: [tests/GEMINI.md](../GEMINI.md)
+
+## Related Documentation
+
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: tests
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived

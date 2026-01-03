@@ -18,3 +18,13 @@ Documentation and context for `config`.
 ## Related
 
 - **Parent**: [Parent Context](../GEMINI.md)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived
+- **[database/GEMINI.md](database/GEMINI.md)** - Database
+- **[queries/GEMINI.md](queries/GEMINI.md)** - Queries
