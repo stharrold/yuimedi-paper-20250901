@@ -80,8 +80,8 @@ tmp/
 data/*
 !data/README.md
 
-# Reference PDFs (keep README, ignore downloaded papers)
-docs/references/*.pdf
+# Reference PDFs (encrypted via git-crypt, see .gitattributes)
+# PDFs are now tracked and encrypted at rest
 !docs/references/README.md
 
 # Journal policy PDFs (downloaded from publisher sites)
@@ -119,3 +119,10 @@ cabal.project.local~
 
 .gemini/
 gha-creds-*.json
+
+# Workflow system
+.claude-state/
+*.duckdb
+*.duckdb.wal
+
+.gemini-state/

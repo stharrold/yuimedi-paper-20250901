@@ -67,7 +67,7 @@ class TestClaudeAnalyzerInit:
 
     def test_init_with_api_key_enables_api(self, temp_cache_dir: Path) -> None:
         """__init__ sets use_api=True when API key provided."""
-        with patch("lit_review.infrastructure.ai.claude_analyzer.Anthropic"):
+        with patch("anthropic.Anthropic"):
             analyzer = ClaudeAnalyzer(api_key="test_key", cache_dir=temp_cache_dir)
             assert analyzer.use_api is True
 

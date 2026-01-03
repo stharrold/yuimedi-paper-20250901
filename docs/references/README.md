@@ -2,6 +2,24 @@
 
 This directory contains reference documents and resources used in the YuiQuery Healthcare Analytics Research project.
 
+## Encryption
+
+PDF files in this directory are encrypted at rest using [git-crypt](https://github.com/AGWA/git-crypt). This protects copyrighted materials while allowing version control.
+
+### Access Requirements
+
+To access encrypted PDFs:
+1. Obtain the symmetric key file (`yuimedi-paper-20250901.git-crypt-key`)
+2. Run: `git-crypt unlock /path/to/yuimedi-paper-20250901.git-crypt-key`
+
+### Key Backup
+
+The key is stored outside this repository. Back it up to a secure location (e.g., OS keyring, password manager).
+
+### For New Contributors
+
+Request the git-crypt key from the repository owner. Without it, PDF files appear as binary blobs.
+
 ## 📁 Contents
 
 ### 20250905_Anthropic_Code-Modernization-Playbook.pdf
@@ -15,7 +33,7 @@ This directory contains reference documents and resources used in the YuiQuery H
 **Relevance to Project**:
 - Best practices for AI-assisted research and documentation
 - Claude Code integration patterns used in this repository
-- Modern development workflows referenced in CLAUDE.md
+- Modern development workflows referenced in GEMINI.md
 
 **Citation**:
 ```bibtex
@@ -31,7 +49,7 @@ This directory contains reference documents and resources used in the YuiQuery H
 ```
 
 **Referenced In**:
-- [`CLAUDE.md`](../../CLAUDE.md) - Development workflow guidance
+- [`GEMINI.md`](../../GEMINI.md) - Development workflow guidance
 - [`README.md`](../../README.md) - Project setup instructions
 - GitHub Issues #126, #137, #151 - Integration tasks
 

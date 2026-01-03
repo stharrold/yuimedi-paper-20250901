@@ -7,7 +7,7 @@ Research whitepaper on natural language to SQL in healthcare - a comprehensive a
 
 ## 📄 Research Documents
 
-**[Main Research Paper](paper.md)** - Comprehensive academic research paper on YuiQuery healthcare analytics with 92 verified citations
+**[Main Research Paper](paper.md)** - Academic research paper on YuiQuery healthcare analytics with 108 verified citations
 
 ## 🚀 Quick Access
 
@@ -38,7 +38,7 @@ This repository contains research documentation for YuiQuery, a conversational A
 .
 ├── paper.md                    # Main research document (comprehensive whitepaper)
 ├── README.md                   # Project overview and quick start guide
-├── CLAUDE.md                   # AI assistant instructions and project context
+├── GEMINI.md                   # AI assistant instructions and project context
 ├── CONTRIBUTING.md             # Contribution guidelines
 ├── LICENSE                     # Apache 2.0 (code) / CC BY 4.0 (research content)
 │
@@ -49,13 +49,11 @@ This repository contains research documentation for YuiQuery, a conversational A
 │   └── compliance/             # Compliance requirements
 ├── project-management.md       # Project management overview
 │
-├── TODO_FOR_AI.json           # Structured task tracking (AI-optimized)
-├── TODO_FOR_HUMAN.md          # Human-readable task list
-├── DECISION_LOG.json          # Project decision history and rationale
+├── TODO.md                    # Master workflow manifest
 │
-├── scripts/                    # Workflow automation and GitHub sync
-│   ├── sync_todos.sh          # Bidirectional TODO ↔ GitHub Issues sync
-│   ├── sync_github_todos.py   # Python sync engine
+├── scripts/                    # Validation and build scripts
+│   ├── validate_references.py # Reference validation + URL checks
+│   ├── build_paper.sh         # PDF/HTML/DOCX generation
 │   └── README.md              # Scripts documentation
 │
 ├── images/                     # Research diagrams and YuiQuery feature screenshots
@@ -190,7 +188,7 @@ This research employs:
 
 | Method | Application | Sources |
 |--------|-------------|---------|
-| Systematic Review | Literature analysis | Academic databases |
+| Narrative Review | Literature analysis | Academic databases |
 | Industry Analysis | Technology assessment | Vendor documentation |
 | Case Studies | Implementation examples | Healthcare organizations |
 | Technical Analysis | Architecture evaluation | Platform specifications |
@@ -199,7 +197,7 @@ This research employs:
 
 **Dual Licensed:**
 - **Research Content** (`*.md` documents): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-- **Code & Scripts** (`scripts/`): [MIT License](LICENSE)
+- **Code & Scripts** (`scripts/`, `lit_review/`): [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
 This licensing approach promotes open access to healthcare research while ensuring proper attribution for academic contributions.
 

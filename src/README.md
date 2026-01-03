@@ -97,7 +97,7 @@ All source code uses:
 - [Main Research Paper](../paper.md) - Academic documentation of methods
 - [Database Configuration](../config/database/README.md) - Data source setup
 - [IRB Determination](../compliance/irb/determination.md) - Research ethics status
-- [CLAUDE.md](../CLAUDE.md) - Development guidelines
+- [GEMINI.md](../GEMINI.md) - Development guidelines
 
 ## 📝 Code Standards
 

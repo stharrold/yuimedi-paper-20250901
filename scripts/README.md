@@ -403,7 +403,7 @@ jq '[.tasks[] | select(.status == "done")] | length' TODO_FOR_AI.json
 - `../TODO_FOR_AI.json` - Generated structured task data
 - `../TODO_FOR_HUMAN.md` - Generated human-readable summary
 - `../DECISION_LOG.json` - Project decision history
-- `../CLAUDE.md` - AI assistant instructions
+- `../GEMINI.md` - AI assistant instructions
 
 ### Dependency Chain
 ```
