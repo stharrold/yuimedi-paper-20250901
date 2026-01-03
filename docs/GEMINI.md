@@ -1,9 +1,16 @@
 ---
 type: claude-context
 directory: docs
-purpose: Documentation artifacts including guides, reports, research notes, and reference materials
+purpose: Documentation artifacts including guides, reports, research notes, and reference
+  materials
 parent: ../GEMINI.md
 sibling_readme: README.md
+children:
+- ARCHIVED/GEMINI.md
+- guides/GEMINI.md
+- references/GEMINI.md
+- reports/GEMINI.md
+- research/GEMINI.md
 ---
 
 # Gemini Context Context: docs

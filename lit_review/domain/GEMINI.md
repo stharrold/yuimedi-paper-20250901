@@ -3,6 +3,10 @@ type: gemini-context
 directory: domain
 purpose: Documentation and context for domain
 parent: ../GEMINI.md
+children:
+- entities/GEMINI.md
+- services/GEMINI.md
+- values/GEMINI.md
 ---
 
 # Gemini Context Context: domain

@@ -3,6 +3,8 @@ type: gemini-context
 directory: reports
 purpose: Documentation and context for reports
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: reports

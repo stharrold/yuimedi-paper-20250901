@@ -3,6 +3,9 @@ type: gemini-context
 directory: application
 purpose: Documentation and context for application
 parent: ../GEMINI.md
+children:
+- ports/GEMINI.md
+- usecases/GEMINI.md
 ---
 
 # Gemini Context Context: application

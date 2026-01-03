@@ -4,7 +4,8 @@ directory: tools/validation
 purpose: Documentation validation test scripts
 parent: ../GEMINI.md
 sibling_readme: null
-children: []
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: tools/validation

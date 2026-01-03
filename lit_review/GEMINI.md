@@ -1,5 +1,12 @@
 ---
 description: Academic Literature Review Workflow Package
+children:
+- ARCHIVED/GEMINI.md
+- application/GEMINI.md
+- domain/GEMINI.md
+- infrastructure/GEMINI.md
+- interfaces/GEMINI.md
+parent: ../GEMINI.md
 ---
 
 # Gemini Context Context: lit_review

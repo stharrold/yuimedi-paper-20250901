@@ -3,6 +3,7 @@ type: claude-context
 directory: ARCHIVED
 purpose: Deprecated files preserved for reference
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: ARCHIVED

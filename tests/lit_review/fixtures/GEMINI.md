@@ -3,6 +3,7 @@ type: gemini-context
 directory: fixtures
 purpose: Documentation and context for fixtures
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: fixtures

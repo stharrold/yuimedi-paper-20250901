@@ -5,20 +5,31 @@ purpose: Research paper on YuiQuery healthcare analytics - documentation-only re
 parent: null
 sibling_readme: README.md
 children:
-  - .gemini/GEMINI.md
-  - docs/GEMINI.md
-  - lit_review/GEMINI.md
-  - scripts/GEMINI.md
-  - tests/GEMINI.md
-  - tools/GEMINI.md
+- .benchmarks/GEMINI.md
+- .gemini/GEMINI.md
+- .github/GEMINI.md
+- ARCHIVED/GEMINI.md
+- compliance/GEMINI.md
+- config/GEMINI.md
+- docs/GEMINI.md
+- figures/GEMINI.md
+- images/GEMINI.md
+- lit_review/GEMINI.md
+- project-management/GEMINI.md
+- scripts/GEMINI.md
+- src/GEMINI.md
+- standards/GEMINI.md
+- submission/GEMINI.md
+- tests/GEMINI.md
+- tools/GEMINI.md
 related_skills:
-  - workflow-orchestrator
-  - git-workflow-manager
-  - agentdb-state-manager
+- workflow-orchestrator
+- git-workflow-manager
+- agentdb-state-manager
 archived:
-  - planning/ → ARCHIVED/20260101T171631Z_planning_*.zip
-  - specs/ → ARCHIVED/20260101T172405Z_specs_*.zip
-  - ppr_review/ → ARCHIVED/20260101T171859Z_ppr_review.zip
+- "planning/ \u2192 ARCHIVED/20260101T171631Z_planning_*.zip"
+- "specs/ \u2192 ARCHIVED/20260101T172405Z_specs_*.zip"
+- "ppr_review/ \u2192 ARCHIVED/20260101T171859Z_ppr_review.zip"
 ---
 
 # GEMINI.md

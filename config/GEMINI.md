@@ -3,6 +3,10 @@ type: gemini-context
 directory: config
 purpose: Documentation and context for config
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
+- database/GEMINI.md
+- queries/GEMINI.md
 ---
 
 # Gemini Context Context: config

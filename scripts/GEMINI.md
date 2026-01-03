@@ -4,7 +4,8 @@ directory: scripts
 purpose: GitHub sync automation scripts using Python stdlib only
 parent: ../GEMINI.md
 sibling_readme: README.md
-children: []
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: scripts

@@ -4,7 +4,8 @@ directory: tests/unit
 purpose: Unit tests for individual components
 parent: ../GEMINI.md
 sibling_readme: null
-children: []
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: tests/unit

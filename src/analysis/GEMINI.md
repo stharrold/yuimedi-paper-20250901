@@ -3,6 +3,7 @@ type: gemini-context
 directory: analysis
 purpose: Documentation and context for analysis
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: analysis

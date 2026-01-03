@@ -3,6 +3,7 @@ type: gemini-context
 directory: adapters
 purpose: Documentation and context for adapters
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: adapters

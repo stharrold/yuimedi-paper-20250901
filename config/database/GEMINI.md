@@ -3,6 +3,7 @@ type: gemini-context
 directory: database
 purpose: Documentation and context for database
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: database
