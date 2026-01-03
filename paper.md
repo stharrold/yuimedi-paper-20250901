@@ -626,7 +626,7 @@ A validated SQL query is often treated as a static artifact, but in healthcare, 
 
 In this approach, Validated Query Pairs are managed not as wiki entries but as software assets within a CI/CD pipeline. When the data warehouse schema is updated (e.g., a quarterly EHR upgrade), the system automatically re-runs the library of stored queries. Queries that fail or return anomalous results are flagged for review. This transforms "Institutional Memory" from a stagnant repository into a living, automated test suite that actively signals when organizational knowledge has drifted from technical reality.
 
-## Implications for Healthcare Organizations
+## Strategic Implications for Healthcare Organizations
 
 The evidence has implications for healthcare leaders considering analytics strategy:
 
