@@ -655,7 +655,8 @@ The three-pillar framework enables organizational self-assessment to determine r
 
 | Indicator | Lower Risk | Moderate Risk | Higher Risk | Evidence |
 |-----------|------------|---------------|-------------|----------|
-| Workforce & Leadership Stability | <15% turnover AND >5yr tenure | 15-30% turnover AND 3-5yr tenure | CIO tenure < 3 years OR First-year turnover > 30% | [@wittkieffer2024; @nsi2025] |
+| First-year Staff Turnover | <15% | 15-30% | >30% | [@nsi2025] |
+| Leadership Stability (CIO) | Tenure > 5 years | Tenure 3-5 years | Tenure < 3 years | [@wittkieffer2024] |
 | Knowledge concentration | Distributed expertise; documented processes | Partial documentation; some cross-training | Critical expertise held by ≤3 individuals | [@benbya2004; @richesson2007] |
 | Time-to-productivity | <6 months with structured onboarding | 6-18 months | >18 months (specialized health informatics roles) | [@ledikwe2013; @mantas2010; @musa2023] |
 | Tacit knowledge capture | Expertise embedded in systems/AI | Partial documentation exists | Person-dependent; undocumented tribal knowledge | [@benbya2004] |
