@@ -80,6 +80,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What quantitative efficiency metrics have been reported for low-code or conversational AI in healthcare analytics? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_What-quantitative-efficiency-metrics-have-been-reported-for-low-code-or-conversational-AI-in-healthcare-analytics.md`](Research_What-quantitative-efficiency-metrics-have-been-reported-for-low-code-or-conversational-AI-in-healthcare-analytics.md) |
 | What efficiency metrics have been reported for NL2SQL or conversational analytics in healthcare? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md`](Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md) |
 | Do code-based Semantic Layers suffer from 'schema rot' in healthcare environments? | Paper1,Paper2 | - | [`Research_Do-code-based-Semantic-Layers-suffer-from-schema-rot-in-healthcare.md`](Research_Do-code-based-Semantic-Layers-suffer-from-schema-rot-in-healthcare.md) |
+| Does the rigidity of centralized semantic models drive analysts toward 'Shadow IT' (extracting raw data to Excel), thereby defeating the governance model? | Paper1 | - | [`Research_Centralized-Semantic-Models-vs-Shadow-IT.md`](Research_Centralized-Semantic-Models-vs-Shadow-IT.md) |
 
 ### Knowledge Transfer and Tacit Knowledge
 
