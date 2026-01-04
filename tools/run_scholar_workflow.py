@@ -18,6 +18,7 @@ Usage:
 
 import asyncio
 import datetime
+import os
 import re
 import sys
 from pathlib import Path
@@ -27,7 +28,12 @@ from playwright.async_api import async_playwright
 # Configuration
 CHROME_DEBUG_URL = "http://localhost:9222"
 DOCS_DIR = Path("docs/research")
-REFS_DIR = Path("../library/docs")
+
+# Allow overriding library path via env var, default to sibling directory relative to repo root
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_LIB_PATH = REPO_ROOT.parent / "library" / "docs"
+REFS_DIR = Path(os.getenv("EXTERNAL_LIBRARY_PATH", DEFAULT_LIB_PATH))
+
 TRACKER_FILE = DOCS_DIR / "Research_Questions.md"
 
 
