@@ -126,3 +126,4 @@ gha-creds-*.json
 *.duckdb.wal
 
 .gemini-state/
+\n# Local secrets\nsecrets.toml
