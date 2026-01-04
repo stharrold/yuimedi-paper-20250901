@@ -1,6 +1,6 @@
 # Cover Letter for JMIR Medical Informatics Submission
 
-**Date:** December 2025
+**Date:** January 2026
 
 **To:** Editor-in-Chief, JMIR Medical Informatics
 
@@ -14,7 +14,7 @@ I am pleased to submit the manuscript titled **"Healthcare Analytics Challenges:
 
 ## Background and Significance
 
-Healthcare organizations face three interconnected challenges that create a compounding cycle threatening data-driven transformation: low analytics maturity (only 39 organizations globally have achieved HIMSS AMAM Stage 6-7), high workforce turnover (34% annually for healthcare IT staff), and technical barriers in natural language to SQL generation. This manuscript addresses a critical gap in the literature by synthesizing evidence across these previously disconnected research domains.
+Healthcare organizations face three interconnected challenges that create a compounding cycle threatening data-driven transformation: low analytics maturity (only 39 organizations globally have achieved HIMSS AMAM Stage 6-7), systemic workforce instability, and technical barriers in natural language to SQL generation. This review identifies a critical "blind spot" in the literature regarding longitudinal tenure data for healthcare informatics professionals, suggesting that the lack of modern metrics obscures the true severity of institutional memory decay.
 
 ## Methodology
 
@@ -22,7 +22,7 @@ This narrative review synthesizes peer-reviewed studies and industry reports fro
 
 ## Principal Findings
 
-The review contributes: (1) a three-pillar analytical framework revealing how low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery; (2) consolidated evidence synthesis across all three domains, providing healthcare organizations with a comprehensive resource; and (3) an illustrative application describing the validated query cycle as one example of how the framework might inform technology design for institutional memory preservation.
+The review contributes: (1) an original three-pillar analytical framework revealing how low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery; (2) a resolution to the "validator paradox" by reframing validation as informatics "standard work" and an "organizational knowledge ratchet"; (3) a comparative analysis of knowledge preservation strategies contrasting conversational AI against code-based semantic layers and passive documentation; and (4) the positioning of NL2SQL as a "Governance Forcing Function" that compels the codification of tacit business rules.
 
 ## Conflicts of Interest
 

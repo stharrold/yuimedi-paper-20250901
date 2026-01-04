@@ -321,7 +321,7 @@ podman-compose run --rm dev dot -Tpng figures/<name>.mmd.dot -o figures/<name>.m
 - `<name>.mmd.dot.svg` - SVG derived from .dot
 
 **Excluded via .gitignore:**
-- `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
+- `../library/docs/*.pdf` - Downloaded reference PDFs (copyright, size)
 - `.gemini-state/*.duckdb` - Local database files
 
 ### Archiving
