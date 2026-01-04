@@ -72,7 +72,6 @@ async def search_scholar_labs(query):
             await page.wait_for_timeout(5000)  # Initial wait
 
             # Polling for completion (simple version)
-            # In a full version, we'd watch for specific DOM changes
             max_retries = 5
             for i in range(max_retries):
                 text = await page.locator("body").inner_text()
@@ -81,15 +80,51 @@ async def search_scholar_labs(query):
                 print(f"  ... processing ({i + 1}/{max_retries})")
                 await page.wait_for_timeout(3000)
 
-            # Dump Results
+            # Dump AI Overview Text
             content = await page.locator("body").inner_text()
 
             print("\n" + "=" * 60)
-            print("SCHOLAR LABS RESULTS")
+            print("SCHOLAR LABS RESULTS (AI Overview)")
             print("=" * 60)
-            # Limit output for CLI readability, user can pipe to file
             print(content[:5000])
             print("\n" + "=" * 60)
+
+            # Extract Sources with URLs
+            print("EXTRACTED SOURCES")
+            print("=" * 60)
+
+            # Standard Scholar results usually have class 'gs_r' or 'gs_ri'
+            # Title link is 'h3.gs_rt a'
+            results = page.locator(".gs_r")
+            count = await results.count()
+
+            if count == 0:
+                print(
+                    "No standard result elements (.gs_r) found. Checking for Labs-specific list..."
+                )
+                # Fallback or specific labs selectors could go here
+
+            for i in range(count):
+                result = results.nth(i)
+                try:
+                    # Title link
+                    title_link = result.locator("h3.gs_rt a")
+                    if await title_link.count() > 0:
+                        title = await title_link.inner_text()
+                        url = await title_link.get_attribute("href")
+                        print(f"[{i + 1}] {title}")
+                        print(f"    URL: {url}")
+
+                        # Author/Snippet
+                        authors_div = result.locator(".gs_a")
+                        if await authors_div.count() > 0:
+                            authors = await authors_div.inner_text()
+                            print(f"    Info: {authors}")
+                        print("-" * 40)
+                except Exception as e:
+                    print(f"Error parsing result {i}: {e}")
+
+            print("=" * 60)
 
         except Exception as e:
             print(f"Interaction Error: {e}")

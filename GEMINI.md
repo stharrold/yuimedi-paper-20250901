@@ -374,6 +374,7 @@ All research connects to: (1) analytics maturity, (2) workforce turnover, (3) te
 - **Status values:** Answered, Partial, Unanswered, → Gap (searched but not found)
 - **Merged column:** Shows citation range (e.g., `[@wu2024]-[@ren2024]`) when findings incorporated into paper.md; `-` means not yet merged
 - Use `gh issue list --label "research"` to see all research-related issues
+- **Scholar Labs Workflow:** See `docs/guides/scholar-labs-workflow.md` for the user-attended automation process.
 
 **Preprint strategy:**
 - arXiv (primary): cs.CL, cross-list cs.DB, cs.HC, cs.CY

@@ -18,7 +18,7 @@ New Question
     ↓
 Add to "Unanswered Questions" below
     ↓
-Literature Search
+Literature Search (see [Scholar Labs Workflow](../guides/scholar-labs-workflow.md))
     ↓
 ┌──────────────────┴──────────────────┐
 ↓                                     ↓
@@ -78,6 +78,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What evidence supports applying code modernization principles to natural language interfaces for legacy data access? | Paper1 | [#377](https://github.com/stharrold/yuimedi-paper-20250901/issues/377) | [`Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md`](Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md) |
 | What quantitative efficiency metrics have been reported for low-code or conversational AI in healthcare analytics? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_What-quantitative-efficiency-metrics-have-been-reported-for-low-code-or-conversational-AI-in-healthcare-analytics.md`](Research_What-quantitative-efficiency-metrics-have-been-reported-for-low-code-or-conversational-AI-in-healthcare-analytics.md) |
 | What efficiency metrics have been reported for NL2SQL or conversational analytics in healthcare? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md`](Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md) |
+| Do code-based Semantic Layers suffer from 'schema rot' in healthcare environments? | Paper1,Paper2 | - | [`Research_Do-code-based-Semantic-Layers-suffer-from-schema-rot-in-healthcare.md`](Research_Do-code-based-Semantic-Layers-suffer-from-schema-rot-in-healthcare.md) |
 
 ### Knowledge Transfer and Tacit Knowledge
 
