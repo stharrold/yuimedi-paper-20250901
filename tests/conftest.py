@@ -3,9 +3,20 @@
 """Pytest configuration and shared fixtures."""
 
 import os
+import sys
 from pathlib import Path
 
 import pytest
+
+# Add skills script directories to sys.path for test collection
+_repo_root = Path(__file__).parent.parent
+_skills_paths = [
+    _repo_root / ".gemini" / "skills" / "workflow-utilities" / "scripts",
+    _repo_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts",
+]
+for _p in _skills_paths:
+    if _p.exists() and str(_p) not in sys.path:
+        sys.path.insert(0, str(_p))
 
 
 @pytest.fixture
