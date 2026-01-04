@@ -20,8 +20,6 @@ services:
     image: yuimedi-paper:latest
     container_name: yuimedi-paper-dev
     working_dir: /app
-    environment:
-      - PYTHONPATH=/app:/app/.gemini/skills/workflow-utilities/scripts:/app/.gemini/skills/git-workflow-manager/scripts
     volumes:
       - .:/app:Z
       - venv_cache:/app/.venv  # Use named volume for container venv (avoids macOS/Linux binary mismatch)
