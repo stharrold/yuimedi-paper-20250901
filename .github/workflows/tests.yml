@@ -20,6 +20,9 @@ jobs:
       - name: Build container
         run: podman-compose build
 
+      - name: Verify skills directory
+        run: podman-compose run --rm dev ls -la .gemini/skills/workflow-utilities/scripts
+
       - name: Run pytest
         run: podman-compose run --rm -e PYTHONPATH="/app:/app/.gemini/skills/workflow-utilities/scripts:/app/.gemini/skills/git-workflow-manager/scripts" dev uv run pytest
 
