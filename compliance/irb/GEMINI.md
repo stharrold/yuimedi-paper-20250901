@@ -3,6 +3,7 @@ type: gemini-context
 directory: irb
 purpose: Documentation and context for irb
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: irb

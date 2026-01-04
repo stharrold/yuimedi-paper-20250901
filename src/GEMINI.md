@@ -3,6 +3,11 @@ type: gemini-context
 directory: src
 purpose: Documentation and context for src
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
+- algorithms/GEMINI.md
+- analysis/GEMINI.md
+- mapping/GEMINI.md
 ---
 
 # Gemini Context Context: src

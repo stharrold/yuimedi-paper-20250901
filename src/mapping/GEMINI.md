@@ -3,6 +3,7 @@ type: gemini-context
 directory: mapping
 purpose: Documentation and context for mapping
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: mapping

@@ -40,7 +40,7 @@ The main research paper is at repository root:
 
 ## Quick Links
 
-- [Guides](guides/README.md) - How-to documentation
+- [Guides](guides/README.md) - How-to documentation (incl. [Scholar Labs Workflow](guides/scholar-labs-workflow.md))
 - [Reports](reports/README.md) - Analysis reports
 - [Research](research/README.md) - Research findings
 - [References](references/README.md) - Source PDFs

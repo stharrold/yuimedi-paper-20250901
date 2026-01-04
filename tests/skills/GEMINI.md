@@ -4,7 +4,8 @@ directory: tests/skills
 purpose: Tests for .gemini/skills/ functionality
 parent: ../GEMINI.md
 sibling_readme: null
-children: []
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: tests/skills

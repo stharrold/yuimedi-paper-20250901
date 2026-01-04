@@ -16,10 +16,11 @@ Requirements:
 
 Usage:
   uv run python tools/scholar_labs_search.py "Your research question here"
+  uv run python tools/scholar_labs_search.py --follow-up "Your follow-up question here"
 """
 
+import argparse
 import asyncio
-import sys
 
 from playwright.async_api import async_playwright
 
@@ -27,7 +28,7 @@ CHROME_DEBUG_URL = "http://localhost:9222"
 LABS_URL = "https://scholar.google.com/scholar_labs/search?hl=en"
 
 
-async def search_scholar_labs(query):
+async def search_scholar_labs(query, follow_up=False):
     async with async_playwright() as p:
         try:
             # Connect to existing browser
@@ -39,11 +40,11 @@ async def search_scholar_labs(query):
 
         context = browser.contexts[0]
 
-        # Find or open Labs tab
+        # Find existing Labs tab
         page = None
-        for p in context.pages:
-            if "scholar_labs" in p.url:
-                page = p
+        for p_obj in context.pages:
+            if "scholar_labs" in p_obj.url:
+                page = p_obj
                 break
 
         if not page:
@@ -51,7 +52,11 @@ async def search_scholar_labs(query):
             page = await context.new_page()
             await page.goto(LABS_URL)
         else:
-            print("Using existing Scholar Labs tab.")
+            if not follow_up:
+                print("New question: Resetting session...")
+                await page.goto(LABS_URL)
+            else:
+                print("Follow-up question: Using existing session context.")
             await page.bring_to_front()
 
         # Input Query
@@ -67,12 +72,9 @@ async def search_scholar_labs(query):
             print("Query submitted. Waiting for AI analysis...")
 
             # Wait for results
-            # The interface shows "Looking for results..." then updates.
-            # We wait for the result container or a stable state.
             await page.wait_for_timeout(5000)  # Initial wait
 
             # Polling for completion (simple version)
-            # In a full version, we'd watch for specific DOM changes
             max_retries = 5
             for i in range(max_retries):
                 text = await page.locator("body").inner_text()
@@ -81,24 +83,63 @@ async def search_scholar_labs(query):
                 print(f"  ... processing ({i + 1}/{max_retries})")
                 await page.wait_for_timeout(3000)
 
-            # Dump Results
+            # Dump AI Overview Text
             content = await page.locator("body").inner_text()
 
             print("\n" + "=" * 60)
-            print("SCHOLAR LABS RESULTS")
+            print("SCHOLAR LABS RESULTS (AI Overview)")
             print("=" * 60)
-            # Limit output for CLI readability, user can pipe to file
             print(content[:5000])
             print("\n" + "=" * 60)
+
+            # Extract Sources with URLs
+            print("EXTRACTED SOURCES")
+            print("=" * 60)
+
+            results = page.locator(".gs_r")
+            count = await results.count()
+
+            for i in range(count):
+                result = results.nth(i)
+                try:
+                    # Title link
+                    title_link = result.locator("h3.gs_rt a").first
+                    if await title_link.count() > 0:
+                        title = await title_link.inner_text()
+                        url = await title_link.get_attribute("href")
+                        print(f"[{i + 1}] {title}")
+                        print(f"    URL: {url}")
+
+                        # Author/Snippet
+                        authors_div = result.locator(".gs_a").first
+                        if await authors_div.count() > 0:
+                            authors = await authors_div.inner_text()
+                            print(f"    Info: {authors}")
+
+                        # PDF URL
+                        pdf_link = result.locator(".gs_or_ggsm a").first
+                        if await pdf_link.count() > 0:
+                            pdf_url = await pdf_link.get_attribute("href")
+                            print(f"    PDF: {pdf_url}")
+
+                        print("-" * 40)
+                except Exception as e:
+                    print(f"Error parsing result {i}: {e}")
+
+            print("=" * 60)
 
         except Exception as e:
             print(f"Interaction Error: {e}")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python scholar_labs_search.py <query>")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description="Scholar Labs Search Tool")
+    parser.add_argument("query", help="The research question to search for")
+    parser.add_argument(
+        "--follow-up",
+        action="store_true",
+        help="Treat as a follow-up to the existing session",
+    )
+    args = parser.parse_args()
 
-    query = sys.argv[1]
-    asyncio.run(search_scholar_labs(query))
+    asyncio.run(search_scholar_labs(args.query, args.follow_up))

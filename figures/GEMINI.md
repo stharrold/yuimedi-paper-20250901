@@ -4,7 +4,8 @@ directory: figures
 purpose: Figure assets for research paper - Mermaid/DOT sources and generated outputs
 parent: ../GEMINI.md
 sibling_readme: null
-children: null
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # GEMINI.md

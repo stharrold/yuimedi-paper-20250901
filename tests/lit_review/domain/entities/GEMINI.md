@@ -3,6 +3,7 @@ type: gemini-context
 directory: entities
 purpose: Documentation and context for entities
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: entities

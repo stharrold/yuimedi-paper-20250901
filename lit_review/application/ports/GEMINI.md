@@ -3,6 +3,7 @@ type: gemini-context
 directory: ports
 purpose: Documentation and context for ports
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: ports

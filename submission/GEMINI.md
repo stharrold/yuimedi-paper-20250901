@@ -3,6 +3,8 @@ type: gemini-context
 directory: submission
 purpose: Documentation and context for submission
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: submission
