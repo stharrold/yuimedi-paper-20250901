@@ -1,0 +1,28 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, develop, contrib/stharrold]
+  pull_request:
+    branches: [main, develop, contrib/stharrold]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install podman-compose
+        run: pip install podman-compose
+
+      - name: Build container
+        run: podman-compose build
+
+      - name: Run pytest
+        run: podman-compose run --rm dev uv run pytest
+
+      - name: Run linting (ruff)
+        continue-on-error: true  # Pre-existing quote style issues (5542 errors)
+        run: podman-compose run --rm dev uv run ruff check .
