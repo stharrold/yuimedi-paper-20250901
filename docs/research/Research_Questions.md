@@ -65,6 +65,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What is the average time to train a healthcare IT employee? | Paper1 | - | [`Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md`](Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md) |
 | How does Nonaka's SECI model apply to organizational knowledge capture in analytics? | Paper1,Paper2 | [#372](https://github.com/stharrold/yuimedi-paper-20250901/issues/372) | [`Research_How-does-Nonakas-SECI-model-apply-to-organizational knowledge-capture-in-analytics.md`](Research_How-does-Nonakas-SECI-model-apply-to-organizational%20knowledge-capture-in-analytics.md) |
 | What contemporary empirical research measures healthcare IT turnover rates? | Paper1 | - | [`Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md`](Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md) |
+| How does the 'passive capture' of a Knowledge Repository compare to the 'active capture' of a conversational interface regarding long-term sustainability? | Paper1 | - | [`Research_passive-vs-active-knowledge-capture-sustainability.md`](Research_passive-vs-active-knowledge-capture-sustainability.md) |
 
 ### Healthcare Analytics Challenges
 
