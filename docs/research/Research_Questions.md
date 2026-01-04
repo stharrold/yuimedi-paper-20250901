@@ -65,6 +65,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What is the average time to train a healthcare IT employee? | Paper1 | - | [`Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md`](Research_What-is-the-average-time-to-train-a-healthcare-IT-employee.md) |
 | How does Nonaka's SECI model apply to organizational knowledge capture in analytics? | Paper1,Paper2 | [#372](https://github.com/stharrold/yuimedi-paper-20250901/issues/372) | [`Research_How-does-Nonakas-SECI-model-apply-to-organizational knowledge-capture-in-analytics.md`](Research_How-does-Nonakas-SECI-model-apply-to-organizational%20knowledge-capture-in-analytics.md) |
 | What contemporary empirical research measures healthcare IT turnover rates? | Paper1 | - | [`Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md`](Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md) |
+| How do organizations use procedural artifacts or 'Standard Work' as a ratchet mechanism to prevent organizational forgetting during periods of high employee turnover? | Paper1 | - | [`Research_procedural-artifacts-as-knowledge-ratchet.md`](Research_procedural-artifacts-as-knowledge-ratchet.md) |
 | How does the 'passive capture' of a Knowledge Repository compare to the 'active capture' of a conversational interface regarding long-term sustainability? | Paper1 | - | [`Research_passive-vs-active-knowledge-capture-sustainability.md`](Research_passive-vs-active-knowledge-capture-sustainability.md) |
 
 ### Healthcare Analytics Challenges
@@ -107,6 +108,20 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 ## Unanswered Questions
 
 Questions needing literature search. Mark with "→ Gap" if searched but not found (also add to paper.md "Gaps in Current Literature").
+
+### Knowledge Management & Organizational Memory
+
+### Operational Logic (Lean/Toyota)
+
+| Question | Scope | Issue | Research File |
+|----------|-------|-------|---------------|
+| In Lean management theory, how does 'Standard Work' facilitate incremental improvement (Kaizen) in environments with non-expert or rotating labor forces? | Paper1 | - | [`Research_lean-standard-work-and-kaizen.md`](Research_lean-standard-work-and-kaizen.md) |
+
+### Human-AI Interaction & Validation
+
+| Question | Scope | Issue | Research File |
+|----------|-------|-------|---------------|
+| What frameworks exist for 'provisional validation' or 'human-in-the-loop' systems where domain knowledge is captured incrementally through iterative feedback cycles? | Paper1 | - | [`Research_frameworks-for-provisional-validation-and-hitl.md`](Research_frameworks-for-provisional-validation-and-hitl.md) |
 
 ### Schema Discovery and Validation
 
