@@ -63,9 +63,6 @@ ENV UV_VERSION=0.5.5
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
-# Set PYTHONPATH to include skills scripts
-ENV PYTHONPATH="/app:/app/.gemini/skills/workflow-utilities/scripts:/app/.gemini/skills/git-workflow-manager/scripts"
-
 # Set working directory
 WORKDIR /app
 
