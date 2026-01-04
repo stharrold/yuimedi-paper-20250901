@@ -43,7 +43,7 @@ def update_gemini_md(dir_path):
 
     # Parse frontmatter using regex to be robust against different newline styles
     # Match: start of file, ---, newline, content, newline, ---, newline or end
-    match = re.match(r"^---\n(.*?)\n---\n(.*)$\n", content, re.DOTALL)
+    match = re.match(r"^---\n(.*?)\n---\n(.*)$", content, re.DOTALL)
 
     if match:
         frontmatter_raw = match.group(1)
