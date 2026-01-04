@@ -9,11 +9,17 @@ based on code changes.
 from __future__ import annotations
 
 import subprocess
+import sys
 from pathlib import Path
 from unittest.mock import patch
 
-import pytest
-from semantic_version import (
+# Add skills script directories to sys.path
+_root = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "workflow-utilities" / "scripts"))
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts"))
+
+import pytest  # noqa: E402
+from semantic_version import (  # noqa: E402
     analyze_changes,
     bump_version,
     calculate_semantic_version,

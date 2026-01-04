@@ -8,10 +8,17 @@ runs quality gates, creates PRs, and tags releases.
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-import pytest
-from release_workflow import (
+# Add skills script directories to sys.path
+_root = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "workflow-utilities" / "scripts"))
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts"))
+
+import pytest  # noqa: E402
+from release_workflow import (  # noqa: E402
     calculate_next_version,
     get_contrib_branch,
     get_current_branch,

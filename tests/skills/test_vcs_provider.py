@@ -9,10 +9,17 @@ from git remote URLs.
 from __future__ import annotations
 
 import subprocess
+import sys
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-import pytest
-from vcs.provider import (
+# Add skills script directories to sys.path
+_root = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "workflow-utilities" / "scripts"))
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts"))
+
+import pytest  # noqa: E402
+from vcs.provider import (  # noqa: E402
     AZURE_DEVOPS_PATTERNS,
     GITHUB_PATTERNS,
     VCSProvider,

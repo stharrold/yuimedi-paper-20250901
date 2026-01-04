@@ -8,10 +8,17 @@ workflow sequence with quality gates, TODO archiving, and agent syncing.
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
-from unittest.mock import MagicMock, patch
 
-from pr_workflow import (
+# Add skills script directories to sys.path
+_root = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "workflow-utilities" / "scripts"))
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts"))
+
+from unittest.mock import MagicMock, patch  # noqa: E402
+
+from pr_workflow import (  # noqa: E402
     get_contrib_branch,
     get_current_branch,
     return_to_editable_branch,
