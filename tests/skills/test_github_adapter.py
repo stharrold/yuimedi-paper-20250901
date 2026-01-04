@@ -20,7 +20,7 @@ sys.path.insert(
     0,
     str(
         Path(__file__).parent.parent.parent
-        / ".claude"
+        / ".gemini"
         / "skills"
         / "workflow-utilities"
         / "scripts"

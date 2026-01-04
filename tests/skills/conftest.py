@@ -261,7 +261,7 @@ def skills_path() -> Path:
 
     Returns the absolute path to .claude/skills/ for importing modules.
     """
-    return Path(__file__).parent.parent.parent / ".claude" / "skills"
+    return Path(__file__).parent.parent.parent / ".gemini" / "skills"
 
 
 @pytest.fixture
