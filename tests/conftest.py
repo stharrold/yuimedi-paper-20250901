@@ -15,8 +15,11 @@ _skills_paths = [
     _repo_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts",
 ]
 for _p in _skills_paths:
+    print(f"DEBUG: Checking path: {_p} (exists: {_p.exists()})")
     if _p.exists() and str(_p) not in sys.path:
+        print(f"DEBUG: Adding to sys.path: {_p}")
         sys.path.insert(0, str(_p))
+        print(f"DEBUG: Contents of {_p}: {os.listdir(_p)}")
 
 
 @pytest.fixture
