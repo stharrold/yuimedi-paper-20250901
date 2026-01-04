@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2025 Yuimedi Corp.
+# SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
 """Tests for check_spdx_headers.py script.
 
@@ -94,7 +94,7 @@ class TestHasSpdxHeader:
         """File with both SPDX headers should pass."""
         py_file = tmp_path / "script.py"
         py_file.write_text(
-            "# SPDX-FileCopyrightText: 2025 Yuimedi Corp.\n"
+            "# SPDX-FileCopyrightText: 2025 stharrold\n"
             "# SPDX-License-Identifier: Apache-2.0\n"
             '"""Module docstring."""\n'
         )
@@ -105,7 +105,7 @@ class TestHasSpdxHeader:
         py_file = tmp_path / "script.py"
         py_file.write_text(
             "#!/usr/bin/env python3\n"
-            "# SPDX-FileCopyrightText: 2025 Yuimedi Corp.\n"
+            "# SPDX-FileCopyrightText: 2025 stharrold\n"
             "# SPDX-License-Identifier: Apache-2.0\n"
         )
         assert spdx_module.has_spdx_header(py_file) is True
@@ -119,7 +119,7 @@ class TestHasSpdxHeader:
     def test_file_missing_license(self, spdx_module, tmp_path: Path) -> None:
         """File missing SPDX license should fail."""
         py_file = tmp_path / "script.py"
-        py_file.write_text("# SPDX-FileCopyrightText: 2025 Yuimedi Corp.\n")
+        py_file.write_text("# SPDX-FileCopyrightText: 2025 stharrold\n")
         assert spdx_module.has_spdx_header(py_file) is False
 
     def test_file_without_headers(self, spdx_module, tmp_path: Path) -> None:
@@ -143,7 +143,7 @@ class TestHasSpdxHeader:
             "# Comment 2\n"
             "# Comment 3\n"
             "# Comment 4\n"
-            "# SPDX-FileCopyrightText: 2025 Yuimedi Corp.\n"
+            "# SPDX-FileCopyrightText: 2025 stharrold\n"
             "# SPDX-License-Identifier: Apache-2.0\n"
         )
         py_file.write_text(content)
@@ -177,7 +177,7 @@ class TestSpdxConstants:
     def test_spdx_copyright_constant(self, spdx_module) -> None:
         """SPDX_COPYRIGHT should have correct value."""
         assert "SPDX-FileCopyrightText:" in spdx_module.SPDX_COPYRIGHT
-        assert "Yuimedi Corp." in spdx_module.SPDX_COPYRIGHT
+        assert "stharrold" in spdx_module.SPDX_COPYRIGHT
 
     def test_spdx_license_constant(self, spdx_module) -> None:
         """SPDX_LICENSE should have correct value."""

@@ -185,20 +185,18 @@ class TestRunQualityGates:
     def test_returns_true_on_success(self):
         """Test that True is returned when quality gates pass."""
         with patch("release_workflow.Path.exists", return_value=True):
-            with patch("release_workflow.get_command_prefix", return_value=[]):
-                with patch("subprocess.run") as mock_run:
-                    mock_run.return_value = MagicMock(returncode=0)
-                    result = run_quality_gates()
-                    assert result is True
+            with patch("subprocess.run") as mock_run:
+                mock_run.return_value = MagicMock(returncode=0)
+                result = run_quality_gates()
+                assert result is True
 
     def test_returns_false_on_failure(self):
         """Test that False is returned when quality gates fail."""
         with patch("release_workflow.Path.exists", return_value=True):
-            with patch("release_workflow.get_command_prefix", return_value=[]):
-                with patch("subprocess.run") as mock_run:
-                    mock_run.return_value = MagicMock(returncode=1)
-                    result = run_quality_gates()
-                    assert result is False
+            with patch("subprocess.run") as mock_run:
+                mock_run.return_value = MagicMock(returncode=1)
+                result = run_quality_gates()
+                assert result is False
 
     def test_returns_true_when_script_not_found(self):
         """Test that True is returned when quality gates script doesn't exist."""

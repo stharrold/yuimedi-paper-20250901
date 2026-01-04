@@ -245,7 +245,7 @@ class TestPubMedAdapter:
             papers = adapter.search("test")
 
             assert len(papers) == 1
-            assert papers[0].doi.value == "PMID:87654321"
+            assert papers[0].doi.value == "10.9999/pubmed.87654321"
 
     @patch("lit_review.infrastructure.adapters.pubmed_adapter.Entrez.esearch")
     def test_search_handles_empty_results(self, mock_esearch: MagicMock) -> None:
@@ -383,7 +383,7 @@ class TestPubMedAdapterParsing:
         assert medline_citation is not None
         doi = adapter._extract_doi(article, medline_citation)
 
-        assert doi == "PMID:12345678"
+        assert doi == "10.9999/pubmed.12345678"
 
     def test_parse_authors_handles_missing_elements(self) -> None:
         """_parse_authors handles missing name elements."""
