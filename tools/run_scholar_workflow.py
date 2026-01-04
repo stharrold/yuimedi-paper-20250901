@@ -27,7 +27,7 @@ from playwright.async_api import async_playwright
 # Configuration
 CHROME_DEBUG_URL = "http://localhost:9222"
 DOCS_DIR = Path("docs/research")
-REFS_DIR = Path("docs/references")
+REFS_DIR = Path("../library/docs")
 TRACKER_FILE = DOCS_DIR / "Research_Questions.md"
 
 

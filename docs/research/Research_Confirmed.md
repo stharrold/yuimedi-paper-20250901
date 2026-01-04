@@ -39,7 +39,7 @@ This document tracks citations that have been manually verified against their so
 
 ## Verification Protocol
 
-1.  **Locate Source:** Ensure PDF exists in `docs/references/` with correct naming convention (`YYYY_Author_Journal_Title.pdf`).
+1.  **Locate Source:** Ensure PDF exists in `../library/docs/` with correct naming convention (`YYYY_Author_Journal_Title.pdf`).
 2.  **Verify Content:** Read the full text to confirm:
     *   Specific statistics (e.g., turnover rates, sample sizes).
     *   Context of claims (e.g., do they apply to healthcare specifically?).

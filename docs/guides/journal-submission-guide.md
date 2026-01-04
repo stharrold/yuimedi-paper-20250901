@@ -709,7 +709,7 @@ publish, or preparation of the manuscript.
 **Related Documents**:
 - project-management.md (Publication venue options)
 - paper.md (Research manuscripts)
-- docs/references/README.md (Citation management)
+- ../library/docs/README.md (Citation management)
 
 ---
 

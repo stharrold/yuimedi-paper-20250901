@@ -124,16 +124,16 @@ Examples:
 ### Search in This Directory
 ```bash
 # List all references
-ls -lh docs/references/
+ls -lh ../library/docs/
 
 # Search by source
-ls docs/references/ | grep -i "anthropic"
+ls ../library/docs/ | grep -i "anthropic"
 
 # Search by date
-ls docs/references/ | grep "202509"
+ls ../library/docs/ | grep "202509"
 
 # Full-text search (if PDFs are OCR'd)
-grep -r "machine learning" docs/references/
+grep -r "machine learning" ../library/docs/
 ```
 
 ### Citation Lookup
