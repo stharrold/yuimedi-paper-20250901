@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """Tests for ClaudeAnalyzer."""
 
+import importlib.util
 import tempfile
 from pathlib import Path
 from unittest.mock import patch
@@ -12,6 +13,8 @@ from lit_review.domain.entities.paper import Paper
 from lit_review.domain.values.author import Author
 from lit_review.domain.values.doi import DOI
 from lit_review.infrastructure.ai.claude_analyzer import ClaudeAnalyzer
+
+HAS_ANTHROPIC = importlib.util.find_spec("anthropic") is not None
 
 
 @pytest.fixture
@@ -65,6 +68,7 @@ class TestClaudeAnalyzerInit:
             analyzer = ClaudeAnalyzer(cache_dir=temp_cache_dir)
             assert analyzer.use_api is False
 
+    @pytest.mark.skipif(not HAS_ANTHROPIC, reason="anthropic module not installed")
     def test_init_with_api_key_enables_api(self, temp_cache_dir: Path) -> None:
         """__init__ sets use_api=True when API key provided."""
         with patch("anthropic.Anthropic"):

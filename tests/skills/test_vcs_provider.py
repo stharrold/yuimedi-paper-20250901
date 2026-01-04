@@ -9,24 +9,9 @@ from git remote URLs.
 from __future__ import annotations
 
 import subprocess
-import sys
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
-
-# Add skills path to import the module
-sys.path.insert(
-    0,
-    str(
-        Path(__file__).parent.parent.parent
-        / ".gemini"
-        / "skills"
-        / "workflow-utilities"
-        / "scripts"
-    ),
-)
-
 from vcs.provider import (
     AZURE_DEVOPS_PATTERNS,
     GITHUB_PATTERNS,

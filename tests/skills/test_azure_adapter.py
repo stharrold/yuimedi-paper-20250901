@@ -9,24 +9,9 @@ from __future__ import annotations
 
 import json
 import subprocess
-import sys
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
-
-# Add skills path to import the module
-sys.path.insert(
-    0,
-    str(
-        Path(__file__).parent.parent.parent
-        / ".gemini"
-        / "skills"
-        / "workflow-utilities"
-        / "scripts"
-    ),
-)
-
 from vcs.azure_adapter import AZURE_CLI, AzureDevOpsAdapter
 
 

@@ -9,24 +9,10 @@ based on code changes.
 from __future__ import annotations
 
 import subprocess
-import sys
 from pathlib import Path
 from unittest.mock import patch
 
 import pytest
-
-# Add skills path to import the module
-sys.path.insert(
-    0,
-    str(
-        Path(__file__).parent.parent.parent
-        / ".gemini"
-        / "skills"
-        / "git-workflow-manager"
-        / "scripts"
-    ),
-)
-
 from semantic_version import (
     analyze_changes,
     bump_version,
