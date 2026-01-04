@@ -24,6 +24,17 @@ This document tracks citations that have been manually verified against their so
 | `navarro2023` | Navarro et al. (2023) | `2023_Navarro_Medical-Informatics_Clinical-NLP-EHR-Systematic-Review.pdf` | 2026-01-02 | **Verified:** Systematic review confirming clinician burnout from administrative EHR tasks and rapid dominance of transformer models in clinical IE. | ✅ Confirmed |
 | `martin2019` | Martin et al. (2019) | `2019_Martin_NPJ-Digital-Med_Digital-Maturity-Outcomes-UK.pdf` | 2026-01-02 | **Verified:** Found no significant relationship between digital maturity and mortality or readmission rates in secondary care. | ✅ Confirmed |
 | `saintulysse2021` | Saint-Ulysse (2021) | `2021_Saint-Ulysse_ProQuest_EHR-Maturity-Readmission.pdf` | 2026-01-02 | **Verified:** Found no significant association between EHR maturity and excess readmission ratio (ERR). | ✅ Confirmed |
+| `alukal2006` | Alukal & Manos (2006) | Web/Book (Verified via GScholar Labs) | 2026-01-04 | **Verified:** Standard Work as prerequisite for Kaizen. baseline for improvement. | ✅ Confirmed |
+| `rao2006` | Rao & Argote (2006) | Web/Article (Verified via GScholar Labs) | 2026-01-04 | **Verified:** Knowledge embedded in structures buffers turnover disruptive effects. | ✅ Confirmed |
+| `hong2025` | Hong (2025) | Web/Article (Verified via GScholar Labs) | 2026-01-04 | **Verified:** Task standardization as retention facility for organizational memory. | ✅ Confirmed |
+| `bravorocca2023`| Bravo Rocca (2023) | `TGJBR1de1.pdf` (PhD Thesis) | 2026-01-04 | **Verified:** Human-on-the-Loop paradigm for model adaptation and continual learning. | ✅ Confirmed |
+| `mosqueirarey2023`| Mosqueira-Rey (2023) | Web/Article (Verified via GScholar Labs) | 2026-01-04 | **Verified:** Interactive ML principles: focused, frequent, incremental feedback. | ✅ Confirmed |
+| `mannapur2025` | Mannapur (2025) | `5b240742-bf0d-4f8c-a0f9-cb29fab42611.pdf` | 2026-01-04 | **Verified:** 92% systems affected by drift; recalibration every 3.5 months; $3.2M annual cost. | ✅ Confirmed |
+| `yupopa2005` | Yu & Popa (2005) | `p1006-yu.pdf` | 2026-01-04 | **Verified:** Schema evolution invalidates mappings; costly manual regeneration process. | ✅ Confirmed |
+| `whittaker2008` | Whittaker et al. (2008)| `Design_and_evaluation_of_systems...pdf` | 2026-01-04 | **Verified:** Passive capture (note-taking) hinders participation; cognitive load. | ✅ Confirmed |
+| `moore2018` | Moore et al. (2018) | `18_ijee3593.pdf` | 2026-01-04 | **Verified:** Active capture transforms documentation into process-focused activity. | ✅ Confirmed |
+| `zimmermann2017`| Zimmermann (2017) | Web/Article (Verified via GScholar Labs) | 2026-01-04 | **Verified:** Flexibility demands drive Shadow IT when central IT is rigid. | ✅ Confirmed |
+| `oliveira2023` | Oliveira (2023) | `2311.02082.pdf` (arXiv) | 2026-01-04 | **Verified:** Data Governance 4.0 leverages agile frameworks to prevent workarounds. | ✅ Confirmed |
 
 ## Verification Protocol
 
