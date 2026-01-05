@@ -116,7 +116,7 @@ class JSONReviewRepository(PaperRepository):
         Args:
             path: Path to file to backup.
         """
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         backup_name = f"{path.stem}_{timestamp}.json"
         backup_path = self.backup_dir / backup_name
 

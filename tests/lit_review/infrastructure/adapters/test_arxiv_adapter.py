@@ -178,7 +178,7 @@ class TestArxivAdapter:
         papers = adapter.search("test")
 
         assert len(papers) == 1
-        assert papers[0].doi.value == "arXiv:2401.12345v1"
+        assert papers[0].doi.value == "10.48550/arXiv.2401.12345v1"
 
     @patch("lit_review.infrastructure.adapters.arxiv_adapter.httpx.Client")
     def test_search_extracts_publication_year(
@@ -461,7 +461,8 @@ class TestArxivAdapterIntegration:
         assert all(paper.title for paper in papers)
         assert all(paper.authors for paper in papers)
         assert all(paper.doi.value for paper in papers)
-        # Check for ArXiv ID format or DOI
+        # Check for ArXiv ID format (10.48550/arXiv.) or other DOI
         assert all(
-            paper.doi.value.startswith("arXiv:") or "." in paper.doi.value for paper in papers
+            paper.doi.value.startswith("10.48550/arXiv.") or "." in paper.doi.value
+            for paper in papers
         )

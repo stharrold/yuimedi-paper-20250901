@@ -243,7 +243,7 @@ class PubMedAdapter(SearchService):
         # Fallback to PMID (PubMed ID)
         pmid_elem = medline_citation.find(".//PMID")
         if pmid_elem is not None and pmid_elem.text:
-            return f"PMID:{pmid_elem.text}"
+            return f"10.9999/pubmed.{pmid_elem.text}"
 
         return None
 

@@ -539,6 +539,7 @@ class TestFullWorkflowWithNetwork:
         # Stage 5: Complete
         review.advance_stage()
         assert review.stage == ReviewStage.COMPLETE
+        review_repository.save(review)
 
         export_use_case = ExportReviewUseCase()
         output_path = temp_review_dir / "final_review.json"

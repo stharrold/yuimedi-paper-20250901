@@ -16,8 +16,8 @@ def repo_root() -> Path:
 
 @pytest.fixture
 def skills_dir(repo_root: Path) -> Path:
-    """Return the .claude/skills directory."""
-    return repo_root / ".claude" / "skills"
+    """Return the .gemini/skills directory."""
+    return repo_root / ".gemini" / "skills"
 
 
 @pytest.fixture

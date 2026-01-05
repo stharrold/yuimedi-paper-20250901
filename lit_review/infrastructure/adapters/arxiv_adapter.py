@@ -34,7 +34,7 @@ class ArxivAdapter(SearchService):
         >>> papers = adapter.search("machine learning", limit=10)
     """
 
-    BASE_URL = "http://export.arxiv.org/api/query"
+    BASE_URL = "https://export.arxiv.org/api/query"
     NAMESPACE = {"atom": "http://www.w3.org/2005/Atom"}
 
     def __init__(
@@ -149,8 +149,8 @@ class ArxivAdapter(SearchService):
         if not arxiv_id:
             return None
 
-        # Try to get DOI first, fallback to ArXiv ID
-        doi_value = self._extract_doi(entry) or f"arXiv:{arxiv_id}"
+        # Try to get DOI first, fallback to ArXiv ID with official registrant
+        doi_value = self._extract_doi(entry) or f"10.48550/arXiv.{arxiv_id}"
 
         # Authors
         authors = self._parse_authors(entry)

@@ -1,5 +1,5 @@
 ---
-type: claude-context
+type: gemini-context
 directory: ARCHIVED
 purpose: Deprecated files preserved for reference
 parent: ../GEMINI.md

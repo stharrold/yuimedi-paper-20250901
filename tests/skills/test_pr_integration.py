@@ -15,19 +15,12 @@ import sys
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-import pytest
+# Add skills script directories to sys.path
+_root = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "workflow-utilities" / "scripts"))
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts"))
 
-# Add skills path to import the modules
-sys.path.insert(
-    0,
-    str(
-        Path(__file__).parent.parent.parent
-        / ".claude"
-        / "skills"
-        / "git-workflow-manager"
-        / "scripts"
-    ),
-)
+import pytest  # noqa: E402
 
 
 @pytest.mark.integration
@@ -39,23 +32,19 @@ class TestPRWorkflowIntegration:
         from pr_workflow import run_full_workflow
 
         with patch("pr_workflow.step_finish_feature", return_value=True):
-            with patch("pr_workflow.step_archive_todo", return_value=True):
-                with patch("pr_workflow.step_sync_agents", return_value=True):
-                    with patch("pr_workflow.step_start_develop", return_value=True):
-                        with patch("pr_workflow.return_to_editable_branch", return_value=True):
-                            result = run_full_workflow()
-                            assert result is True
+            with patch("pr_workflow.step_start_develop", return_value=True):
+                with patch("pr_workflow.return_to_editable_branch", return_value=True):
+                    result = run_full_workflow()
+                    assert result is True
 
     def test_pr_workflow_stops_on_first_failure(self):
         """Test that PR workflow stops on first step failure."""
         from pr_workflow import run_full_workflow
 
         with patch("pr_workflow.step_finish_feature", return_value=False):
-            with patch("pr_workflow.step_archive_todo") as mock_archive:
-                with patch("pr_workflow.return_to_editable_branch", return_value=True):
-                    result = run_full_workflow()
-                    assert result is False
-                    mock_archive.assert_not_called()
+            with patch("pr_workflow.return_to_editable_branch", return_value=True):
+                result = run_full_workflow()
+                assert result is False
 
     def test_pr_workflow_returns_to_editable_on_failure(self):
         """Test that workflow returns to editable branch on failure."""
@@ -93,69 +82,6 @@ class TestFeatureToContribIntegration:
                 with patch("pr_workflow.run_quality_gates", return_value=False):
                     result = step_finish_feature()
                     assert result is False
-
-
-@pytest.mark.integration
-class TestArchiveTodoIntegration:
-    """Integration tests for TODO archiving."""
-
-    def test_archive_todo_creates_directory(self):
-        """Test that ARCHIVED directory is created."""
-        from pr_workflow import step_archive_todo
-
-        with patch("pr_workflow.Path.glob", return_value=[]):
-            with patch.object(Path, "glob", return_value=[]):
-                result = step_archive_todo()
-                assert result is True
-
-    def test_archive_todo_with_existing_files(self, tmp_path):
-        """Test archiving existing TODO files."""
-        from pr_workflow import step_archive_todo
-
-        # Create a mock TODO file
-        todo_file = tmp_path / "TODO_test.md"
-        todo_file.write_text("# Test TODO")
-
-        with patch("pr_workflow.Path.glob", return_value=[todo_file]):
-            with patch("pr_workflow.Path.mkdir"):
-                with patch("pr_workflow.shutil.move"):
-                    with patch("pr_workflow.run_cmd") as mock_run:
-                        mock_run.return_value = MagicMock(returncode=0, stdout="", stderr="")
-                        result = step_archive_todo()
-                        assert result is True
-
-
-@pytest.mark.integration
-class TestSyncAgentsIntegration:
-    """Integration tests for agent config syncing."""
-
-    def test_sync_agents_with_module(self):
-        """Test sync with sync_ai_config module available."""
-        from pr_workflow import step_sync_agents
-
-        mock_sync_module = MagicMock()
-        mock_sync_module.sync_all.return_value = (True, True)
-        with patch.dict(sys.modules, {"sync_ai_config": mock_sync_module}):
-            with patch("pr_workflow.run_cmd") as mock_run:
-                mock_run.return_value = MagicMock(returncode=0, stdout="", stderr="")
-                result = step_sync_agents()
-                assert result is True
-
-    def test_sync_agents_fallback(self):
-        """Test sync with fallback when module not available."""
-        from pr_workflow import step_sync_agents
-
-        with patch.dict(sys.modules, {"sync_ai_config": None}):
-            with patch("pr_workflow.Path.exists", return_value=True):
-                with patch("pr_workflow.shutil.copy"):
-                    with patch("pr_workflow.Path.mkdir"):
-                        with patch("pr_workflow.Path.iterdir", return_value=[]):
-                            with patch("pr_workflow.run_cmd") as mock_run:
-                                mock_run.return_value = MagicMock(
-                                    returncode=0, stdout="", stderr=""
-                                )
-                                result = step_sync_agents()
-                                assert result is True
 
 
 @pytest.mark.integration

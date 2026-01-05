@@ -1,0 +1,22 @@
+description = "Create worktree for autonomous implementation (Step 1 of 4)"
+prompt = """
+# /workflow:v7x1_1-worktree - Step 1 of 4
+
+**Context Check**: !{python3 .gemini/skills/workflow-utilities/scripts/verify_workflow_context.py --step 1}
+
+**Task**: Create a git worktree for: {{args}}
+
+**v7x1 Workflow**: `/workflow:v7x1_1-worktree` → Implementation → `/workflow:v7x1_2-integrate` → `/workflow:v7x1_3-release` → `/workflow:v7x1_4-backmerge`
+
+## Step 1: Extract Feature Slug
+Parse "{{args}}" to create a kebab-case slug (lowercase, hyphens, limit 50 chars).
+
+## Step 2: Create Feature Worktree
+Run: `uv run python .gemini/skills/git-workflow-manager/scripts/create_worktree.py feature {slug} contrib/stharrold`
+
+## Step 3: Record State in AgentDB
+Run: `uv run python .gemini/skills/agentdb-state-manager/scripts/record_sync.py --sync-type workflow_transition --pattern phase_v7x1_1_worktree --source "main_repo" --target "worktree"`
+
+## Step 4: Display Next Steps
+Show worktree path and instructions for running `built-in tools "{{args}}"` in the worktree.
+"""

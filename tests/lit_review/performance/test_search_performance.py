@@ -114,8 +114,8 @@ class TestSearchPerformanceThroughput:
         assert len(result) == 100
 
         # Calculate throughput (papers per minute)
-        # benchmark.stats.mean is in seconds
-        papers_per_second = 100 / benchmark.stats.mean
+        # benchmark.stats.stats.mean is in seconds
+        papers_per_second = 100 / benchmark.stats.stats.mean
         papers_per_minute = papers_per_second * 60
 
         # Should achieve at least 500 papers/minute with single service
@@ -148,7 +148,7 @@ class TestSearchPerformanceThroughput:
         assert len(result) > 0
 
         # Calculate throughput
-        papers_per_second = len(result) / benchmark.stats.mean
+        papers_per_second = len(result) / benchmark.stats.stats.mean
         papers_per_minute = papers_per_second * 60
 
         # With parallel execution should exceed 1000 papers/minute
@@ -197,7 +197,7 @@ class TestSearchPerformanceThroughput:
 
         # Should deduplicate but not take too long
         assert len(result) > 0
-        assert benchmark.stats.mean < 1.0  # Should complete in under 1 second
+        assert benchmark.stats.stats.mean < 1.0  # Should complete in under 1 second
 
 
 @pytest.mark.benchmark
@@ -218,7 +218,7 @@ class TestSearchPerformanceScalability:
         assert len(result) == 500
 
         # Mean time should be reasonable (< 0.5 seconds for 500 papers)
-        assert benchmark.stats.mean < 0.5
+        assert benchmark.stats.stats.mean < 0.5
 
     def test_concurrent_service_scaling(self, benchmark):
         """Test that adding services improves throughput (up to a point)."""
@@ -240,7 +240,7 @@ class TestSearchPerformanceScalability:
 
         # With 8 services running concurrently, should complete reasonably fast
         # Even though each has 100ms delay, parallel execution means ~100-200ms total
-        assert benchmark.stats.mean < 0.5  # Should complete in under 500ms
+        assert benchmark.stats.stats.mean < 0.5  # Should complete in under 500ms
         assert len(result) > 0
 
 
@@ -277,14 +277,14 @@ class TestSearchPerformanceRealistic:
 
         # With parallel execution, should complete in ~600ms (max latency)
         # Allow up to 2 seconds for safety
-        assert benchmark.stats.mean < 2.0
+        assert benchmark.stats.stats.mean < 2.0
 
         # Calculate effective throughput
-        papers_per_second = len(result) / benchmark.stats.mean
+        papers_per_second = len(result) / benchmark.stats.stats.mean
         papers_per_minute = papers_per_second * 60
 
         print(f"\nRealistic throughput: {papers_per_minute:.0f} papers/min")
-        print(f"Mean search time: {benchmark.stats.mean:.3f}s")
+        print(f"Mean search time: {benchmark.stats.stats.mean:.3f}s")
         print(f"Papers returned: {len(result)}")
 
     def test_search_with_retry_performance(self, benchmark):
@@ -331,7 +331,7 @@ class TestSearchPerformanceRealistic:
         # Benchmark captures timing, result used for validation
         assert isinstance(result, list)
         # ~250ms total (100ms fail + 50ms backoff + 100ms success)
-        assert benchmark.stats.mean < 1.0
+        assert benchmark.stats.stats.mean < 1.0
 
 
 @pytest.mark.benchmark
@@ -354,10 +354,10 @@ class TestSearchPerformanceBaselines:
 
         # Document baseline for regression tracking
         print("\n=== BASELINE: 100 papers, single service ===")
-        print(f"Mean: {benchmark.stats.mean:.4f}s")
-        print(f"StdDev: {benchmark.stats.stddev:.4f}s")
-        print(f"Min: {benchmark.stats.min:.4f}s")
-        print(f"Max: {benchmark.stats.max:.4f}s")
+        print(f"Mean: {benchmark.stats.stats.mean:.4f}s")
+        print(f"StdDev: {benchmark.stats.stats.stddev:.4f}s")
+        print(f"Min: {benchmark.stats.stats.min:.4f}s")
+        print(f"Max: {benchmark.stats.stats.max:.4f}s")
 
     def test_baseline_500_papers_four_services(self, benchmark):
         """Baseline: Search 500 papers from 4 services in parallel."""
@@ -380,9 +380,9 @@ class TestSearchPerformanceBaselines:
         assert len(result) > 0
 
         print("\n=== BASELINE: 500 papers, 4 services parallel ===")
-        print(f"Mean: {benchmark.stats.mean:.4f}s")
+        print(f"Mean: {benchmark.stats.stats.mean:.4f}s")
         print(f"Papers returned: {len(result)}")
-        print(f"Throughput: {len(result) / benchmark.stats.mean * 60:.0f} papers/min")
+        print(f"Throughput: {len(result) / benchmark.stats.stats.mean * 60:.0f} papers/min")
 
     def test_baseline_1000_papers_target(self, benchmark):
         """Baseline: Target of 1000 papers/minute."""
@@ -403,12 +403,12 @@ class TestSearchPerformanceBaselines:
 
         result = benchmark.pedantic(target_search, rounds=5, iterations=2)
 
-        papers_per_second = len(result) / benchmark.stats.mean
+        papers_per_second = len(result) / benchmark.stats.stats.mean
         papers_per_minute = papers_per_second * 60
 
         print("\n=== TARGET: 1000 papers/minute ===")
         print(f"Achieved: {papers_per_minute:.0f} papers/min")
-        print(f"Mean time: {benchmark.stats.mean:.4f}s")
+        print(f"Mean time: {benchmark.stats.stats.mean:.4f}s")
         print(f"Papers returned: {len(result)}")
 
         # Should meet or exceed target
