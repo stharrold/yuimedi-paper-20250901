@@ -117,8 +117,8 @@ cabal.project.local~
 .HTF/
 .ghc.environment.*
 
-.gemini/
-gha-creds-*.json
+.gemini/settings.local.json
+.gemini/gha-creds-*.json
 
 # Workflow system
 .claude-state/

@@ -1,15 +1,15 @@
 ---
-type: claude-context
+type: gemini-context
 directory: figures
 purpose: Figure assets for research paper - Mermaid/DOT sources and generated outputs
-parent: ../CLAUDE.md
+parent: ../GEMINI.md
 sibling_readme: null
 children: null
 ---
 
-# CLAUDE.md
+# GEMINI.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Gemini Code (gemini.ai/code) when working with code in this repository.
 
 ## Directory Purpose
 

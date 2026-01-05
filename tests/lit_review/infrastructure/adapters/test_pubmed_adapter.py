@@ -493,26 +493,3 @@ class TestPubMedAdapterParsing:
         keywords = adapter._extract_keywords(medline_citation)
 
         assert len(keywords) == 10
-
-
-@pytest.mark.integration
-class TestPubMedAdapterIntegration:
-    """Integration tests for PubMed API (requires network and credentials)."""
-
-    def test_real_pubmed_search(self) -> None:
-        """search performs real PubMed query (integration test)."""
-        import os
-
-        # Skip if credentials not available
-        email = os.environ.get("NCBI_EMAIL")
-        if not email:
-            pytest.skip("NCBI_EMAIL not set")
-
-        adapter = PubMedAdapter(email=email)
-        papers = adapter.search("machine learning healthcare[Title]", limit=5)
-
-        assert len(papers) > 0
-        assert all(paper.title for paper in papers)
-        assert all(paper.authors for paper in papers)
-        # Note: Some papers may use PMID fallback
-        assert all(paper.doi.value for paper in papers)

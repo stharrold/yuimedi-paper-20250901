@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: Apache-2.0
 """Tests for ClaudeAnalyzer."""
 
-import importlib.util
 import tempfile
 from pathlib import Path
 from unittest.mock import patch
@@ -13,8 +12,6 @@ from lit_review.domain.entities.paper import Paper
 from lit_review.domain.values.author import Author
 from lit_review.domain.values.doi import DOI
 from lit_review.infrastructure.ai.claude_analyzer import ClaudeAnalyzer
-
-HAS_ANTHROPIC = importlib.util.find_spec("anthropic") is not None
 
 
 @pytest.fixture
@@ -68,10 +65,9 @@ class TestClaudeAnalyzerInit:
             analyzer = ClaudeAnalyzer(cache_dir=temp_cache_dir)
             assert analyzer.use_api is False
 
-    @pytest.mark.skipif(not HAS_ANTHROPIC, reason="anthropic module not installed")
     def test_init_with_api_key_enables_api(self, temp_cache_dir: Path) -> None:
         """__init__ sets use_api=True when API key provided."""
-        with patch("anthropic.Anthropic"):
+        with patch("lit_review.infrastructure.ai.claude_analyzer.Anthropic"):
             analyzer = ClaudeAnalyzer(api_key="test_key", cache_dir=temp_cache_dir)
             assert analyzer.use_api is True
 
@@ -294,3 +290,45 @@ class TestClaudeAnalyzerHelpers:
         assert "Paper 0" in text
         assert "Paper 49" in text
         assert "Paper 50" not in text
+
+
+@pytest.mark.integration
+class TestClaudeAnalyzerIntegration:
+    """Integration tests for Claude API (requires API key)."""
+
+    def test_real_claude_theme_extraction(
+        self, temp_cache_dir: Path, sample_papers: list[Paper]
+    ) -> None:
+        """extract_themes uses real Claude API (integration test)."""
+        import os
+
+        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        if not api_key:
+            pytest.skip("ANTHROPIC_API_KEY not set")
+
+        analyzer = ClaudeAnalyzer(api_key=api_key, cache_dir=temp_cache_dir)
+        themes = analyzer.extract_themes(sample_papers, max_themes=3)
+
+        assert len(themes.themes) > 0
+        assert themes.summary
+        assert isinstance(themes.relationships, dict)
+
+    def test_real_claude_synthesis(self, temp_cache_dir: Path, sample_papers: list[Paper]) -> None:
+        """generate_synthesis uses real Claude API (integration test)."""
+        import os
+
+        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        if not api_key:
+            pytest.skip("ANTHROPIC_API_KEY not set")
+
+        analyzer = ClaudeAnalyzer(api_key=api_key, cache_dir=temp_cache_dir)
+        themes = analyzer.extract_themes(sample_papers, max_themes=3)
+
+        synthesis = analyzer.generate_synthesis(
+            sample_papers,
+            themes,
+            "What role does AI play in healthcare?",
+        )
+
+        assert len(synthesis) > 100
+        assert "#" in synthesis  # Markdown headers
