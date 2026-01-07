@@ -6,7 +6,6 @@ parent: null
 sibling_readme: README.md
 children:
 - .benchmarks/GEMINI.md
-- .gemini/GEMINI.md
 - .github/GEMINI.md
 - ARCHIVED/GEMINI.md
 - compliance/GEMINI.md
