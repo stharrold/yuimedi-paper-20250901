@@ -1,17 +1,17 @@
 # Reference Validation Report
 
-**Generated:** 2026-01-07 04:28:26 UTC
+**Generated:** 2026-01-07 12:19:11 UTC
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total References | 119 |
-| Academic [A*] | 108 |
+| Total References | 135 |
+| Academic [A*] | 124 |
 | Industry [I*] | 11 |
-| Total Citations | 210 |
-| Accessible URLs | 51 |
-| Broken URLs | 52 |
+| Total Citations | 227 |
+| Accessible URLs | 80 |
+| Broken URLs | 39 |
 | Missing URLs | 16 |
 | Orphaned Citations | 0 |
 | Unused References | 0 |
@@ -24,30 +24,18 @@ References with inaccessible URLs:
 
 | Reference | URL | Error |
 |-----------|-----|-------|
-| [wu2024] | https://pmc.ncbi.nlm.nih.gov/articles/PMC10802134/ | HTTP 403: Forbidden |
-| [ren2024] | https://pmc.ncbi.nlm.nih.gov/articles/PMC11919231/ | HTTP 403: Forbidden |
-| [navarro2023] | https://www.sciencedirect.com/science/article/pii/S138650562... | HTTP 403: Forbidden |
-| [kamble2019] | https://www.tandfonline.com/doi/full/10.1080/20479700.2018.1... | HTTP 403: Forbidden |
-| [medagentbench2024] | https://ai.nejm.org/doi/full/10.1056/AIdbp2500144 | HTTP 403: Forbidden |
-| [ang2004] | https://dl.acm.org/doi/10.1145/1017114.1017118 | HTTP 403: Forbidden |
-| [mantas2010] | https://pubmed.ncbi.nlm.nih.gov/20054502/ | HTTP 403: Forbidden |
-| [musa2023] | https://pmc.ncbi.nlm.nih.gov/articles/PMC10243608/ | HTTP 403: Forbidden |
-| [wang2018] | https://www.sciencedirect.com/science/article/pii/S004016251... | HTTP 403: Forbidden |
+| [wang2018] | https://www.sciencedirect.com/science/article/pii/S004016251... | HTTP 404: Not Found |
 | [bardsley2016] | https://www.health.org.uk/publications/understanding-analyti... | HTTP 403: Forbidden |
 | [mayo2016] | https://www.redjournal.org/article/S0360-3016(16)00260-1/ful... | HTTP 403: Forbidden |
 | [dai2023] | https://pubsonline.informs.org/doi/abs/10.1287/educ.2023.025... | HTTP 403: Forbidden |
 | [massingham2018] | https://doi.org/10.1108/JKM-08-2016-0338 | HTTP 403: Forbidden |
 | [richesson2007] | https://academic.oup.com/jamia/article/14/6/687/750453 | HTTP 403: Forbidden |
 | [zheng2020] | https://www.acpjournals.org/doi/10.7326/M19-0871 | HTTP 403: Forbidden |
-| [bogaert2021] | https://www.sciencedirect.com/science/article/pii/S016885102... | HTTP 403: Forbidden |
 | [yuan2019] | https://academic.oup.com/jamia/article-abstract/26/4/294/530... | HTTP 403: Forbidden |
-| [dadi2025] | https://al-kindipublishers.org/index.php/jcsts/article/view/... | HTTP 404: Not Found |
 | [shah2020] | https://dl.acm.org/doi/abs/10.1145/3318464.3389777 | HTTP 403: Forbidden |
-| [li2023] | https://www.sciencedirect.com/science/article/pii/S138650562... | HTTP 403: Forbidden |
-| [safari2014] | https://www.sciencedirect.com/science/article/pii/S153204641... | HTTP 403: Forbidden |
 | [han2019] | https://medinform.jmir.org/2019/2/e13331 | HTTP 404: Not Found |
 | [hendrix1978] | https://dl.acm.org/doi/abs/10.1145/320251.320253 | HTTP 403: Forbidden |
-| [arora2025] | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5268176 | HTTP 403: Forbidden |
+| [arora2025] | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5268176 | Timeout |
 | [goffin2011] | https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-5885.... | HTTP 403: Forbidden |
 | [foos2006] | https://www.emerald.com/insight/content/doi/10.1108/13673270... | HTTP 403: Forbidden |
 | [goffin2010] | https://www.tandfonline.com/doi/abs/10.1080/08956308.2010.11... | HTTP 403: Forbidden |
@@ -65,17 +53,16 @@ References with inaccessible URLs:
 | [melnick2021] | https://jamanetwork.com/journals/jamanetworkopen/fullarticle... | HTTP 403: Forbidden |
 | [blaskovic2025] | https://www.mdpi.com/2504-2289/9/10/256 | HTTP 403: Forbidden |
 | [saha2023] | https://link.springer.com/article/10.1007/s10489-023-04567-2 | HTTP 404: Not Found |
-| [wang2017] | https://www.sciencedirect.com/science/article/abs/pii/S01482... | HTTP 403: Forbidden |
-| [chen2025] | https://www.sciencedirect.com/science/article/pii/S003132032... | HTTP 403: Forbidden |
-| [park2024] | https://www.sciencedirect.com/science/article/pii/S153204642... | HTTP 403: Forbidden |
 | [jones2005] | https://journals.lww.com/jonajournal/abstract/2005/01000/the... | HTTP 403: Forbidden |
 | [zhang2025] | https://www.emerald.com/insight/content/doi/10.1108/JKM-03-2... | HTTP 403: Forbidden |
-| [himss2024] | https://www.himss.org/maturity-models/amam/ | HTTP 403: Forbidden |
 | [himss2024news] | https://www.healthcareitnews.com/news/asia/himss-launches-mo... | HTTP 404: Not Found |
 | [acchiardo2021] | https://www.academicradiology.org/article/S1076-6332(21)0014... | HTTP 403: Forbidden |
 | [ozalp2022] | https://journals.sagepub.com/doi/abs/10.1177/000812562210943... | HTTP 403: Forbidden |
-| [woods2024] | https://www.sciencedirect.com/science/article/pii/S138650562... | HTTP 403: Forbidden |
-| [himssworkforce2024] | https://www.himss.org/resources/the-future-of-workforce/ | HTTP 403: Forbidden |
+| [mannapur2025] | https://www.quantbeckman.com/api/v1/file/5b240742-bf0d-4f8c-... | HTTP 403: Forbidden |
+| [moore2018] | https://web.stanford.edu/~xiaog/files/18_ijee3593.pdf | HTTP 404: Not Found |
+| [zimmermann2017] | https://publications.aaahq.org/jis/article-abstract/31/1/79/... | HTTP 403: Forbidden |
+| [rao2006] | https://onlinelibrary.wiley.com/doi/abs/10.1057/palgrave.emr... | HTTP 403: Forbidden |
+| [hong2025] | https://academic.oup.com/jpart/advance-article-abstract/doi/... | HTTP 403: Forbidden |
 
 ### References Without URLs
 
@@ -106,10 +93,11 @@ References that don't have a URL:
 | Marker | Type | URL Status |
 |--------|------|------------|
 | [acchiardo2021] | academic | Failed: HTTP 403: Forbidden |
+| [alukal2006] | academic | OK (200) |
 | [american2023] | industry | OK (200) |
-| [ang2004] | academic | Failed: HTTP 403: Forbidden |
+| [ang2004] | academic | OK (200) |
 | [anthropic2025] | industry | OK (200) |
-| [arora2025] | academic | Failed: HTTP 403: Forbidden |
+| [arora2025] | academic | Failed: Timeout |
 | [arts2002] | academic | No URL |
 | [atobatele2023] | academic | OK (200) |
 | [aveiro2023] | academic | OK (200) |
@@ -118,11 +106,13 @@ References that don't have a URL:
 | [benbya2004] | academic | OK (200) |
 | [berkshire2024] | industry | OK (200) |
 | [blaskovic2025] | academic | Failed: HTTP 403: Forbidden |
-| [bogaert2021] | academic | Failed: HTTP 403: Forbidden |
+| [bogaert2021] | academic | OK (200) |
 | [bokov2017] | academic | No URL |
+| [bravorocca2023] | academic | OK (200) |
 | [carvalho2019] | academic | No URL |
-| [chen2025] | academic | Failed: HTTP 403: Forbidden |
-| [dadi2025] | academic | Failed: HTTP 404: Not Found |
+| [chen2025] | academic | OK (200) |
+| [cmuh2025] | academic | OK (200) |
+| [dadi2025] | academic | OK (200) |
 | [dai2023] | academic | Failed: HTTP 403: Forbidden |
 | [dugas2016] | academic | No URL |
 | [elkamouchi2023] | academic | OK (200) |
@@ -137,46 +127,54 @@ References that don't have a URL:
 | [han2019] | academic | Failed: HTTP 404: Not Found |
 | [health2020] | industry | OK (200) |
 | [hendrix1978] | academic | Failed: HTTP 403: Forbidden |
-| [himss2024] | industry | Failed: HTTP 403: Forbidden |
+| [himss2024] | industry | OK (200) |
+| [himss2024apac] | academic | OK (200) |
 | [himss2024news] | academic | Failed: HTTP 404: Not Found |
-| [himssworkforce2024] | academic | Failed: HTTP 403: Forbidden |
+| [himss2025ucdavis] | academic | OK (200) |
+| [himssworkforce2024] | academic | OK (200) |
+| [hong2025] | academic | Failed: HTTP 403: Forbidden |
 | [hovenga2013] | academic | No URL |
 | [ibm2022] | industry | OK (200) |
 | [ipeirotis2025] | academic | OK (200) |
 | [jiao2023] | academic | OK (200) |
 | [jones2005] | academic | Failed: HTTP 403: Forbidden |
-| [kamble2019] | academic | Failed: HTTP 403: Forbidden |
+| [kamble2019] | academic | OK (200) |
 | [khan2023] | academic | Failed: HTTP 404: Not Found |
 | [khandelwal2025] | academic | OK (200) |
 | [konrad2022] | academic | OK (200) |
+| [ksa2024] | academic | OK (200) |
 | [lahaie2005] | academic | Failed: HTTP 403: Forbidden |
 | [latrella2024] | academic | OK (200) |
 | [lavito2021] | industry | OK (200) |
 | [ledikwe2013] | academic | OK (200) |
 | [lee2023] | academic | OK (200) |
 | [lee2025] | academic | OK (200) |
-| [li2023] | academic | Failed: HTTP 403: Forbidden |
+| [li2023] | academic | OK (200) |
 | [lin2012] | academic | OK (200) |
 | [lismont2017] | academic | No URL |
 | [lucyk2017] | academic | No URL |
-| [mantas2010] | academic | Failed: HTTP 403: Forbidden |
+| [mannapur2025] | academic | Failed: HTTP 403: Forbidden |
+| [mantas2010] | academic | OK (200) |
 | [marshan2024] | academic | OK (200) |
 | [martin2019] | academic | OK (200) |
 | [massingham2018] | academic | Failed: HTTP 403: Forbidden |
 | [mayo2016] | academic | Failed: HTTP 403: Forbidden |
 | [mccoy2013] | academic | No URL |
-| [medagentbench2024] | academic | Failed: HTTP 403: Forbidden |
+| [medagentbench2024] | academic | OK (200) |
 | [melnick2021] | academic | Failed: HTTP 403: Forbidden |
 | [milneives2020] | academic | OK (200) |
 | [mogili2025] | academic | OK (200) |
-| [musa2023] | academic | Failed: HTTP 403: Forbidden |
-| [navarro2023] | academic | Failed: HTTP 403: Forbidden |
+| [moore2018] | academic | Failed: HTTP 404: Not Found |
+| [mosqueirarey2023] | academic | OK (200) |
+| [musa2023] | academic | OK (200) |
+| [navarro2023] | academic | OK (200) |
 | [nsi2025] | academic | OK (200) |
 | [ogunwole2023] | academic | OK (200) |
+| [oliveira2023] | academic | OK (200) |
 | [openai2025] | academic | OK (200) |
 | [oracle2024] | industry | OK (200) |
 | [ozalp2022] | academic | Failed: HTTP 403: Forbidden |
-| [park2024] | academic | Failed: HTTP 403: Forbidden |
+| [park2024] | academic | OK (200) |
 | [pennington2023] | academic | OK (200) |
 | [pervaiz2025] | academic | OK (200) |
 | [pesqueira2020] | academic | OK (200) |
@@ -185,11 +183,12 @@ References that don't have a URL:
 | [rahman2020] | academic | No URL |
 | [rajamani2025] | academic | Failed: HTTP 403: Forbidden |
 | [rangachari2020] | academic | Failed: HTTP 403: Forbidden |
-| [ren2024] | academic | Failed: HTTP 403: Forbidden |
+| [rao2006] | academic | Failed: HTTP 403: Forbidden |
+| [ren2024] | academic | OK (200) |
 | [richesson2007] | academic | Failed: HTTP 403: Forbidden |
 | [rintala2006] | academic | Failed: HTTP 403: Forbidden |
 | [rollwage2023] | academic | OK (200) |
-| [safari2014] | academic | Failed: HTTP 403: Forbidden |
+| [safari2014] | academic | OK (200) |
 | [saha2023] | academic | Failed: HTTP 404: Not Found |
 | [saintulysse2021] | academic | OK (200) |
 | [sezgin2022] | academic | OK (200) |
@@ -204,25 +203,29 @@ References that don't have a URL:
 | [snowdon2024b] | industry | OK (200) |
 | [strickland2019] | academic | OK (200) |
 | [tan2023] | academic | OK (200) |
+| [tgh2025] | academic | OK (200) |
 | [tyndall2010] | academic | OK (200) |
 | [ulrich2022] | academic | No URL |
 | [wakerman2019] | academic | OK (200) |
-| [wang2017] | academic | Failed: HTTP 403: Forbidden |
-| [wang2018] | academic | Failed: HTTP 403: Forbidden |
+| [wang2017] | academic | OK (200) |
+| [wang2018] | academic | Failed: HTTP 404: Not Found |
 | [wang2019] | academic | Failed: HTTP 403: Forbidden |
 | [wang2020] | academic | OK (200) |
 | [wang2025] | academic | OK (200) |
+| [whittaker2008] | academic | OK (200) |
 | [willardgrace2019] | academic | Failed: HTTP 403: Forbidden |
 | [wittkieffer2024] | academic | OK (200) |
-| [woods2024] | academic | Failed: HTTP 403: Forbidden |
-| [wu2024] | academic | Failed: HTTP 403: Forbidden |
+| [woods2024] | academic | OK (200) |
+| [wu2024] | academic | OK (200) |
 | [wu2024a] | academic | OK (200) |
 | [yang2020] | academic | OK (200) |
 | [yang2021] | academic | No URL |
 | [yuan2019] | academic | Failed: HTTP 403: Forbidden |
+| [yupopa2005] | academic | OK (200) |
 | [zhang2024] | academic | No URL |
 | [zhang2025] | academic | Failed: HTTP 403: Forbidden |
 | [zheng2020] | academic | Failed: HTTP 403: Forbidden |
 | [ziletti2024] | academic | OK (200) |
+| [zimmermann2017] | academic | Failed: HTTP 403: Forbidden |
 
 </details>
