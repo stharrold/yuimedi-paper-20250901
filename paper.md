@@ -102,7 +102,7 @@ The challenge of retaining healthcare IT talent has evolved from a structural we
 
 Recent data paints a stark picture of a workforce under strain. A 2025 analysis of public health informatics specialists reveals that 55% intend to leave their positions, signaling a potential exodus of specialized talent [@rajamani2025]. This aligns with broader industry signals: the 2023 AHIMA/NORC workforce survey reports that 83% of health information professionals face stagnant or increasing unfilled roles, confirming that vacancy rates are compounding the loss of experienced staff [@american2023].
 
-While exact longitudinal tenure data remains scarce, the convergence of high "intent to leave" indicators and persistent "vacancy rates" confirms that the institutional memory crisis remains acute. When experienced analysts leave, they take with them irreplaceable tacit knowledge—business rules, data anomalies, and analytical context—that traditional documentation fails to capture.
+While exact longitudinal tenure data remains scarce, the convergence of high "intent to leave" indicators and persistent "vacancy rates" confirms that the institutional memory crisis remains acute. When experienced analysts leave, they take with them irreplaceable tacit knowledge (business rules, data anomalies, and analytical context) that traditional documentation fails to capture.
 
 The implications are measurable in operational terms and patient care quality. Organizations continue investing in analytics infrastructure while struggling to realize value from their data assets. Empirical research demonstrates that a 10-percentage-point increase in nursing staff turnover is associated with 0.241 additional health inspection citations and decreased assessment-based quality measures [@shen2023]. When analytics barriers are addressed, outcomes improve substantially: one Medicare ACO reduced readmission rates from 24% to 17.8% and achieved $1.6 million in cost savings by implementing data analytics to overcome EHR fragmentation [@latrella2024]. Technical barriers remain pervasive, with 68% of healthcare organizations citing data interoperability as the leading obstacle to analytics adoption, followed by privacy concerns (64%) and insufficient staff training (59%) [@khan2023]. Physician technology adoption faces empirically validated barriers including perceived threat and inequity from workflow changes, directly impacting behavioral intentions toward analytics tools [@lin2012]. These three interconnected challenges represent operational inefficiencies with demonstrated implications for healthcare delivery.
 
@@ -459,10 +459,10 @@ When experienced analysts, clinical informatics professionals, or data-savvy cli
 
 The literature demonstrates that conventional knowledge management approaches fail in healthcare contexts [@mayo2016; @shahbaz2019]:
 
-- Traditional knowledge transfer mechanisms show limited effectiveness
-- Organizations struggle to capture and maintain analytical expertise
-- Security concerns and employee resistance to change slow the pace of information system acceptance [@shahbaz2019]
-- Person-to-person knowledge transfer fails during rapid turnover cycles
+- Traditional knowledge transfer mechanisms show limited effectiveness;
+- Organizations struggle to capture and maintain analytical expertise;
+- Security concerns and employee resistance to change slow the pace of information system acceptance [@shahbaz2019];
+- Person-to-person knowledge transfer fails during rapid turnover cycles.
 
 ## Integration of Evidence: Synthesis Across Three Pillars
 
@@ -696,9 +696,9 @@ This narrative review synthesized evidence across three interconnected domains: 
 
 The three-pillar framework illuminates patterns that single-domain analyses miss:
 
-- **Analytics maturity gaps** leave clinical decisions unsupported by available data, and low maturity correlates with higher workforce turnover as staff leave organizations where they cannot accomplish their goals
-- **Workforce turnover** (~34% implied annual rate for new healthcare IT staff as of 2004 [@ang2004]) causes institutional memory loss that further degrades analytics capabilities, creating a reinforcing cycle
-- **Technical barriers** prevent organizations from capturing and preserving analytical knowledge, blocking recovery from either maturity gaps or turnover impacts
+- **Analytics maturity gaps** leave clinical decisions unsupported by available data, and low maturity correlates with higher workforce turnover as staff leave organizations where they cannot accomplish their goals;
+- **Workforce turnover** (~34% implied annual rate for new healthcare IT staff as of 2004 [@ang2004]) causes institutional memory loss that further degrades analytics capabilities, creating a reinforcing cycle;
+- **Technical barriers** prevent organizations from capturing and preserving analytical knowledge, blocking recovery from either maturity gaps or turnover impacts.
 
 These interconnections explain why addressing any single pillar in isolation often fails: improvements in one area erode when the compounding effects from other pillars continue. The framework provides a structured lens for organizational self-assessment.
 

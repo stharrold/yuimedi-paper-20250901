@@ -554,7 +554,7 @@ def generate_report(result: ValidationResult, output_path: Path | None = None) -
         ]
     )
 
-    for marker in sorted(result.references.keys(), key=lambda m: (m[0], int(m[1:]))):
+    for marker in sorted(result.references.keys()):
         ref = result.references[marker]
         if ref.url is None:
             status = "No URL"
