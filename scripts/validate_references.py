@@ -34,6 +34,7 @@ from typing import Any
 PAPER_PATH = Path(__file__).parent.parent / "paper.md"
 BIBTEX_PATH = Path(__file__).parent.parent / "references.bib"
 MAPPING_PATH = Path(__file__).parent / "citation_key_mapping.json"
+ALLOWLIST_PATH = Path(__file__).parent / "url_allowlist.json"
 REPORT_PATH = Path(__file__).parent.parent / "docs" / "validation_report.md"
 URL_TIMEOUT = 10  # seconds
 MAX_RETRIES = 2
@@ -354,13 +355,14 @@ def check_url(url: str, timeout: int = URL_TIMEOUT) -> tuple[int | None, str | N
 
 
 def validate_urls(
-    references: dict[str, Reference], verbose: bool = False
+    references: dict[str, Reference], allowlist: dict[str, str] | None = None, verbose: bool = False
 ) -> tuple[list[Reference], list[Reference], list[Reference]]:
     """Validate all reference URLs."""
     accessible: list[Reference] = []
     broken: list[Reference] = []
     missing: list[Reference] = []
 
+    allowlist = allowlist or {}
     total = len(references)
     for i, (marker, ref) in enumerate(references.items(), start=1):
         if ref.url is None:
@@ -372,7 +374,12 @@ def validate_urls(
         if verbose:
             print(f"  [{i}/{total}] {marker}: Checking {ref.url[:50]}...")
 
-        status, error = check_url(ref.url)
+        # Check allowlist
+        if marker in allowlist and allowlist[marker] == ref.url:
+            status, error = 200, "Confirmed-as-good (allowlisted)"
+        else:
+            status, error = check_url(ref.url)
+
         ref.url_status = status
         ref.url_error = error
 
@@ -554,7 +561,10 @@ def generate_report(result: ValidationResult, output_path: Path | None = None) -
         ]
     )
 
-    for marker in sorted(result.references.keys(), key=lambda m: (m[0], int(m[1:]))):
+    for marker in sorted(
+        result.references.keys(),
+        key=lambda x: (x[0], int(x[1:])) if re.match(r"^[AI]\d+$", x) else (x.lower(), 0),
+    ):
         ref = result.references[marker]
         if ref.url is None:
             status = "No URL"
@@ -724,8 +734,17 @@ Examples:
     # Validate URLs
     if args.check_urls or args.all:
         print("\nValidating URLs...")
+        # Load allowlist if it exists
+        allowlist = {}
+        if ALLOWLIST_PATH.exists():
+            try:
+                allowlist = json.loads(ALLOWLIST_PATH.read_text())
+                print(f"Loaded {len(allowlist)} allowlisted URLs from {ALLOWLIST_PATH}")
+            except Exception as e:
+                print(f"WARNING: Failed to load allowlist from {ALLOWLIST_PATH}: {e}")
+
         result.accessible_urls, result.broken_urls, result.missing_urls = validate_urls(
-            result.references, verbose=args.verbose
+            result.references, allowlist=allowlist, verbose=args.verbose
         )
         print(
             f"Checked {len(result.references)} URLs: "

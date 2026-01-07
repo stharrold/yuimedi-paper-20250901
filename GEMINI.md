@@ -6,7 +6,6 @@ parent: null
 sibling_readme: README.md
 children:
 - .benchmarks/GEMINI.md
-- .gemini/GEMINI.md
 - .github/GEMINI.md
 - ARCHIVED/GEMINI.md
 - compliance/GEMINI.md
@@ -40,8 +39,8 @@ This file provides guidance to Gemini (Gemini) when working with code in this re
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 108 verified citations (pandoc-citeproc format) addressing:
-1. Low healthcare analytics maturity
+**Primary deliverable:** `paper.md` - Academic research paper with 112 verified citations (pandoc-citeproc format) addressing:
+1. Low healthcare analytics maturity (updated with 2025 AMAM data)
 2. Healthcare workforce turnover and institutional memory loss
 3. Technical barriers in natural language to SQL generation
 
