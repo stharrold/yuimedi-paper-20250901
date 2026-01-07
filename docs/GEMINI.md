@@ -40,7 +40,7 @@ docs/
 
 ## Primary Paper Files (in root directory)
 
-- `paper.md` - Source document
+- `paper.md` - Source document (112 citations)
 - `paper.pdf` - PDF output
 - `paper.html` - HTML output
 - `paper.docx` - Word output
