@@ -5,7 +5,8 @@ purpose: Documentation validation scripts
 parent: ../GEMINI.md
 sibling_readme: null
 children:
-  - validation/GEMINI.md
+- ARCHIVED/GEMINI.md
+- validation/GEMINI.md
 ---
 
 # Gemini Context Context: tools

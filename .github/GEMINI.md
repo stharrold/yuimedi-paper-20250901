@@ -3,6 +3,9 @@ type: gemini-context
 directory: .github
 purpose: Documentation and context for .github
 parent: ../GEMINI.md
+children:
+- commands/GEMINI.md
+- workflows/GEMINI.md
 ---
 
 # Gemini Context Context: .github

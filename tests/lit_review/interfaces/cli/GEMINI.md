@@ -3,6 +3,7 @@ type: gemini-context
 directory: cli
 purpose: Documentation and context for cli
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: cli

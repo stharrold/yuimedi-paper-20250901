@@ -3,6 +3,7 @@ type: gemini-context
 directory: services
 purpose: Documentation and context for services
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: services

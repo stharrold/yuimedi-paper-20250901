@@ -3,6 +3,8 @@ type: claude-context
 directory: budget
 purpose: Financial planning and tracking
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: budget

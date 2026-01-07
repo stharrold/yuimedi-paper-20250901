@@ -3,6 +3,7 @@ type: gemini-context
 directory: values
 purpose: Documentation and context for values
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: values

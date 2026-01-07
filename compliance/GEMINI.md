@@ -3,6 +3,9 @@ type: gemini-context
 directory: compliance
 purpose: Documentation and context for compliance
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
+- irb/GEMINI.md
 ---
 
 # Gemini Context Context: compliance

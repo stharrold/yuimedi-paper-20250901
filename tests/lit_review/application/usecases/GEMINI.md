@@ -3,6 +3,7 @@ type: gemini-context
 directory: usecases
 purpose: Documentation and context for usecases
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: usecases

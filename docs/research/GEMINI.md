@@ -3,6 +3,8 @@ type: gemini-context
 directory: research
 purpose: Documentation and context for research
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: research

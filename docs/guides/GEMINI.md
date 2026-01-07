@@ -3,6 +3,8 @@ type: gemini-context
 directory: guides
 purpose: Documentation and context for guides
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: guides

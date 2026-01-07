@@ -3,6 +3,7 @@ type: gemini-context
 directory: commands
 purpose: Documentation and context for commands
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: commands

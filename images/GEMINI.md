@@ -3,6 +3,8 @@ type: gemini-context
 directory: images
 purpose: Documentation and context for images
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: images

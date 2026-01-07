@@ -3,6 +3,7 @@ type: gemini-context
 directory: workflows
 purpose: Documentation and context for workflows
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: workflows

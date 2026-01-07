@@ -3,6 +3,7 @@ type: gemini-context
 directory: queries
 purpose: Documentation and context for queries
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: queries

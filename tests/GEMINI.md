@@ -5,8 +5,10 @@ purpose: Pytest test suite for skill validation
 parent: ../GEMINI.md
 sibling_readme: null
 children:
-  - skills/GEMINI.md
-  - unit/GEMINI.md
+- ARCHIVED/GEMINI.md
+- lit_review/GEMINI.md
+- skills/GEMINI.md
+- unit/GEMINI.md
 ---
 
 # Gemini Context Context: tests
