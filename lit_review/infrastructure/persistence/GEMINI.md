@@ -3,6 +3,7 @@ type: gemini-context
 directory: persistence
 purpose: Documentation and context for persistence
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: persistence

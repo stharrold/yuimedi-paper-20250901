@@ -2,10 +2,10 @@
 # See: https://pandoc.org/MANUAL.html#metadata-variables
 
 # Document information
-title: "Natural Language to SQL in Healthcare: Bridging Analytics Maturity Gaps, Workforce Turnover, and Technical Barriers Through Conversational AI Platforms"
+title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Dynamics, and Technical Barriers"
 author: "Samuel T Harrold, Yuimedi"
 correspondence: "https://us.yuimedi.com/contact-us/ (include 'NL2SQL paper' in message)"
-date: "December 2025"
+date: "January 2026"
 lang: en-US
 
 # Document class settings
@@ -56,7 +56,7 @@ classoption:
 
 # Header and footer
 header-left: "NL2SQL in Healthcare"
-header-right: "December 2025"
+header-right: "January 2026"
 footer-left: "\\hspace{0pt}"
 footer-center: "\\thepage"
 footer-right: "\\hspace{0pt}"

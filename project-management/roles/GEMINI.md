@@ -3,6 +3,8 @@ type: claude-context
 directory: roles
 purpose: Team structure and responsibility assignments
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: roles

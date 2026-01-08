@@ -3,6 +3,14 @@ type: gemini-context
 directory: lit_review
 purpose: Documentation and context for lit_review
 parent: ../GEMINI.md
+children:
+- application/GEMINI.md
+- domain/GEMINI.md
+- fixtures/GEMINI.md
+- infrastructure/GEMINI.md
+- integration/GEMINI.md
+- interfaces/GEMINI.md
+- performance/GEMINI.md
 ---
 
 # Gemini Context Context: lit_review

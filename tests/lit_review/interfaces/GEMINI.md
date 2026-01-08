@@ -3,6 +3,8 @@ type: gemini-context
 directory: interfaces
 purpose: Documentation and context for interfaces
 parent: ../GEMINI.md
+children:
+- cli/GEMINI.md
 ---
 
 # Gemini Context Context: interfaces

@@ -3,6 +3,8 @@ type: claude-context
 directory: risks
 purpose: Risk assessment and mitigation tracking
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: risks

@@ -174,7 +174,7 @@ class TestSemanticScholarAdapter:
         papers = adapter.search("test")
 
         # Second paper has no DOI, should use ArXiv ID
-        assert papers[1].doi.value == "arXiv:2401.67890"
+        assert papers[1].doi.value == "10.48550/arXiv.2401.67890"
 
     @patch("lit_review.infrastructure.adapters.semantic_scholar_adapter.httpx.Client")
     def test_search_uses_s2_id_as_fallback(self, mock_client_class: MagicMock) -> None:
@@ -206,7 +206,7 @@ class TestSemanticScholarAdapter:
         papers = adapter.search("test")
 
         assert len(papers) == 1
-        assert papers[0].doi.value == "S2:s2paper123"
+        assert papers[0].doi.value == "10.58121/S2.s2paper123"
 
     @patch("lit_review.infrastructure.adapters.semantic_scholar_adapter.httpx.Client")
     def test_search_handles_missing_year(self, mock_client_class: MagicMock) -> None:
@@ -402,7 +402,7 @@ class TestSemanticScholarAdapterParsing:
         adapter = SemanticScholarAdapter()
         doi = adapter._extract_doi(item)
 
-        assert doi == "arXiv:2401.12345"
+        assert doi == "10.48550/arXiv.2401.12345"
 
     def test_extract_doi_falls_back_to_paper_id(self) -> None:
         """_extract_doi uses paper ID when no external IDs."""
@@ -414,7 +414,7 @@ class TestSemanticScholarAdapterParsing:
         adapter = SemanticScholarAdapter()
         doi = adapter._extract_doi(item)
 
-        assert doi == "S2:s2paper123"
+        assert doi == "10.58121/S2.s2paper123"
 
     def test_parse_authors_handles_first_last_format(self) -> None:
         """_parse_authors handles 'First Last' format."""

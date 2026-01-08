@@ -259,9 +259,9 @@ def mock_azure_cli() -> Generator[MagicMock, None, None]:
 def skills_path() -> Path:
     """Get the path to the skills directory.
 
-    Returns the absolute path to .claude/skills/ for importing modules.
+    Returns the absolute path to .gemini/skills/ for importing modules.
     """
-    return Path(__file__).parent.parent.parent / ".claude" / "skills"
+    return Path(__file__).parent.parent.parent / ".gemini" / "skills"
 
 
 @pytest.fixture

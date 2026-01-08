@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 Yuimedi, Inc.
 # SPDX-License-Identifier: Apache-2.0
 import os
+import re
 from pathlib import Path
 
 import yaml
@@ -26,45 +27,56 @@ def update_gemini_md(dir_path):
 
     # Find children
     children = []
-    for item in dir_path.iterdir():
-        if item.is_dir() and item.name not in IGNORE_DIRS:
-            child_gemini = item / "GEMINI.md"
-            if child_gemini.exists():
-                children.append(f"{item.name}/GEMINI.md")
+    try:
+        for item in dir_path.iterdir():
+            if item.is_dir() and item.name not in IGNORE_DIRS:
+                child_gemini = item / "GEMINI.md"
+                if child_gemini.exists():
+                    children.append(f"{item.name}/GEMINI.md")
+    except PermissionError:
+        return
 
     children.sort()
 
     # Read existing content
     content = gemini_path.read_text()
 
-    # Parse frontmatter
-    if content.startswith("---\n"):
-        parts = content.split("---\\n", 2)
-        if len(parts) >= 3:
-            frontmatter_raw = parts[1]
-            body = parts[2]
+    # Parse frontmatter using regex to be robust against different newline styles
+    # Match: start of file, ---, newline, content, newline, ---, newline or end
+    match = re.match(r"^---\n(.*?)\n---\n(.*)$", content, re.DOTALL)
 
-            try:
-                data = yaml.safe_load(frontmatter_raw)
+    if match:
+        frontmatter_raw = match.group(1)
+        body = match.group(2)
 
-                # Update children
-                data["children"] = children
+        try:
+            data = yaml.safe_load(frontmatter_raw)
+            if data is None:
+                data = {}
 
-                # Update parent if not root
-                if dir_path != ROOT_DIR:
-                    data["parent"] = "../GEMINI.md"
-                else:
-                    data["parent"] = None
+            # Update children
+            data["children"] = children if children else []
 
-                # Reconstruct
-                new_frontmatter = yaml.dump(data, sort_keys=False, default_flow_style=False).strip()
-                new_content = f"---\n{new_frontmatter}\n---\n{body}"
+            # Update parent if not root
+            if dir_path.resolve() != ROOT_DIR.resolve():
+                data["parent"] = "../GEMINI.md"
+            else:
+                data["parent"] = None
 
-                if new_content != content:
-                    gemini_path.write_text(new_content)
-                    print(f"Updated: {gemini_path}")
-            except Exception as e:
-                print(f"Error parsing {gemini_path}: {e}")
+            # Reconstruct
+            new_frontmatter = yaml.dump(data, sort_keys=False, default_flow_style=False).strip()
+            new_content = f"---\n{new_frontmatter}\n---\n{body}"
+
+            if new_content != content:
+                gemini_path.write_text(new_content)
+                print(f"Updated: {gemini_path}")
+        except Exception as e:
+            print(f"Error parsing/updating {gemini_path}: {e}")
+    else:
+        # If no frontmatter, create it?
+        # For now, just warn or skip
+        # print(f"Skipping {gemini_path}: No valid frontmatter found")
+        pass
 
 
 def main():

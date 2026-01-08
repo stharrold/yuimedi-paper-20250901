@@ -1,9 +1,16 @@
 ---
 type: claude-context
 directory: docs
-purpose: Documentation artifacts including guides, reports, research notes, and reference materials
+purpose: Documentation artifacts including guides, reports, research notes, and reference
+  materials
 parent: ../GEMINI.md
 sibling_readme: README.md
+children:
+- ARCHIVED/GEMINI.md
+- guides/GEMINI.md
+- references/GEMINI.md
+- reports/GEMINI.md
+- research/GEMINI.md
 ---
 
 # Gemini Context Context: docs
@@ -33,7 +40,7 @@ docs/
 
 ## Primary Paper Files (in root directory)
 
-- `paper.md` - Source document
+- `paper.md` - Source document (112 citations)
 - `paper.pdf` - PDF output
 - `paper.html` - HTML output
 - `paper.docx` - Word output

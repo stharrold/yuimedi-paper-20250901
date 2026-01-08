@@ -10,31 +10,23 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
-from unittest.mock import MagicMock, patch
 
-# Add skills path to import the module
-sys.path.insert(
-    0,
-    str(
-        Path(__file__).parent.parent.parent
-        / ".claude"
-        / "skills"
-        / "git-workflow-manager"
-        / "scripts"
-    ),
-)
+# Add skills script directories to sys.path
+_root = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "workflow-utilities" / "scripts"))
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts"))
 
-from pr_workflow import (
+from unittest.mock import MagicMock, patch  # noqa: E402
+
+from pr_workflow import (  # noqa: E402
     get_contrib_branch,
     get_current_branch,
     return_to_editable_branch,
     run_cmd,
     run_quality_gates,
     show_status,
-    step_archive_todo,
     step_finish_feature,
     step_start_develop,
-    step_sync_agents,
 )
 
 
@@ -211,81 +203,6 @@ class TestStepFinishFeature:
                         assert result is False
 
 
-class TestStepArchiveTodo:
-    """Test step_archive_todo function."""
-
-    def test_returns_true_when_no_todo_files(self):
-        """Test that True is returned when no TODO files exist."""
-        with patch("pr_workflow.Path.glob", return_value=[]):
-            with patch.object(Path, "glob", return_value=[]):
-                result = step_archive_todo()
-                assert result is True
-
-    def test_archives_todo_files(self, tmp_path):
-        """Test that TODO files are archived."""
-        # Create a mock TODO file
-        todo_file = tmp_path / "TODO_test.md"
-        todo_file.write_text("# Test TODO")
-
-        with patch("pr_workflow.Path.glob", return_value=[todo_file]):
-            with patch("pr_workflow.Path.mkdir"):
-                with patch("pr_workflow.shutil.move"):
-                    with patch("pr_workflow.run_cmd") as mock_run:
-                        mock_run.return_value = MagicMock(returncode=0, stdout="", stderr="")
-                        result = step_archive_todo()
-                        assert result is True
-
-    def test_creates_archived_directory(self, tmp_path):
-        """Test that ARCHIVED directory is created."""
-        todo_file = tmp_path / "TODO_test.md"
-        todo_file.write_text("# Test TODO")
-
-        with patch("pr_workflow.Path.glob", return_value=[todo_file]):
-            with patch("pr_workflow.Path.mkdir") as mock_mkdir:
-                with patch("pr_workflow.shutil.move"):
-                    with patch("pr_workflow.run_cmd") as mock_run:
-                        mock_run.return_value = MagicMock(returncode=0, stdout="", stderr="")
-                        step_archive_todo()
-                        # mkdir should be called with exist_ok=True
-                        mock_mkdir.assert_called_once_with(exist_ok=True)
-
-
-class TestStepSyncAgents:
-    """Test step_sync_agents function."""
-
-    def test_returns_true_on_successful_sync(self):
-        """Test that True is returned when sync succeeds."""
-        mock_sync_module = MagicMock()
-        mock_sync_module.sync_all.return_value = (True, True)
-        with patch.dict(sys.modules, {"sync_ai_config": mock_sync_module}):
-            with patch("pr_workflow.run_cmd") as mock_run:
-                mock_run.return_value = MagicMock(returncode=0, stdout="", stderr="")
-                result = step_sync_agents()
-                assert result is True
-
-    def test_returns_false_when_sync_fails(self):
-        """Test that False is returned when sync fails."""
-        mock_sync_module = MagicMock()
-        mock_sync_module.sync_all.return_value = (False, [])
-        with patch.dict(sys.modules, {"sync_ai_config": mock_sync_module}):
-            result = step_sync_agents()
-            assert result is False
-
-    def test_uses_fallback_when_import_fails(self):
-        """Test that fallback sync is used when import fails."""
-        with patch.dict(sys.modules, {"sync_ai_config": None}):
-            with patch("pr_workflow.Path.exists", return_value=True):
-                with patch("pr_workflow.shutil.copy"):
-                    with patch("pr_workflow.Path.mkdir"):
-                        with patch("pr_workflow.Path.iterdir", return_value=[]):
-                            with patch("pr_workflow.run_cmd") as mock_run:
-                                mock_run.return_value = MagicMock(
-                                    returncode=0, stdout="", stderr=""
-                                )
-                                result = step_sync_agents()
-                                assert result is True
-
-
 class TestStepStartDevelop:
     """Test step_start_develop function."""
 
@@ -426,12 +343,10 @@ class TestFullWorkflow:
         from pr_workflow import run_full_workflow
 
         with patch("pr_workflow.step_finish_feature", return_value=True):
-            with patch("pr_workflow.step_archive_todo", return_value=True):
-                with patch("pr_workflow.step_sync_agents", return_value=True):
-                    with patch("pr_workflow.step_start_develop", return_value=True):
-                        with patch("pr_workflow.return_to_editable_branch", return_value=True):
-                            result = run_full_workflow()
-                            assert result is True
+            with patch("pr_workflow.step_start_develop", return_value=True):
+                with patch("pr_workflow.return_to_editable_branch", return_value=True):
+                    result = run_full_workflow()
+                    assert result is True
 
     def test_full_workflow_returns_to_editable_on_failure(self):
         """Test that full workflow returns to editable branch on failure."""
@@ -451,8 +366,6 @@ class TestArgumentParsing:
         """Test that all valid step choices are accepted."""
         valid_steps = [
             "finish-feature",
-            "archive-todo",
-            "sync-agents",
             "start-develop",
             "full",
             "status",

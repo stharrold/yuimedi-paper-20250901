@@ -13,21 +13,13 @@ import sys
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-import pytest
+# Add skills script directories to sys.path
+_root = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "workflow-utilities" / "scripts"))
+sys.path.insert(0, str(_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts"))
 
-# Add skills path to import the module
-sys.path.insert(
-    0,
-    str(
-        Path(__file__).parent.parent.parent
-        / ".claude"
-        / "skills"
-        / "workflow-utilities"
-        / "scripts"
-    ),
-)
-
-from vcs.azure_adapter import AZURE_CLI, AzureDevOpsAdapter
+import pytest  # noqa: E402
+from vcs.azure_adapter import AZURE_CLI, AzureDevOpsAdapter  # noqa: E402
 
 
 class TestAzureDevOpsAdapterInit:

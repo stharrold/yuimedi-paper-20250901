@@ -90,7 +90,7 @@ Calculates the average computation time for fully automated query formulation to
 **Authors:** CB Dadi
 **Publication:** Journal of Computer Science and Technology Studies, 2025
 **Citations:** Not yet cited (2025 publication)
-**Link:** https://al-kindipublishers.org/index.php/jcsts/article/view/8823
+**Link:** https://al-kindipublisher.com/index.php/jcsts/article/view/9694
 **PDF:** Not available
 
 **Abstract/Summary:**
@@ -328,15 +328,22 @@ Uses a mixed-methods research design, combining qualitative and quantitative app
     number={4},
     pages={294--305},
     year={2019},
-    publisher={Oxford University Press}
+    publisher={Oxford University Press},
+    file={../library/docs/2019_Yuan_JAMIA_Criteria2Query.pdf}
 }
 
 @article{dadi2025natural,
-    title={Natural Language Interfaces for Database Management: Bridging the Gap Between Users and Data through Conversational AI},
-    author={Dadi, CB},
-    journal={Journal of Computer Science and Technology Studies},
-    year={2025},
-    publisher={Al-Kindi Publishers}
+  title={Natural Language Interfaces for Database Management: Bridging the Gap Between Users and Data through Conversational AI},
+  author={Dadi, Chaitanya Bharat and Hoque, Md Refadul and Ali, Md Musa and Ferdausi, Shaharia and Fatema, Kanis and Hasan, Md Rakibul},
+  journal={Journal of Computer Science and Technology Studies},
+  volume={7},
+  number={3},
+  pages={927--933},
+  year={2025},
+  publisher={Al-Kindi Center for Research and Development},
+  doi={10.32996/jcsts.2025.7.3.103},
+  url={https://al-kindipublisher.com/index.php/jcsts/article/view/9694},
+  file={../library/docs/2025_Dadi_JCSTS_Natural-Language-Interfaces-Database-Management.pdf}
 }
 
 @article{kaufman2016natural,

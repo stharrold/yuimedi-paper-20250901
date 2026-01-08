@@ -4,9 +4,10 @@ directory: project-management
 purpose: Project management documentation for YuiQuery research
 parent: ../GEMINI.md
 children:
-  - budget/GEMINI.md
-  - risks/GEMINI.md
-  - roles/GEMINI.md
+- ARCHIVED/GEMINI.md
+- budget/GEMINI.md
+- risks/GEMINI.md
+- roles/GEMINI.md
 ---
 
 # Gemini Context Context: project-management

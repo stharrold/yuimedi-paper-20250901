@@ -3,6 +3,10 @@ type: gemini-context
 directory: infrastructure
 purpose: Documentation and context for infrastructure
 parent: ../GEMINI.md
+children:
+- adapters/GEMINI.md
+- ai/GEMINI.md
+- persistence/GEMINI.md
 ---
 
 # Gemini Context Context: infrastructure

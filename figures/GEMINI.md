@@ -4,12 +4,13 @@ directory: figures
 purpose: Figure assets for research paper - Mermaid/DOT sources and generated outputs
 parent: ../GEMINI.md
 sibling_readme: null
-children: null
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # GEMINI.md
 
-This file provides guidance to Gemini (Gemini) when working with code in this repository.
+This file provides guidance to Gemini Code (gemini.ai/code) when working with code in this repository.
 
 ## Directory Purpose
 

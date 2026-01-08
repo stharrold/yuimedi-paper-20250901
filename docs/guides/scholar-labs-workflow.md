@@ -25,6 +25,9 @@ This algorithm captures the semi-automated workflow for answering research quest
 
 ### 3. Execution (Automated Script)
 *   **Connect:** Script connects to `localhost:9222` via Playwright.
+*   **Session Management:**
+    *   **New Question:** ALWAYS click "New session" (or navigate to the base search URL) to start fresh. This prevents context contamination and ensures maximum result depth.
+    *   **Follow-up:** ONLY use "Ask a follow-up" if the previous results in the same session were insufficient to fully answer the specific question.
 *   **Search:** Submits the natural language question to the Labs interface.
 *   **Wait:** Polls for "Evaluated X results" completion.
 *   **Extract:** Scrapes the AI overview text and the list of source citations (Title, URL, Snippet).
@@ -40,7 +43,7 @@ This algorithm captures the semi-automated workflow for answering research quest
 
 ### 5. Artifact Retrieval (Automated Script)
 *   **Download:** Iterates through source URLs.
-*   **Save:** Downloads accessible PDFs to `docs/references/YYYY_Author_Journal_Title.pdf`.
+*   **Save:** Downloads accessible PDFs to `../library/docs/YYYY_Author_Journal_Title.pdf`.
 *   **Log:** Records success/failure for each download.
 
 ## Scripts

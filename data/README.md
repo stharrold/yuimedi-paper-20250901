@@ -43,5 +43,5 @@ Synthea synthetic patient data generation was originally planned as a backup dat
 ## Related Documentation
 
 - `compliance/README.md` - HIPAA compliance and data handling
-- `docs/references/README.md` - Data source references
+- `../library/docs/README.md` - Data source references
 - `src/analysis/README.md` - Analysis code documentation

@@ -213,12 +213,12 @@ class SemanticScholarAdapter(SearchService):
             # Try ArXiv ID
             arxiv_id = external_ids.get("ArXiv")
             if arxiv_id:
-                return f"arXiv:{arxiv_id}"
+                return f"10.48550/arXiv.{arxiv_id}"
 
         # Fallback to Semantic Scholar paper ID
         paper_id = item.get("paperId")
         if paper_id:
-            return f"S2:{paper_id}"
+            return f"10.58121/S2.{paper_id}"
 
         return None
 

@@ -95,14 +95,14 @@ class TestAnalysisPerformanceTarget:
         assert len(result.themes) > 0
 
         # Check performance target
-        assert benchmark.stats.mean < 30.0, (
-            f"Analysis took {benchmark.stats.mean:.2f}s, exceeds 30s target for 500 papers"
+        assert benchmark.stats.stats.mean < 30.0, (
+            f"Analysis took {benchmark.stats.stats.mean:.2f}s, exceeds 30s target for 500 papers"
         )
 
         print("\n=== 500 PAPERS PERFORMANCE ===")
-        print(f"Mean time: {benchmark.stats.mean:.2f}s")
+        print(f"Mean time: {benchmark.stats.stats.mean:.2f}s")
         print(f"Themes found: {len(result.themes)}")
-        print(f"Papers/second: {500 / benchmark.stats.mean:.1f}")
+        print(f"Papers/second: {500 / benchmark.stats.stats.mean:.1f}")
 
     def test_100_papers_fast_analysis(self, benchmark):
         """Test that 100 papers can be analyzed quickly (baseline)."""
@@ -112,10 +112,10 @@ class TestAnalysisPerformanceTarget:
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=5))
 
         assert result.themes is not None
-        assert benchmark.stats.mean < 5.0  # Should be under 5 seconds
+        assert benchmark.stats.stats.mean < 5.0  # Should be under 5 seconds
 
         print("\n=== 100 PAPERS BASELINE ===")
-        print(f"Mean time: {benchmark.stats.mean:.3f}s")
+        print(f"Mean time: {benchmark.stats.stats.mean:.3f}s")
         print(f"Themes found: {len(result.themes)}")
 
     def test_1000_papers_extended(self, benchmark):
@@ -132,12 +132,12 @@ class TestAnalysisPerformanceTarget:
         assert result.themes is not None
 
         # Should scale reasonably (under 60 seconds for 1000 papers)
-        assert benchmark.stats.mean < 60.0
+        assert benchmark.stats.stats.mean < 60.0
 
         print("\n=== 1000 PAPERS EXTENDED ===")
-        print(f"Mean time: {benchmark.stats.mean:.2f}s")
+        print(f"Mean time: {benchmark.stats.stats.mean:.2f}s")
         print(f"Themes found: {len(result.themes)}")
-        print(f"Papers/second: {1000 / benchmark.stats.mean:.1f}")
+        print(f"Papers/second: {1000 / benchmark.stats.stats.mean:.1f}")
 
 
 @pytest.mark.benchmark
@@ -154,10 +154,10 @@ class TestAnalysisPerformanceScaling:
 
         assert result.themes is not None
 
-        papers_per_second = paper_count / benchmark.stats.mean
+        papers_per_second = paper_count / benchmark.stats.stats.mean
 
         print(f"\n=== SCALING: {paper_count} papers ===")
-        print(f"Time: {benchmark.stats.mean:.3f}s")
+        print(f"Time: {benchmark.stats.stats.mean:.3f}s")
         print(f"Rate: {papers_per_second:.1f} papers/s")
 
     def test_scaling_with_abstract_length(self, benchmark):
@@ -169,10 +169,10 @@ class TestAnalysisPerformanceScaling:
         result = benchmark(lambda: use_case.execute(papers=papers, max_themes=5))
 
         assert result.themes is not None
-        assert benchmark.stats.mean < 15.0  # Should still be reasonably fast
+        assert benchmark.stats.stats.mean < 15.0  # Should still be reasonably fast
 
         print("\n=== LONG ABSTRACTS (2000 chars) ===")
-        print(f"Time: {benchmark.stats.mean:.3f}s for 200 papers")
+        print(f"Time: {benchmark.stats.stats.mean:.3f}s for 200 papers")
 
     def test_scaling_with_theme_count(self, benchmark):
         """Test how max_themes parameter affects performance."""
@@ -186,7 +186,7 @@ class TestAnalysisPerformanceScaling:
         assert len(result.themes) > 0
 
         print("\n=== MANY THEMES (max=20) ===")
-        print(f"Time: {benchmark.stats.mean:.3f}s")
+        print(f"Time: {benchmark.stats.stats.mean:.3f}s")
         print(f"Themes found: {len(result.themes)}")
 
 
@@ -204,16 +204,15 @@ class TestAnalysisPerformanceOptimization:
             lambda: use_case.execute(
                 papers=papers,
                 max_themes=5,
-                max_features=100,  # Limit features for speed
             )
         )
 
         assert result.themes is not None
         # Should be faster with limited features
-        assert benchmark.stats.mean < 20.0
+        assert benchmark.stats.stats.mean < 20.0
 
         print("\n=== OPTIMIZED VECTORIZATION ===")
-        print(f"Time: {benchmark.stats.mean:.3f}s for 500 papers")
+        print(f"Time: {benchmark.stats.stats.mean:.3f}s for 500 papers")
 
     def test_clustering_performance(self, benchmark):
         """Test clustering algorithm performance."""
@@ -252,7 +251,7 @@ class TestAnalysisPerformanceMemory:
         assert len(result.themes) > 0
 
         print("\n=== LARGE CORPUS (1000 papers, 1000 char abstracts) ===")
-        print(f"Time: {benchmark.stats.mean:.2f}s")
+        print(f"Time: {benchmark.stats.stats.mean:.2f}s")
         print("Memory efficient: Completed without issues")
 
     def test_incremental_processing(self, benchmark):
@@ -269,7 +268,7 @@ class TestAnalysisPerformanceMemory:
         assert result.themes is not None
 
         print("\n=== BATCH PROCESSING ===")
-        print(f"Single batch time: {benchmark.stats.mean:.3f}s")
+        print(f"Single batch time: {benchmark.stats.stats.mean:.3f}s")
 
 
 @pytest.mark.benchmark
@@ -293,7 +292,7 @@ class TestAnalysisPerformanceBaselines:
         assert matrix.shape[0] == len(abstracts)
 
         print("\n=== BASELINE: TF-IDF Vectorization ===")
-        print(f"Time: {benchmark.stats.mean:.4f}s for {len(abstracts)} abstracts")
+        print(f"Time: {benchmark.stats.stats.mean:.4f}s for {len(abstracts)} abstracts")
         print(f"Matrix shape: {matrix.shape}")
 
     def test_baseline_clustering(self, benchmark):
@@ -317,7 +316,7 @@ class TestAnalysisPerformanceBaselines:
         assert len(model.labels_) == len(abstracts)
 
         print("\n=== BASELINE: K-Means Clustering ===")
-        print(f"Time: {benchmark.stats.mean:.4f}s for {len(abstracts)} abstracts")
+        print(f"Time: {benchmark.stats.stats.mean:.4f}s for {len(abstracts)} abstracts")
         print("Clusters: 5")
 
     def test_baseline_full_pipeline(self, benchmark):
@@ -334,12 +333,14 @@ class TestAnalysisPerformanceBaselines:
         assert result.themes is not None
 
         print("\n=== BASELINE: Full Analysis Pipeline ===")
-        print(f"Mean: {benchmark.stats.mean:.3f}s")
-        print(f"StdDev: {benchmark.stats.stddev:.3f}s")
-        print(f"Min: {benchmark.stats.min:.3f}s")
-        print(f"Max: {benchmark.stats.max:.3f}s")
+        print(f"Mean: {benchmark.stats.stats.mean:.3f}s")
+        print(f"StdDev: {benchmark.stats.stats.stddev:.3f}s")
+        print(f"Min: {benchmark.stats.stats.min:.3f}s")
+        print(f"Max: {benchmark.stats.stats.max:.3f}s")
         print(f"Themes: {len(result.themes)}")
-        print(f"Target: <30s for 500 papers - {'PASS' if benchmark.stats.mean < 30 else 'FAIL'}")
+        print(
+            f"Target: <30s for 500 papers - {'PASS' if benchmark.stats.stats.mean < 30 else 'FAIL'}"
+        )
 
 
 @pytest.mark.benchmark
@@ -355,7 +356,7 @@ class TestAnalysisPerformanceEdgeCases:
 
         assert result.themes is not None
         print("\n=== SMALL ABSTRACTS (100 chars) ===")
-        print(f"Time: {benchmark.stats.mean:.3f}s for 1000 papers")
+        print(f"Time: {benchmark.stats.stats.mean:.3f}s for 1000 papers")
 
     def test_few_large_abstracts(self, benchmark):
         """Test with few papers but large abstracts."""
@@ -366,7 +367,7 @@ class TestAnalysisPerformanceEdgeCases:
 
         assert result.themes is not None
         print("\n=== LARGE ABSTRACTS (5000 chars) ===")
-        print(f"Time: {benchmark.stats.mean:.3f}s for 50 papers")
+        print(f"Time: {benchmark.stats.stats.mean:.3f}s for 50 papers")
 
     def test_similar_papers(self, benchmark):
         """Test performance when all papers are very similar."""
@@ -395,7 +396,7 @@ class TestAnalysisPerformanceEdgeCases:
 
         assert result.themes is not None
         print("\n=== IDENTICAL PAPERS ===")
-        print(f"Time: {benchmark.stats.mean:.3f}s for 500 similar papers")
+        print(f"Time: {benchmark.stats.stats.mean:.3f}s for 500 similar papers")
 
     def test_diverse_papers(self, benchmark):
         """Test performance with highly diverse papers."""
@@ -428,5 +429,5 @@ class TestAnalysisPerformanceEdgeCases:
 
         assert result.themes is not None
         print("\n=== DIVERSE PAPERS ===")
-        print(f"Time: {benchmark.stats.mean:.3f}s for 500 diverse papers")
+        print(f"Time: {benchmark.stats.stats.mean:.3f}s for 500 diverse papers")
         print(f"Themes found: {len(result.themes)}")

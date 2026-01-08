@@ -3,6 +3,8 @@ type: gemini-context
 directory: references
 purpose: Documentation and context for references
 parent: ../GEMINI.md
+children:
+- ARCHIVED/GEMINI.md
 ---
 
 # Gemini Context Context: references

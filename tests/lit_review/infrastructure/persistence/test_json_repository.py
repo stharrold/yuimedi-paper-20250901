@@ -99,7 +99,8 @@ class TestJSONReviewRepository:
         """save keeps only max_backups most recent backups."""
         # Save 7 times (should keep only 5 backups)
         for i in range(7):
-            sample_review.advance_stage() if i > 0 else None
+            if i > 0 and not sample_review.is_complete:
+                sample_review.advance_stage()
             repository.save(sample_review)
             # Small delay to ensure different timestamps
             import time

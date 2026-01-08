@@ -3,6 +3,7 @@ type: gemini-context
 directory: ai
 purpose: Documentation and context for ai
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: ai

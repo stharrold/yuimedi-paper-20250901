@@ -1,5 +1,1 @@
-# git-crypt encrypted files
-# PDFs in docs/references/ are encrypted at rest
-# Only users with the git-crypt key can decrypt
-
-docs/references/**/*.pdf filter=git-crypt diff=git-crypt
+# No encrypted files as of 2026-01-07

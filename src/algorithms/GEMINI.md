@@ -3,6 +3,7 @@ type: gemini-context
 directory: algorithms
 purpose: Documentation and context for algorithms
 parent: ../GEMINI.md
+children: []
 ---
 
 # Gemini Context Context: algorithms
