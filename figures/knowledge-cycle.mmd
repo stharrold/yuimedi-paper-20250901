@@ -6,16 +6,16 @@ flowchart TB
     subgraph CYCLE["<b>Validated Query Cycle</b>"]
         Q["1. QUERY<br/>Domain expert asks<br/>natural language question"]
         G["2. GENERATION<br/>System generates<br/>candidate SQL"]
-        V{"3. VALIDATION<br/>Expert confirms or<br/>corrects SQL"}
-        S["4. STORAGE<br/>Validated NL+SQL pair<br/>stored in memory"]
+        V{"3. VALIDATION<br/>AI explains SQL logic;<br/>Expert confirms intent"}
+        S["4. STORAGE<br/>Validated pair + Rationale<br/>stored in memory"]
         R["5. RETRIEVAL<br/>Future queries match<br/>validated pairs"]
         P["6. PERSISTENCE<br/>Knowledge survives<br/>staff turnover"]
     end
 
-    subgraph PILLARS["<b>Three Pillars (Cycle Broken)</b>"]
+    subgraph PILLARS["<b>Three Pillars</b>"]
         M["Analytics<br/>Maturity"]
-        T["Workforce<br/>Retention"]
-        B["Technical<br/>Accessibility"]
+        T["Workforce<br/>Agility"]
+        B["Technical<br/>Enablement"]
     end
 
     %% Main cycle flow (left to right)
@@ -29,8 +29,8 @@ flowchart TB
 
     %% How cycle advances each pillar (vertical connections)
     S -.->|"Advances"| M
-    P -.->|"Enables"| T
-    R -.->|"Improves"| B
+    P -.->|"Stabilizes"| T
+    R -.->|"Increases"| B
 
     %% Styling - Grayscale
     style CYCLE fill:#e8e8e8,stroke:#666,stroke-width:2px

@@ -17,11 +17,11 @@ flowchart TD
         A --> D{"Title/abstract<br/>screening<br/>n = 570"}
         D -->|"Excluded"| E["Articles excluded<br/>n = 480"]
         D -->|"Passed"| H{"Full-text<br/>eligibility<br/>n = 90"}
-        H -->|"Excluded"| I["Articles excluded<br/>n = 46"]
+        H -->|"Excluded"| I["Articles excluded<br/>n = 40"]
     end
 
     subgraph QA["<b>Quality Assessment</b>"]
-        H -->|"Passed"| J{"Source<br/>classification<br/>n = 44"}
+        H -->|"Passed"| J{"Source<br/>classification<br/>n = 50"}
         J -->|"Grey literature"| L{"AACODS<br/>checklist<br/>n = 14"}
         L -->|"Excluded"| N["Articles excluded<br/>n = 3"]
     end
