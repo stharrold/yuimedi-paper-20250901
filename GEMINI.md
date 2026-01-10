@@ -48,7 +48,7 @@ This file provides guidance to Gemini (Gemini) when working with code in this re
 
 **Paper classification:** Narrative review with original three-pillar analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/guides/journal-submission-guide.md`.
 
-**Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ARCHIVED/20260101T171859Z_ppr_review.zip` for assessment table.
+**Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). Framework ordering validated using Root Cause Analysis methodology (Allison & Peters, 2021). See `ARCHIVED/20260101T171859Z_ppr_review.zip` for assessment table.
 
 **Paper 1 structure:** Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Executive Summary removed (redundant with YAML abstract); Sections 5-6 (Proposed Solution, Evaluation) previously removed to transform paper from solution-advocacy to pure analytical framework.
 

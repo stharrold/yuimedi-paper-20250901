@@ -67,6 +67,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What contemporary empirical research measures healthcare IT turnover rates? | Paper1 | - | [`Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md`](Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md) |
 | How do organizations use procedural artifacts or 'Standard Work' as a ratchet mechanism to prevent organizational forgetting during periods of high employee turnover? | Paper1 | - | [`Research_procedural-artifacts-as-knowledge-ratchet.md`](Research_procedural-artifacts-as-knowledge-ratchet.md) |
 | How does the 'passive capture' of a Knowledge Repository compare to the 'active capture' of a conversational interface regarding long-term sustainability? | Paper1 | - | [`Research_passive-vs-active-knowledge-capture-sustainability.md`](Research_passive-vs-active-knowledge-capture-sustainability.md) |
+| How has Root Cause Analysis (RCA) been applied to workforce turnover in healthcare to identify systemic drivers? | Paper1 | - | Answered | [`Research_RCA-application-to-workforce-turnover.md`](Research_RCA-application-to-workforce-turnover.md) |
 
 ### Healthcare Analytics Challenges
 
@@ -215,3 +216,4 @@ All `Research_*.md` files in this directory:
 | `Research_Visual-vs-Conversational-Time-to-Insight.md` | Time-to-insight comparison | Paper1 |
 | `Research_Headless-Semantic-Layers-and-Schema-Rot.md` | Headless semantic layers and schema rot | Paper1 |
 | `Research_Benefits-of-Shadow-IT.md` | Benefits of Shadow IT (Agility) | Paper1 |
+| `Research_RCA-application-to-workforce-turnover.md` | RCA application to workforce turnover | Paper1 |
