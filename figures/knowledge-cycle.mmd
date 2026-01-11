@@ -33,5 +33,7 @@ flowchart TB
     R -.->|"Increases"| B
 
     %% Styling - Grayscale
-    style CYCLE fill:#e8e8e8,stroke:#666,stroke-width:2px
-    style PILLARS fill:#e8e8e8,stroke:#666,stroke-width:2px,stroke-dasharray:5 5
+    classDef group fill:#e8e8e8,stroke:#666,stroke-width:2px
+    classDef dashedGroup fill:#e8e8e8,stroke:#666,stroke-width:2px,stroke-dasharray:5 5
+    class CYCLE group
+    class PILLARS dashedGroup
