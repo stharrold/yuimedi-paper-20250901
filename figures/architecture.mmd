@@ -1,7 +1,7 @@
 %%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '10pt'}}}%%
 flowchart TD
     %% Healthcare Analytics Architecture
-    %% Clinical User queries flowing through AI processing to insights
+    %% Updated to align with paper.md Figure 1 caption
 
     subgraph UI["<b>User Interaction Layer</b>"]
         A["Clinical User"] -->|"1. Initiates"| B["Natural Language Query"]
@@ -11,7 +11,7 @@ flowchart TD
     subgraph Knowledge["<b>Knowledge Infrastructure</b>"]
         D[("Organizational Memory")] --> G[("Institutional Knowledge Base")]
         E[("Best Practices Repository")] --> G
-        F["Healthcare Ontologies"]
+        F[("Healthcare Ontologies")]
     end
 
     subgraph Engine["<b>Analytics Processing Core</b>"]
@@ -24,18 +24,22 @@ flowchart TD
         K["Intelligent Response Generation"] -->|"7. Processes"| L["Contextual Insights & Visualizations"]
     end
 
-    %% Main flow
+    %% Main flow (Solid lines)
     C -->|"3. Connects to"| H
     I -->|"5. Queries"| J
     J -->|"6. Returns Data"| K
-    L -->|"8. Feedback Loop"| A
+    L -->|"8. Delivers Insights"| A
 
-    %% Knowledge injection (dashed)
+    %% Validation Loop (Dotted line per caption)
+    I -.-|"Validation"| A
+
+    %% Knowledge Storage (Dashed line per caption)
+    I -.->|"Stores Validated Pair"| D
+
+    %% Knowledge injection (Dashed lines)
     G -.->|"Provides Context"| H
     F -.->|"Provides Semantics"| H
 
     %% Styling - Grayscale
-    style UI fill:#e8e8e8,stroke:#666,stroke-width:2px
-    style Knowledge fill:#e8e8e8,stroke:#666,stroke-width:2px
-    style Engine fill:#e8e8e8,stroke:#666,stroke-width:2px
-    style Output fill:#e8e8e8,stroke:#666,stroke-width:2px
+    classDef group fill:#e8e8e8,stroke:#666,stroke-width:2px
+    class UI,Knowledge,Engine,Output group
