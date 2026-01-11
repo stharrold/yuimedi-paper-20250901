@@ -30,7 +30,7 @@ The author declares competing interests: Samuel T Harrold is a contract product 
 
 ## Generative AI Disclosure
 
-Claude Code (Claude Opus 4.5, Anthropic) assisted with manuscript editing and refinement. The author takes full responsibility for the final content.
+Gemini CLI (Gemini 3, Google) assisted with manuscript editing and refinement. The author takes full responsibility for the final content.
 
 ## Corresponding Author
 

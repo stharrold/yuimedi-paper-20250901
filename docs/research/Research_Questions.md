@@ -67,6 +67,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What contemporary empirical research measures healthcare IT turnover rates? | Paper1 | - | [`Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md`](Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md) |
 | How do organizations use procedural artifacts or 'Standard Work' as a ratchet mechanism to prevent organizational forgetting during periods of high employee turnover? | Paper1 | - | [`Research_procedural-artifacts-as-knowledge-ratchet.md`](Research_procedural-artifacts-as-knowledge-ratchet.md) |
 | How does the 'passive capture' of a Knowledge Repository compare to the 'active capture' of a conversational interface regarding long-term sustainability? | Paper1 | - | [`Research_passive-vs-active-knowledge-capture-sustainability.md`](Research_passive-vs-active-knowledge-capture-sustainability.md) |
+| How has Root Cause Analysis (RCA) been applied to workforce turnover in healthcare to identify systemic drivers? | Paper1 | - | Answered | [`Research_RCA-application-to-workforce-turnover.md`](Research_RCA-application-to-workforce-turnover.md) |
 
 ### Healthcare Analytics Challenges
 
@@ -108,6 +109,15 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 ## Unanswered Questions
 
 Questions needing literature search. Mark with "→ Gap" if searched but not found (also add to paper.md "Gaps in Current Literature").
+
+### Comparative Analysis of Alternatives
+
+| Question | Scope | Issue | Status | Notes |
+|----------|-------|-------|--------|-------|
+| What are the documented long-term maintenance and security risks of 'citizen developer' low-code applications in healthcare? | Paper1 | - | Answered | [`Research_Low-Code-Risks.md`](Research_Low-Code-Risks.md) |
+| How does 'time-to-insight' for unanticipated questions compare between visual dashboards and conversational interfaces? | Paper1 | - | Answered | [`Research_Visual-vs-Conversational-Time-to-Insight.md`](Research_Visual-vs-Conversational-Time-to-Insight.md) |
+| Do modern 'headless' or AI-maintained semantic layers reduce 'schema rot' compared to code-based layers? | Paper1 | - | Answered | [`Research_Headless-Semantic-Layers-and-Schema-Rot.md`](Research_Headless-Semantic-Layers-and-Schema-Rot.md) |
+| Does Shadow IT (Excel) provide agility benefits that formal systems miss, and can these be quantified? | Paper1 | - | Answered | [`Research_Benefits-of-Shadow-IT.md`](Research_Benefits-of-Shadow-IT.md) |
 
 ### Knowledge Management & Organizational Memory
 
@@ -202,3 +212,8 @@ All `Research_*.md` files in this directory:
 | `Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md` | Analytics maturity and patient outcomes | Paper1 |
 | `Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md` | Workforce turnover and care continuity | Paper1 |
 | `Research_What-evidence-demonstrates-that-analytics-challenges-have-measurable-implications-for-healthcare-delivery.md` | Analytics challenges and healthcare delivery | Paper1 |
+| `Research_Low-Code-Risks.md` | Low-code maintenance and security risks | Paper1 |
+| `Research_Visual-vs-Conversational-Time-to-Insight.md` | Time-to-insight comparison | Paper1 |
+| `Research_Headless-Semantic-Layers-and-Schema-Rot.md` | Headless semantic layers and schema rot | Paper1 |
+| `Research_Benefits-of-Shadow-IT.md` | Benefits of Shadow IT (Agility) | Paper1 |
+| `Research_RCA-application-to-workforce-turnover.md` | RCA application to workforce turnover | Paper1 |

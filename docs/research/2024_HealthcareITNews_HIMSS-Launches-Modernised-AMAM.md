@@ -2,7 +2,7 @@
 
 **Source:** Healthcare IT News
 **Date:** October 2024
-**URL:** `https://www.healthcareitnews.com/news/asia/himss-launches-modernised-analytics-maturity-assessment-model` (Content verified via Google Search snippet on 2026-01-01)
+**URL:** `https://www.healthcareitnews.com/news/asia/himss24-apac-adoption-model-analytics-maturity-gets-facelift` (Content verified from /Users/stharrold/Documents/GitHub/library/docs/2024_Healthcare-IT-News_News-HIMSS-APAC-New-Analytics-Maturity-Assessment-Model-AMAM.pdf on 2026-01-05)
 
 ## Summary
 

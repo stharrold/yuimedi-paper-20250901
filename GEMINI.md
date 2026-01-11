@@ -39,16 +39,16 @@ This file provides guidance to Gemini (Gemini) when working with code in this re
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 112 verified citations (pandoc-citeproc format) addressing:
-1. Low healthcare analytics maturity (updated with 2025 AMAM data)
-2. Healthcare workforce turnover and institutional memory loss
-3. Technical barriers in natural language to SQL generation
+**Primary deliverable:** `paper.md` - Academic research paper with 136 verified citations (pandoc-citeproc format) addressing:
+1. Analytics maturity (updated with 2025 AMAM data)
+2. Workforce agility and institutional memory loss
+3. Technical enablement in natural language to SQL generation
 
 **Citation verification:** All citations verified via DOI or authoritative sources. Methodology archived in `ARCHIVED/20260101T171645Z_specs_fix-paper-references.zip`.
 
 **Paper classification:** Narrative review with original three-pillar analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/guides/journal-submission-guide.md`.
 
-**Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). See `ARCHIVED/20260101T171859Z_ppr_review.zip` for assessment table.
+**Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). Framework ordering validated using Root Cause Analysis methodology (Allison & Peters, 2021). See `ARCHIVED/20260101T171859Z_ppr_review.zip` for assessment table.
 
 **Paper 1 structure:** Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Executive Summary removed (redundant with YAML abstract); Sections 5-6 (Proposed Solution, Evaluation) previously removed to transform paper from solution-advocacy to pure analytical framework.
 
@@ -327,7 +327,7 @@ podman-compose run --rm dev dot -Tpng figures/<name>.mmd.dot -o figures/<name>.m
 Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
 
 ### Three-Pillar Framework
-All research connects to: (1) analytics maturity, (2) workforce turnover, (3) technical barriers. The framework reveals how these challenges interconnect and compound each other: low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery from either.
+All research connects to: (1) analytics maturity, (2) workforce agility, (3) technical enablement. The framework reveals how these capabilities interconnect and compound each other: low maturity accelerates turnover, turnover degrades agility, and low technical enablement prevents recovery from either.
 
 **Framework documentation:** See `paper.md` "Framework Development and Validation" section for development process, theoretical grounding (Table 3: HIMSS AMAM/DIKW alignment), and validation approach.
 
