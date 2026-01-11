@@ -48,3 +48,8 @@ This document tracks citations that have been manually verified against their so
     *   Caveats or limitations (e.g., "new hire" vs "general" turnover).
 3.  **Update `paper.md`:** If discrepancies are found, correct the manuscript.
 4.  **Log Status:** Update this table.
+| `wang2020` | Wang et al. (2020) | `[2020_Wang_WebConf_Text-to-SQL-EMR.pdf](../../../library/docs/2020_Wang_WebConf_Text-to-SQL-EMR.pdf)` | 2026-01-10 | **Verified:** TREQS/MIMICSQL dataset creation. Confirms semantic matching challenges in healthcare. | ✅ Confirmed |
+| `simon2022` | Simon (2022) | Web/Book (Verified via GScholar Labs) | 2026-01-10 | **Verified:** "Citizen developers often prioritize features over security". Confirms maintenance burden risks. | ✅ Confirmed |
+| `hathnagoda2024` | Hathnagoda (2024) | Web/Conference (Verified via GScholar Labs) | 2026-01-10 | **Verified:** Systematic review identifying critical low-code vulnerabilities (XSS, injection). | ✅ Confirmed |
+| `ruoff2023` | Ruoff et al. (2023) | Web/Journal (Verified via GScholar Labs) | 2026-01-10 | **Verified:** Conversational dashboards improve information finding in crisis response. | ✅ Confirmed |
+| `syed2025` | Syed et al. (2025) | Web/Book (Verified via GScholar Labs) | 2026-01-10 | **Verified:** Autonomous analytics enables exploration vs exploitation distinction. | ✅ Confirmed |

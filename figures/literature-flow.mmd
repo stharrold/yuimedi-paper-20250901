@@ -17,11 +17,11 @@ flowchart TD
         A --> D{"Title/abstract<br/>screening<br/>n = 570"}
         D -->|"Excluded"| E["Articles excluded<br/>n = 480"]
         D -->|"Passed"| H{"Full-text<br/>eligibility<br/>n = 90"}
-        H -->|"Excluded"| I["Articles excluded<br/>n = 46"]
+        H -->|"Excluded"| I["Articles excluded<br/>n = 40"]
     end
 
     subgraph QA["<b>Quality Assessment</b>"]
-        H -->|"Passed"| J{"Source<br/>classification<br/>n = 44"}
+        H -->|"Passed"| J{"Source<br/>classification<br/>n = 50"}
         J -->|"Grey literature"| L{"AACODS<br/>checklist<br/>n = 14"}
         L -->|"Excluded"| N["Articles excluded<br/>n = 3"]
     end
@@ -37,8 +37,5 @@ flowchart TD
     end
 
     %% Styling - Grayscale
-    style ID fill:#e8e8e8,stroke:#666,stroke-width:2px
-    style SC fill:#e8e8e8,stroke:#666,stroke-width:2px
-    style QA fill:#e8e8e8,stroke:#666,stroke-width:2px
-    style TS fill:#e8e8e8,stroke:#666,stroke-width:2px
-    style IN fill:#e8e8e8,stroke:#666,stroke-width:2px
+    classDef group fill:#e8e8e8,stroke:#666,stroke-width:2px
+    class ID,SC,QA,TS,IN group
