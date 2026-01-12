@@ -189,7 +189,7 @@ Following this introduction, the paper proceeds through five main sections. The 
 
 ## Review Approach
 
-This paper employs a narrative review methodology to synthesize evidence across three interconnected domains: healthcare analytics maturity, workforce turnover, and natural language to SQL technologies. Unlike systematic reviews that follow pre-registered protocols with exhaustive searches, narrative reviews provide expert synthesis of relevant literature to construct coherent arguments and identify patterns across diverse evidence sources.
+This paper employs a narrative review methodology to synthesize evidence across the three pillars of the framework: analytics maturity, workforce agility, and technical enablement (specifically natural language to SQL generation). Unlike systematic reviews that follow pre-registered protocols with exhaustive searches, narrative reviews provide expert synthesis of relevant literature to construct coherent arguments and identify patterns across diverse evidence sources.
 
 The narrative review approach was selected because:
 
