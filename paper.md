@@ -221,8 +221,8 @@ Literature was identified through multiple channels between January 2023 and Dec
 
 Search terms emerged iteratively from the literature exploration, here organized around the three-pillar framework:
 
-- Analytics maturity: "healthcare analytics maturity," "HIMSS AMAM," "analytics adoption," "analytics standardization failure," "low-code healthcare ROI," "conversational AI platforms"
-- Workforce turnover: "healthcare IT tenure," "IT training time," "turnover cost salary," "institutional memory loss," "knowledge portal," "knowledge capture," "SECI model analytics"
+- Analytics maturity: "healthcare analytics maturity," "HIMSS AMAM," "analytics adoption," "big data analytics adoption," "employee resistance to change," "analytics standardization failure," "low-code healthcare ROI," "conversational AI platforms"
+- Workforce turnover: "healthcare IT tenure," "IT training time," "turnover cost salary," "institutional memory loss," "organizational forgetting," "competence loss," "knowledge portal," "knowledge capture," "SECI model analytics"
 - Technical barriers: "NL2SQL healthcare," "text-to-SQL clinical," "MIMICSQL," "EHRSQL," "NL2SQL accuracy," "NL2SQL productivity," "schema discovery," "PK/FK discovery," "semantic column matching," "vector embeddings schema"
 
 **Search Results:**
