@@ -219,7 +219,7 @@ Literature was identified through multiple channels between January 2023 and Dec
 
 **Search Concepts:**
 
-Search terms were organized around the three-pillar framework:
+Search terms emerged iteratively from the literature exploration, here organized around the three-pillar framework:
 
 - Analytics maturity: "healthcare analytics maturity," "HIMSS AMAM," "analytics adoption," "analytics standardization failure," "low-code healthcare ROI," "conversational AI platforms"
 - Workforce turnover: "healthcare IT tenure," "IT training time," "turnover cost salary," "institutional memory loss," "knowledge portal," "knowledge capture," "SECI model analytics"
