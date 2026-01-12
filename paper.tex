@@ -409,7 +409,7 @@ Enablement}
 
 \newpairofpagestyles{eisvogel-header-footer}{
   \clearpairofpagestyles
-  \ihead*{NL2SQL in Healthcare}
+  \ihead*{Healthcare Analytics Challenges}
   \chead*{}
   \ohead*{January 2026}
   \ifoot*{\hspace{0pt}}
@@ -633,23 +633,21 @@ imperfect systems while broader interoperability efforts continue
 (\citeproc{ref-anthropic2025}{12}--\citeproc{ref-arora2025}{15}).
 
 The implications of these three interconnected challenges are measurable
-in both operational and clinical terms. Empirical research demonstrates
-that a 10-percentage-point increase in nursing staff turnover is
-associated with 0.241 additional health inspection citations and
-decreased quality measures (\citeproc{ref-shen2023}{16}). Conversely,
-when analytics barriers are addressed, outcomes improve substantially:
-one Medicare ACO reduced readmission rates from 24\% to 17.8\% and
-achieved \$1.6 million in cost savings by implementing data analytics to
-overcome EHR fragmentation (\citeproc{ref-latrella2024}{17}). Yet,
-barriers remain pervasive, with 68\% of healthcare organizations citing
-data interoperability as the leading obstacle, followed by privacy
-concerns (64\%) and insufficient staff training (59\%)
-(\citeproc{ref-khan2023}{18}). Physician technology adoption faces
-validated barriers, including perceived threat and workflow disruption,
-that directly impact the use of analytics tools
-(\citeproc{ref-lin2012}{19}). Together, these three pillars represent a
-compounding cycle of operational inefficiencies with demonstrated
-implications for healthcare delivery.
+in both operational and clinical terms. When analytics barriers are
+addressed, outcomes improve substantially: one Medicare ACO reduced
+readmission rates from 24\% to 17.8\% and achieved \$1.6 million in cost
+savings by implementing data analytics to overcome EHR fragmentation
+(\citeproc{ref-latrella2024}{16}). Yet, barriers remain pervasive, with
+68\% of healthcare organizations citing data interoperability as the
+leading obstacle, followed by privacy concerns (64\%) and insufficient
+staff training (59\%) (\citeproc{ref-khan2023}{17}). Adoption of big
+data analytics faces validated barriers including employee resistance to
+change and lack of organizational readiness, which directly stall
+data-driven initiatives
+(\citeproc{ref-shahbaz2019}{18},\citeproc{ref-kamble2019}{19}).
+Together, these three pillars represent a compounding cycle of
+operational inefficiencies with demonstrated implications for healthcare
+delivery.
 
 \subsection{Objectives}\label{objectives}
 
@@ -743,7 +741,7 @@ informatics literature:
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth,keepaspectratio]{figures/architecture.mmd.png}
-\caption{Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation against a healthcare data warehouse, ultimately delivering contextual insights. The critical validation step (dotted line) shows domain experts confirming or correcting generated SQL before results are trusted. Validated NL+SQL pairs flow to organizational memory (dashed line), where they persist independent of staff tenure and inform future query generation.}
+\caption{Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation. Bi-directional arrows at steps 5 and 8 represent the iterative 'Query \& Refine' loop where users refine their intent based on delivered insights. The critical validation step (dotted bi-directional line) shows domain experts confirming or correcting generated SQL before results are trusted. Validated NL+SQL pairs flow to organizational memory (dashed line), where they persist independent of staff tenure and inform future query generation.}
 \label{fig:architecture}
 \end{figure}
 
@@ -832,12 +830,12 @@ informatics literature.
 \subsection{Review Approach}\label{review-approach}
 
 This paper employs a narrative review methodology to synthesize evidence
-across three interconnected domains: healthcare analytics maturity,
-workforce turnover, and natural language to SQL technologies. Unlike
-systematic reviews that follow pre-registered protocols with exhaustive
-searches, narrative reviews provide expert synthesis of relevant
-literature to construct coherent arguments and identify patterns across
-diverse evidence sources.
+across the three pillars of the framework: analytics maturity, workforce
+agility, and technical enablement (specifically natural language to SQL
+generation). Unlike systematic reviews that follow pre-registered
+protocols with exhaustive searches, narrative reviews provide expert
+synthesis of relevant literature to construct coherent arguments and
+identify patterns across diverse evidence sources.
 
 The narrative review approach was selected because:
 
@@ -1214,21 +1212,20 @@ studies and develop quantitative metrics for framework dimensions.
 \section{Literature Review: Evidence Across the Three
 Pillars}\label{literature-review-evidence-across-the-three-pillars}
 
-This narrative review synthesizes evidence across the three-pillar
-framework domains: natural language to SQL generation (technical
-barriers), healthcare analytics maturity, and workforce dynamics.
-Drawing from peer-reviewed research, industry reports, and benchmark
-datasets identified through the methodology described in Section 2
-(Methodology), we document the current state of each pillar and reveal
-interconnections. Analysis reveals three critical findings: (1) natural
-language to SQL generation has evolved significantly but faces
-healthcare-specific challenges requiring specialized solutions, (2)
+This narrative review synthesizes evidence across the three pillar
+domains: analytics maturity, workforce agility, and technical enablement
+(specifically natural language to SQL generation). Drawing from
+peer-reviewed research, industry reports, and benchmark datasets
+identified through the methodology described in Section 2 (Methodology),
+we document the current state of each pillar and reveal
+interconnections. Analysis reveals three critical findings: (1)
 healthcare analytics maturity remains low with most organizations
-struggling at basic stages, and (3) healthcare workforce turnover
-creates institutional memory loss that traditional approaches fail to
-address. Evidence across these three domains reveals significant
-interconnections and compounding effects that the three-pillar framework
-synthesizes.
+struggling at basic stages, (2) healthcare workforce turnover creates
+institutional memory loss that traditional approaches fail to address,
+and (3) natural language to SQL generation has evolved significantly but
+faces healthcare-specific challenges requiring specialized solutions.
+Evidence across these three domains reveals significant interconnections
+and compounding effects that the three-pillar framework synthesizes.
 
 \subsection{State of Healthcare Analytics
 Maturity}\label{state-of-healthcare-analytics-maturity}
@@ -1296,13 +1293,13 @@ insufficient without workforce stability.
 Adoption}\label{barriers-to-analytics-adoption}
 
 A systematic literature review of big data analytics in healthcare by
-Kamble et al. (\citeproc{ref-kamble2019}{38}) identifies critical
+Kamble et al. (\citeproc{ref-kamble2019}{19}) identifies critical
 barriers to analytics adoption. The study reveals that healthcare
 enterprises struggle with technology selection, resource allocation, and
 organizational readiness for data-driven decision making.
 
 Health Catalyst's Healthcare Analytics Adoption Model
-(\citeproc{ref-health2020}{39}), a vendor-produced framework,
+(\citeproc{ref-health2020}{38}), a vendor-produced framework,
 corroborates these findings, documenting that most healthcare
 organizations remain at Stages 0-3, characterized by:
 
@@ -1325,15 +1322,15 @@ organizations remain at Stages 0-3, characterized by:
 The literature consistently identifies workforce capabilities as a
 primary constraint. Healthcare organizations face mounting challenges in
 extracting meaningful insights from the vast amount of unstructured
-clinical text data generated daily (\citeproc{ref-navarro2023}{40}).
+clinical text data generated daily (\citeproc{ref-navarro2023}{39}).
 There is an acknowledged problem in health services where organizations
 cannot make good use of available data due to a deficit in skilled
 analysts across all sectors and levels
-(\citeproc{ref-bardsley2016}{41}). Organizations face critical
+(\citeproc{ref-bardsley2016}{40}). Organizations face critical
 challenges in recruiting and retaining professionals with the right
 analytical skills, while the need for big data specialists with
 analytical capabilities continues to grow
-(\citeproc{ref-pesqueira2020}{42}). Traditional approaches to analytics
+(\citeproc{ref-pesqueira2020}{41}). Traditional approaches to analytics
 require extensive technical expertise and time that healthcare
 professionals typically lack, creating a fundamental barrier to
 analytics adoption (\citeproc{ref-american2023}{1}).
@@ -1347,25 +1344,25 @@ analytics capabilities. Research consistently demonstrates that data
 quality is both a prerequisite for and a dimension of analytics
 maturity; organizations cannot progress to higher maturity stages
 without first addressing data quality issues
-(\citeproc{ref-carvalho2019}{43}). Multiple maturity frameworks,
+(\citeproc{ref-carvalho2019}{42}). Multiple maturity frameworks,
 including the Healthcare Data Quality Maturity Model (HDQM2) and the
 Data Analytics Maturity Assessment Framework (DAMAF), explicitly
 incorporate data quality as a core assessment dimension
-(\citeproc{ref-pintovalverde2013}{44},\citeproc{ref-gokalp2023}{45}). A
+(\citeproc{ref-pintovalverde2013}{43},\citeproc{ref-gokalp2023}{44}). A
 cross-industry survey found that data management and quality issues,
 including lack of documentation, accuracy, and consistency, continue to
 challenge analytics organizations even as they mature, with the specific
 challenges shifting from integration to privacy and documentation
-concerns at higher maturity levels (\citeproc{ref-lismont2017}{46}).
+concerns at higher maturity levels (\citeproc{ref-lismont2017}{45}).
 
 The prevalence of data quality issues in healthcare databases is
 substantial. A study of the National Cancer Database found missing data
 rates ranging from 39.7\% for prostate cancer to 71.0\% for non-small
-cell lung cancer (\citeproc{ref-yang2021}{47}). Medical registry data
+cell lung cancer (\citeproc{ref-yang2021}{46}). Medical registry data
 shows 2.0\% to 4.6\% inaccurate records and 5\% to 6\% incomplete data
-(\citeproc{ref-arts2002}{48}). Duplicate patient records affect 0.16\%
+(\citeproc{ref-arts2002}{47}). Duplicate patient records affect 0.16\%
 to 15.47\% of records across healthcare institutions, with wide
-variation in management practices (\citeproc{ref-mccoy2013}{49}).
+variation in management practices (\citeproc{ref-mccoy2013}{48}).
 Analysis of Medicaid claims data found that 9.74\% of data cells
 contained defects, with issues frequently remaining obscure due to
 separation between data users and producers
@@ -1374,31 +1371,31 @@ separation between data users and producers
 Critically, automated data quality tools alone are insufficient for
 healthcare data. Research demonstrates that clinical domain expert
 involvement is necessary at every stage of the data pipeline, including
-curation, cleaning, and analysis (\citeproc{ref-rahman2020}{50}).
+curation, cleaning, and analysis (\citeproc{ref-rahman2020}{49}).
 Automated tools fail to detect context-dependent errors such as mutually
 exclusive values, definitional differences between institutions, or
 plausibility issues that require clinical judgment
-(\citeproc{ref-sirgo2018}{51}). Even successful automation requires
+(\citeproc{ref-sirgo2018}{50}). Even successful automation requires
 embedding clinical knowledge; generic automated cleaning tools from
 other domains are unsuitable for clinical data, which requires
 variable-specific rules based on clinical knowledge of normal ranges,
-extreme values, and clinical contexts (\citeproc{ref-shi2021}{52}).
+extreme values, and clinical contexts (\citeproc{ref-shi2021}{51}).
 
 Compounding these challenges, healthcare database schemas are frequently
 undocumented or poorly documented. Commercial EMR systems use
 proprietary data models that are not publicly available, requiring
 ``detective work'' and reverse-engineering for research data integration
-(\citeproc{ref-dugas2016}{53},\citeproc{ref-bokov2017}{54}). A
+(\citeproc{ref-dugas2016}{52},\citeproc{ref-bokov2017}{53}). A
 systematic review found that metadata models are often too complicated
 for healthcare professionals without specific IT skills, resulting in
 rare usage and poorly maintained documentation
-(\citeproc{ref-ulrich2022}{55}). Poor chart documentation by healthcare
+(\citeproc{ref-ulrich2022}{54}). Poor chart documentation by healthcare
 providers propagates downstream to administrative data quality issues
-(\citeproc{ref-lucyk2017}{56}). Most critically, documentation knowledge
+(\citeproc{ref-lucyk2017}{55}). Most critically, documentation knowledge
 is lost with staff changes: decisions based on poorly documented data
 represent significant costs and risks, with explicit identification of
 ``loss of information with staff changes'' as a key vulnerability
-(\citeproc{ref-hovenga2013}{57}).
+(\citeproc{ref-hovenga2013}{56}).
 
 This creates a compounding effect across the three pillars: low-maturity
 organizations have worse data quality and documentation, which requires
@@ -1414,14 +1411,16 @@ Loss}\label{healthcare-workforce-turnover-and-knowledge-loss}
 \subsubsection{Turnover Rates and Financial
 Impact}\label{turnover-rates-and-financial-impact}
 
-Multiple meta-analyses provide comprehensive data on healthcare
-workforce turnover. Wu et al. (\citeproc{ref-wu2024}{58}) found a pooled
-prevalence of nurse turnover at 18\% (95\% CI: 11-26\%), with individual
-study rates ranging from 2.2\% to 50.0\% across 15 countries, including
-a reported range of 11.7\% to 46.7\% within the United States. Ren et
-al. (\citeproc{ref-ren2024}{59}) corroborated these findings with a
-global nurse turnover rate ranging from 8\% to 36.6\%, with a pooled
-rate of 16\% (95\% CI: 14-17\%).
+While clinical turnover is well-studied (e.g.
+(\citeproc{ref-wu2024}{57},\citeproc{ref-ren2024}{58})), the impact of
+technical staff turnover is equally severe and more directly relevant to
+analytics maturity. Hong (2025) demonstrates that turnover in federal IT
+roles directly degrades organizational memory, causing a `sliding back'
+of performance capabilities (\citeproc{ref-hong2025}{59}). This is
+compounded by persistent vacancies; AHIMA/NORC (2023) report that 66\%
+of health information professionals face staffing shortages, creating
+bottlenecks that delay critical analytics initiatives
+(\citeproc{ref-american2023}{1}).
 
 The financial implications are substantial. Massingham
 (\citeproc{ref-massingham2018}{60}) measured the impact of knowledge
@@ -1481,25 +1480,19 @@ the case of IT developers, are likely to leave before reaching full
 fluency. This creates a perpetual cycle where organizations lose
 experienced staff before fully recouping their training investment.
 
-The impact on care continuity is well-documented. Clinical handover
-disruption is internationally recognized as a patient safety priority
-because it represents a fundamental disruption to continuity of care and
-is prone to errors (\citeproc{ref-rangachari2020}{70}). Empirical
-studies demonstrate that nursing unit turnover reduces workgroup
-learning and is associated with increased patient falls, medication
-errors, and reduced patient satisfaction (\citeproc{ref-bae2010}{71}).
-International evidence links high workforce turnover to poorer
-continuity of care, particularly in remote health services, with
-measurable outcomes including increased hospitalizations and years of
-life lost (\citeproc{ref-wakerman2019}{72}). When senior executives and
-knowledge workers depart, organizations experience ``corporate memory
-loss'' that undermines organizational continuity and effectiveness
-(\citeproc{ref-lahaie2005}{73}). Recent analyses applying Root Cause
-Analysis (RCA) and Six Sigma methodologies to this crisis have confirmed
-that turnover is not merely an individual HR issue but a systemic
-failure mode driven by root causes such as burnout, lack of buffering
-factors, and inefficient onboarding processes
-(\citeproc{ref-eriksson2022}{74}--\citeproc{ref-taner2009}{76}).
+The impact on organizational capability is well-documented through the
+lens of ``organizational forgetting.'' Rao and Argote (2006) establish
+that high turnover rates disrupt the collective knowledge structures
+required for complex task performance, effectively causing organizations
+to ``forget'' established best practices (\citeproc{ref-rao2006}{70}).
+This phenomenon is particularly acute in knowledge-intensive sectors;
+Massingham (2018) demonstrates that the departure of experienced staff
+leads to a measurable ``loss of competence'' that forces remaining teams
+to regress to earlier learning stages
+(\citeproc{ref-massingham2018}{60}). In the context of healthcare
+analytics, this manifests not as immediate clinical errors, but as a
+systemic inability to maintain the data quality and interpretive context
+required for reliable decision-making.
 
 \subsubsection{Institutional Memory
 Loss}\label{institutional-memory-loss}
@@ -1512,7 +1505,7 @@ for knowledge preservation, relying instead on person-to-person transfer
 that fails during rapid turnover. Cultural and regulatory obstacles for
 data sharing further limit the ability of healthcare organizations to
 achieve the full potential of their data assets
-(\citeproc{ref-mayo2016}{77}).
+(\citeproc{ref-mayo2016}{71}).
 
 When experienced analysts, clinical informatics professionals, or
 data-savvy clinicians leave, they take with them irreplaceable knowledge
@@ -1521,23 +1514,23 @@ organizational context. Research on tacit knowledge transfer provides
 strong evidence that this knowledge is inherently difficult to document
 through traditional means. Empirical studies demonstrate that learning
 related to tacit knowledge is often not captured in formal post-project
-review reports (\citeproc{ref-goffin2011}{78}), and conventional
+review reports (\citeproc{ref-goffin2011}{72}), and conventional
 mechanisms such as documents, blueprints, and procedures fail because
-tacit knowledge is not easily codified (\citeproc{ref-foos2006}{79}).
+tacit knowledge is not easily codified (\citeproc{ref-foos2006}{73}).
 Research across multiple industries consistently shows that written
 reports and databases fail to convey key learning from expert teams
-(\citeproc{ref-goffin2010}{80}), while experts often lack the skills,
+(\citeproc{ref-goffin2010}{74}), while experts often lack the skills,
 motivation, or time to document their expertise, and even when
 documentation is attempted, essential aspects are lost due to lack of
 shared experience between experts and novices
-(\citeproc{ref-rintala2006}{81}).
+(\citeproc{ref-rintala2006}{75}).
 
 \subsubsection{Inadequacy of Traditional
 Approaches}\label{inadequacy-of-traditional-approaches}
 
 The literature demonstrates that conventional knowledge management
 approaches fail in healthcare contexts
-(\citeproc{ref-mayo2016}{77},\citeproc{ref-shahbaz2019}{82}):
+(\citeproc{ref-shahbaz2019}{18},\citeproc{ref-mayo2016}{71}):
 
 \begin{itemize}
 \tightlist
@@ -1547,7 +1540,7 @@ approaches fail in healthcare contexts
   Organizations struggle to capture and maintain analytical expertise
 \item
   Security concerns and employee resistance to change slow the pace of
-  information system acceptance (\citeproc{ref-shahbaz2019}{82})
+  information system acceptance (\citeproc{ref-shahbaz2019}{18})
 \item
   Person-to-person knowledge transfer fails during rapid turnover cycles
 \end{itemize}
@@ -1573,14 +1566,14 @@ applied to electronic health records (EHRs), though they note that
 unsupervised use'' in clinical settings; this assessment, based on 2024
 models, has been challenged by late-2025 benchmarks showing GPT-5
 exceeds physician baselines on standardized medical reasoning tasks
-(\citeproc{ref-wang2025}{83}), (\citeproc{ref-openai2025}{84}), though
+(\citeproc{ref-wang2025}{76}), (\citeproc{ref-openai2025}{77}), though
 human oversight remains recommended for clinical safety. Their work on
 the DE-SynPUF dataset shows that integrating medical coding steps into
 the text-to-SQL process improves performance over simple prompting
 approaches.
 
 Benchmarking studies from 2024-2025
-(\citeproc{ref-medagentbench2024}{85}), (\citeproc{ref-wu2024a}{86})
+(\citeproc{ref-medagentbench2024}{78}), (\citeproc{ref-wu2024a}{79})
 examining LLM-based systems for healthcare identify unique challenges:
 medical terminology, characterized by abbreviations, synonyms, and
 context-dependent meanings, remains a barrier to accurate query
@@ -1589,26 +1582,26 @@ generation. Evaluations of GPT-4 and Claude 3.5 showed approximately
 late-2025 models demonstrate substantial improvements. GPT-5 achieves
 over 80\% accuracy on neurosurgical board examinations and surpasses
 physician performance on multimodal medical reasoning benchmarks by
-15-29\% (\citeproc{ref-wang2025}{83}). On healthcare-specific NL2SQL
+15-29\% (\citeproc{ref-wang2025}{76}). On healthcare-specific NL2SQL
 tasks, GPT-5 achieves 64.6\% execution accuracy on the MIMICSQL dataset
-(\citeproc{ref-blaskovic2025}{87}), while the HealthBench benchmark
+(\citeproc{ref-blaskovic2025}{80}), while the HealthBench benchmark
 (developed with 262 physicians across 26 specialties) shows GPT-5
 hallucination rates of 0.7-1.0\%, representing a 4-6x improvement over
-previous models (\citeproc{ref-openai2025}{84}).
+previous models (\citeproc{ref-openai2025}{77}).
 
 \subsubsection{Healthcare-Specific
 Challenges}\label{healthcare-specific-challenges}
 
 The literature consistently identifies domain-specific obstacles in
 healthcare NL2SQL implementation. A systematic review of NLP in EHRs
-(\citeproc{ref-navarro2023}{40}) found that the lack of annotated data,
+(\citeproc{ref-navarro2023}{39}) found that the lack of annotated data,
 automated tools, and other challenges hinder the full utilization of NLP
 for EHRs. The review, following PRISMA guidelines, categorized
 healthcare NLP applications into seven areas, with information
 extraction and clinical entity recognition proving most challenging due
 to medical terminology complexity.
 
-Wang et al. (\citeproc{ref-wang2020}{88}) demonstrate that healthcare
+Wang et al. (\citeproc{ref-wang2020}{81}) demonstrate that healthcare
 NL2SQL methods must move beyond the constraints of exact or string-based
 matching to fully encompass the semantic complexities of clinical
 terminology. This work emphasizes that general-purpose language models
@@ -1620,11 +1613,11 @@ vocabularies (RxNorm).
 Limitations}\label{promising-approaches-and-limitations}
 
 Recent advances show promise in addressing these challenges. The
-TREQS/MIMICSQL dataset development (\citeproc{ref-wang2020}{88}) and
-EHRSQL benchmark (\citeproc{ref-lee2023}{89}) provide question-SQL pairs
+TREQS/MIMICSQL dataset development (\citeproc{ref-wang2020}{81}) and
+EHRSQL benchmark (\citeproc{ref-lee2023}{82}) provide question-SQL pairs
 specifically for healthcare, featuring questions in natural, free-form
 language. Multi-modal benchmarks such as SM3-Text-to-Query
-(\citeproc{ref-sivasubramaniam2024}{90}) extend evaluation beyond SQL to
+(\citeproc{ref-sivasubramaniam2024}{83}) extend evaluation beyond SQL to
 support multiple query languages across diverse medical data
 representations. This approach acknowledges that healthcare queries
 often require multiple logical steps: population selection, temporal
@@ -1633,14 +1626,14 @@ relationships, aggregation statistics, and mathematical operations.
 Healthcare-specific benchmarks continue to evolve alongside model
 capabilities. The 2024 MedAgentBench evaluation found Claude 3.5 Sonnet
 achieved 69.67\% success rate on medical agent tasks
-(\citeproc{ref-medagentbench2024}{85}), (\citeproc{ref-wu2024a}{86});
+(\citeproc{ref-medagentbench2024}{78}), (\citeproc{ref-wu2024a}{79});
 subsequent 2025 benchmarks show GPT-5 significantly exceeding these
-results, with the SCARE benchmark (\citeproc{ref-lee2025}{91}) providing
+results, with the SCARE benchmark (\citeproc{ref-lee2025}{84}) providing
 4,200 EHR question-SQL pairs across MIMIC-III, MIMIC-IV, and eICU
 databases specifically designed to evaluate post-hoc safety mechanisms
 for clinical text-to-SQL deployment. Graph-empowered approaches
 combining LLMs with structured knowledge representations achieve 94.2\%
-execution accuracy on MIMICSQL (\citeproc{ref-chen2025}{92}),
+execution accuracy on MIMICSQL (\citeproc{ref-chen2025}{85}),
 demonstrating that domain-specific architectural innovations can
 substantially outperform general-purpose models. While these advances
 narrow the gap between benchmark performance and clinical readiness,
@@ -1654,56 +1647,56 @@ Emerging research documents quantifiable productivity gains from NL2SQL
 implementations. In healthcare settings, organizations implementing
 natural language interfaces report a 63\% increase in self-service
 analytics adoption among non-technical staff and a 37\% reduction in
-time spent on data retrieval tasks (\citeproc{ref-dadi2025}{93}).
+time spent on data retrieval tasks (\citeproc{ref-dadi2025}{86}).
 Business analysts using these interfaces spend 42\% more time on
-analysis rather than query construction (\citeproc{ref-dadi2025}{93}).
+analysis rather than query construction (\citeproc{ref-dadi2025}{86}).
 
 Clinical-specific natural language interfaces demonstrate significant
 efficiency improvements. Criteria2Query, a natural language interface
 for clinical database cohort definition, achieves fully automated query
 formulation in an average of 1.22 seconds per criterion, enabling
 researchers to query EHR data without mastering database query languages
-(\citeproc{ref-yuan2019}{94}). The system has evolved through three
+(\citeproc{ref-yuan2019}{87}). The system has evolved through three
 generations: the original rule-based approach
-(\citeproc{ref-yuan2019}{94}), a human-machine collaboration version,
+(\citeproc{ref-yuan2019}{87}), a human-machine collaboration version,
 and Criteria2Query 3.0, which leverages GPT-4 to generate sharable
 cohort identification queries against OMOP-CDM formatted databases
-(\citeproc{ref-park2024}{95}). User studies show NL2SQL systems reduce
+(\citeproc{ref-park2024}{88}). User studies show NL2SQL systems reduce
 query completion times by 10-30\% compared to traditional SQL platforms
 while improving accuracy from 50\% to 75\%, with users recovering from
-errors 30-40 seconds faster (\citeproc{ref-ipeirotis2025}{96}).
+errors 30-40 seconds faster (\citeproc{ref-ipeirotis2025}{89}).
 
 The most substantial productivity gains appear in multimodal interfaces.
 Research on speech-driven database querying demonstrates users can
 specify SQL queries with an average speedup of 2.7x (up to 6.7x)
 compared to traditional input methods, with user effort reduced by a
 factor of 10x to 60x compared to raw typing
-(\citeproc{ref-shah2020}{97}). Healthcare-specific natural language
+(\citeproc{ref-shah2020}{90}). Healthcare-specific natural language
 query systems show dramatic improvements: a clinical data analytics
 language (CliniDAL) reduced complex query formulation from ``many days''
 with SQL to ``a few hours'' with natural language, with expert users
 describing SQL as ``very tedious and time-consuming'' for the same
-analytical tasks (\citeproc{ref-safari2014}{98}). NLP-driven data entry
+analytical tasks (\citeproc{ref-safari2014}{91}). NLP-driven data entry
 systems have achieved 33\% time reduction with 15\% accuracy improvement
-in clinical research settings (\citeproc{ref-han2019}{99}).
+in clinical research settings (\citeproc{ref-han2019}{92}).
 Healthcare-specific NL2SQL models such as MedT5SQL achieve 80.63\% exact
 match accuracy on the MIMICSQL benchmark, demonstrating that
 domain-adapted language models can effectively translate natural
-language to SQL for clinical databases
-(\citeproc{ref-marshan2024}{100}). These metrics provide peer-reviewed
-evidence that complements vendor-sponsored efficiency claims.
+language to SQL for clinical databases (\citeproc{ref-marshan2024}{93}).
+These metrics provide peer-reviewed evidence that complements
+vendor-sponsored efficiency claims.
 
 Code modernization principles directly inform these productivity gains.
 Foundational work on natural language interfaces to databases
 (\citeproc{ref-hendrix1978}{13}) established that modular, decoupled
 architecture enables effective NL access to legacy systems, a design
 principle applied across subsequent research (e.g.,
-(\citeproc{ref-saha2023}{101})). Modern implementations demonstrate that
+(\citeproc{ref-saha2023}{94})). Modern implementations demonstrate that
 retrieval-augmented generation (RAG) approaches reduce specialized
 training requirements by 87.4\% compared to traditional querying methods
 while achieving 92.3\% accuracy in interpreting business-specific
 terminology from legacy mainframe records
-(\citeproc{ref-khandelwal2025}{102}). This convergence of code
+(\citeproc{ref-khandelwal2025}{95}). This convergence of code
 modernization and natural language interface technologies arises because
 both rely on the same underlying large language models
 (\citeproc{ref-ogunwole2023}{14}), (\citeproc{ref-arora2025}{15}),
@@ -1726,23 +1719,23 @@ rather than \emph{access} capability.
 A critical distinction exists between traditional monitoring and dynamic
 exploration. Visual dashboards excel at ``exploitation'' (monitoring
 known metrics such as bed occupancy or infection rates) and provide
-essential ``at-a-glance'' status (\citeproc{ref-health2020}{39}).
+essential ``at-a-glance'' status (\citeproc{ref-health2020}{38}).
 However, dashboards often create bottlenecks for novel or unanticipated
 clinical questions, requiring a full build cycle and analyst
-intervention (\citeproc{ref-syed2025}{103}). Conversational analytics
+intervention (\citeproc{ref-syed2025}{96}). Conversational analytics
 revolutionizes this ``time-to-insight'' by enabling ``exploration'' for
 ad-hoc questions, reducing retrieval time from days to seconds
-(\citeproc{ref-syed2025}{103}). Modern systems are increasingly moving
+(\citeproc{ref-syed2025}{96}). Modern systems are increasingly moving
 toward integrated ``Visual-Conversational'' interfaces, where natural
 language simplifies complex, nested queries while visual panels align
 with clinical workflow needs for analytical reasoning
-(\citeproc{ref-samimi2025}{104},\citeproc{ref-ruoff2023}{105}). This
+(\citeproc{ref-samimi2025}{97},\citeproc{ref-ruoff2023}{98}). This
 integration facilitates a fluid, iterative exploration that enhances
 both information-finding effectiveness and clinical decision-making flow
-(\citeproc{ref-chowdhury2020}{106}). User studies indicate that chatbot
+(\citeproc{ref-chowdhury2020}{99}). User studies indicate that chatbot
 proficiency can be reached after a single task repetition, suggesting a
 lower training burden for high-agility enablement than traditional BI
-dashboards (\citeproc{ref-holmes2019}{107}). By democratizing access,
+dashboards (\citeproc{ref-holmes2019}{100}). By democratizing access,
 organizations can advance their effective maturity, the ability to
 actually use data, even while backend infrastructure remains in
 transition.
@@ -1784,12 +1777,12 @@ Technical enablement serves as the mechanism that breaks the compounding
 cycle of low maturity and high turnover. Academic research provides
 growing evidence for both conversational AI and low-code approaches as
 effective catalysts. A foundational systematic review of AI
-conversational agents in healthcare (\citeproc{ref-milneives2020}{108})
+conversational agents in healthcare (\citeproc{ref-milneives2020}{101})
 established that such systems reduce burden on healthcare resources and
 save providers' time. Subsequent RCT-based systematic reviews provide
 this evidence: a meta-analysis of conversational agent interventions
 reported mean task completion rates of 83\% (range 40-100\%) across
-healthcare applications (\citeproc{ref-li2023}{109}).
+healthcare applications (\citeproc{ref-li2023}{102}).
 
 Low-code platforms and conversational AI represent complementary
 approaches to this enablement. Low-code platforms provide visual
@@ -1806,9 +1799,9 @@ conversational AI adoption, as both address the same fundamental
 barrier: the gap between clinical expertise and technical capability.
 
 Healthcare-specific studies show concrete benefits: Pennington
-(\citeproc{ref-pennington2023}{110}) found AI in revenue cycle
+(\citeproc{ref-pennington2023}{103}) found AI in revenue cycle
 management accelerated payment cycles from 90 days to 40 days, while
-Atobatele et al. (\citeproc{ref-atobatele2023}{111}) documented how
+Atobatele et al. (\citeproc{ref-atobatele2023}{104}) documented how
 low-code platforms enable non-technical staff to build applications,
 leading to efficiency gains. These findings collectively demonstrate
 that technical enablement technologies produce measurable organizational
@@ -1846,11 +1839,11 @@ encoded, shareable, and routinely accessible artifacts. This requirement
 aligns with Nonaka's SECI model (Socialization, Externalization,
 Combination, Internalization), which describes organizational knowledge
 creation as a continuous dialogue between tacit and explicit knowledge
-(\citeproc{ref-farnese2019}{112}). Recent research demonstrates that AI
+(\citeproc{ref-farnese2019}{105}). Recent research demonstrates that AI
 tools, including conversational interfaces, can enhance all four SECI
 stages, particularly facilitating the externalization process where
 tacit analytical knowledge becomes explicit, queryable forms
-(\citeproc{ref-zhang2025}{113}). This theoretical foundation supports
+(\citeproc{ref-zhang2025}{106}). This theoretical foundation supports
 embedding organizational knowledge in systems rather than individuals,
 ensuring continuity despite workforce turnover.
 
@@ -1860,29 +1853,29 @@ ROI}\label{pillar-3-alignment-technical-enablement-roi}
 Academic research documents multiple pathways to ROI for
 barrier-reducing technologies in healthcare. Conversational AI
 implementations show direct benefits: Jiao et al.
-(\citeproc{ref-jiao2023}{114}) found that AI-driven efficiency gains,
+(\citeproc{ref-jiao2023}{107}) found that AI-driven efficiency gains,
 including shorter hospitalization lengths, translate into financial and
 operational benefits for healthcare providers; Pennington
-(\citeproc{ref-pennington2023}{110}) documented that AI in revenue cycle
+(\citeproc{ref-pennington2023}{103}) documented that AI in revenue cycle
 management accelerated payment cycles from 90 to 40 days, improving cash
-flow; and Sezgin et al. (\citeproc{ref-sezgin2022}{115}) proposed
+flow; and Sezgin et al. (\citeproc{ref-sezgin2022}{108}) proposed
 chatbot implementations that reduce clinic overhead.
 
 Low-code platform ROI provides analogous evidence for the value of
 technical barrier reduction. Industry-sponsored research from Forrester
-(\citeproc{ref-forrester2024}{116}) projects 206\% three-year ROI from
+(\citeproc{ref-forrester2024}{109}) projects 206\% three-year ROI from
 Power Platform implementations. Peer-reviewed studies corroborate these
 findings: a systematic review identified cost and time reduction as the
 most frequently discussed benefits across 17 studies
-(\citeproc{ref-elkamouchi2023}{117}), healthcare institutions report
+(\citeproc{ref-elkamouchi2023}{110}), healthcare institutions report
 177\% ROI over 36 months with 67\% faster development
-(\citeproc{ref-mogili2025}{118}), and small healthcare clinics document
-250\% cumulative three-year ROI (\citeproc{ref-pervaiz2025}{119}). While
+(\citeproc{ref-mogili2025}{111}), and small healthcare clinics document
+250\% cumulative three-year ROI (\citeproc{ref-pervaiz2025}{112}). While
 low-code and conversational AI differ in implementation approach, both
 generate returns through the same mechanism: enabling domain experts to
 accomplish tasks previously requiring specialized technical staff.
 Market research supports continued investment in accessible analytics:
-Precedence Research (\citeproc{ref-precedence2024}{120}) projects the
+Precedence Research (\citeproc{ref-precedence2024}{113}) projects the
 healthcare analytics market to grow from \$64.49 billion in 2025 to
 \$369.66 billion by 2034 (21.41\% CAGR).
 
@@ -1915,15 +1908,15 @@ analytics, several research gaps persist:
   \textbf{Long-term productivity tracking}: While peer-reviewed studies
   now document immediate productivity gains (63\% self-service adoption
   increase, 37\% data retrieval time reduction, 10-30\% query completion
-  time improvement (\citeproc{ref-yuan2019}{94}),
-  (\citeproc{ref-dadi2025}{93}), (\citeproc{ref-shah2020}{97}),
-  (\citeproc{ref-ipeirotis2025}{96})), longitudinal studies tracking
+  time improvement (\citeproc{ref-yuan2019}{87}),
+  (\citeproc{ref-dadi2025}{86}), (\citeproc{ref-shah2020}{90}),
+  (\citeproc{ref-ipeirotis2025}{89})), longitudinal studies tracking
   sustained productivity improvements over multiple years remain limited
 \item
   \textbf{Citizen developer productivity methodology}: No validated
   healthcare-specific instrument exists for measuring citizen developer
   productivity. While Berkshire NHS reports over 1,600 citizen
-  developers (\citeproc{ref-berkshire2024}{121}), the methodology for
+  developers (\citeproc{ref-berkshire2024}{114}), the methodology for
   quantifying their productivity contributions lacks standardization
   across studies
 \item
@@ -1951,7 +1944,7 @@ consistently encountered fundamental barriers. Academic research
 identifies a persistent tension between achieving short-term
 institutional solutions and pursuing long-term global interoperability,
 with standardization complexity arising from diverse community interests
-and technical issues (\citeproc{ref-richesson2007}{122}). Data
+and technical issues (\citeproc{ref-richesson2007}{115}). Data
 standardization faces three primary technological obstacles: metadata
 uncertainties, data transfer challenges, and missing data, compounded by
 legacy data collection methods that have created a ``patchwork'' of
@@ -1961,37 +1954,37 @@ These challenges manifest in clinical practice through workflow
 variability. Even within the same institution, clinical workflows vary
 significantly, and transitions to standardized systems often cause
 profound disruptions to existing processes
-(\citeproc{ref-zheng2020}{123}). At the institutional level, data
+(\citeproc{ref-zheng2020}{116}). At the institutional level, data
 fragmentation across different organizations creates barriers to
 linkage, access, and care continuity, while governance issues including
 unclear responsibilities and weak collaboration compound the problem
-(\citeproc{ref-bogaert2021}{124}).
+(\citeproc{ref-bogaert2021}{117}).
 
 High-profile industry events illustrate these documented challenges. IBM
 divested its Watson Health data and analytics assets to Francisco
-Partners in 2022 (\citeproc{ref-ibm2022}{125}), following years of
+Partners in 2022 (\citeproc{ref-ibm2022}{118}), following years of
 underperformance attributed to a fundamental mismatch between AI
 capabilities and clinical reality: the technology encountered the
 ``messy reality'' of healthcare systems where machines learn from
 structured data but physicians work with unstructured, complex clinical
-information (\citeproc{ref-strickland2019}{126}). Academic analysis
+information (\citeproc{ref-strickland2019}{119}). Academic analysis
 identified additional contributing factors including suboptimal business
 performance (only breaking even), a restrictive top-down
 commercialization strategy that limited market reach, and the
 highly-regulated nature of healthcare creating barriers to AI deployment
-(\citeproc{ref-yang2020}{127}). The Haven healthcare venture (backed by
+(\citeproc{ref-yang2020}{120}). The Haven healthcare venture (backed by
 Amazon, Berkshire Hathaway, and JPMorgan Chase) disbanded in 2021 after
-three years (\citeproc{ref-lavito2021}{128}), with academic analysis
+three years (\citeproc{ref-lavito2021}{121}), with academic analysis
 identifying multiple contributing factors: even the three founding
 companies could not effectively share health-care cost data with each
 other, the venture never employed more than 75 people (limiting its
 ability to effect industry-wide change), and leadership turnover
 destabilized organizational continuity
-(\citeproc{ref-acchiardo2021}{129}). Research on Big Tech platform entry
+(\citeproc{ref-acchiardo2021}{122}). Research on Big Tech platform entry
 into healthcare positions both Watson Health and Haven within a broader
 pattern of technology companies encountering regulatory complexity and
 institutional resistance when attempting to standardize fragmented
-healthcare systems (\citeproc{ref-ozalp2022}{130}). These outcomes align
+healthcare systems (\citeproc{ref-ozalp2022}{123}). These outcomes align
 with the academic literature's findings: standardized solutions face
 significant barriers when applied across institutions with unique data
 definitions, business rules, and clinical workflows.
@@ -2032,15 +2025,15 @@ strengths:
 The evidence base includes peer-reviewed benchmarking studies from top
 venues (NEJM AI, NeurIPS, NAACL) that provide empirical validation of
 LLM capabilities in healthcare contexts. Studies like MedAgentBench
-(\citeproc{ref-medagentbench2024}{85}) and comprehensive medical LLM
-evaluations (\citeproc{ref-wu2024a}{86}) offer reproducible,
+(\citeproc{ref-medagentbench2024}{78}) and comprehensive medical LLM
+evaluations (\citeproc{ref-wu2024a}{79}) offer reproducible,
 quantitative performance metrics.
 
 \subsubsection{Real-world
 Implementations}\label{real-world-implementations}
 
 The Berkshire Healthcare NHS Trust case
-(\citeproc{ref-berkshire2024}{121}) demonstrates successful low-code
+(\citeproc{ref-berkshire2024}{114}) demonstrates successful low-code
 adoption in healthcare, with over 1,600 citizen developers creating
 solutions. This provides concrete evidence that non-technical healthcare
 professionals can effectively use these platforms.
@@ -2058,9 +2051,9 @@ improvement.
 \subsubsection{Economic Justification}\label{economic-justification}
 
 The financial evidence is compelling, with Forrester Research
-(\citeproc{ref-forrester2024}{116}) documenting 206\% three-year ROI
+(\citeproc{ref-forrester2024}{109}) documenting 206\% three-year ROI
 from low-code implementations. Market growth projections
-(\citeproc{ref-precedence2024}{120}) showing the healthcare analytics
+(\citeproc{ref-precedence2024}{113}) showing the healthcare analytics
 market expanding from \$64.49B to \$369.66B by 2034 indicate sustained
 investment demand.
 
@@ -2069,7 +2062,7 @@ investment demand.
 The evidence base includes important caveats. Ziletti and D'Ambrosi
 (\citeproc{ref-ziletti2024}{22}) note that ``current language models are
 not yet sufficiently accurate for unsupervised use,'' and benchmarking
-studies (\citeproc{ref-ang2004}{9},\citeproc{ref-wu2024a}{86}) show
+studies (\citeproc{ref-ang2004}{9},\citeproc{ref-wu2024a}{79}) show
 significant gaps between benchmark performance and clinical readiness.
 This honest assessment enables appropriate implementation strategies.
 
@@ -2268,23 +2261,22 @@ validation in an environment defined by expert turnover. If the experts
 are leaving, who validates the AI? To resolve this ``validator
 paradox,'' validation must be reframed not as \emph{eternal truth} but
 as the ``standard work'' of informatics, drawing on Lean management
-principles (\citeproc{ref-alukal2006}{131}).
+principles (\citeproc{ref-alukal2006}{124}).
 
 In this model, a validated query represents the ``current best way'' to
 perform an analysis. As Alukal and Manos
-(\citeproc{ref-alukal2006}{131}) establish, standard work is the
+(\citeproc{ref-alukal2006}{124}) establish, standard work is the
 prerequisite for Kaizen (continuous improvement): without a documented
 standard, there is no baseline to improve upon. The Validated Query
 Cycle functions as an ``organizational knowledge ratchet''
-(\citeproc{ref-rao2006}{132}). Even provisional validation by mid-level
+(\citeproc{ref-rao2006}{70}). Even provisional validation by mid-level
 analysts captures operational logic into a procedural artifact. This
 prevents the ``sliding back to zero'' that occurs during turnover,
 allowing the organization to maintain a performance baseline that
-persists independent of individual tenure
-(\citeproc{ref-hong2025}{133}). Rather than requiring a permanent ``core
-nucleus'' of experts, the system accumulates knowledge incrementally,
-using the structure of the validation process to buffer against the
-disruptive effects of turnover.
+persists independent of individual tenure (\citeproc{ref-hong2025}{59}).
+Rather than requiring a permanent ``core nucleus'' of experts, the
+system accumulates knowledge incrementally, using the structure of the
+validation process to buffer against the disruptive effects of turnover.
 
 \subsubsection{Comparative Analysis of Knowledge Preservation
 Strategies}\label{comparative-analysis-of-knowledge-preservation-strategies}
@@ -2303,43 +2295,43 @@ conversational AI approach against established alternatives:
   data models change frequently (e.g., quarterly upgrades). The
   maintenance burden often exceeds the capacity of high-turnover teams,
   leading to misalignment between the layer and the underlying data
-  (\citeproc{ref-mannapur2025}{134},\citeproc{ref-yupopa2005}{135}).
+  (\citeproc{ref-mannapur2025}{125},\citeproc{ref-yupopa2005}{126}).
   Modern ``Semantic Fabrics'' using knowledge graphs and metadata-driven
   architectures (Data Governance 4.0) offer more flexible structures
   than relational databases
-  (\citeproc{ref-oliveira2023}{136},\citeproc{ref-sivaranjani2025}{137}).
+  (\citeproc{ref-oliveira2023}{127},\citeproc{ref-sivaranjani2025}{128}).
   AI-maintained adaptive frameworks can reduce false-positive quality
   alerts by 40\% under ``schema drift'' scenarios
-  (\citeproc{ref-battula2025}{138}). However, the ``semantic gap''
+  (\citeproc{ref-battula2025}{129}). However, the ``semantic gap''
   remains a fundamental challenge; medical concepts are inherently
   volatile, making stable References for programmers elusive
-  (\citeproc{ref-lenz2007}{139}).
+  (\citeproc{ref-lenz2007}{130}).
 \item
   \textbf{Passive vs.~Active Capture}: Traditional knowledge management
   relies on passive capture (wikis, documentation) where users must stop
   working to document. Evidence suggests this negatively impacts
   participation and leads to inaccurate records due to cognitive load
-  (\citeproc{ref-whittaker2008}{140}). In contrast, conversational
+  (\citeproc{ref-whittaker2008}{131}). In contrast, conversational
   interfaces represent active capture where the query itself is the
-  documentation (\citeproc{ref-moore2018}{141}), integrating knowledge
+  documentation (\citeproc{ref-moore2018}{132}), integrating knowledge
   preservation directly into the analytical workflow.
 \item
   \textbf{Governance vs.~Shadow IT}: Rigid, centralized models often
   drive analysts toward Shadow IT (extracting raw data to Excel) to
   achieve flexibility, defeating governance goals
-  (\citeproc{ref-zimmermann2017}{142}). However, Shadow IT persists
+  (\citeproc{ref-zimmermann2017}{133}). However, Shadow IT persists
   because it provides significant agility benefits, circumvents IT
   backlogs, and adds immediate value to business workgroups
-  (\citeproc{ref-zimmermann2017}{142},\citeproc{ref-rivard1987}{143}).
+  (\citeproc{ref-zimmermann2017}{133},\citeproc{ref-rivard1987}{134}).
   Spreadsheet-based components allow for rapid, local responsiveness to
-  changing requirements (\citeproc{ref-kopper2020}{144}). Conversational
+  changing requirements (\citeproc{ref-kopper2020}{135}). Conversational
   interfaces offer a middle path: providing the flexibility and
   timeliness of Shadow IT within the governance perimeter of the
-  validated query cycle (\citeproc{ref-oliveira2023}{136}). This
+  validated query cycle (\citeproc{ref-oliveira2023}{127}). This
   approach aligns with recent evidence from UC Davis Health, where
   establishing standardized definitions enabled the organization to
   advance from AMAM Stage 0 to Stage 6 while weeding out biased AI
-  models (\citeproc{ref-himss2025ucdavis}{145}). By decoupling data
+  models (\citeproc{ref-himss2025ucdavis}{136}). By decoupling data
   access from data definition, organizations can democratize the
   \emph{consumption} of analytics without democratizing the
   \emph{creation} of potentially flawed metrics.
@@ -2435,14 +2427,14 @@ Evidence
 HIMSS AMAM Stage & Stages 0-2: Fragmented data, limited reporting &
 Stages 3-4: Integrated warehouse, standardized definitions & Stages 5-7:
 Predictive analytics, AI integration &
-(\citeproc{ref-himss2024}{2},\citeproc{ref-health2020}{39}) \\
+(\citeproc{ref-himss2024}{2},\citeproc{ref-health2020}{38}) \\
 Self-service analytics & None; all analytics require IT intervention &
 Partial; BI tools available but underutilized & Widespread; clinical
 staff access data directly &
-(\citeproc{ref-wang2018}{27},\citeproc{ref-berkshire2024}{121}) \\
+(\citeproc{ref-wang2018}{27},\citeproc{ref-berkshire2024}{114}) \\
 AI/NL interface & No NL2SQL or conversational analytics & Pilot programs
 or evaluation underway & Natural language query capability deployed &
-(\citeproc{ref-ziletti2024}{22},\citeproc{ref-wang2020}{88}) \\
+(\citeproc{ref-ziletti2024}{22},\citeproc{ref-wang2020}{81}) \\
 \end{longtable}
 
 \textbf{Pillar 2: Workforce Agility}
@@ -2478,13 +2470,13 @@ years & Tenure \textgreater{} 5 years &
 Knowledge concentration & Critical expertise held by ≤3 individuals &
 Partial documentation; some cross-training & Distributed expertise;
 documented processes &
-(\citeproc{ref-richesson2007}{122},\citeproc{ref-benbya2004}{146}) \\
+(\citeproc{ref-richesson2007}{115},\citeproc{ref-benbya2004}{137}) \\
 Time-to-productivity & \textgreater18 months (specialized roles) & 6-18
 months & \textless6 months with structured onboarding &
 (\citeproc{ref-ledikwe2013}{66},\citeproc{ref-mantas2010}{67}) \\
 Tacit knowledge capture & Person-dependent; undocumented tribal
 knowledge & Partial documentation exists & Expertise embedded in
-systems/AI & (\citeproc{ref-benbya2004}{146}) \\
+systems/AI & (\citeproc{ref-benbya2004}{137}) \\
 \end{longtable}
 
 \textbf{Pillar 3: Technical Enablement}
@@ -2514,15 +2506,15 @@ Evidence
 Data access & SQL/technical expertise required for all queries & IT
 queue for complex queries; basic self-service & Natural language or
 visual query interfaces &
-(\citeproc{ref-wang2018}{27},\citeproc{ref-pesqueira2020}{42}) \\
+(\citeproc{ref-wang2018}{27},\citeproc{ref-pesqueira2020}{41}) \\
 Interoperability & Fragmented systems; manual reconciliation required &
 Partial integration; some automated feeds & Unified data platform;
 real-time integration &
-(\citeproc{ref-gal2019}{10},\citeproc{ref-bogaert2021}{124}) \\
+(\citeproc{ref-gal2019}{10},\citeproc{ref-bogaert2021}{117}) \\
 Skills gap impact & Critical shortage preventing data utilization &
 Acknowledged deficit with mitigation plans & Sufficient analysts across
 departments &
-(\citeproc{ref-bardsley2016}{41},\citeproc{ref-pesqueira2020}{42}) \\
+(\citeproc{ref-bardsley2016}{40},\citeproc{ref-pesqueira2020}{41}) \\
 \end{longtable}
 
 \textbf{Multi-Pillar Convergence Assessment:}
@@ -2654,7 +2646,7 @@ through:
 \item
   \textbf{Illustrative Application}: By applying established knowledge
   portal theory
-  (\citeproc{ref-richesson2007}{122},\citeproc{ref-benbya2004}{146}), we
+  (\citeproc{ref-richesson2007}{115},\citeproc{ref-benbya2004}{137}), we
   describe the validated query cycle as one example of how the framework
   might inform technology design for institutional memory preservation.
 \end{enumerate}
@@ -2669,7 +2661,7 @@ critical findings:
 \item
   \textbf{Technical Progress with Limitations}: Natural language to SQL
   technologies have advanced significantly, with healthcare-specific
-  benchmarks (\citeproc{ref-wang2020}{88},\citeproc{ref-lee2023}{89})
+  benchmarks (\citeproc{ref-wang2020}{81},\citeproc{ref-lee2023}{82})
   demonstrating substantial progress in clinical NL2SQL tasks. However,
   current models are ``not yet sufficiently accurate for unsupervised
   use'' in clinical settings (\citeproc{ref-ziletti2024}{22}), requiring
@@ -2690,11 +2682,11 @@ critical findings:
   preservation approaches.
 \item
   \textbf{Implementation Evidence}: Real-world implementations like
-  Berkshire Healthcare NHS Trust (\citeproc{ref-berkshire2024}{121})
+  Berkshire Healthcare NHS Trust (\citeproc{ref-berkshire2024}{114})
   demonstrate that low-code platforms can enable over 1,600 citizen
   developers in healthcare settings, with academic research documenting
   significant efficiency improvements and cost reductions
-  (\citeproc{ref-jiao2023}{114},\citeproc{ref-sezgin2022}{115}).
+  (\citeproc{ref-jiao2023}{107},\citeproc{ref-sezgin2022}{108}).
 \end{enumerate}
 
 \subsection{Implications for Organizational
@@ -2918,33 +2910,34 @@ Intelligence in Legacy Systems and Potential Solutions for Seamless
 Integration}. {SSRN} {[}Internet{]}. 2025; Available from:
 \url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5268176}}
 
-\bibitem[\citeproctext]{ref-shen2023}
-\CSLLeftMargin{16. }%
-\CSLRightInline{Shen M K., Gandhi AD. {Health care staff turnover and
-quality of care at nursing homes}. {JAMA} Internal Medicine
-{[}Internet{]}. 2023;183(10):1088--95. Available from:
-\url{https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2809588}}
-
 \bibitem[\citeproctext]{ref-latrella2024}
-\CSLLeftMargin{17. }%
+\CSLLeftMargin{16. }%
 \CSLRightInline{Latrella \&B M. {Improving patient outcomes while
 reducing readmissions with data analytics}. Management in Healthcare
 {[}Internet{]}. 2024; Available from:
 \url{https://www.ingentaconnect.com/content/hsp/mih/2024/00000008/00000004/art00006}}
 
 \bibitem[\citeproctext]{ref-khan2023}
-\CSLLeftMargin{18. }%
+\CSLLeftMargin{17. }%
 \CSLRightInline{Khan S S. {Advanced business analytics in healthcare:
 Enhancing clinical decision support and operational efficiency}. Journal
 of Business Analytics {[}Internet{]}. 2023;6(2):112--25. Available from:
 \url{https://publishing.emanresearch.org/Journal/FullText/6104}}
 
-\bibitem[\citeproctext]{ref-lin2012}
+\bibitem[\citeproctext]{ref-shahbaz2019}
+\CSLLeftMargin{18. }%
+\CSLRightInline{Shahbaz G M. {Investigating the adoption of big data
+analytics in healthcare: The moderating role of resistance to change}.
+Journal of Big Data {[}Internet{]}. 2019; Available from:
+\url{https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0170-y}}
+
+\bibitem[\citeproctext]{ref-kamble2019}
 \CSLLeftMargin{19. }%
-\CSLRightInline{Lin L C. {Barriers to physicians' adoption of healthcare
-information technology: An empirical study on multiple hospitals}.
-Journal of Medical Systems {[}Internet{]}. 2012; Available from:
-\url{https://link.springer.com/article/10.1007/s10916-011-9656-7}}
+\CSLRightInline{Kamble G S. S. {A systematic perspective on the
+applications of big data analytics in healthcare management}.
+International Journal of Healthcare Management {[}Internet{]}. 2019;
+Available from:
+\url{https://www.tandfonline.com/doi/full/10.1080/20479700.2018.1531606}}
 
 \bibitem[\citeproctext]{ref-bravorocca2023}
 \CSLLeftMargin{20. }%
@@ -3072,22 +3065,14 @@ outcomes in secondary care in England}. npj Digital Medicine
 {[}Internet{]}. 2019; Available from:
 \url{https://www.nature.com/articles/s41746-019-0118-9}}
 
-\bibitem[\citeproctext]{ref-kamble2019}
-\CSLLeftMargin{38. }%
-\CSLRightInline{Kamble G S. S. {A systematic perspective on the
-applications of big data analytics in healthcare management}.
-International Journal of Healthcare Management {[}Internet{]}. 2019;
-Available from:
-\url{https://www.tandfonline.com/doi/full/10.1080/20479700.2018.1531606}}
-
 \bibitem[\citeproctext]{ref-health2020}
-\CSLLeftMargin{39. }%
+\CSLLeftMargin{38. }%
 \CSLRightInline{Catalyst H. {The healthcare analytics adoption model: A
 roadmap to analytic maturity} {[}Internet{]}. 2020. Available from:
 \url{https://www.healthcatalyst.com/learn/insights/healthcare-analytics-adoption-model-roadmap-analytic-maturity}}
 
 \bibitem[\citeproctext]{ref-navarro2023}
-\CSLLeftMargin{40. }%
+\CSLLeftMargin{39. }%
 \CSLRightInline{Navarro I D. F. {Clinical named entity recognition and
 relation extraction using natural language processing of medical free
 text: A systematic review}. International Journal of Medical Informatics
@@ -3095,73 +3080,73 @@ text: A systematic review}. International Journal of Medical Informatics
 \url{https://www.sciencedirect.com/science/article/pii/S1386505623001405}}
 
 \bibitem[\citeproctext]{ref-bardsley2016}
-\CSLLeftMargin{41. }%
+\CSLLeftMargin{40. }%
 \CSLRightInline{Bardsley M. {Understanding analytical capability in
 health care: Do we have more data than insight? The Health Foundation}
 {[}Internet{]}. 2016. Available from:
 \url{https://www.health.org.uk/publications/understanding-analytical-capability-in-health-care}}
 
 \bibitem[\citeproctext]{ref-pesqueira2020}
-\CSLLeftMargin{42. }%
+\CSLLeftMargin{41. }%
 \CSLRightInline{Pesqueira S A. {Big data skills sustainable development
 in healthcare and pharmaceuticals}. Journal of Medical Systems
 {[}Internet{]}. 2020; Available from:
 \url{https://link.springer.com/article/10.1007/s10916-020-01665-9}}
 
 \bibitem[\citeproctext]{ref-carvalho2019}
-\CSLLeftMargin{43. }%
+\CSLLeftMargin{42. }%
 \CSLRightInline{Carvalho JV, Rocha Á, Vasconcelos J.
 \href{https://doi.org/10.1016/j.ijinfomgt.2018.07.001}{{A health data
 analytics maturity model for hospitals information systems}}.
 International Journal of Information Management. 2019;46:278--85. }
 
 \bibitem[\citeproctext]{ref-pintovalverde2013}
-\CSLLeftMargin{44. }%
+\CSLLeftMargin{43. }%
 \CSLRightInline{Pinto-Valverde J, Pérez-Guardado M. {HDQM2: healthcare
 data quality maturity model}. In: Midwest association for information
 systems conference. 2013. }
 
 \bibitem[\citeproctext]{ref-gokalp2023}
-\CSLLeftMargin{45. }%
+\CSLLeftMargin{44. }%
 \CSLRightInline{Gökalp MO, Gökalp E, Gökalp S. {The development of data
 analytics maturity assessment framework: DAMAF}. Journal of Software:
 Evolution and Process. 2023;35(4):e2448. }
 
 \bibitem[\citeproctext]{ref-lismont2017}
-\CSLLeftMargin{46. }%
+\CSLLeftMargin{45. }%
 \CSLRightInline{Lismont J, Vanthienen J, Baesens B, et al. {Defining
 analytics maturity indicators: A survey approach}. International Journal
 of Information Management. 2017;37(3):114--24. }
 
 \bibitem[\citeproctext]{ref-yang2021}
-\CSLLeftMargin{47. }%
+\CSLLeftMargin{46. }%
 \CSLRightInline{Yang DX, Khera R, Miccio JA, Jairam V, et al.
 {Prevalence of missing data in the national cancer database and
 association with overall survival}. JAMA Network Open.
 2021;4(3):e211793. }
 
 \bibitem[\citeproctext]{ref-arts2002}
-\CSLLeftMargin{48. }%
+\CSLLeftMargin{47. }%
 \CSLRightInline{Arts DG, De Keizer NF, et al. {Defining and improving
 data quality in medical registries: a literature review, case study, and
 generic framework}. Journal of the American Medical Informatics
 Association. 2002;9(6):600--11. }
 
 \bibitem[\citeproctext]{ref-mccoy2013}
-\CSLLeftMargin{49. }%
+\CSLLeftMargin{48. }%
 \CSLRightInline{McCoy AB, Wright A, Kahn MG, Shapiro JS, et al.
 {Matching identifiers in electronic health records: implications for
 duplicate records and patient safety}. BMJ Quality \& Safety.
 2013;22(3):219--24. }
 
 \bibitem[\citeproctext]{ref-rahman2020}
-\CSLLeftMargin{50. }%
+\CSLLeftMargin{49. }%
 \CSLRightInline{Rahman P, Nandi A, Hebert C. {Amplifying domain
 expertise in clinical data pipelines}. JMIR Medical Informatics.
 2020;8(11):e19612. }
 
 \bibitem[\citeproctext]{ref-sirgo2018}
-\CSLLeftMargin{51. }%
+\CSLLeftMargin{50. }%
 \CSLRightInline{Sirgo G, Esteban F, Gómez J, Moreno G, et al.
 {Validation of the ICU-DaMa tool for automatically extracting variables
 for minimum dataset and quality indicators: The importance of data
@@ -3169,57 +3154,64 @@ quality assessment}. International Journal of Medical Informatics.
 2018;112:166--72. }
 
 \bibitem[\citeproctext]{ref-shi2021}
-\CSLLeftMargin{52. }%
+\CSLLeftMargin{51. }%
 \CSLRightInline{Shi X, Prins C, Van Pottelbergh G, Mamouris P, et al.
 {An automated data cleaning method for Electronic Health Records by
 incorporating clinical knowledge}. BMC Medical Informatics and Decision
 Making. 2021;21:1--12. }
 
 \bibitem[\citeproctext]{ref-dugas2016}
-\CSLLeftMargin{53. }%
+\CSLLeftMargin{52. }%
 \CSLRightInline{Dugas M, Neuhaus P, Meidt A, Doods J, Storck M, et al.
 {Portal of medical data models: information infrastructure for medical
 research and healthcare}. Database. 2016;2016. }
 
 \bibitem[\citeproctext]{ref-bokov2017}
-\CSLLeftMargin{54. }%
+\CSLLeftMargin{53. }%
 \CSLRightInline{Bokov AF, Bos AB, Manuel LS, et al. {Using prevalence
 patterns to discover un-mapped flowsheet data in an electronic health
 record data warehouse}. In: 2017 IEEE 30th international symposium on
 computer-based medical systems (CBMS). IEEE; 2017. p. 509--14. }
 
 \bibitem[\citeproctext]{ref-ulrich2022}
-\CSLLeftMargin{55. }%
+\CSLLeftMargin{54. }%
 \CSLRightInline{Ulrich H, Kock-Schoppenhauer AK, et al. {Understanding
 the nature of metadata: systematic review}. Journal of Medical Internet
 Research. 2022;24(1):e25440. }
 
 \bibitem[\citeproctext]{ref-lucyk2017}
-\CSLLeftMargin{56. }%
+\CSLLeftMargin{55. }%
 \CSLRightInline{Lucyk K, Tang K, Quan H. {Barriers to data quality
 resulting from the process of coding health information to
 administrative data: a qualitative study}. BMC Health Services Research.
 2017;17(1):1--10. }
 
 \bibitem[\citeproctext]{ref-hovenga2013}
-\CSLLeftMargin{57. }%
+\CSLLeftMargin{56. }%
 \CSLRightInline{Hovenga EJ, Grain H. {Health data and data governance}.
 In: Health information governance in a digital environment. IOS Press;
 2013. p. 67--94. }
 
 \bibitem[\citeproctext]{ref-wu2024}
-\CSLLeftMargin{58. }%
+\CSLLeftMargin{57. }%
 \CSLRightInline{Wu L F., Li L. {Worldwide prevalence and associated
 factors of nursing staff turnover: A systematic review and
 meta-analysis}. Nursing Open {[}Internet{]}. 2024;11:e2097. Available
 from: \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC10802134/}}
 
 \bibitem[\citeproctext]{ref-ren2024}
-\CSLLeftMargin{59. }%
+\CSLLeftMargin{58. }%
 \CSLRightInline{Ren W L. {Global prevalence of nurse turnover rates: A
 meta-analysis of 21 studies from 14 countries}. Journal of Nursing
 Management {[}Internet{]}. 2024; Available from:
 \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11919231/}}
+
+\bibitem[\citeproctext]{ref-hong2025}
+\CSLLeftMargin{59. }%
+\CSLRightInline{Hong JH. When does employee turnover matter?
+Organizational memory in federal IT. Journal of Public Administration
+Research and Theory {[}Internet{]}. 2025; Available from:
+\url{https://academic.oup.com/jpart/advance-article-abstract/doi/10.1093/jopart/muaf019/8162522}}
 
 \bibitem[\citeproctext]{ref-massingham2018}
 \CSLLeftMargin{60. }%
@@ -3292,168 +3284,118 @@ perspective: Insights toward information infrastructure in healthcare}
 {[}Internet{]} {[}Master's thesis{]}. 2022. Available from:
 \url{https://www.diva-portal.org/smash/record.jsf?pid=diva2:1684142}}
 
-\bibitem[\citeproctext]{ref-rangachari2020}
+\bibitem[\citeproctext]{ref-rao2006}
 \CSLLeftMargin{70. }%
-\CSLRightInline{Rangachari \&W P. {Preserving organizational resilience,
-patient safety, and staff retention during COVID-19 requires a holistic
-consideration of the psychological safety of healthcare workers}.
-International Journal of Environmental Research and Public Health
-{[}Internet{]}. 2020; Available from:
-\url{https://www.mdpi.com/1660-4601/17/12/4267}}
-
-\bibitem[\citeproctext]{ref-bae2010}
-\CSLLeftMargin{71. }%
-\CSLRightInline{Bae M S. H. {Impact of nursing unit turnover on patient
-outcomes in hospitals}. Journal of Nursing Scholarship {[}Internet{]}.
-2010; Available from:
-\url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1547-5069.2009.01319.x}}
-
-\bibitem[\citeproctext]{ref-wakerman2019}
-\CSLLeftMargin{72. }%
-\CSLRightInline{Wakerman H J. {Remote health workforce turnover and
-retention: What are the policy and practice priorities?} Human Resources
-for Health {[}Internet{]}. 2019; Available from:
-\url{https://human-resources-health.biomedcentral.com/articles/10.1186/s12960-019-0432-y}}
-
-\bibitem[\citeproctext]{ref-lahaie2005}
-\CSLLeftMargin{73. }%
-\CSLRightInline{Lahaie D. {The impact of corporate memory loss: What
-happens when a senior executive leaves?} Leadership in Health Services
-{[}Internet{]}. 2005; Available from:
-\url{https://www.emerald.com/insight/content/doi/10.1108/13660750510611198/full/html}}
-
-\bibitem[\citeproctext]{ref-eriksson2022}
-\CSLLeftMargin{74. }%
-\CSLRightInline{Eriksson A, Vulkan P, Dellve L.
-\href{https://doi.org/10.2147/JMDH.S363390}{{A Case Study of Critical
-Reasons Behind Hospital Nurses Turnover Due to Challenges Across System
-Levels}}. Journal of Multidisciplinary Healthcare. 2022;15:1213--24. }
-
-\bibitem[\citeproctext]{ref-alogaidi2025}
-\CSLLeftMargin{75. }%
-\CSLRightInline{Al-Ogaidi O. {A Lean Six Sigma Perspective on Enhancing
-Employee Retention and Onboarding Processes} {[}Master's thesis{]}.
-Degree Programme in Industrial Management; 2025. }
-
-\bibitem[\citeproctext]{ref-taner2009}
-\CSLLeftMargin{76. }%
-\CSLRightInline{Taner M, Sezen B.
-\href{https://doi.org/10.1108/09526860910953520}{{An Application of Six
-Sigma Methodology to Turnover Intentions in Health Care}}. International
-Journal of Health Care Quality Assurance. 2009;22(3):252--65. }
+\CSLRightInline{Rao RD, Argote L. Organizational learning and
+forgetting: The effects of turnover and structure. European Management
+Review {[}Internet{]}. 2006;3(2):77--85. Available from:
+\url{https://onlinelibrary.wiley.com/doi/abs/10.1057/palgrave.emr.1500057}}
 
 \bibitem[\citeproctext]{ref-mayo2016}
-\CSLLeftMargin{77. }%
+\CSLLeftMargin{71. }%
 \CSLRightInline{Mayo D C. S. {How can we effect culture change toward
 data-driven medicine?} International Journal of Radiation Oncology,
 Biology, Physics {[}Internet{]}. 2016; Available from:
 \url{https://www.redjournal.org/article/S0360-3016(16)00260-1/fulltext}}
 
 \bibitem[\citeproctext]{ref-goffin2011}
-\CSLLeftMargin{78. }%
+\CSLLeftMargin{72. }%
 \CSLRightInline{Goffin \&K K. {Tacit knowledge, lessons learnt, and new
 product development}. Journal of Product Innovation Management
 {[}Internet{]}. 2011; Available from:
 \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-5885.2010.00798.x}}
 
 \bibitem[\citeproctext]{ref-foos2006}
-\CSLLeftMargin{79. }%
+\CSLLeftMargin{73. }%
 \CSLRightInline{Foos S T. {Tacit knowledge transfer and the knowledge
 disconnect}. Journal of Knowledge Management {[}Internet{]}. 2006;
 Available from:
 \url{https://www.emerald.com/insight/content/doi/10.1108/13673270610650067/full/html}}
 
 \bibitem[\citeproctext]{ref-goffin2010}
-\CSLLeftMargin{80. }%
+\CSLLeftMargin{74. }%
 \CSLRightInline{Goffin K K. {Managing lessons learned and tacit
 knowledge in new product development}. Research-Technology Management
 {[}Internet{]}. 2010; Available from:
 \url{https://www.tandfonline.com/doi/abs/10.1080/08956308.2010.11657637}}
 
 \bibitem[\citeproctext]{ref-rintala2006}
-\CSLLeftMargin{81. }%
+\CSLLeftMargin{75. }%
 \CSLRightInline{Rintala \&H N. {Methods for sharing tacit nuclear
 knowledge and expertise}. International Journal of Nuclear Knowledge
 Management {[}Internet{]}. 2006; Available from:
 \url{https://www.inderscienceonline.com/doi/abs/10.1504/IJNKM.2006.009880}}
 
-\bibitem[\citeproctext]{ref-shahbaz2019}
-\CSLLeftMargin{82. }%
-\CSLRightInline{Shahbaz G M. {Investigating the adoption of big data
-analytics in healthcare: The moderating role of resistance to change}.
-Journal of Big Data {[}Internet{]}. 2019; Available from:
-\url{https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0170-y}}
-
 \bibitem[\citeproctext]{ref-wang2025}
-\CSLLeftMargin{83. }%
+\CSLLeftMargin{76. }%
 \CSLRightInline{Wang H S. {Capabilities of GPT-5 on multimodal medical
 reasoning}. arXiv preprint {[}Internet{]}. 2025; Available from:
 \url{https://arxiv.org/abs/2508.08224}}
 
 \bibitem[\citeproctext]{ref-openai2025}
-\CSLLeftMargin{84. }%
+\CSLLeftMargin{77. }%
 \CSLRightInline{OpenAI. {HealthBench: A benchmark for evaluating LLMs in
 healthcare}. arXiv preprint {[}Internet{]}. 2025; Available from:
 \url{https://arxiv.org/abs/2505.08775}}
 
 \bibitem[\citeproctext]{ref-medagentbench2024}
-\CSLLeftMargin{85. }%
+\CSLLeftMargin{78. }%
 \CSLRightInline{Jiang B Y., Chen JH. {MedAgentBench: A virtual {EHR}
 environment to benchmark medical {LLM} agents}. {NEJM} {AI}
 {[}Internet{]}. 2025; Available from:
 \url{https://ai.nejm.org/doi/full/10.1056/AIdbp2500144}}
 
 \bibitem[\citeproctext]{ref-wu2024a}
-\CSLLeftMargin{86. }%
+\CSLLeftMargin{79. }%
 \CSLRightInline{Wu Q C., Xie W. {Towards evaluating and building
 versatile large language models for medicine}. npj Digital Medicine
 {[}Internet{]}. 2025; Available from:
 \url{https://www.nature.com/articles/s41746-024-01390-4}}
 
 \bibitem[\citeproctext]{ref-blaskovic2025}
-\CSLLeftMargin{87. }%
+\CSLLeftMargin{80. }%
 \CSLRightInline{Blašković T L., Lorencin I. {Robust clinical querying
 with local LLMs: Lexical challenges in NL2SQL and RAG-QA on EHRs}. Big
 Data and Cognitive Computing {[}Internet{]}. 2025;9(10):256. Available
 from: \url{https://www.mdpi.com/2504-2289/9/10/256}}
 
 \bibitem[\citeproctext]{ref-wang2020}
-\CSLLeftMargin{88. }%
+\CSLLeftMargin{81. }%
 \CSLRightInline{Wang S P. {Text-to-SQL generation for question answering
 on electronic medical records}. In: Proceedings of the web conference
 2020 {[}Internet{]}. 2020. Available from:
 \url{https://arxiv.org/abs/1908.01839}}
 
 \bibitem[\citeproctext]{ref-lee2023}
-\CSLLeftMargin{89. }%
+\CSLLeftMargin{82. }%
 \CSLRightInline{Lee et al G. {EHRSQL: A practical text-to-SQL benchmark
 for electronic health records}. In: Proceedings of NeurIPS 2022
 {[}Internet{]}. 2023. Available from:
 \url{https://arxiv.org/abs/2301.07695}}
 
 \bibitem[\citeproctext]{ref-sivasubramaniam2024}
-\CSLLeftMargin{90. }%
+\CSLLeftMargin{83. }%
 \CSLRightInline{Sivasubramaniam OA S. {SM3-Text-to-Query: Synthetic
 multi-model medical text-to-query benchmark}. Advances in Neural
 Information Processing Systems {[}Internet{]}. 2024; Available from:
 \url{https://arxiv.org/abs/2411.05521}}
 
 \bibitem[\citeproctext]{ref-lee2025}
-\CSLLeftMargin{91. }%
+\CSLLeftMargin{84. }%
 \CSLRightInline{Lee C G. {SCARE: A benchmark for {SQL} correction and
 question answerability classification for reliable {EHR} question
 answering}. arXiv preprint {[}Internet{]}. 2025; Available from:
 \url{https://arxiv.org/abs/2511.17559}}
 
 \bibitem[\citeproctext]{ref-chen2025}
-\CSLLeftMargin{92. }%
+\CSLLeftMargin{85. }%
 \CSLRightInline{Chen P Q. {Graph-empowered text-to-SQL generation on
 electronic medical records}. Pattern Recognition {[}Internet{]}. 2025;
 Available from:
 \url{https://www.sciencedirect.com/science/article/pii/S0031320324008197}}
 
 \bibitem[\citeproctext]{ref-dadi2025}
-\CSLLeftMargin{93. }%
+\CSLLeftMargin{86. }%
 \CSLRightInline{Dadi CB, Hoque MR, Ali MM, Ferdausi S, Fatema K, Hasan
 MR. {Natural Language Interfaces for Database Management: Bridging the
 Gap Between Users and Data through Conversational {AI}}. Journal of
@@ -3462,28 +3404,28 @@ Computer Science and Technology Studies {[}Internet{]}.
 \url{https://al-kindipublisher.com/index.php/jcsts/article/view/9694}}
 
 \bibitem[\citeproctext]{ref-yuan2019}
-\CSLLeftMargin{94. }%
+\CSLLeftMargin{87. }%
 \CSLRightInline{Yuan R C. {Criteria2Query: a natural language interface
 to clinical databases for cohort definition}. Journal of the American
 Medical Informatics Association {[}Internet{]}. 2019; Available from:
 \url{https://academic.oup.com/jamia/article-abstract/26/4/294/5308980}}
 
 \bibitem[\citeproctext]{ref-park2024}
-\CSLLeftMargin{95. }%
+\CSLLeftMargin{88. }%
 \CSLRightInline{Park F J. {Criteria2Query 3.0: Leveraging generative
 large language models for clinical trial eligibility query generation}.
 Journal of Biomedical Informatics {[}Internet{]}. 2024; Available from:
 \url{https://www.sciencedirect.com/science/article/pii/S1532046424000650}}
 
 \bibitem[\citeproctext]{ref-ipeirotis2025}
-\CSLLeftMargin{96. }%
+\CSLLeftMargin{89. }%
 \CSLRightInline{Ipeirotis \&Z P. {Natural Language Interfaces for
 Databases: What Do Users Think?} arXiv preprint arXiv:251114718
 {[}Internet{]}. 2025; Available from:
 \url{https://arxiv.org/abs/2511.14718}}
 
 \bibitem[\citeproctext]{ref-shah2020}
-\CSLLeftMargin{97. }%
+\CSLLeftMargin{90. }%
 \CSLRightInline{Shah L V. {SpeakQL: towards speech-driven multimodal
 querying of structured data}. In: Proceedings of the 2020 {ACM} {SIGMOD}
 international conference on management of data {[}Internet{]}. 2020.
@@ -3491,14 +3433,14 @@ Available from:
 \url{https://dl.acm.org/doi/abs/10.1145/3318464.3389777}}
 
 \bibitem[\citeproctext]{ref-safari2014}
-\CSLLeftMargin{98. }%
+\CSLLeftMargin{91. }%
 \CSLRightInline{Safari \&P L. {Restricted natural language based
 querying of clinical databases}. Journal of Biomedical Informatics
 {[}Internet{]}. 2014; Available from:
 \url{https://www.sciencedirect.com/science/article/pii/S1532046414001592}}
 
 \bibitem[\citeproctext]{ref-han2019}
-\CSLLeftMargin{99. }%
+\CSLLeftMargin{92. }%
 \CSLRightInline{Han C J. {Improving the efficacy of the data entry
 process for clinical research with a natural language processing-driven
 medical information extraction system}. {JMIR} Medical Informatics
@@ -3506,34 +3448,34 @@ medical information extraction system}. {JMIR} Medical Informatics
 \url{https://medinform.jmir.org/2019/3/e13331}}
 
 \bibitem[\citeproctext]{ref-marshan2024}
-\CSLLeftMargin{100. }%
+\CSLLeftMargin{93. }%
 \CSLRightInline{Marshan A A. {MedT5SQL: a transformers-based large
 language model for text-to-SQL conversion in the healthcare domain}.
 Frontiers in Big Data {[}Internet{]}. 2024; Available from:
 \url{https://www.frontiersin.org/articles/10.3389/fdata.2024.1371680}}
 
 \bibitem[\citeproctext]{ref-saha2023}
-\CSLLeftMargin{101. }%
+\CSLLeftMargin{94. }%
 \CSLRightInline{Saha G B. K. {NLINQ: A natural language interface for
 querying network performance}. International Journal of Network
 Management {[}Internet{]}. 2023;33(4):e2225. Available from:
 \url{https://www.proquest.com/openview/0d955ee8209664a4447c9995a1b9e721/1?pq-origsite=gscholar&cbl=326365}}
 
 \bibitem[\citeproctext]{ref-khandelwal2025}
-\CSLLeftMargin{102. }%
+\CSLLeftMargin{95. }%
 \CSLRightInline{Khandelwal AP. {AI-Driven Mainframe Modernization:
 Unlocking Legacy Data for Cloud Analytics}. Journal of Engineering and
 Computer Sciences {[}Internet{]}. 2025; Available from:
 \url{https://sarcouncil.com/2025/06/ai-driven-mainframe-modernization-unlocking-legacy-data-for-cloud-analytics}}
 
 \bibitem[\citeproctext]{ref-syed2025}
-\CSLLeftMargin{103. }%
+\CSLLeftMargin{96. }%
 \CSLRightInline{Syed S, Nampalli RCR, Vankayalapati RK, Yasmeen Z.
 {Advancing Self-Service BI: The Rise of Autonomous Analytics Powered by
 Machine Learning}. Syed Publication; 2025. }
 
 \bibitem[\citeproctext]{ref-samimi2025}
-\CSLLeftMargin{104. }%
+\CSLLeftMargin{97. }%
 \CSLRightInline{Samimi R, Bhattacharya A, Gosak L, Stiglic G, Verbert K.
 \href{https://doi.org/10.1145/3670653.3670660}{{Visual-Conversational
 Interface for Evidence-Based Explanation of Diabetes Risk Prediction}}.
@@ -3541,34 +3483,34 @@ In: Proceedings of the 7th ACM conference on conversational user
 interfaces. 2025. }
 
 \bibitem[\citeproctext]{ref-ruoff2023}
-\CSLLeftMargin{105. }%
+\CSLLeftMargin{98. }%
 \CSLRightInline{Ruoff M, Gnewuch U, Maedche A, Scheibehenne B.
 \href{https://doi.org/10.17705/1jais.00801}{{Designing Conversational
 Dashboards for Effective Use in Crisis Response}}. Journal of the
 Association for Information Systems. 2023;24(6):1500--26. }
 
 \bibitem[\citeproctext]{ref-chowdhury2020}
-\CSLLeftMargin{106. }%
+\CSLLeftMargin{99. }%
 \CSLRightInline{Chowdhury I, Moeid A, Hoque E, Kabir MA. {Designing and
 evaluating multimodal interactions for facilitating visual analysis with
 dashboards}. IEEE Access. 2020; }
 
 \bibitem[\citeproctext]{ref-holmes2019}
-\CSLLeftMargin{107. }%
+\CSLLeftMargin{100. }%
 \CSLRightInline{Holmes S, Moorhead A, Bond R, Zheng H. {Usability
 testing of a healthcare chatbot: Can we use conventional methods to
 assess conversational user interfaces?} In: Proceedings of the 31st
 european conference on cognitive ergonomics. 2019. }
 
 \bibitem[\citeproctext]{ref-milneives2020}
-\CSLLeftMargin{108. }%
+\CSLLeftMargin{101. }%
 \CSLRightInline{Milne-Ives DC M. {The effectiveness of artificial
 intelligence conversational agents in health care: systematic review}.
 Journal of Medical Internet Research {[}Internet{]}. 2020; Available
 from: \url{https://www.jmir.org/2020/10/e20346/}}
 
 \bibitem[\citeproctext]{ref-li2023}
-\CSLLeftMargin{109. }%
+\CSLLeftMargin{102. }%
 \CSLRightInline{Li L Y. {Feasibility and effectiveness of artificial
 intelligence-driven conversational agents in healthcare interventions: A
 systematic review of randomized controlled trials}. International
@@ -3576,14 +3518,14 @@ Journal of Medical Informatics {[}Internet{]}. 2023; Available from:
 \url{https://www.sciencedirect.com/science/article/pii/S1386505623001296}}
 
 \bibitem[\citeproctext]{ref-pennington2023}
-\CSLLeftMargin{110. }%
+\CSLLeftMargin{103. }%
 \CSLRightInline{Pennington R. {Artificial intelligence (AI) and its
 opportunity in healthcare organizations revenue cycle management (RCM)}
 {[}Internet{]} {[}Master's thesis{]}. 2023. Available from:
 \url{https://mds.marshall.edu/etd/1824/}}
 
 \bibitem[\citeproctext]{ref-atobatele2023}
-\CSLLeftMargin{111. }%
+\CSLLeftMargin{104. }%
 \CSLRightInline{Atobatele A O. K. {Transforming digital health
 information systems with Microsoft Dynamics, SharePoint, and low-code
 automation platforms}. Gyanshauryam International Scientific Refereed
@@ -3591,28 +3533,28 @@ Research Journal {[}Internet{]}. 2023; Available from:
 \url{https://gisrrj.com/paper/GISRRJ236426.pdf}}
 
 \bibitem[\citeproctext]{ref-farnese2019}
-\CSLLeftMargin{112. }%
+\CSLLeftMargin{105. }%
 \CSLRightInline{Farnese B M. L. {Managing knowledge in organizations: A
 Nonaka's {SECI} model operationalization}. Frontiers in Psychology
 {[}Internet{]}. 2019; Available from:
 \url{https://www.frontiersin.org/articles/10.3389/fpsyg.2019.02730}}
 
 \bibitem[\citeproctext]{ref-zhang2025}
-\CSLLeftMargin{113. }%
+\CSLLeftMargin{106. }%
 \CSLRightInline{Zhang D W. {{AI} challenges conventional knowledge
 management: Light the way for reframing {SECI} model and Ba theory}.
 Journal of Knowledge Management {[}Internet{]}. 2025; Available from:
 \url{https://www.emerald.com/insight/content/doi/10.1108/JKM-03-2024-0262/full/html}}
 
 \bibitem[\citeproctext]{ref-jiao2023}
-\CSLLeftMargin{114. }%
+\CSLLeftMargin{107. }%
 \CSLRightInline{Jiao Z W. {The economic value and clinical impact of
 artificial intelligence in healthcare: A scoping literature review}.
 {IEEE} Access {[}Internet{]}. 2023; Available from:
 \url{https://ieeexplore.ieee.org/document/10297311}}
 
 \bibitem[\citeproctext]{ref-sezgin2022}
-\CSLLeftMargin{115. }%
+\CSLLeftMargin{108. }%
 \CSLRightInline{Sezgin S E. {Operationalizing and implementing
 pretrained, large artificial intelligence linguistic models in the {US}
 health care system: Outlook of generative pretrained transformer 3
@@ -3620,13 +3562,13 @@ health care system: Outlook of generative pretrained transformer 3
 2022; Available from: \url{https://medinform.jmir.org/2022/2/e32875}}
 
 \bibitem[\citeproctext]{ref-forrester2024}
-\CSLLeftMargin{116. }%
+\CSLLeftMargin{109. }%
 \CSLRightInline{Research F. {The total economic impact of Microsoft
 Power Apps. Forrester Consulting} {[}Internet{]}. 2024. Available from:
 \url{https://tei.forrester.com/go/microsoft/powerappstei/?lang=en-us}}
 
 \bibitem[\citeproctext]{ref-elkamouchi2023}
-\CSLLeftMargin{117. }%
+\CSLLeftMargin{110. }%
 \CSLRightInline{El Kamouchi \&K H. {Low-code/No-code Development: A
 systematic literature review}. In: 2023 14th international conference on
 computing communication and networking technologies (ICCCNT)
@@ -3634,7 +3576,7 @@ computing communication and networking technologies (ICCCNT)
 \url{https://ieeexplore.ieee.org/abstract/document/10373712/}}
 
 \bibitem[\citeproctext]{ref-mogili2025}
-\CSLLeftMargin{118. }%
+\CSLLeftMargin{111. }%
 \CSLRightInline{Mogili VB. {Healthcare and Finance Transformation
 through Enterprise Content, Low-Code, and Automation: A Multinational
 Technology Corporation's Approach}. Journal of Engineering and Computer
@@ -3642,7 +3584,7 @@ Sciences {[}Internet{]}. 2025; Available from:
 \url{https://sarcouncil.com/download-article/SJECS-209-_2025-630-636.pdf}}
 
 \bibitem[\citeproctext]{ref-pervaiz2025}
-\CSLLeftMargin{119. }%
+\CSLLeftMargin{112. }%
 \CSLRightInline{Pervaiz \&I H. {Leveraging Low-Code/No-Code Platforms
 for Rapid Digital Transformation in Small and Medium-sized Enterprises
 (SMEs)}. Multidisciplinary Journal of Science, Technology \& Business
@@ -3650,19 +3592,19 @@ for Rapid Digital Transformation in Small and Medium-sized Enterprises
 \url{https://imjstb.com/index.php/Journal/article/view/95}}
 
 \bibitem[\citeproctext]{ref-precedence2024}
-\CSLLeftMargin{120. }%
+\CSLLeftMargin{113. }%
 \CSLRightInline{Research P. {Healthcare analytics market size and
 forecast 2025 to 2034} {[}Internet{]}. 2024. Available from:
 \url{https://www.precedenceresearch.com/healthcare-analytics-market}}
 
 \bibitem[\citeproctext]{ref-berkshire2024}
-\CSLLeftMargin{121. }%
+\CSLLeftMargin{114. }%
 \CSLRightInline{Trust BHN. {Empowering citizen developers: Low-code
 success in healthcare} {[}Internet{]}. 2024. Available from:
 \url{https://ia.berkshirehealthcare.nhs.uk/citizen-developer-programme}}
 
 \bibitem[\citeproctext]{ref-richesson2007}
-\CSLLeftMargin{122. }%
+\CSLLeftMargin{115. }%
 \CSLRightInline{Richesson \&K R. L. {Data standards in clinical
 research: Gaps, overlaps, challenges and future directions}. Journal of
 the American Medical Informatics Association {[}Internet{]}. 2007;
@@ -3670,56 +3612,56 @@ Available from:
 \url{https://academic.oup.com/jamia/article/14/6/687/750453}}
 
 \bibitem[\citeproctext]{ref-zheng2020}
-\CSLLeftMargin{123. }%
+\CSLLeftMargin{116. }%
 \CSLRightInline{Zheng R K. {Studying workflow and workarounds in
 electronic health record-supported work to improve health system
 performance}. Annals of Internal Medicine {[}Internet{]}. 2020;
 Available from: \url{https://www.acpjournals.org/doi/10.7326/M19-0871}}
 
 \bibitem[\citeproctext]{ref-bogaert2021}
-\CSLLeftMargin{124. }%
+\CSLLeftMargin{117. }%
 \CSLRightInline{Bogaert V P. {Identifying common enablers and barriers
 in European health information systems}. Health Policy {[}Internet{]}.
 2021; Available from:
 \url{https://www.sciencedirect.com/science/article/pii/S0168851021002396}}
 
 \bibitem[\citeproctext]{ref-ibm2022}
-\CSLLeftMargin{125. }%
+\CSLLeftMargin{118. }%
 \CSLRightInline{IBM. {Francisco Partners to Acquire IBM's Healthcare
 Data and Analytics Assets}. {IBM} Newsroom {[}Internet{]}. 2022;
 Available from:
 \url{https://newsroom.ibm.com/2022-01-21-Francisco-Partners-to-Acquire-IBMs-Healthcare-Data-and-Analytics-Assets}}
 
 \bibitem[\citeproctext]{ref-strickland2019}
-\CSLLeftMargin{126. }%
+\CSLLeftMargin{119. }%
 \CSLRightInline{Strickland E. {IBM Watson, heal thyself: How IBM
 overpromised and underdelivered on AI health care}. IEEE Spectrum
 {[}Internet{]}. 2019;56(4):24--31. Available from:
 \url{https://ieeexplore.ieee.org/abstract/document/8678513/}}
 
 \bibitem[\citeproctext]{ref-yang2020}
-\CSLLeftMargin{127. }%
+\CSLLeftMargin{120. }%
 \CSLRightInline{Yang J, Chesbrough H, Hurmelinna-Laukkanen P. {The rise,
 fall, and resurrection of IBM Watson Health} {[}Internet{]}. University
 of Oulu; 2020. Available from:
 \url{https://oulurepo.oulu.fi/bitstream/handle/10024/27921/nbnfi-fe2020050424858.pdf}}
 
 \bibitem[\citeproctext]{ref-lavito2021}
-\CSLLeftMargin{128. }%
+\CSLLeftMargin{121. }%
 \CSLRightInline{LaVito A. {Haven, the Amazon-Berkshire-JPMorgan venture
 to disrupt healthcare, is disbanding after 3 years}. {CNBC}
 {[}Internet{]}. 2021; Available from:
 \url{https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html}}
 
 \bibitem[\citeproctext]{ref-acchiardo2021}
-\CSLLeftMargin{129. }%
+\CSLLeftMargin{122. }%
 \CSLRightInline{Acchiardo JM, Gunderman RB. {The Failure of Haven
 Healthcare: Lessons for Radiology Learners}. Academic Radiology
 {[}Internet{]}. 2021;28(7):1036--7. Available from:
 \url{https://www.academicradiology.org/article/S1076-6332(21)00140-9/abstract}}
 
 \bibitem[\citeproctext]{ref-ozalp2022}
-\CSLLeftMargin{130. }%
+\CSLLeftMargin{123. }%
 \CSLRightInline{Ozalp H, Ozcan P, Dinckol D. {"Digital colonization" of
 highly regulated industries: an analysis of big tech platforms' entry
 into health care}. California Management Review {[}Internet{]}.
@@ -3727,35 +3669,21 @@ into health care}. California Management Review {[}Internet{]}.
 \url{https://journals.sagepub.com/doi/abs/10.1177/00081256221094307}}
 
 \bibitem[\citeproctext]{ref-alukal2006}
-\CSLLeftMargin{131. }%
+\CSLLeftMargin{124. }%
 \CSLRightInline{Alukal VG, Manos A. Lean kaizen: A simplified approach
 to process improvement {[}Internet{]}. Milwaukee, WI: ASQ Quality Press;
 2006. Available from:
 \url{https://books.google.com/books?id=9uqiEAAAQBAJ}}
 
-\bibitem[\citeproctext]{ref-rao2006}
-\CSLLeftMargin{132. }%
-\CSLRightInline{Rao RD, Argote L. Organizational learning and
-forgetting: The effects of turnover and structure. European Management
-Review {[}Internet{]}. 2006;3(2):77--85. Available from:
-\url{https://onlinelibrary.wiley.com/doi/abs/10.1057/palgrave.emr.1500057}}
-
-\bibitem[\citeproctext]{ref-hong2025}
-\CSLLeftMargin{133. }%
-\CSLRightInline{Hong JH. When does employee turnover matter?
-Organizational memory in federal IT. Journal of Public Administration
-Research and Theory {[}Internet{]}. 2025; Available from:
-\url{https://academic.oup.com/jpart/advance-article-abstract/doi/10.1093/jopart/muaf019/8162522}}
-
 \bibitem[\citeproctext]{ref-mannapur2025}
-\CSLLeftMargin{134. }%
+\CSLLeftMargin{125. }%
 \CSLRightInline{Mannapur S. Understanding data drift and concept drift
 in machine learning systems. International Journal of Scientific
 Research {[}Internet{]}. 2025; Available from:
 \url{https://www.quantbeckman.com/api/v1/file/5b240742-bf0d-4f8c-a0f9-cb29fab42611.pdf}}
 
 \bibitem[\citeproctext]{ref-yupopa2005}
-\CSLLeftMargin{135. }%
+\CSLLeftMargin{126. }%
 \CSLRightInline{Yu C, Popa L. Semantic adaptation of schema mappings
 when schemas evolve. In: Proceedings of the 31st international
 conference on very large data bases {[}Internet{]}. 2005. p. 1006--17.
@@ -3763,18 +3691,18 @@ Available from:
 \url{https://mail.vldb.org/archives/website/2005/program/paper/fri/p1006-yu.pdf}}
 
 \bibitem[\citeproctext]{ref-oliveira2023}
-\CSLLeftMargin{136. }%
+\CSLLeftMargin{127. }%
 \CSLRightInline{Oliveira MAP et al. Semantic modelling for enterprise
 data governance 4.0. arXiv preprint arXiv:231102082 {[}Internet{]}.
 2023; Available from: \url{https://arxiv.org/pdf/2311.02082}}
 
 \bibitem[\citeproctext]{ref-sivaranjani2025}
-\CSLLeftMargin{137. }%
+\CSLLeftMargin{128. }%
 \CSLRightInline{Sivaranjani S, Tharunika V. {Semantic Web for Addressing
 Data Integration Challenges}. Taylor \& Francis; 2025. }
 
 \bibitem[\citeproctext]{ref-battula2025}
-\CSLLeftMargin{138. }%
+\CSLLeftMargin{129. }%
 \CSLRightInline{Battula SKY.
 \href{https://doi.org/10.63282/3050-9262.IJAIDSML-V6I4P130}{{Adaptive
 Data Quality Management for Multi-Cloud Healthcare Warehouses:
@@ -3783,14 +3711,14 @@ Journal of Artificial Intelligence, Data Science, and Machine Learning.
 2025;6(4):218--26. }
 
 \bibitem[\citeproctext]{ref-lenz2007}
-\CSLLeftMargin{139. }%
+\CSLLeftMargin{130. }%
 \CSLRightInline{Lenz R, Beyer M, Kuhn KA.
 \href{https://doi.org/10.1016/j.ijmedinf.2006.05.008}{{Semantic
 integration in healthcare networks}}. International Journal of Medical
 Informatics. 2007;76(2-3):201--7. }
 
 \bibitem[\citeproctext]{ref-whittaker2008}
-\CSLLeftMargin{140. }%
+\CSLLeftMargin{131. }%
 \CSLRightInline{Whittaker S, Hyland P, Wiley M. Design and evaluation of
 systems to support interaction capture and retrieval. Personal and
 Ubiquitous Computing {[}Internet{]}. 2008;12(3):197--209. Available
@@ -3798,27 +3726,27 @@ from:
 \url{https://www.academia.edu/download/41283190/Design_and_evaluation_of_systems_to_supp20160117-25708-98zc50.pdf}}
 
 \bibitem[\citeproctext]{ref-moore2018}
-\CSLLeftMargin{141. }%
+\CSLLeftMargin{132. }%
 \CSLRightInline{Moore D et al. {ActiveNavigator: Toward real-time
 knowledge capture and feedback in active learning spaces}. International
 Journal of Engineering Education {[}Internet{]}. 2018;34(2):1--12.
 Available from: \url{https://wendyju.com/publications/18_ijee3593.pdf}}
 
 \bibitem[\citeproctext]{ref-zimmermann2017}
-\CSLLeftMargin{142. }%
+\CSLLeftMargin{133. }%
 \CSLRightInline{Zimmermann S, Rentrop C, Felden C.
 \href{https://doi.org/10.2308/isys-51517}{{A Multiple Case Study on the
 Nature and Management of Shadow Information Technology}}. Journal of
 Information Systems. 2017;31(1):79--101. }
 
 \bibitem[\citeproctext]{ref-rivard1987}
-\CSLLeftMargin{143. }%
+\CSLLeftMargin{134. }%
 \CSLRightInline{Rivard S.
 \href{https://doi.org/10.1287/inte.17.3.25}{{Successful Implementation
 of End-User Computing}}. Interfaces. 1987;17(3):25--33. }
 
 \bibitem[\citeproctext]{ref-kopper2020}
-\CSLLeftMargin{144. }%
+\CSLLeftMargin{135. }%
 \CSLRightInline{Kopper A, Westner M, Strahringer S.
 \href{https://doi.org/10.1007/s10257-020-00472-y}{{From Shadow IT to
 Business-managed IT: a qualitative comparative analysis to determine
@@ -3826,14 +3754,14 @@ configurations for successful management of IT by business entities}}.
 Information Systems and e-Business Management. 2020;18:209--57. }
 
 \bibitem[\citeproctext]{ref-himss2025ucdavis}
-\CSLLeftMargin{145. }%
+\CSLLeftMargin{136. }%
 \CSLRightInline{HIMSS. {UC Davis Health: From Stage 0 to AI Heroes}
 {[}Internet{]}. Healthcare Information; Management Systems Society;
 2025. Available from:
 \url{https://pages.himss.org/LP-HA-Case-Study-UC-Davis.html}}
 
 \bibitem[\citeproctext]{ref-benbya2004}
-\CSLLeftMargin{146. }%
+\CSLLeftMargin{137. }%
 \CSLRightInline{Benbya P H. {Corporate portal: A tool for knowledge
 management synchronization}. International Journal of Information
 Management {[}Internet{]}. 2004; Available from:
