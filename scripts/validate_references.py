@@ -405,6 +405,10 @@ def find_orphaned_and_unused(
     orphaned_citations = [c for c in citations if c.marker not in defined_markers]
     unused_references = sorted(defined_markers - cited_markers)
 
+    print("UNUSED REFERENCES:")
+    for ref in unused_references:
+        print(ref)
+
     return orphaned_citations, unused_references
 
 
@@ -695,7 +699,6 @@ Examples:
     print("Parsing references...")
     if use_citeproc and args.bibtex.exists():
         result.references = parse_references(paper_content, args.bibtex)
-        print(f"Loaded references from {args.bibtex}")
     else:
         result.references = parse_references(paper_content)
 

@@ -75,6 +75,7 @@ site/
 # Temporary files
 tmp/
 .tmp/
+*.txt
 
 # Data directory (keep README, ignore data files)
 data/*
@@ -126,4 +127,6 @@ cabal.project.local~
 *.duckdb.wal
 
 .gemini-state/
-\n# Local secrets\nsecrets.toml
+
+# Local secrets
+secrets.toml
