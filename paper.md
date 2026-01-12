@@ -87,7 +87,6 @@ Simultaneously, healthcare faces an institutional memory crisis that has evolved
 
 The challenge of retaining healthcare IT talent has evolved from a structural weakness into a persistent crisis. A foundational 2004 study established a historical baseline, finding that healthcare IT staff had the lowest expected tenure for new hires among all IT sectors at just 2.9 years [@ang2004]. While this structural pattern of high turnover has persisted for two decades, the absence of modern longitudinal tenure data is itself evidence of the crisis: the industry is so unstable it has lost the ability to track its own attrition.
 
-
 When experienced analysts leave, they take with them irreplaceable tacit knowledge: business rules, data anomalies, and analytical context that traditional documentation fails to capture.
 
 ### Technical Barriers to Data Access
