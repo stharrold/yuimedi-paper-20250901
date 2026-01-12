@@ -6,7 +6,7 @@ flowchart TB
     subgraph CYCLE["<b>Validated Query Cycle</b>"]
         Q["1. QUERY<br/>Domain expert asks<br/>natural language question"]
         G["2. GENERATION<br/>System generates<br/>candidate SQL"]
-        V{"3. VALIDATION<br/>AI explains SQL logic;<br/>Expert confirms intent"}
+        V{"3. VALIDATION<br/>AI explains SQL logic<br/>and results;<br/>Expert confirms intent"}
         S["4. STORAGE<br/>Validated pair + Rationale<br/>stored in memory"]
         R["5. RETRIEVAL<br/>Future queries match<br/>validated pairs"]
         P["6. PERSISTENCE<br/>Knowledge survives<br/>staff turnover"]

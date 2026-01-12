@@ -162,7 +162,7 @@ The six-step cycle (Figure 2) illustrates this approach:
 
 2.  **Generation**: The conversational AI system generates candidate SQL code, leveraging healthcare ontologies and organizational schema knowledge.
 
-3.  **Validation**: The AI provides a natural language explanation of the SQL logic, allowing the domain expert to validate the query's intent and results without reviewing raw code. This human-in-the-loop step aligns with "Human-on-the-Loop" (HotL) frameworks, transforming validation from a binary check into an iterative knowledge capture process [@bravorocca2023; @mosqueirarey2023]. This is essential given that current models are "not yet sufficiently accurate for unsupervised use" in clinical settings [@ziletti2024].
+3.  **Validation**: The AI provides a natural language explanation of the SQL logic and results, allowing the domain expert to validate the query's intent without reviewing raw code. This human-in-the-loop step aligns with "Human-on-the-Loop" (HotL) frameworks, transforming validation from a binary check into an iterative knowledge capture process [@bravorocca2023; @mosqueirarey2023]. This is essential given that current models are "not yet sufficiently accurate for unsupervised use" in clinical settings [@ziletti2024].
 
 4.  **Storage**: Once validated, the NL+SQL pair is stored in organizational memory as a durable knowledge artifact, along with mandatory "Rationale Metadata" documenting the query's business logic (e.g., "Excluding Hospice per 2025 CMS rules").
 
