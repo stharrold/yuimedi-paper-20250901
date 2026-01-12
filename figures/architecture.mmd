@@ -26,9 +26,9 @@ flowchart TD
 
     %% Main flow (Solid lines)
     C -->|"3. Connects to"| H
-    I -->|"5. Queries"| J
+    I <-->|"5. Queries & Refines"| J
     J -->|"6. Returns Data"| K
-    L -->|"8. Delivers Insights"| A
+    L <-->|"8. Delivers Insights & Refines"| A
 
     %% Validation Loop (Dotted line per caption)
     I -.-|"Validation"| A
