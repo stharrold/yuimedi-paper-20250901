@@ -38,6 +38,7 @@ ALLOWLIST_PATH = Path(__file__).parent / "url_allowlist.json"
 REPORT_PATH = Path(__file__).parent.parent / "docs" / "validation_report.md"
 URL_TIMEOUT = 10  # seconds
 MAX_RETRIES = 2
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 
 # Citation patterns - support both old [A#]/[I#] and new [@key] formats
 ACADEMIC_PATTERN = re.compile(r"\[A(\d+)\]")
@@ -312,7 +313,7 @@ def check_url(url: str, timeout: int = URL_TIMEOUT) -> tuple[int | None, str | N
             request = urllib.request.Request(
                 url,
                 headers={
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+                    "User-Agent": USER_AGENT,
                     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                 },
                 method="HEAD",  # Just check if accessible, don't download
@@ -328,7 +329,7 @@ def check_url(url: str, timeout: int = URL_TIMEOUT) -> tuple[int | None, str | N
                     request = urllib.request.Request(
                         url,
                         headers={
-                            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+                            "User-Agent": USER_AGENT,
                         },
                         method="GET",
                     )

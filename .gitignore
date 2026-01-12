@@ -75,7 +75,7 @@ site/
 # Temporary files
 tmp/
 .tmp/
-*.txt
+.tmp/*.txt
 
 # Data directory (keep README, ignore data files)
 data/*
