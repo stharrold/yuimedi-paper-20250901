@@ -312,7 +312,7 @@ def check_url(url: str, timeout: int = URL_TIMEOUT) -> tuple[int | None, str | N
             request = urllib.request.Request(
                 url,
                 headers={
-                    "User-Agent": "Mozilla/5.0 (compatible; ReferenceValidator/1.0)",
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
                     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                 },
                 method="HEAD",  # Just check if accessible, don't download
@@ -328,7 +328,7 @@ def check_url(url: str, timeout: int = URL_TIMEOUT) -> tuple[int | None, str | N
                     request = urllib.request.Request(
                         url,
                         headers={
-                            "User-Agent": "Mozilla/5.0 (compatible; ReferenceValidator/1.0)",
+                            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
                         },
                         method="GET",
                     )
@@ -405,9 +405,10 @@ def find_orphaned_and_unused(
     orphaned_citations = [c for c in citations if c.marker not in defined_markers]
     unused_references = sorted(defined_markers - cited_markers)
 
-    print("UNUSED REFERENCES:")
-    for ref in unused_references:
-        print(ref)
+    if unused_references:
+        print("UNUSED REFERENCES:")
+        for ref in unused_references:
+            print(ref)
 
     return orphaned_citations, unused_references
 
