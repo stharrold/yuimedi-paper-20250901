@@ -55,7 +55,7 @@ classoption:
   - oneside
 
 # Header and footer
-header-left: "NL2SQL in Healthcare"
+header-left: "Healthcare Analytics Challenges"
 header-right: "January 2026"
 footer-left: "\\hspace{0pt}"
 footer-center: "\\thepage"

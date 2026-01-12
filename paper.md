@@ -39,33 +39,33 @@ citecolor: blue
 - Optional: Install pandoc-crossref for figure/table references
 
 ## Generate PDF (Basic)
-pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.pdf
+pandoc paper.md -o Healthcare-Analytics-Challenges.pdf
 
 ## Generate PDF (High Quality with XeLaTeX)
-pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.pdf \
+pandoc paper.md -o Healthcare-Analytics-Challenges.pdf \
   --pdf-engine=xelatex \
   --highlight-style=pygments \
   --toc \
   --number-sections
 
 ## Generate PDF (With Eisvogel Template - Professional Academic Look)
-pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.pdf \
+pandoc paper.md -o Healthcare-Analytics-Challenges.pdf \
   --template=eisvogel \
   --pdf-engine=xelatex \
   --listings
 
 ## Generate HTML (Standalone)
-pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.html \
+pandoc paper.md -o Healthcare-Analytics-Challenges.html \
   --standalone \
   --toc \
   --toc-depth=3 \
   --self-contained
 
 ## Generate Word Document
-pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.docx
+pandoc paper.md -o Healthcare-Analytics-Challenges.docx
 
 ## With Citation Processing (Note: Citations are already formatted in text)
-pandoc paper.md -o NL2SQL-Healthcare-Analytics-Research.pdf \
+pandoc paper.md -o Healthcare-Analytics-Challenges.pdf \
   --pdf-engine=xelatex \
   --toc \
   --number-sections
