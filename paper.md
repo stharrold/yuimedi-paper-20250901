@@ -217,19 +217,20 @@ Literature was identified through multiple channels between January 2023 and Dec
 - Professional associations: AHIMA/NORC workforce surveys
 - Business news: IBM, CNBC coverage of healthcare analytics ventures
 
-**Search Concepts:**
+**Search Concepts and Results:**
 
-Search terms emerged iteratively from the literature exploration, here organized around the three-pillar framework:
+Search terms emerged iteratively and were organized around the three-pillar framework. Table 1 summarizes the search concepts and results by source.
 
-- Analytics maturity: "healthcare analytics maturity," "HIMSS AMAM," "analytics adoption," "big data analytics adoption," "employee resistance to change," "analytics standardization failure," "low-code healthcare ROI," "conversational AI platforms"
-- Workforce turnover: "healthcare IT tenure," "IT training time," "turnover cost salary," "institutional memory loss," "organizational forgetting," "competence loss," "knowledge portal," "knowledge capture," "SECI model analytics"
-- Technical barriers: "NL2SQL healthcare," "text-to-SQL clinical," "MIMICSQL," "EHRSQL," "NL2SQL accuracy," "NL2SQL productivity," "schema discovery," "PK/FK discovery," "semantic column matching," "vector embeddings schema"
+| Pillar | Search Concepts | Crossref | PubMed | arXiv | Sem. Scholar | Total (Screened) |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Analytics Maturity** | "healthcare analytics maturity", "HIMSS AMAM", "analytics adoption", "big data analytics adoption", "resistance to change", "analytics standardization failure", "low-code ROI" | 285 | - | - | - | 285 (15) |
+| **Workforce Agility** | "healthcare IT tenure", "IT training time", "turnover cost", "institutional memory loss", "organizational forgetting", "competence loss", "knowledge portal", "SECI model" | - | 142 | - | - | 142 (12) |
+| **Technical Enablement** | "NL2SQL healthcare", "text-to-SQL clinical", "MIMICSQL", "EHRSQL", "schema discovery", "semantic column matching", "vector embeddings" | - | - | 71 | 72 | 143 (14) |
+| **Total** | | **285** | **142** | **71** | **72** | **570 (41)** |
 
-**Search Results:**
+Table 1: Search concepts and initial results by database source. Numbers in parentheses indicate studies passing initial screening.
 
-Searches across all databases yielded 570 initial results after deduplication. Crossref searches for terms including "healthcare analytics maturity," "HIMSS AMAM," "NL2SQL clinical," "knowledge portal," and "low-code ROI" (2015-current) returned 285 results, of which 15 passed screening. PubMed searches combining workforce terms ("healthcare IT tenure," "IT training time," "turnover cost salary") with analytics terms ("institutional memory," "analytics adoption," "knowledge capture") (2015-current) yielded 142 results with 12 passing screening. arXiv searches in cs.CL and cs.DB categories for "text-to-SQL" combined with technical terms ("MIMICSQL," "EHRSQL," "schema discovery," "PK/FK discovery," "semantic matching," "vector embeddings") (2020-current) produced 71 results with 6 passing screening. Semantic Scholar searches for "NL2SQL healthcare," "NL2SQL productivity," "conversational AI clinical," and "SECI model analytics" (2015-current) returned 72 results with 8 passing screening. The final corpus includes 81 academic and 11 industry sources (92 total).
-
-In addition to broad keyword searches, targeted queries were employed to address specific evidence gaps identified during the synthesis process (e.g., specific turnover statistics for healthcare IT roles).
+The final corpus includes 81 academic and 11 industry sources (92 total). Targeted queries were employed to address specific evidence gaps identified during the synthesis process.
 
 Figure 3 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 92 sources.
 
