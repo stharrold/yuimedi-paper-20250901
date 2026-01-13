@@ -477,14 +477,14 @@ A critical distinction exists between traditional monitoring and dynamic explora
 
 ### Pillar 2: Workforce Agility and Institutional Memory
 
-The literature suggests that effective knowledge preservation requires active, embedded systems rather than passive documentation. The risk of institutional memory loss is not merely an HR issue but a fundamental threat to analytics continuity. When organizations choose to implement AI-based platforms, these can serve as organizational memory systems by:
+The literature suggests that effective knowledge preservation requires active, embedded systems rather than passive documentation [@benbya2004; @whittaker2008]. The risk of institutional memory loss is not merely an HR issue but a fundamental threat to analytics continuity [@rao2006]. When organizations choose to implement AI-based platforms, these can serve as organizational memory systems by:
 
-- Capturing decision-making patterns through usage
-- Encoding best practices in accessible formats
+- Capturing decision-making patterns through usage [@moore2018]
+- Encoding best practices in accessible formats [@zhang2025]
 - Providing context-aware guidance to new users
 - Maintaining knowledge currency through continuous learning
 
-These principles align with conversational AI approaches that embed institutional knowledge within the AI model itself, making expertise permanently accessible regardless of staff turnover. This directly addresses the Workforce Agility pillar by decoupling organizational capability from individual tenure. When a senior analyst leaves, their "validated queries" remain in the system, allowing a junior replacement to immediately leverage that expertise rather than starting from zero.
+These principles align with conversational AI approaches that embed institutional knowledge within the AI model itself, making expertise permanently accessible regardless of staff turnover [@zhang2025]. This directly addresses the Workforce Agility pillar by decoupling organizational capability from individual tenure. When a senior analyst leaves, their "validated queries" remain in the system, allowing a junior replacement to immediately leverage that expertise rather than starting from zero, mitigating the "loss of competence" effect described by Massingham (2018) [@massingham2018].
 
 ### Pillar 3: Technical Enablement as the Catalyst
 
