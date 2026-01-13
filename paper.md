@@ -266,43 +266,31 @@ Sources were selected based on the following criteria:
 
 Grey literature sources were assessed using the AACODS checklist [@tyndall2010], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table \ref{tbl:aacods} summarizes the assessment.
 
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| Source (Citation)     | Authority /           | Coverage /            | Date /              | Include |
-|                       | Accuracy              | Objectivity           | Significance        |         |
-+=======================+=======================+=======================+=====================+=========+
-| HIMSS AMAM            | High† / Verifiable    | Global / High         | 2024 / High         | Yes     |
-| [@himss2024]          |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| Snowdon/HIMSS         | High‡ / Verifiable    | N/A / High            | 2024 / Medium       | Yes     |
-| [@snowdon2024b]       |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| Health Catalyst       | Medium§ / Unverifiable| US / Low              | 2020 / Medium       | Yes*    |
-| [@health2020]         |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| Berkshire NHS         | High¶ / Verifiable    | Single site / High    | 2024 / High         | Yes     |
-| [@berkshire2024]      |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| Forrester/Microsoft   | Medium∥ / Unverifiable| Enterprise / Low♢     | 2024 / Medium       | Yes*    |
-| [@forrester2024]      |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| Oracle                | Low§ / Unverifiable   | N/A / Low             | 2024 / Low          | Yes*    |
-| [@oracle2024]         |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| Precedence Research   | Medium# / Unverifiable| Global / Medium       | 2024 / Medium       | Yes     |
-| [@precedence2024]     |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| Anthropic             | Medium§ / Verifiable  | N/A / Medium          | 2025 / Low          | Yes     |
-| [@anthropic2025]      |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| IBM Newsroom          | High** / Verifiable   | N/A / High            | 2022 / High         | Yes     |
-| [@ibm2022]            |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| CNBC/Haven            | High** / Verifiable   | N/A / High            | 2021 / High         | Yes     |
-| [@lavito2021]         |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
-| AHIMA/NORC            | High†† / Verifiable   | US / High             | 2023 / High         | Yes     |
-| [@american2023]       |                       |                       |                     |         |
-+-----------------------+-----------------------+-----------------------+---------------------+---------+
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| Source (Citation)                     | Authority / Accuracy    | Coverage / Objectivity| Date / Significance| Include |
++=======================================+=========================+=======================+===================+=========+
+| HIMSS AMAM [@himss2024]               | High† / Verifiable      | Global / High         | 2024 / High       | Yes     |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| Snowdon/HIMSS [@snowdon2024b]         | High‡ / Verifiable      | N/A / High            | 2024 / Medium     | Yes     |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| Health Catalyst [@health2020]         | Medium§ / Unverifiable  | US / Low              | 2020 / Medium     | Yes*    |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| Berkshire NHS [@berkshire2024]        | High¶ / Verifiable      | Single site / High    | 2024 / High       | Yes     |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| Forrester/Microsoft [@forrester2024]  | Medium∥ / Unverifiable  | Enterprise / Low♢     | 2024 / Medium     | Yes*    |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| Oracle [@oracle2024]                  | Low§ / Unverifiable     | N/A / Low             | 2024 / Low        | Yes*    |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| Precedence Research [@precedence2024] | Medium# / Unverifiable  | Global / Medium       | 2024 / Medium     | Yes     |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| Anthropic [@anthropic2025]            | Medium§ / Verifiable    | N/A / Medium          | 2025 / Low        | Yes     |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| IBM Newsroom [@ibm2022]               | High** / Verifiable     | N/A / High            | 2022 / High       | Yes     |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| CNBC/Haven [@lavito2021]              | High** / Verifiable     | N/A / High            | 2021 / High       | Yes     |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
+| AHIMA/NORC [@american2023]            | High†† / Verifiable     | US / High             | 2023 / High       | Yes     |
++---------------------------------------+-------------------------+-----------------------+-------------------+---------+
 
 : AACODS Assessment of Industry Sources. †Industry standards body. ‡HIMSS officer. §Vendor. ¶NHS trust. ∥Analyst firm. #Market research. **Journalism. ††Professional association + academic. ♢Sponsor. *Vendor sponsorship or low objectivity noted in manuscript text. \label{tbl:aacods}
 
