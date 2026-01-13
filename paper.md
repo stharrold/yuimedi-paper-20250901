@@ -232,13 +232,13 @@ Table 1: Initial search results by database source. Numbers in parentheses indic
 
 The final corpus includes 115 academic and 20 industry sources (135 total). Targeted queries were employed to address specific evidence gaps identified during the synthesis process.
 
-Figure 3 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 92 sources.
+Figure 3 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of included sources.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 92 sources (81 academic, 11 industry). Diagram source available in figures/literature-flow.mmd.}
+\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 135 sources (115 academic, 20 industry). Diagram source available in figures/literature-flow.mmd.}
 \label{fig:literature-flow}
 \end{figure}
 ```
@@ -336,13 +336,13 @@ The three-pillar framework emerged through iterative analysis of the literature 
 
 The framework development followed these steps:
 
-1. **Theme Extraction**: Systematic coding of 92 sources identified recurring themes across technical, organizational, and workforce dimensions
+1. **Theme Extraction**: Systematic coding of included sources identified recurring themes across technical, organizational, and workforce dimensions
 2. **Pattern Recognition**: Cross-domain analysis revealed that challenges in each dimension amplified challenges in others. A root cause analysis (observation-why-repeat) determined the framework's ordering: low **Analytics Maturity** (Observation/Context) is driven by low **Workforce Agility** (Cause/Actor), which in turn is exacerbated by low **Technical Enablement** (Root Mechanism/Tool). This causal chain frames the three pillars, drawing on established RCA methodology for organizational learning [@allison2021; @soylemez2017].
 3. **Pillar Identification**: Three orthogonal yet interconnected dimensions emerged as the organizing structure:
    - **Analytics Maturity**: Organizational capability progression measured against HIMSS AMAM stages
    - **Workforce Agility**: Human capital retention and tacit knowledge preservation
    - **Technical Enablement**: NL2SQL capabilities and healthcare-specific implementation solutions
-4. **Framework Validation**: Pillar structure tested against all 92 sources to confirm comprehensive coverage without significant gaps
+4. **Framework Validation**: Pillar structure tested against the full corpus to confirm comprehensive coverage without significant gaps
 
 ## Theoretical Grounding
 
