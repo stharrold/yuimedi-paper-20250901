@@ -228,15 +228,7 @@ Search terms emerged iteratively and were organized around the three-pillar fram
 | **Technical Enablement** | - | - | 71 | 72 | 143 (14) |
 | **Total** | **285** | **142** | **71** | **72** | **570 (41)** |
 
-Table 1: Initial search results by database source. Numbers in parentheses indicate studies passing initial screening.
-
-| Pillar | Search Concepts |
-| :--- | :--- |
-| **Analytics Maturity** | "healthcare analytics maturity", "HIMSS AMAM", "analytics adoption", "big data analytics adoption", "resistance to change", "analytics standardization failure", "low-code ROI" |
-| **Workforce Agility** | "healthcare IT tenure", "IT training time", "turnover cost", "institutional memory loss", "organizational forgetting", "competence loss", "knowledge portal", "SECI model" |
-| **Technical Enablement** | "NL2SQL healthcare", "text-to-SQL clinical", "MIMICSQL", "EHRSQL", "schema discovery", "semantic column matching", "vector embeddings" |
-
-Table 1 (Supplement): Search concepts used for each pillar.
+Table 1: Initial search results by database source. Numbers in parentheses indicate studies passing initial screening. Search concepts: **Analytics Maturity** ("healthcare analytics maturity", "HIMSS AMAM", "analytics adoption", "big data analytics adoption", "resistance to change", "analytics standardization failure", "low-code ROI"); **Workforce Agility** ("healthcare IT tenure", "IT training time", "turnover cost", "institutional memory loss", "organizational forgetting", "competence loss", "knowledge portal", "SECI model"); **Technical Enablement** ("NL2SQL healthcare", "text-to-SQL clinical", "MIMICSQL", "EHRSQL", "schema discovery", "semantic column matching", "vector embeddings").
 
 The final corpus includes 81 academic and 11 industry sources (92 total). Targeted queries were employed to address specific evidence gaps identified during the synthesis process.
 
