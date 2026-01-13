@@ -228,7 +228,7 @@ Search terms emerged iteratively and were organized around the three-pillar fram
 | **Technical Enablement** | - | - | 71 | 72 | 143 (14) |
 | **Total** | **285** | **142** | **71** | **72** | **570 (41)** |
 
-Table 1: Initial search results by database source. Numbers in parentheses indicate studies passing initial screening. Search concepts: **Analytics Maturity** ("healthcare analytics maturity", "HIMSS AMAM", "analytics adoption", "big data analytics adoption", "resistance to change", "analytics standardization failure", "low-code ROI"); **Workforce Agility** ("healthcare IT tenure", "IT training time", "turnover cost", "institutional memory loss", "organizational forgetting", "competence loss", "knowledge portal", "SECI model"); **Technical Enablement** ("NL2SQL healthcare", "text-to-SQL clinical", "MIMICSQL", "EHRSQL", "schema discovery", "semantic column matching", "vector embeddings").
+: Initial search results by database source. Numbers in parentheses indicate studies passing initial screening. Search concepts: **Analytics Maturity** ("healthcare analytics maturity", "HIMSS AMAM", "analytics adoption", "big data analytics adoption", "resistance to change", "analytics standardization failure", "low-code ROI"); **Workforce Agility** ("healthcare IT tenure", "IT training time", "turnover cost", "institutional memory loss", "organizational forgetting", "competence loss", "knowledge portal", "SECI model"); **Technical Enablement** ("NL2SQL healthcare", "text-to-SQL clinical", "MIMICSQL", "EHRSQL", "schema discovery", "semantic column matching", "vector embeddings").
 
 The final corpus includes 115 academic and 20 industry sources (135 total). Targeted queries were employed to address specific evidence gaps identified during the synthesis process.
 
@@ -292,7 +292,7 @@ Grey literature sources were assessed using the AACODS checklist [@tyndall2010],
 | AHIMA/NORC [@american2023]            | High†† / Verifiable     | US / High             | 2023 / High       | Yes     |
 +---------------------------------------+-------------------------+-----------------------+-------------------+---------+
 
-Table 2: AACODS Assessment of Industry Sources.
+: AACODS Assessment of Industry Sources. \label{tbl:aacods}
 
 †Industry standards body. ‡HIMSS officer. §Vendor. ¶NHS trust. ∥Analyst firm. #Market research. **Journalism. ††Professional association + academic. ♢Sponsor. *Vendor sponsorship or low objectivity noted in manuscript text.
 
@@ -344,8 +344,6 @@ The three-pillar framework aligns with established models in healthcare informat
 ```{=latex}
 \begin{table}[htbp]
 \centering
-\caption{Framework Alignment with Established Models}
-\label{tab:framework-alignment}
 \begin{tabular}{p{3cm}p{3.5cm}p{3.5cm}p{3.5cm}}
 \toprule
 \textbf{Three \newline Pillars} & \textbf{HIMSS AMAM Alignment} & \textbf{DIKW \newline Hierarchy} & \textbf{Knowledge Management} \\
@@ -355,6 +353,8 @@ Workforce \newline Agility & Implicit in \newline Advanced Stages & Knowledge (t
 Technical \newline Enablement & Stage 6-7 \newline Requirements & Information \newline → Knowledge & Knowledge \newline Codification \\
 \bottomrule
 \end{tabular}
+\caption{Framework Alignment with Established Models}
+\label{tab:framework-alignment}
 \end{table}
 ```
 
