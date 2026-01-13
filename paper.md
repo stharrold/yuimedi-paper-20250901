@@ -305,7 +305,7 @@ $^\diamondsuit$Sponsor.
 
 ## Stage 4: Synthesis and Analysis
 
-Evidence was synthesized thematically around the three-pillar framework:
+Reflecting the framework's iterative emergence from the literature, evidence is synthesized thematically below:
 
 1. **Analytics maturity**: Evidence on HIMSS AMAM adoption, healthcare analytics capabilities, and organizational readiness
 2. **Workforce turnover**: Evidence on nursing and IT staff turnover rates, institutional memory loss, and knowledge transfer challenges
