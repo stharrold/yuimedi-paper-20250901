@@ -365,7 +365,7 @@ Technical \newline Enablement & Stage 6-7 \newline Requirements & Information \n
 \end{table}
 ```
 
-The HIMSS Analytics Maturity Assessment Model [@himss2024] provides organizational benchmarks but does not explicitly address workforce knowledge retention. The Data-Information-Knowledge-Wisdom (DIKW) hierarchy [@rowley2007] explains the progression from raw data to actionable insight, but standard formulations do not address institutional memory loss. The three-pillar framework synthesizes these perspectives, positioning workforce dynamics as the critical enabler connecting data access (analytics maturity) with organizational wisdom (knowledge preservation).
+The HIMSS Analytics Maturity Assessment Model [@himss2024] provides organizational benchmarks but does not explicitly address workforce knowledge retention. The Data-Information-Knowledge-Wisdom (DIKW) hierarchy [@rowley2007] explains the progression from raw data to actionable insight, but standard formulations do not address institutional memory loss. The three-pillar framework synthesizes these perspectives, positioning workforce dynamics as the critical enabler connecting data access (analytics maturity) with organizational wisdom (knowledge preservation). It draws on established theory for organizational learning [@rao2006; @massingham2018], tacit knowledge transfer [@farnese2019; @foos2006], and knowledge codification [@benbya2004; @zhang2025] to explain these connections.
 
 ## Framework Scope and Limitations
 
