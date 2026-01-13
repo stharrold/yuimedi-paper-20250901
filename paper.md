@@ -264,7 +264,7 @@ Sources were selected based on the following criteria:
 
 ## Stage 3: Quality Assessment
 
-Grey literature sources were assessed using the AACODS checklist [@tyndall2010], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table \ref{tbl:aacods} summarizes the assessment.
+Grey literature sources were assessed using the AACODS checklist [@tyndall2010], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table 2 summarizes the assessment.
 
 +---------------------------------------+-------------------------+-----------------------+-------------------+---------+
 | Source (Citation)                     | Authority / Accuracy    | Coverage / Objectivity| Date / Significance| Include |
@@ -292,7 +292,9 @@ Grey literature sources were assessed using the AACODS checklist [@tyndall2010],
 | AHIMA/NORC [@american2023]            | High†† / Verifiable     | US / High             | 2023 / High       | Yes     |
 +---------------------------------------+-------------------------+-----------------------+-------------------+---------+
 
-: AACODS Assessment of Industry Sources. †Industry standards body. ‡HIMSS officer. §Vendor. ¶NHS trust. ∥Analyst firm. #Market research. **Journalism. ††Professional association + academic. ♢Sponsor. *Vendor sponsorship or low objectivity noted in manuscript text. \label{tbl:aacods}
+Table 2: AACODS Assessment of Industry Sources.
+
+†Industry standards body. ‡HIMSS officer. §Vendor. ¶NHS trust. ∥Analyst firm. #Market research. **Journalism. ††Professional association + academic. ♢Sponsor. *Vendor sponsorship or low objectivity noted in manuscript text.
 
 ## Stage 4: Synthesis and Analysis
 
