@@ -27,13 +27,13 @@ flowchart TD
     end
 
     subgraph TS["<b>Targeted Searches</b>"]
-        T1["Supplementary<br/>literature searches<br/>n = 45"]
+        T1["Supplementary<br/>literature searches<br/>n = 88"]
     end
 
     subgraph IN["<b>Included</b>"]
-        J -->|"Academic"| O["Final corpus<br/>n = 92<br/>Academic: 81<br/>Industry: 11"]
-        L -->|"Passed"| O
-        T1 --> O
+        J -->|"Academic"| Final[/"<b>Final Corpus (n=135)</b><br/>Academic (n=115)<br/>Industry (n=20)"/]
+        L -->|"Passed"| Final
+        T1 --> Final
     end
 
     %% Styling - Grayscale

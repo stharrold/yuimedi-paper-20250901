@@ -230,7 +230,7 @@ Search terms emerged iteratively and were organized around the three-pillar fram
 
 Table 1: Initial search results by database source. Numbers in parentheses indicate studies passing initial screening. Search concepts: **Analytics Maturity** ("healthcare analytics maturity", "HIMSS AMAM", "analytics adoption", "big data analytics adoption", "resistance to change", "analytics standardization failure", "low-code ROI"); **Workforce Agility** ("healthcare IT tenure", "IT training time", "turnover cost", "institutional memory loss", "organizational forgetting", "competence loss", "knowledge portal", "SECI model"); **Technical Enablement** ("NL2SQL healthcare", "text-to-SQL clinical", "MIMICSQL", "EHRSQL", "schema discovery", "semantic column matching", "vector embeddings").
 
-The final corpus includes 81 academic and 11 industry sources (92 total). Targeted queries were employed to address specific evidence gaps identified during the synthesis process.
+The final corpus includes 115 academic and 20 industry sources (135 total). Targeted queries were employed to address specific evidence gaps identified during the synthesis process.
 
 Figure 3 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of 92 sources.
 
