@@ -752,7 +752,7 @@ This is a narrative review synthesizing existing literature. No primary datasets
 
 # Code Availability
 
-Not applicable. No custom code was developed for this research.
+The custom software used for literature search, thematic analysis, and citation validation is available in the project repository at https://github.com/stharrold/yuimedi-paper-20250901. This includes the `lit_review` Python package for narrative review synthesis and the `scripts` library for reference validation.
 
 # Funding
 

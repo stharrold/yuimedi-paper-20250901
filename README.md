@@ -58,6 +58,7 @@ This repository contains research documentation for YuiQuery, a conversational A
 │
 ├── images/                     # Research diagrams and YuiQuery feature screenshots
 ├── docs/                       # Additional documentation (paper versions)
+├── lit_review/                 # Literature review workflow package (Python)
 ├── src/                        # Source code for analysis and algorithms
 ├── config/                     # Configuration files
 ├── compliance/                 # IRB and compliance documentation
