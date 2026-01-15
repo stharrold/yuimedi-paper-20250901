@@ -578,7 +578,7 @@ Healthcare organizations vary significantly in data structures, clinical workflo
 Most studies examine 6-24 month implementations [@berkshire2024; @sezgin2022]. Questions remain about long-term sustainability, user engagement over extended periods, and the evolution of organizational capabilities beyond initial deployment periods. The research gap analysis in the Literature Review identifies this as a priority area for future investigation.
 
 ### Governance and Quality Assurance Challenges
-Democratizing analytics access creates new challenges in maintaining data quality, analytical rigor, and clinical safety standards. While the evidence shows reduced error rates with conversational AI, healthcare organizations must develop new governance frameworks for managing distributed analytical capabilities.
+Democratizing analytics access creates new challenges in maintaining data quality, analytical rigor, and clinical safety standards. While the evidence shows reduced error rates with conversational AI [@ipeirotis2025], healthcare organizations must develop new governance frameworks for managing distributed analytical capabilities [@himss2025ucdavis].
 
 ### Specialty-Specific Application Gaps
 Evidence primarily focuses on general acute care settings. Applications in specialized domains (oncology, cardiology, mental health) require domain-specific validation and customization that may not generalize from the existing evidence base.
