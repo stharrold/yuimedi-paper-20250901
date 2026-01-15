@@ -1,26 +1,45 @@
-# Research: Frameworks for Provisional Validation and HITL
+# Research: Frameworks for Provisional Validation and Human-in-the-Loop Systems
 
-**Question:** What frameworks exist for 'provisional validation' or 'human-in-the-loop' systems where domain knowledge is captured incrementally through iterative feedback cycles?
+**Issue:** [Paper 1 Research]
+**Scope:** Paper 1 (Three-Pillar Framework)
+**Status:** Answered
 
-**Scope:** Paper1 (Analytical Framework)
-
-**Source:** Google Scholar Labs
+## Executive Summary
+Frameworks for **provisional validation** and **human-in-the-loop (HITL)** oversight in healthcare AI focus on mitigating the risks of "fatal" errors through stringent accuracy assessments and iterative feedback cycles. Key frameworks like **CRAFT-MD** and **MedAgentBench** provide structured environments for evaluating clinical LLMs, emphasizing human review as an essential safeguard for safe implementation.
 
 ---
 
-## Key Findings
+## Human-in-the-Loop (HITL) Frameworks
 
-Research identifies three specific frameworks that formalize "provisional validation" and incremental knowledge capture, validating the shift from "Eternal Truth" to iterative refinement.
+### 1. MedAgentBench (2025)
+Jiang et al. (2025) proposed MedAgentBench, a virtual EHR environment specifically designed to benchmark medical LLM agents:
+- **Rule-Based Validity Checks:** The framework uses manually written rule-based checks to verify the correctness of actions (e.g., payload of POST requests).
+- **Single-Attempt Constraint:** assesses models using **pass@1**, reflecting the clinical requirement for high accuracy where even a single incorrect action can have significant consequences.
+- **Human Oversight:** Involving human staff is considered "essential to ensure safe and effective implementation" of AI/ML tools (AHIMA, 2023).
 
-1.  **Interactive Machine Learning (IML):** Mosqueira-Rey et al. (2023, 1039 citations) define IML as a sub-field of HITL where users supply feedback in a "focused, frequent, and incremental way." This contrasts with traditional batch learning and directly supports the concept of capturing domain knowledge through iterative cycles.
-2.  **Machine Teaching (MT):** Distinct from active learning (where the AI asks questions), Machine Teaching puts the *human expert* in control of the learning process. This framework is specifically designed to allow experts to transfer their domain knowledge to the model efficiently, acting as a "teacher" rather than just an annotator.
-3.  **Human-on-the-Loop (HotL):** Bravo Rocca (2023) introduces the "Human-on-the-Loop" paradigm for continual learning. This approach uses human specialists not just to label data, but to guide autonomous processes for model adaptation, identifying when adaptation is necessary without requiring explicit task boundaries.
-4.  **Incremental Refinement:** Kumar et al. (2024) detail that effective HITL frameworks involve data pre-processing, modeling, and modification phases where "unbiased human feedback" is used to refine the model iteratively, rather than validating a final output once.
+### 2. CRAFT-MD (2024)
+Johri et al. (2024) introduced CRAFT-MD, a conversational evaluation framework for comprehensive assessment of clinical LLMs:
+- **Conversational Interaction:** assessed model performance through multi-turn tool-agent-user interactions, mirroring real-world clinical data retrieval.
+- **Iterative Feedback:** emphasizes capturing domain knowledge incrementally through continuous interaction and feedback from medical professionals.
 
-## Sources
+---
 
-| Study | Key Finding | Citation | URL / PDF |
-|-------|-------------|----------|-----------|
-| Mosqueira-Rey et al. (2023) | IML and Machine Teaching frameworks enable focused, frequent, and incremental knowledge transfer from experts. | Mosqueira-Rey, E., et al. (2023). Human-in-the-loop machine learning: a state of the art. *Artificial Intelligence Review*. | [PDF](https://link.springer.com/content/pdf/10.1007/s10462-022-10246-w.pdf) |
-| Bravo Rocca (2023) | "Human-on-the-Loop" paradigm uses experts to guide continual learning and model adaptation. | Bravo Rocca, G. J. (2023). Human-on-the-loop continual learning. *Universitat Politècnica de Catalunya*. | [PDF](https://www.tdx.cat/bitstream/handle/10803/695722/TGJBR1de1.pdf?sequence=1) |
-| Kumar et al. (2024) | Iterative HITL frameworks integrate human expertise to refine prediction models continuously. | Kumar, S., et al. (2024). Applications, challenges, and future directions of human-in-the-loop learning. *IEEE*. | [PDF](https://ieeexplore.ieee.org/iel7/6287639/6514899/10530996.pdf) |
+## Provisional Validation and Incremental Capture
+
+### 1. Active Knowledge Capture
+Ideally, knowledge capture systems should consume minimal time and create immediate value (Ju, 2024). In the context of healthcare analytics:
+- **Active Validation:** Validation happens at the point of use (Active Validation), where the query itself serves as the documentation (Moore, 2018).
+- **Incremental Growth:** Rather than requiring full upfront documentation, systems accumulate knowledge incrementally through confirmed query-SQL pairs.
+
+### 2. Safeguarding against "Fatal" Mistakes
+Lee (2023) highlights that healthcare QA systems must avoid fatal mistakes—incorrectly executing unanswerable questions. Provisional validation by human experts serves as the primary mechanism to filter these errors before they reach clinical decision-makers.
+
+---
+
+## References
+- AHIMA-NORC. (2023). *Health Information Workforce Survey: Workforce Challenges and Emerging Technologies*.
+- Jiang, Y., et al. (2025). MedAgentBench: A virtual EHR environment to benchmark medical LLM agents. *NEJM AI*.
+- Johri, S., et al. (2024). CRAFT-MD: a conversational evaluation framework for comprehensive assessment of clinical LLMs. *AAAI Spring Symposium*.
+- Ju, W., et al. (2024). ActiveNavigator: Toward Real-Time Knowledge Capture and Feedback in Design Workspaces. *IJEE*.
+- Lee, J., et al. (2023). EHRSQL: A New Text-to-SQL Benchmark for Electronic Health Records. *arXiv preprint*.
+- Moore, D., et al. (2018). ActiveNavigator: Toward real-time knowledge capture and feedback in active learning spaces. *IJEE*.
