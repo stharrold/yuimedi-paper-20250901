@@ -717,59 +717,22 @@ To prevent the "chaos of conflicting definitions" that can arise from democratiz
 
 This narrative review synthesized evidence across three interconnected domains: natural language to SQL generation, healthcare analytics maturity, and workforce-driven institutional memory loss. The primary contribution is a three-pillar analytical framework that reveals how these challenges interconnect and compound each other.
 
-## What the Framework Reveals
+## The Three-Pillar Framework
 
-The three-pillar framework illuminates patterns that single-domain analyses miss:
-
-- **Analytics maturity gaps** leave clinical decisions unsupported by available data, and low maturity correlates with higher workforce turnover as staff leave organizations where they cannot accomplish their goals [@snowdon2024; @woods2024]
-- **Workforce turnover** (~34% implied annual rate for new healthcare IT staff as of 2004 [@ang2004]) causes institutional memory loss that further degrades analytics capabilities, creating a reinforcing cycle [@massingham2018]
-- **Technical barriers** prevent organizations from capturing and preserving analytical knowledge, blocking recovery from either maturity gaps or turnover impacts [@gal2019; @zhang2024]
-
-These interconnections explain why addressing any single pillar in isolation often fails: improvements in one area erode when the compounding effects from other pillars continue. The framework provides a structured lens for organizational self-assessment.
-
-## Summary of Contributions
-
-This narrative review contributes to healthcare informatics scholarship through:
-
-1. **Three-Pillar Analytical Framework** (Primary Contribution): The framework synthesizes previously disconnected evidence from analytics maturity, workforce management, and natural language processing research, revealing how these capabilities interconnect and compound each other: low maturity accelerates turnover, turnover degrades agility, and low technical enablement prevents recovery from either.
-
-2. **Evidence Synthesis**: We consolidate current evidence on each pillar, providing healthcare organizations with a comprehensive view of analytics maturity benchmarks, workforce turnover impacts, and NL2SQL technical capabilities in a single resource.
-
-3. **Illustrative Application**: By applying established knowledge portal theory [@benbya2004; @richesson2007], we describe the validated query cycle as one example of how the framework might inform technology design for institutional memory preservation.
+The framework identifies a self-reinforcing cycle: low **Analytics Maturity** leaves clinical decisions unsupported; this frustration correlates with high **Workforce Turnover**, which causes institutional memory loss; and **Technical Barriers** prevent the capture of this knowledge, blocking recovery. This integrated perspective explains why addressing single pillars in isolation—such as buying a new tool without addressing workforce stability—often fails to produce lasting improvement.
 
 ## Key Findings
 
-This review of academic and industry sources establishes several critical findings:
+This review establishes critical evidence benchmarks for each pillar:
 
-1. **Technical Progress with Limitations**: Natural language to SQL technologies have advanced significantly, with healthcare-specific benchmarks [@lee2023; @wang2020] demonstrating substantial progress in clinical NL2SQL tasks. However, current models are "not yet sufficiently accurate for unsupervised use" in clinical settings [@ziletti2024], requiring human oversight.
+1.  **Analytics Maturity**: Healthcare maturity remains low, with most organizations struggling at basic reporting levels. However, recent evidence confirms that higher maturity correlates with better patient safety and experience outcomes, shifting the focus from simple EMR adoption to advanced analytics capabilities [@himss2024; @snowdon2024b].
+2.  **Workforce Impact**: The sector faces a persistent crisis of instability, with turnover rates historically among the highest in IT [@ang2004; @american2023]. The cost of this churn is not just financial but intellectual: knowledge loss can cost up to three times annual salary budgets, degrading organizational capability over time [@massingham2018].
+3.  **Technical Enablement**: Natural language interfaces have matured to become viable democratizing tools. Benchmarks show significant accuracy improvements [@lee2023; @wang2020], while implementation studies document quantifiable productivity gains, including a 37% reduction in data retrieval time [@dadi2025].
+4.  **Governance Necessity**: Democratization requires stricter governance. Successful implementations demonstrate that establishing "Golden Queries" and standardized definitions is a prerequisite for advanced maturity, enabling organizations to move from ad-hoc reporting to trusted AI deployment [@himss2025ucdavis].
 
-2. **Organizational Need**: Healthcare analytics maturity remains an ongoing challenge, with the revised HIMSS AMAM model [@himss2024] emphasizing the need for AI readiness and governance frameworks. Most organizations struggle to advance beyond basic reporting levels.
+## Strategic Implications
 
-3. **Workforce Impact**: Healthcare IT staff new-hire turnover was implied at ~34% in 2004 [@ang2004], the highest instability among IT sectors at that time, and workforce challenges persist today [@american2023]. Knowledge loss costs can reach three times annual salary budgets [@massingham2018], creating need for knowledge preservation approaches.
-
-4. **Implementation Evidence**: Real-world implementations like Berkshire Healthcare NHS Trust [@berkshire2024] demonstrate that low-code platforms can enable over 1,600 citizen developers in healthcare settings, with academic research documenting significant efficiency improvements and cost reductions [@sezgin2022; @jiao2023].
-
-## Implications for Organizational Assessment
-
-The evidence synthesis suggests healthcare organizations face decisions that cannot be reduced to simple adoption/rejection binaries. Applying *primum non nocere* comprehensively requires organizational leaders to:
-
-1. **Assess current harm exposure**: Quantify institutional memory loss from turnover, measure time-to-insight for clinical questions, and evaluate analytics capability gaps against organizational needs
-
-2. **Evaluate intervention risks**: Consider NL2SQL accuracy limitations ("not yet sufficiently accurate for unsupervised use" [@ziletti2024]), governance requirements, and implementation complexity
-
-3. **Apply the three-pillar framework**: Use the analytics maturity, workforce agility, and technical enablement dimensions to structure organizational assessment and prioritization
-
-Throughout this assessment, quality patient care must remain the primary metric. Operational efficiency, cost savings, and technical capabilities are valuable only insofar as they advance healthcare's fundamental mission.
-
-This framework acknowledges that optimal decisions will vary by organizational context. Healthcare systems with stable analytics teams and mature data infrastructure face different risk profiles than those experiencing rapid turnover and limited analytics capabilities. The evidence does not prescribe universal solutions but provides structured approaches for context-specific evaluation.
-
-## Closing Reflection
-
-*Primum non nocere* ultimately requires healthcare organizations to make evidence-based judgments about both action and inaction. This review contributes a three-pillar analytical framework to support those judgments, synthesizing evidence on analytics maturity, workforce dynamics, and technical capabilities.
-
-The evidence does not prescribe universal adoption of any technology. Rather, it establishes the scope and interconnection of challenges that organizations must address through whatever means align with their specific contexts, capabilities, and risk tolerances. The ongoing harms documented in this review (institutional memory loss, analytics capability gaps, and technical barriers to data access) merit the same careful consideration as the risks of new technology adoption.
-
-Healthcare's commitment to avoiding harm is best served by evidence-based evaluation that considers all dimensions of potential benefit and risk. The three-pillar framework offers one structured approach for conducting such evaluations.
+Applying the principle of *primum non nocere* requires healthcare leaders to weigh the known harms of the status quo—institutional memory loss, analyst burnout, and uninformed clinical decisions—against the risks of new technology. The evidence suggests that "doing nothing" is not a neutral stance but an active acceptance of degradation. Organizations should use the three-pillar framework to assess their exposure to these compounding risks, prioritizing interventions that not only improve technical access but also capture and preserve the institutional knowledge that defines their unique clinical environment.
 
 # Acknowledgments
 

@@ -644,21 +644,15 @@ class="toc-section-number">5.5.4</span> Mitigating “Shadow IT” with
 <li><a href="#conclusion" id="toc-conclusion"><span
 class="toc-section-number">6</span> Conclusion</a>
 <ul>
-<li><a href="#what-the-framework-reveals"
-id="toc-what-the-framework-reveals"><span
-class="toc-section-number">6.1</span> What the Framework
-Reveals</a></li>
-<li><a href="#summary-of-contributions"
-id="toc-summary-of-contributions"><span
-class="toc-section-number">6.2</span> Summary of Contributions</a></li>
+<li><a href="#the-three-pillar-framework"
+id="toc-the-three-pillar-framework"><span
+class="toc-section-number">6.1</span> The Three-Pillar
+Framework</a></li>
 <li><a href="#key-findings" id="toc-key-findings"><span
-class="toc-section-number">6.3</span> Key Findings</a></li>
-<li><a href="#implications-for-organizational-assessment"
-id="toc-implications-for-organizational-assessment"><span
-class="toc-section-number">6.4</span> Implications for Organizational
-Assessment</a></li>
-<li><a href="#closing-reflection" id="toc-closing-reflection"><span
-class="toc-section-number">6.5</span> Closing Reflection</a></li>
+class="toc-section-number">6.2</span> Key Findings</a></li>
+<li><a href="#strategic-implications"
+id="toc-strategic-implications"><span
+class="toc-section-number">6.3</span> Strategic Implications</a></li>
 </ul></li>
 <li><a href="#acknowledgments" id="toc-acknowledgments"><span
 class="toc-section-number">7</span> Acknowledgments</a></li>
@@ -3084,155 +3078,69 @@ interconnected domains: natural language to SQL generation, healthcare
 analytics maturity, and workforce-driven institutional memory loss. The
 primary contribution is a three-pillar analytical framework that reveals
 how these challenges interconnect and compound each other.</p>
-<h2 data-number="6.1" id="what-the-framework-reveals"><span
-class="header-section-number">6.1</span> What the Framework Reveals</h2>
-<p>The three-pillar framework illuminates patterns that single-domain
-analyses miss:</p>
-<ul>
-<li><strong>Analytics maturity gaps</strong> leave clinical decisions
-unsupported by available data, and low maturity correlates with higher
-workforce turnover as staff leave organizations where they cannot
-accomplish their goals <span class="citation"
-data-cites="snowdon2024 woods2024">(<a href="#ref-snowdon2024"
-role="doc-biblioref">45</a>,<a href="#ref-woods2024"
-role="doc-biblioref">49</a>)</span></li>
-<li><strong>Workforce turnover</strong> (~34% implied annual rate for
-new healthcare IT staff as of 2004 <span class="citation"
-data-cites="ang2004">(<a href="#ref-ang2004"
-role="doc-biblioref">7</a>)</span>) causes institutional memory loss
-that further degrades analytics capabilities, creating a reinforcing
-cycle <span class="citation" data-cites="massingham2018">(<a
-href="#ref-massingham2018" role="doc-biblioref">34</a>)</span></li>
-<li><strong>Technical barriers</strong> prevent organizations from
-capturing and preserving analytical knowledge, blocking recovery from
-either maturity gaps or turnover impacts <span class="citation"
-data-cites="gal2019 zhang2024">(<a href="#ref-gal2019"
-role="doc-biblioref">8</a>,<a href="#ref-zhang2024"
-role="doc-biblioref">9</a>)</span></li>
-</ul>
-<p>These interconnections explain why addressing any single pillar in
-isolation often fails: improvements in one area erode when the
-compounding effects from other pillars continue. The framework provides
-a structured lens for organizational self-assessment.</p>
-<h2 data-number="6.2" id="summary-of-contributions"><span
-class="header-section-number">6.2</span> Summary of Contributions</h2>
-<p>This narrative review contributes to healthcare informatics
-scholarship through:</p>
+<h2 data-number="6.1" id="the-three-pillar-framework"><span
+class="header-section-number">6.1</span> The Three-Pillar Framework</h2>
+<p>The framework identifies a self-reinforcing cycle: low
+<strong>Analytics Maturity</strong> leaves clinical decisions
+unsupported; this frustration correlates with high <strong>Workforce
+Turnover</strong>, which causes institutional memory loss; and
+<strong>Technical Barriers</strong> prevent the capture of this
+knowledge, blocking recovery. This integrated perspective explains why
+addressing single pillars in isolation—such as buying a new tool without
+addressing workforce stability—often fails to produce lasting
+improvement.</p>
+<h2 data-number="6.2" id="key-findings"><span
+class="header-section-number">6.2</span> Key Findings</h2>
+<p>This review establishes critical evidence benchmarks for each
+pillar:</p>
 <ol type="1">
-<li><p><strong>Three-Pillar Analytical Framework</strong> (Primary
-Contribution): The framework synthesizes previously disconnected
-evidence from analytics maturity, workforce management, and natural
-language processing research, revealing how these capabilities
-interconnect and compound each other: low maturity accelerates turnover,
-turnover degrades agility, and low technical enablement prevents
-recovery from either.</p></li>
-<li><p><strong>Evidence Synthesis</strong>: We consolidate current
-evidence on each pillar, providing healthcare organizations with a
-comprehensive view of analytics maturity benchmarks, workforce turnover
-impacts, and NL2SQL technical capabilities in a single
-resource.</p></li>
-<li><p><strong>Illustrative Application</strong>: By applying
-established knowledge portal theory <span class="citation"
-data-cites="benbya2004 richesson2007">(<a href="#ref-benbya2004"
-role="doc-biblioref">37</a>,<a href="#ref-richesson2007"
-role="doc-biblioref">117</a>)</span>, we describe the validated query
-cycle as one example of how the framework might inform technology design
-for institutional memory preservation.</p></li>
-</ol>
-<h2 data-number="6.3" id="key-findings"><span
-class="header-section-number">6.3</span> Key Findings</h2>
-<p>This review of academic and industry sources establishes several
-critical findings:</p>
-<ol type="1">
-<li><p><strong>Technical Progress with Limitations</strong>: Natural
-language to SQL technologies have advanced significantly, with
-healthcare-specific benchmarks <span class="citation"
+<li><strong>Analytics Maturity</strong>: Healthcare maturity remains
+low, with most organizations struggling at basic reporting levels.
+However, recent evidence confirms that higher maturity correlates with
+better patient safety and experience outcomes, shifting the focus from
+simple EMR adoption to advanced analytics capabilities <span
+class="citation" data-cites="himss2024 snowdon2024b">(<a
+href="#ref-himss2024" role="doc-biblioref">2</a>,<a
+href="#ref-snowdon2024b" role="doc-biblioref">22</a>)</span>.</li>
+<li><strong>Workforce Impact</strong>: The sector faces a persistent
+crisis of instability, with turnover rates historically among the
+highest in IT <span class="citation"
+data-cites="ang2004 american2023">(<a href="#ref-american2023"
+role="doc-biblioref">1</a>,<a href="#ref-ang2004"
+role="doc-biblioref">7</a>)</span>. The cost of this churn is not just
+financial but intellectual: knowledge loss can cost up to three times
+annual salary budgets, degrading organizational capability over time
+<span class="citation" data-cites="massingham2018">(<a
+href="#ref-massingham2018" role="doc-biblioref">34</a>)</span>.</li>
+<li><strong>Technical Enablement</strong>: Natural language interfaces
+have matured to become viable democratizing tools. Benchmarks show
+significant accuracy improvements <span class="citation"
 data-cites="lee2023 wang2020">(<a href="#ref-wang2020"
 role="doc-biblioref">88</a>,<a href="#ref-lee2023"
-role="doc-biblioref">89</a>)</span> demonstrating substantial progress
-in clinical NL2SQL tasks. However, current models are “not yet
-sufficiently accurate for unsupervised use” in clinical settings <span
-class="citation" data-cites="ziletti2024">(<a href="#ref-ziletti2024"
-role="doc-biblioref">20</a>)</span>, requiring human oversight.</p></li>
-<li><p><strong>Organizational Need</strong>: Healthcare analytics
-maturity remains an ongoing challenge, with the revised HIMSS AMAM model
-<span class="citation" data-cites="himss2024">(<a href="#ref-himss2024"
-role="doc-biblioref">2</a>)</span> emphasizing the need for AI readiness
-and governance frameworks. Most organizations struggle to advance beyond
-basic reporting levels.</p></li>
-<li><p><strong>Workforce Impact</strong>: Healthcare IT staff new-hire
-turnover was implied at ~34% in 2004 <span class="citation"
-data-cites="ang2004">(<a href="#ref-ang2004"
-role="doc-biblioref">7</a>)</span>, the highest instability among IT
-sectors at that time, and workforce challenges persist today <span
-class="citation" data-cites="american2023">(<a href="#ref-american2023"
-role="doc-biblioref">1</a>)</span>. Knowledge loss costs can reach three
-times annual salary budgets <span class="citation"
-data-cites="massingham2018">(<a href="#ref-massingham2018"
-role="doc-biblioref">34</a>)</span>, creating need for knowledge
-preservation approaches.</p></li>
-<li><p><strong>Implementation Evidence</strong>: Real-world
-implementations like Berkshire Healthcare NHS Trust <span
-class="citation" data-cites="berkshire2024">(<a
-href="#ref-berkshire2024" role="doc-biblioref">24</a>)</span>
-demonstrate that low-code platforms can enable over 1,600 citizen
-developers in healthcare settings, with academic research documenting
-significant efficiency improvements and cost reductions <span
-class="citation" data-cites="sezgin2022 jiao2023">(<a
-href="#ref-sezgin2022" role="doc-biblioref">124</a>,<a
-href="#ref-jiao2023" role="doc-biblioref">136</a>)</span>.</p></li>
+role="doc-biblioref">89</a>)</span>, while implementation studies
+document quantifiable productivity gains, including a 37% reduction in
+data retrieval time <span class="citation" data-cites="dadi2025">(<a
+href="#ref-dadi2025" role="doc-biblioref">93</a>)</span>.</li>
+<li><strong>Governance Necessity</strong>: Democratization requires
+stricter governance. Successful implementations demonstrate that
+establishing “Golden Queries” and standardized definitions is a
+prerequisite for advanced maturity, enabling organizations to move from
+ad-hoc reporting to trusted AI deployment <span class="citation"
+data-cites="himss2025ucdavis">(<a href="#ref-himss2025ucdavis"
+role="doc-biblioref">125</a>)</span>.</li>
 </ol>
-<h2 data-number="6.4"
-id="implications-for-organizational-assessment"><span
-class="header-section-number">6.4</span> Implications for Organizational
-Assessment</h2>
-<p>The evidence synthesis suggests healthcare organizations face
-decisions that cannot be reduced to simple adoption/rejection binaries.
-Applying <em>primum non nocere</em> comprehensively requires
-organizational leaders to:</p>
-<ol type="1">
-<li><p><strong>Assess current harm exposure</strong>: Quantify
-institutional memory loss from turnover, measure time-to-insight for
-clinical questions, and evaluate analytics capability gaps against
-organizational needs</p></li>
-<li><p><strong>Evaluate intervention risks</strong>: Consider NL2SQL
-accuracy limitations (“not yet sufficiently accurate for unsupervised
-use” <span class="citation" data-cites="ziletti2024">(<a
-href="#ref-ziletti2024" role="doc-biblioref">20</a>)</span>), governance
-requirements, and implementation complexity</p></li>
-<li><p><strong>Apply the three-pillar framework</strong>: Use the
-analytics maturity, workforce agility, and technical enablement
-dimensions to structure organizational assessment and
-prioritization</p></li>
-</ol>
-<p>Throughout this assessment, quality patient care must remain the
-primary metric. Operational efficiency, cost savings, and technical
-capabilities are valuable only insofar as they advance healthcare’s
-fundamental mission.</p>
-<p>This framework acknowledges that optimal decisions will vary by
-organizational context. Healthcare systems with stable analytics teams
-and mature data infrastructure face different risk profiles than those
-experiencing rapid turnover and limited analytics capabilities. The
-evidence does not prescribe universal solutions but provides structured
-approaches for context-specific evaluation.</p>
-<h2 data-number="6.5" id="closing-reflection"><span
-class="header-section-number">6.5</span> Closing Reflection</h2>
-<p><em>Primum non nocere</em> ultimately requires healthcare
-organizations to make evidence-based judgments about both action and
-inaction. This review contributes a three-pillar analytical framework to
-support those judgments, synthesizing evidence on analytics maturity,
-workforce dynamics, and technical capabilities.</p>
-<p>The evidence does not prescribe universal adoption of any technology.
-Rather, it establishes the scope and interconnection of challenges that
-organizations must address through whatever means align with their
-specific contexts, capabilities, and risk tolerances. The ongoing harms
-documented in this review (institutional memory loss, analytics
-capability gaps, and technical barriers to data access) merit the same
-careful consideration as the risks of new technology adoption.</p>
-<p>Healthcare’s commitment to avoiding harm is best served by
-evidence-based evaluation that considers all dimensions of potential
-benefit and risk. The three-pillar framework offers one structured
-approach for conducting such evaluations.</p>
+<h2 data-number="6.3" id="strategic-implications"><span
+class="header-section-number">6.3</span> Strategic Implications</h2>
+<p>Applying the principle of <em>primum non nocere</em> requires
+healthcare leaders to weigh the known harms of the status
+quo—institutional memory loss, analyst burnout, and uninformed clinical
+decisions—against the risks of new technology. The evidence suggests
+that “doing nothing” is not a neutral stance but an active acceptance of
+degradation. Organizations should use the three-pillar framework to
+assess their exposure to these compounding risks, prioritizing
+interventions that not only improve technical access but also capture
+and preserve the institutional knowledge that defines their unique
+clinical environment.</p>
 <h1 data-number="7" id="acknowledgments"><span
 class="header-section-number">7</span> Acknowledgments</h1>
 <p>The author (S.T.H.) takes full responsibility for the final content,
@@ -4317,14 +4225,6 @@ class="nocase">From Shadow IT to Business-managed IT: a qualitative
 comparative analysis to determine configurations for successful
 management of IT by business entities</span></a>. Information Systems
 and e-Business Management. 2020;18:209–57. </div>
-</div>
-<div id="ref-jiao2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">136. </div><div
-class="csl-right-inline">Jiao Z W. <span class="nocase">The economic
-value and clinical impact of artificial intelligence in healthcare: A
-scoping literature review</span>. <span>IEEE</span> Access [Internet].
-2023; Available from: <a
-href="https://ieeexplore.ieee.org/document/10297311">https://ieeexplore.ieee.org/document/10297311</a></div>
 </div>
 </div>
 <h1 data-number="15" id="appendices"><span
