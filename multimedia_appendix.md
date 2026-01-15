@@ -83,7 +83,7 @@ GROUP BY r.patient_id, r.index_admission_id, r.days_to_readmit;
 ### Quality Metrics
 **Natural Language**: "How many patients were readmitted within 30 days of discharge for heart failure?"
 
-**Rationale**: Demonstrates aggregation capabilities for organizational quality reporting, specifically tracking 30-day readmission rates for heart failure populations.
+**Rationale**: Aligned with CMS Hospital Readmissions Reduction Program (HRRP) requirements, demonstrating aggregation capabilities for organizational quality reporting by specifically tracking 30-day readmission rates for heart failure populations.
 
 **Generated SQL**:
 ```sql

@@ -407,9 +407,10 @@ exclusions (hospice).</p>
 <h3 id="quality-metrics">Quality Metrics</h3>
 <p><strong>Natural Language</strong>: “How many patients were readmitted
 within 30 days of discharge for heart failure?”</p>
-<p><strong>Rationale</strong>: Demonstrates aggregation capabilities for
-organizational quality reporting, specifically tracking 30-day
-readmission rates for heart failure populations.</p>
+<p><strong>Rationale</strong>: Aligned with CMS Hospital Readmissions
+Reduction Program (HRRP) requirements, demonstrating aggregation
+capabilities for organizational quality reporting by specifically
+tracking 30-day readmission rates for heart failure populations.</p>
 <p><strong>Generated SQL</strong>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> r.patient_id) <span class="kw">as</span> readmission_count</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (</span>
