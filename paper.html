@@ -2638,20 +2638,25 @@ maintenance that often lapses after staff transitions <span
 class="citation" data-cites="whittaker2008 lenz2007">(<a
 href="#ref-whittaker2008" role="doc-biblioref">108</a>,<a
 href="#ref-lenz2007" role="doc-biblioref">126</a>)</span>.</p>
-<p>Validated query pairs address each weakness. First, validated pairs
-are executable: they can be tested against current data to verify
-continued correctness, unlike static documentation. Second, validated
-pairs capture the complete mapping from business question to data
-retrieval logic, embedding the contextual judgment that documentation
-typically omits (why this join, why this filter, why this aggregation).
-To prevent an intent gap, defined here as the loss of connection between
-the original business question and its technical SQL implementation, a
-validated pair is incomplete without mandatory “Rationale Metadata,” a
-text field documenting <em>why</em> the query was constructed in a
-specific way (e.g., “Excluding Hospice per 2025 CMS rules”). Third,
-validation happens at the point of use rather than as a separate
-maintenance task: every confirmed query becomes a knowledge artifact
-without additional documentation effort.</p>
+<p>Validated query pairs address each weakness:</p>
+<ol type="1">
+<li><strong>Executability</strong>: Validated pairs are executable; they
+can be tested against current data to verify continued correctness,
+unlike static documentation</li>
+<li><strong>Contextual Completeness</strong>: Validated pairs capture
+the complete mapping from business question to data retrieval logic,
+embedding the contextual judgment that documentation typically omits
+(why this join, why this filter, why this aggregation). To prevent an
+intent gap, defined here as the loss of connection between the original
+business question and its technical SQL implementation, a validated pair
+is incomplete without mandatory “Rationale Metadata,” a text field
+documenting <em>why</em> the query was constructed in a specific way
+(e.g., “Excluding Hospice per 2025 CMS rules”)</li>
+<li><strong>Active Validation</strong>: Validation happens at the point
+of use rather than as a separate maintenance task; every confirmed query
+becomes a knowledge artifact without additional documentation
+effort</li>
+</ol>
 <p>This mechanism also differs from traditional query logging or usage
 analytics. Query logs capture what was asked, but not whether the answer
 was correct. Validated query pairs capture expert confirmation that the
