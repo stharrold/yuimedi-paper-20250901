@@ -5,15 +5,15 @@ correspondence: "samuel.harrold@yuimedi.com"
 date: "January 2026"
 version: "1.24.0"
 abstract: |
-  Background: Healthcare organizations face three interconnected challenges: low analytics maturity, with only 39 organizations globally having achieved HIMSS AMAM Stage 6-7; systemic instability from high leadership turnover (53% of CIOs with <3 years tenure) and persistent digital skills shortages; and technical barriers in natural language to SQL generation. When these challenges interact, they create institutional memory loss that threatens data-driven healthcare transformation.
+  **Background:** Healthcare organizations face three interconnected challenges: low analytics maturity, with only 39 organizations globally having achieved HIMSS AMAM Stage 6-7; systemic instability from high leadership turnover (53% of CIOs with <3 years tenure) and persistent digital skills shortages; and technical barriers in natural language to SQL generation. When these challenges interact, they create institutional memory loss that threatens data-driven healthcare transformation.
 
-  Objective: This research develops a three-pillar analytical framework connecting analytics maturity, workforce agility, and technical enablement. The framework reveals how these capabilities interconnect and compound each other.
+  **Objective:** This research develops a three-pillar analytical framework connecting analytics maturity, workforce agility, and technical enablement. The framework reveals how these capabilities interconnect and compound each other.
 
-  Methods: We conducted a narrative literature review of peer-reviewed studies and industry reports on natural language to SQL (NL2SQL) generation, healthcare analytics maturity, and workforce turnover. Grey literature was assessed using the AACODS checklist. Evidence was synthesized through the three-pillar analytical framework to examine how these challenges interconnect and compound.
+  **Methods:** We conducted a narrative literature review of peer-reviewed studies and industry reports on natural language to SQL (NL2SQL) generation, healthcare analytics maturity, and workforce turnover. Grey literature was assessed using the AACODS checklist. Evidence was synthesized through the three-pillar analytical framework to examine how these challenges interconnect and compound.
 
-  Results: Healthcare-specific text-to-SQL benchmarks show significant progress, though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings. Most healthcare organizations remain at HIMSS AMAM Stages 0-3 with limited predictive capabilities. Healthcare IT turnover significantly exceeds other IT sectors, creating measurable institutional memory loss. The framework reveals a compounding dynamic: low-maturity organizations experience higher turnover, which degrades the institutional knowledge needed for maturity advancement, while technical barriers prevent the capture of expertise before it is lost.
+  **Results:** Healthcare-specific text-to-SQL benchmarks show significant progress, though current models are "not yet sufficiently accurate for unsupervised use" in clinical settings. Most healthcare organizations remain at HIMSS AMAM Stages 0-3 with limited predictive capabilities. Healthcare IT turnover significantly exceeds other IT sectors, creating measurable institutional memory loss. The framework reveals a compounding dynamic: low-maturity organizations experience higher turnover, which degrades the institutional knowledge needed for maturity advancement, while technical barriers prevent the capture of expertise before it is lost.
 
-  Conclusions: We contribute a three-pillar analytical framework synthesizing evidence on analytics maturity, workforce agility, and technical enablement. The framework reveals a compounding effect: low maturity accelerates turnover, which degrades maturity, and low enablement prevents recovery. This analytical lens enables organizational self-assessment and informs future research on technological interventions, such as conversational AI platforms.
+  **Conclusions:** We contribute a three-pillar analytical framework synthesizing evidence on analytics maturity, workforce agility, and technical enablement. The framework reveals a compounding effect: low maturity accelerates turnover, which degrades maturity, and low enablement prevents recovery. This analytical lens enables organizational self-assessment and informs future research on technological interventions, such as conversational AI platforms.
 keywords: [healthcare analytics, healthcare informatics, analytical framework, analytics maturity, workforce turnover, institutional memory, text-to-SQL, natural language processing, knowledge portal, conversational AI]
 license: "CC BY 4.0"
 license-url: "https://creativecommons.org/licenses/by/4.0/"
@@ -207,17 +207,12 @@ Search Concepts and Results:
 
 Search terms emerged iteratively and were organized around the three-pillar framework. Table 1 summarizes the search concepts and results by source.
 
-+-------------------------+--------------------+--------------------+---------------+-------------------------+---------------------------+
-| Pillar                  | Crossref           | PubMed             | arXiv         | Semantic Scholar        | Total (Screened)          |
-+=========================+====================+====================+===============+=========================+===========================+
-| *Analytics Maturity*    | 285                | -                  | -             | -                       | 285 (15)                  |
-+-------------------------+--------------------+--------------------+---------------+-------------------------+---------------------------+
-| *Workforce Agility*     | -                  | 142                | -             | -                       | 142 (12)                  |
-+-------------------------+--------------------+--------------------+---------------+-------------------------+---------------------------+
-| *Technical Enablement*  | -                  | -                  | 71            | 72                      | 143 (14)                  |
-+-------------------------+--------------------+--------------------+---------------+-------------------------+---------------------------+
-| Total               | 285            | 142            | 71        | 72                  | 570 (41)              |
-+-------------------------+--------------------+--------------------+---------------+-------------------------+---------------------------+
+| Pillar | Crossref | PubMed | arXiv | Semantic Scholar | Total (Screened) |
+|:---|:---|:---|:---|:---|:---|
+| *Analytics Maturity* | 285 | - | - | - | 285 (15) |
+| *Workforce Agility* | - | 142 | - | - | 142 (12) |
+| *Technical Enablement* | - | - | 71 | 72 | 143 (14) |
+| **Total** | **285** | **142** | **71** | **72** | **570 (41)** |
 
 : Initial search results by database source. Numbers in parentheses indicate studies passing initial screening. Search concepts: Analytics Maturity ("healthcare analytics maturity", "HIMSS AMAM", "analytics adoption", "big data analytics adoption", "resistance to change", "analytics standardization failure", "low-code ROI"); Workforce Agility ("healthcare IT tenure", "IT training time", "turnover cost", "institutional memory loss", "organizational forgetting", "competence loss", "knowledge portal", "SECI model"); Technical Enablement ("NL2SQL healthcare", "text-to-SQL clinical", "MIMICSQL", "EHRSQL", "schema discovery", "semantic column matching", "vector embeddings").
 
@@ -250,31 +245,19 @@ Exclusion Criteria:
 
 Grey literature sources were assessed using the AACODS checklist [@tyndall2010], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table 2 summarizes the assessment.
 
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| Source (Citation)                             | Authority / Accuracy           | Coverage / Objectivity         | Date / Significance                    | Include       |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| HIMSS AMAM [@himss2024]                       | High† / Verifiable             | Global / High                  | 2024 / High                            | Yes           |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| Snowdon/HIMSS [@snowdon2024b]                 | High‡ / Verifiable             | N/A / High                     | 2024 / Medium                          | Yes           |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| Health Catalyst [@health2020]                 | Medium§ / Unverifiable         | US / Low                       | 2020 / Medium                          | Yes*          |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| Berkshire NHS [@berkshire2024]                | High¶ / Verifiable             | Single site / High             | 2024 / High                            | Yes           |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| Forrester/Microsoft [@forrester2024]          | Medium∥ / Unverifiable         | Enterprise / Low♢              | 2024 / Medium                          | Yes*          |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| Oracle [@oracle2024]                          | Low§ / Unverifiable            | N/A / Low                      | 2024 / Low                             | Yes*          |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| Precedence Research [@precedence2024]         | Medium# / Unverifiable         | Global / Medium                | 2024 / Medium                          | Yes           |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| Anthropic [@anthropic2025]                    | Medium§ / Verifiable           | N/A / Medium                   | 2025 / Low                             | Yes           |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| IBM Newsroom [@ibm2022]                       | High / Verifiable              | N/A / High                     | 2022 / High                            | Yes           |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| CNBC/Haven [@lavito2021]                      | High / Verifiable              | N/A / High                     | 2021 / High                            | Yes           |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
-| AHIMA/NORC [@american2023]                    | High†† / Verifiable            | US / High                      | 2023 / High                            | Yes           |
-+-----------------------------------------------+--------------------------------+--------------------------------+----------------------------------------+---------------+
+| Source (Citation) | Authority / Accuracy | Coverage / Objectivity | Date / Significance | Include |
+|:---|:---|:---|:---|:---|
+| HIMSS AMAM [@himss2024] | High† / Verifiable | Global / High | 2024 / High | Yes |
+| Snowdon/HIMSS [@snowdon2024b] | High‡ / Verifiable | N/A / High | 2024 / Medium | Yes |
+| Health Catalyst [@health2020] | Medium§ / Unverifiable | US / Low | 2020 / Medium | Yes* |
+| Berkshire NHS [@berkshire2024] | High¶ / Verifiable | Single site / High | 2024 / High | Yes |
+| Forrester/Microsoft [@forrester2024] | Medium∥ / Unverifiable | Enterprise / Low♢ | 2024 / Medium | Yes* |
+| Oracle [@oracle2024] | Low§ / Unverifiable | N/A / Low | 2024 / Low | Yes* |
+| Precedence Research [@precedence2024] | Medium# / Unverifiable | Global / Medium | 2024 / Medium | Yes |
+| Anthropic [@anthropic2025] | Medium§ / Verifiable | N/A / Medium | 2025 / Low | Yes |
+| IBM Newsroom [@ibm2022] | High / Verifiable | N/A / High | 2022 / High | Yes |
+| CNBC/Haven [@lavito2021] | High / Verifiable | N/A / High | 2021 / High | Yes |
+| AHIMA/NORC [@american2023] | High†† / Verifiable | US / High | 2023 / High | Yes |
 
 : AACODS Assessment of Industry Sources. \label{tbl:aacods}
 
@@ -654,61 +637,37 @@ Table 3: Three-Pillar Organizational Assessment Rubric
 
 Pillar 1: Analytics Maturity
 
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| Indicator                                   | Low Strength (1)                                 | Med. Strength (2)                                | High Strength (3)                                | Evidence                               |
-+=============================================+==================================================+==================================================+==================================================+========================================+
-| HIMSS AMAM Stage                            | Stages 0-2: Fragmented data, limited reporting   | Stages 3-4: Integrated warehouse, standardized definitions | Stages 5-7: Predictive analytics, AI integration | [@himss2024; @health2020]              |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| Self-service                                | None; all analytics require IT intervention      | Partial; BI tools available but underutilized    | Widespread; clinical staff access data directly  | [@berkshire2024;                       |
-| analytics                                   |                                                  |                                                  |                                                  | @wang2018]                             |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| AI/NL interface                             | No NL2SQL or conversational analytics            | Pilot programs or evaluation underway            | Natural language query capability deployed       | [@wang2020; @ziletti2024]              |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
+| Indicator | Low Strength (1) | Med. Strength (2) | High Strength (3) | Evidence |
+|:---|:---|:---|:---|:---|
+| HIMSS AMAM Stage | Stages 0-2: Fragmented data, limited reporting | Stages 3-4: Integrated warehouse, standardized definitions | Stages 5-7: Predictive analytics, AI integration | [@himss2024; @health2020] |
+| Self-service analytics | None; all analytics require IT intervention | Partial; BI tools available but underutilized | Widespread; clinical staff access data directly | [@berkshire2024; @wang2018] |
+| AI/NL interface | No NL2SQL or conversational analytics | Pilot programs or evaluation underway | Natural language query capability deployed | [@wang2020; @ziletti2024] |
 
 Pillar 2: Workforce Agility
 
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| Indicator                                   | Low Strength (1)                                 | Med. Strength (2)                                | High Strength (3)                                | Evidence                               |
-+=============================================+==================================================+==================================================+==================================================+========================================+
-| First-year Staff                            | >30% (High Instability)                          | 15-30%                                           | <15% (High Stability)                            | [@nsi2025]                             |
-| Turnover                                    |                                                  |                                                  |                                                  |                                        |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| Leadership                                  | Tenure < 3 years                                 | Tenure 3-5 years                                 | Tenure > 5 years                                 | [@wittkieffer2024]                     |
-| Stability (CIO)                             |                                                  |                                                  |                                                  |                                        |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| Knowledge                                   | Critical expertise held by ≤3 individuals        | Partial documentation; some cross-training       | Distributed expertise; documented processes      | [@benbya2004; @richesson2007]          |
-| concentration                               |                                                  |                                                  |                                                  |                                        |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| Time-to-productivity                        | >18 months (specialized roles)                   | 6-18 months                                      | <6 months with structured onboarding             | [@ledikwe2013; @mantas2010]            |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| Tacit knowledge                             | Person-dependent; undocumented tribal            | Partial documentation exists                     | Expertise embedded in systems/AI                 | [@benbya2004]                          |
-| capture                                     | knowledge                                        |                                                  |                                                  |                                        |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
+| Indicator | Low Strength (1) | Med. Strength (2) | High Strength (3) | Evidence |
+|:---|:---|:---|:---|:---|
+| First-year Staff Turnover | >30% (High Instability) | 15-30% | <15% (High Stability) | [@nsi2025] |
+| Leadership Stability (CIO) | Tenure < 3 years | Tenure 3-5 years | Tenure > 5 years | [@wittkieffer2024] |
+| Knowledge concentration | Critical expertise held by ≤3 individuals | Partial documentation; some cross-training | Distributed expertise; documented processes | [@benbya2004; @richesson2007] |
+| Time-to-productivity | >18 months (specialized roles) | 6-18 months | <6 months with structured onboarding | [@ledikwe2013; @mantas2010] |
+| Tacit knowledge capture | Person-dependent; undocumented tribal knowledge | Partial documentation exists | Expertise embedded in systems/AI | [@benbya2004] |
 
 Pillar 3: Technical Enablement
 
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| Indicator                                   | Low Strength (1)                                 | Med. Strength (2)                                | High Strength (3)                                | Evidence                               |
-+=============================================+==================================================+==================================================+==================================================+========================================+
-| Data access                                 | SQL/technical expertise required for all queries | IT queue for complex queries; basic self-service | Natural language or visual query interfaces      | [@wang2018; @pesqueira2020]            |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| Inter-operability                           | Fragmented systems; manual reconciliation        | Partial integration; some automated feeds        | Unified data platform; real-time integration     | [@gal2019; @bogaert2021]               |
-|                                             | required                                         |                                                  |                                                  |                                        |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
-| Skills gap impact                           | Critical shortage preventing data utilization    | Acknowledged deficit with mitigation plans       | Sufficient analysts across departments           | [@bardsley2016; @pesqueira2020]        |
-+---------------------------------------------+--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+----------------------------------------+
+| Indicator | Low Strength (1) | Med. Strength (2) | High Strength (3) | Evidence |
+|:---|:---|:---|:---|:---|
+| Data access | SQL/technical expertise required for all queries | IT queue for complex queries; basic self-service | Natural language or visual query interfaces | [@wang2018; @pesqueira2020] |
+| Inter-operability | Fragmented systems; manual reconciliation required | Partial integration; some automated feeds | Unified data platform; real-time integration | [@gal2019; @bogaert2021] |
+| Skills gap impact | Critical shortage preventing data utilization | Acknowledged deficit with mitigation plans | Sufficient analysts across departments | [@bardsley2016; @pesqueira2020] |
 
 Multi-Pillar Convergence Assessment:
 
-+--------------------------------------------------+----------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
-| Organizational Profile                           | Framework Assessment                                                 | Implications for Analysis                                                                    |
-+==================================================+======================================================================+==============================================================================================+
-| All pillars Low Strength                         | Self-reinforcing degradation cycle                                   | All three dimensions interact; comprehensive organizational assessment warranted             |
-+--------------------------------------------------+----------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
-| 1-2 pillars Low Strength                         | Compounding effects present                                          | Framework reveals interconnections requiring multi-dimensional analysis                      |
-+--------------------------------------------------+----------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
-| 0 pillars Low Strength                           | Continuous improvement stance                                        | Monitor for emerging challenges; single-pillar focus may suffice                             |
-+--------------------------------------------------+----------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+| Organizational Profile | Framework Assessment | Implications for Analysis |
+|:---|:---|:---|
+| All pillars Low Strength | Self-reinforcing degradation cycle | All three dimensions interact; comprehensive organizational assessment warranted |
+| 1-2 pillars Low Strength | Compounding effects present | Framework reveals interconnections requiring multi-dimensional analysis |
+| 0 pillars Low Strength | Continuous improvement stance | Monitor for emerging challenges; single-pillar focus may suffice |
 
 The framework reveals why convergence matters: organizations facing "Low Strength" conditions across multiple pillars experience compounding effects where challenges in one domain exacerbate challenges in others. For example, technical barriers that prevent knowledge capture interact with workforce turnover to accelerate institutional memory loss, which in turn degrades analytics maturity. This multi-pillar perspective explains why single-domain interventions often produce limited results.
 

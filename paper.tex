@@ -97,7 +97,6 @@
 \AfterEndEnvironment{lstlisting}{\end{minipage}\par\addvspace{\topskip}}
 \usepackage{longtable,booktabs,array}
 \newcounter{none} % for unnumbered tables
-\usepackage{multirow}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -494,7 +493,7 @@ and Technical Enablement}}}
 % don't generate the default title
 % \maketitle
 \begin{abstract}
-Background: Healthcare organizations face three interconnected
+\textbf{Background:} Healthcare organizations face three interconnected
 challenges: low analytics maturity, with only 39 organizations globally
 having achieved HIMSS AMAM Stage 6-7; systemic instability from high
 leadership turnover (53\% of CIOs with \textless3 years tenure) and
@@ -503,30 +502,30 @@ language to SQL generation. When these challenges interact, they create
 institutional memory loss that threatens data-driven healthcare
 transformation.
 
-Objective: This research develops a three-pillar analytical framework
-connecting analytics maturity, workforce agility, and technical
-enablement. The framework reveals how these capabilities interconnect
-and compound each other.
+\textbf{Objective:} This research develops a three-pillar analytical
+framework connecting analytics maturity, workforce agility, and
+technical enablement. The framework reveals how these capabilities
+interconnect and compound each other.
 
-Methods: We conducted a narrative literature review of peer-reviewed
-studies and industry reports on natural language to SQL (NL2SQL)
-generation, healthcare analytics maturity, and workforce turnover. Grey
-literature was assessed using the AACODS checklist. Evidence was
-synthesized through the three-pillar analytical framework to examine how
-these challenges interconnect and compound.
+\textbf{Methods:} We conducted a narrative literature review of
+peer-reviewed studies and industry reports on natural language to SQL
+(NL2SQL) generation, healthcare analytics maturity, and workforce
+turnover. Grey literature was assessed using the AACODS checklist.
+Evidence was synthesized through the three-pillar analytical framework
+to examine how these challenges interconnect and compound.
 
-Results: Healthcare-specific text-to-SQL benchmarks show significant
-progress, though current models are ``not yet sufficiently accurate for
-unsupervised use'' in clinical settings. Most healthcare organizations
-remain at HIMSS AMAM Stages 0-3 with limited predictive capabilities.
-Healthcare IT turnover significantly exceeds other IT sectors, creating
-measurable institutional memory loss. The framework reveals a
-compounding dynamic: low-maturity organizations experience higher
-turnover, which degrades the institutional knowledge needed for maturity
-advancement, while technical barriers prevent the capture of expertise
-before it is lost.
+\textbf{Results:} Healthcare-specific text-to-SQL benchmarks show
+significant progress, though current models are ``not yet sufficiently
+accurate for unsupervised use'' in clinical settings. Most healthcare
+organizations remain at HIMSS AMAM Stages 0-3 with limited predictive
+capabilities. Healthcare IT turnover significantly exceeds other IT
+sectors, creating measurable institutional memory loss. The framework
+reveals a compounding dynamic: low-maturity organizations experience
+higher turnover, which degrades the institutional knowledge needed for
+maturity advancement, while technical barriers prevent the capture of
+expertise before it is lost.
 
-Conclusions: We contribute a three-pillar analytical framework
+\textbf{Conclusions:} We contribute a three-pillar analytical framework
 synthesizing evidence on analytics maturity, workforce agility, and
 technical enablement. The framework reveals a compounding effect: low
 maturity accelerates turnover, which degrades maturity, and low
@@ -945,12 +944,12 @@ three-pillar framework. Table 1 summarizes the search concepts and
 results by source.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1831}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1479}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1479}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1127}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1831}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1972}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
 \caption{Initial search results by database source. Numbers in
 parentheses indicate studies passing initial screening. Search concepts:
 Analytics Maturity (``healthcare analytics maturity'', ``HIMSS AMAM'',
@@ -996,55 +995,11 @@ Total (Screened)
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\emph{Analytics Maturity} & 285 &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}
-\tightlist
-\item
-\end{itemize}
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}
-\tightlist
-\item
-\end{itemize}
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}
-\tightlist
-\item
-\end{itemize}
-\end{minipage} & 285 (15) \\
-\emph{Workforce Agility} & \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}
-\tightlist
-\item
-\end{itemize}
-\end{minipage} & 142 & \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}
-\tightlist
-\item
-\end{itemize}
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}
-\tightlist
-\item
-\end{itemize}
-\end{minipage} & 142 (12) \\
-\emph{Technical Enablement} &
-\begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}
-\tightlist
-\item
-\end{itemize}
-\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-\begin{itemize}
-\tightlist
-\item
-\end{itemize}
-\end{minipage} & 71 & 72 & 143 (14) \\
-\multicolumn{3}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.4789} + 4\tabcolsep}}{%
-Total \textbar{} 285 \textbar{} 142 \textbar{} 71} &
-\multicolumn{3}{>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.4930} + 4\tabcolsep}@{}}{%
-72 \textbar{} 570 (41) \textbar{}} \\
+\emph{Analytics Maturity} & 285 & - & - & - & 285 (15) \\
+\emph{Workforce Agility} & - & 142 & - & - & 142 (12) \\
+\emph{Technical Enablement} & - & - & 71 & 72 & 143 (14) \\
+\textbf{Total} & \textbf{285} & \textbf{142} & \textbf{71} & \textbf{72}
+& \textbf{570 (41)} \\
 \end{longtable}
 
 The final corpus includes 115 academic and 20 industry sources (135
@@ -1115,20 +1070,43 @@ sponsorship were retained when no independent alternative existed but
 flagged in-text. Table 2 summarizes the assessment.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2759}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1897}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1897}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2356}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0920}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
 \caption{AACODS Assessment of Industry Sources.
 \label{tbl:aacods}}\tabularnewline
 \toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Source (Citation)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Authority / Accuracy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Coverage / Objectivity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Date / Significance
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Include
+\end{minipage} \\
+\midrule\noalign{}
 \endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Source (Citation)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Authority / Accuracy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Coverage / Objectivity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Date / Significance
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Include
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Source (Citation) & Authority / Accuracy & Coverage / Objectivity & Date
-/ Significance & Include \\
 HIMSS AMAM (\citeproc{ref-himss2024}{2}) & High† / Verifiable & Global /
 High & 2024 / High & Yes \\
 Snowdon/HIMSS (\citeproc{ref-snowdon2024b}{22}) & High‡ / Verifiable &
@@ -2599,53 +2577,11 @@ Pillar 1: Analytics Maturity
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1811}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2008}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2008}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2008}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1614}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0394}}@{}}
-\toprule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\multirow{2}{=}{\begin{minipage}[t]{\linewidth}\raggedright
-\section{Indicator}\label{indicator}
-
-HIMSS AMAM Stage
-\end{minipage}} &
-\multirow{2}{=}{\begin{minipage}[t]{\linewidth}\raggedright
-\section{Low Strength (1)}\label{low-strength-1}
-
-Stages 0-2: Fragmented data, limited reporting
-\end{minipage}} &
-\multicolumn{4}{>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.6024} + 6\tabcolsep}@{}}{%
-\multirow{2}{=}{Med. Strength (2) \textbar{} High Strength (3)
-\textbar{} Evidence \textbar{}
-==================================================+==================================================+========================================+
-Stages 3-4: Integrated warehouse, standardized definitions \textbar{}
-Stages 5-7: Predictive analytics, AI integration \textbar{}
-(\citeproc{ref-himss2024}{2},\citeproc{ref-health2020}{23})}} \\
- \\
-Self-service analytics & None; all analytics require IT intervention &
-Partial; BI tools available but underutilized & Widespread; clinical
-staff access data directly &
-(\citeproc{ref-berkshire2024}{24},\citeproc{ref-wang2018}{39}) & \\
-AI/NL interface & No NL2SQL or conversational analytics & Pilot programs
-or evaluation underway & Natural language query capability deployed &
-(\citeproc{ref-ziletti2024}{20},\citeproc{ref-wang2020}{80}) & \\
-\end{longtable}
-}
-
-Pillar 2: Workforce Agility
-
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1893}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2099}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2099}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2099}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1687}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2662,11 +2598,47 @@ Evidence
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-First-year Staff Turnover & \begin{minipage}[t]{\linewidth}\raggedright
-\begin{quote}
-30\% (High Instability)
-\end{quote}
-\end{minipage} & 15-30\% & \textless15\% (High Stability) &
+HIMSS AMAM Stage & Stages 0-2: Fragmented data, limited reporting &
+Stages 3-4: Integrated warehouse, standardized definitions & Stages 5-7:
+Predictive analytics, AI integration &
+(\citeproc{ref-himss2024}{2},\citeproc{ref-health2020}{23}) \\
+Self-service analytics & None; all analytics require IT intervention &
+Partial; BI tools available but underutilized & Widespread; clinical
+staff access data directly &
+(\citeproc{ref-berkshire2024}{24},\citeproc{ref-wang2018}{39}) \\
+AI/NL interface & No NL2SQL or conversational analytics & Pilot programs
+or evaluation underway & Natural language query capability deployed &
+(\citeproc{ref-ziletti2024}{20},\citeproc{ref-wang2020}{80}) \\
+\end{longtable}
+}
+
+Pillar 2: Workforce Agility
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Indicator
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Low Strength (1)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Med. Strength (2)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+High Strength (3)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Evidence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+First-year Staff Turnover & \textgreater30\% (High Instability) &
+15-30\% & \textless15\% (High Stability) &
 (\citeproc{ref-nsi2025}{73}) \\
 Leadership Stability (CIO) & Tenure \textless{} 3 years & Tenure 3-5
 years & Tenure \textgreater{} 5 years &
@@ -2675,12 +2647,8 @@ Knowledge concentration & Critical expertise held by ≤3 individuals &
 Partial documentation; some cross-training & Distributed expertise;
 documented processes &
 (\citeproc{ref-benbya2004}{37},\citeproc{ref-richesson2007}{117}) \\
-Time-to-productivity & \begin{minipage}[t]{\linewidth}\raggedright
-\begin{quote}
-18 months (specialized roles)
-\end{quote}
-\end{minipage} & 6-18 months & \textless6 months with structured
-onboarding &
+Time-to-productivity & \textgreater18 months (specialized roles) & 6-18
+months & \textless6 months with structured onboarding &
 (\citeproc{ref-ledikwe2013}{74},\citeproc{ref-mantas2010}{75}) \\
 Tacit knowledge capture & Person-dependent; undocumented tribal
 knowledge & Partial documentation exists & Expertise embedded in
@@ -2692,11 +2660,11 @@ Pillar 3: Technical Enablement
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1893}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2099}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2099}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2099}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1687}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2732,9 +2700,9 @@ Multi-Pillar Convergence Assessment:
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2339}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3257}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4358}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Organizational Profile
