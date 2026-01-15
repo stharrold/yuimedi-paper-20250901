@@ -321,12 +321,12 @@ A: HIMSS Analytics Maturity Assessment Model (AMAM) Stages</h2>
 <h2 id="appendix-b-healthcare-nl2sql-query-examples">Appendix B:
 Healthcare NL2SQL Query Examples</h2>
 <h3 id="patient-population-analysis">Patient Population Analysis</h3>
-<p><strong>Natural Language</strong>: “Show me all diabetic patients
-over 65 who had an HbA1c test in the last 6 months”</p>
-<p><strong>Rationale</strong>: Aligned with NCQA HEDIS measures for
-Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance
-in older adult populations.</p>
-<p><strong>Generated SQL</strong>:</p>
+<p>Natural Language: “Show me all diabetic patients over 65 who had an
+HbA1c test in the last 6 months”</p>
+<p>Rationale: Aligned with NCQA HEDIS measures for Comprehensive
+Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult
+populations.</p>
+<p>Generated SQL:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> p.patient_id, p.age, l.test_date, l.result_value</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> patients p</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> lab_results l <span class="kw">ON</span> p.patient_id <span class="op">=</span> l.patient_id</span>
@@ -337,15 +337,14 @@ in older adult populations.</p>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> l.test_date <span class="op">&gt;=</span> DATE_SUB(<span class="fu">CURRENT_DATE</span>, <span class="dt">INTERVAL</span> <span class="dv">6</span> <span class="dt">MONTH</span>)</span></code></pre></div>
 <h3 id="complex-clinical-cohort-heart-failure-readmission-risk">Complex
 Clinical Cohort: Heart Failure Readmission Risk</h3>
-<p><strong>Natural Language</strong>: “Identify patients discharged with
-Heart Failure in 2024 who had a readmission within 30 days, excluding
-those discharged to hospice. For each, calculate their max creatinine
-levels during the index stay.”</p>
-<p><strong>Rationale</strong>: Supports CMS Hospital Readmissions
-Reduction Program (HRRP) tracking by identifying 30-day all-cause
-readmissions for Heart Failure (HF) index stays, with standard
-exclusions (hospice).</p>
-<p><strong>Generated SQL</strong>:</p>
+<p>Natural Language: “Identify patients discharged with Heart Failure in
+2024 who had a readmission within 30 days, excluding those discharged to
+hospice. For each, calculate their max creatinine levels during the
+index stay.”</p>
+<p>Rationale: Supports CMS Hospital Readmissions Reduction Program
+(HRRP) tracking by identifying 30-day all-cause readmissions for Heart
+Failure (HF) index stays, with standard exclusions (hospice).</p>
+<p>Generated SQL:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> IndexAdmissions <span class="kw">AS</span> (</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Identify index admissions for Heart Failure</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span></span>
@@ -386,13 +385,13 @@ exclusions (hospice).</p>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> l.itemid <span class="kw">IN</span> (<span class="dv">50912</span>, <span class="dv">50913</span>) <span class="co">-- Creatinine lab codes</span></span>
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> r.patient_id, r.index_admission_id, r.days_to_readmit;</span></code></pre></div>
 <h3 id="quality-metrics">Quality Metrics</h3>
-<p><strong>Natural Language</strong>: “How many patients were readmitted
-within 30 days of discharge for heart failure?”</p>
-<p><strong>Rationale</strong>: Aligned with CMS Hospital Readmissions
-Reduction Program (HRRP) requirements, demonstrating aggregation
-capabilities for organizational quality reporting by specifically
-tracking 30-day readmission rates for heart failure populations.</p>
-<p><strong>Generated SQL</strong>:</p>
+<p>Natural Language: “How many patients were readmitted within 30 days
+of discharge for heart failure?”</p>
+<p>Rationale: Aligned with CMS Hospital Readmissions Reduction Program
+(HRRP) requirements, demonstrating aggregation capabilities for
+organizational quality reporting by specifically tracking 30-day
+readmission rates for heart failure populations.</p>
+<p>Generated SQL:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> r.patient_id) <span class="kw">as</span> readmission_count</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> a1.patient_id, a1.discharge_date, a2.admission_date</span>

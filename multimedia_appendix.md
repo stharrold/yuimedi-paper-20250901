@@ -25,11 +25,11 @@
 ## Appendix B: Healthcare NL2SQL Query Examples
 
 ### Patient Population Analysis
-**Natural Language**: "Show me all diabetic patients over 65 who had an HbA1c test in the last 6 months"
+Natural Language: "Show me all diabetic patients over 65 who had an HbA1c test in the last 6 months"
 
-**Rationale**: Aligned with NCQA HEDIS measures for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult populations.
+Rationale: Aligned with NCQA HEDIS measures for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult populations.
 
-**Generated SQL**:
+Generated SQL:
 ```sql
 SELECT p.patient_id, p.age, l.test_date, l.result_value
 FROM patients p
@@ -42,11 +42,11 @@ WHERE d.icd10_code LIKE 'E11%'  -- Type 2 Diabetes
 ```
 
 ### Complex Clinical Cohort: Heart Failure Readmission Risk
-**Natural Language**: "Identify patients discharged with Heart Failure in 2024 who had a readmission within 30 days, excluding those discharged to hospice. For each, calculate their max creatinine levels during the index stay."
+Natural Language: "Identify patients discharged with Heart Failure in 2024 who had a readmission within 30 days, excluding those discharged to hospice. For each, calculate their max creatinine levels during the index stay."
 
-**Rationale**: Supports CMS Hospital Readmissions Reduction Program (HRRP) tracking by identifying 30-day all-cause readmissions for Heart Failure (HF) index stays, with standard exclusions (hospice).
+Rationale: Supports CMS Hospital Readmissions Reduction Program (HRRP) tracking by identifying 30-day all-cause readmissions for Heart Failure (HF) index stays, with standard exclusions (hospice).
 
-**Generated SQL**:
+Generated SQL:
 ```sql
 WITH IndexAdmissions AS (
     -- Identify index admissions for Heart Failure
@@ -90,11 +90,11 @@ GROUP BY r.patient_id, r.index_admission_id, r.days_to_readmit;
 ```
 
 ### Quality Metrics
-**Natural Language**: "How many patients were readmitted within 30 days of discharge for heart failure?"
+Natural Language: "How many patients were readmitted within 30 days of discharge for heart failure?"
 
-**Rationale**: Aligned with CMS Hospital Readmissions Reduction Program (HRRP) requirements, demonstrating aggregation capabilities for organizational quality reporting by specifically tracking 30-day readmission rates for heart failure populations.
+Rationale: Aligned with CMS Hospital Readmissions Reduction Program (HRRP) requirements, demonstrating aggregation capabilities for organizational quality reporting by specifically tracking 30-day readmission rates for heart failure populations.
 
-**Generated SQL**:
+Generated SQL:
 ```sql
 SELECT COUNT(DISTINCT r.patient_id) as readmission_count
 FROM (
