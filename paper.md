@@ -539,7 +539,7 @@ These observations represent documented market events; however, establishing cau
 
 ### Deployment Constraint Mismatch
 
-Healthcare organizations increasingly require solutions functional in secure, network-isolated environments due to regulatory requirements and data governance policies. General-purpose cloud AI services cannot meet these deployment constraints while simultaneously lacking the institution-specific context necessary for accurate analytics. The fundamental requirement that institutional knowledge must be captured, preserved, and accessed within each organization's specific environment cannot be addressed by standardized cloud offerings.
+Healthcare organizations increasingly require solutions functional in secure, network-isolated environments due to regulatory requirements and data governance policies [@nashid2023; @bogaert2021]. General-purpose cloud AI services cannot meet these deployment constraints while simultaneously lacking the institution-specific context necessary for accurate analytics. The fundamental requirement that institutional knowledge must be captured, preserved, and accessed within each organization's specific environment cannot be addressed by standardized cloud offerings [@yang2020; @ozalp2022].
 
 These dynamics explain why, despite technological capability, the healthcare analytics maturity gap persists. Solutions must be designed for institution-specific deployment rather than cross-organizational standardization.
 
