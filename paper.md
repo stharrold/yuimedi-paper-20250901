@@ -566,7 +566,7 @@ The evidence base includes important caveats. Ziletti and D'Ambrosi [@ziletti202
 
 ## Limitations
 
-Despite strong evidence supporting conversational AI adoption, several limitations must be acknowledged:
+While the three-pillar framework provides a comprehensive lens for understanding healthcare analytics challenges, several limitations regarding the proposed technological solutions and the current evidence base must be acknowledged:
 
 ### Implementation Complexity
 Healthcare environments present unique complexity challenges including regulatory requirements, legacy system integration, and change management across diverse user populations. Implementation timelines reflect this complexity, though low-code approaches compare favorably to traditional analytics infrastructure projects. Healthcare and pharmaceutical organizations face particularly acute legacy modernization challenges, paralleling patterns documented in broader enterprise software contexts [@anthropic2025].
