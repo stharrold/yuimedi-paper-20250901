@@ -514,11 +514,11 @@ Low-code platform ROI provides analogous evidence for the value of technical bar
 
 Despite substantial evidence supporting conversational AI in healthcare analytics, several research gaps persist:
 
-1. **Long-term outcomes**: Most studies examine 6-24 month implementations; multi-year impacts remain understudied
-2. **Scalability across specialties**: Evidence primarily focuses on general acute care; specialty-specific applications need investigation
-3. **Governance frameworks**: Limited research on optimal governance models for democratized analytics
-4. **Training methodologies**: Best practices for transitioning from traditional to conversational analytics lack empirical validation
-5. **Integration patterns**: Architectural guidance for incorporating conversational AI into existing healthcare IT ecosystems remains sparse
+1. **Long-term outcomes**: Most studies examine 6-24 month implementations [@dadi2025; @pennington2023]; multi-year impacts remain understudied
+2. **Scalability across specialties**: Evidence primarily focuses on general acute care [@wang2020; @lee2023]; specialty-specific applications need investigation
+3. **Governance frameworks**: Limited research on optimal governance models for democratized analytics [@himss2024; @snowdon2024b]
+4. **Training methodologies**: Best practices for transitioning from traditional [@musa2023] to conversational analytics lack empirical validation
+5. **Integration patterns**: Architectural guidance for incorporating conversational AI into existing healthcare IT ecosystems remains sparse [@yang2025; @park2024]
 6. **Long-term productivity tracking**: While peer-reviewed studies now document immediate productivity gains (63% self-service adoption increase, 37% data retrieval time reduction, 10-30% query completion time improvement [@yuan2019], [@dadi2025], [@shah2020], [@ipeirotis2025]), longitudinal studies tracking sustained productivity improvements over multiple years remain limited
 7. **Citizen developer productivity methodology**: No validated healthcare-specific instrument exists for measuring citizen developer productivity. While Berkshire NHS reports over 1,600 citizen developers [@berkshire2024], the methodology for quantifying their productivity contributions lacks standardization across studies
 8. **AMAM-specific outcome evidence**: The HIMSS Analytics Maturity Assessment Model (AMAM) was released in October 2024; existing outcome studies linking maturity stages to patient outcomes use the older EMRAM (EHR adoption) model [@snowdon2024; @snowdon2024a]. As of this review, AMAM-specific outcome studies remain very limited, providing only emerging evidence for analytics maturity (as distinct from EHR adoption) impact on outcomes
