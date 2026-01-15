@@ -572,7 +572,7 @@ While the three-pillar framework provides a comprehensive lens for understanding
 Healthcare environments present unique complexity challenges including regulatory requirements, legacy system integration, and change management across diverse user populations [@ozalp2022; @gal2019; @shahbaz2019]. Implementation timelines reflect this complexity, though low-code approaches compare favorably to traditional analytics infrastructure projects. Healthcare and pharmaceutical organizations face particularly acute legacy modernization challenges, paralleling patterns documented in broader enterprise software contexts [@anthropic2025].
 
 ### Context-Specific Customization Requirements
-Healthcare organizations vary significantly in data structures, clinical workflows, and analytical needs. Evidence suggests that successful implementations require substantial customization to organizational contexts, potentially limiting the applicability of standardized approaches.
+Healthcare organizations vary significantly in data structures, clinical workflows, and analytical needs. Evidence suggests that successful implementations require substantial customization to organizational contexts, potentially limiting the applicability of standardized approaches [@zheng2020; @yang2020].
 
 ### Long-Term Outcome Uncertainties
 Most studies examine 6-24 month implementations. Questions remain about long-term sustainability, user engagement over extended periods, and the evolution of organizational capabilities beyond initial deployment periods. The research gap analysis in the Literature Review identifies this as a priority area for future investigation.
