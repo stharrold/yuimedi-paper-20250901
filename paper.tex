@@ -2397,9 +2397,10 @@ conversational AI approach against established alternatives:
   working to document. Evidence suggests this negatively impacts
   participation and leads to inaccurate records due to cognitive load
   (\citeproc{ref-whittaker2008}{108}). In contrast, conversational
-  interfaces represent active capture where the query itself is the
-  documentation (\citeproc{ref-moore2018}{109}), integrating knowledge
-  preservation directly into the analytical workflow.
+  interfaces represent active capture (Active Validation) where the
+  query itself is the documentation (\citeproc{ref-moore2018}{109}),
+  integrating knowledge preservation directly into the analytical
+  workflow.
 \item
   \textbf{Governance vs.~Shadow IT}: Rigid, centralized models often
   drive analysts toward Shadow IT (extracting raw data to Excel) to
@@ -2425,11 +2426,12 @@ conversational AI approach against established alternatives:
 \subsubsection{Lifecycle Management: Continuous Analytic
 Integration}\label{lifecycle-management-continuous-analytic-integration}
 
-A validated SQL query is often treated as a static artifact, but in
-healthcare, database schemas (Epic, Cerner, OMOP) change frequently,
-breaking ``frozen'' code. To address ``Schema Drift,'' analytics must
-adopt principles from software engineering: \textbf{Continuous Analytic
-Integration}.
+Leveraging the property of Executability, a validated SQL query is
+treated not as a static artifact but as a software asset within a CI/CD
+pipeline. In healthcare, database schemas (Epic, Cerner, OMOP) change
+frequently, breaking ``frozen'' code. To address ``Schema Drift,''
+analytics must adopt principles from software engineering:
+\textbf{Continuous Analytic Integration}.
 
 In this approach, Validated Query Pairs are managed not as wiki entries
 but as software assets within a CI/CD pipeline. When the data warehouse

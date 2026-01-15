@@ -269,10 +269,10 @@ processing, knowledge portal, conversational AI" />
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  
-  
-  
-  
+
+
+
+
 </head>
 <body>
 <header id="title-block-header">
@@ -2741,9 +2741,9 @@ where users must stop working to document. Evidence suggests this
 negatively impacts participation and leads to inaccurate records due to
 cognitive load <span class="citation" data-cites="whittaker2008">(<a
 href="#ref-whittaker2008" role="doc-biblioref">108</a>)</span>. In
-contrast, conversational interfaces represent active capture where the
-query itself is the documentation <span class="citation"
-data-cites="moore2018">(<a href="#ref-moore2018"
+contrast, conversational interfaces represent active capture (Active
+Validation) where the query itself is the documentation <span
+class="citation" data-cites="moore2018">(<a href="#ref-moore2018"
 role="doc-biblioref">109</a>)</span>, integrating knowledge preservation
 directly into the analytical workflow.</p></li>
 <li><p><strong>Governance vs. Shadow IT</strong>: Rigid, centralized
@@ -2777,11 +2777,12 @@ flawed metrics.</p></li>
 id="lifecycle-management-continuous-analytic-integration"><span
 class="header-section-number">5.4.3</span> Lifecycle Management:
 Continuous Analytic Integration</h3>
-<p>A validated SQL query is often treated as a static artifact, but in
-healthcare, database schemas (Epic, Cerner, OMOP) change frequently,
-breaking “frozen” code. To address “Schema Drift,” analytics must adopt
-principles from software engineering: <strong>Continuous Analytic
-Integration</strong>.</p>
+<p>Leveraging the property of Executability, a validated SQL query is
+treated not as a static artifact but as a software asset within a CI/CD
+pipeline. In healthcare, database schemas (Epic, Cerner, OMOP) change
+frequently, breaking “frozen” code. To address “Schema Drift,” analytics
+must adopt principles from software engineering: <strong>Continuous
+Analytic Integration</strong>.</p>
 <p>In this approach, Validated Query Pairs are managed not as wiki
 entries but as software assets within a CI/CD pipeline. When the data
 warehouse schema is updated (e.g., a quarterly EHR upgrade), the system
