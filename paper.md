@@ -575,7 +575,7 @@ Healthcare environments present unique complexity challenges including regulator
 Healthcare organizations vary significantly in data structures, clinical workflows, and analytical needs. Evidence suggests that successful implementations require substantial customization to organizational contexts, potentially limiting the applicability of standardized approaches [@zheng2020; @yang2020].
 
 ### Long-Term Outcome Uncertainties
-Most studies examine 6-24 month implementations. Questions remain about long-term sustainability, user engagement over extended periods, and the evolution of organizational capabilities beyond initial deployment periods. The research gap analysis in the Literature Review identifies this as a priority area for future investigation.
+Most studies examine 6-24 month implementations [@berkshire2024; @sezgin2022]. Questions remain about long-term sustainability, user engagement over extended periods, and the evolution of organizational capabilities beyond initial deployment periods. The research gap analysis in the Literature Review identifies this as a priority area for future investigation.
 
 ### Governance and Quality Assurance Challenges
 Democratizing analytics access creates new challenges in maintaining data quality, analytical rigor, and clinical safety standards. While the evidence shows reduced error rates with conversational AI, healthcare organizations must develop new governance frameworks for managing distributed analytical capabilities.
