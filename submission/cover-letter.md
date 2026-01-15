@@ -35,8 +35,8 @@ Gemini CLI (Gemini 3, Google) assisted with manuscript editing and refinement. T
 ## Corresponding Author
 
 Samuel T Harrold
+
 Email: samuel.harrold@yuimedi.com
-Contact: https://us.yuimedi.com/contact-us/
 
 ## Article Processing Fee
 
@@ -51,4 +51,5 @@ Thank you for considering this manuscript. I believe it will be of significant i
 Sincerely,
 
 Samuel T Harrold
+
 Yuimedi, Inc.
