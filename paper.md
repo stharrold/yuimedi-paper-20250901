@@ -668,7 +668,7 @@ The three-pillar framework enables organizational self-assessment to determine r
 
 **Pillar 1: Analytics Maturity**
 
-| Indicator | Low Strength (1) | Medium Strength (2) | High Strength (3) | Evidence |
+| Indicator | Low Strength (1) | Med. Strength (2) | High Strength (3) | Evidence |
 |-----------|------------------|---------------------|-------------------|----------|
 | HIMSS AMAM Stage | Stages 0-2: Fragmented data, limited reporting | Stages 3-4: Integrated warehouse, standardized definitions | Stages 5-7: Predictive analytics, AI integration | [@himss2024; @health2020] |
 | Self-service analytics | None; all analytics require IT intervention | Partial; BI tools available but underutilized | Widespread; clinical staff access data directly | [@berkshire2024; @wang2018] |
@@ -676,7 +676,7 @@ The three-pillar framework enables organizational self-assessment to determine r
 
 **Pillar 2: Workforce Agility**
 
-| Indicator | Low Strength (1) | Medium Strength (2) | High Strength (3) | Evidence |
+| Indicator | Low Strength (1) | Med. Strength (2) | High Strength (3) | Evidence |
 |-----------|------------------|---------------------|-------------------|----------|
 | First-year Staff Turnover | >30% (High Instability) | 15-30% | <15% (High Stability) | [@nsi2025] |
 | Leadership Stability (CIO) | Tenure < 3 years | Tenure 3-5 years | Tenure > 5 years | [@wittkieffer2024] |
@@ -686,10 +686,10 @@ The three-pillar framework enables organizational self-assessment to determine r
 
 **Pillar 3: Technical Enablement**
 
-| Indicator | Low Strength (1) | Medium Strength (2) | High Strength (3) | Evidence |
+| Indicator | Low Strength (1) | Med. Strength (2) | High Strength (3) | Evidence |
 |-----------|------------------|---------------------|-------------------|----------|
 | Data access | SQL/technical expertise required for all queries | IT queue for complex queries; basic self-service | Natural language or visual query interfaces | [@wang2018; @pesqueira2020] |
-| Interoperability | Fragmented systems; manual reconciliation required | Partial integration; some automated feeds | Unified data platform; real-time integration | [@gal2019; @bogaert2021] |
+| Inter-operability | Fragmented systems; manual reconciliation required | Partial integration; some automated feeds | Unified data platform; real-time integration | [@gal2019; @bogaert2021] |
 | Skills gap impact | Critical shortage preventing data utilization | Acknowledged deficit with mitigation plans | Sufficient analysts across departments | [@bardsley2016; @pesqueira2020] |
 
 **Multi-Pillar Convergence Assessment:**
@@ -698,7 +698,7 @@ The three-pillar framework enables organizational self-assessment to determine r
 |------------------------|---------------------|---------------------------|
 | All pillars Low Strength | Self-reinforcing degradation cycle | All three dimensions interact; comprehensive organizational assessment warranted |
 | 1-2 pillars Low Strength | Compounding effects present | Framework reveals interconnections requiring multi-dimensional analysis |
-| All pillars High Strength | Continuous improvement stance | Monitor for emerging challenges; single-pillar focus may suffice |
+| 0 pillars Low Strength | Continuous improvement stance | Monitor for emerging challenges; single-pillar focus may suffice |
 
 The framework reveals why convergence matters: organizations facing Higher Risk across multiple pillars experience compounding effects where challenges in one domain exacerbate challenges in others. For example, technical barriers that prevent knowledge capture interact with workforce turnover to accelerate institutional memory loss, which in turn degrades analytics maturity. This multi-pillar perspective explains why single-domain interventions often produce limited results.
 
