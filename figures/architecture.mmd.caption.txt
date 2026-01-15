@@ -1,1 +1,1 @@
-Healthcare analytics architecture for conversational natural language to SQL (NL2SQL) generation.
+    Healthcare analytics architecture for conversational natural language to SQL (NL2SQL) generation.
