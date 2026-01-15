@@ -181,7 +181,7 @@
 \definecolor{default-urlcolor}{HTML}{4077C0}
 
 \hypersetup{
-  pdftitle={Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity{,} Workforce Agility{,} and Technical Enablement},
+  pdftitle={Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement},
   pdfauthor={Samuel T Harrold, Yuimedi},
   pdflang={en-US},
   pdfkeywords={healthcare analytics, healthcare informatics, analytical
@@ -766,7 +766,7 @@ informatics literature:
 
 \begin{figure}
 \centering
-\pandocbounded{\includegraphics[keepaspectratio,alt={Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation. Bi-directional arrows at steps 5 and 8 represent the iterative `Query \& Refine' loop where users refine their intent based on delivered insights. The critical validation step (dotted bi-directional line) shows domain experts confirming or correcting generated SQL before results are trusted. Validated NL+SQL pairs flow to organizational memory (dashed line), where they persist independent of staff tenure and inform future query generation.}]{figures/architecture.mmd.png}}
+\includegraphics{figures/architecture.mmd.png}
 \caption{Healthcare Analytics Architecture. Solid lines indicate the
 primary data flow from clinical user natural language queries through a
 conversational AI interface to a healthcare NLP engine for context-aware
@@ -832,7 +832,7 @@ The six-step cycle (Figure 2) illustrates this approach:
 
 \begin{figure}
 \centering
-\pandocbounded{\includegraphics[keepaspectratio,alt={The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) AI provides a natural language explanation of the SQL logic; domain expert confirms the intent and results, (4) validated pairs are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.}]{figures/knowledge-cycle.mmd.png}}
+\includegraphics{figures/knowledge-cycle.mmd.png}
 \caption{The Validated Query Cycle, shown as six numbered steps in the
 diagram. (1) Domain experts ask natural language questions, (2) the
 system generates candidate SQL, (3) AI provides a natural language
@@ -983,7 +983,7 @@ assessment to the final corpus of included sources.
 
 \begin{figure}
 \centering
-\pandocbounded{\includegraphics[keepaspectratio,alt={Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 137 sources (125 academic, 12 industry). Diagram source available in figures/literature-flow.mmd.}]{figures/literature-flow.mmd.png}}
+\includegraphics{figures/literature-flow.mmd.png}
 \caption{Literature Selection Flow Diagram. The diagram shows the
 progression from initial database search (n ≈ 570) through
 title/abstract screening, full-text review, and quality assessment
@@ -1041,12 +1041,12 @@ sponsorship were retained when no independent alternative existed but
 flagged in-text. Table 2 summarizes the assessment.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.3200}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2080}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1920}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1600}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0800}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0080}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.3200}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2080}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1920}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1600}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0800}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0080}}@{}}
 \caption{AACODS Assessment of Industry Sources.
 \label{tbl:aacods}}\tabularnewline
 \toprule\noalign{}
@@ -1057,7 +1057,7 @@ Authority / Accuracy
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Coverage / Objectivity
 \end{minipage} &
-\multicolumn{3}{>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2480} + 4\tabcolsep}@{}}{%
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2480} + 4\tabcolsep}@{}}{%
 \begin{minipage}[b]{\linewidth}\raggedright
 Date / Significance\textbar{} Include
 \end{minipage}} \\
@@ -1071,7 +1071,7 @@ Authority / Accuracy
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Coverage / Objectivity
 \end{minipage} &
-\multicolumn{3}{>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2480} + 4\tabcolsep}@{}}{%
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2480} + 4\tabcolsep}@{}}{%
 \begin{minipage}[b]{\linewidth}\raggedright
 Date / Significance\textbar{} Include
 \end{minipage}} \\
@@ -2548,13 +2548,12 @@ advancement (Analytics Maturity).
 
 \textbf{Pillar 1: Analytics Maturity}
 
-{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1392}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2278}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2658}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2405}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1266}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1392}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2278}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2658}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2405}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1266}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2583,17 +2582,15 @@ AI/NL interface & No NL2SQL or conversational analytics & Pilot programs
 or evaluation underway & Natural language query capability deployed &
 (\citeproc{ref-ziletti2024}{20},\citeproc{ref-wang2020}{80}) \\
 \end{longtable}
-}
 
 \textbf{Pillar 2: Workforce Agility}
 
-{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1392}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2278}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2658}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2405}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1266}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1392}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2278}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2658}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2405}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1266}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2627,17 +2624,15 @@ Tacit knowledge capture & Person-dependent; undocumented tribal
 knowledge & Partial documentation exists & Expertise embedded in
 systems/AI & (\citeproc{ref-benbya2004}{37}) \\
 \end{longtable}
-}
 
 \textbf{Pillar 3: Technical Enablement}
 
-{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1392}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2278}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2658}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2405}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1266}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1392}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2278}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2658}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2405}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1266}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2667,15 +2662,13 @@ Acknowledged deficit with mitigation plans & Sufficient analysts across
 departments &
 (\citeproc{ref-bardsley2016}{52},\citeproc{ref-pesqueira2020}{53}) \\
 \end{longtable}
-}
 
 \textbf{Multi-Pillar Convergence Assessment:}
 
-{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2917}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3750}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3750}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Organizational Profile
@@ -2696,7 +2689,6 @@ reveals interconnections requiring multi-dimensional analysis \\
 0 pillars Low Strength & Continuous improvement stance & Monitor for
 emerging challenges; single-pillar focus may suffice \\
 \end{longtable}
-}
 
 The framework reveals why convergence matters: organizations facing
 ``Low Strength'' conditions across multiple pillars experience
@@ -2891,7 +2883,7 @@ Model (AMAM) Stages and Healthcare NL2SQL Query Examples (see
 
 \section{References}\label{references}
 
-\protect\phantomsection\label{refs}
+\phantomsection\label{refs}
 \begin{CSLReferences}{0}{1}
 \bibitem[\citeproctext]{ref-american2023}
 \CSLLeftMargin{1. }%
@@ -3022,7 +3014,7 @@ Available from:
 
 \bibitem[\citeproctext]{ref-mosqueirarey2023}
 \CSLLeftMargin{19. }%
-\CSLRightInline{{Mosqueira-Rey E et al.} Human-in-the-loop machine
+\CSLRightInline{Mosqueira-Rey E et al. Human-in-the-loop machine
 learning: A state of the art. Artificial Intelligence Review
 {[}Internet{]}. 2023;56:3005--54. Available from:
 \url{https://link.springer.com/content/pdf/10.1007/s10462-022-10246-w.pdf}}
@@ -3287,7 +3279,7 @@ Available from:
 
 \bibitem[\citeproctext]{ref-lismont2017}
 \CSLLeftMargin{57. }%
-\CSLRightInline{{Lismont J, Vanthienen J, Baesens B, et al.} {Defining
+\CSLRightInline{Lismont J, Vanthienen J, Baesens B, et al. {Defining
 analytics maturity indicators: A survey approach}. International Journal
 of Information Management {[}Internet{]}. 2017;37(3):114--24. Available
 from:
@@ -3295,7 +3287,7 @@ from:
 
 \bibitem[\citeproctext]{ref-yang2021}
 \CSLLeftMargin{58. }%
-\CSLRightInline{{Yang DX, Khera R, Miccio JA, Jairam V, et al.}
+\CSLRightInline{Yang DX, Khera R, Miccio JA, Jairam V, et al.
 {Prevalence of missing data in the national cancer database and
 association with overall survival}. JAMA Network Open {[}Internet{]}.
 2021;4(3):e211793. Available from:
@@ -3303,7 +3295,7 @@ association with overall survival}. JAMA Network Open {[}Internet{]}.
 
 \bibitem[\citeproctext]{ref-arts2002}
 \CSLLeftMargin{59. }%
-\CSLRightInline{{Arts DG, De Keizer NF, et al.} {Defining and improving
+\CSLRightInline{Arts DG, De Keizer NF, et al. {Defining and improving
 data quality in medical registries: a literature review, case study, and
 generic framework}. Journal of the American Medical Informatics
 Association {[}Internet{]}. 2002;9(6):600--11. Available from:
@@ -3311,7 +3303,7 @@ Association {[}Internet{]}. 2002;9(6):600--11. Available from:
 
 \bibitem[\citeproctext]{ref-mccoy2013}
 \CSLLeftMargin{60. }%
-\CSLRightInline{{McCoy AB, Wright A, Kahn MG, Shapiro JS, et al.}
+\CSLRightInline{McCoy AB, Wright A, Kahn MG, Shapiro JS, et al.
 {Matching identifiers in electronic health records: implications for
 duplicate records and patient safety}. BMJ Quality \& Safety
 {[}Internet{]}. 2013;22(3):219--24. Available from:
@@ -3326,7 +3318,7 @@ expertise in clinical data pipelines}. JMIR Medical Informatics
 
 \bibitem[\citeproctext]{ref-sirgo2018}
 \CSLLeftMargin{62. }%
-\CSLRightInline{{Sirgo G, Esteban G Francisco icon, Moreno G, et al.}
+\CSLRightInline{Sirgo G, Esteban G Francisco icon, Moreno G, et al.
 {Validation of the ICU-DaMa tool for automatically extracting variables
 for minimum dataset and quality indicators: The importance of data
 quality assessment}. International Journal of Medical Informatics
@@ -3335,7 +3327,7 @@ quality assessment}. International Journal of Medical Informatics
 
 \bibitem[\citeproctext]{ref-shi2021}
 \CSLLeftMargin{63. }%
-\CSLRightInline{{Shi X, Prins C, Van Pottelbergh G, Mamouris P, et al.}
+\CSLRightInline{Shi X, Prins C, Van Pottelbergh G, Mamouris P, et al.
 {An automated data cleaning method for Electronic Health Records by
 incorporating clinical knowledge}. BMC Medical Informatics and Decision
 Making {[}Internet{]}. 2021;21:1--12. Available from:
@@ -3343,7 +3335,7 @@ Making {[}Internet{]}. 2021;21:1--12. Available from:
 
 \bibitem[\citeproctext]{ref-dugas2016}
 \CSLLeftMargin{64. }%
-\CSLRightInline{{Dugas M, Neuhaus P, Meidt A, Doods J, Storck M, et al.}
+\CSLRightInline{Dugas M, Neuhaus P, Meidt A, Doods J, Storck M, et al.
 {Portal of medical data models: information infrastructure for medical
 research and healthcare}. Database {[}Internet{]}. 2016;2016. Available
 from:
@@ -3351,7 +3343,7 @@ from:
 
 \bibitem[\citeproctext]{ref-bokov2017}
 \CSLLeftMargin{65. }%
-\CSLRightInline{{Bokov AF, Bos AB, Manuel LS, et al.} {Using prevalence
+\CSLRightInline{Bokov AF, Bos AB, Manuel LS, et al. {Using prevalence
 patterns to discover un-mapped flowsheet data in an electronic health
 record data warehouse}. In: 2017 IEEE 30th international symposium on
 computer-based medical systems (CBMS) {[}Internet{]}. IEEE; 2017. p.
@@ -3360,7 +3352,7 @@ computer-based medical systems (CBMS) {[}Internet{]}. IEEE; 2017. p.
 
 \bibitem[\citeproctext]{ref-ulrich2022}
 \CSLLeftMargin{66. }%
-\CSLRightInline{{Ulrich H, Kock-Schoppenhauer AK, et al.} {Understanding
+\CSLRightInline{Ulrich H, Kock-Schoppenhauer AK, et al. {Understanding
 the nature of metadata: systematic review}. Journal of Medical Internet
 Research {[}Internet{]}. 2022;24(1):e25440. Available from:
 \url{https://www.jmir.org/2022/1/e25440/}}
@@ -3509,9 +3501,9 @@ from: \url{https://www.mdpi.com/2504-2289/9/10/256}}
 
 \bibitem[\citeproctext]{ref-lee2023}
 \CSLLeftMargin{87. }%
-\CSLRightInline{{Lee et al G.} {EHRSQL: A practical text-to-SQL
-benchmark for electronic health records}. In: Proceedings of NeurIPS
-2022 {[}Internet{]}. 2023. Available from:
+\CSLRightInline{Lee et al G. {EHRSQL: A practical text-to-SQL benchmark
+for electronic health records}. In: Proceedings of NeurIPS 2022
+{[}Internet{]}. 2023. Available from:
 \url{https://arxiv.org/abs/2301.07695}}
 
 \bibitem[\citeproctext]{ref-sivasubramaniam2024}
@@ -3660,14 +3652,14 @@ International Journal of Environmental Research and Public Health
 
 \bibitem[\citeproctext]{ref-moore2018}
 \CSLLeftMargin{107. }%
-\CSLRightInline{{Moore D et al.} {ActiveNavigator: Toward real-time
+\CSLRightInline{Moore D et al. {ActiveNavigator: Toward real-time
 knowledge capture and feedback in active learning spaces}. International
 Journal of Engineering Education {[}Internet{]}. 2018;34(2):1--12.
 Available from: \url{https://wendyju.com/publications/18_ijee3593.pdf}}
 
 \bibitem[\citeproctext]{ref-yang2025}
 \CSLLeftMargin{108. }%
-\CSLRightInline{{Yang EW, Waldrup B, et al.} {Conversational Artificial
+\CSLRightInline{Yang EW, Waldrup B, et al. {Conversational Artificial
 Intelligence for Integrating Social Determinants, Genomics, and Clinical
 Data in Precision Medicine: Development and Evaluation}. JMIR
 Bioinformatics and Digital Health {[}Internet{]}. 2025; Available from:
@@ -3824,7 +3816,7 @@ Informatics. 2007;76(2-3):201--7. }
 
 \bibitem[\citeproctext]{ref-oliveira2023}
 \CSLLeftMargin{129. }%
-\CSLRightInline{{Oliveira MAP et al.} Semantic modelling for enterprise
+\CSLRightInline{Oliveira MAP et al. Semantic modelling for enterprise
 data governance 4.0. arXiv preprint arXiv:231102082 {[}Internet{]}.
 2023; Available from: \url{https://arxiv.org/pdf/2311.02082}}
 
