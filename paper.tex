@@ -97,6 +97,7 @@
 \AfterEndEnvironment{lstlisting}{\end{minipage}\par\addvspace{\topskip}}
 \usepackage{longtable,booktabs,array}
 \newcounter{none} % for unnumbered tables
+\usepackage{multirow}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -1113,66 +1114,60 @@ sponsorship were retained when no independent alternative existed but
 flagged in-text. Table 2 summarizes the assessment.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.3053}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1985}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1832}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1527}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1221}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0076}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2759}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1897}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1897}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2356}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0920}}@{}}
 \caption{AACODS Assessment of Industry Sources.
 \label{tbl:aacods}}\tabularnewline
 \toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Source (Citation)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Authority / Accuracy
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Coverage / Objectivity
-\end{minipage} &
-\multicolumn{3}{>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2824} + 4\tabcolsep}@{}}{%
-\begin{minipage}[b]{\linewidth}\raggedright
-Date / Significance\textbar{} Include
-\end{minipage}} \\
-\midrule\noalign{}
 \endfirsthead
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Source (Citation)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Authority / Accuracy
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Coverage / Objectivity
-\end{minipage} &
-\multicolumn{3}{>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2824} + 4\tabcolsep}@{}}{%
-\begin{minipage}[b]{\linewidth}\raggedright
-Date / Significance\textbar{} Include
-\end{minipage}} \\
-\midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-HIMSS AMAM (\citeproc{ref-himss2024}{2}) & High† / Verifiable & Global /
-High & 2024 / High & Yes & \\
+\multirow{2}{=}{\begin{minipage}[t]{\linewidth}\raggedright
+\section{Source (Citation)}\label{source-citation}
+
+HIMSS AMAM (\citeproc{ref-himss2024}{2})
+\end{minipage}} &
+\multirow{2}{=}{\begin{minipage}[t]{\linewidth}\raggedright
+\section{Authority / Accuracy}\label{authority-accuracy}
+
+High† / Verifiable
+\end{minipage}} &
+\multirow{2}{=}{\begin{minipage}[t]{\linewidth}\raggedright
+\section{Coverage / Objectivity}\label{coverage-objectivity}
+
+Global / High
+\end{minipage}} & \multirow{2}{=}{Date / Significance
+================================-------- 2024 / High} &
+\multirow{2}{=}{\begin{minipage}[t]{\linewidth}\raggedright
+\section{Include}\label{include}
+
+Yes
+\end{minipage}} \\
+ \\
 Snowdon/HIMSS (\citeproc{ref-snowdon2024b}{22}) & High‡ / Verifiable &
-N/A / High & 2024 / Medium & Yes & \\
+N/A / High & 2024 / Medium & Yes \\
 Health Catalyst (\citeproc{ref-health2020}{23}) & Medium§ / Unverifiable
-& US / Low & 2020 / Medium & Yes* & \\
+& US / Low & 2020 / Medium & Yes* \\
 Berkshire NHS (\citeproc{ref-berkshire2024}{24}) & High¶ / Verifiable &
-Single site / High & 2024 / High & Yes & \\
+Single site / High & 2024 / High & Yes \\
 Forrester/Microsoft (\citeproc{ref-forrester2024}{25}) & Medium∥ /
-Unverifiable & Enterprise / Low♢ & 2024 / Medium & Yes* & \\
+Unverifiable & Enterprise / Low♢ & 2024 / Medium & Yes* \\
 Oracle (\citeproc{ref-oracle2024}{26}) & Low§ / Unverifiable & N/A / Low
-& 2024 / Low & Yes* & \\
+& 2024 / Low & Yes* \\
 Precedence Research (\citeproc{ref-precedence2024}{27}) & Medium\# /
-Unverifiable & Global / Medium & 2024 / Medium & Yes & \\
+Unverifiable & Global / Medium & 2024 / Medium & Yes \\
 Anthropic (\citeproc{ref-anthropic2025}{10}) & Medium§ / Verifiable &
-N/A / Medium & 2025 / Low & Yes & \\
+N/A / Medium & 2025 / Low & Yes \\
 IBM Newsroom (\citeproc{ref-ibm2022}{28}) & High** / Verifiable & N/A /
-High & 2022 / High & Yes & \\
+High & 2022 / High & Yes \\
 CNBC/Haven (\citeproc{ref-lavito2021}{29}) & High** / Verifiable & N/A /
-High & 2021 / High & Yes & \\
+High & 2021 / High & Yes \\
 AHIMA/NORC (\citeproc{ref-american2023}{1}) & High†† / Verifiable & US /
-High & 2023 / High & Yes & \\
+High & 2023 / High & Yes \\
 \end{longtable}
 
 †Industry standards body. ‡HIMSS officer. §Vendor. ¶NHS trust. ∥Analyst
@@ -2622,11 +2617,11 @@ advancement (Analytics Maturity).
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1070}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2279}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2837}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2372}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1302}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0861}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2659}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2659}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2659}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1049}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2661,11 +2656,11 @@ or evaluation underway & Natural language query capability deployed &
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1162}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2475}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2273}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2323}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1616}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0849}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2620}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2620}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2620}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1181}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2712,11 +2707,11 @@ systems/AI & (\citeproc{ref-benbya2004}{37}) \\
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1090}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2512}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2417}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2227}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1611}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0842}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2601}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2601}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2601}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1245}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2752,9 +2747,9 @@ departments &
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1824}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5608}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1392}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3660}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4897}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Organizational Profile
