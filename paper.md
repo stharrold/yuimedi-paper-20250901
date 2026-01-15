@@ -161,9 +161,13 @@ The six-step cycle (Figure 2) illustrates this approach:
 
 5.  *Retrieval*: When future users ask similar questions, the system retrieves relevant validated pairs, reducing dependence on individual expertise.
 
-6.  *Persistence*: When the original expert leaves, their analytical knowledge remains embedded in the system. New staff inherit executable knowledge rather than starting from scratch.
+6. *Persistence*: When the original expert leaves, their analytical knowledge remains embedded in the system. New staff inherit executable knowledge rather than starting from scratch.
 
-![The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) AI provides a natural language explanation of the SQL logic; domain expert confirms the intent and results, (4) validated pairs are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.](figures/knowledge-cycle.mmd.png)
+
+
+![The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) AI provides a natural language explanation of the SQL logic; domain expert confirms the intent and results, (4) validated pairs are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.](figures/knowledge-cycle.mmd.png){width=100%}
+
+
 
 This cycle breaks the compounding effect identified in the three-pillar framework: turnover no longer erases analytical knowledge because expertise is embedded in validated query pairs rather than individual memory. Low-maturity organizations can accelerate advancement by accumulating validated queries, and technical barriers are reduced because new staff access proven query patterns rather than recreating analytical logic.
 
@@ -245,19 +249,19 @@ Exclusion Criteria:
 
 Grey literature sources were assessed using the AACODS checklist [@tyndall2010], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table 2 summarizes the assessment.
 
-| Source (Citation)     | Authority /<br />Accuracy | Coverage /<br />Objectivity | Date /<br />Significance | Include |
-|:----------------------|:---|:---|:---|:---|
-| HIMSS AMAM [@himss2024] | High† /<br />Verifiable | Global /<br />High | 2024 /<br />High | Yes |
-| Snowdon/HIMSS [@snowdon2024b] | High‡ /<br />Verifiable | N/A /<br />High | 2024 /<br />Medium | Yes |
-| Health Catalyst [@health2020] | Medium§ /<br />Unverifiable | US /<br />Low | 2020 /<br />Medium | Yes* |
-| Berkshire NHS [@berkshire2024] | High¶ /<br />Verifiable | Single site /<br />High | 2024 /<br />High | Yes |
-| Forrester/Microsoft [@forrester2024] | Medium∥ /<br />Unverifiable | Enterprise /<br />Low♢ | 2024 /<br />Medium | Yes* |
-| Oracle [@oracle2024] | Low§ /<br />Unverifiable | N/A /<br />Low | 2024 /<br />Low | Yes* |
-| Precedence Research [@precedence2024] | Medium# /<br />Unverifiable | Global /<br />Medium | 2024 /<br />Medium | Yes |
-| Anthropic [@anthropic2025] | Medium§ /<br />Verifiable | N/A /<br />Medium | 2025 /<br />Low | Yes |
-| IBM Newsroom [@ibm2022] | High /<br />Verifiable | N/A /<br />High | 2022 /<br />High | Yes |
-| CNBC/Haven [@lavito2021] | High /<br />Verifiable | N/A /<br />High | 2021 /<br />High | Yes |
-| AHIMA/NORC [@american2023] | High†† /<br />Verifiable | US /<br />High | 2023 /<br />High | Yes |
+| Source (Citation)     | Authority / <br />Accuracy | Coverage / <br />Objectivity | Date / <br />Significance | Include |
+|:---|:---|:---|:---|:---|
+| HIMSS AMAM [@himss2024] | High† / <br />Verifiable | Global / <br />High | 2024 / <br />High | Yes |
+| Snowdon / <br />HIMSS [@snowdon2024b] | High‡ / <br />Verifiable | N/A / <br />High | 2024 / <br />Medium | Yes |
+| Health Catalyst [@health2020] | Medium§ / <br />Unverifiable | US / <br />Low | 2020 / <br />Medium | Yes* |
+| Berkshire NHS [@berkshire2024] | High¶ / <br />Verifiable | Single site / <br />High | 2024 / <br />High | Yes |
+| Forrester / <br />Microsoft [@forrester2024] | Medium∥ / <br />Unverifiable | Enterprise / <br />Low♢ | 2024 / <br />Medium | Yes* |
+| Oracle [@oracle2024] | Low§ / <br />Unverifiable | N/A / <br />Low | 2024 / <br />Low | Yes* |
+| Precedence Research [@precedence2024] | Medium# / <br />Unverifiable | Global / <br />Medium | 2024 / <br />Medium | Yes |
+| Anthropic [@anthropic2025] | Medium§ / <br />Verifiable | N/A / <br />Medium | 2025 / <br />Low | Yes |
+| IBM Newsroom [@ibm2022] | High / <br />Verifiable | N/A / <br />High | 2022 / <br />High | Yes |
+| CNBC / <br />Haven [@lavito2021] | High / <br />Verifiable | N/A / <br />High | 2021 / <br />High | Yes |
+| AHIMA / <br />NORC [@american2023] | High†† / <br />Verifiable | US / <br />High | 2023 / <br />High | Yes |
 
 : AACODS Assessment of Industry Sources. \label{tbl:aacods}
 
