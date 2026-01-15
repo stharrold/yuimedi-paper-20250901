@@ -342,6 +342,21 @@ generate_appendix() {
     else
         error "Appendix HTML generation failed"
     fi
+
+    # Generate DOCX
+    local output_docx="${OUTPUT_DIR}/multimedia_appendix.docx"
+    info "Generating Appendix DOCX: $output_docx"
+    # shellcheck disable=SC2086
+    pandoc "$APPENDIX_FILE" $common_args \
+        --to=docx \
+        --output="$output_docx" \
+        --metadata=title:"Multimedia Appendix"
+
+    if [[ -f "$output_docx" && -s "$output_docx" ]]; then
+        info "Appendix DOCX generated successfully"
+    else
+        error "Appendix DOCX generation failed"
+    fi
 }
 
 # Main
