@@ -711,7 +711,7 @@ When organizations choose to apply the framework and evaluate barrier-reducing t
 - **Human Oversight**: Current NL2SQL limitations require maintaining human review of AI-generated outputs [@ziletti2024]
 
 ### Mitigating "Shadow IT" with "Golden Queries"
-To prevent the "chaos of conflicting definitions" that can arise from democratized analytics, organizations can introduce a "Golden Query" governance status. In this model, a central committee can certify specific validated pairs as the "source of truth" for the organization. This ensures that while many users can create and validate queries, only a select few are designated as the official, trusted queries for key metrics, thus mitigating the risks of "Shadow IT."
+To prevent the "chaos of conflicting definitions" that can arise from democratized analytics, organizations can introduce a "Golden Query" governance status. In this model, a central committee can certify specific validated pairs as the "source of truth" for the organization [@himss2025ucdavis]. This ensures that while many users can create and validate queries, only a select few are designated as the official, trusted queries for key metrics, thus mitigating the risks of "Shadow IT" [@zimmermann2017].
 
 # Conclusion
 
