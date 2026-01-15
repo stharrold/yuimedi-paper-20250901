@@ -10,11 +10,11 @@
 
 Dear Editor,
 
-I am pleased to submit the manuscript titled **"Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Dynamics, and Technical Barriers"** for consideration as a Review article in JMIR Medical Informatics.
+I am pleased to submit the manuscript titled **"Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"** for consideration as a Review article in JMIR Medical Informatics.
 
 ## Background and Significance
 
-Healthcare organizations face three interconnected challenges that create a compounding cycle threatening data-driven transformation: low analytics maturity (only 39 organizations globally have achieved HIMSS AMAM Stage 6-7), systemic workforce instability, and technical barriers in natural language to SQL generation. This review identifies a critical "blind spot" in the literature regarding longitudinal tenure data for healthcare informatics professionals, suggesting that the lack of modern metrics obscures the true severity of institutional memory decay.
+Healthcare organizations face three interconnected challenges that create a compounding cycle threatening data-driven transformation: low analytics maturity (only 39 organizations globally have achieved HIMSS AMAM Stage 6-7), systemic workforce instability, and technical barriers in natural language to SQL generation. This review identifies a critical gap in the literature: while single-domain studies exist for each challenge, few analyze how they interconnect to create institutional memory loss.
 
 ## Methodology
 
@@ -22,7 +22,7 @@ This narrative review synthesizes peer-reviewed studies and industry reports fro
 
 ## Principal Findings
 
-The review contributes: (1) an original three-pillar analytical framework revealing how low maturity accelerates turnover, turnover degrades maturity, and technical barriers prevent recovery; (2) a resolution to the "validator paradox" by reframing validation as informatics "standard work" and an "organizational knowledge ratchet"; (3) a comparative analysis of knowledge preservation strategies contrasting conversational AI against code-based semantic layers and passive documentation; and (4) the positioning of NL2SQL as a "Governance Forcing Function" that compels the codification of tacit business rules.
+The review contributes an original three-pillar analytical framework revealing a self-reinforcing cycle: (1) **Analytics Maturity**: Low maturity leaves clinical decisions unsupported, correlating with higher turnover; (2) **Workforce Impact**: Turnover (~34% implied annual rate) causes institutional memory loss that further degrades capabilities; and (3) **Technical Enablement**: Technical barriers prevent the capture of this knowledge, blocking recovery. The review also identifies **Governance Necessity** as a critical finding, arguing that democratization through NL2SQL requires stricter governance ("Golden Queries") to move from ad-hoc reporting to trusted AI deployment.
 
 ## Conflicts of Interest
 
