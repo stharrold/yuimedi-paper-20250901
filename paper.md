@@ -583,7 +583,7 @@ Democratizing analytics access creates new challenges in maintaining data qualit
 ### Specialty-Specific Application Gaps
 Evidence primarily focuses on general acute care settings [@yang2021; @wang2025]. Applications in specialized domains (oncology, cardiology, mental health) require domain-specific validation and customization that may not generalize from the existing evidence base.
 
-### Methodological Considerations
+### Limitations of the Review Methodology
 
 As a narrative review, this paper has methodological limitations distinct from systematic reviews. The non-exhaustive literature search, single-author synthesis, and post-hoc selection criteria may have introduced selection or interpretation bias. No formal quality assessment tool was applied to included studies. These limitations, documented in detail in the Methodology section, should be considered when interpreting findings. The transparency provided through explicit documentation of search strategies, selection criteria, and synthesis approach enables readers to assess potential biases and evaluate the robustness of conclusions.
 
