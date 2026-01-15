@@ -765,7 +765,7 @@ SQL: Structured Query Language
 
 # Multimedia Appendix
 
-**Multimedia Appendix 1:** HIMSS Analytics Maturity Assessment Model (AMAM) Stages and Healthcare NL2SQL Query Examples.
+**Multimedia Appendix 1:** HIMSS Analytics Maturity Assessment Model (AMAM) Stages and Healthcare NL2SQL Query Examples (see `multimedia_appendix.pdf`).
 
 # References
 

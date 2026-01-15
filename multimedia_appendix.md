@@ -1,6 +1,6 @@
 # Multimedia Appendix 1
 
-## Appendix A: HIMSS Analytics Maturity Assessment Model (AMAM) Stages [@himss2024]
+## Appendix A: HIMSS Analytics Maturity Assessment Model (AMAM) Stages
 
 | Stage | Name | Description | Key Capabilities |
 |-------|------|-------------|------------------|
