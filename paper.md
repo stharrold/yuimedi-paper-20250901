@@ -705,9 +705,9 @@ The framework reveals why convergence matters: organizations facing "Low Strengt
 ### Illustrative Application: Implementation Patterns
 When organizations choose to apply the framework and evaluate barrier-reducing technologies for potential adoption, implementation evidence suggests several factors influence outcomes:
 
-- **Governance Framework Development**: New policies and procedures for democratized analytics
-- **Change Management**: Training and support programs to ensure user adoption
-- **Phased Deployment**: Gradual rollout beginning with analytics-savvy early adopters
+- **Governance Framework Development**: New policies and procedures for democratized analytics [@himss2025ucdavis; @oliveira2023]
+- **Change Management**: Training and support programs to ensure user adoption [@shahbaz2019; @musa2023]
+- **Phased Deployment**: Gradual rollout beginning with analytics-savvy early adopters [@berkshire2024]
 - **Human Oversight**: Current NL2SQL limitations require maintaining human review of AI-generated outputs [@ziletti2024]
 
 ### Mitigating "Shadow IT" with "Golden Queries"
