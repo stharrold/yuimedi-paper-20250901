@@ -1,1 +1,1 @@
-PRISMA 2020 literature selection flow diagram.
+Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 137 sources (125 academic, 12 industry). Diagram source available in figures/literature-flow.mmd.

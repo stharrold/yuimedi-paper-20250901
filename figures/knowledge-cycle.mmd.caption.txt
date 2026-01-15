@@ -1,1 +1,1 @@
-The validated query cycle for persistent organizational knowledge capture.
+The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) AI provides a natural language explanation of the SQL logic; domain expert confirms the intent and results, (4) validated pairs are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.
