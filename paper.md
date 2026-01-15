@@ -789,7 +789,7 @@ SQL: Structured Query Language
 
 # Appendices
 
-## Appendix A: HIMSS Analytics Maturity Assessment Model (AMAM) Stages
+## Appendix A: HIMSS Analytics Maturity Assessment Model (AMAM) Stages [@himss2024]
 
 | Stage | Name | Description | Key Capabilities |
 |-------|------|-------------|------------------|
