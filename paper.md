@@ -764,6 +764,8 @@ AACODS: Authority, Accuracy, Coverage, Objectivity, Date, Significance
 ACO: Accountable Care Organization
 AI: Artificial Intelligence
 AMAM: Analytics Maturity Assessment Model
+Clinical Terminology: Standardized vocabularies including ICD-10, CPT, SNOMED, and RxNorm used in healthcare data
+Conversational AI: Artificial intelligence systems that enable natural language interaction for complex tasks
 CPT: Current Procedural Terminology
 DAMAF: Data Analytics Maturity Assessment Framework
 DIKW: Data-Information-Knowledge-Wisdom
@@ -772,9 +774,11 @@ EMRAM: Electronic Medical Record Adoption Model
 HDQM2: Healthcare Data Quality Maturity Model
 HIMSS: Healthcare Information Management Systems Society
 ICD: International Classification of Diseases
+Institutional Memory: Collective organizational knowledge, expertise, and practices that enable effectiveness
 IT: Information Technology
 LLM: Large Language Model
 NL2SQL: Natural Language to SQL
+Population Health: Analytics focused on health outcomes of groups of individuals rather than individual patients
 RAG: Retrieval-Augmented Generation
 SQL: Structured Query Language
 
@@ -785,21 +789,7 @@ SQL: Structured Query Language
 
 # Appendices
 
-## Appendix A: Healthcare Analytics Glossary
-
-| Term | Definition |
-|------|------------|
-| AMAM | Analytics Maturity Assessment Model - HIMSS standard for measuring healthcare analytics capabilities |
-| Clinical Terminology | Standardized vocabularies including ICD-10, CPT, SNOMED, and RxNorm used in healthcare data |
-| Conversational AI | Artificial intelligence systems that enable natural language interaction for complex tasks |
-| EHR | Electronic Health Record - digital version of patient medical records |
-| HIMSS | Healthcare Information and Management Systems Society - healthcare IT standards organization |
-| Institutional Memory | Collective organizational knowledge, expertise, and practices that enable effectiveness |
-| NL2SQL | Natural Language to SQL - technology that converts spoken/written queries into database commands |
-| Population Health | Analytics focused on health outcomes of groups of individuals rather than individual patients |
-| RAG | Retrieval Augmented Generation - AI approach combining information retrieval with text generation |
-
-## Appendix B: HIMSS Analytics Maturity Assessment Model (AMAM) Stages
+## Appendix A: HIMSS Analytics Maturity Assessment Model (AMAM) Stages
 
 | Stage | Name | Description | Key Capabilities |
 |-------|------|-------------|------------------|
@@ -812,7 +802,7 @@ SQL: Structured Query Language
 | Stage 6 | Cognitive Analytics | Machine learning and AI integration | Advanced AI, pattern recognition |
 | Stage 7 | Precision Medicine | Personalized treatment and genomic integration | Personalized care, genomic analytics |
 
-## Appendix C: Healthcare NL2SQL Query Examples
+## Appendix B: Healthcare NL2SQL Query Examples
 
 ### Patient Population Analysis
 **Natural Language**: "Show me all diabetic patients over 65 who had an HbA1c test in the last 6 months"
