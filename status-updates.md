@@ -12,6 +12,21 @@ Reverse-chronological log of project status assessments.
 
 ---
 
+## 2026-01-15: Formatting Fixes and Appendix Split
+
+### Formatting Improvements
+- **Figure 2 scaled**: Scaled Figure 2 to 100% width in `paper.md` to prevent page overflow in PDF output.
+- **Table 2 line breaks**: Added `<br />` tags and spaces after slashes in Table 2 to ensure clean column wrapping.
+- **Multimedia Appendix split**: Refactored `multimedia_appendix.md` into separate files (`multimedia_appendix_1.md` and `multimedia_appendix_2.md`) to comply with JMIR's "one file per appendix" requirement.
+- **Build system updated**: Modified `scripts/build_paper.sh` to automatically detect and build all `multimedia_appendix_*.md` files into PDF, HTML, and DOCX formats.
+
+### Paper 1 Status Summary
+- **Formatting**: Resolved layout issues in PDF output.
+- **Compliance**: Met JMIR requirement for separate multimedia appendix files.
+- **Ready for submission**: Final artifacts regenerated and verified.
+
+---
+
 ## 2025-12-18: Paper 2 Effort Estimate
 
 ### Paper 2 Status Summary

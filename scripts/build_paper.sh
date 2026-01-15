@@ -291,16 +291,19 @@ generate_latex() {
     fi
 }
 
-# Generate Appendix (PDF and HTML)
+# Generate Appendix (PDF, HTML, and DOCX)
 generate_appendix() {
-    if [[ ! -f "$APPENDIX_FILE" ]]; then
-        warn "Appendix file not found: $APPENDIX_FILE"
-        return
-    fi
+    local appendix_files
+    appendix_files=$(ls "${PROJECT_ROOT}"/multimedia_appendix_*.md 2>/dev/null || true)
 
-    local output_pdf="${OUTPUT_DIR}/multimedia_appendix.pdf"
-    local output_html="${OUTPUT_DIR}/multimedia_appendix.html"
-    info "Generating Appendix PDF: $output_pdf"
+    if [[ -z "$appendix_files" ]]; then
+        if [[ -f "$APPENDIX_FILE" ]]; then
+            appendix_files="$APPENDIX_FILE"
+        else
+            warn "No appendix files found matching multimedia_appendix_*.md or $APPENDIX_FILE"
+            return
+        fi
+    fi
 
     local common_args
     common_args=$(get_common_pandoc_args)
@@ -311,52 +314,60 @@ generate_appendix() {
         pdf_engine="tectonic"
     fi
 
-    # Generate PDF
-    # shellcheck disable=SC2086
-    pandoc "$APPENDIX_FILE" $common_args \
-        --to=pdf \
-        --pdf-engine="$pdf_engine" \
-        --template=eisvogel \
-        --listings \
-        --output="$output_pdf" \
-        --metadata=title:"Multimedia Appendix"
+    for file in $appendix_files; do
+        local filename
+        filename=$(basename "$file" .md)
 
-    if [[ -f "$output_pdf" && -s "$output_pdf" ]]; then
-        info "Appendix PDF generated successfully"
-    else
-        error "Appendix PDF generation failed"
-    fi
+        local output_pdf="${OUTPUT_DIR}/${filename}.pdf"
+        local output_html="${OUTPUT_DIR}/${filename}.html"
+        local output_docx="${OUTPUT_DIR}/${filename}.docx"
 
-    # Generate HTML
-    info "Generating Appendix HTML: $output_html"
-    # shellcheck disable=SC2086
-    pandoc "$APPENDIX_FILE" $common_args \
-        --to=html5 \
-        --embed-resources \
-        --standalone \
-        --output="$output_html" \
-        --metadata=title:"Multimedia Appendix"
+        info "Generating Appendix PDF: $output_pdf"
+        # shellcheck disable=SC2086
+        pandoc "$file" $common_args \
+            --to=pdf \
+            --pdf-engine="$pdf_engine" \
+            --template=eisvogel \
+            --listings \
+            --output="$output_pdf" \
+            --metadata=title:"Multimedia Appendix"
 
-    if [[ -f "$output_html" && -s "$output_html" ]]; then
-        info "Appendix HTML generated successfully"
-    else
-        error "Appendix HTML generation failed"
-    fi
+        if [[ -f "$output_pdf" && -s "$output_pdf" ]]; then
+            info "Appendix PDF generated successfully"
+        else
+            error "Appendix PDF generation failed"
+        fi
 
-    # Generate DOCX
-    local output_docx="${OUTPUT_DIR}/multimedia_appendix.docx"
-    info "Generating Appendix DOCX: $output_docx"
-    # shellcheck disable=SC2086
-    pandoc "$APPENDIX_FILE" $common_args \
-        --to=docx \
-        --output="$output_docx" \
-        --metadata=title:"Multimedia Appendix"
+        # Generate HTML
+        info "Generating Appendix HTML: $output_html"
+        # shellcheck disable=SC2086
+        pandoc "$file" $common_args \
+            --to=html5 \
+            --embed-resources \
+            --standalone \
+            --output="$output_html" \
+            --metadata=title:"Multimedia Appendix"
 
-    if [[ -f "$output_docx" && -s "$output_docx" ]]; then
-        info "Appendix DOCX generated successfully"
-    else
-        error "Appendix DOCX generation failed"
-    fi
+        if [[ -f "$output_html" && -s "$output_html" ]]; then
+            info "Appendix HTML generated successfully"
+        else
+            error "Appendix HTML generation failed"
+        fi
+
+        # Generate DOCX
+        info "Generating Appendix DOCX: $output_docx"
+        # shellcheck disable=SC2086
+        pandoc "$file" $common_args \
+            --to=docx \
+            --output="$output_docx" \
+            --metadata=title:"Multimedia Appendix"
+
+        if [[ -f "$output_docx" && -s "$output_docx" ]]; then
+            info "Appendix DOCX generated successfully"
+        else
+            error "Appendix DOCX generation failed"
+        fi
+    done
 }
 
 # Main
