@@ -592,10 +592,10 @@ As a narrative review, this paper has methodological limitations distinct from s
 The evidence review identifies several priority areas for future investigation:
 
 ### Short-Term Research Priorities (<1 year)
-1. **Reference Implementation Validation**: Empirical validation of NL2SQL approaches using synthetic healthcare data (e.g., Synthea) in reproducible cloud environments, enabling benchmarking against established datasets (EHRSQL, MIMICSQL) without privacy constraints
-2. **Schema Discovery for Healthcare Databases**: Research on automated primary/foreign key discovery algorithms applied to healthcare schemas, addressing the complexity of clinical data models
-3. **Governance Framework Development**: Research on optimal governance models for democratized analytics
-4. **Expansion to Unstructured Data**: While this paper focuses on SQL (structured data), ~80% of healthcare data is unstructured. Future research should explore how the three-pillar framework can provide the necessary governance structure for expansion into unstructured data via Vector/RAG technologies.
+1. **Reference Implementation Validation**: Empirical validation of NL2SQL approaches using synthetic healthcare data (e.g., Synthea) in reproducible cloud environments, enabling benchmarking against established datasets (EHRSQL, MIMICSQL) without privacy constraints [@lee2023; @wang2020]
+2. **Schema Discovery for Healthcare Databases**: Research on automated primary/foreign key discovery algorithms applied to healthcare schemas, addressing the complexity of clinical data models [@zhang2024]
+3. **Governance Framework Development**: Research on optimal governance models for democratized analytics [@himss2024; @snowdon2024b]
+4. **Expansion to Unstructured Data**: While this paper focuses on SQL (structured data), ~80% of healthcare data is unstructured. Future research should explore how the three-pillar framework can provide the necessary governance structure for expansion into unstructured data via Vector/RAG technologies [@ziletti2024; @blaskovic2025].
 
 ### Medium-Term Research Priorities (1-2 years)
 1. **Healthcare Terminology Integration**: Development of programmatic approaches for mapping natural language queries to standardized vocabularies (SNOMED CT, LOINC, RxNorm) within NL2SQL pipelines
