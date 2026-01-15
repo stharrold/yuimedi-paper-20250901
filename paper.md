@@ -556,7 +556,7 @@ The evidence base includes peer-reviewed benchmarking studies from top venues (N
 The Berkshire Healthcare NHS Trust case [@berkshire2024] demonstrates successful low-code adoption in healthcare, with over 1,600 citizen developers creating solutions. This provides concrete evidence that non-technical healthcare professionals can effectively use these platforms.
 
 ### Interconnected Challenges
-The framework illuminates how technical barriers, analytics maturity constraints, and institutional memory loss compound each other, explaining why single-pillar interventions often fail. This integrated perspective enables healthcare organizations to understand why addressing one challenge in isolation may not produce lasting improvement.
+The framework illuminates how technical barriers, analytics maturity constraints, and institutional memory loss compound each other, explaining why single-pillar interventions often fail [@kamble2019; @massingham2018]. This integrated perspective enables healthcare organizations to understand why addressing one challenge in isolation may not produce lasting improvement.
 
 ### Economic Justification
 The financial evidence is compelling, with Forrester Research [@forrester2024] documenting 206% three-year ROI from low-code implementations. Market growth projections [@precedence2024] showing the healthcare analytics market expanding from $64.49B to $369.66B by 2034 indicate sustained investment demand.
