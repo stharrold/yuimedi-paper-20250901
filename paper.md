@@ -245,19 +245,19 @@ Exclusion Criteria:
 
 Grey literature sources were assessed using the AACODS checklist [@tyndall2010], which evaluates Authority, Accuracy, Coverage, Objectivity, Date, and Significance. Sources with vendor sponsorship were retained when no independent alternative existed but flagged in-text. Table 2 summarizes the assessment.
 
-| Source (Citation) | Authority / Accuracy | Coverage / Objectivity | Date / Significance | Include |
-|:---|:---|:---|:---|:---|
-| HIMSS AMAM [@himss2024] | High† / Verifiable | Global / High | 2024 / High | Yes |
-| Snowdon/HIMSS [@snowdon2024b] | High‡ / Verifiable | N/A / High | 2024 / Medium | Yes |
-| Health Catalyst [@health2020] | Medium§ / Unverifiable | US / Low | 2020 / Medium | Yes* |
-| Berkshire NHS [@berkshire2024] | High¶ / Verifiable | Single site / High | 2024 / High | Yes |
-| Forrester/Microsoft [@forrester2024] | Medium∥ / Unverifiable | Enterprise / Low♢ | 2024 / Medium | Yes* |
-| Oracle [@oracle2024] | Low§ / Unverifiable | N/A / Low | 2024 / Low | Yes* |
-| Precedence Research [@precedence2024] | Medium# / Unverifiable | Global / Medium | 2024 / Medium | Yes |
-| Anthropic [@anthropic2025] | Medium§ / Verifiable | N/A / Medium | 2025 / Low | Yes |
-| IBM Newsroom [@ibm2022] | High / Verifiable | N/A / High | 2022 / High | Yes |
-| CNBC/Haven [@lavito2021] | High / Verifiable | N/A / High | 2021 / High | Yes |
-| AHIMA/NORC [@american2023] | High†† / Verifiable | US / High | 2023 / High | Yes |
+| Source (Citation)     | Authority /<br />Accuracy | Coverage /<br />Objectivity | Date /<br />Significance | Include |
+|:----------------------|:---|:---|:---|:---|
+| HIMSS AMAM [@himss2024] | High† /<br />Verifiable | Global /<br />High | 2024 /<br />High | Yes |
+| Snowdon/HIMSS [@snowdon2024b] | High‡ /<br />Verifiable | N/A /<br />High | 2024 /<br />Medium | Yes |
+| Health Catalyst [@health2020] | Medium§ /<br />Unverifiable | US /<br />Low | 2020 /<br />Medium | Yes* |
+| Berkshire NHS [@berkshire2024] | High¶ /<br />Verifiable | Single site /<br />High | 2024 /<br />High | Yes |
+| Forrester/Microsoft [@forrester2024] | Medium∥ /<br />Unverifiable | Enterprise /<br />Low♢ | 2024 /<br />Medium | Yes* |
+| Oracle [@oracle2024] | Low§ /<br />Unverifiable | N/A /<br />Low | 2024 /<br />Low | Yes* |
+| Precedence Research [@precedence2024] | Medium# /<br />Unverifiable | Global /<br />Medium | 2024 /<br />Medium | Yes |
+| Anthropic [@anthropic2025] | Medium§ /<br />Verifiable | N/A /<br />Medium | 2025 /<br />Low | Yes |
+| IBM Newsroom [@ibm2022] | High /<br />Verifiable | N/A /<br />High | 2022 /<br />High | Yes |
+| CNBC/Haven [@lavito2021] | High /<br />Verifiable | N/A /<br />High | 2021 /<br />High | Yes |
+| AHIMA/NORC [@american2023] | High†† /<br />Verifiable | US /<br />High | 2023 /<br />High | Yes |
 
 : AACODS Assessment of Industry Sources. \label{tbl:aacods}
 
@@ -308,22 +308,13 @@ The framework development followed these steps:
 
 The three-pillar framework aligns with established models in healthcare informatics and knowledge management:
 
-```{=latex}
-\begin{table}[htbp]
-\centering
-\begin{tabular}{p{3cm}p{3.5cm}p{3.5cm}p{3.5cm}}
-\toprule
-\textbf{Three Pillars} & \textbf{HIMSS AMAM Alignment} & \textbf{DIKW Hierarchy} & \textbf{Knowledge Management} \\
-\midrule
-Analytics Maturity & Stages 0-7 Progression & Data $\rightarrow$ Information & Organizational learning \\
-Workforce Agility & Implicit in Advanced Stages & Knowledge (tacit) $\rightarrow$ Wisdom & Tacit knowledge transfer \\
-Technical Enablement & Stage 6-7 Requirements & Information $\rightarrow$ Knowledge & Knowledge Codification \\
-\bottomrule
-\end{tabular}
-\caption{Framework Alignment with Established Models}
-\label{tab:framework-alignment}
-\end{table}
-```
+| Three Pillars | HIMSS AMAM<br />Alignment | DIKW Hierarchy | Knowledge<br />Management |
+|:---|:---|:---|:---|
+| Analytics Maturity | Stages 0-7<br />Progression | Data<br />$\rightarrow$ Information | Organizational<br />learning |
+| Workforce Agility | Implicit in Advanced Stages | Knowledge (tacit)<br />$\rightarrow$ Wisdom | Tacit knowledge transfer |
+| Technical Enablement | Stages 6-7<br />Requirements | Information<br />$\rightarrow$ Knowledge | Knowledge<br />Codification |
+
+Table 3: Framework Alignment with Established Models \label{tab:framework-alignment}
 
 The HIMSS Analytics Maturity Assessment Model [@himss2024] provides organizational benchmarks but does not explicitly address workforce knowledge retention. The Data-Information-Knowledge-Wisdom (DIKW) hierarchy [@rowley2007] explains the progression from raw data to actionable insight, but standard formulations do not address institutional memory loss. The three-pillar framework synthesizes these perspectives, positioning workforce dynamics as the critical enabler connecting data access (analytics maturity) with organizational wisdom (knowledge preservation). It draws on established knowledge management theory for organizational learning [@rao2006; @massingham2018], tacit knowledge transfer [@farnese2019; @foos2006], and knowledge codification [@benbya2004; @zhang2025] to explain these connections.
 
@@ -631,9 +622,9 @@ What technical skills are currently required for data access? Which clinical que
 
 ### Three-Pillar Assessment Rubric
 
-The three-pillar framework enables organizational self-assessment to determine readiness for and potential benefit from NL2SQL and conversational AI interventions. Table 3 provides an evidence-based rubric where each indicator anchors to reviewed literature. Organizations scoring predominantly "Low Strength" across pillars face compounding challenges that NL2SQL platforms are specifically designed to address: democratizing data access (Technical Barriers), preserving institutional knowledge (Workforce Dynamics), and accelerating maturity advancement (Analytics Maturity).
+The three-pillar framework enables organizational self-assessment to determine readiness for and potential benefit from NL2SQL and conversational AI interventions. Table 4 provides an evidence-based rubric where each indicator anchors to reviewed literature. Organizations scoring predominantly "Low Strength" across pillars face compounding challenges that NL2SQL platforms are specifically designed to address: democratizing data access (Technical Barriers), preserving institutional knowledge (Workforce Dynamics), and accelerating maturity advancement (Analytics Maturity).
 
-Table 3: Three-Pillar Organizational Assessment Rubric
+Table 4: Three-Pillar Organizational Assessment Rubric
 
 Pillar 1: Analytics Maturity
 
