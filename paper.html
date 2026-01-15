@@ -11,9 +11,6 @@ turnover, institutional memory, text-to-SQL, natural language
 processing, knowledge portal, conversational AI" />
   <title>Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement</title>
   <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
     html {
       font-family: DejaVu Serif;
       font-size: 11pt;
@@ -129,8 +126,8 @@ processing, knowledge portal, conversational AI" />
      overflow: visible;
     }
     hr {
+      background-color: #1a1a1a;
       border: none;
-      border-top: 1px solid #1a1a1a;
       height: 1px;
       margin: 1em 0;
     }
@@ -189,9 +186,8 @@ processing, knowledge portal, conversational AI" />
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
     /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -202,7 +198,7 @@ processing, knowledge portal, conversational AI" />
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -273,10 +269,10 @@ processing, knowledge portal, conversational AI" />
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-
-
-
-
+  
+  
+  
+  
 </head>
 <body>
 <header id="title-block-header">
@@ -1097,7 +1093,7 @@ training time”, “turnover cost”, “institutional memory loss”,
 healthcare”, “text-to-SQL clinical”, “MIMICSQL”, “EHRSQL”, “schema
 discovery”, “semantic column matching”, “vector embeddings”).</caption>
 <thead>
-<tr>
+<tr class="header">
 <th style="text-align: left;">Pillar</th>
 <th style="text-align: center;">Crossref</th>
 <th style="text-align: center;">PubMed</th>
@@ -1107,7 +1103,7 @@ discovery”, “semantic column matching”, “vector embeddings”).</caption
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td style="text-align: left;"><strong>Analytics Maturity</strong></td>
 <td style="text-align: center;">285</td>
 <td style="text-align: center;">-</td>
@@ -1115,7 +1111,7 @@ discovery”, “semantic column matching”, “vector embeddings”).</caption
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">285 (15)</td>
 </tr>
-<tr>
+<tr class="even">
 <td style="text-align: left;"><strong>Workforce Agility</strong></td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">142</td>
@@ -1123,7 +1119,7 @@ discovery”, “semantic column matching”, “vector embeddings”).</caption
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">142 (12)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td style="text-align: left;"><strong>Technical Enablement</strong></td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td>
@@ -1131,7 +1127,7 @@ discovery”, “semantic column matching”, “vector embeddings”).</caption
 <td style="text-align: center;">72</td>
 <td style="text-align: center;">143 (14)</td>
 </tr>
-<tr>
+<tr class="even">
 <td style="text-align: left;"><strong>Total</strong></td>
 <td style="text-align: center;"><strong>285</strong></td>
 <td style="text-align: center;"><strong>142</strong></td>
@@ -1192,7 +1188,7 @@ the assessment.</p>
 <col style="width: 0%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Source (Citation)</th>
 <th>Authority / Accuracy</th>
 <th>Coverage / Objectivity</th>
@@ -1200,7 +1196,7 @@ the assessment.</p>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>HIMSS AMAM <span class="citation" data-cites="himss2024">(<a
 href="#ref-himss2024" role="doc-biblioref">2</a>)</span></td>
 <td>High† / Verifiable</td>
@@ -1209,7 +1205,7 @@ href="#ref-himss2024" role="doc-biblioref">2</a>)</span></td>
 <td>Yes</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Snowdon/HIMSS <span class="citation" data-cites="snowdon2024b">(<a
 href="#ref-snowdon2024b" role="doc-biblioref">22</a>)</span></td>
 <td>High‡ / Verifiable</td>
@@ -1218,7 +1214,7 @@ href="#ref-snowdon2024b" role="doc-biblioref">22</a>)</span></td>
 <td>Yes</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Health Catalyst <span class="citation" data-cites="health2020">(<a
 href="#ref-health2020" role="doc-biblioref">23</a>)</span></td>
 <td>Medium§ / Unverifiable</td>
@@ -1227,7 +1223,7 @@ href="#ref-health2020" role="doc-biblioref">23</a>)</span></td>
 <td>Yes*</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Berkshire NHS <span class="citation" data-cites="berkshire2024">(<a
 href="#ref-berkshire2024" role="doc-biblioref">24</a>)</span></td>
 <td>High¶ / Verifiable</td>
@@ -1236,7 +1232,7 @@ href="#ref-berkshire2024" role="doc-biblioref">24</a>)</span></td>
 <td>Yes</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Forrester/Microsoft <span class="citation"
 data-cites="forrester2024">(<a href="#ref-forrester2024"
 role="doc-biblioref">25</a>)</span></td>
@@ -1246,7 +1242,7 @@ role="doc-biblioref">25</a>)</span></td>
 <td>Yes*</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Oracle <span class="citation" data-cites="oracle2024">(<a
 href="#ref-oracle2024" role="doc-biblioref">26</a>)</span></td>
 <td>Low§ / Unverifiable</td>
@@ -1255,7 +1251,7 @@ href="#ref-oracle2024" role="doc-biblioref">26</a>)</span></td>
 <td>Yes*</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Precedence Research <span class="citation"
 data-cites="precedence2024">(<a href="#ref-precedence2024"
 role="doc-biblioref">27</a>)</span></td>
@@ -1265,7 +1261,7 @@ role="doc-biblioref">27</a>)</span></td>
 <td>Yes</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Anthropic <span class="citation" data-cites="anthropic2025">(<a
 href="#ref-anthropic2025" role="doc-biblioref">10</a>)</span></td>
 <td>Medium§ / Verifiable</td>
@@ -1274,7 +1270,7 @@ href="#ref-anthropic2025" role="doc-biblioref">10</a>)</span></td>
 <td>Yes</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>IBM Newsroom <span class="citation" data-cites="ibm2022">(<a
 href="#ref-ibm2022" role="doc-biblioref">28</a>)</span></td>
 <td>High** / Verifiable</td>
@@ -1283,7 +1279,7 @@ href="#ref-ibm2022" role="doc-biblioref">28</a>)</span></td>
 <td>Yes</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>CNBC/Haven <span class="citation" data-cites="lavito2021">(<a
 href="#ref-lavito2021" role="doc-biblioref">29</a>)</span></td>
 <td>High** / Verifiable</td>
@@ -1292,7 +1288,7 @@ href="#ref-lavito2021" role="doc-biblioref">29</a>)</span></td>
 <td>Yes</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>AHIMA/NORC <span class="citation" data-cites="american2023">(<a
 href="#ref-american2023" role="doc-biblioref">1</a>)</span></td>
 <td>High†† / Verifiable</td>
@@ -2797,7 +2793,7 @@ Rubric</strong></p>
 <col style="width: 12%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Indicator</th>
 <th>Low Strength (1)</th>
 <th>Medium Strength (2)</th>
@@ -2806,7 +2802,7 @@ Rubric</strong></p>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>HIMSS AMAM Stage</td>
 <td>Stages 0-2: Fragmented data, limited reporting</td>
 <td>Stages 3-4: Integrated warehouse, standardized definitions</td>
@@ -2815,7 +2811,7 @@ Rubric</strong></p>
 href="#ref-himss2024" role="doc-biblioref">2</a>,<a
 href="#ref-health2020" role="doc-biblioref">23</a>)</span></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Self-service analytics</td>
 <td>None; all analytics require IT intervention</td>
 <td>Partial; BI tools available but underutilized</td>
@@ -2824,7 +2820,7 @@ href="#ref-health2020" role="doc-biblioref">23</a>)</span></td>
 href="#ref-berkshire2024" role="doc-biblioref">24</a>,<a
 href="#ref-wang2018" role="doc-biblioref">39</a>)</span></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>AI/NL interface</td>
 <td>No NL2SQL or conversational analytics</td>
 <td>Pilot programs or evaluation underway</td>
@@ -2845,7 +2841,7 @@ href="#ref-wang2020" role="doc-biblioref">88</a>)</span></td>
 <col style="width: 12%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Indicator</th>
 <th>Low Strength (1)</th>
 <th>Medium Strength (2)</th>
@@ -2854,7 +2850,7 @@ href="#ref-wang2020" role="doc-biblioref">88</a>)</span></td>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>First-year Staff Turnover</td>
 <td>&gt;30% (High Instability)</td>
 <td>15-30%</td>
@@ -2862,7 +2858,7 @@ href="#ref-wang2020" role="doc-biblioref">88</a>)</span></td>
 <td><span class="citation" data-cites="nsi2025">(<a href="#ref-nsi2025"
 role="doc-biblioref">74</a>)</span></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Leadership Stability (CIO)</td>
 <td>Tenure &lt; 3 years</td>
 <td>Tenure 3-5 years</td>
@@ -2870,7 +2866,7 @@ role="doc-biblioref">74</a>)</span></td>
 <td><span class="citation" data-cites="wittkieffer2024">(<a
 href="#ref-wittkieffer2024" role="doc-biblioref">4</a>)</span></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Knowledge concentration</td>
 <td>Critical expertise held by ≤3 individuals</td>
 <td>Partial documentation; some cross-training</td>
@@ -2879,7 +2875,7 @@ href="#ref-wittkieffer2024" role="doc-biblioref">4</a>)</span></td>
 href="#ref-benbya2004" role="doc-biblioref">37</a>,<a
 href="#ref-richesson2007" role="doc-biblioref">117</a>)</span></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Time-to-productivity</td>
 <td>&gt;18 months (specialized roles)</td>
 <td>6-18 months</td>
@@ -2888,7 +2884,7 @@ href="#ref-richesson2007" role="doc-biblioref">117</a>)</span></td>
 href="#ref-ledikwe2013" role="doc-biblioref">75</a>,<a
 href="#ref-mantas2010" role="doc-biblioref">76</a>)</span></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Tacit knowledge capture</td>
 <td>Person-dependent; undocumented tribal knowledge</td>
 <td>Partial documentation exists</td>
@@ -2908,7 +2904,7 @@ href="#ref-benbya2004" role="doc-biblioref">37</a>)</span></td>
 <col style="width: 12%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Indicator</th>
 <th>Low Strength (1)</th>
 <th>Medium Strength (2)</th>
@@ -2917,7 +2913,7 @@ href="#ref-benbya2004" role="doc-biblioref">37</a>)</span></td>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Data access</td>
 <td>SQL/technical expertise required for all queries</td>
 <td>IT queue for complex queries; basic self-service</td>
@@ -2926,7 +2922,7 @@ href="#ref-benbya2004" role="doc-biblioref">37</a>)</span></td>
 href="#ref-wang2018" role="doc-biblioref">39</a>,<a
 href="#ref-pesqueira2020" role="doc-biblioref">54</a>)</span></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Interoperability</td>
 <td>Fragmented systems; manual reconciliation required</td>
 <td>Partial integration; some automated feeds</td>
@@ -2935,7 +2931,7 @@ href="#ref-pesqueira2020" role="doc-biblioref">54</a>)</span></td>
 href="#ref-gal2019" role="doc-biblioref">8</a>,<a
 href="#ref-bogaert2021" role="doc-biblioref">119</a>)</span></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Skills gap impact</td>
 <td>Critical shortage preventing data utilization</td>
 <td>Acknowledged deficit with mitigation plans</td>
@@ -2954,26 +2950,26 @@ href="#ref-pesqueira2020" role="doc-biblioref">54</a>)</span></td>
 <col style="width: 37%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Organizational Profile</th>
 <th>Framework Assessment</th>
 <th>Implications for Analysis</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>All pillars Low Strength</td>
 <td>Self-reinforcing degradation cycle</td>
 <td>All three dimensions interact; comprehensive organizational
 assessment warranted</td>
 </tr>
-<tr>
+<tr class="even">
 <td>1-2 pillars Low Strength</td>
 <td>Compounding effects present</td>
 <td>Framework reveals interconnections requiring multi-dimensional
 analysis</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>All pillars High Strength</td>
 <td>Continuous improvement stance</td>
 <td>Monitor for emerging challenges; single-pillar focus may
@@ -3358,10 +3354,9 @@ href="https://www.tdx.cat/bitstream/handle/10803/695722/TGJBR1de1.pdf?sequence=1
 </div>
 <div id="ref-mosqueirarey2023" class="csl-entry" role="listitem">
 <div class="csl-left-margin">19. </div><div
-class="csl-right-inline"><span class="nocase">Mosqueira-Rey E et
-al.</span> Human-in-the-loop machine learning: A state of the art.
-Artificial Intelligence Review [Internet]. 2023;56:3005–54. Available
-from: <a
+class="csl-right-inline">Mosqueira-Rey E et al. Human-in-the-loop
+machine learning: A state of the art. Artificial Intelligence Review
+[Internet]. 2023;56:3005–54. Available from: <a
 href="https://link.springer.com/content/pdf/10.1007/s10462-022-10246-w.pdf">https://link.springer.com/content/pdf/10.1007/s10462-022-10246-w.pdf</a></div>
 </div>
 <div id="ref-ziletti2024" class="csl-entry" role="listitem">
@@ -3648,33 +3643,32 @@ framework: DAMAF</span>. Journal of Software: Evolution and Process.
 </div>
 <div id="ref-lismont2017" class="csl-entry" role="listitem">
 <div class="csl-left-margin">58. </div><div
-class="csl-right-inline"><span class="nocase">Lismont J, Vanthienen J,
-Baesens B, et al.</span> <span class="nocase">Defining analytics
-maturity indicators: A survey approach</span>. International Journal of
-Information Management. 2017;37(3):114–24. </div>
+class="csl-right-inline">Lismont J, Vanthienen J, Baesens B, et al.
+<span class="nocase">Defining analytics maturity indicators: A survey
+approach</span>. International Journal of Information Management.
+2017;37(3):114–24. </div>
 </div>
 <div id="ref-yang2021" class="csl-entry" role="listitem">
 <div class="csl-left-margin">59. </div><div
-class="csl-right-inline"><span class="nocase">Yang DX, Khera R, Miccio
-JA, Jairam V, et al.</span> <span class="nocase">Prevalence of missing
-data in the national cancer database and association with overall
-survival</span>. JAMA Network Open. 2021;4(3):e211793. </div>
+class="csl-right-inline">Yang DX, Khera R, Miccio JA, Jairam V, et al.
+<span class="nocase">Prevalence of missing data in the national cancer
+database and association with overall survival</span>. JAMA Network
+Open. 2021;4(3):e211793. </div>
 </div>
 <div id="ref-arts2002" class="csl-entry" role="listitem">
 <div class="csl-left-margin">60. </div><div
-class="csl-right-inline"><span class="nocase">Arts DG, De Keizer NF, et
-al.</span> <span class="nocase">Defining and improving data quality in
-medical registries: a literature review, case study, and generic
+class="csl-right-inline">Arts DG, De Keizer NF, et al. <span
+class="nocase">Defining and improving data quality in medical
+registries: a literature review, case study, and generic
 framework</span>. Journal of the American Medical Informatics
 Association. 2002;9(6):600–11. </div>
 </div>
 <div id="ref-mccoy2013" class="csl-entry" role="listitem">
 <div class="csl-left-margin">61. </div><div
-class="csl-right-inline"><span class="nocase">McCoy AB, Wright A, Kahn
-MG, Shapiro JS, et al.</span> <span class="nocase">Matching identifiers
-in electronic health records: implications for duplicate records and
-patient safety</span>. BMJ Quality &amp; Safety. 2013;22(3):219–24.
-</div>
+class="csl-right-inline">McCoy AB, Wright A, Kahn MG, Shapiro JS, et al.
+<span class="nocase">Matching identifiers in electronic health records:
+implications for duplicate records and patient safety</span>. BMJ
+Quality &amp; Safety. 2013;22(3):219–24. </div>
 </div>
 <div id="ref-rahman2020" class="csl-entry" role="listitem">
 <div class="csl-left-margin">62. </div><div
@@ -3684,42 +3678,40 @@ pipelines</span>. JMIR Medical Informatics. 2020;8(11):e19612. </div>
 </div>
 <div id="ref-sirgo2018" class="csl-entry" role="listitem">
 <div class="csl-left-margin">63. </div><div
-class="csl-right-inline"><span class="nocase">Sirgo G, Esteban F, Gómez
-J, Moreno G, et al.</span> <span class="nocase">Validation of the
-ICU-DaMa tool for automatically extracting variables for minimum dataset
-and quality indicators: The importance of data quality
-assessment</span>. International Journal of Medical Informatics.
-2018;112:166–72. </div>
+class="csl-right-inline">Sirgo G, Esteban F, Gómez J, Moreno G, et al.
+<span class="nocase">Validation of the ICU-DaMa tool for automatically
+extracting variables for minimum dataset and quality indicators: The
+importance of data quality assessment</span>. International Journal of
+Medical Informatics. 2018;112:166–72. </div>
 </div>
 <div id="ref-shi2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">64. </div><div
-class="csl-right-inline"><span class="nocase">Shi X, Prins C, Van
-Pottelbergh G, Mamouris P, et al.</span> <span class="nocase">An
-automated data cleaning method for Electronic Health Records by
-incorporating clinical knowledge</span>. BMC Medical Informatics and
-Decision Making. 2021;21:1–12. </div>
+<div class="csl-left-margin">64. </div><div class="csl-right-inline">Shi
+X, Prins C, Van Pottelbergh G, Mamouris P, et al. <span
+class="nocase">An automated data cleaning method for Electronic Health
+Records by incorporating clinical knowledge</span>. BMC Medical
+Informatics and Decision Making. 2021;21:1–12. </div>
 </div>
 <div id="ref-dugas2016" class="csl-entry" role="listitem">
 <div class="csl-left-margin">65. </div><div
-class="csl-right-inline"><span class="nocase">Dugas M, Neuhaus P, Meidt
-A, Doods J, Storck M, et al.</span> <span class="nocase">Portal of
-medical data models: information infrastructure for medical research and
-healthcare</span>. Database. 2016;2016. </div>
+class="csl-right-inline">Dugas M, Neuhaus P, Meidt A, Doods J, Storck M,
+et al. <span class="nocase">Portal of medical data models: information
+infrastructure for medical research and healthcare</span>. Database.
+2016;2016. </div>
 </div>
 <div id="ref-bokov2017" class="csl-entry" role="listitem">
 <div class="csl-left-margin">66. </div><div
-class="csl-right-inline"><span class="nocase">Bokov AF, Bos AB, Manuel
-LS, et al.</span> <span class="nocase">Using prevalence patterns to
-discover un-mapped flowsheet data in an electronic health record data
-warehouse</span>. In: 2017 IEEE 30th international symposium on
-computer-based medical systems (CBMS). IEEE; 2017. p. 509–14. </div>
+class="csl-right-inline">Bokov AF, Bos AB, Manuel LS, et al. <span
+class="nocase">Using prevalence patterns to discover un-mapped flowsheet
+data in an electronic health record data warehouse</span>. In: 2017 IEEE
+30th international symposium on computer-based medical systems (CBMS).
+IEEE; 2017. p. 509–14. </div>
 </div>
 <div id="ref-ulrich2022" class="csl-entry" role="listitem">
 <div class="csl-left-margin">67. </div><div
-class="csl-right-inline"><span class="nocase">Ulrich H,
-Kock-Schoppenhauer AK, et al.</span> <span class="nocase">Understanding
-the nature of metadata: systematic review</span>. Journal of Medical
-Internet Research. 2022;24(1):e25440. </div>
+class="csl-right-inline">Ulrich H, Kock-Schoppenhauer AK, et al. <span
+class="nocase">Understanding the nature of metadata: systematic
+review</span>. Journal of Medical Internet Research. 2022;24(1):e25440.
+</div>
 </div>
 <div id="ref-lucyk2017" class="csl-entry" role="listitem">
 <div class="csl-left-margin">68. </div><div
@@ -3883,11 +3875,10 @@ from: <a
 href="https://arxiv.org/abs/1908.01839">https://arxiv.org/abs/1908.01839</a></div>
 </div>
 <div id="ref-lee2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">89. </div><div
-class="csl-right-inline"><span class="nocase">Lee et al G.</span> <span
-class="nocase">EHRSQL: A practical text-to-SQL benchmark for electronic
-health records</span>. In: Proceedings of NeurIPS 2022 [Internet]. 2023.
-Available from: <a
+<div class="csl-left-margin">89. </div><div class="csl-right-inline">Lee
+et al G. <span class="nocase">EHRSQL: A practical text-to-SQL benchmark
+for electronic health records</span>. In: Proceedings of NeurIPS 2022
+[Internet]. 2023. Available from: <a
 href="https://arxiv.org/abs/2301.07695">https://arxiv.org/abs/2301.07695</a></div>
 </div>
 <div id="ref-sivasubramaniam2024" class="csl-entry" role="listitem">
@@ -4043,19 +4034,19 @@ href="https://www.academia.edu/download/41283190/Design_and_evaluation_of_system
 </div>
 <div id="ref-moore2018" class="csl-entry" role="listitem">
 <div class="csl-left-margin">109. </div><div
-class="csl-right-inline"><span class="nocase">Moore D et al.</span>
-<span class="nocase">ActiveNavigator: Toward real-time knowledge capture
-and feedback in active learning spaces</span>. International Journal of
+class="csl-right-inline">Moore D et al. <span
+class="nocase">ActiveNavigator: Toward real-time knowledge capture and
+feedback in active learning spaces</span>. International Journal of
 Engineering Education [Internet]. 2018;34(2):1–12. Available from: <a
 href="https://wendyju.com/publications/18_ijee3593.pdf">https://wendyju.com/publications/18_ijee3593.pdf</a></div>
 </div>
 <div id="ref-yang2025" class="csl-entry" role="listitem">
 <div class="csl-left-margin">110. </div><div
-class="csl-right-inline"><span class="nocase">Yang EW, Waldrup B, et
-al.</span> <span class="nocase">Conversational Artificial Intelligence
-for Integrating Social Determinants, Genomics, and Clinical Data in
-Precision Medicine: Development and Evaluation</span>. JMIR
-Bioinformatics and Digital Health [Internet]. 2025; Available from: <a
+class="csl-right-inline">Yang EW, Waldrup B, et al. <span
+class="nocase">Conversational Artificial Intelligence for Integrating
+Social Determinants, Genomics, and Clinical Data in Precision Medicine:
+Development and Evaluation</span>. JMIR Bioinformatics and Digital
+Health [Internet]. 2025; Available from: <a
 href="https://bioinform.jmir.org/2025/1/e63139">https://bioinform.jmir.org/2025/1/e63139</a></div>
 </div>
 <div id="ref-mogili2025" class="csl-entry" role="listitem">
@@ -4188,9 +4179,9 @@ href="https://mail.vldb.org/archives/website/2005/program/paper/fri/p1006-yu.pdf
 </div>
 <div id="ref-oliveira2023" class="csl-entry" role="listitem">
 <div class="csl-left-margin">127. </div><div
-class="csl-right-inline"><span class="nocase">Oliveira MAP et al.</span>
-Semantic modelling for enterprise data governance 4.0. arXiv preprint
-arXiv:231102082 [Internet]. 2023; Available from: <a
+class="csl-right-inline">Oliveira MAP et al. Semantic modelling for
+enterprise data governance 4.0. arXiv preprint arXiv:231102082
+[Internet]. 2023; Available from: <a
 href="https://arxiv.org/pdf/2311.02082">https://arxiv.org/pdf/2311.02082</a></div>
 </div>
 <div id="ref-sivaranjani2025" class="csl-entry" role="listitem">
@@ -4278,53 +4269,53 @@ Analytics Glossary</h2>
 <col style="width: 66%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Term</th>
 <th>Definition</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>AMAM</td>
 <td>Analytics Maturity Assessment Model - HIMSS standard for measuring
 healthcare analytics capabilities</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Clinical Terminology</td>
 <td>Standardized vocabularies including ICD-10, CPT, SNOMED, and RxNorm
 used in healthcare data</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Conversational AI</td>
 <td>Artificial intelligence systems that enable natural language
 interaction for complex tasks</td>
 </tr>
-<tr>
+<tr class="even">
 <td>EHR</td>
 <td>Electronic Health Record - digital version of patient medical
 records</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>HIMSS</td>
 <td>Healthcare Information and Management Systems Society - healthcare
 IT standards organization</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Institutional Memory</td>
 <td>Collective organizational knowledge, expertise, and practices that
 enable effectiveness</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>NL2SQL</td>
 <td>Natural Language to SQL - technology that converts spoken/written
 queries into database commands</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Population Health</td>
 <td>Analytics focused on health outcomes of groups of individuals rather
 than individual patients</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>RAG</td>
 <td>Retrieval Augmented Generation - AI approach combining information
 retrieval with text generation</td>
@@ -4343,7 +4334,7 @@ Maturity Assessment Model (AMAM) Stages</h2>
 <col style="width: 40%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Stage</th>
 <th>Name</th>
 <th>Description</th>
@@ -4351,49 +4342,49 @@ Maturity Assessment Model (AMAM) Stages</h2>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Stage 0</td>
 <td>Data Collection</td>
 <td>Basic data capture without integration</td>
 <td>Manual data entry, paper records</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Stage 1</td>
 <td>Data Verification</td>
 <td>Automated data validation and error checking</td>
 <td>Basic quality controls, automated checks</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Stage 2</td>
 <td>Data Utilization</td>
 <td>Standard reporting and basic analytics</td>
 <td>Automated reports, dashboard creation</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Stage 3</td>
 <td>Automated Decision Support</td>
 <td>Rule-based clinical and operational support</td>
 <td>Clinical alerts, automated protocols</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Stage 4</td>
 <td>Population Health Analytics</td>
 <td>Population-level analysis and intervention</td>
 <td>Cohort identification, risk stratification</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Stage 5</td>
 <td>Predictive Analytics</td>
 <td>Statistical modeling and predictive capabilities</td>
 <td>Predictive models, trend analysis</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Stage 6</td>
 <td>Cognitive Analytics</td>
 <td>Machine learning and AI integration</td>
 <td>Advanced AI, pattern recognition</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Stage 7</td>
 <td>Precision Medicine</td>
 <td>Personalized treatment and genomic integration</td>
