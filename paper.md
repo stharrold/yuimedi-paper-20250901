@@ -721,9 +721,9 @@ This narrative review synthesized evidence across three interconnected domains: 
 
 The three-pillar framework illuminates patterns that single-domain analyses miss:
 
-- **Analytics maturity gaps** leave clinical decisions unsupported by available data, and low maturity correlates with higher workforce turnover as staff leave organizations where they cannot accomplish their goals
-- **Workforce turnover** (~34% implied annual rate for new healthcare IT staff as of 2004 [@ang2004]) causes institutional memory loss that further degrades analytics capabilities, creating a reinforcing cycle
-- **Technical barriers** prevent organizations from capturing and preserving analytical knowledge, blocking recovery from either maturity gaps or turnover impacts
+- **Analytics maturity gaps** leave clinical decisions unsupported by available data, and low maturity correlates with higher workforce turnover as staff leave organizations where they cannot accomplish their goals [@snowdon2024; @woods2024]
+- **Workforce turnover** (~34% implied annual rate for new healthcare IT staff as of 2004 [@ang2004]) causes institutional memory loss that further degrades analytics capabilities, creating a reinforcing cycle [@massingham2018]
+- **Technical barriers** prevent organizations from capturing and preserving analytical knowledge, blocking recovery from either maturity gaps or turnover impacts [@gal2019; @zhang2024]
 
 These interconnections explain why addressing any single pillar in isolation often fails: improvements in one area erode when the compounding effects from other pillars continue. The framework provides a structured lens for organizational self-assessment.
 
