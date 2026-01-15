@@ -4317,6 +4317,9 @@ class="header-section-number">15.2.1</span> Patient Population
 Analysis</h3>
 <p><strong>Natural Language</strong>: “Show me all diabetic patients
 over 65 who had an HbA1c test in the last 6 months”</p>
+<p><strong>Rationale</strong>: Aligned with NCQA HEDIS measures for
+Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance
+in older adult populations.</p>
 <p><strong>Generated SQL</strong>:</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> p.patient_id, p.age, l.test_date, l.result_value</span>
@@ -4335,6 +4338,10 @@ Heart Failure Readmission Risk</h3>
 Heart Failure in 2024 who had a readmission within 30 days, excluding
 those discharged to hospice. For each, calculate their max creatinine
 levels during the index stay.”</p>
+<p><strong>Rationale</strong>: Supports CMS Hospital Readmissions
+Reduction Program (HRRP) tracking by identifying 30-day all-cause
+readmissions for Heart Failure (HF) index stays, with standard
+exclusions (hospice).</p>
 <p><strong>Generated SQL</strong>:</p>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> IndexAdmissions <span class="kw">AS</span> (</span>

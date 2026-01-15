@@ -3823,6 +3823,10 @@ Analysis}\label{patient-population-analysis}
 \textbf{Natural Language}: ``Show me all diabetic patients over 65 who
 had an HbA1c test in the last 6 months''
 
+\textbf{Rationale}: Aligned with NCQA HEDIS measures for Comprehensive
+Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult
+populations.
+
 \textbf{Generated SQL}:
 
 \begin{lstlisting}[language=SQL]
@@ -3843,6 +3847,10 @@ Risk}\label{complex-clinical-cohort-heart-failure-readmission-risk}
 Failure in 2024 who had a readmission within 30 days, excluding those
 discharged to hospice. For each, calculate their max creatinine levels
 during the index stay.''
+
+\textbf{Rationale}: Supports CMS Hospital Readmissions Reduction Program
+(HRRP) tracking by identifying 30-day all-cause readmissions for Heart
+Failure (HF) index stays, with standard exclusions (hospice).
 
 \textbf{Generated SQL}:
 
