@@ -569,7 +569,7 @@ The evidence base includes important caveats. Ziletti and D'Ambrosi [@ziletti202
 While the three-pillar framework provides a comprehensive lens for understanding healthcare analytics challenges, several limitations regarding the proposed technological solutions and the current evidence base must be acknowledged:
 
 ### Implementation Complexity
-Healthcare environments present unique complexity challenges including regulatory requirements, legacy system integration, and change management across diverse user populations. Implementation timelines reflect this complexity, though low-code approaches compare favorably to traditional analytics infrastructure projects. Healthcare and pharmaceutical organizations face particularly acute legacy modernization challenges, paralleling patterns documented in broader enterprise software contexts [@anthropic2025].
+Healthcare environments present unique complexity challenges including regulatory requirements, legacy system integration, and change management across diverse user populations [@ozalp2022; @gal2019; @shahbaz2019]. Implementation timelines reflect this complexity, though low-code approaches compare favorably to traditional analytics infrastructure projects. Healthcare and pharmaceutical organizations face particularly acute legacy modernization challenges, paralleling patterns documented in broader enterprise software contexts [@anthropic2025].
 
 ### Context-Specific Customization Requirements
 Healthcare organizations vary significantly in data structures, clinical workflows, and analytical needs. Evidence suggests that successful implementations require substantial customization to organizational contexts, potentially limiting the applicability of standardized approaches.
