@@ -564,7 +564,7 @@ The financial evidence is compelling, with Forrester Research [@forrester2024] d
 ### Evidence Limitations
 The evidence base includes important caveats. Ziletti and D'Ambrosi [@ziletti2024] note that "current language models are not yet sufficiently accurate for unsupervised use," and benchmarking studies [@wu2024a; @ang2004] show significant gaps between benchmark performance and clinical readiness. This honest assessment enables appropriate implementation strategies.
 
-## Limitations
+## Limitations of the Three-Pillar Framework
 
 While the three-pillar framework provides a comprehensive lens for understanding healthcare analytics challenges, several limitations regarding the proposed technological solutions and the current evidence base must be acknowledged:
 
