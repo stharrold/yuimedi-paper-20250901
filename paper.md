@@ -662,7 +662,7 @@ What technical skills are currently required for data access? Which clinical que
 
 ### Three-Pillar Assessment Rubric
 
-The three-pillar framework enables organizational self-assessment to determine readiness for and potential benefit from NL2SQL and conversational AI interventions. Table 3 provides an evidence-based rubric where each indicator anchors to reviewed literature. Organizations scoring predominantly "Higher Risk" across pillars face compounding challenges that NL2SQL platforms are specifically designed to address: democratizing data access (Technical Barriers), preserving institutional knowledge (Workforce Dynamics), and accelerating maturity advancement (Analytics Maturity).
+The three-pillar framework enables organizational self-assessment to determine readiness for and potential benefit from NL2SQL and conversational AI interventions. Table 3 provides an evidence-based rubric where each indicator anchors to reviewed literature. Organizations scoring predominantly "Low Strength" across pillars face compounding challenges that NL2SQL platforms are specifically designed to address: democratizing data access (Technical Barriers), preserving institutional knowledge (Workforce Dynamics), and accelerating maturity advancement (Analytics Maturity).
 
 **Table 3: Three-Pillar Organizational Assessment Rubric**
 
@@ -700,7 +700,7 @@ The three-pillar framework enables organizational self-assessment to determine r
 | 1-2 pillars Low Strength | Compounding effects present | Framework reveals interconnections requiring multi-dimensional analysis |
 | 0 pillars Low Strength | Continuous improvement stance | Monitor for emerging challenges; single-pillar focus may suffice |
 
-The framework reveals why convergence matters: organizations facing Higher Risk across multiple pillars experience compounding effects where challenges in one domain exacerbate challenges in others. For example, technical barriers that prevent knowledge capture interact with workforce turnover to accelerate institutional memory loss, which in turn degrades analytics maturity. This multi-pillar perspective explains why single-domain interventions often produce limited results.
+The framework reveals why convergence matters: organizations facing "Low Strength" conditions across multiple pillars experience compounding effects where challenges in one domain exacerbate challenges in others. For example, technical barriers that prevent knowledge capture interact with workforce turnover to accelerate institutional memory loss, which in turn degrades analytics maturity. This multi-pillar perspective explains why single-domain interventions often produce limited results.
 
 ### Illustrative Application: Implementation Patterns
 When organizations choose to apply the framework and evaluate barrier-reducing technologies for potential adoption, implementation evidence suggests several factors influence outcomes:
