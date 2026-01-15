@@ -207,12 +207,17 @@ Literature was identified through multiple channels between January 2023 and Dec
 
 Search terms emerged iteratively and were organized around the three-pillar framework. Table 1 summarizes the search concepts and results by source.
 
-| Pillar | Crossref | PubMed | arXiv | Sem. Scholar | Total&nbsp;(Screened) |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| *Analytics Maturity* | 285 | - | - | - | 285 (15) |
-| *Workforce Agility* | - | 142 | - | - | 142 (12) |
-| *Technical Enablement* | - | - | 71 | 72 | 143 (14) |
-| **Total** | **285** | **142** | **71** | **72** | **570 (41)** |
++-------------------------+---------------+---------------+---------------+---------------+---------------------------+
+| Pillar                  | Crossref      | PubMed        | arXiv         | Sem. Scholar  | Total (Screened)          |
++=========================+===============+===============+===============+===============+===========================+
+| *Analytics Maturity*    | 285           | -             | -             | -             | 285 (15)                  |
++-------------------------+---------------+---------------+---------------+---------------+---------------------------+
+| *Workforce Agility*     | -             | 142           | -             | -             | 142 (12)                  |
++-------------------------+---------------+---------------+---------------+---------------+---------------------------+
+| *Technical Enablement*  | -             | -             | 71            | 72            | 143 (14)                  |
++-------------------------+---------------+---------------+---------------+---------------+---------------------------+
+| **Total**               | **285**       | **142**       | **71**        | **72**        | **570 (41)**              |
++-------------------------+---------------+---------------+---------------+---------------+---------------------------+
 
 : Initial search results by database source. Numbers in parentheses indicate studies passing initial screening. Search concepts: **Analytics Maturity** ("healthcare analytics maturity", "HIMSS AMAM", "analytics adoption", "big data analytics adoption", "resistance to change", "analytics standardization failure", "low-code ROI"); **Workforce Agility** ("healthcare IT tenure", "IT training time", "turnover cost", "institutional memory loss", "organizational forgetting", "competence loss", "knowledge portal", "SECI model"); **Technical Enablement** ("NL2SQL healthcare", "text-to-SQL clinical", "MIMICSQL", "EHRSQL", "schema discovery", "semantic column matching", "vector embeddings").
 
