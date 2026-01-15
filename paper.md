@@ -581,7 +581,7 @@ Most studies examine 6-24 month implementations [@berkshire2024; @sezgin2022]. Q
 Democratizing analytics access creates new challenges in maintaining data quality, analytical rigor, and clinical safety standards. While the evidence shows reduced error rates with conversational AI [@ipeirotis2025], healthcare organizations must develop new governance frameworks for managing distributed analytical capabilities [@himss2025ucdavis].
 
 ### Specialty-Specific Application Gaps
-Evidence primarily focuses on general acute care settings. Applications in specialized domains (oncology, cardiology, mental health) require domain-specific validation and customization that may not generalize from the existing evidence base.
+Evidence primarily focuses on general acute care settings [@yang2021; @wang2025]. Applications in specialized domains (oncology, cardiology, mental health) require domain-specific validation and customization that may not generalize from the existing evidence base.
 
 ### Methodological Considerations
 
