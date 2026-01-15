@@ -22,7 +22,7 @@ Expected output: `✓ COMPLIANT - Ready for JMIR submission`
 - [x] **Data Availability**: Section present
 - [x] **Author Contributions**: Section present
 - [x] **Abbreviations**: 17 abbreviations listed alphabetically
-- [x] **AI Disclosure**: Claude disclosed in Acknowledgments
+- [x] **AI Disclosure**: Gemini disclosed in Acknowledgments
 
 ### Citations & References
 - [x] **Citation Format**: Pandoc [@key] format (186 citations)

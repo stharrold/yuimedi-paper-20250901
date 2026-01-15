@@ -6,7 +6,7 @@ errors=0
 
 # Files to check (excluding paper.md and TODO files which can be larger)
 FILES_TO_CHECK=(
-    "CLAUDE.md"
+    "GEMINI.md"
     "README.md"
     "CONTRIBUTING.md"
 )

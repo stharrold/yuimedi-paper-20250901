@@ -231,7 +231,7 @@ jq '[.categories[].items[].cost] | add' project-management/budget/budget-final.j
 - [ ] All [Section X] references resolve correctly
 - [ ] Appendix references are accurate
 - [ ] Table/Figure numbering is sequential
-- [ ] Cross-document links work (to CLAUDE.md, README.md)
+- [ ] Cross-document links work (to GEMINI.md, README.md)
 
 **Project Management Documentation**:
 - [ ] Links to budget files resolve
@@ -344,7 +344,7 @@ jq '[.categories[].items[].cost] | add' project-management/budget/budget-final.j
 **Key Documents**:
 - [ ] paper.md - Version implied by git history
 - [ ] project-management.md - Version 3.0 stated
-- [ ] CLAUDE.md - Version tracked
+- [ ] GEMINI.md - Version tracked
 - [ ] DECISION_LOG.json - Entries dated
 
 **Change Management**:

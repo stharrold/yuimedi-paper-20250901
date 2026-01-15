@@ -90,7 +90,7 @@ npj_digital-medicine_*.pdf
 
 # (All figures now tracked - removed PNG exclusion)
 
-# Claude state database files
+# Gemini state database files
 .claude-state/*.duckdb
 
 # Haskell (original patterns kept for compatibility)
@@ -130,3 +130,6 @@ cabal.project.local~
 
 # Local secrets
 secrets.toml
+node_modules/
+test.html
+test.md

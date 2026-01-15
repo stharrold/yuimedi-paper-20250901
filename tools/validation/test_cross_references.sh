@@ -6,7 +6,7 @@ errors=0
 # Files to check for cross-references
 FILES_TO_CHECK=(
     "paper.md"
-    "CLAUDE.md"
+    "GEMINI.md"
     "README.md"
     "CONTRIBUTING.md"
 )

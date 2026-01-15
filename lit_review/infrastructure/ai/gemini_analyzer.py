@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: 2025 Yuimedi Corp.
 # SPDX-License-Identifier: Apache-2.0
-"""Claude AI analyzer with graceful fallback to keyword-based analysis.
+"""Gemini AI analyzer with graceful fallback to keyword-based analysis.
 
-Implements the AIAnalyzer port using Anthropic's Claude API with
-automatic fallback to simpler methods when API is unavailable.
+Implements the AIAnalyzer port using Google's latest Gemini SDK (google-genai)
+with automatic fallback to simpler methods when API is unavailable.
 """
 
 import hashlib
@@ -17,41 +17,41 @@ from lit_review.application.ports.ai_analyzer import AIAnalyzer, ThemeHierarchy
 from lit_review.domain.entities.paper import Paper
 
 
-class ClaudeAnalyzer(AIAnalyzer):
-    """Claude-powered analyzer with keyword fallback.
+class GeminiAnalyzer(AIAnalyzer):
+    """Gemini-powered analyzer with keyword fallback.
 
-    Uses Claude API for theme extraction and synthesis when available.
+    Uses Google Gemini API for theme extraction and synthesis when available.
     Falls back to keyword-based analysis when API is unavailable or
     API key is not provided.
 
     Attributes:
-        api_key: Anthropic API key (from ANTHROPIC_API_KEY env var).
-        model: Claude model to use (default: claude-sonnet-4-5-20250929).
+        api_key: Google AI API key (from GEMINI_API_KEY env var).
+        model: Gemini model to use (default: gemini-2.0-flash).
         cache_dir: Directory for caching responses (7-day TTL).
         cache_ttl_days: Cache time-to-live in days (default: 7).
-        use_api: Whether to use Claude API (False for fallback mode).
+        use_api: Whether to use Gemini API (False for fallback mode).
 
     Example:
-        >>> analyzer = ClaudeAnalyzer()
+        >>> analyzer = GeminiAnalyzer()
         >>> themes = analyzer.extract_themes(papers)
     """
 
     def __init__(
         self,
         api_key: str | None = None,
-        model: str = "claude-sonnet-4-5-20250929",
+        model: str = "gemini-2.0-flash",
         cache_dir: Path | None = None,
         cache_ttl_days: int = 7,
     ) -> None:
-        """Initialize Claude analyzer.
+        """Initialize Gemini analyzer.
 
         Args:
-            api_key: Anthropic API key (uses ANTHROPIC_API_KEY env if not provided).
-            model: Claude model identifier.
+            api_key: Google AI API key (uses GEMINI_API_KEY env if not provided).
+            model: Gemini model identifier.
             cache_dir: Cache directory (default: ~/.lit_review/cache).
             cache_ttl_days: Cache TTL in days.
         """
-        self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
+        self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
         self.model = model
         self.cache_ttl_days = cache_ttl_days
 
@@ -65,13 +65,13 @@ class ClaudeAnalyzer(AIAnalyzer):
         # Determine if we can use API
         self.use_api = self.api_key is not None
 
-        # Import anthropic only if API key available
+        # Initialize client only if API key available
         self._client = None
         if self.use_api:
             try:
-                from anthropic import Anthropic  # type: ignore[import-not-found]
+                from google import genai  # type: ignore[import-not-found]
 
-                self._client = Anthropic(api_key=self.api_key)
+                self._client = genai.Client(api_key=self.api_key)
             except ImportError:
                 self.use_api = False
 
@@ -98,10 +98,10 @@ class ClaudeAnalyzer(AIAnalyzer):
         if max_themes < 1:
             raise ValueError("max_themes must be at least 1")
 
-        # Try Claude API first, fall back to keyword extraction
+        # Try Gemini API first, fall back to keyword extraction
         if self.use_api and self._client:
             try:
-                return self._extract_themes_with_claude(papers, max_themes)
+                return self._extract_themes_with_gemini(papers, max_themes)
             except Exception:
                 # Fall back to keyword method
                 pass
@@ -133,25 +133,25 @@ class ClaudeAnalyzer(AIAnalyzer):
         if not research_question:
             raise ValueError("Research question cannot be empty")
 
-        # Try Claude API first, fall back to simple synthesis
+        # Try Gemini API first, fall back to simple synthesis
         if self.use_api and self._client:
             try:
-                return self._generate_synthesis_with_claude(papers, themes, research_question)
+                return self._generate_synthesis_with_gemini(papers, themes, research_question)
             except Exception:
                 # Fall back to simple method
                 pass
 
         return self._generate_synthesis_simple(papers, themes, research_question)
 
-    def _extract_themes_with_claude(self, papers: list[Paper], max_themes: int) -> ThemeHierarchy:
-        """Extract themes using Claude API.
+    def _extract_themes_with_gemini(self, papers: list[Paper], max_themes: int) -> ThemeHierarchy:
+        """Extract themes using Gemini API.
 
         Args:
             papers: List of papers.
             max_themes: Maximum themes.
 
         Returns:
-            ThemeHierarchy from Claude analysis.
+            ThemeHierarchy from Gemini analysis.
         """
         # Check cache first
         cache_key = self._get_cache_key("themes", papers, max_themes)
@@ -179,18 +179,20 @@ Return JSON with this structure:
 }}
 """
 
-        # Call Claude API
+        # Call Gemini API
         if not self._client:
-            raise RuntimeError("Claude API client not initialized")
+            raise RuntimeError("Gemini API client not initialized")
 
-        response = self._client.messages.create(
+        response = self._client.models.generate_content(
             model=self.model,
-            max_tokens=4096,
-            messages=[{"role": "user", "content": prompt}],
+            contents=prompt,
+            config={
+                "response_mime_type": "application/json",
+            },
         )
 
         # Parse response
-        content = response.content[0].text
+        content = response.text
         data = json.loads(content)
 
         result = ThemeHierarchy(
@@ -211,13 +213,13 @@ Return JSON with this structure:
 
         return result
 
-    def _generate_synthesis_with_claude(
+    def _generate_synthesis_with_gemini(
         self,
         papers: list[Paper],
         themes: ThemeHierarchy,
         research_question: str,
     ) -> str:
-        """Generate synthesis using Claude API.
+        """Generate synthesis using Gemini API.
 
         Args:
             papers: List of papers.
@@ -255,15 +257,14 @@ Generate a markdown-formatted synthesis that:
 """
 
         if not self._client:
-            raise RuntimeError("Claude API client not initialized")
+            raise RuntimeError("Gemini API client not initialized")
 
-        response = self._client.messages.create(
+        response = self._client.models.generate_content(
             model=self.model,
-            max_tokens=8192,
-            messages=[{"role": "user", "content": prompt}],
+            contents=prompt,
         )
 
-        synthesis: str = str(response.content[0].text)
+        synthesis: str = str(response.text)
 
         # Cache result
         self._save_to_cache(cache_key, synthesis)

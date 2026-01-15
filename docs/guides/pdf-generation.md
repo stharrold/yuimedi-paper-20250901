@@ -1,253 +1,94 @@
-# PDF Generation
+# PDF Generation and Build Pipeline
 
-This document describes how to generate publication-ready PDFs from `paper.md` using the automated build pipeline.
+This document describes how to generate publication-ready PDFs from `paper.md`.
+
+**Current Recommendation (Jan 2026):** Use **Local Build** with `tectonic` on macOS due to persistent Podman `applehv` socket instability.
 
 ## Quick Start
 
-### Container (Recommended)
+### Option 1: Local Build (Recommended for macOS)
+
+Fastest and most reliable method.
 
 ```bash
-# Build container (first time or after Containerfile changes)
-podman-compose build
+# 1. Install dependencies
+brew install pandoc tectonic
 
-# Generate PDF
-podman-compose run --rm dev ./scripts/build_paper.sh
-
-# Generate all formats (PDF, HTML, DOCX)
-podman-compose run --rm dev ./scripts/build_paper.sh --format all
+# 2. Build Paper (PDF, HTML, DOCX)
+./scripts/build_paper.sh --format all
 ```
 
-### Local
+### Option 2: Container Build (Linux / CI)
+
+Standard method for CI/CD parity. Use if local build fails.
 
 ```bash
-# Generate PDF (requires local pandoc + texlive installation)
-./scripts/build_paper.sh
+# Smart Reset Build (Fixes port/name conflicts)
+podman rm -f -a
+podman volume create yuimedi_venv_cache
+podman build -t yuimedi-paper:latest -f Containerfile .
 
-# Generate specific format
-./scripts/build_paper.sh --format html
-./scripts/build_paper.sh --format docx
+# Run with explicit volume mapping
+podman run --rm \
+  -v "$PWD:/app:Z" \
+  -v yuimedi_venv_cache:/app/.venv \
+  -w /app \
+  yuimedi-paper:latest \
+  ./scripts/build_paper.sh --format all
 ```
 
-## Installation
+## Troubleshooting Podman on macOS
 
-### macOS
+### Error: "dial tcp 127.0.0.1:xxxxx: connect: connection refused"
+
+**Symptoms:**
+- `podman machine start` reports success ("Machine started successfully").
+- Immediately running `podman info` or `podman run` fails with "connection refused".
+- SSH access (`podman machine ssh`) fails with "vm is not running".
+
+**Root Cause:**
+A known instability with the `applehv` virtualization provider on macOS (Apple Silicon). The QEMU process starts but crashes immediately or fails to bind the API forwarding socket to the expected port, causing the client to lose connection.
+
+**Fix Attempts (that often fail):**
+- `podman machine rm -f` / `init` (Issue persists on fresh machines)
+- Deep cleaning `~/.local/share/containers`
+- Reinstalling via Brew
+
+**Official Solution:**
+Use the **Local Build** strategy (Option 1 above). We have patched `scripts/build_paper.sh` to support `tectonic` as a fallback PDF engine specifically to bypass this virtualization layer failure.
+
+## Installation Details
+
+### macOS Requirements
 
 ```bash
-# Install pandoc
+# Core tool
 brew install pandoc
 
-# Install TeX Live (choose one)
-brew install --cask mactex-no-gui   # Full installation (~4GB)
-# or
-brew install basictex               # Minimal installation (~200MB)
-
-# If using basictex, install additional packages
-sudo tlmgr update --self
-sudo tlmgr install collection-fontsrecommended
-sudo tlmgr install collection-latexextra
-sudo tlmgr install xetex
+# PDF Engine (Choose one)
+brew install tectonic             # Modern, self-contained (Recommended)
+# OR
+brew install --cask mactex-no-gui # Traditional, large download
 ```
 
-### Ubuntu/Debian
+### Script Architecture
 
-```bash
-# Install pandoc and TeX Live
-sudo apt-get update
-sudo apt-get install -y pandoc texlive-xetex texlive-latex-extra \
-    texlive-fonts-recommended texlive-fonts-extra lmodern fonts-dejavu
-```
-
-### Eisvogel Template
-
-The build script automatically installs the [Eisvogel template](https://github.com/Wandmalfarbe/pandoc-latex-template) on first run. For manual installation:
-
-```bash
-# Create templates directory
-mkdir -p ~/.local/share/pandoc/templates
-
-# Download and extract Eisvogel
-curl -sL https://github.com/Wandmalfarbe/pandoc-latex-template/releases/latest/download/Eisvogel.tar.gz | \
-    tar xz -C ~/.local/share/pandoc/templates --strip-components=1
-```
-
-## Usage
-
-### Build Script Options
-
-```bash
-./scripts/build_paper.sh [--format FORMAT] [--help]
-
-Options:
-  --format FORMAT  Output format: pdf (default), html, docx, all
-  --help           Show help message
-
-Exit codes:
-  0 - Success
-  1 - Missing dependency (pandoc, xelatex)
-  2 - Conversion failed
-```
-
-### Output Files
-
-| Format | Output File | Size (typical) |
-|--------|-------------|----------------|
-| PDF | `paper.pdf` | ~170KB |
-| HTML | `paper.html` | ~100KB |
-| DOCX | `paper.docx` | ~35KB |
+The build script (`scripts/build_paper.sh`) intelligently selects the PDF engine:
+1.  Checks for `xelatex` (container standard).
+2.  If missing, checks for `tectonic` (local fallback).
+3.  Configures `pandoc` arguments accordingly.
 
 ### Metadata Configuration
 
-Document properties are configured in `metadata.yaml`:
+The `metadata.yaml` file has been optimized for compatibility:
+- Specific font requirements ("DejaVu Serif") are commented out to allow `tectonic` to use its default Latin Modern fonts.
+- This prevents `Package fontspec Error` during local builds.
 
-```yaml
-# Key settings
-title: "Document Title"
-author:
-  - name: Author Name
-    affiliation: Institution
-fontsize: 11pt
-linestretch: 1.5
-toc: true
-numbersections: true
-```
+## Output Files
 
-See `metadata.yaml` for all available options.
-
-## CI/CD Integration
-
-### Automatic PDF Generation
-
-The GitHub Actions workflow (`.github/workflows/pdf-generation.yml`) automatically generates PDFs when:
-- `paper.md` is pushed to `main` or `develop`
-- A pull request modifies `paper.md`
-- A release is published
-
-### Release Attachments
-
-When a release is published:
-1. PDF is generated automatically
-2. PDF is attached to the release as `yuiquery-paper-v{version}.pdf`
-3. HTML is also attached if available
-
-### Workflow Artifacts
-
-PDF artifacts are available for download from the GitHub Actions workflow page for 90 days.
-
-## Troubleshooting
-
-### "pandoc not found"
-
-**Cause:** Pandoc is not installed or not in PATH.
-
-**Solution:**
-```bash
-# macOS
-brew install pandoc
-
-# Ubuntu
-sudo apt-get install pandoc
-
-# Verify installation
-pandoc --version
-```
-
-### "xelatex not found"
-
-**Cause:** TeX Live is not installed or xelatex is not in PATH.
-
-**Solution:**
-```bash
-# macOS
-brew install --cask mactex-no-gui
-# Restart terminal or run: eval "$(/usr/libexec/path_helper)"
-
-# Ubuntu
-sudo apt-get install texlive-xetex
-
-# Verify installation
-xelatex --version
-```
-
-### "Template eisvogel not found"
-
-**Cause:** Eisvogel template is not installed.
-
-**Solution:**
-```bash
-# The build script auto-installs Eisvogel, but for manual installation:
-mkdir -p ~/.local/share/pandoc/templates
-curl -sL https://github.com/Wandmalfarbe/pandoc-latex-template/releases/latest/download/Eisvogel.tar.gz | \
-    tar xz -C ~/.local/share/pandoc/templates --strip-components=1
-```
-
-### LaTeX Errors
-
-**Cause:** Missing LaTeX packages or syntax errors in paper.md.
-
-**Solutions:**
-1. Check pandoc output for specific missing package names
-2. Install missing packages: `sudo tlmgr install <package-name>`
-3. Check paper.md for invalid LaTeX in math blocks
-
-### Container Build Failures
-
-**Cause:** Network issues or disk space problems.
-
-**Solutions:**
-1. Retry the build: `podman-compose build --no-cache`
-2. Check disk space: `df -h`
-3. Clean up old images: `podman system prune`
-
-### PDF Quality Issues
-
-**Problem:** Fonts look wrong or characters are missing.
-
-**Solution:** Ensure DejaVu fonts are installed:
-```bash
-# Ubuntu
-sudo apt-get install fonts-dejavu
-
-# macOS (usually pre-installed)
-brew install --cask font-dejavu
-```
-
-## Architecture
-
-### Pipeline Flow
-
-```
-paper.md + metadata.yaml
-         │
-         ▼
-   ┌─────────────────────────────────────┐
-   │     scripts/build_paper.sh          │
-   │                                     │
-   │  1. Check dependencies              │
-   │  2. Install Eisvogel (if needed)    │
-   │  3. Run pandoc with xelatex engine  │
-   │  4. Validate output                 │
-   └─────────────────────────────────────┘
-         │
-         ▼
-    paper.pdf / paper.html / paper.docx
-```
-
-### Pandoc Options
-
-The build script uses these pandoc options for PDF generation:
-
-| Option | Purpose |
-|--------|---------|
-| `--pdf-engine=xelatex` | Unicode support, modern fonts |
-| `--template=eisvogel` | Academic formatting |
-| `--listings` | Code syntax highlighting |
-| `--number-sections` | Automatic section numbering |
-| `--toc` | Table of contents |
-| `--toc-depth=3` | TOC includes up to h3 headings |
-
-## References
-
-- [Pandoc User's Guide](https://pandoc.org/MANUAL.html)
-- [Eisvogel Template](https://github.com/Wandmalfarbe/pandoc-latex-template)
-- [XeLaTeX Documentation](https://tug.org/xetex/)
-- [TeX Live](https://tug.org/texlive/)
+| Format | Output File | Engine |
+|--------|-------------|--------|
+| PDF | `paper.pdf` | `tectonic` or `xelatex` |
+| HTML | `paper.html` | `pandoc` native |
+| DOCX | `paper.docx` | `pandoc` native |
+| LaTeX | `paper.tex` | Intermediate source |

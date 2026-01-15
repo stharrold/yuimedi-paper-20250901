@@ -44,7 +44,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What accuracy rates have been achieved for NL2SQL on clinical data? | Paper1,Paper2 | - | [`Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md`](Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md) |
 | What NL2SQL datasets exist for healthcare? | Paper2 | - | [`Research_What-NL2SQL-datasets-exist-for-healthcare.md`](Research_What-NL2SQL-datasets-exist-for-healthcare.md) |
 | What is the state of the art in semantic table/column matching for NL2SQL? | Paper2 | [#368](https://github.com/stharrold/yuimedi-paper-20250901/issues/368) | [`Research_semantic-table-column-matching-nl2sql.md`](Research_semantic-table-column-matching-nl2sql.md) |
-| What healthcare benchmarks exist for latest foundation models (GPT-5, Claude Opus 4.5)? | Paper1 | - | [`Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-GPT5-Claude-Opus-4.5.md`](Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-GPT5-Claude-Opus-4.5.md) |
+| What healthcare benchmarks exist for latest foundation models (GPT-5, Claude Opus 4.5)? | Paper1 | - | [`Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-2025-2026.md`](Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-2025-2026.md) |
 
 ### Schema Discovery
 

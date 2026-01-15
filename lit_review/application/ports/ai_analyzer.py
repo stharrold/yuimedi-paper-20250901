@@ -30,7 +30,7 @@ class ThemeHierarchy:
 class AIAnalyzer(ABC):
     """Abstract interface for AI-powered analysis services.
 
-    Implementations of this interface can use various AI services (Claude, GPT, etc.)
+    Implementations of this interface can use various AI services (Gemini, GPT, etc.)
     or fall back to keyword-based analysis when AI is unavailable.
     """
 

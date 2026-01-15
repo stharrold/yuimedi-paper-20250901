@@ -69,9 +69,6 @@
 \usepackage{lmodern}
 \ifPDFTeX\else
   % xetex/luatex font selection
-  \setmainfont[]{DejaVu Serif}
-  \setsansfont[]{DejaVu Sans}
-  \setmonofont[]{DejaVu Sans Mono}
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -109,6 +106,24 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+% Make use of float-package and set default placement for figures to H.
+% The option H means 'PUT IT HERE' (as  opposed to the standard h option which means 'You may put it here if you like').
+\usepackage{float}
+\floatplacement{figure}{H}
+\makeatother
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
 \NewDocumentCommand\citeproc{mm}{%
@@ -147,10 +162,6 @@
 \else
 \usepackage[bidi=default,shorthands=off]{babel}
 \fi
-\ifPDFTeX
-\else
-\babelfont{rm}[]{DejaVu Serif}
-\fi
 \ifLuaTeX
   \usepackage{selnolig} % disable illegal ligatures
 \fi
@@ -170,7 +181,7 @@
 \definecolor{default-urlcolor}{HTML}{4077C0}
 
 \hypersetup{
-  pdftitle={Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement},
+  pdftitle={Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity{,} Workforce Agility{,} and Technical Enablement},
   pdfauthor={Samuel T Harrold, Yuimedi},
   pdflang={en-US},
   pdfkeywords={healthcare analytics, healthcare informatics, analytical
@@ -242,7 +253,28 @@ Enablement}
     \usepackage[default]{sourcesanspro}
   \usepackage{sourcecodepro}
   \else % if not pdftex
-    \fi
+    \usepackage[default]{sourcesanspro}
+  \usepackage{sourcecodepro}
+
+  % XeLaTeX specific adjustments for straight quotes: https://tex.stackexchange.com/a/354887
+  % This issue is already fixed (see https://github.com/silkeh/latex-sourcecodepro/pull/5) but the
+  % fix is still unreleased.
+  % TODO: Remove this workaround when the new version of sourcecodepro is released on CTAN.
+  \ifxetex
+    \makeatletter
+    \defaultfontfeatures[\ttfamily]
+      { Numbers   = \sourcecodepro@figurestyle,
+        Scale     = \SourceCodePro@scale,
+        Extension = .otf }
+    \setmonofont
+      [ UprightFont    = *-\sourcecodepro@regstyle,
+        ItalicFont     = *-\sourcecodepro@regstyle It,
+        BoldFont       = *-\sourcecodepro@boldstyle,
+        BoldItalicFont = *-\sourcecodepro@boldstyle It ]
+      {SourceCodePro}
+    \makeatother
+  \fi
+  \fi
 
 %
 % heading color
@@ -528,21 +560,20 @@ cause:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Pillar 1: Low Analytics Maturity (The Observation):} The most
+  \emph{Pillar 1: Low Analytics Maturity (The Observation):} The most
   visible symptom is healthcare's struggle to advance its analytics
   capabilities. Despite massive investments in data infrastructure, most
   organizations remain at low maturity levels, unable to leverage their
   data for predictive or prescriptive insights.
 \item
-  \textbf{Pillar 2: Workforce Instability (The Cause):} This low
-  maturity is not a static state but is actively driven by a systemic
-  workforce crisis. High turnover at leadership, operational, and
-  specialized levels creates a constant drain of institutional
-  knowledge, preventing the accumulation of expertise required for
-  maturity advancement.
+  \emph{Pillar 2: Workforce Instability (The Cause):} This low maturity
+  is not a static state but is actively driven by a systemic workforce
+  crisis. High turnover at leadership, operational, and specialized
+  levels creates a constant drain of institutional knowledge, preventing
+  the accumulation of expertise required for maturity advancement.
 \item
-  \textbf{Pillar 3: Technical Barriers (The Root Mechanism):} The cycle
-  is perpetuated by technical barriers that prevent organizations from
+  \emph{Pillar 3: Technical Barriers (The Root Mechanism):} The cycle is
+  perpetuated by technical barriers that prevent organizations from
   capturing expertise before it is lost. The gap between clinical domain
   experts and the technical skills required for data access (e.g., SQL)
   creates a dependency on a small pool of specialists, making the system
@@ -577,17 +608,17 @@ levels:
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Strategic Level:} Leadership churn is acute, with 53\% of
+  \emph{Strategic Level:} Leadership churn is acute, with 53\% of
   healthcare CIOs having a tenure of less than three years, leading to
   frequent shifts in analytics strategy
   (\citeproc{ref-wittkieffer2024}{4}).
 \item
-  \textbf{Operational Level:} 79\% of healthcare provider organizations
+  \emph{Operational Level:} 79\% of healthcare provider organizations
   report persistent shortages in ``Information and Digital Health''
   roles, leaving critical technical positions vacant
   (\citeproc{ref-himssworkforce2024}{5}).
 \item
-  \textbf{Foundational Level:} A 2025 analysis found that 55\% of public
+  \emph{Foundational Level:} A 2025 analysis found that 55\% of public
   health informatics specialists intended to leave their positions,
   preventing the accumulation of the tacit knowledge needed to maintain
   analytics infrastructure (\citeproc{ref-rajamani2025}{6}).
@@ -662,19 +693,19 @@ interconnect and compound each other.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Synthesize current evidence} on natural language to SQL
+  \emph{Synthesize current evidence} on natural language to SQL
   generation as a technical barrier.
 \item
-  \textbf{Document the extent} of analytics maturity challenges in
+  \emph{Document the extent} of analytics maturity challenges in
   healthcare organizations globally.
 \item
-  \textbf{Quantify the impact} of workforce turnover on institutional
+  \emph{Quantify the impact} of workforce turnover on institutional
   memory and analytics capabilities.
 \item
-  \textbf{Reveal interconnections} between the three pillars through
+  \emph{Reveal interconnections} between the three pillars through
   evidence synthesis.
 \item
-  \textbf{Provide an assessment rubric} for organizational
+  \emph{Provide an assessment rubric} for organizational
   self-evaluation.
 \end{enumerate}
 
@@ -709,22 +740,22 @@ informatics literature:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Three-Pillar Analytical Framework}: We synthesize evidence
-  from three disconnected research domains---healthcare analytics
-  maturity, workforce turnover, and natural language processing---into a
-  unified analytical framework. This framework reveals how these
-  challenges interconnect and compound each other: low maturity
-  accelerates turnover, turnover degrades agility, and low technical
-  enablement prevents recovery. The framework provides a lens for
-  organizational self-assessment and research prioritization.
+  \emph{Three-Pillar Analytical Framework}: We synthesize evidence from
+  three disconnected research domains---healthcare analytics maturity,
+  workforce turnover, and natural language processing---into a unified
+  analytical framework. This framework reveals how these challenges
+  interconnect and compound each other: low maturity accelerates
+  turnover, turnover degrades agility, and low technical enablement
+  prevents recovery. The framework provides a lens for organizational
+  self-assessment and research prioritization.
 \item
-  \textbf{Evidence Synthesis}: We document the current state of each
+  \emph{Evidence Synthesis}: We document the current state of each
   pillar through a comprehensive literature review, providing healthcare
   organizations with consolidated evidence on analytics maturity
   benchmarks, the impact of workforce turnover, and NL2SQL technical
   capabilities.
 \item
-  \textbf{Illustrative Application}: Drawing on established knowledge
+  \emph{Illustrative Application}: Drawing on established knowledge
   management literature, we describe the validated query cycle as an
   example of how the framework can inform technology design. This
   concept addresses institutional memory loss through a six-step process
@@ -733,11 +764,19 @@ informatics literature:
   illustrate this architecture and cycle.
 \end{enumerate}
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
-\includegraphics[width=0.95\textwidth,keepaspectratio]{figures/architecture.mmd.png}
-\caption{Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation. Bi-directional arrows at steps 5 and 8 represent the iterative 'Query \& Refine' loop where users refine their intent based on delivered insights. The critical validation step (dotted bi-directional line) shows domain experts confirming or correcting generated SQL before results are trusted. Validated NL+SQL pairs flow to organizational memory (dashed line), where they persist independent of staff tenure and inform future query generation.}
-\label{fig:architecture}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation. Bi-directional arrows at steps 5 and 8 represent the iterative `Query \& Refine' loop where users refine their intent based on delivered insights. The critical validation step (dotted bi-directional line) shows domain experts confirming or correcting generated SQL before results are trusted. Validated NL+SQL pairs flow to organizational memory (dashed line), where they persist independent of staff tenure and inform future query generation.}]{figures/architecture.mmd.png}}
+\caption{Healthcare Analytics Architecture. Solid lines indicate the
+primary data flow from clinical user natural language queries through a
+conversational AI interface to a healthcare NLP engine for context-aware
+SQL generation. Bi-directional arrows at steps 5 and 8 represent the
+iterative `Query \& Refine' loop where users refine their intent based
+on delivered insights. The critical validation step (dotted
+bi-directional line) shows domain experts confirming or correcting
+generated SQL before results are trusted. Validated NL+SQL pairs flow to
+organizational memory (dashed line), where they persist independent of
+staff tenure and inform future query generation.}
 \end{figure}
 
 \subsubsection{Illustrative Application: The Validated Query Cycle as a
@@ -746,7 +785,7 @@ Function}\label{illustrative-application-the-validated-query-cycle-as-a-governan
 
 To demonstrate how the three-pillar framework might inform technology
 design, we describe a validated query cycle. This cycle functions as a
-\textbf{Governance Forcing Function}, a mechanism that uses technical
+\emph{Governance Forcing Function}, a mechanism that uses technical
 implementation to compel the adoption of stronger data governance
 practices. It directly addresses institutional memory loss (Pillar 2) by
 systematically converting tacit knowledge into an explicit, durable
@@ -758,15 +797,15 @@ The six-step cycle (Figure 2) illustrates this approach:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Query}: A domain expert (clinician, analyst, or administrator)
+  \emph{Query}: A domain expert (clinician, analyst, or administrator)
   asks a natural language question, such as, ``What was our 30-day
   readmission rate for heart failure patients last quarter?''
 \item
-  \textbf{Generation}: The conversational AI system generates candidate
+  \emph{Generation}: The conversational AI system generates candidate
   SQL code, leveraging healthcare ontologies and organizational schema
   knowledge.
 \item
-  \textbf{Validation}: The AI provides a natural language explanation of
+  \emph{Validation}: The AI provides a natural language explanation of
   the SQL logic and results, allowing the domain expert to validate the
   query's intent without reviewing raw code. This human-in-the-loop step
   aligns with ``Human-on-the-Loop'' (HotL) frameworks, transforming
@@ -777,25 +816,31 @@ The six-step cycle (Figure 2) illustrates this approach:
   accurate for unsupervised use'' in clinical settings
   (\citeproc{ref-ziletti2024}{20}).
 \item
-  \textbf{Storage}: Once validated, the NL+SQL pair is stored in
+  \emph{Storage}: Once validated, the NL+SQL pair is stored in
   organizational memory as a durable knowledge artifact, along with
   mandatory ``Rationale Metadata'' documenting the query's business
   logic (e.g., ``Excluding Hospice per 2025 CMS rules'').
 \item
-  \textbf{Retrieval}: When future users ask similar questions, the
-  system retrieves relevant validated pairs, reducing dependence on
-  individual expertise.
+  \emph{Retrieval}: When future users ask similar questions, the system
+  retrieves relevant validated pairs, reducing dependence on individual
+  expertise.
 \item
-  \textbf{Persistence}: When the original expert leaves, their
-  analytical knowledge remains embedded in the system. New staff inherit
-  executable knowledge rather than starting from scratch.
+  \emph{Persistence}: When the original expert leaves, their analytical
+  knowledge remains embedded in the system. New staff inherit executable
+  knowledge rather than starting from scratch.
 \end{enumerate}
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth,keepaspectratio]{figures/knowledge-cycle.mmd.png}
-\caption{The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) AI provides a natural language explanation of the SQL logic; domain expert confirms the intent and results, (4) validated pairs are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.}
-\label{fig:knowledge-cycle}
+\pandocbounded{\includegraphics[keepaspectratio,alt={The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) AI provides a natural language explanation of the SQL logic; domain expert confirms the intent and results, (4) validated pairs are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.}]{figures/knowledge-cycle.mmd.png}}
+\caption{The Validated Query Cycle, shown as six numbered steps in the
+diagram. (1) Domain experts ask natural language questions, (2) the
+system generates candidate SQL, (3) AI provides a natural language
+explanation of the SQL logic; domain expert confirms the intent and
+results, (4) validated pairs are stored, (5) future queries retrieve
+validated knowledge, and (6) expertise persists through staff turnover.
+This cycle breaks the compounding effect where turnover erases
+institutional memory.}
 \end{figure}
 
 This cycle breaks the compounding effect identified in the three-pillar
@@ -838,16 +883,16 @@ The narrative review approach was selected because:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Integration across domains}: The paper synthesizes evidence
-  from distinct fields (clinical informatics, human resources, natural
+  \emph{Integration across domains}: The paper synthesizes evidence from
+  distinct fields (clinical informatics, human resources, natural
   language processing) that require interpretive integration rather than
   statistical pooling
 \item
-  \textbf{Original analytical framework}: The three-pillar framework
+  \emph{Original analytical framework}: The three-pillar framework
   emerged iteratively from the literature rather than being
   pre-specified
 \item
-  \textbf{Heterogeneous evidence types}: The evidence base includes
+  \emph{Heterogeneous evidence types}: The evidence base includes
   peer-reviewed research, industry reports, and benchmark datasets that
   cannot be meaningfully combined through meta-analysis
 \end{enumerate}
@@ -921,9 +966,9 @@ Pillar & Crossref & PubMed & arXiv & Sem. Scholar & Total (Screened) \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\textbf{Analytics Maturity} & 285 & - & - & - & 285 (15) \\
-\textbf{Workforce Agility} & - & 142 & - & - & 142 (12) \\
-\textbf{Technical Enablement} & - & - & 71 & 72 & 143 (14) \\
+\emph{Analytics Maturity} & 285 & - & - & - & 285 (15) \\
+\emph{Workforce Agility} & - & 142 & - & - & 142 (12) \\
+\emph{Technical Enablement} & - & - & 71 & 72 & 143 (14) \\
 \textbf{Total} & \textbf{285} & \textbf{142} & \textbf{71} & \textbf{72}
 & \textbf{570 (41)} \\
 \end{longtable}
@@ -936,11 +981,15 @@ Figure 3 illustrates the literature selection process, showing
 progression from initial database search through screening and quality
 assessment to the final corpus of included sources.
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
-\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/literature-flow.mmd.png}
-\caption{Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 137 sources (125 academic, 12 industry). Diagram source available in figures/literature-flow.mmd.}
-\label{fig:literature-flow}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 137 sources (125 academic, 12 industry). Diagram source available in figures/literature-flow.mmd.}]{figures/literature-flow.mmd.png}}
+\caption{Literature Selection Flow Diagram. The diagram shows the
+progression from initial database search (n ≈ 570) through
+title/abstract screening, full-text review, and quality assessment
+(AACODS for grey literature) to the final corpus of 137 sources (125
+academic, 12 industry). Diagram source available in
+figures/literature-flow.mmd.}
 \end{figure}
 
 \subsection{Stage 2: Screening and
@@ -992,12 +1041,12 @@ sponsorship were retained when no independent alternative existed but
 flagged in-text. Table 2 summarizes the assessment.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.3200}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2080}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1920}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1600}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0800}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0080}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.3200}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2080}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1920}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1600}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0800}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0080}}@{}}
 \caption{AACODS Assessment of Industry Sources.
 \label{tbl:aacods}}\tabularnewline
 \toprule\noalign{}
@@ -1008,7 +1057,7 @@ Authority / Accuracy
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Coverage / Objectivity
 \end{minipage} &
-\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2480} + 4\tabcolsep}@{}}{%
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2480} + 4\tabcolsep}@{}}{%
 \begin{minipage}[b]{\linewidth}\raggedright
 Date / Significance\textbar{} Include
 \end{minipage}} \\
@@ -1022,7 +1071,7 @@ Authority / Accuracy
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Coverage / Objectivity
 \end{minipage} &
-\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2480} + 4\tabcolsep}@{}}{%
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2480} + 4\tabcolsep}@{}}{%
 \begin{minipage}[b]{\linewidth}\raggedright
 Date / Significance\textbar{} Include
 \end{minipage}} \\
@@ -1091,32 +1140,31 @@ This narrative review has inherent limitations:
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Non-exhaustive search}: Literature identification was
-  selective rather than exhaustive; relevant studies may have been
-  missed
+  \emph{Non-exhaustive search}: Literature identification was selective
+  rather than exhaustive; relevant studies may have been missed
 \item
-  \textbf{Limited formal quality assessment}: Grey literature sources
-  were assessed using the AACODS checklist; however, no standardized
-  quality assessment tool (e.g., GRADE, Cochrane Risk of Bias) was
-  applied to peer-reviewed sources, as these tools are designed for
-  clinical intervention studies rather than narrative reviews
+  \emph{Limited formal quality assessment}: Grey literature sources were
+  assessed using the AACODS checklist; however, no standardized quality
+  assessment tool (e.g., GRADE, Cochrane Risk of Bias) was applied to
+  peer-reviewed sources, as these tools are designed for clinical
+  intervention studies rather than narrative reviews
 \item
-  \textbf{Single-coder bias risk}: Literature screening, data
-  extraction, and thematic analysis were performed by a single author
-  without independent verification. This introduces potential selection
-  and interpretation bias that would be mitigated in systematic reviews
+  \emph{Single-coder bias risk}: Literature screening, data extraction,
+  and thematic analysis were performed by a single author without
+  independent verification. This introduces potential selection and
+  interpretation bias that would be mitigated in systematic reviews
   through dual-coder protocols with inter-rater reliability assessment
 \item
-  \textbf{Post-hoc selection criteria}: Inclusion and exclusion criteria
+  \emph{Post-hoc selection criteria}: Inclusion and exclusion criteria
   were refined during the review process rather than pre-registered
 \item
-  \textbf{No protocol registration}: This review was not registered in
+  \emph{No protocol registration}: This review was not registered in
   PROSPERO or similar registries
 \item
-  \textbf{Dated workforce statistics}: The primary healthcare IT
-  turnover statistic (\textasciitilde34\% implied for new hires) derives
-  from Ang and Slaughter's 2004 study (\citeproc{ref-ang2004}{7}). While
-  recent surveys confirm workforce challenges persist
+  \emph{Dated workforce statistics}: The primary healthcare IT turnover
+  statistic (\textasciitilde34\% implied for new hires) derives from Ang
+  and Slaughter's 2004 study (\citeproc{ref-ang2004}{7}). While recent
+  surveys confirm workforce challenges persist
   (\citeproc{ref-american2023}{1}) and contemporary evidence suggests
   the situation may have worsened (55\% intent to leave among public
   health informatics specialists (\citeproc{ref-rajamani2025}{6})), no
@@ -1158,11 +1206,11 @@ The framework development followed these steps:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Theme Extraction}: Systematic coding of included sources
+  \emph{Theme Extraction}: Systematic coding of included sources
   identified recurring themes across technical, organizational, and
   workforce dimensions
 \item
-  \textbf{Pattern Recognition}: Cross-domain analysis revealed that
+  \emph{Pattern Recognition}: Cross-domain analysis revealed that
   challenges in each dimension amplified challenges in others. A root
   cause analysis (observation-why-repeat) determined the framework's
   ordering: low \textbf{Analytics Maturity} (Observation/Context) is
@@ -1172,24 +1220,24 @@ The framework development followed these steps:
   on established RCA methodology for organizational learning
   (\citeproc{ref-allison2021}{30},\citeproc{ref-soylemez2017}{31}).
 \item
-  \textbf{Pillar Identification}: Three orthogonal yet interconnected
+  \emph{Pillar Identification}: Three orthogonal yet interconnected
   dimensions emerged as the organizing structure:
 
   \begin{itemize}
   \tightlist
   \item
-    \textbf{Analytics Maturity}: Organizational capability progression
+    \emph{Analytics Maturity}: Organizational capability progression
     measured against HIMSS AMAM stages
   \item
-    \textbf{Workforce Agility}: Human capital retention and tacit
+    \emph{Workforce Agility}: Human capital retention and tacit
     knowledge preservation
   \item
-    \textbf{Technical Enablement}: NL2SQL capabilities and
+    \emph{Technical Enablement}: NL2SQL capabilities and
     healthcare-specific implementation solutions
   \end{itemize}
 \item
-  \textbf{Framework Validation}: Pillar structure tested against the
-  full corpus to confirm comprehensive coverage without significant gaps
+  \emph{Framework Validation}: Pillar structure tested against the full
+  corpus to confirm comprehensive coverage without significant gaps
 \end{enumerate}
 
 \subsection{Theoretical Grounding}\label{theoretical-grounding}
@@ -1201,11 +1249,11 @@ informatics and knowledge management:
 \centering
 \begin{tabular}{p{3cm}p{3.5cm}p{3.5cm}p{3.5cm}}
 \toprule
-\textbf{Three \newline Pillars} & \textbf{HIMSS AMAM Alignment} & \textbf{DIKW \newline Hierarchy} & \textbf{Knowledge Management} \\
+\textbf{Three Pillars} & \textbf{HIMSS AMAM Alignment} & \textbf{DIKW Hierarchy} & \textbf{Knowledge Management} \\
 \midrule
-Analytics \newline Maturity & Stages 0-7 \newline Progression & Data \newline → Information & Organizational learning \\
-Workforce \newline Agility & Implicit in \newline Advanced Stages & Knowledge (tacit) \newline → Wisdom & Tacit knowledge transfer \\
-Technical \newline Enablement & Stage 6-7 \newline Requirements & Information \newline → Knowledge & Knowledge \newline Codification \\
+Analytics Maturity & Stages 0-7 Progression & Data $\rightarrow$ Information & Organizational learning \\
+Workforce Agility & Implicit in Advanced Stages & Knowledge (tacit) $\rightarrow$ Wisdom & Tacit knowledge transfer \\
+Technical Enablement & Stage 6-7 Requirements & Information $\rightarrow$ Knowledge & Knowledge Codification \\
 \bottomrule
 \end{tabular}
 \caption{Framework Alignment with Established Models}
@@ -1817,12 +1865,12 @@ increase in self-service analytics adoption among non-technical staff
 and a 37\% reduction in time spent on data retrieval tasks
 (\citeproc{ref-dadi2025}{93}). Precision medicine platforms leveraging
 conversational AI have demonstrated 92.5\% accuracy in parsing complex
-biomedical queries, executing tasks faster than standard web portals
-(\citeproc{ref-yang2025}{111}). Furthermore, experimental comparisons
-show that natural language interfaces can accelerate database query
-formulation by 2.7x to 6.7x compared to traditional methods
-(\citeproc{ref-shah2020}{97}), reducing the dependency on specialized
-technical staff.
+biomedical queries, executing tasks significantly faster than standard
+web portals (\citeproc{ref-yang2025}{111}). Furthermore, experimental
+comparisons show that natural language interfaces can accelerate
+database query formulation by 2.7x to 6.7x compared to traditional
+methods (\citeproc{ref-shah2020}{97}), reducing the dependency on
+specialized technical staff.
 
 Low-code platforms and conversational AI represent complementary
 approaches to this enablement (\citeproc{ref-mogili2025}{112}). Low-code
@@ -1938,30 +1986,29 @@ analytics, several research gaps persist:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Long-term outcomes}: Most studies examine 6-24 month
+  \emph{Long-term outcomes}: Most studies examine 6-24 month
   implementations
   (\citeproc{ref-dadi2025}{93},\citeproc{ref-pennington2023}{114});
   multi-year impacts remain understudied
 \item
-  \textbf{Scalability across specialties}: Evidence primarily focuses on
+  \emph{Scalability across specialties}: Evidence primarily focuses on
   general acute care
   (\citeproc{ref-wang2020}{88},\citeproc{ref-lee2023}{89});
   specialty-specific applications need investigation
 \item
-  \textbf{Governance frameworks}: Limited research on optimal governance
+  \emph{Governance frameworks}: Limited research on optimal governance
   models for democratized analytics
   (\citeproc{ref-himss2024}{2},\citeproc{ref-snowdon2024b}{22})
 \item
-  \textbf{Training methodologies}: Best practices for transitioning from
+  \emph{Training methodologies}: Best practices for transitioning from
   traditional (\citeproc{ref-musa2023}{77}) to conversational analytics
   lack empirical validation
 \item
-  \textbf{Integration patterns}: Architectural guidance for
-  incorporating conversational AI into existing healthcare IT ecosystems
-  remains sparse
-  (\citeproc{ref-park2024}{95},\citeproc{ref-yang2025}{111})
+  \emph{Integration patterns}: Architectural guidance for incorporating
+  conversational AI into existing healthcare IT ecosystems remains
+  sparse (\citeproc{ref-park2024}{95},\citeproc{ref-yang2025}{111})
 \item
-  \textbf{Long-term productivity tracking}: While peer-reviewed studies
+  \emph{Long-term productivity tracking}: While peer-reviewed studies
   now document immediate productivity gains (63\% self-service adoption
   increase, 37\% data retrieval time reduction, 10-30\% query completion
   time improvement (\citeproc{ref-yuan2019}{94}),
@@ -1969,14 +2016,14 @@ analytics, several research gaps persist:
   (\citeproc{ref-ipeirotis2025}{96})), longitudinal studies tracking
   sustained productivity improvements over multiple years remain limited
 \item
-  \textbf{Citizen developer productivity methodology}: No validated
+  \emph{Citizen developer productivity methodology}: No validated
   healthcare-specific instrument exists for measuring citizen developer
   productivity. While Berkshire NHS reports over 1,600 citizen
   developers (\citeproc{ref-berkshire2024}{24}), the methodology for
   quantifying their productivity contributions lacks standardization
   across studies
 \item
-  \textbf{AMAM-specific outcome evidence}: The HIMSS Analytics Maturity
+  \emph{AMAM-specific outcome evidence}: The HIMSS Analytics Maturity
   Assessment Model (AMAM) was released in October 2024; existing outcome
   studies linking maturity stages to patient outcomes use the older
   EMRAM (EHR adoption) model
@@ -2215,23 +2262,23 @@ year)}\label{short-term-research-priorities-1-year}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Reference Implementation Validation}: Empirical validation of
+  \emph{Reference Implementation Validation}: Empirical validation of
   NL2SQL approaches using synthetic healthcare data (e.g., Synthea) in
   reproducible cloud environments, enabling benchmarking against
   established datasets (EHRSQL, MIMICSQL) without privacy constraints
   (\citeproc{ref-wang2020}{88},\citeproc{ref-lee2023}{89})
 \item
-  \textbf{Schema Discovery for Healthcare Databases}: Research on
+  \emph{Schema Discovery for Healthcare Databases}: Research on
   automated primary/foreign key discovery algorithms applied to
   healthcare schemas, addressing the complexity of clinical data models
   (\citeproc{ref-zhang2024}{9})
 \item
-  \textbf{Governance Framework Development}: Research on optimal
+  \emph{Governance Framework Development}: Research on optimal
   governance models for democratized analytics
   (\citeproc{ref-himss2024}{2},\citeproc{ref-snowdon2024b}{22})
 \item
-  \textbf{Expansion to Unstructured Data}: While this paper focuses on
-  SQL (structured data), \textasciitilde80\% of healthcare data is
+  \emph{Expansion to Unstructured Data}: While this paper focuses on SQL
+  (structured data), \textasciitilde80\% of healthcare data is
   unstructured. Future research should explore how the three-pillar
   framework can provide the necessary governance structure for expansion
   into unstructured data via Vector/RAG technologies
@@ -2245,20 +2292,19 @@ years)}\label{medium-term-research-priorities-1-2-years}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Healthcare Terminology Integration}: Development of
-  programmatic approaches for mapping natural language queries to
-  standardized vocabularies (SNOMED CT, LOINC, RxNorm) within NL2SQL
-  pipelines
+  \emph{Healthcare Terminology Integration}: Development of programmatic
+  approaches for mapping natural language queries to standardized
+  vocabularies (SNOMED CT, LOINC, RxNorm) within NL2SQL pipelines
 \item
-  \textbf{FHIR/OMOP Interoperability}: Research on reducing ETL burden
-  for OMOP Common Data Model and FHIR transformations, enabling NL2SQL
+  \emph{FHIR/OMOP Interoperability}: Research on reducing ETL burden for
+  OMOP Common Data Model and FHIR transformations, enabling NL2SQL
   systems to operate across heterogeneous healthcare data standards
 \item
-  \textbf{Longitudinal Outcome Studies}: Multi-year implementations to
+  \emph{Longitudinal Outcome Studies}: Multi-year implementations to
   assess sustained benefits and organizational evolution
 \item
-  \textbf{Comparative Effectiveness Research}: Head-to-head comparisons
-  of different conversational AI approaches on healthcare-specific
+  \emph{Comparative Effectiveness Research}: Head-to-head comparisons of
+  different conversational AI approaches on healthcare-specific
   benchmarks
 \end{enumerate}
 
@@ -2269,16 +2315,16 @@ years)}\label{long-term-research-priorities-2-years}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Organizational Transformation Studies}: Research on how
+  \emph{Organizational Transformation Studies}: Research on how
   conversational AI platforms reshape healthcare organizational
   capabilities
 \item
-  \textbf{Clinical Outcome Impact Assessment}: Studies linking improved
+  \emph{Clinical Outcome Impact Assessment}: Studies linking improved
   analytics access to patient care outcomes
 \item
-  \textbf{Cross-Institution Knowledge Portals}: Investigation of
-  federated approaches enabling knowledge sharing across healthcare
-  organizations while maintaining privacy and security requirements
+  \emph{Cross-Institution Knowledge Portals}: Investigation of federated
+  approaches enabling knowledge sharing across healthcare organizations
+  while maintaining privacy and security requirements
 \end{enumerate}
 
 \subsection{Illustrative Application: Knowledge Preservation
@@ -2301,11 +2347,11 @@ Validated query pairs address each weakness:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Executability}: Validated pairs are executable; they can be
+  \emph{Executability}: Validated pairs are executable; they can be
   tested against current data to verify continued correctness, unlike
   static documentation
 \item
-  \textbf{Contextual Completeness}: Validated pairs capture the complete
+  \emph{Contextual Completeness}: Validated pairs capture the complete
   mapping from business question to data retrieval logic, embedding the
   contextual judgment that documentation typically omits (why this join,
   why this filter, why this aggregation). To prevent an intent gap,
@@ -2315,7 +2361,7 @@ Validated query pairs address each weakness:
   documenting \emph{why} the query was constructed in a specific way
   (e.g., ``Excluding Hospice per 2025 CMS rules'')
 \item
-  \textbf{Active Validation}: Validation happens at the point of use
+  \emph{Active Validation}: Validation happens at the point of use
   rather than as a separate maintenance task; every confirmed query
   becomes a knowledge artifact without additional documentation effort
 \end{enumerate}
@@ -2374,7 +2420,7 @@ conversational AI approach against established alternatives:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Code-Based Semantic Layers and Fabrics}: Traditional semantic
+  \emph{Code-Based Semantic Layers and Fabrics}: Traditional semantic
   layers (e.g., dbt, LookML) attempt to encode business logic in
   version-controlled repositories. However, research indicates these
   layers suffer from ``schema rot'' in healthcare environments where EMR
@@ -2393,7 +2439,7 @@ conversational AI approach against established alternatives:
   volatile, making stable References for programmers elusive
   (\citeproc{ref-lenz2007}{128}).
 \item
-  \textbf{Passive vs.~Active Capture}: Traditional knowledge management
+  \emph{Passive vs.~Active Capture}: Traditional knowledge management
   relies on passive capture (wikis, documentation) where users must stop
   working to document. Evidence suggests this negatively impacts
   participation and leads to inaccurate records due to cognitive load
@@ -2403,9 +2449,9 @@ conversational AI approach against established alternatives:
   integrating knowledge preservation directly into the analytical
   workflow.
 \item
-  \textbf{Governance vs.~Shadow IT}: Rigid, centralized models often
-  drive analysts toward Shadow IT (extracting raw data to Excel) to
-  achieve flexibility, defeating governance goals
+  \emph{Governance vs.~Shadow IT}: Rigid, centralized models often drive
+  analysts toward Shadow IT (extracting raw data to Excel) to achieve
+  flexibility, defeating governance goals
   (\citeproc{ref-zimmermann2017}{135}). However, Shadow IT persists
   because it provides significant agility benefits, circumvents IT
   backlogs, and adds immediate value to business workgroups
@@ -2432,7 +2478,7 @@ treated not as a static artifact but as a software asset within a CI/CD
 pipeline. In healthcare, database schemas (Epic, Cerner, OMOP) change
 frequently, breaking ``frozen'' code. To address ``Schema Drift,''
 analytics must adopt principles from software engineering:
-\textbf{Continuous Analytic Integration}.
+\emph{Continuous Analytic Integration}.
 
 In this approach, Validated Query Pairs are managed not as wiki entries
 but as software assets within a CI/CD pipeline. When the data warehouse
@@ -2490,12 +2536,13 @@ advancement (Analytics Maturity).
 
 \textbf{Pillar 1: Analytics Maturity}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1392}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2278}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2658}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2405}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1266}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1392}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2278}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2658}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2405}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1266}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2524,15 +2571,17 @@ AI/NL interface & No NL2SQL or conversational analytics & Pilot programs
 or evaluation underway & Natural language query capability deployed &
 (\citeproc{ref-ziletti2024}{20},\citeproc{ref-wang2020}{88}) \\
 \end{longtable}
+}
 
 \textbf{Pillar 2: Workforce Agility}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1392}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2278}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2658}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2405}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1266}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1392}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2278}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2658}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2405}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1266}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2566,15 +2615,17 @@ Tacit knowledge capture & Person-dependent; undocumented tribal
 knowledge & Partial documentation exists & Expertise embedded in
 systems/AI & (\citeproc{ref-benbya2004}{37}) \\
 \end{longtable}
+}
 
 \textbf{Pillar 3: Technical Enablement}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1392}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2278}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2658}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2405}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1266}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1392}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2278}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2658}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2405}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1266}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Indicator
@@ -2604,13 +2655,15 @@ Acknowledged deficit with mitigation plans & Sufficient analysts across
 departments &
 (\citeproc{ref-bardsley2016}{53},\citeproc{ref-pesqueira2020}{54}) \\
 \end{longtable}
+}
 
 \textbf{Multi-Pillar Convergence Assessment:}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2917}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3750}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2917}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3750}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Organizational Profile
@@ -2631,6 +2684,7 @@ reveals interconnections requiring multi-dimensional analysis \\
 0 pillars Low Strength & Continuous improvement stance & Monitor for
 emerging challenges; single-pillar focus may suffice \\
 \end{longtable}
+}
 
 The framework reveals why convergence matters: organizations facing
 ``Low Strength'' conditions across multiple pillars experience
@@ -2651,20 +2705,18 @@ evidence suggests several factors influence outcomes:
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Governance Framework Development}: New policies and procedures
+  \emph{Governance Framework Development}: New policies and procedures
   for democratized analytics
   (\citeproc{ref-himss2025ucdavis}{127},\citeproc{ref-oliveira2023}{129})
 \item
-  \textbf{Change Management}: Training and support programs to ensure
-  user adoption
-  (\citeproc{ref-shahbaz2019}{16},\citeproc{ref-musa2023}{77})
+  \emph{Change Management}: Training and support programs to ensure user
+  adoption (\citeproc{ref-shahbaz2019}{16},\citeproc{ref-musa2023}{77})
 \item
-  \textbf{Phased Deployment}: Gradual rollout beginning with
+  \emph{Phased Deployment}: Gradual rollout beginning with
   analytics-savvy early adopters (\citeproc{ref-berkshire2024}{24})
 \item
-  \textbf{Human Oversight}: Current NL2SQL limitations require
-  maintaining human review of AI-generated outputs
-  (\citeproc{ref-ziletti2024}{20})
+  \emph{Human Oversight}: Current NL2SQL limitations require maintaining
+  human review of AI-generated outputs (\citeproc{ref-ziletti2024}{20})
 \end{itemize}
 
 \subsubsection{Mitigating ``Shadow IT'' with ``Golden
@@ -2690,10 +2742,10 @@ these challenges interconnect and compound each other.
 \subsection{The Three-Pillar
 Framework}\label{the-three-pillar-framework}
 
-The framework identifies a self-reinforcing cycle: low \textbf{Analytics
+The framework identifies a self-reinforcing cycle: low \emph{Analytics
 Maturity} leaves clinical decisions unsupported; this frustration
-correlates with high \textbf{Workforce Turnover}, which causes
-institutional memory loss; and \textbf{Technical Barriers} prevent the
+correlates with high \emph{Workforce Turnover}, which causes
+institutional memory loss; and \emph{Technical Barriers} prevent the
 capture of this knowledge, blocking recovery. This integrated
 perspective explains why addressing single pillars in isolation---such
 as buying a new tool without addressing workforce stability---often
@@ -2707,14 +2759,14 @@ This review establishes critical evidence benchmarks for each pillar:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Analytics Maturity}: Healthcare maturity remains low, with
-  most organizations struggling at basic reporting levels. However,
-  recent evidence confirms that higher maturity correlates with better
-  patient safety and experience outcomes, shifting the focus from simple
-  EMR adoption to advanced analytics capabilities
+  \emph{Analytics Maturity}: Healthcare maturity remains low, with most
+  organizations struggling at basic reporting levels. However, recent
+  evidence confirms that higher maturity correlates with better patient
+  safety and experience outcomes, shifting the focus from simple EMR
+  adoption to advanced analytics capabilities
   (\citeproc{ref-himss2024}{2},\citeproc{ref-snowdon2024b}{22}).
 \item
-  \textbf{Workforce Impact}: The sector faces a persistent crisis of
+  \emph{Workforce Impact}: The sector faces a persistent crisis of
   instability, with turnover rates historically among the highest in IT
   (\citeproc{ref-american2023}{1},\citeproc{ref-ang2004}{7}). The cost
   of this churn is not just financial but intellectual: knowledge loss
@@ -2722,15 +2774,15 @@ This review establishes critical evidence benchmarks for each pillar:
   organizational capability over time
   (\citeproc{ref-massingham2018}{34}).
 \item
-  \textbf{Technical Enablement}: Natural language interfaces have
-  matured to become viable democratizing tools. Benchmarks show
-  significant accuracy improvements
+  \emph{Technical Enablement}: Natural language interfaces have matured
+  to become viable democratizing tools. Benchmarks show significant
+  accuracy improvements
   (\citeproc{ref-wang2020}{88},\citeproc{ref-lee2023}{89}), while
   implementation studies document quantifiable productivity gains and
   cost reductions, including a 37\% reduction in data retrieval time
   (\citeproc{ref-dadi2025}{93},\citeproc{ref-jiao2023}{116}).
 \item
-  \textbf{Governance Necessity}: Democratization requires stricter
+  \emph{Governance Necessity}: Democratization requires stricter
   governance. Successful implementations demonstrate that establishing
   ``Golden Queries'' and standardized definitions is a prerequisite for
   advanced maturity, enabling organizations to move from ad-hoc
@@ -2818,9 +2870,14 @@ Analytics focused on health outcomes of groups of individuals rather
 than individual patients RAG: Retrieval-Augmented Generation SQL:
 Structured Query Language
 
+\section{Multimedia Appendix}\label{multimedia-appendix}
+
+\textbf{Multimedia Appendix 1:} HIMSS Analytics Maturity Assessment
+Model (AMAM) Stages and Healthcare NL2SQL Query Examples.
+
 \section{References}\label{references}
 
-\phantomsection\label{refs}
+\protect\phantomsection\label{refs}
 \begin{CSLReferences}{0}{1}
 \bibitem[\citeproctext]{ref-american2023}
 \CSLLeftMargin{1. }%
@@ -2951,7 +3008,7 @@ Available from:
 
 \bibitem[\citeproctext]{ref-mosqueirarey2023}
 \CSLLeftMargin{19. }%
-\CSLRightInline{Mosqueira-Rey E et al. Human-in-the-loop machine
+\CSLRightInline{{Mosqueira-Rey E et al.} Human-in-the-loop machine
 learning: A state of the art. Artificial Intelligence Review
 {[}Internet{]}. 2023;56:3005--54. Available from:
 \url{https://link.springer.com/content/pdf/10.1007/s10462-022-10246-w.pdf}}
@@ -3223,7 +3280,7 @@ Available from:
 
 \bibitem[\citeproctext]{ref-lismont2017}
 \CSLLeftMargin{58. }%
-\CSLRightInline{Lismont J, Vanthienen J, Baesens B, et al. {Defining
+\CSLRightInline{{Lismont J, Vanthienen J, Baesens B, et al.} {Defining
 analytics maturity indicators: A survey approach}. International Journal
 of Information Management {[}Internet{]}. 2017;37(3):114--24. Available
 from:
@@ -3231,7 +3288,7 @@ from:
 
 \bibitem[\citeproctext]{ref-yang2021}
 \CSLLeftMargin{59. }%
-\CSLRightInline{Yang DX, Khera R, Miccio JA, Jairam V, et al.
+\CSLRightInline{{Yang DX, Khera R, Miccio JA, Jairam V, et al.}
 {Prevalence of missing data in the national cancer database and
 association with overall survival}. JAMA Network Open {[}Internet{]}.
 2021;4(3):e211793. Available from:
@@ -3239,7 +3296,7 @@ association with overall survival}. JAMA Network Open {[}Internet{]}.
 
 \bibitem[\citeproctext]{ref-arts2002}
 \CSLLeftMargin{60. }%
-\CSLRightInline{Arts DG, De Keizer NF, et al. {Defining and improving
+\CSLRightInline{{Arts DG, De Keizer NF, et al.} {Defining and improving
 data quality in medical registries: a literature review, case study, and
 generic framework}. Journal of the American Medical Informatics
 Association {[}Internet{]}. 2002;9(6):600--11. Available from:
@@ -3247,7 +3304,7 @@ Association {[}Internet{]}. 2002;9(6):600--11. Available from:
 
 \bibitem[\citeproctext]{ref-mccoy2013}
 \CSLLeftMargin{61. }%
-\CSLRightInline{McCoy AB, Wright A, Kahn MG, Shapiro JS, et al.
+\CSLRightInline{{McCoy AB, Wright A, Kahn MG, Shapiro JS, et al.}
 {Matching identifiers in electronic health records: implications for
 duplicate records and patient safety}. BMJ Quality \& Safety
 {[}Internet{]}. 2013;22(3):219--24. Available from:
@@ -3262,7 +3319,7 @@ expertise in clinical data pipelines}. JMIR Medical Informatics
 
 \bibitem[\citeproctext]{ref-sirgo2018}
 \CSLLeftMargin{63. }%
-\CSLRightInline{Sirgo G, Esteban G Francisco icon, Moreno G, et al.
+\CSLRightInline{{Sirgo G, Esteban G Francisco icon, Moreno G, et al.}
 {Validation of the ICU-DaMa tool for automatically extracting variables
 for minimum dataset and quality indicators: The importance of data
 quality assessment}. International Journal of Medical Informatics
@@ -3271,7 +3328,7 @@ quality assessment}. International Journal of Medical Informatics
 
 \bibitem[\citeproctext]{ref-shi2021}
 \CSLLeftMargin{64. }%
-\CSLRightInline{Shi X, Prins C, Van Pottelbergh G, Mamouris P, et al.
+\CSLRightInline{{Shi X, Prins C, Van Pottelbergh G, Mamouris P, et al.}
 {An automated data cleaning method for Electronic Health Records by
 incorporating clinical knowledge}. BMC Medical Informatics and Decision
 Making {[}Internet{]}. 2021;21:1--12. Available from:
@@ -3279,7 +3336,7 @@ Making {[}Internet{]}. 2021;21:1--12. Available from:
 
 \bibitem[\citeproctext]{ref-dugas2016}
 \CSLLeftMargin{65. }%
-\CSLRightInline{Dugas M, Neuhaus P, Meidt A, Doods J, Storck M, et al.
+\CSLRightInline{{Dugas M, Neuhaus P, Meidt A, Doods J, Storck M, et al.}
 {Portal of medical data models: information infrastructure for medical
 research and healthcare}. Database {[}Internet{]}. 2016;2016. Available
 from:
@@ -3287,7 +3344,7 @@ from:
 
 \bibitem[\citeproctext]{ref-bokov2017}
 \CSLLeftMargin{66. }%
-\CSLRightInline{Bokov AF, Bos AB, Manuel LS, et al. {Using prevalence
+\CSLRightInline{{Bokov AF, Bos AB, Manuel LS, et al.} {Using prevalence
 patterns to discover un-mapped flowsheet data in an electronic health
 record data warehouse}. In: 2017 IEEE 30th international symposium on
 computer-based medical systems (CBMS) {[}Internet{]}. IEEE; 2017. p.
@@ -3296,7 +3353,7 @@ computer-based medical systems (CBMS) {[}Internet{]}. IEEE; 2017. p.
 
 \bibitem[\citeproctext]{ref-ulrich2022}
 \CSLLeftMargin{67. }%
-\CSLRightInline{Ulrich H, Kock-Schoppenhauer AK, et al. {Understanding
+\CSLRightInline{{Ulrich H, Kock-Schoppenhauer AK, et al.} {Understanding
 the nature of metadata: systematic review}. Journal of Medical Internet
 Research {[}Internet{]}. 2022;24(1):e25440. Available from:
 \url{https://www.jmir.org/2022/1/e25440/}}
@@ -3452,9 +3509,9 @@ on electronic medical records}. In: Proceedings of the web conference
 
 \bibitem[\citeproctext]{ref-lee2023}
 \CSLLeftMargin{89. }%
-\CSLRightInline{Lee et al G. {EHRSQL: A practical text-to-SQL benchmark
-for electronic health records}. In: Proceedings of NeurIPS 2022
-{[}Internet{]}. 2023. Available from:
+\CSLRightInline{{Lee et al G.} {EHRSQL: A practical text-to-SQL
+benchmark for electronic health records}. In: Proceedings of NeurIPS
+2022 {[}Internet{]}. 2023. Available from:
 \url{https://arxiv.org/abs/2301.07695}}
 
 \bibitem[\citeproctext]{ref-sivasubramaniam2024}
@@ -3610,14 +3667,14 @@ International Journal of Environmental Research and Public Health
 
 \bibitem[\citeproctext]{ref-moore2018}
 \CSLLeftMargin{110. }%
-\CSLRightInline{Moore D et al. {ActiveNavigator: Toward real-time
+\CSLRightInline{{Moore D et al.} {ActiveNavigator: Toward real-time
 knowledge capture and feedback in active learning spaces}. International
 Journal of Engineering Education {[}Internet{]}. 2018;34(2):1--12.
 Available from: \url{https://wendyju.com/publications/18_ijee3593.pdf}}
 
 \bibitem[\citeproctext]{ref-yang2025}
 \CSLLeftMargin{111. }%
-\CSLRightInline{Yang EW, Waldrup B, et al. {Conversational Artificial
+\CSLRightInline{{Yang EW, Waldrup B, et al.} {Conversational Artificial
 Intelligence for Integrating Social Determinants, Genomics, and Clinical
 Data in Precision Medicine: Development and Evaluation}. JMIR
 Bioinformatics and Digital Health {[}Internet{]}. 2025; Available from:
@@ -3752,7 +3809,7 @@ Informatics. 2007;76(2-3):201--7. }
 
 \bibitem[\citeproctext]{ref-oliveira2023}
 \CSLLeftMargin{129. }%
-\CSLRightInline{Oliveira MAP et al. Semantic modelling for enterprise
+\CSLRightInline{{Oliveira MAP et al.} Semantic modelling for enterprise
 data governance 4.0. arXiv preprint arXiv:231102082 {[}Internet{]}.
 2023; Available from: \url{https://arxiv.org/pdf/2311.02082}}
 
@@ -3816,151 +3873,6 @@ configurations for successful management of IT by business entities}}.
 Information Systems and e-Business Management. 2020;18:209--57. }
 
 \end{CSLReferences}
-
-\section{Appendices}\label{appendices}
-
-\subsection{\texorpdfstring{Appendix A: HIMSS Analytics Maturity
-Assessment Model (AMAM) Stages
-(\citeproc{ref-himss2024}{2})}{Appendix A: HIMSS Analytics Maturity Assessment Model (AMAM) Stages (2)}}\label{appendix-a-himss-analytics-maturity-assessment-model-amam-stages-himss2024}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1591}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1364}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2955}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4091}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Stage
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Name
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Description
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Key Capabilities
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Stage 0 & Data Collection & Basic data capture without integration &
-Manual data entry, paper records \\
-Stage 1 & Data Verification & Automated data validation and error
-checking & Basic quality controls, automated checks \\
-Stage 2 & Data Utilization & Standard reporting and basic analytics &
-Automated reports, dashboard creation \\
-Stage 3 & Automated Decision Support & Rule-based clinical and
-operational support & Clinical alerts, automated protocols \\
-Stage 4 & Population Health Analytics & Population-level analysis and
-intervention & Cohort identification, risk stratification \\
-Stage 5 & Predictive Analytics & Statistical modeling and predictive
-capabilities & Predictive models, trend analysis \\
-Stage 6 & Cognitive Analytics & Machine learning and AI integration &
-Advanced AI, pattern recognition \\
-Stage 7 & Precision Medicine & Personalized treatment and genomic
-integration & Personalized care, genomic analytics \\
-\end{longtable}
-
-\subsection{Appendix B: Healthcare NL2SQL Query
-Examples}\label{appendix-b-healthcare-nl2sql-query-examples}
-
-\subsubsection{Patient Population
-Analysis}\label{patient-population-analysis}
-
-\textbf{Natural Language}: ``Show me all diabetic patients over 65 who
-had an HbA1c test in the last 6 months''
-
-\textbf{Rationale}: Aligned with NCQA HEDIS measures for Comprehensive
-Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult
-populations.
-
-\textbf{Generated SQL}:
-
-\begin{lstlisting}[language=SQL]
-SELECT p.patient_id, p.age, l.test_date, l.result_value
-FROM patients p
-JOIN lab_results l ON p.patient_id = l.patient_id
-JOIN diagnoses d ON p.patient_id = d.patient_id
-WHERE d.icd10_code LIKE 'E11%'  -- Type 2 Diabetes
-  AND p.age > 65
-  AND l.test_name = 'HbA1c'
-  AND l.test_date >= DATE_SUB(CURRENT_DATE, INTERVAL 6 MONTH)
-\end{lstlisting}
-
-\subsubsection{Complex Clinical Cohort: Heart Failure Readmission
-Risk}\label{complex-clinical-cohort-heart-failure-readmission-risk}
-
-\textbf{Natural Language}: ``Identify patients discharged with Heart
-Failure in 2024 who had a readmission within 30 days, excluding those
-discharged to hospice. For each, calculate their max creatinine levels
-during the index stay.''
-
-\textbf{Rationale}: Supports CMS Hospital Readmissions Reduction Program
-(HRRP) tracking by identifying 30-day all-cause readmissions for Heart
-Failure (HF) index stays, with standard exclusions (hospice).
-
-\textbf{Generated SQL}:
-
-\begin{lstlisting}[language=SQL]
-WITH IndexAdmissions AS (
-    -- Identify index admissions for Heart Failure
-    SELECT
-        a.admission_id,
-        a.patient_id,
-        a.discharge_date,
-        a.discharge_disposition
-    FROM admissions a
-    JOIN diagnoses d ON a.admission_id = d.admission_id
-    WHERE d.icd10_code LIKE 'I50%'          -- Heart Failure codes
-      AND a.discharge_date BETWEEN '2024-01-01' AND '2024-12-31'
-      AND a.discharge_disposition != 'HOSPICE' -- Exclusion Criteria
-),
-Readmissions AS (
-    -- Find readmissions within 30 days
-    SELECT
-        i.patient_id,
-        i.admission_id AS index_admission_id,
-        r.admission_date AS readmission_date,
-        DATEDIFF(r.admission_date, i.discharge_date) AS days_to_readmit
-    FROM IndexAdmissions i
-    JOIN admissions r ON i.patient_id = r.patient_id
-    WHERE r.admission_date > i.discharge_date
-      AND r.admission_date <= DATE_ADD(i.discharge_date, INTERVAL 30 DAY)
-)
--- Final Output: Cohort with Max Creatinine
-SELECT
-    r.patient_id,
-    r.index_admission_id,
-    r.days_to_readmit,
-    MAX(CASE
-        WHEN l.unit = 'mg/dL' THEN l.val_num
-        WHEN l.unit = 'mmol/L' THEN l.val_num / 88.4  -- Value Normalization
-        ELSE NULL
-    END) as max_creatinine_mgdl
-FROM Readmissions r
-JOIN lab_events l ON r.index_admission_id = l.admission_id
-WHERE l.itemid IN (50912, 50913) -- Creatinine lab codes
-GROUP BY r.patient_id, r.index_admission_id, r.days_to_readmit;
-\end{lstlisting}
-
-\subsubsection{Quality Metrics}\label{quality-metrics}
-
-\textbf{Natural Language}: ``How many patients were readmitted within 30
-days of discharge for heart failure?''
-
-\textbf{Generated SQL}:
-
-\begin{lstlisting}[language=SQL]
-SELECT COUNT(DISTINCT r.patient_id) as readmission_count
-FROM (
-  SELECT a1.patient_id, a1.discharge_date, a2.admission_date
-  FROM admissions a1
-  JOIN admissions a2 ON a1.patient_id = a2.patient_id
-  JOIN diagnoses d ON a2.admission_id = d.admission_id
-  WHERE d.icd10_code LIKE 'I50%'  -- Heart failure
-    AND a2.admission_date BETWEEN a1.discharge_date AND DATE_ADD(a1.discharge_date, INTERVAL 30 DAY)
-    AND a1.admission_id != a2.admission_id
-) r
-\end{lstlisting}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 

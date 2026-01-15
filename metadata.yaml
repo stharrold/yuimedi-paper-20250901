@@ -17,9 +17,9 @@ geometry:
 # Typography
 fontsize: 11pt
 linestretch: 1.5
-mainfont: "DejaVu Serif"
-sansfont: "DejaVu Sans"
-monofont: "DejaVu Sans Mono"
+# mainfont: "DejaVu Serif"
+# sansfont: "DejaVu Sans"
+# monofont: "DejaVu Sans Mono"
 
 # Table of contents
 toc: true

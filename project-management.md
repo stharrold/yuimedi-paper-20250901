@@ -266,7 +266,7 @@ Paper 2 requires building a reproducible, open-source reference implementation, 
 #### Why GCP (vs Azure)?
 We chose Google Cloud (Vertex AI + BigQuery) over Azure for this prototype:
 - **BigQuery** is serverless with a public datasets feature, so reviewers can access the same data without cluster setup
-- **Vertex AI** has native Claude API integration and Model Garden flexibility (no Azure OpenAI waitlist)
+- **Vertex AI** has native Gemini API integration and Model Garden flexibility (no Azure OpenAI waitlist)
 - **Simpler stack** (2 services vs. Azure's 3+ with complex networking)
 - **Reproducibility-friendly**: Colab notebooks integrate natively, generous free tier (1TB queries/month)
 - **Google Cloud for Research** credits program lowers cost barriers
@@ -531,9 +531,9 @@ labels: development, paper-2
 **Hours:** 10
 **Week:** 2025-10-17 to 2025-10-23
 
-## Claude Tools
-- [ ] Claude Code for implementation
-- [ ] Claude.ai for research
+## Gemini Tools
+- [ ] Gemini CLI for implementation
+- [ ] Gemini for research
 
 ## Dependencies
 - Dataset prepared (Issue #XX)
@@ -825,7 +825,7 @@ Remaining from $33,495 approved budget: ~$12,600-$14,000 for contingencies
 - ResearchGate, Zenodo uploads: **$0**
 - Conference registrations (optional): **$500-1,000** per conference
 
-Note: Samuel Harrold self-funds Claude subscription ($200/month)
+Note: Samuel Harrold self-funds Gemini subscription ($200/month)
 
 ### Review Checkpoints (Updated Dec 2025)
 - **2025-12-31**: Paper 1 submission to arXiv + JMIR
@@ -848,14 +848,14 @@ Note: Samuel Harrold self-funds Claude subscription ($200/month)
 
 ### Contingency Plans
 - **Data access delays:** Use synthetic data initially
-- **Algorithm complexity:** Leverage Claude Code for rapid prototyping
+- **Algorithm complexity:** Leverage Gemini CLI for rapid prototyping
 - **Writing bottlenecks:** Draft sections in parallel
 - **Review delays:** Schedule peer reviews early
 
 ### AI Acceleration Assumptions
 Time estimates assume 50% reduction from traditional methods based on:
 - Validated 99% reduction for systematic reviews ([arXiv:2504.14822](https://arxiv.org/abs/2504.14822))
-- 79% automation rate for Claude Code ([Anthropic research](https://www.anthropic.com/research/impact-software-development))
+- 79% automation rate for Gemini CLI ([Anthropic research](https://www.anthropic.com/research/impact-software-development))
 - Conservative adjustment for academic validation requirements
 - Human oversight still required for peer review and clinical accuracy
 
@@ -866,24 +866,24 @@ Actual speedup will vary based on:
 - Complexity of research domain
 - Institution's acceptance of AI-assisted work
 
-## Claude Code Best Practices for Healthcare Research
+## Gemini CLI Best Practices for Healthcare Research
 
-Based on Anthropic's internal team practices ([How Anthropic Teams Use Claude Code](https://claude.com/blog/how-anthropic-teams-use-claude-code)), the following strategies are recommended for this project:
+Based on Google's internal team practices ([How Anthropic Teams Use Claude Code](https://claude.com/blog/how-anthropic-teams-use-claude-code)), the following strategies are recommended for this project:
 
 ### Codebase Navigation & Onboarding
-- **First Stop for Code Understanding**: Use Claude Code as the primary tool for identifying file dependencies and explaining data pipeline architecture
-- **Healthcare Context**: Feed CLAUDE.md along with relevant healthcare data standards (FHIR, HL7, OMOP) to help Claude understand the healthcare-specific codebase structure
-- **Data Catalog Replacement**: Leverage Claude to document data flows and dependencies, reducing need for separate data catalog tools
+- **First Stop for Code Understanding**: Use Gemini CLI as the primary tool for identifying file dependencies and explaining data pipeline architecture
+- **Healthcare Context**: Feed GEMINI.md along with relevant healthcare data standards (FHIR, HL7, OMOP) to help Gemini understand the healthcare-specific codebase structure
+- **Data Catalog Replacement**: Leverage Gemini to document data flows and dependencies, reducing need for separate data catalog tools
 
 **Application to this project:**
-- New team members can use Claude Code to quickly understand the three-paper structure and YuiQuery system architecture
+- New team members can use Gemini CLI to quickly understand the three-paper structure and YuiQuery system architecture
 - Automated documentation of healthcare data mappings and schema relationships
 - Rapid familiarization with 111+ academic citations and research methodology
 
 ### Testing & Code Review Automation
-- **Test-Driven Development**: Shift from "design → code → skip tests" to TDD with Claude generating comprehensive unit tests
-- **Cross-Language Testing**: Use Claude to translate tests across programming languages (Python, SQL, etc.)
-- **PR Automation**: Integrate GitHub Actions workflows with Claude for automated PR formatting and review
+- **Test-Driven Development**: Shift from "design → code → skip tests" to TDD with Gemini generating comprehensive unit tests
+- **Cross-Language Testing**: Use Gemini to translate tests across programming languages (Python, SQL, etc.)
+- **PR Automation**: Integrate GitHub Actions workflows with Gemini for automated PR formatting and review
 
 **Application to this project:**
 - Automated test generation for algorithm implementations (Paper 2)
@@ -891,8 +891,8 @@ Based on Anthropic's internal team practices ([How Anthropic Teams Use Claude Co
 - Continuous integration testing for data processing pipelines
 
 ### Debugging Acceleration (3x Faster Resolution)
-- **Production Issue Speed**: Claude reduced diagnostic time from "10-15 minutes of manual scanning" to 3x faster resolution
-- **Infrastructure Diagnostics**: During outages, Claude can diagnose issues and suggest fixes (example: Kubernetes pod IP exhaustion resolved in 20 minutes)
+- **Production Issue Speed**: Gemini reduced diagnostic time from "10-15 minutes of manual scanning" to 3x faster resolution
+- **Infrastructure Diagnostics**: During outages, Gemini can diagnose issues and suggest fixes (example: Kubernetes pod IP exhaustion resolved in 20 minutes)
 - **Healthcare-Specific**: Apply to complex healthcare data quality issues and FHIR/OMOP validation errors
 
 **Application to this project:**
@@ -902,7 +902,7 @@ Based on Anthropic's internal team practices ([How Anthropic Teams Use Claude Co
 
 ### Rapid Prototyping for Non-Technical Team Members
 - **Enable Non-Developers**: Data scientists without TypeScript fluency can build React applications for data visualization
-- **Autonomous Development Loops**: Claude writes code, runs tests, and iterates continuously without manual intervention
+- **Autonomous Development Loops**: Gemini writes code, runs tests, and iterates continuously without manual intervention
 - **Design Validation**: Product teams can validate concepts through working prototypes
 
 **Application to this project:**
@@ -911,7 +911,7 @@ Based on Anthropic's internal team practices ([How Anthropic Teams Use Claude Co
 - SME reviewers can experiment with data representations
 
 ### Documentation & Workflow Optimization
-- **Automated Documentation**: Claude generates comprehensive documentation alongside code development
+- **Automated Documentation**: Gemini generates comprehensive documentation alongside code development
 - **Knowledge Transfer**: Create self-documenting systems that reduce onboarding friction
 - **Custom Tool Building**: Departments build specialized tools independently (example: Legal built "phone tree" systems; Growth Marketing built ad analysis agents)
 
@@ -923,8 +923,8 @@ Based on Anthropic's internal team practices ([How Anthropic Teams Use Claude Co
 
 ### Healthcare-Specific Workflow Integration
 **Recommended Implementation:**
-1. **Literature Review Automation** (Paper 1): Use Claude to process hundreds of academic sources, identify themes, and synthesize findings
-2. **Algorithm Development** (Paper 2): Test-driven development with Claude generating edge cases specific to healthcare queries
+1. **Literature Review Automation** (Paper 1): Use Gemini to process hundreds of academic sources, identify themes, and synthesize findings
+2. **Algorithm Development** (Paper 2): Test-driven development with Gemini generating edge cases specific to healthcare queries
 3. **Schema Mapping** (Paper 3): Automated documentation of complex FHIR/OMOP relationships
 4. **Quality Assurance**: Continuous validation of healthcare compliance (HIPAA, data governance)
 5. **Knowledge Management**: Maintain up-to-date project documentation with minimal manual effort
