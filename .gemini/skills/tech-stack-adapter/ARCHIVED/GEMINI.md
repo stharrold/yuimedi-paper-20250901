@@ -34,6 +34,7 @@ Archive of deprecated files from tech-stack-adapter
 
 
 
+
 ## Related Documentation
 
 - **[README.md](README.md)** - Human-readable documentation for this directory
