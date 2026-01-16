@@ -270,6 +270,7 @@ def validate_ai_disclosure(content: str) -> dict:
     # Check for AI tool mentions
     ai_patterns = [
         r"Claude",
+        r"Gemini",
         r"ChatGPT",
         r"GPT-\d",
         r"Gemini",

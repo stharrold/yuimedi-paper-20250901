@@ -49,7 +49,7 @@ This repository contains research documentation for YuiQuery, a conversational A
 │   └── compliance/             # Compliance requirements
 ├── project-management.md       # Project management overview
 │
-├── TODO.md                    # Master workflow manifest
+├── .gemini-state/             # Workflow state tracking (AgentDB)
 │
 ├── scripts/                    # Validation and build scripts
 │   ├── validate_references.py # Reference validation + URL checks
@@ -58,6 +58,7 @@ This repository contains research documentation for YuiQuery, a conversational A
 │
 ├── images/                     # Research diagrams and YuiQuery feature screenshots
 ├── docs/                       # Additional documentation (paper versions)
+├── lit_review/                 # Literature review workflow package (Python)
 ├── src/                        # Source code for analysis and algorithms
 ├── config/                     # Configuration files
 ├── compliance/                 # IRB and compliance documentation
@@ -125,6 +126,29 @@ uv run mypy scripts/
 
 # Run validation
 ./validate_documentation.sh
+```
+
+### Containerized Build (Recommended)
+
+To avoid local environment issues and ensure consistency, use the "Smart Reset" Podman sequence:
+
+```bash
+# 1. Clear old containers (fixes port/name conflicts)
+podman rm -f -a
+
+# 2. Ensure venv volume exists (preserves dependencies)
+podman volume create yuimedi_venv_cache
+
+# 3. Build image
+podman build -t yuimedi-paper:latest -f Containerfile .
+
+# 4. Generate Paper (PDF/HTML/DOCX)
+podman run --rm \
+  -v "$PWD:/app:Z" \
+  -v yuimedi_venv_cache:/app/.venv \
+  -w /app \
+  yuimedi-paper:latest \
+  ./scripts/build_paper.sh --format all
 ```
 
 ### Workflow Utilities

@@ -240,7 +240,7 @@ Discussion content.
 VALID_AI_DISCLOSURE = """
 # Acknowledgments
 
-The author thanks the reviewers. Claude (Anthropic) assisted with manuscript editing.
+The author thanks the reviewers. Gemini assisted with manuscript editing.
 
 # Funding
 

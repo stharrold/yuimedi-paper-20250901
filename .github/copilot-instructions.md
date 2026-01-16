@@ -208,7 +208,7 @@ Include `Closes #<issue>` in commit body to auto-close GitHub issues.
 **Clean Architecture Layers:**
 1. **Domain (innermost):** Paper, Review, DOI entities; no external dependencies
 2. **Application:** SearchPapers, AnalyzeThemes, GenerateSynthesis use cases; port interfaces
-3. **Infrastructure:** Crossref, PubMed, ArXiv, SemanticScholar adapters; ClaudeAnalyzer; JSONRepository
+3. **Infrastructure:** Crossref, PubMed, ArXiv, SemanticScholar adapters; GeminiAnalyzer; JSONRepository
 4. **Interfaces (outermost):** CLI commands using Click framework
 
 **Key Features:**

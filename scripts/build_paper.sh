@@ -26,6 +26,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 INPUT_FILE="${PROJECT_ROOT}/paper.md"
+APPENDIX_FILE="${PROJECT_ROOT}/multimedia_appendix.md"
 METADATA_FILE="${PROJECT_ROOT}/metadata.yaml"
 BIBLIOGRAPHY="${PROJECT_ROOT}/references.bib"
 CSL_FILE="${PROJECT_ROOT}/citation-style.csl"
@@ -75,9 +76,15 @@ check_dependencies() {
         missing=1
     fi
 
-    # Only check xelatex for PDF generation
+    # Only check PDF engine for PDF generation
     if [[ "$FORMAT" == "pdf" || "$FORMAT" == "all" ]]; then
-        if ! check_command "xelatex" "brew install --cask mactex-no-gui (macOS) or apt install texlive-xetex (Ubuntu)"; then
+        if command -v xelatex &> /dev/null; then
+            : # xelatex found
+        elif command -v tectonic &> /dev/null; then
+            : # tectonic found
+        else
+            error "No PDF engine found (xelatex or tectonic)."
+            echo "  Install via: brew install --cask mactex-no-gui (macOS) OR brew install tectonic"
             missing=1
         fi
     fi
@@ -181,10 +188,18 @@ generate_pdf() {
     local common_args
     common_args=$(get_common_pandoc_args)
 
+    local pdf_engine="xelatex"
+    if ! command -v xelatex &> /dev/null && command -v tectonic &> /dev/null; then
+        pdf_engine="tectonic"
+        info "Using PDF engine: tectonic"
+    else
+        info "Using PDF engine: xelatex"
+    fi
+
     # shellcheck disable=SC2086
     pandoc "$INPUT_FILE" $common_args \
         --to=pdf \
-        --pdf-engine=xelatex \
+        --pdf-engine="$pdf_engine" \
         --template=eisvogel \
         --listings \
         --number-sections \
@@ -211,6 +226,7 @@ generate_html() {
     # shellcheck disable=SC2086
     pandoc "$INPUT_FILE" $common_args \
         --to=html5 \
+        --embed-resources \
         --standalone \
         --toc \
         --toc-depth=3 \
@@ -273,6 +289,85 @@ generate_latex() {
         error "LaTeX generation failed"
         exit 2
     fi
+}
+
+# Generate Appendix (PDF, HTML, and DOCX)
+generate_appendix() {
+    local appendix_files
+    appendix_files=$(ls "${PROJECT_ROOT}"/multimedia_appendix_*.md 2>/dev/null || true)
+
+    if [[ -z "$appendix_files" ]]; then
+        if [[ -f "$APPENDIX_FILE" ]]; then
+            appendix_files="$APPENDIX_FILE"
+        else
+            warn "No appendix files found matching multimedia_appendix_*.md or $APPENDIX_FILE"
+            return
+        fi
+    fi
+
+    local common_args
+    common_args=$(get_common_pandoc_args)
+
+    # PDF Engine selection
+    local pdf_engine="xelatex"
+    if ! command -v xelatex &> /dev/null && command -v tectonic &> /dev/null; then
+        pdf_engine="tectonic"
+    fi
+
+    for file in $appendix_files; do
+        local filename
+        filename=$(basename "$file" .md)
+
+        local output_pdf="${OUTPUT_DIR}/${filename}.pdf"
+        local output_html="${OUTPUT_DIR}/${filename}.html"
+        local output_docx="${OUTPUT_DIR}/${filename}.docx"
+
+        info "Generating Appendix PDF: $output_pdf"
+        # shellcheck disable=SC2086
+        pandoc "$file" $common_args \
+            --to=pdf \
+            --pdf-engine="$pdf_engine" \
+            --template=eisvogel \
+            --listings \
+            --output="$output_pdf" \
+            --metadata=title:"Multimedia Appendix"
+
+        if [[ -f "$output_pdf" && -s "$output_pdf" ]]; then
+            info "Appendix PDF generated successfully"
+        else
+            error "Appendix PDF generation failed"
+        fi
+
+        # Generate HTML
+        info "Generating Appendix HTML: $output_html"
+        # shellcheck disable=SC2086
+        pandoc "$file" $common_args \
+            --to=html5 \
+            --embed-resources \
+            --standalone \
+            --output="$output_html" \
+            --metadata=title:"Multimedia Appendix"
+
+        if [[ -f "$output_html" && -s "$output_html" ]]; then
+            info "Appendix HTML generated successfully"
+        else
+            error "Appendix HTML generation failed"
+        fi
+
+        # Generate DOCX
+        info "Generating Appendix DOCX: $output_docx"
+        # shellcheck disable=SC2086
+        pandoc "$file" $common_args \
+            --to=docx \
+            --output="$output_docx" \
+            --metadata=title:"Multimedia Appendix"
+
+        if [[ -f "$output_docx" && -s "$output_docx" ]]; then
+            info "Appendix DOCX generated successfully"
+        else
+            error "Appendix DOCX generation failed"
+        fi
+    done
 }
 
 # Main
@@ -343,6 +438,7 @@ main() {
             generate_html
             generate_docx
             generate_latex
+            generate_appendix
             ;;
     esac
 

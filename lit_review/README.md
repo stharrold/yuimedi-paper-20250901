@@ -28,7 +28,7 @@ A Python-based systematic literature review tool implementing Clean Architecture
 - **Automatic Deduplication**: DOI-based deduplication with >99% accuracy
 - **Quality Assessment**: Structured paper assessment with 0-10 scoring
 - **Thematic Analysis**: TF-IDF and hierarchical clustering for theme extraction
-- **AI-Powered Synthesis**: Optional Claude AI integration for narrative generation
+- **AI-Powered Synthesis**: Optional Gemini AI integration for narrative generation
 - **Multiple Export Formats**: BibTeX, DOCX, LaTeX, HTML, JSON
 - **PRISMA Compliance**: Follows PRISMA 2020 guidelines for systematic reviews
 - **Test-Driven**: >80% code coverage with comprehensive test suite
@@ -215,7 +215,7 @@ uv run academic-review delete TITLE --yes
 ### Environment Variables
 
 - `LIT_REVIEW_DATA_DIR` - Data storage location (default: `~/.lit_review`)
-- `ANTHROPIC_API_KEY` - Claude API key for AI features (optional)
+- `GEMINI_API_KEY` - Google AI API key for AI features (optional)
 - `PUBMED_EMAIL` - Email for PubMed API access (optional but recommended)
 
 ### Setup Example
@@ -225,7 +225,7 @@ uv run academic-review delete TITLE --yes
 export LIT_REVIEW_DATA_DIR=/path/to/reviews
 
 # Set API keys (optional)
-export ANTHROPIC_API_KEY=sk-ant-...
+export GEMINI_API_KEY=AIza...
 export PUBMED_EMAIL=your.email@example.com
 
 # Run commands
@@ -301,7 +301,7 @@ lit_review/
 │   ├── persistence/
 │   │   └── json_repository.py
 │   └── ai/
-│       └── claude_analyzer.py
+│       └── gemini_analyzer.py
 └── interfaces/
     └── cli/
         └── review_cli.py

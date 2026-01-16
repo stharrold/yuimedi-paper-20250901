@@ -209,7 +209,7 @@ git worktree add ../standard_feature_<slug> feature/<timestamp>_<slug>
 **Pattern:** MAJOR.MINOR.PATCH in YAML frontmatter of SKILL.md
 
 ```
-.claude/skills/bmad-planner/SKILL.md
+.gemini/skills/bmad-planner/SKILL.md
 ---
 name: bmad-planner
 version: 5.1.0          # ← Updated here
@@ -225,7 +225,7 @@ description: |
 - Fails if inconsistencies found
 
 **Update process:**
-- Modify SKILL.md, CLAUDE.md, CHANGELOG.md
+- Modify SKILL.md, GEMINI.md, CHANGELOG.md
 - Run `validate_versions.py` to check consistency
 - Run `sync_skill_docs.py` to update WORKFLOW.md sections
 - Commit with standardized message
@@ -402,8 +402,8 @@ elif context['branch'] == 'develop':
 ### C. The Callable Tool Revolution (Phase 1-2)
 
 **Before v5.2:**
-- Claude reproduces planning Q&A each time (~2,500 tokens)
-- Claude reproduces spec generation each time (~2,000 tokens)
+- Gemini reproduces planning Q&A each time (~2,500 tokens)
+- Gemini reproduces spec generation each time (~2,000 tokens)
 - **Total per feature: ~4,500 tokens lost to reproduction**
 
 **After v5.2 (Callable Tools):**
@@ -412,7 +412,7 @@ elif context['branch'] == 'develop':
 - Auto-detects BMAD context in Phase 2
 - **Token savings: 92% reduction per feature**
 
-**Implementation key:** Scripts run interactively in main context, Claude doesn't reproduce logic
+**Implementation key:** Scripts run interactively in main context, Gemini doesn't reproduce logic
 
 ---
 
@@ -528,7 +528,7 @@ git checkout v1.5.0  # Last known good
 
 **Every session starts:**
 ```bash
-python .claude/skills/tech-stack-adapter/scripts/detect_stack.py
+python .gemini/skills/tech-stack-adapter/scripts/detect_stack.py
 ```
 
 **Outputs:**
@@ -549,29 +549,24 @@ COVERAGE_CMD="uv run pytest --cov=src"
 **Every directory must have:**
 ```
 directory/
-├── CLAUDE.md          # Context for Claude (with YAML frontmatter)
+├── GEMINI.md          # Context for Gemini (with YAML frontmatter)
 ├── README.md          # Human docs (with YAML frontmatter)
 └── ARCHIVED/
-    ├── CLAUDE.md
+    ├── GEMINI.md
     ├── README.md
     └── *.zip files    # Deprecated files
 ```
 
 **YAML frontmatter:**
 ```yaml
-# CLAUDE.md
+# GEMINI.md
 ---
-type: claude-context
-directory: path/to/dir
-purpose: What this directory is for
-parent: ../CLAUDE.md
-sibling_readme: README.md
+type: gemini-context
+directory: .
+parent: ../GEMINI.md
 children:
-  - ARCHIVED/CLAUDE.md
-  - subdir/CLAUDE.md
-related_skills:
-  - skill-1
-  - skill-2
+- ARCHIVED/GEMINI.md
+- subdir/GEMINI.md
 ---
 ```
 
@@ -592,7 +587,7 @@ related_skills:
 
 ---
 
-## SUMMARY FOR FUTURE CLAUDE INSTANCES
+## SUMMARY FOR FUTURE GEMINI INSTANCES
 
 **Load orchestrator first.** It detects context and loads skills dynamically based on phase.
 

@@ -5,7 +5,7 @@ echo "Testing bash command syntax in documentation..."
 
 # Files to check
 FILES_TO_CHECK=(
-    "CLAUDE.md"
+    "GEMINI.md"
     "README.md"
     "CONTRIBUTING.md"
 )
