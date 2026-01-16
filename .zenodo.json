@@ -1,7 +1,7 @@
 {
     "title": "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Dynamics, and Technical Barriers",
     "description": "Research repository containing the narrative review 'Healthcare Analytics Challenges' and a Python-based systematic literature review tool. The paper synthesizes evidence on analytics maturity, workforce turnover, and NL2SQL technologies. The included tool implements Clean Architecture for rigorous academic claim verification.",
-    "version": "1.28.0",
+    "version": "1.29.0",
     "upload_type": "software",
     "publication_date": "2026-01-16",
     "creators": [

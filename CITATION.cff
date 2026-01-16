@@ -24,7 +24,7 @@ keywords:
   - systematic review
   - clean architecture
 license: Apache-2.0
-version: 1.28.0
+version: 1.29.0
 date-released: '2026-01-16'
 identifiers:
   - type: doi

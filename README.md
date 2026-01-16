@@ -7,30 +7,19 @@ Research whitepaper on natural language to SQL in healthcare - a comprehensive a
 
 ## 📄 Research Documents
 
-**[Main Research Paper](paper.md)** - Academic research paper on YuiQuery healthcare analytics with 108 verified citations
-
-## 🚀 Quick Access
-
-```bash
-# Clone repository
-git clone https://github.com/yourusername/yuimedi-paper-20250901.git
-cd yuimedi-paper-20250901
-
-# View main research document
-open paper.md
-
-# Setup development environment
-uv sync
-./validate_documentation.sh
-```
+- **[Paper 1 (Framework)](paper.md)** - Academic research paper on healthcare analytics challenges with 136 verified citations.
+- **[Paper 2 (Consolidated)](docs/paper2/README.md)** - Reference implementation and interoperability mapping (Planned).
 
 ## 📋 Project Overview
 
-This repository contains research documentation for YuiQuery, a conversational AI platform for healthcare analytics that addresses three key challenges:
+This repository contains research documentation for the YuiQuery two-paper series, which addresses three key challenges:
 
-1. **Low Healthcare Analytics Maturity**: Enabling non-technical healthcare professionals to perform complex data analysis
-2. **Healthcare Workforce Turnover**: Preserving institutional memory and analytical capabilities
-3. **Technical Barriers**: Bridging the gap between natural language queries and SQL database operations
+1. **Low Healthcare Analytics Maturity**: Enabling non-technical professionals to perform complex data analysis.
+2. **Healthcare Workforce Turnover**: Preserving institutional memory and capabilities.
+3. **Technical Barriers**: Bridging the gap between natural language and SQL operations.
+
+**Study 1: Analytical Framework** (Jan 2026) - Defines the interconnections between maturity, turnover, and technical debt.
+**Study 2: Reference Implementation** (May 2026) - Validates the framework through an end-to-end implementation from schema discovery to interoperability mapping.
 
 ## 🏗️ Repository Structure
 

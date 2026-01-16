@@ -1,8 +1,8 @@
 # GitHub Project Setup Guide - YuiQuery Whitepapers
-**VERSION: 5.0 - RELEASED**
+**VERSION: 5.1 - RELEASED**
 **Last Updated: 2026-01-16**
 **Implementation Status: ACTIVE**
-**Success Probability: 90%**
+**Success Probability: 95%**
 
 ## 📖 Quick Navigation
 **For Executives:** [Business Case](#business-case--competitive-analysis) | [Investment Analysis](#investment-analysis) | [Executive Dashboard](#executive-dashboard)
@@ -112,9 +112,8 @@
 - [COMPLETE] Paper 1 revisions (22 issues closed)
 - [COMPLETE] Paper 1 Released v1.27.0 (Jan 16, 2026)
 - [COMPLETE] Paper 1 submitted to JMIR (Jan 15, 2026)
-- [COMPLETE] Paper 2 detailed work breakdown (Dec 18, 2025; 83-98 hrs, $5,939-$6,937)
-- [PENDING] Paper 2 implementation (target: Jan 31, 2026)
-- [PENDING] Paper 3 implementation (target: Mar 15, 2026)
+- [COMPLETE] Paper 2 detailed work breakdown (Dec 18, 2025; revised Jan 15, 2026: 130-150 hrs, ~$4,648)
+- [PENDING] Paper 2 consolidated implementation (target: May 1, 2026)
 
 ## Executive Dashboard
 
@@ -122,8 +121,7 @@
 |------------|--------|-----------------|
 | Budget Approval | 🟢 COMPLETE | Project funded and active |
 | Paper 1 (Framework) | 🟢 RELEASED v1.27.0 | Submitted to JMIR (Jan 15, 2026) |
-| Paper 2 (Reference Impl) | 🔵 PLANNED | Target submission: Jan 31, 2026 |
-| Paper 3 (Schema Mapping) | 🔵 PLANNED | Target submission: Mar 15, 2026 |
+| Paper 2 (Consolidated) | 🔵 PLANNED | Target submission: May 1, 2026 |
 | Task Tracking | 🟢 ACTIVE | 29 open issues in GitHub Issues |
 | Competitive Position | 🟢 FIRST MOVER | Maintaining lead in healthcare AI analytics |
 
@@ -132,9 +130,9 @@
 
 ## Timeline Overview
 **Start Date:** 2025-09-02
-**End Date:** 2026-03-15
+**End Date:** 2026-05-15
 **Weekly Commitment:** 10 hours maximum
-**Total Duration:** 28 weeks
+**Total Duration:** 36 weeks
 
 ## Related Documents & Resources
 
@@ -175,10 +173,9 @@
 - **[Project Backups](ARCHIVED/backups/)** - Previous document versions
 - **[TODO History](ARCHIVED/todo-history/)** - Task tracking evolution
 
-**CURRENT DEADLINES (Updated Dec 2025):**
-- Paper 1 deadline: 2025-12-31 (revision complete, arXiv submission)
-- Paper 2 deadline: 2026-01-31 (reference implementation with GCP/Synthea)
-- Paper 3 deadline: 2026-03-15 (FHIR/OMOP schema mapping)
+**CURRENT DEADLINES (Updated Jan 2026):**
+- Paper 1 deadline: 2026-01-15 (Submitted to JMIR)
+- Paper 2 deadline: 2026-05-01 (Consolidated Reference Implementation + Interoperability)
 - Target journal: JMIR Medical Informatics (primary), arXiv cs.CL (preprint)
 - Note: Conference abstracts (HIMSS, AMIA) are optional and separate from whitepaper publication
 
@@ -187,7 +184,7 @@
 - npj Digital Medicine requires transparent disclosure of Yuimedi affiliation, which could bias reviewer perception
 - JMIR Medical Informatics has broader scope for analytical frameworks and reference implementations
 - **Impact Factor:** 4.2 (2024)
-- **Article Processing Charge:** $2,495-$3,495
+- **Article Processing Charge:** $3,350
 - **Review timeline:** 4-6 weeks (faster than npj's 178 days to acceptance)
 - See `ppr_review/20251215_Revision-Strategy-Milestones.md` for full rationale
 
@@ -206,11 +203,10 @@
 - TODO_FOR_AI.json → [ARCHIVED/TODO/](ARCHIVED/TODO/)
 - GitHub Projects integration → [ARCHIVED/github-projects-integration-20250903T074900Z.md](ARCHIVED/github-projects-integration-20250903T074900Z.md)
 
-## Revised Scope (30% Reduction)
-- **Paper 1:** 70 hours (was 100)
-- **Paper 2:** 83-98 hours (was 70; revised Dec 2025 based on detailed work breakdown)
-- **Paper 3:** 70 hours (was 100)
-- **Total:** 223-238 hours (was 210)
+## Revised Scope (Consolidated Study)
+- **Paper 1:** 70 hours (Literature Review & Framework)
+- **Paper 2:** 130-150 hours (Reference Implementation + Interoperability Mapping)
+- **Total:** 200-220 hours (Saving ~30 hrs via consolidation)
 
 Deliverables reduced to:
 - MUST: Academic paper only
@@ -398,87 +394,40 @@ We chose Google Cloud (Vertex AI + BigQuery) over Azure for this prototype:
 
 ## 3. Milestone Schedule
 
-### GitHub Milestones Created ✅
-- **Milestone 1**: Paper 1: Literature Review (https://github.com/stharrold/yuimedi-paper-20250901/milestone/1)
-- **Milestone 2**: Paper 2: Proof of Concept (https://github.com/stharrold/yuimedi-paper-20250901/milestone/2)
-- **Milestone 3**: Paper 3: Schema Mapping & Interoperability (https://github.com/stharrold/yuimedi-paper-20250901/milestone/3)
+### GitHub Milestones Updated ✅
+- **Milestone 1**: Paper 1: Framework (Jan 15, 2026)
+- **Milestone 2**: Paper 2: Consolidated Reference Implementation (May 1, 2026)
 
-**GitHub Projects Integration**: All milestones connected to [YuiQuery Research Papers Timeline](https://github.com/users/stharrold/projects/1) with validation-based tracking
+### Paper 1: Framework
+**Status:** ✅ **SUBMITTED**
+- Submission Date: Jan 15, 2026
 
-### Paper 1: Literature Review
-**Duration:** 2025-08-01 to 2025-10-02 (9 weeks)
-```markdown
-Week 1-2 (2025-08-01 to 2025-08-14): Database searches, screening [20h]
-  Reference: 18.5h median for SR tasks (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5886502/)
-Week 3-4 (2025-08-15 to 2025-08-28): Industry report analysis [20h]
-Week 5-6 (2025-08-29 to 2025-09-11): Synthesis, gap analysis [20h]
-Week 7-8 (2025-09-12 to 2025-09-25): Draft writing, figures [20h]
-  Reference: 40h benchmark for paper (https://www.researchgate.net/post/As_a_researcher_what_is_the_time_in_days_or_weeks_you_need_to_write_your_paper_noting_that_you_have_the_experimental_data_but_without_analyzing)
-  **CRITICAL WEEK: Consider 2 days PTO for 20h total**
-  Deliverable: Draft conference abstract for HIMSS/AMIA
-Week 9 (2025-09-26 to 2025-10-02): Revisions, formatting, submission [10h]
-  Deliverables:
-  - Submit to medRxiv for rapid publication (24-72hr review)
-  - Upload to ResearchGate for immediate visibility
-  - Consider AHIMA Journal submission for peer review
-  - Optional: Prepare conference abstract if pursuing HIMSS 2026
-```
-
-### Paper 2: Proof of Concept
-**Duration:** 2025-12-18 to 2026-01-31 (~6 weeks)
-**Budget:** 83-98 hours (revised Dec 2025)
-**Target:** npj Digital Medicine "Impact of Agentic AI on Care Delivery" collection (deadline Mar 12, 2026)
+### Paper 2: Consolidated Implementation
+**Duration:** 2026-01-19 to 2026-05-01 (15 weeks)
+**Budget:** 130-150 hours
+**Required Pace:** 10 hours/week
 
 ```markdown
-Phase 1: Infrastructure Setup (7-14 hrs)
-  - Download/configure Synthea SyntheticMass (~1M patients)
-  - Design GCP architecture (Vertex AI, BigQuery, Cloud Functions)
-  - Load Synthea data to BigQuery
-  - Setup open-source repository
+Phase 1: Infrastructure Setup (10-15 hrs)
+  - GCP (BigQuery + Vertex AI) configuration
+  - Synthea SyntheticMass loading (1M patients)
+  - Open-source repository initialization
 
-Phase 2: Core Implementation (16-25 hrs)
-  - Implement query memoization system
-  - Implement institutional learning loop
-  - Define cache hit rate metrics
+Phase 2: Discovery & Semantics (30-40 hrs)
+  - Implement PK/FK discovery algorithm
+  - Build vectorized semantic data catalog
 
-Phase 3: Research & Documentation (12-21 hrs)
-  - Literature review: Knowledge portal paradigm, SECI model
-  - Add Clinical Safety Considerations section
-  - Add Security Architecture section (NIST, HITRUST, HIPAA)
+Phase 3: Interoperability Mapping (30-40 hrs)
+  - Implement FHIR/OMOP schema mapping logic
+  - Automated query translation to standards
 
-Phase 4: Validation & Benchmarking (17-30 hrs)
-  - Design empirical validation framework
-  - Create test query set (50+ queries)
-  - Execute benchmarking experiments
-  - Statistical analysis with confidence intervals
+Phase 4: Validation & Benchmarking (20-25 hrs)
+  - Execute 50+ query benchmark on degraded data
+  - Statistical analysis of accuracy
 
-Phase 5: Manuscript & Review (10-19 hrs)
-  - Draft Paper 2 manuscript
-  - Expert review + revisions
-```
-
-**Risk Factors:**
-| Risk | Impact | Likelihood | Mitigation |
-|------|--------|------------|------------|
-| GCP setup complexity | +10-20 hrs | Medium | Start infrastructure early; have fallback to local testing |
-| LLM accuracy <85% target | +10-15 hrs tuning | Medium | Budget tuning time; define acceptable accuracy threshold |
-| Synthea schema complexity | +5-10 hrs | Low | Leverage existing Synthea experience from Paper 1 |
-
-### Paper 3: Meta-level Schema Mapping
-**Duration:** 2025-12-19 to 2026-02-26 (10 weeks)
-```markdown
-Week 1-2 (2025-12-19 to 2026-01-01): FHIR/OMOP documentation [20h]
-  Note: Holiday period - may need schedule adjustment
-Week 3-4 (2026-01-02 to 2026-01-15): Mapping architecture [20h]
-Week 5-6 (2026-01-16 to 2026-01-29): Implementation [20h]
-  Reference: Complex features 1200+ hours (https://www.cleveroad.com/blog/software-development-time-estimation/)
-  **CRITICAL WEEK: Consider 2 days PTO for 20h total**
-Week 7-8 (2026-01-30 to 2026-02-12): Query translation [20h]
-  **CRITICAL WEEK: Consider 2 days PTO for 20h total**
-  Deliverable: Conference abstract for interoperability/standards conferences
-Week 9-10 (2026-02-13 to 2026-02-26): Testing, documentation [20h]
-  Reference: 2 weeks typesetting (https://academy.pubs.asha.org/asha-journals-author-resource-center/production-steps/)
-  Deliverables: Industry standards blog post, integration webinar deck
+Phase 5: Manuscript & Submission (40-50 hrs)
+  - Draft consolidated manuscript (~10k words)
+  - Submission by May 1, 2026
 ```
 
 ## 4. Issue Templates
@@ -652,175 +601,42 @@ gh issue create --title "..." --label "..." --milestone "..."
 
 ## 11. Responsibility Assignment Matrix (RACI)
 
-### Roles
-- **DSH**: Developer Samuel Harrold (Primary Developer/Advisor)
-- **YMT**: Yuimedi Marketing Team
-- **YTT**: Yuimedi Technical Team
-- **YLT**: Yuimedi Leadership Team
-
 ### Legend
-- **R**: Responsible (performs the work)
-- **A**: Accountable (ultimately answerable)
-- **C**: Consulted (provides input)
-- **I**: Informed (kept updated)
+- **DSH**: Samuel Harrold (Responsible/Accountable)
+- **YLT**: Leadership Team (Accountable/Informed)
 
-### Paper 1: Literature Review Tasks
+### Consolidated Tasks
 
-| Task | DSH | YMT | YTT | YLT |
-|------|-----|-----|-----|-----|
-| Database searches, screening | R,A | - | C | I |
-| Industry report analysis | R,A | - | - | C |
-| Synthesis, gap analysis | R,A | - | C | C |
-| Draft writing, figures | R,A | - | C | I |
-| Conference abstract | R,A | C | - | I |
-| Executive blog post (500 words) | C,A | R | - | I |
-| Webinar slides (10-15 slides) | C | R | - | A |
-| Internal review coordination | A | - | R | C |
+| Task | DSH | YLT |
+|------|-----|-----|
+| Algorithm Design & Implementation | R,A | I |
+| Schema Mapping & Interoperability | R,A | C |
+| Statistical Validation | R,A | I |
+| Primary Manuscript Authorship | R,A | I |
+| Internal Strategic Review | R | A |
 
-### Paper 2: Proof of Concept Tasks
+**Publication & Distribution Costs (Updated Jan 2026):**
 
-| Task | DSH | YMT | YTT | YLT |
-|------|-----|-----|-----|-----|
-| Data acquisition, design | R,A | - | C | I |
-| Algorithm implementation | R,A | - | C | - |
-| Testing, debugging | A | - | R | I |
-| Experiments, metrics | R,A | - | C | I |
-| Statistical analysis | R,A | - | C | - |
-| Write methodology, results | R,A | - | C | I |
-| Technical blog post | C,A | R | C | I |
-| Demo webinar materials | C | R | R | I |
+### Total Project Budget Summary (~$8,996 total)
 
-### Paper 3: Schema Mapping Tasks
+| Paper | Item | Cost | Status |
+|-------|------|------|--------|
+| **Paper 1** | Promotion (Visual Abstract + Video Byte) | \$998 | **Spent** |
+| | JMIR APC (Article Fee) | \$3,350 | Reserved (May) |
+| **Paper 2** | Promotion (Visual Abstract + Video Byte) | \$998 | Budgeted (May) |
+| | JMIR APC (Article Fee) | \$3,350 | Budgeted (Aug) |
+| | GCP Infrastructure | \$300 | Budgeted |
+| **Total** | | **~\$8,996** | **Savings: \$24,499** |
 
-| Task | DSH | YMT | YTT | YLT |
-|------|-----|-----|-----|-----|
-| FHIR/OMOP documentation review | R,A | - | C | I |
-| Mapping architecture | R,A | - | C | C |
-| Implementation | R,A | - | C | - |
-| Query translation | R,A | - | C | - |
-| Testing, documentation | A | - | R | I |
-| Industry standards blog | C,A | R | C | I |
-| Integration webinar deck | C | R | R | A |
-
-### Critical Dependencies
-**DSH Must Complete (Cannot Delegate):**
-- Core research synthesis (all papers)
-- Algorithm design and architecture
-- Statistical analysis
-- Primary paper authorship
-- SME reviewer coordination
-
-**Can Be Delegated with DSH's Review:**
-- Testing and debugging (YTT responsible, DSH accountable)
-- Blog posts (YMT responsible, DSH consults)
-- Webinar materials (YMT responsible, DSH consults)
-- Internal review coordination (YTT responsible, DSH accountable)
-- Conference submission logistics (YMT responsible)
-
-### Resource Requirements
-- **Yuimedi Marketing Team**: ~40 hours total across 30 weeks
-- **Yuimedi Technical Team**: ~60 hours total for testing/reviews
-- **Yuimedi Leadership Team**: ~10 hours for strategic reviews
-- **Developer Samuel Harrold**: 270-330 hours (unchanged)
+*Note: Total project budget originally approved for \$33,495. Revised strategy saves over 70% of approved funds.*
 
 ### PTO Strategy for Critical Weeks
-Samuel Harrold may need to take 2 days PTO to double capacity (10→20 hrs) during:
-- **2025-09-12 to 2025-09-25**: Paper 1 draft writing
-- **2025-10-17 to 2025-10-30**: Paper 2 algorithm implementation
-- **2025-11-28 to 2025-12-11**: Paper 2 statistical analysis
-- **2026-01-16 to 2026-01-29**: Paper 3 implementation
-- **2026-01-30 to 2026-02-12**: Paper 3 query translation
+Samuel Harrold may need to take 2 days PTO during:
+- **2026-02-09 to 2026-02-22**: Algorithm Implementation
+- **2026-03-16 to 2026-03-29**: Mapping Implementation
+- **2026-04-13 to 2026-04-26**: Final Manuscript Drafting
 
-Total PTO needed: 10 days across 30 weeks
-
-### SME Review Budget
-
-**Required Subject Matter Experts:**
-1. **Healthcare IT/EMR Systems Expert** (Paper 1)
-   - Focus: Validate healthcare data infrastructure challenges and institutional knowledge gaps
-   - Review scope: Confirm problem significance, verify market sizing
-   - Typical rate: $90-150/hour ([Salary.com SME rates](https://www.salary.com/research/salary/recruiting/subject-matter-expert-hourly-wages))
-
-2. **Data Science/AI Healthcare Expert** (Paper 2)
-   - Focus: Validate machine learning approach on degraded healthcare data
-   - Review scope: Verify algorithm accuracy, assess technical soundness
-   - Typical rate: $120-180/hour ([PayScale Technical SME](https://www.payscale.com/research/US/Job=Technical_Subject_Matter_Expert/Salary))
-
-3. **FHIR/OMOP Standards Expert** (Paper 3)
-   - Focus: Validate healthcare interoperability approach and schema mappings
-   - Review scope: Confirm mapping accuracy, assess implementation feasibility
-   - Typical rate: $100-200/hour (specialized expertise)
-
-**Budget Estimate:**
-- 6 hours review per paper × 3 papers = 18 hours total
-- Average rate: $150/hour
-- **Total SME budget: $2,700**
-
-**Alternative: Academic Peer Review Model**
-- Some journals offer $50-450 per review ([Science AAAS](https://www.science.org/content/article/450-question-should-journals-pay-peer-reviewers))
-- BMC/Research Square: $50 honorarium ([BMC Medical Ethics](https://bmcmedethics.biomedcentral.com/submission-guidelines/peer-review-policy))
-- Feminist Review: £130 (~$165) per review ([Feminist Review](https://femrev.wordpress.com/2022/05/24/feminist-review-peer-review-honorariums/))
-- **Budget if using academic rates: $450-600 total** (3 reviews × $150-200)
-
-**Publication & Distribution Costs (Updated Dec 2025):**
-
-### Paper 1: Three-Pillar Framework (~$6,948 total)
-
-| Phase | Item | Cost | Hours |
-|-------|------|------|-------|
-| **Pre-submission** | Scientific Editing | ~$3,500 | - |
-| | Graphical Abstract | $349 | - |
-| | Video Byte | $349 | - |
-| | Manuscript preparation | - | 6-8 hrs |
-| **Revision** | Address reviewer feedback | - | 9-18 hrs |
-| **Acceptance** | JMIR APC | $2,750 | - |
-| **Total** | | **~$6,948** | **15-26 hrs** |
-
-- Submission deadline: Dec 31, 2025
-- Expected acceptance: ~Apr 15, 2026
-
-### Paper 2: Reference Implementation (~$6,600-$6,900 total)
-
-| Phase | Item | Cost | Hours |
-|-------|------|------|-------|
-| **Pre-submission** | Scientific Editing | ~$3,500 | - |
-| | Graphical Abstract | $349 | - |
-| | GCP Infrastructure | $0-300 | - |
-| | Implementation & manuscript | - | 83-98 hrs |
-| **Revision** | Address reviewer feedback | - | 9-30 hrs |
-| **Acceptance** | JMIR APC | $2,750 | - |
-| **Total** | | **~$6,600-$6,900** | **92-128 hrs** |
-
-- Submission deadline: Jan 31, 2026
-- Expected acceptance: ~May 15, 2026
-
-### Why Scientific Editing (~$3,500/paper)
-
-| Metric | Without Editing | With Editing | Savings |
-|--------|-----------------|--------------|---------|
-| Expected decision | Major Revisions | Minor Revisions | Less rework |
-| Revision hours | 13-30 hrs | 9-18 hrs | 4-12 hrs |
-| Calendar time | 8-12 weeks | 3-6 weeks | 5-6 weeks |
-
-Provider: [Springer Nature Scientific Editing](https://authorservices.springernature.com/scientific-editing/)
-
-### Combined Budget Summary
-
-| Paper | Cost | Hours |
-|-------|------|-------|
-| Paper 1 | ~$6,948 | 15-26 hrs |
-| Paper 2 | ~$6,600-$6,900 | 92-128 hrs |
-| Paper 3 (estimate) | ~$6,000-$7,000 | 70-100 hrs |
-| **Total** | **~$19,500-$20,850** | **177-254 hrs** |
-
-Remaining from $33,495 approved budget: ~$12,600-$14,000 for contingencies
-
-### Decision Points for Budget Approval
-
-1. **Approve Paper 1 budget** (~$6,600 + 6-8 hrs pre-submission)? □
-2. **Approve Paper 2 budget** (~$6,600-$6,900 + 83-98 hrs pre-submission)? □
-3. **Confirm Jan 31, 2026** Paper 2 deadline? □
-4. **Approve ~$4,198 immediate spend** for Paper 1 services (Scientific Editing + Graphical Abstract + Video Byte)? □
+Total PTO needed: 6 days across 18 weeks.
 
 ### Other Publication Costs
 - Preprint servers (arXiv): **$0**
