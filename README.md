@@ -241,13 +241,14 @@ This licensing approach promotes open access to healthcare research while ensuri
 ## 📈 Citation
 
 ```bibtex
-@techreport{yuiquery2025,
-  title = {YuiQuery: Natural Language to SQL in Healthcare - A Comprehensive Analysis of Conversational AI Platforms},
-  year = {2025},
-  month = {8},
-  institution = {YuiQuery Research Team},
+@techreport{harrold2026,
+  title = {Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Dynamics, and Technical Barriers},
+  author = {Harrold, Samuel T.},
+  year = {2026},
+  month = {1},
+  institution = {Yuimedi, Inc.},
   type = {Technical Whitepaper},
-  url = {https://github.com/yourusername/yuimedi-paper-20250901},
+  url = {https://github.com/stharrold/yuimedi-paper-20250901},
   note = {Research on conversational AI platforms addressing healthcare analytics challenges}
 }
 ```
