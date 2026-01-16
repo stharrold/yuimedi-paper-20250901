@@ -1,9 +1,9 @@
 {
-    "title": "Academic Literature Review Tool for Rigorous Claim Verification",
-    "description": "A Python-based systematic literature review tool implementing Clean Architecture for rigorous academic claim verification in healthcare research. Supports multi-database search (Crossref, PubMed, ArXiv, Semantic Scholar), automatic deduplication, thematic analysis, AI-powered synthesis, and multiple export formats.",
-    "version": "1.0.0",
+    "title": "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Dynamics, and Technical Barriers",
+    "description": "Research repository containing the narrative review 'Healthcare Analytics Challenges' and a Python-based systematic literature review tool. The paper synthesizes evidence on analytics maturity, workforce turnover, and NL2SQL technologies. The included tool implements Clean Architecture for rigorous academic claim verification.",
+    "version": "1.29.0",
     "upload_type": "software",
-    "publication_date": "2025-12-09",
+    "publication_date": "2026-01-16",
     "creators": [
         {
             "name": "Harrold, Samuel T.",
@@ -11,20 +11,15 @@
             "orcid": "0009-0008-4596-6921"
         }
     ],
-    "contributors": [
-        {"name": "YuiQuery Research Team", "affiliation": "YuiMedi", "type": "ProjectMember"}
-    ],
     "keywords": [
+        "healthcare analytics",
+        "workforce turnover",
+        "NL2SQL",
+        "institutional memory",
+        "HIMSS AMAM",
         "literature review",
         "systematic review",
-        "healthcare research",
-        "academic research",
-        "claim verification",
-        "PRISMA",
-        "natural language processing",
-        "thematic analysis",
-        "clean architecture",
-        "test-driven development"
+        "clean architecture"
     ],
     "license": "Apache-2.0",
     "access_right": "open",
@@ -43,5 +38,5 @@
         {"term": "Systematic Literature Review", "scheme": "keyword"},
         {"term": "Natural Language Processing", "scheme": "keyword"}
     ],
-    "notes": "This tool was developed to support rigorous claim verification in the YuiQuery healthcare analytics research paper. It implements Clean Architecture principles with >80% test coverage and follows PRISMA 2020 guidelines for systematic reviews."
+    "notes": "Version 1.28.0 includes the full Paper 1 manuscript submitted to JMIR Medical Informatics and the accompanying literature review toolset."
 }

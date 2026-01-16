@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: Academic Literature Review Tool for Rigorous Claim Verification
+title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Dynamics, and Technical Barriers"
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -13,37 +13,20 @@ authors:
 repository-code: 'https://github.com/stharrold/yuimedi-paper-20250901'
 url: 'https://github.com/stharrold/yuimedi-paper-20250901'
 abstract: >-
-  A Python-based systematic literature review tool implementing
-  Clean Architecture for rigorous academic claim verification in
-  healthcare research. The tool provides automated multi-database
-  search across Crossref, PubMed, ArXiv, and Semantic Scholar,
-  automatic deduplication using DOI-based matching, thematic
-  analysis with TF-IDF and hierarchical clustering, AI-powered
-  narrative synthesis, and export to multiple formats (BibTeX,
-  DOCX, LaTeX, HTML, JSON). Built with test-driven development
-  achieving >80% code coverage and following PRISMA 2020
-  guidelines for systematic reviews.
+  Research repository containing the narrative review 'Healthcare Analytics Challenges' and a Python-based systematic literature review tool. The paper synthesizes evidence on analytics maturity, workforce turnover, and NL2SQL technologies. The included tool implements Clean Architecture for rigorous academic claim verification.
 keywords:
+  - healthcare analytics
+  - workforce turnover
+  - NL2SQL
+  - institutional memory
+  - HIMSS AMAM
   - literature review
   - systematic review
-  - healthcare research
-  - academic research
-  - claim verification
-  - PRISMA
-  - natural language processing
-  - thematic analysis
   - clean architecture
-  - test-driven development
 license: Apache-2.0
-version: 1.0.0
-date-released: '2025-12-09'
+version: 1.29.0
+date-released: '2026-01-16'
 identifiers:
   - type: doi
     value: 10.5281/zenodo.XXXXXXX
     description: Zenodo DOI
-references:
-  - type: software
-    title: YuiQuery Healthcare Analytics Research
-    authors:
-      - name: YuiQuery Research Team
-    repository-code: 'https://github.com/stharrold/yuimedi-paper-20250901'
