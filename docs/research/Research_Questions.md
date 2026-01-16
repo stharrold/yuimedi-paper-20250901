@@ -44,7 +44,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What accuracy rates have been achieved for NL2SQL on clinical data? | Paper1,Paper2 | - | [`Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md`](Research_What-accuracy-rates-have-been-achieved-for-NL2SQL-on-clinical-data.md) |
 | What NL2SQL datasets exist for healthcare? | Paper2 | - | [`Research_What-NL2SQL-datasets-exist-for-healthcare.md`](Research_What-NL2SQL-datasets-exist-for-healthcare.md) |
 | What is the state of the art in semantic table/column matching for NL2SQL? | Paper2 | [#368](https://github.com/stharrold/yuimedi-paper-20250901/issues/368) | [`Research_semantic-table-column-matching-nl2sql.md`](Research_semantic-table-column-matching-nl2sql.md) |
-| What healthcare benchmarks exist for latest foundation models (GPT-5, Claude Opus 4.5)? | Paper1 | - | [`Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-GPT5-Claude-Opus-4.5.md`](Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-GPT5-Claude-Opus-4.5.md) |
+| What healthcare benchmarks exist for latest foundation models (GPT-5, Claude Opus 4.5)? | Paper1 | - | [`Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-2025-2026.md`](Research_What-healthcare-benchmarks-exist-for-latest-foundation-models-2025-2026.md) |
 
 ### Schema Discovery
 
@@ -67,7 +67,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What contemporary empirical research measures healthcare IT turnover rates? | Paper1 | - | [`Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md`](Research_What-contemporary-empirical-research-measures-healthcare-IT-turnover-rates.md) |
 | How do organizations use procedural artifacts or 'Standard Work' as a ratchet mechanism to prevent organizational forgetting during periods of high employee turnover? | Paper1 | - | [`Research_procedural-artifacts-as-knowledge-ratchet.md`](Research_procedural-artifacts-as-knowledge-ratchet.md) |
 | How does the 'passive capture' of a Knowledge Repository compare to the 'active capture' of a conversational interface regarding long-term sustainability? | Paper1 | - | [`Research_passive-vs-active-knowledge-capture-sustainability.md`](Research_passive-vs-active-knowledge-capture-sustainability.md) |
-| How has Root Cause Analysis (RCA) been applied to workforce turnover in healthcare to identify systemic drivers? | Paper1 | - | Answered | [`Research_RCA-application-to-workforce-turnover.md`](Research_RCA-application-to-workforce-turnover.md) |
+| How has Root Cause Analysis (RCA) been applied to workforce turnover in healthcare to identify systemic drivers? | Paper1 | - | [`Research_RCA-application-to-workforce-turnover.md`](Research_RCA-application-to-workforce-turnover.md) |
 
 ### Healthcare Analytics Challenges
 
@@ -79,7 +79,7 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 | What peer-reviewed evidence exists for cost reductions from healthcare AI/low-code implementations? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_low-code-platform-healthcare-cost-roi-evidence.md`](Research_low-code-platform-healthcare-cost-roi-evidence.md) |
 | How have healthcare organizations measured productivity gains from NL2SQL vs. traditional SQL workflows? | Paper1,Paper2 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md`](Research_How-have-healthcare-organizations-measured-productivity-gains-from-NL2SQL-vs-traditional-SQL.md) |
 | What evidence supports applying code modernization principles to natural language interfaces for legacy data access? | Paper1 | [#377](https://github.com/stharrold/yuimedi-paper-20250901/issues/377) | [`Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md`](Research_What-evidence-supports-applying-code-modernization-principles-to-natural-language-interfaces-for-legacy-data-access.md) |
-| What quantitative efficiency metrics have been reported for low-code or conversational AI in healthcare analytics? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_What-quantitative-efficiency-metrics-have-been-reported-for-low-code-or-conversational-AI-in-healthcare-analytics.md`](Research_What-quantitative-efficiency-metrics-have-been-reported-for-low-code-or-conversational-AI-in-healthcare-analytics.md) |
+| What Quantitative efficiency metrics have been reported for low-code or conversational AI in healthcare analytics? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md`](Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md) |
 | What efficiency metrics have been reported for NL2SQL or conversational analytics in healthcare? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | [`Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md`](Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md) |
 | Do code-based Semantic Layers suffer from 'schema rot' in healthcare environments? | Paper1,Paper2 | - | [`Research_Do-code-based-Semantic-Layers-suffer-from-schema-rot-in-healthcare.md`](Research_Do-code-based-Semantic-Layers-suffer-from-schema-rot-in-healthcare.md) |
 | Does the rigidity of centralized semantic models drive analysts toward 'Shadow IT' (extracting raw data to Excel), thereby defeating the governance model? | Paper1 | - | [`Research_Centralized-Semantic-Models-vs-Shadow-IT.md`](Research_Centralized-Semantic-Models-vs-Shadow-IT.md) |
@@ -88,21 +88,29 @@ Questions with literature support found. Each links to a `Research_*.md` file co
 
 | Question | Scope | Issue | Research File |
 |----------|-------|-------|---------------|
-| What evidence exists that tacit analytical knowledge is difficult to document and transfer through traditional means? | Paper1 | [#378](https://github.com/stharrold/yuimedi-paper-20250901/issues/378) | [`Research_What-evidence-exists-that-tacit-analytical-knowledge-is-difficult-to-document-and-transfer-through-traditional-means.md`](Research_What-evidence-exists-that-tacit-analytical-knowledge-is-difficult-to-document-and-transfer-through-traditional-means.md) |
+| What evidence exists that tacit analytical knowledge is difficult to document and transfer through traditional means? | Paper1 | [#378](https://github.com/stharrold/yuimedi-paper-20250901/issues/378) | [`Research_Tacit-Knowledge-Documentation-and-Clinical-Impacts.md`](Research_Tacit-Knowledge-Documentation-and-Clinical-Impacts.md) |
 
 ### Clinical Impact and Outcomes
 
 | Question | Scope | Issue | Research File |
 |----------|-------|-------|---------------|
-| What evidence links healthcare analytics maturity gaps to patient care quality and clinical outcomes? | Paper1 | [#379](https://github.com/stharrold/yuimedi-paper-20250901/issues/379) | [`Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md`](Research_What-evidence-links-healthcare-analytics-maturity-gaps-to-patient-care-quality-and-clinical-outcomes.md) |
-| What evidence links healthcare workforce turnover and institutional knowledge loss to care continuity? | Paper1 | [#380](https://github.com/stharrold/yuimedi-paper-20250901/issues/380) | [`Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md`](Research_What-evidence-links-healthcare-workforce-turnover-and-institutional-knowledge-loss-to-care-continuity.md) |
-| What evidence demonstrates that analytics challenges have measurable implications for healthcare delivery? | Paper1 | [#381](https://github.com/stharrold/yuimedi-paper-20250901/issues/381) | [`Research_What-evidence-demonstrates-that-analytics-challenges-have-measurable-implications-for-healthcare-delivery.md`](Research_What-evidence-demonstrates-that-analytics-challenges-have-measurable-implications-for-healthcare-delivery.md) |
+| What evidence links healthcare analytics maturity gaps to patient care quality and clinical outcomes? | Paper1 | [#379](https://github.com/stharrold/yuimedi-paper-20250901/issues/379) | [`Research_Tacit-Knowledge-Documentation-and-Clinical-Impacts.md`](Research_Tacit-Knowledge-Documentation-and-Clinical-Impacts.md) |
+| What evidence links healthcare workforce turnover and institutional knowledge loss to care continuity? | Paper1 | [#380](https://github.com/stharrold/yuimedi-paper-20250901/issues/380) | [`Research_Tacit-Knowledge-Documentation-and-Clinical-Impacts.md`](Research_Tacit-Knowledge-Documentation-and-Clinical-Impacts.md) |
+| What evidence demonstrates that analytics challenges have measurable implications for healthcare delivery? | Paper1 | [#381](https://github.com/stharrold/yuimedi-paper-20250901/issues/381) | [`Research_Tacit-Knowledge-Documentation-and-Clinical-Impacts.md`](Research_Tacit-Knowledge-Documentation-and-Clinical-Impacts.md) |
 
 ### Testing & Validation
 
 | Question | Scope | Issue | Research File |
 |----------|-------|-------|---------------|
 | What tools exist for degrading data quality for testing? | Paper2 | - | [`Research_What-tools-exist-for-degrading-data-quality-for-testing.md`](Research_What-tools-exist-for-degrading-data-quality-for-testing.md) |
+
+### Synthetic Data and Validation
+
+| Question | Scope | Issue | Research File |
+|----------|-------|-------|---------------|
+| How has Synthea synthetic data been used for healthcare AI/NL2SQL validation? | Paper2 | [#375](https://github.com/stharrold/yuimedi-paper-20250901/issues/375) | [`Research_Synthetic-Data-and-Reproducible-Benchmarking-for-Healthcare-NL2SQL.md`](Research_Synthetic-Data-and-Reproducible-Benchmarking-for-Healthcare-NL2SQL.md) |
+| What cloud architecture patterns exist for reproducible NL2SQL benchmarking? | Paper2 | [#375](https://github.com/stharrold/yuimedi-paper-20250901/issues/375) | [`Research_Synthetic-Data-and-Reproducible-Benchmarking-for-Healthcare-NL2SQL.md`](Research_Synthetic-Data-and-Reproducible-Benchmarking-for-Healthcare-NL2SQL.md) |
+| How have others validated NL2SQL systems on synthetic vs. real clinical data? | Paper2 | [#375](https://github.com/stharrold/yuimedi-paper-20250901/issues/375) | [`Research_Synthetic-Data-and-Reproducible-Benchmarking-for-Healthcare-NL2SQL.md`](Research_Synthetic-Data-and-Reproducible-Benchmarking-for-Healthcare-NL2SQL.md) |
 
 ---
 
@@ -121,12 +129,6 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 
 ### Knowledge Management & Organizational Memory
 
-### Operational Logic (Lean/Toyota)
-
-| Question | Scope | Issue | Research File |
-|----------|-------|-------|---------------|
-| In Lean management theory, how does 'Standard Work' facilitate incremental improvement (Kaizen) in environments with non-expert or rotating labor forces? | Paper1 | - | [`Research_lean-standard-work-and-kaizen.md`](Research_lean-standard-work-and-kaizen.md) |
-
 ### Human-AI Interaction & Validation
 
 | Question | Scope | Issue | Research File |
@@ -141,40 +143,11 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 
 ### Institutional Learning and Query Reuse
 
-| Question | Scope | Issue | Status | Notes |
-|----------|-------|-------|--------|-------|
-| How have others measured institutional learning in analytics or BI systems? | Paper2 | [#369](https://github.com/stharrold/yuimedi-paper-20250901/issues/369) | Unanswered | |
-| Have any NL2SQL systems implemented query memoization or caching? | Paper2 | [#369](https://github.com/stharrold/yuimedi-paper-20250901/issues/369) | Unanswered | |
-| How have others measured efficiency gains from query reuse in database systems? | Paper2 | [#369](https://github.com/stharrold/yuimedi-paper-20250901/issues/369) | Unanswered | |
-
-### Healthcare Terminology Mapping
-
-| Question | Scope | Issue | Status | Notes |
-|----------|-------|-------|--------|-------|
-| What approaches exist for programmatic mapping to SNOMED, LOINC, RxNorm? | Paper3 | [#370](https://github.com/stharrold/yuimedi-paper-20250901/issues/370) | Unanswered | |
-| What is the reported ETL burden for OMOP/FHIR transformation? | Paper3 | [#370](https://github.com/stharrold/yuimedi-paper-20250901/issues/370) | Unanswered | |
-
-### Healthcare Implementation Efficiency Evidence
-
-| Question | Scope | Issue | Status | Notes |
-|----------|-------|-------|--------|-------|
-| What methodology has been used to measure "citizen developer" productivity in healthcare contexts? | Paper1 | [#373](https://github.com/stharrold/yuimedi-paper-20250901/issues/373) | Partial | **UPDATED 2025-12-20:** 20 papers found. Gap CONFIRMED: No validated healthcare-specific citizen developer productivity instrument. See [`Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md`](Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md) |
-
-### Clinical Safety and Security
-
-| Question | Scope | Issue | Status | Notes |
-|----------|-------|-------|--------|-------|
-| What clinical safety considerations apply to AI-assisted healthcare analytics? | Paper2,Paper3 | [#374](https://github.com/stharrold/yuimedi-paper-20250901/issues/374) | Unanswered | |
-| What security architecture patterns exist for NL2SQL systems handling PHI? | Paper2 | [#374](https://github.com/stharrold/yuimedi-paper-20250901/issues/374) | Unanswered | |
-| How do NIST, HITRUST, and HIPAA requirements apply to AI-enabled healthcare systems? | Paper2,Paper3 | [#374](https://github.com/stharrold/yuimedi-paper-20250901/issues/374) | Unanswered | |
-
-### Synthetic Data and Validation
-
-| Question | Scope | Issue | Status | Notes |
-|----------|-------|-------|--------|-------|
-| How has Synthea synthetic data been used for healthcare AI/NL2SQL validation? | Paper2 | [#375](https://github.com/stharrold/yuimedi-paper-20250901/issues/375) | Unanswered | |
-| What cloud architecture patterns exist for reproducible NL2SQL benchmarking? | Paper2 | [#375](https://github.com/stharrold/yuimedi-paper-20250901/issues/375) | Unanswered | |
-| How have others validated NL2SQL systems on synthetic vs. real clinical data? | Paper2 | [#375](https://github.com/stharrold/yuimedi-paper-20250901/issues/375) | Unanswered | |
+| Question | Scope | Issue | Research File |
+|----------|-------|-------|---------------|
+| How have others measured institutional learning in analytics or BI systems? | Paper2 | [#369](https://github.com/stharrold/yuimedi-paper-20250901/issues/369) | [`Research_How-have-others-measured-institutional-learning-in-analytics-or-BI-systems.md`](Research_How-have-others-measured-institutional-learning-in-analytics-or-BI-systems.md) |
+| Have any NL2SQL systems implemented query memoization or caching? | Paper2 | [#369](https://github.com/stharrold/yuimedi-paper-20250901/issues/369) | [`Research_How-have-others-measured-institutional-learning-in-analytics-or-BI-systems.md`](Research_How-have-others-measured-institutional-learning-in-analytics-or-BI-systems.md) |
+| How have others measured efficiency gains from query reuse in database systems? | Paper2 | [#369](https://github.com/stharrold/yuimedi-paper-20250901/issues/369) | [`Research_How-have-others-measured-institutional-learning-in-analytics-or-BI-systems.md`](Research_How-have-others-measured-institutional-learning-in-analytics-or-BI-systems.md) |
 
 ---
 
@@ -200,6 +173,7 @@ All `Research_*.md` files in this directory:
 | `Research_What-is-the-cost-of-turnover-in-terms-of-annual-salary.md` | Turnover cost estimates | Paper1 |
 | `Research_What-is-the-knowledge-portal-paradigm-and-how-has-it-been-implemented.md` | Knowledge portal paradigm | Paper1,Paper2 |
 | `Research_What-methodology-has-been-used-to-measure-citizen-developer-productivity-in-healthcare-contexts.md` | Citizen developer productivity measurement | Paper1 |
+| `Research_Tacit-Knowledge-Documentation-and-Clinical-Impacts.md` | Tacit knowledge and clinical impacts | Paper1 |
 | `Research_low-code-platform-healthcare-cost-roi-evidence.md` | Low-code platform healthcare ROI evidence | Paper1 |
 | `Research_What-NL2SQL-datasets-exist-for-healthcare.md` | Healthcare NL2SQL datasets | Paper2 |
 | `Research_What-NL2SQL-systems-have-been-applied-to-healthcare-databases.md` | Healthcare NL2SQL systems | Paper1,Paper2 |
@@ -215,5 +189,9 @@ All `Research_*.md` files in this directory:
 | `Research_Low-Code-Risks.md` | Low-code maintenance and security risks | Paper1 |
 | `Research_Visual-vs-Conversational-Time-to-Insight.md` | Time-to-insight comparison | Paper1 |
 | `Research_Headless-Semantic-Layers-and-Schema-Rot.md` | Headless semantic layers and schema rot | Paper1 |
+| `Research_Synthetic-Data-and-Reproducible-Benchmarking-for-Healthcare-NL2SQL.md` | Synthetic data benchmarking | Paper2 |
 | `Research_Benefits-of-Shadow-IT.md` | Benefits of Shadow IT (Agility) | Paper1 |
+| `Research_How-have-others-measured-institutional-learning-in-analytics-or-BI-systems.md` | Institutional learning metrics | Paper2 |
+| `Research_Clinical-Safety-and-Security-Considerations-for-AI-Assisted-Healthcare-Analytics.md` | Clinical safety and security | Paper2,Paper3 |
+| `Research_What-efficiency-metrics-have-been-reported-for-NL2SQL-or-conversational-analytics-in-healthcare.md` | NL2SQL efficiency metrics | Paper1 |
 | `Research_RCA-application-to-workforce-turnover.md` | RCA application to workforce turnover | Paper1 |

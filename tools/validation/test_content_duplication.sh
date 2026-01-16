@@ -6,7 +6,7 @@ echo "Checking for content duplication in documentation..."
 # Key files to check
 FILES_TO_CHECK=(
     "paper.md"
-    "CLAUDE.md"
+    "GEMINI.md"
     "README.md"
     "CONTRIBUTING.md"
 )

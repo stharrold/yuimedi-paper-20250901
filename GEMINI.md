@@ -63,7 +63,7 @@ This file provides guidance to Gemini (Gemini) when working with code in this re
 ```bash
 # Setup (choose one)
 uv sync                                    # Local
-podman-compose build                       # Container (recommended)
+podman rm -f -a && podman volume create yuimedi_venv_cache && podman build -t yuimedi-paper:latest -f Containerfile . # Container (Smart Reset)
 
 # Quality checks (run before commits)
 ./validate_documentation.sh                # Documentation validation (7 tests)
@@ -95,11 +95,18 @@ uv run pytest tests/skills/ \
 gh issue list --label "P0"                 # Critical tasks
 gh issue view <number>                     # Task details
 
-# PDF generation
-./scripts/build_paper.sh                   # Generate PDF (local)
-./scripts/build_paper.sh --format html     # Generate HTML
-./scripts/build_paper.sh --format all      # Generate PDF, HTML, DOCX
-podman-compose run --rm dev ./scripts/build_paper.sh  # Generate in container
+# PDF generation (Robust options)
+# Option 1: Local build (Fastest, requires 'brew install tectonic')
+./scripts/build_paper.sh --format all
+
+# Option 2: Container build (Standard, isolates dependencies)
+# Note: Use if local build fails or for CI/CD parity
+podman run --rm \
+  -v "$PWD:/app:Z" \
+  -v yuimedi_venv_cache:/app/.venv \
+  -w /app \
+  yuimedi-paper:latest \
+  ./scripts/build_paper.sh --format all
 ```
 
 ## Workflow System (v6)
@@ -171,7 +178,7 @@ Include `Closes #<issue>` in commit body to auto-close GitHub issues.
 **Clean Architecture Layers:**
 1. **Domain (innermost):** Paper, Review, DOI entities; no external dependencies
 2. **Application:** SearchPapers, AnalyzeThemes, GenerateSynthesis use cases; port interfaces
-3. **Infrastructure:** Crossref, PubMed, ArXiv, SemanticScholar adapters; ClaudeAnalyzer; JSONRepository
+3. **Infrastructure:** Crossref, PubMed, ArXiv, SemanticScholar adapters; GeminiAnalyzer; JSONRepository
 4. **Interfaces (outermost):** CLI commands using Click framework
 
 **Key Features:**
@@ -215,17 +222,30 @@ Hooks run automatically on every commit:
 **Container-based testing:** GitHub Actions runs all tests inside Docker containers built from `Containerfile` to ensure environment parity with local Podman development.
 
 ```bash
-# Local container development
-podman-compose build                    # Build container
-podman-compose run --rm dev uv run pytest  # Run tests in container
-podman-compose run --rm dev uv run python <script>  # Run any script
+# Local container development (Smart Reset sequence)
+# 1. Clear old containers (fixes port/name conflicts)
+podman rm -f -a
+
+# 2. Ensure venv volume exists (preserves dependencies)
+podman volume create yuimedi_venv_cache
+
+# 3. Build image
+podman build -t yuimedi-paper:latest -f Containerfile .
+
+# 4. Run tests/scripts with robust volume mounting
+podman run --rm \
+  -v "$PWD:/app:Z" \
+  -v yuimedi_venv_cache:/app/.venv \
+  -w /app \
+  yuimedi-paper:latest \
+  uv run pytest
 ```
 
 **Container architecture:**
 - Python 3.12 + uv with `--all-extras` (includes duckdb for AgentDB)
 - GitHub CLI (`gh`) for workflow automation (PR creation, issue management)
 - PDF generation: pandoc + texlive-xetex + Eisvogel template
-- Named volume `venv_cache` isolates container `.venv` from host (avoids macOS/Linux binary mismatch)
+- Named volume `yuimedi_venv_cache` isolates container `.venv` from host (avoids macOS/Linux binary mismatch)
 - Always use `uv run` prefix in container for proper venv activation
 
 **Why containers?** Eliminates "works locally, fails in CI" issues by using identical environment (Python 3.12, uv, dependencies) in both contexts.
@@ -301,16 +321,37 @@ python scripts/extract_abbreviations.py         # Generate abbreviations list
 **Figure generation:** Generate from Mermaid or DOT source:
 ```bash
 # Mermaid (.mmd) → PNG (in container for consistent fonts)
-podman-compose run --rm dev npx --yes @mermaid-js/mermaid-cli@latest \
+podman run --rm \
+  -v "$PWD:/app:Z" \
+  -v yuimedi_venv_cache:/app/.venv \
+  -w /app \
+  yuimedi-paper:latest \
+  npx --yes @mermaid-js/mermaid-cli@latest \
   -i figures/<name>.mmd -o figures/<name>.mmd.png -p /app/puppeteer-config.json
 
 # Mermaid (.mmd) → SVG
-podman-compose run --rm dev npx --yes @mermaid-js/mermaid-cli@latest \
+podman run --rm \
+  -v "$PWD:/app:Z" \
+  -v yuimedi_venv_cache:/app/.venv \
+  -w /app \
+  yuimedi-paper:latest \
+  npx --yes @mermaid-js/mermaid-cli@latest \
   -i figures/<name>.mmd -o figures/<name>.mmd.svg -p /app/puppeteer-config.json
 
 # DOT (.dot) → SVG/PNG (requires graphviz)
-podman-compose run --rm dev dot -Tsvg figures/<name>.mmd.dot -o figures/<name>.mmd.dot.svg
-podman-compose run --rm dev dot -Tpng figures/<name>.mmd.dot -o figures/<name>.mmd.dot.png
+podman run --rm \
+  -v "$PWD:/app:Z" \
+  -v yuimedi_venv_cache:/app/.venv \
+  -w /app \
+  yuimedi-paper:latest \
+  dot -Tsvg figures/<name>.mmd.dot -o figures/<name>.mmd.dot.svg
+
+podman run --rm \
+  -v "$PWD:/app:Z" \
+  -v yuimedi_venv_cache:/app/.venv \
+  -w /app \
+  yuimedi-paper:latest \
+  dot -Tpng figures/<name>.mmd.dot -o figures/<name>.mmd.dot.png
 ```
 
 **Figure naming convention:** Suffix chain documents derivation:

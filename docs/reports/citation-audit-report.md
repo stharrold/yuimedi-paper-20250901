@@ -2,7 +2,7 @@
 
 **Document**: `paper.md`
 **Audit Date**: 2025-11-23
-**Auditor**: Claude Code (Automated Analysis)
+**Auditor**: Gemini CLI (Automated Analysis)
 
 ## Summary
 

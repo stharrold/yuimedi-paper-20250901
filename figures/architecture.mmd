@@ -9,8 +9,8 @@ flowchart TD
     end
 
     subgraph Knowledge["<b>Knowledge Infrastructure</b>"]
-        D[("Organizational Memory")] --> G[("Institutional Knowledge Base")]
-        E[("Best Practices Repository")] --> G
+        D[("Organizational Memory")] -.-> G[("Institutional Knowledge Base")]
+        E[("Best Practices Repository")] -.-> G
         F[("Healthcare Ontologies")]
     end
 
@@ -26,15 +26,15 @@ flowchart TD
 
     %% Main flow (Solid lines)
     C -->|"3. Connects to"| H
-    I -->|"5. Queries"| J
+    I <-->|"5. Queries & Refines"| J
     J -->|"6. Returns Data"| K
-    L -->|"8. Delivers Insights"| A
+    L <-->|"8. Delivers Insights & Refines"| A
 
     %% Validation Loop (Dotted line per caption)
-    I -.-|"Validation"| A
+    I <.->|"Validation"| A
 
     %% Knowledge Storage (Dashed line per caption)
-    I -.->|"Stores Validated Pair"| D
+    I -.->|"Stores Validated Triple"| D
 
     %% Knowledge injection (Dashed lines)
     G -.->|"Provides Context"| H
