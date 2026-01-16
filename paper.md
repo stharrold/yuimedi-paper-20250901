@@ -143,7 +143,7 @@ This paper makes the following contributions to the healthcare informatics liter
 
 3. *Illustrative Application*: Drawing on established knowledge management literature, we describe the validated query cycle as an example of how the framework can inform technology design. This concept addresses institutional memory loss through a six-step process that allows domain experts to validate and store queries, ensuring that knowledge persists independently of staff tenure. Figures 1 and 2 illustrate this architecture and cycle.
 
-![Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation. Bi-directional arrows at steps 5 and 8 represent the iterative 'Query & Refine' loop where users refine their intent based on delivered insights. The critical validation step (dotted bi-directional line) shows domain experts confirming or correcting generated SQL before results are trusted. Validated NL-SQL-Rationale triples flow to organizational memory (dashed line), where they persist independent of staff tenure and inform future query generation.](figures/architecture.mmd.png)
+![Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation. Bi-directional arrows at steps 5 and 8 represent the iterative 'Query & Refine' loop where users refine their intent based on delivered insights. The critical validation step (dotted bi-directional line) shows domain experts confirming or correcting generated SQL before results are trusted. Validated NL-SQL-Rationale triples flow to organizational memory (dashed line), where they persist independent of staff tenure and inform future query generation.](figures/architecture.mmd.png){width=95%}
 
 ### Illustrative Application: The Validated Query Cycle as a Governance Forcing Function
 
@@ -165,7 +165,7 @@ The six-step cycle (Figure 2) illustrates this approach:
 
 
 
-![The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) AI provides a natural language explanation of the SQL logic; domain expert confirms the intent and results, (4) validated triples are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.](figures/knowledge-cycle.mmd.png){width=100%}
+![The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) AI provides a natural language explanation of the SQL logic; domain expert confirms the intent and results, (4) validated triples are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.](figures/knowledge-cycle.mmd.png){width=50%}
 
 
 
@@ -224,7 +224,7 @@ The final corpus includes 115 academic and 20 industry sources (135 total). Targ
 
 Figure 3 illustrates the literature selection process, showing progression from initial database search through screening and quality assessment to the final corpus of included sources.
 
-![Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 137 sources (125 academic, 12 industry). Diagram source available in figures/literature-flow.mmd.](figures/literature-flow.mmd.png)
+![Literature Selection Flow Diagram. The diagram shows the progression from initial database search (n ≈ 570) through title/abstract screening, full-text review, and quality assessment (AACODS for grey literature) to the final corpus of 137 sources (125 academic, 12 industry). Diagram source available in figures/literature-flow.mmd.](figures/literature-flow.mmd.png){width=90%}
 
 ## Stage 2: Screening and Selection
 
@@ -312,11 +312,11 @@ The framework development followed these steps:
 
 The three-pillar framework aligns with established models in healthcare informatics and knowledge management:
 
-| Three Pillars | HIMSS AMAM<br />Alignment | DIKW Hierarchy | Knowledge<br />Management |
-|:---|:---|:---|:---|
-| Analytics Maturity | Stages 0-7<br />Progression | Data<br />$\rightarrow$ Information | Organizational<br />learning |
-| Workforce Agility | Implicit in Advanced Stages | Knowledge (tacit)<br />$\rightarrow$ Wisdom | Tacit knowledge transfer |
-| Technical Enablement | Stages 6-7<br />Requirements | Information<br />$\rightarrow$ Knowledge | Knowledge<br />Codification |
+| Three Pillars | HIMSS AMAM Alignment | DIKW Hierarchy | Knowledge Management |
+| :--- | :--- | :--- | :--- |
+| Analytics Maturity | Stages 0-7 Progression | Data $\rightarrow$ Information | Organizational Learning |
+| Workforce Agility | Implicit in Advanced Stages | Knowledge (tacit) $\rightarrow$ Wisdom | Tacit Knowledge Transfer |
+| Technical Enablement | Stages 6-7 Requirements | Information $\rightarrow$ Knowledge | Knowledge Codification |
 
 Table 3: Framework Alignment with Established Models \label{tab:framework-alignment}
 
