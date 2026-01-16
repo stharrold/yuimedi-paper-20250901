@@ -193,6 +193,8 @@ Return JSON with this structure:
 
         # Parse response
         content = response.text
+        if not content:
+            raise ValueError("Gemini API returned empty response")
         data = json.loads(content)
 
         result = ThemeHierarchy(
