@@ -312,11 +312,11 @@ The framework development followed these steps:
 
 The three-pillar framework aligns with established models in healthcare informatics and knowledge management:
 
-| Three Pillars | HIMSS AMAM<br />Alignment | DIKW Hierarchy | Knowledge<br />Management |
-|:---|:---|:---|:---|
-| Analytics Maturity | Stages 0-7<br />Progression | Data<br />$\rightarrow$ Information | Organizational<br />learning |
-| Workforce Agility | Implicit in Advanced Stages | Knowledge (tacit)<br />$\rightarrow$ Wisdom | Tacit knowledge transfer |
-| Technical Enablement | Stages 6-7<br />Requirements | Information<br />$\rightarrow$ Knowledge | Knowledge<br />Codification |
+| Three Pillars | HIMSS AMAM Alignment | DIKW Hierarchy | Knowledge Management |
+| :--- | :--- | :--- | :--- |
+| Analytics Maturity | Stages 0-7 Progression | Data $\rightarrow$ Information | Organizational Learning |
+| Workforce Agility | Implicit in Advanced Stages | Knowledge (tacit) $\rightarrow$ Wisdom | Tacit Knowledge Transfer |
+| Technical Enablement | Stages 6-7 Requirements | Information $\rightarrow$ Knowledge | Knowledge Codification |
 
 Table 3: Framework Alignment with Established Models \label{tab:framework-alignment}
 
