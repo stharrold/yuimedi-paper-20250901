@@ -143,7 +143,7 @@ This paper makes the following contributions to the healthcare informatics liter
 
 3. *Illustrative Application*: Drawing on established knowledge management literature, we describe the validated query cycle as an example of how the framework can inform technology design. This concept addresses institutional memory loss through a six-step process that allows domain experts to validate and store queries, ensuring that knowledge persists independently of staff tenure. Figures 1 and 2 illustrate this architecture and cycle.
 
-![Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation. Bi-directional arrows at steps 5 and 8 represent the iterative 'Query & Refine' loop where users refine their intent based on delivered insights. The critical validation step (dotted bi-directional line) shows domain experts confirming or correcting generated SQL before results are trusted. Validated NL+SQL pairs flow to organizational memory (dashed line), where they persist independent of staff tenure and inform future query generation.](figures/architecture.mmd.png)
+![Healthcare Analytics Architecture. Solid lines indicate the primary data flow from clinical user natural language queries through a conversational AI interface to a healthcare NLP engine for context-aware SQL generation. Bi-directional arrows at steps 5 and 8 represent the iterative 'Query & Refine' loop where users refine their intent based on delivered insights. The critical validation step (dotted bi-directional line) shows domain experts confirming or correcting generated SQL before results are trusted. Validated NL-SQL-Rationale triples flow to organizational memory (dashed line), where they persist independent of staff tenure and inform future query generation.](figures/architecture.mmd.png)
 
 ### Illustrative Application: The Validated Query Cycle as a Governance Forcing Function
 
@@ -157,19 +157,19 @@ The six-step cycle (Figure 2) illustrates this approach:
 
 3.  *Validation*: The AI provides a natural language explanation of the SQL logic and results, allowing the domain expert to validate the query's intent without reviewing raw code. This human-in-the-loop step aligns with "Human-on-the-Loop" (HotL) frameworks, transforming validation from a binary check into an iterative knowledge capture process [@bravorocca2023; @mosqueirarey2023]. This is essential given that current models are "not yet sufficiently accurate for unsupervised use" in clinical settings [@ziletti2024].
 
-4.  *Storage*: Once validated, the NL+SQL pair is stored in organizational memory as a durable knowledge artifact, along with mandatory "Rationale Metadata" documenting the query's business logic (e.g., "Excluding Hospice per 2025 CMS rules").
+4.  *Storage*: Once validated, the NL-SQL-Rationale triple is stored in organizational memory as a durable knowledge artifact. The Rationale Metadata documents the query's business logic (e.g., "Excluding Hospice per 2025 CMS rules") and is a mandatory component of the triple.
 
-5.  *Retrieval*: When future users ask similar questions, the system retrieves relevant validated pairs, reducing dependence on individual expertise.
+5.  *Retrieval*: When future users ask similar questions, the system retrieves relevant validated triples, reducing dependence on individual expertise.
 
 6. *Persistence*: When the original expert leaves, their analytical knowledge remains embedded in the system. New staff inherit executable knowledge rather than starting from scratch.
 
 
 
-![The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) AI provides a natural language explanation of the SQL logic; domain expert confirms the intent and results, (4) validated pairs are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.](figures/knowledge-cycle.mmd.png){width=100%}
+![The Validated Query Cycle, shown as six numbered steps in the diagram. (1) Domain experts ask natural language questions, (2) the system generates candidate SQL, (3) AI provides a natural language explanation of the SQL logic; domain expert confirms the intent and results, (4) validated triples are stored, (5) future queries retrieve validated knowledge, and (6) expertise persists through staff turnover. This cycle breaks the compounding effect where turnover erases institutional memory.](figures/knowledge-cycle.mmd.png){width=100%}
 
 
 
-This cycle breaks the compounding effect identified in the three-pillar framework: turnover no longer erases analytical knowledge because expertise is embedded in validated query pairs rather than individual memory. Low-maturity organizations can accelerate advancement by accumulating validated queries, and technical barriers are reduced because new staff access proven query patterns rather than recreating analytical logic.
+This cycle breaks the compounding effect identified in the three-pillar framework: turnover no longer erases analytical knowledge because expertise is embedded in validated query triples rather than individual memory. Low-maturity organizations can accelerate advancement by accumulating validated queries, and technical barriers are reduced because new staff access proven query patterns rather than recreating analytical logic.
 
 ## Document Structure
 
@@ -576,13 +576,13 @@ The evidence review identifies several priority areas for future investigation:
 
 To illustrate how the three-pillar framework might inform technology design, we examine the validated query cycle concept introduced earlier. This mechanism differs fundamentally from traditional knowledge management approaches in healthcare. Traditional approaches rely on documentation: analysts write procedures, create data dictionaries, and maintain query libraries. However, documentation suffers from three critical weaknesses: it becomes stale as systems evolve, it captures procedural knowledge but not contextual judgment, and it requires active maintenance that often lapses after staff transitions [@whittaker2008; @lenz2007].
 
-Validated query pairs address each weakness:
+Validated query triples address each weakness:
 
-1. *Executability*: Validated pairs are executable; they can be tested against current data to verify continued correctness, unlike static documentation
-2. *Contextual Completeness*: Validated pairs capture the complete mapping from business question to data retrieval logic, embedding the contextual judgment that documentation typically omits (why this join, why this filter, why this aggregation). To prevent an intent gap, defined here as the loss of connection between the original business question and its technical SQL implementation, a validated pair is incomplete without mandatory "Rationale Metadata," a text field documenting *why* the query was constructed in a specific way (e.g., "Excluding Hospice per 2025 CMS rules")
+1. *Executability*: Validated triples are executable; they can be tested against current data to verify continued correctness, unlike static documentation
+2. *Contextual Completeness*: Validated triples capture the complete mapping from business question to data retrieval logic, embedding the contextual judgment that documentation typically omits (why this join, why this filter, why this aggregation). To prevent an intent gap, defined here as the loss of connection between the original business question and its technical SQL implementation, a validated triple is incomplete without mandatory "Rationale Metadata," a text field documenting *why* the query was constructed in a specific way (e.g., "Excluding Hospice per 2025 CMS rules")
 3. *Active Validation*: Validation happens at the point of use rather than as a separate maintenance task; every confirmed query becomes a knowledge artifact without additional documentation effort
 
-This mechanism also differs from traditional query logging or usage analytics. Query logs capture what was asked, but not whether the answer was correct. Validated query pairs capture expert confirmation that the SQL correctly answers the business question. This distinction is critical for institutional memory: organizations need to know not just what queries were run, but which queries produced trusted, verified answers.
+This mechanism also differs from traditional query logging or usage analytics. Query logs capture what was asked, but not whether the answer was correct. Validated query triples capture expert confirmation that the SQL correctly answers the business question. This distinction is critical for institutional memory: organizations need to know not just what queries were run, but which queries produced trusted, verified answers.
 
 Governance requirements for the validated query cycle include: defining who can validate queries (domain expertise requirements), establishing validation workflows (review processes for high-stakes queries), managing query versioning (as schemas evolve), and implementing retrieval policies (when to return exact matches versus inform new generation). Organizations implementing conversational AI platforms should design these governance structures before deployment rather than retrofitting them after knowledge accumulation begins [@oliveira2023].
 
@@ -606,7 +606,7 @@ Organizations have attempted to solve the institutional memory crisis through va
 
 Leveraging the property of Executability, a validated SQL query is treated not as a static artifact but as a software asset within a CI/CD pipeline. In healthcare, database schemas (Epic, Cerner, OMOP) change frequently, breaking "frozen" code. To address "Schema Drift," analytics must adopt principles from software engineering: *Continuous Analytic Integration*.
 
-In this approach, Validated Query Pairs are managed not as wiki entries but as software assets within a CI/CD pipeline. When the data warehouse schema is updated (e.g., a quarterly EHR upgrade), the system automatically re-runs the library of stored queries. Queries that fail or return anomalous results are flagged for review. This transforms "Institutional Memory" from a stagnant repository into a living, automated test suite that actively signals when organizational knowledge has drifted from technical reality.
+In this approach, Validated Query Triples are managed not as wiki entries but as software assets within a CI/CD pipeline. When the data warehouse schema is updated (e.g., a quarterly EHR upgrade), the system automatically re-runs the library of stored queries. Queries that fail or return anomalous results are flagged for review. This transforms "Institutional Memory" from a stagnant repository into a living, automated test suite that actively signals when organizational knowledge has drifted from technical reality.
 
 ## Strategic Implications for Healthcare Organizations
 
@@ -675,7 +675,7 @@ When organizations choose to apply the framework and evaluate barrier-reducing t
 - *Human Oversight*: Current NL2SQL limitations require maintaining human review of AI-generated outputs [@ziletti2024]
 
 ### Mitigating "Shadow IT" with "Golden Queries"
-To prevent the "chaos of conflicting definitions" that can arise from democratized analytics, organizations can introduce a "Golden Query" governance status. In this model, a central committee can certify specific validated pairs as the "source of truth" for the organization [@himss2025ucdavis]. This ensures that while many users can create and validate queries, only a select few are designated as the official, trusted queries for key metrics, thus mitigating the risks of "Shadow IT" [@zimmermann2017].
+To prevent the "chaos of conflicting definitions" that can arise from democratized analytics, organizations can introduce a "Golden Query" governance status. In this model, a central committee can certify specific validated triples as the "source of truth" for the organization [@himss2025ucdavis]. This ensures that while many users can create and validate queries, only a select few are designated as the official, trusted queries for key metrics, thus mitigating the risks of "Shadow IT" [@zimmermann2017].
 
 # Conclusion
 

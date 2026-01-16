@@ -1,14 +1,14 @@
 %%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '10pt'}}}%%
 flowchart TB
     %% Validated Query Cycle - Knowledge Preservation Mechanism
-    %% Shows how validated NL+SQL pairs break the three-pillar compounding cycle
+    %% Shows how validated NL-SQL-Rationale triples break the three-pillar compounding cycle
 
     subgraph CYCLE["<b>Validated Query Cycle</b>"]
         Q["1. QUERY<br/>Domain expert asks<br/>natural language question"]
         G["2. GENERATION<br/>System generates<br/>candidate SQL"]
         V{"3. VALIDATION<br/>AI explains SQL logic<br/>and results;<br/>Expert confirms intent"}
-        S["4. STORAGE<br/>Validated pair + Rationale<br/>stored in memory"]
-        R["5. RETRIEVAL<br/>Future queries match<br/>validated pairs"]
+        S["4. STORAGE<br/>Validated triple<br/>stored in memory"]
+        R["5. RETRIEVAL<br/>Future queries match<br/>validated triples"]
         P["6. PERSISTENCE<br/>Knowledge survives<br/>staff turnover"]
     end
 
