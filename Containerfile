@@ -26,10 +26,9 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
     apt-get update && apt-get install -y --no-install-recommends gh && \
     rm -rf /var/lib/apt/lists/*
 
-# Install PDF generation dependencies (pandoc + texlive)
+# Install PDF generation dependencies (texlive)
 # Note: This adds ~450MB to the image size
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    pandoc \
     texlive-xetex \
     texlive-latex-extra \
     texlive-fonts-recommended \
@@ -38,6 +37,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-dejavu \
     fonts-noto-core \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Pandoc (manual install for newer version)
+ENV PANDOC_VERSION=3.2
+RUN curl -fsSL -o /tmp/pandoc.tar.gz \
+    "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-$(dpkg --print-architecture).tar.gz" && \
+    tar xzf /tmp/pandoc.tar.gz -C /tmp && \
+    mv /tmp/pandoc-${PANDOC_VERSION}/bin/pandoc /usr/local/bin/pandoc && \
+    rm -rf /tmp/pandoc*
 
 # Install Node.js and Chromium for Mermaid CLI diagram generation
 # Use system Chromium to avoid architecture issues with Puppeteer's bundled Chrome
