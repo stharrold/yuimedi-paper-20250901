@@ -1,9 +1,9 @@
 ---
 title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
-author: "Samuel T Harrold, Yuimedi"
+author: "Samuel T Harrold, Yuimedi, Inc."
 correspondence: "samuel.harrold@yuimedi.com"
 date: "January 2026"
-version: "1.24.0"
+version: "1.26.0"
 abstract: |
   **Background:** Healthcare organizations face three interconnected challenges: low analytics maturity, with only 39 organizations globally having achieved HIMSS AMAM Stage 6-7; systemic instability from high leadership turnover (53% of CIOs with <3 years tenure) and persistent digital skills shortages; and technical barriers in natural language to SQL generation. When these challenges interact, they create institutional memory loss that threatens data-driven healthcare transformation.
 
