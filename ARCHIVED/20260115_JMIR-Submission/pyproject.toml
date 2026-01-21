@@ -1,0 +1,192 @@
+[project]
+name = "yuiquery-research"
+version = "1.24.0"
+description = "YuiQuery Healthcare Analytics Research - Natural Language to SQL in Healthcare"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.11"
+authors = [
+    {name = "YuiQuery Research Team", email = "research@yuimedi.com"}
+]
+keywords = [
+    "healthcare-analytics",
+    "natural-language-processing",
+    "sql-generation",
+    "conversational-ai",
+    "academic-research"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing :: Linguistic",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+# Runtime dependencies for lit_review package
+dependencies = [
+    "click>=8.0.0",
+    "graphviz>=0.20.0", # Diagram generation (requires system graphviz binary)
+    "httpx>=0.24.0", # Async HTTP client (replaces requests)
+    "pydantic>=2.0.0",
+    "python-dotenv>=0.19.0",
+    "scikit-learn>=1.3.0", # TF-IDF and clustering for theme analysis
+    "biopython>=1.80", # PubMed E-utilities parsing
+    "jinja2>=3.1.0", # LaTeX template rendering
+    "duckdb>=1.4.2",
+    "psycopg[binary]>=3.3.2",
+    "pgvector>=0.4.2",
+    "google-genai>=0.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.0",
+    "pytest-cov>=7.0.0",
+    "pytest-benchmark>=4.0.0",  # Performance testing
+    "ruff>=0.14.0",
+    "mypy>=1.18.0",
+    "pre-commit>=4.5.0",
+    "bandit>=1.7.0",
+]
+workflow = [
+    "duckdb>=1.4.0",  # Required for agentdb-state-manager workflow skill
+]
+ai = [
+    "google-generativeai>=0.8.6",  # Gemini API for AI-powered analysis
+]
+export = [
+    "python-docx>=0.8.11",  # Word export
+    "bibtexparser>=1.4.0",  # BibTeX parsing
+]
+
+# Note: pandoc filters (pandoc-include-code, pandoc-xnos) are installed via pandoc,
+# not pip/uv. Install pandoc separately: brew install pandoc (macOS)
+
+[project.urls]
+Homepage = "https://github.com/stharrold/yuimedi-paper-20250901"
+Repository = "https://github.com/stharrold/yuimedi-paper-20250901"
+Issues = "https://github.com/stharrold/yuimedi-paper-20250901/issues"
+Documentation = "https://github.com/stharrold/yuimedi-paper-20250901/blob/main/README.md"
+
+[project.scripts]
+sync-todos = "scripts.sync_github_todos:main"
+academic-review = "lit_review.interfaces.cli.review_cli:review"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.4.0",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.0",
+    "mypy>=1.18.0",
+    "pre-commit>=4.5.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+    "benchmark: marks tests as benchmark tests (deselect with '-m \"not benchmark\"')",
+    "integration: marks tests as integration tests requiring network/external services (deselect with '-m \"not integration\"')",
+]
+
+[tool.coverage.run]
+source = ["lit_review"]
+omit = ["tests/*", "*/test_*", "*/__pycache__/*", "*/ARCHIVED/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]
+precision = 2
+fail_under = 80
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# Enable pycodestyle (E, W), pyflakes (F), isort (I), naming (N), pyupgrade (UP)
+select = ["E", "F", "I", "N", "W", "UP"]
+# Ruff formatter handles line breaks and whitespace automatically
+ignore = [
+    "N999",  # Allow module names with hyphens (skill naming convention)
+    "E501",  # Allow lines longer than 100 chars (SQL strings, long messages)
+]
+
+[tool.ruff.format]
+# Use Black-compatible formatting
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore import rules in __init__.py files
+"__init__.py" = ["F401"]
+# Skills scripts use sys.path manipulation before imports
+".claude/skills/**/scripts/*.py" = ["E402"]
+".agents/**/scripts/*.py" = ["E402"]
+# Allow Optional[X] style in scripts (stdlib-only constraint)
+"scripts/*.py" = ["UP007"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = false
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+# External API adapters deal with untyped JSON responses
+[[tool.mypy.overrides]]
+module = [
+    "lit_review.infrastructure.adapters.crossref_adapter",
+    "lit_review.infrastructure.adapters.arxiv_adapter",
+    "lit_review.infrastructure.adapters.semantic_scholar_adapter",
+]
+disable_error_code = ["arg-type", "attr-defined", "index", "no-any-return"]
+
+# Scientific libraries without type stubs
+[[tool.mypy.overrides]]
+module = [
+    "scipy.*",
+    "sklearn.*",
+]
+ignore_missing_imports = true
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.github",
+    "/.todo_backups",
+    "/docs",
+    "/.venv"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["scripts", "lit_review"]
