@@ -3,7 +3,8 @@ type: claude-context
 directory: ARCHIVED
 purpose: Deprecated files preserved for reference
 parent: ../GEMINI.md
-children: []
+children:
+- 20260115_JMIR-Submission/GEMINI.md
 ---
 
 # Gemini Context Context: ARCHIVED
@@ -26,3 +27,6 @@ Contains deprecated files compressed as timestamped .zip archives.
 
 - **[README.md](README.md)** - Human-readable documentation for this directory
 - **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[20260115_JMIR-Submission/GEMINI.md](20260115_JMIR-Submission/GEMINI.md)** - 20260115_JMIR-Submission
