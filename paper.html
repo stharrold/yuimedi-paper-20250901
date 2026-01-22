@@ -289,9 +289,11 @@ Standardization Failure</a></li>
 Knowledge Ratchet</a></li>
 <li><a href="#lifecycle-management-continuous-analytic-integration" id="toc-lifecycle-management-continuous-analytic-integration"><span class="toc-section-number">4.3</span> Lifecycle Management: Continuous
 Analytic Integration</a></li>
-<li><a href="#economic-and-strategic-implications" id="toc-economic-and-strategic-implications"><span class="toc-section-number">4.4</span> Economic and Strategic
+<li><a href="#mitigating-shadow-it-with-golden-queries" id="toc-mitigating-shadow-it-with-golden-queries"><span class="toc-section-number">4.4</span> Mitigating “Shadow IT” with
+“Golden Queries”</a></li>
+<li><a href="#economic-and-strategic-implications" id="toc-economic-and-strategic-implications"><span class="toc-section-number">4.5</span> Economic and Strategic
 Implications</a></li>
-<li><a href="#limitations-and-future-research" id="toc-limitations-and-future-research"><span class="toc-section-number">4.5</span> Limitations and Future
+<li><a href="#limitations-and-future-research" id="toc-limitations-and-future-research"><span class="toc-section-number">4.6</span> Limitations and Future
 Research</a></li>
 </ul></li>
 <li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">5</span> Conclusion</a></li>
@@ -378,8 +380,8 @@ studies were prioritized <span class="citation" data-cites="himss2024 berkshire2
 Vendor-sponsored reports were retained only when filling specific data
 gaps (e.g., salary-linked turnover costs) and are explicitly flagged
 <span class="citation" data-cites="oracle2024 health2020 forrester2024">(<a href="#ref-oracle2024" role="doc-biblioref">26</a>–<a href="#ref-forrester2024" role="doc-biblioref">28</a>)</span>. This
-approach integrates diverse evidence types—from benchmark datasets to
-workforce surveys—to construct a coherent framework for interconnected
+approach integrates diverse evidence types, from benchmark datasets to
+workforce surveys, to construct a coherent framework for interconnected
 challenges.</p>
 <h1 data-number="3" id="framework-development-and-evidence"><span class="header-section-number">3</span> Framework Development and
 Evidence</h1>
@@ -429,7 +431,7 @@ specialist can cost up to $500,000, or three times the annual salary
 when accounting for lost productivity and recruitment <span class="citation" data-cites="willardgrace2019 massingham2018 oracle2024">(<a href="#ref-massingham2018" role="doc-biblioref">10</a>,<a href="#ref-oracle2024" role="doc-biblioref">26</a>,<a href="#ref-willardgrace2019" role="doc-biblioref">60</a>)</span>.
 “Organizational forgetting” occurs when turnover disrupts the collective
 knowledge structures required for complex tasks <span class="citation" data-cites="rao2006">(<a href="#ref-rao2006" role="doc-biblioref">61</a>)</span>. In healthcare, this manifests as
-the loss of “tacit knowledge”—the unwritten business rules and data
+the loss of “tacit knowledge”: the unwritten business rules and data
 anomalies that exist only in analysts’ minds <span class="citation" data-cites="mayo2016 goffin2011 foos2006">(<a href="#ref-foos2006" role="doc-biblioref">12</a>,<a href="#ref-mayo2016" role="doc-biblioref">62</a>,<a href="#ref-goffin2011" role="doc-biblioref">63</a>)</span>.</p>
 <p>Traditional knowledge transfer methods fail in this high-turnover
 environment. Documentation is rarely maintained, and person-to-person
@@ -495,9 +497,9 @@ question; the AI generates SQL.</li>
 language. The expert validates the <em>intent</em>, creating a
 “human-on-the-loop” verification <span class="citation" data-cites="bravorocca2023 mosqueirarey2023">(<a href="#ref-bravorocca2023" role="doc-biblioref">108</a>,<a href="#ref-mosqueirarey2023" role="doc-biblioref">109</a>)</span>.</li>
 <li><strong>Storage &amp; Persistence:</strong> The validated
-“NL-SQL-Rationale” triple is stored. This artifact captures the business
-logic (e.g., “Excluding Hospice per 2025 rules”) and persists
-independently of the staff member.</li>
+“NL-SQL-Rationale” triple is stored. This distinct software asset
+captures the business logic (e.g., “Excluding Hospice per 2025 rules”)
+and persists independently of the staff member.</li>
 <li><strong>Retrieval:</strong> Future users retrieve this validated
 knowledge, preventing the need to reinvent complex queries.</li>
 </ol>
@@ -533,44 +535,88 @@ erases institutional memory.</figcaption>
 Standardization Failure</h2>
 <p>Efforts to standardize healthcare analytics often fail due to the
 tension between local clinical reality and centralized models.
-High-profile ventures like IBM Watson Health and Haven disbanded partly
-because their centralized approaches could not accommodate the “messy
-reality” of fragmented data and variable workflows <span class="citation" data-cites="ibm2022 lavito2021 strickland2019 yang2020 acchiardo2021">(<a href="#ref-ibm2022" role="doc-biblioref">110</a>–<a href="#ref-acchiardo2021" role="doc-biblioref">114</a>)</span>.
-Regulatory complexity and proprietary data moats further hinder
-interoperability, creating an environment where “deployment constraints”
-force organizations to build isolated solutions rather than leveraging
-shared standards <span class="citation" data-cites="ozalp2022 richesson2007 zheng2020 bogaert2021">(<a href="#ref-ozalp2022" role="doc-biblioref">115</a>–<a href="#ref-bogaert2021" role="doc-biblioref">118</a>)</span>.</p>
+High-profile industry events illustrate these documented challenges. IBM
+divested its Watson Health data and analytics assets to Francisco
+Partners in 2022 <span class="citation" data-cites="ibm2022">(<a href="#ref-ibm2022" role="doc-biblioref">110</a>)</span>, following
+years of underperformance attributed to a fundamental mismatch between
+AI capabilities and clinical reality: the technology encountered the
+“messy reality” of healthcare data environments where centralized models
+failed to account for the highly variable, institution-specific business
+logic embedded in clinical workflows <span class="citation" data-cites="strickland2019 yang2020">(<a href="#ref-strickland2019" role="doc-biblioref">111</a>,<a href="#ref-yang2020" role="doc-biblioref">112</a>)</span>. Academic analysis identified
+additional contributing factors including suboptimal business
+performance (only breaking even), a restrictive top-down
+commercialization strategy that limited market reach, and the
+highly-regulated nature of healthcare creating barriers to AI deployment
+<span class="citation" data-cites="yang2020">(<a href="#ref-yang2020" role="doc-biblioref">112</a>)</span>. The Haven healthcare venture
+(backed by Amazon, Berkshire Hathaway, and JPMorgan Chase) disbanded in
+2021 after three years <span class="citation" data-cites="lavito2021">(<a href="#ref-lavito2021" role="doc-biblioref">113</a>)</span>, with academic analysis identifying
+multiple contributing factors: even the three founding companies could
+not effectively share health-care cost data with each other, the venture
+never employed more than 75 people (limiting its ability to effect
+industry-wide change), and leadership turnover destabilized
+organizational continuity <span class="citation" data-cites="acchiardo2021">(<a href="#ref-acchiardo2021" role="doc-biblioref">114</a>)</span>. Research on Big Tech platform
+entry into healthcare positions both Watson Health and Haven within a
+broader pattern of technology companies encountering regulatory
+complexity and institutional resistance when attempting to standardize
+fragmented healthcare systems <span class="citation" data-cites="ozalp2022">(<a href="#ref-ozalp2022" role="doc-biblioref">115</a>)</span>. These outcomes align with the
+academic literature’s findings: standardized solutions face significant
+barriers when applied across institutions with unique data definitions,
+business rules, and clinical workflows.</p>
 <h2 data-number="4.2" id="the-validator-paradox-and-knowledge-ratchet"><span class="header-section-number">4.2</span> The Validator Paradox and
 Knowledge Ratchet</h2>
 <p>A critical paradox exists: if experts are leaving (Pillar 2), who
 validates the AI (Pillar 3)? We resolve this via the concept of the
-“organizational knowledge ratchet” <span class="citation" data-cites="rao2006">(<a href="#ref-rao2006" role="doc-biblioref">61</a>)</span>. Validation becomes “standard work”
-(Kaizen), where even provisional validation by mid-level analysts
-captures operational logic into a durable artifact <span class="citation" data-cites="alukal2006">(<a href="#ref-alukal2006" role="doc-biblioref">119</a>)</span>. This prevents the “sliding back to
-zero” characteristic of high-turnover environments <span class="citation" data-cites="hong2025">(<a href="#ref-hong2025" role="doc-biblioref">75</a>)</span>. Rather than requiring a permanent
-core of experts, the system accumulates knowledge incrementally.</p>
+“organizational knowledge ratchet” <span class="citation" data-cites="rao2006">(<a href="#ref-rao2006" role="doc-biblioref">61</a>)</span>. Validation must be reframed not as
+<em>eternal truth</em> but as the “standard work” of informatics,
+drawing on Lean management principles <span class="citation" data-cites="alukal2006">(<a href="#ref-alukal2006" role="doc-biblioref">116</a>)</span>.</p>
+<p>In this model, a validated query represents the “current best way” to
+perform an analysis. As Alukal and Manos <span class="citation" data-cites="alukal2006">(<a href="#ref-alukal2006" role="doc-biblioref">116</a>)</span> establish, standard work is the
+prerequisite for Kaizen (continuous improvement): without a documented
+standard, there is no baseline to improve upon. Even provisional
+validation by mid-level analysts captures operational logic into a
+durable artifact. This prevents the “sliding back to zero”
+characteristic of high-turnover environments <span class="citation" data-cites="hong2025">(<a href="#ref-hong2025" role="doc-biblioref">75</a>)</span>. Rather than requiring a permanent
+core of experts, the system accumulates knowledge incrementally, using
+the structure of the validation process to buffer against the disruptive
+effects of turnover.</p>
 <h2 data-number="4.3" id="lifecycle-management-continuous-analytic-integration"><span class="header-section-number">4.3</span> Lifecycle Management:
 Continuous Analytic Integration</h2>
-<p>Validated queries must be managed as software assets, not static
-documentation. In an approach we term “Continuous Analytic Integration,”
-stored queries are automatically re-tested against the database schema
-during upgrades. This detects “schema drift” and ensures that
-institutional memory remains executable and accurate <span class="citation" data-cites="mannapur2025 yupopa2005">(<a href="#ref-mannapur2025" role="doc-biblioref">120</a>,<a href="#ref-yupopa2005" role="doc-biblioref">121</a>)</span>. This
-contrasts with traditional semantic layers, which often suffer from
-“schema rot” <span class="citation" data-cites="oliveira2023 sivaranjani2025 battula2025 lenz2007">(<a href="#ref-oliveira2023" role="doc-biblioref">122</a>–<a href="#ref-lenz2007" role="doc-biblioref">125</a>)</span>.</p>
-<h2 data-number="4.4" id="economic-and-strategic-implications"><span class="header-section-number">4.4</span> Economic and Strategic
+<p>Leveraging the property of Executability, a validated SQL query is
+treated not as a static artifact but as a software asset within a CI/CD
+pipeline. In healthcare, database schemas (Epic, Cerner, OMOP) change
+frequently, breaking “frozen” code. To address “Schema Drift,” analytics
+must adopt principles from software engineering: <em>Continuous Analytic
+Integration</em>. In this approach, Validated Query Triples are managed
+not as wiki entries but as software assets within a CI/CD pipeline. When
+the data warehouse schema is updated (e.g., a quarterly EHR upgrade),
+the system automatically re-runs the library of stored queries. Queries
+that fail or return anomalous results are flagged for review. This
+transforms “Institutional Memory” from a stagnant repository into a
+living, automated test suite that actively signals when organizational
+knowledge has drifted from technical reality.</p>
+<h2 data-number="4.4" id="mitigating-shadow-it-with-golden-queries"><span class="header-section-number">4.4</span> Mitigating “Shadow IT” with
+“Golden Queries”</h2>
+<p>To prevent the “chaos of conflicting definitions” that can arise from
+democratized analytics, organizations can introduce a “Golden Query”
+governance status. In this model, a central committee can certify
+specific validated triples as the “source of truth” for the organization
+<span class="citation" data-cites="himss2025ucdavis">(<a href="#ref-himss2025ucdavis" role="doc-biblioref">117</a>)</span>. This
+ensures that while many users can create and validate queries, only a
+select few are designated as the official, trusted queries for key
+metrics, thus mitigating the risks of “Shadow IT” <span class="citation" data-cites="zimmermann2017">(<a href="#ref-zimmermann2017" role="doc-biblioref">118</a>)</span>.</p>
+<h2 data-number="4.5" id="economic-and-strategic-implications"><span class="header-section-number">4.5</span> Economic and Strategic
 Implications</h2>
 <p>The economic case for intervention is supported by evidence linking
 conversational analytics to a 206% three-year ROI and reduced
-development times <span class="citation" data-cites="forrester2024 elkamouchi2023 mogili2025 pervaiz2025 precedence2024">(<a href="#ref-forrester2024" role="doc-biblioref">28</a>,<a href="#ref-elkamouchi2023" role="doc-biblioref">126</a>–<a href="#ref-precedence2024" role="doc-biblioref">129</a>)</span>.
+development times <span class="citation" data-cites="forrester2024 elkamouchi2023 mogili2025 pervaiz2025 precedence2024">(<a href="#ref-forrester2024" role="doc-biblioref">28</a>,<a href="#ref-elkamouchi2023" role="doc-biblioref">119</a>–<a href="#ref-precedence2024" role="doc-biblioref">122</a>)</span>.
 Low-code and AI platforms democratize access, allowing organizations to
-achieve “Shadow IT” agility within a governed framework <span class="citation" data-cites="zimmermann2017 rivard1987 kopper2020 himss2025ucdavis">(<a href="#ref-zimmermann2017" role="doc-biblioref">130</a>–<a href="#ref-himss2025ucdavis" role="doc-biblioref">133</a>)</span>. Other
-benefits include faster revenue cycles <span class="citation" data-cites="pennington2023">(<a href="#ref-pennington2023" role="doc-biblioref">134</a>)</span> and cost reductions <span class="citation" data-cites="jiao2023 yang2025 nashid2023a forrester2024a">(<a href="#ref-jiao2023" role="doc-biblioref">135</a>–<a href="#ref-forrester2024a" role="doc-biblioref">138</a>)</span>.</p>
-<h2 data-number="4.5" id="limitations-and-future-research"><span class="header-section-number">4.5</span> Limitations and Future
+achieve “Shadow IT” agility within a governed framework <span class="citation" data-cites="zimmermann2017 rivard1987 kopper2020 himss2025ucdavis">(<a href="#ref-himss2025ucdavis" role="doc-biblioref">117</a>,<a href="#ref-zimmermann2017" role="doc-biblioref">118</a>,<a href="#ref-rivard1987" role="doc-biblioref">123</a>,<a href="#ref-kopper2020" role="doc-biblioref">124</a>)</span>. Other
+benefits include faster revenue cycles <span class="citation" data-cites="pennington2023">(<a href="#ref-pennington2023" role="doc-biblioref">125</a>)</span> and cost reductions <span class="citation" data-cites="jiao2023 yang2025 nashid2023a forrester2024a">(<a href="#ref-jiao2023" role="doc-biblioref">126</a>–<a href="#ref-forrester2024a" role="doc-biblioref">129</a>)</span>.</p>
+<h2 data-number="4.6" id="limitations-and-future-research"><span class="header-section-number">4.6</span> Limitations and Future
 Research</h2>
 <p>This review is limited by its narrative design and the rapid
 evolution of the field. Evidence gaps remain regarding long-term
-outcomes <span class="citation" data-cites="sezgin2022">(<a href="#ref-sezgin2022" role="doc-biblioref">139</a>)</span>,
+outcomes <span class="citation" data-cites="sezgin2022">(<a href="#ref-sezgin2022" role="doc-biblioref">130</a>)</span>,
 specialty-specific applications, and governance frameworks for
 democratized analytics. Future research should prioritize: (1)
 validation of NL2SQL on synthetic healthcare data (e.g., Synthea), (2)
@@ -582,8 +628,8 @@ maturity, workforce agility, and technical enablement. The evidence
 reveals that these challenges are self-reinforcing: low maturity
 accelerates turnover, turnover degrades the institutional memory needed
 for maturity, and technical barriers prevent knowledge capture.</p>
-<p>By deploying technical enablement—specifically conversational AI with
-a validated query cycle—organizations can break this cycle. This
+<p>By deploying technical enablement, specifically conversational AI
+with a validated query cycle, organizations can break this cycle. This
 approach captures tacit knowledge as executable artifacts, ensuring that
 expertise persists independently of individual staff tenure. Applying
 the principle of <em>primum non nocere</em>, healthcare leaders must
@@ -1241,22 +1287,22 @@ machine learning: A state of the art. Artificial Intelligence Review
 Acquire IBM’s Healthcare Data and Analytics Assets</span>.
 <span>IBM</span> Newsroom [Internet]. 2022; Available from: <a href="https://newsroom.ibm.com/2022-01-21-Francisco-Partners-to-Acquire-IBMs-Healthcare-Data-and-Analytics-Assets">https://newsroom.ibm.com/2022-01-21-Francisco-Partners-to-Acquire-IBMs-Healthcare-Data-and-Analytics-Assets</a></div>
 </div>
-<div id="ref-lavito2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">111. </div><div class="csl-right-inline">LaVito A. <span class="nocase">Haven, the
-Amazon-Berkshire-JPMorgan venture to disrupt healthcare, is disbanding
-after 3 years</span>. <span>CNBC</span> [Internet]. 2021; Available
-from: <a href="https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html">https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html</a></div>
-</div>
 <div id="ref-strickland2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">112. </div><div class="csl-right-inline">Strickland E. <span class="nocase">IBM Watson,
+<div class="csl-left-margin">111. </div><div class="csl-right-inline">Strickland E. <span class="nocase">IBM Watson,
 heal thyself: How IBM overpromised and underdelivered on AI health
 care</span>. IEEE Spectrum [Internet]. 2019;56(4):24–31. Available from:
 <a href="https://ieeexplore.ieee.org/abstract/document/8678513/">https://ieeexplore.ieee.org/abstract/document/8678513/</a></div>
 </div>
 <div id="ref-yang2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">113. </div><div class="csl-right-inline">Yang J, Chesbrough H, Hurmelinna-Laukkanen P.
+<div class="csl-left-margin">112. </div><div class="csl-right-inline">Yang J, Chesbrough H, Hurmelinna-Laukkanen P.
 <span class="nocase">The rise, fall, and resurrection of IBM Watson
 Health</span> [Internet]. University of Oulu; 2020. Available from: <a href="https://oulurepo.oulu.fi/bitstream/handle/10024/27921/nbnfi-fe2020050424858.pdf">https://oulurepo.oulu.fi/bitstream/handle/10024/27921/nbnfi-fe2020050424858.pdf</a></div>
+</div>
+<div id="ref-lavito2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">113. </div><div class="csl-right-inline">LaVito A. <span class="nocase">Haven, the
+Amazon-Berkshire-JPMorgan venture to disrupt healthcare, is disbanding
+after 3 years</span>. <span>CNBC</span> [Internet]. 2021; Available
+from: <a href="https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html">https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html</a></div>
 </div>
 <div id="ref-acchiardo2021" class="csl-entry" role="listitem">
 <div class="csl-left-margin">114. </div><div class="csl-right-inline">Acchiardo JM, Gunderman RB. <span class="nocase">The Failure of Haven Healthcare: Lessons for Radiology
@@ -1269,137 +1315,89 @@ analysis of big tech platforms’ entry into health care</span>.
 California Management Review [Internet]. 2022;64(4):78–107. Available
 from: <a href="https://journals.sagepub.com/doi/abs/10.1177/00081256221094307">https://journals.sagepub.com/doi/abs/10.1177/00081256221094307</a></div>
 </div>
-<div id="ref-richesson2007" class="csl-entry" role="listitem">
-<div class="csl-left-margin">116. </div><div class="csl-right-inline">Richesson &amp;K R. L. <span class="nocase">Data standards in clinical research: Gaps, overlaps,
-challenges and future directions</span>. Journal of the American Medical
-Informatics Association [Internet]. 2007; Available from: <a href="https://academic.oup.com/jamia/article/14/6/687/750453">https://academic.oup.com/jamia/article/14/6/687/750453</a></div>
-</div>
-<div id="ref-zheng2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">117. </div><div class="csl-right-inline">Zheng R K. <span class="nocase">Studying
-workflow and workarounds in electronic health record-supported work to
-improve health system performance</span>. Annals of Internal Medicine
-[Internet]. 2020; Available from: <a href="https://www.acpjournals.org/doi/10.7326/M19-0871">https://www.acpjournals.org/doi/10.7326/M19-0871</a></div>
-</div>
-<div id="ref-bogaert2021" class="csl-entry" role="listitem">
-<div class="csl-left-margin">118. </div><div class="csl-right-inline">Bogaert V P. <span class="nocase">Identifying
-common enablers and barriers in European health information
-systems</span>. Health Policy [Internet]. 2021; Available from: <a href="https://www.sciencedirect.com/science/article/pii/S0168851021002396">https://www.sciencedirect.com/science/article/pii/S0168851021002396</a></div>
-</div>
 <div id="ref-alukal2006" class="csl-entry" role="listitem">
-<div class="csl-left-margin">119. </div><div class="csl-right-inline">Alukal VG, Manos A. Lean kaizen: A simplified
+<div class="csl-left-margin">116. </div><div class="csl-right-inline">Alukal VG, Manos A. Lean kaizen: A simplified
 approach to process improvement [Internet]. Milwaukee, WI: ASQ Quality
 Press; 2006. Available from: <a href="https://books.google.com/books?id=9uqiEAAAQBAJ">https://books.google.com/books?id=9uqiEAAAQBAJ</a></div>
 </div>
-<div id="ref-mannapur2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">120. </div><div class="csl-right-inline">Mannapur S. Understanding data drift and
-concept drift in machine learning systems. International Journal of
-Scientific Research [Internet]. 2025; Available from: <a href="https://www.quantbeckman.com/api/v1/file/5b240742-bf0d-4f8c-a0f9-cb29fab42611.pdf">https://www.quantbeckman.com/api/v1/file/5b240742-bf0d-4f8c-a0f9-cb29fab42611.pdf</a></div>
+<div id="ref-himss2025ucdavis" class="csl-entry" role="listitem">
+<div class="csl-left-margin">117. </div><div class="csl-right-inline">HIMSS. <span class="nocase">UC Davis Health:
+From Stage 0 to AI Heroes</span> [Internet]. Healthcare Information;
+Management Systems Society; 2025. Available from: <a href="https://pages.himss.org/LP-HA-Case-Study-UC-Davis.html">https://pages.himss.org/LP-HA-Case-Study-UC-Davis.html</a></div>
 </div>
-<div id="ref-yupopa2005" class="csl-entry" role="listitem">
-<div class="csl-left-margin">121. </div><div class="csl-right-inline">Yu
-C, Popa L. Semantic adaptation of schema mappings when schemas evolve.
-In: Proceedings of the 31st international conference on very large data
-bases [Internet]. 2005. p. 1006–17. Available from: <a href="https://mail.vldb.org/archives/website/2005/program/paper/fri/p1006-yu.pdf">https://mail.vldb.org/archives/website/2005/program/paper/fri/p1006-yu.pdf</a></div>
-</div>
-<div id="ref-oliveira2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">122. </div><div class="csl-right-inline">Oliveira MAP et al. Semantic modelling for
-enterprise data governance 4.0. arXiv preprint arXiv:231102082
-[Internet]. 2023; Available from: <a href="https://arxiv.org/pdf/2311.02082">https://arxiv.org/pdf/2311.02082</a></div>
-</div>
-<div id="ref-sivaranjani2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">123. </div><div class="csl-right-inline">Sivaranjani S, Tharunika V. <span class="nocase">Semantic Web for Addressing Data Integration
-Challenges</span> [Internet]. Taylor &amp; Francis; 2025. Available
-from: <a href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003716686-10/semantic-web-addressing-data-integration-challenges-semantic-data-fabric-healthcare-sivaranjani-tharunika-bhuvaneswari">https://www.taylorfrancis.com/chapters/edit/10.1201/9781003716686-10/semantic-web-addressing-data-integration-challenges-semantic-data-fabric-healthcare-sivaranjani-tharunika-bhuvaneswari</a></div>
-</div>
-<div id="ref-battula2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">124. </div><div class="csl-right-inline">Battula SKY. <a href="https://doi.org/10.63282/3050-9262.IJAIDSML-V6I4P130"><span class="nocase">Adaptive Data Quality Management for Multi-Cloud
-Healthcare Warehouses: FHIR-Aware Semantics and Unsupervised
-Thresholding</span></a>. International Journal of Artificial
-Intelligence, Data Science, and Machine Learning. 2025;6(4):218–26.
-</div>
-</div>
-<div id="ref-lenz2007" class="csl-entry" role="listitem">
-<div class="csl-left-margin">125. </div><div class="csl-right-inline">Lenz R, Beyer M, Kuhn KA. <a href="https://doi.org/10.1016/j.ijmedinf.2006.05.008"><span class="nocase">Semantic integration in healthcare networks</span></a>.
-International Journal of Medical Informatics. 2007;76(2-3):201–7. </div>
+<div id="ref-zimmermann2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">118. </div><div class="csl-right-inline">Zimmermann S, Rentrop C, Felden C. <a href="https://doi.org/10.2308/isys-51517"><span class="nocase">A
+Multiple Case Study on the Nature and Management of Shadow Information
+Technology</span></a>. Journal of Information Systems.
+2017;31(1):79–101. </div>
 </div>
 <div id="ref-elkamouchi2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">126. </div><div class="csl-right-inline">El
+<div class="csl-left-margin">119. </div><div class="csl-right-inline">El
 Kamouchi &amp;K H. <span class="nocase">Low-code/No-code Development: A
 systematic literature review</span>. In: 2023 14th international
 conference on computing communication and networking technologies
 (ICCCNT) [Internet]. 2023. Available from: <a href="https://ieeexplore.ieee.org/abstract/document/10373712/">https://ieeexplore.ieee.org/abstract/document/10373712/</a></div>
 </div>
 <div id="ref-mogili2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">127. </div><div class="csl-right-inline">Mogili VB. <span class="nocase">Healthcare and
+<div class="csl-left-margin">120. </div><div class="csl-right-inline">Mogili VB. <span class="nocase">Healthcare and
 Finance Transformation through Enterprise Content, Low-Code, and
 Automation: A Multinational Technology Corporation’s Approach</span>.
 Journal of Engineering and Computer Sciences [Internet]. 2025; Available
 from: <a href="https://sarcouncil.com/download-article/SJECS-209-_2025-630-636.pdf">https://sarcouncil.com/download-article/SJECS-209-_2025-630-636.pdf</a></div>
 </div>
 <div id="ref-pervaiz2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">128. </div><div class="csl-right-inline">Pervaiz &amp;I H. <span class="nocase">Leveraging Low-Code/No-Code Platforms for Rapid Digital
+<div class="csl-left-margin">121. </div><div class="csl-right-inline">Pervaiz &amp;I H. <span class="nocase">Leveraging Low-Code/No-Code Platforms for Rapid Digital
 Transformation in Small and Medium-sized Enterprises (SMEs)</span>.
 Multidisciplinary Journal of Science, Technology &amp; Business
 [Internet]. 2025; Available from: <a href="https://imjstb.com/index.php/Journal/article/view/95">https://imjstb.com/index.php/Journal/article/view/95</a></div>
 </div>
 <div id="ref-precedence2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">129. </div><div class="csl-right-inline">Research P. <span class="nocase">Healthcare
+<div class="csl-left-margin">122. </div><div class="csl-right-inline">Research P. <span class="nocase">Healthcare
 analytics market size and forecast 2025 to 2034</span> [Internet]. 2024.
 Available from: <a href="https://www.precedenceresearch.com/healthcare-analytics-market">https://www.precedenceresearch.com/healthcare-analytics-market</a></div>
 </div>
-<div id="ref-zimmermann2017" class="csl-entry" role="listitem">
-<div class="csl-left-margin">130. </div><div class="csl-right-inline">Zimmermann S, Rentrop C, Felden C. <a href="https://doi.org/10.2308/isys-51517"><span class="nocase">A
-Multiple Case Study on the Nature and Management of Shadow Information
-Technology</span></a>. Journal of Information Systems.
-2017;31(1):79–101. </div>
-</div>
 <div id="ref-rivard1987" class="csl-entry" role="listitem">
-<div class="csl-left-margin">131. </div><div class="csl-right-inline">Rivard S. <a href="https://doi.org/10.1287/inte.17.3.25"><span class="nocase">Successful Implementation of End-User
+<div class="csl-left-margin">123. </div><div class="csl-right-inline">Rivard S. <a href="https://doi.org/10.1287/inte.17.3.25"><span class="nocase">Successful Implementation of End-User
 Computing</span></a>. Interfaces. 1987;17(3):25–33. </div>
 </div>
 <div id="ref-kopper2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">132. </div><div class="csl-right-inline">Kopper A, Westner M, Strahringer S. <a href="https://doi.org/10.1007/s10257-020-00472-y"><span class="nocase">From Shadow IT to Business-managed IT: a qualitative
+<div class="csl-left-margin">124. </div><div class="csl-right-inline">Kopper A, Westner M, Strahringer S. <a href="https://doi.org/10.1007/s10257-020-00472-y"><span class="nocase">From Shadow IT to Business-managed IT: a qualitative
 comparative analysis to determine configurations for successful
 management of IT by business entities</span></a>. Information Systems
 and e-Business Management. 2020;18:209–57. </div>
 </div>
-<div id="ref-himss2025ucdavis" class="csl-entry" role="listitem">
-<div class="csl-left-margin">133. </div><div class="csl-right-inline">HIMSS. <span class="nocase">UC Davis Health:
-From Stage 0 to AI Heroes</span> [Internet]. Healthcare Information;
-Management Systems Society; 2025. Available from: <a href="https://pages.himss.org/LP-HA-Case-Study-UC-Davis.html">https://pages.himss.org/LP-HA-Case-Study-UC-Davis.html</a></div>
-</div>
 <div id="ref-pennington2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">134. </div><div class="csl-right-inline">Pennington R. <span class="nocase">Artificial
+<div class="csl-left-margin">125. </div><div class="csl-right-inline">Pennington R. <span class="nocase">Artificial
 intelligence (AI) and its opportunity in healthcare organizations
 revenue cycle management (RCM)</span> [Internet] [Master’s thesis].
 2023. Available from: <a href="https://mds.marshall.edu/etd/1824/">https://mds.marshall.edu/etd/1824/</a></div>
 </div>
 <div id="ref-jiao2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">135. </div><div class="csl-right-inline">Jiao Z W. <span class="nocase">The economic
+<div class="csl-left-margin">126. </div><div class="csl-right-inline">Jiao Z W. <span class="nocase">The economic
 value and clinical impact of artificial intelligence in healthcare: A
 scoping literature review</span>. <span>IEEE</span> Access [Internet].
 2023; Available from: <a href="https://ieeexplore.ieee.org/document/10297311">https://ieeexplore.ieee.org/document/10297311</a></div>
 </div>
 <div id="ref-yang2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">136. </div><div class="csl-right-inline">Yang EW, Waldrup B, et al. <span class="nocase">Conversational Artificial Intelligence for Integrating
+<div class="csl-left-margin">127. </div><div class="csl-right-inline">Yang EW, Waldrup B, et al. <span class="nocase">Conversational Artificial Intelligence for Integrating
 Social Determinants, Genomics, and Clinical Data in Precision Medicine:
 Development and Evaluation</span>. JMIR Bioinformatics and Digital
 Health [Internet]. 2025; Available from: <a href="https://bioinform.jmir.org/2025/1/e63139">https://bioinform.jmir.org/2025/1/e63139</a></div>
 </div>
 <div id="ref-nashid2023a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">137. </div><div class="csl-right-inline">Nashid S, Papia SK, Chowdhury N, Mia MS,
+<div class="csl-left-margin">128. </div><div class="csl-right-inline">Nashid S, Papia SK, Chowdhury N, Mia MS,
 Hossain MI. <span class="nocase">Advanced Business Analytics in
 Healthcare Enhancing Clinical Decision Support and Operational
 Efficiency</span>. Business and Social Sciences [Internet].
 2023;1(1):1–8. Available from: <a href="https://doi.org/10.25163/business.1110345">https://doi.org/10.25163/business.1110345</a></div>
 </div>
 <div id="ref-forrester2024a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">138. </div><div class="csl-right-inline">Forrester Consulting. <span>The Total Economic
+<div class="csl-left-margin">129. </div><div class="csl-right-inline">Forrester Consulting. <span>The Total Economic
 Impact™ Of Microsoft Power Apps</span> [Internet]. Forrester Consulting;
 2024. Available from: <a href="https://tools.totaleconomicimpact.com/go/microsoft/powerapps/">https://tools.totaleconomicimpact.com/go/microsoft/powerapps/</a></div>
 </div>
 <div id="ref-sezgin2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">139. </div><div class="csl-right-inline">Sezgin S E. <span class="nocase">Operationalizing and implementing pretrained, large
+<div class="csl-left-margin">130. </div><div class="csl-right-inline">Sezgin S E. <span class="nocase">Operationalizing and implementing pretrained, large
 artificial intelligence linguistic models in the <span>US</span> health
 care system: Outlook of generative pretrained transformer 3 (GPT-3) as a
 service model</span>. <span>JMIR</span> Medical Informatics [Internet].
