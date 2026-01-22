@@ -40,7 +40,7 @@ This file provides guidance to Gemini (Gemini) when working with code in this re
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
 **Primary deliverable:** `paper.md` - Academic research paper (Theoretical Framework / Viewpoint) with **139 verified citations** (pandoc-citeproc format).
-- **Word Count:** ~2,350 words (Main Text), ~2,630 words (Total).
+- **Word Count:** Tracked in `submission/metadata.yaml`; this file does not hard-code numeric values.
 - **Focus:** "Mitigating Institutional Amnesia" through a Design Science Framework connecting Analytics Maturity, Workforce Agility, and Technical Enablement.
 
 **Framework Pivot (Jan 2026):**
@@ -58,7 +58,7 @@ The paper has been fundamentally restructured from a general review into a rigor
 
 **CRITICAL - Framework-first thesis:** The paper's primary contribution is the socio-technical framework itself, NOT advocacy for conversational AI as a solution. When editing:
 - Frame conversational AI as a "Governance Forcing Function" for Externalization.
-- Avoid language like "compelling case for" or "solution."
+- Avoid language that presents conversational AI as the standalone solution; it is an enabler for the HiL-SG framework.
 - Focus on "Resilience" (surviving turnover) rather than just "Maturity."
 - The framework is descriptive (reveals interconnections) rather than prescriptive (recommends solutions).
 

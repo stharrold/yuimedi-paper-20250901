@@ -34,7 +34,7 @@ citecolor: blue
 
 ## The Triple Threat: A Crisis of Institutional Amnesia
 
-The healthcare analytics landscape is currently paralyzed by a "Triple Threat" of compounding failures: (1) persistently **Low Analytics Maturity**, where despite decades of investment, only 39 organizations globally have achieved HIMSS AMAM Stage 6-7 [@himss2024]; (2) a **Semantic Gap** between clinical intent and technical schema implementation [@gal2019; @zhang2024]; and (3) a profound crisis of **Workforce Instability** that creates "Institutional Amnesia" [@hong2025].
+The healthcare analytics landscape is currently paralyzed by a "Triple Threat" of compounding failures: (1) persistently **Low Analytics Maturity**, where despite decades of investment, only 39 organizations globally, 26 at HIMSS AMAM Stage 6 and 13 at Stage 7, have achieved these maturity levels [@himss2024]; (2) a **Semantic Gap** between clinical intent and technical schema implementation [@gal2019; @zhang2024]; and (3) a profound crisis of **Workforce Instability** that creates "Institutional Amnesia" [@hong2025].
 
 While technical barriers and maturity models are well-documented, the workforce dimension has shifted from a management concern to an existential threat. Modern longitudinal data on analytics staff is fragmented, but the available signals are alarming. As of 2024, 53% of healthcare CIOs have held their roles for less than three years [@wittkieffer2024], creating a strategic vacuum at the top. At the operational level, the situation is equally precarious: 79% of provider organizations report persistent shortages in digital health roles [@himssworkforce2024], and a 2025 study found that 55% of public health informatics specialists intend to leave their positions [@rajamani2025].
 
@@ -92,6 +92,10 @@ The HiL-SG architecture (Figure 1) functions as a **Governance Forcing Function*
 
 ![Healthcare Analytics Architecture as a Socio-Technical System. The architecture flows from Clinical Users through a Conversational AI interface to a healthcare NLP engine for context-aware SQL generation. Bi-directional arrows represent the iterative 'Query & Refine' loop. The critical validation step (dotted line) shows domain experts confirming SQL before results flow to 'Organizational Memory' (dashed line), where they persist independent of staff tenure.](figures/architecture.mmd.png){width=95%}
 
+The corresponding six step Validated Query Cycle is summarized in Figure 2, which shows how queries move from initial clinical intent through expert validation into durable organizational memory.
+
+![Six step validated query cycle for Human-in-the-Loop Semantic Governance. The cycle progresses from Natural Language Intent to AI-generated SQL, expert review and correction, creation of a Validated Query Triple, storage in organizational memory, and reuse for future queries.](figures/knowledge-cycle.mmd.png){width=80%}
+
 ### The Process of Externalization
 1.  **Query Generation**: A user asks a question. The AI proposes SQL based on schema knowledge [@lee2023; @wang2020].
 2.  **Semantic Translation**: The AI translates the SQL back into a natural language explanation [@ziletti2024].
@@ -136,9 +140,15 @@ Automating analytics risks "laundering hallucinations." HiL-SG mitigates this vi
 ## Structural Barriers: Why the Problem Persists
 Failed standardization approaches (e.g., IBM Watson Health [@ibm2022; @strickland2019], Haven [@lavito2021; @acchiardo2021]) demonstrate that centralized models fail clinical reality. Metadata uncertainties and "messy" institution-specific business logic require localized solutions [@gal2019; @yang2020]. HiL-SG addresses this by capturing *local* logic rather than enforcing *global* standards.
 
+## Limitations
+This work is a narrative, design science informed framework rather than a systematic review or multi-site empirical evaluation. The literature base is concentrated on English-language sources and recent (2024–2025) workforce and NL2SQL studies, so findings may not capture all regional, specialty-specific, or technological contexts. The HiL-SG architecture and the proposed Analytics Resilience Index (ARI) are conceptual artifacts that require future implementation and validation in diverse health systems before their effectiveness and generalizability can be fully established.
+
 # Conclusion
 
+## Strategic Implications
 The crisis of Institutional Amnesia in healthcare requires a structural shift. As long as analytical maturity is tied to individual tenure, organizations will remain fragile. By implementing **Human-in-the-Loop Semantic Governance**, health systems can decouple intelligence from turnover, building a library of validated knowledge that ensures maturity advances even as the workforce evolves.
+
+Future research should empirically validate and refine the HiL-SG framework and the proposed Analytics Resilience Index. Priority questions include: how ARI scores correlate with observed continuity of analytics performance during leadership and staff turnover; whether HiL-SG mediated natural language to SQL workflows reduce error rates, recovery time, and rework compared to baseline tooling; and which governance patterns most effectively balance safety, transparency, and equity when human validators operate at scale. Prospective multi-site implementation studies, controlled user experiments, and qualitative implementation research across diverse health systems will be needed to test these claims and adapt the framework to varying organizational, regulatory, and data environments.
 
 # Acknowledgments
 
