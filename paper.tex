@@ -542,11 +542,11 @@ Amnesia}\label{the-triple-threat-a-crisis-of-institutional-amnesia}
 The healthcare analytics landscape is currently paralyzed by a ``Triple
 Threat'' of compounding failures: (1) persistently \textbf{Low Analytics
 Maturity}, where despite decades of investment, only 39 organizations
-globally have achieved HIMSS AMAM Stage 6-7
-(\citeproc{ref-himss2024}{1}); (2) a \textbf{Semantic Gap} between
-clinical intent and technical schema implementation
-(\citeproc{ref-gal2019}{2},\citeproc{ref-zhang2024}{3}); and (3) a
-profound crisis of \textbf{Workforce Instability} that creates
+globally, 26 at HIMSS AMAM Stage 6 and 13 at Stage 7, have achieved
+these maturity levels (\citeproc{ref-himss2024}{1}); (2) a
+\textbf{Semantic Gap} between clinical intent and technical schema
+implementation (\citeproc{ref-gal2019}{2},\citeproc{ref-zhang2024}{3});
+and (3) a profound crisis of \textbf{Workforce Instability} that creates
 ``Institutional Amnesia'' (\citeproc{ref-hong2025}{4}).
 
 While technical barriers and maturity models are well-documented, the
@@ -693,6 +693,20 @@ Bi-directional arrows represent the iterative `Query \& Refine' loop.
 The critical validation step (dotted line) shows domain experts
 confirming SQL before results flow to `Organizational Memory' (dashed
 line), where they persist independent of staff tenure.}
+\end{figure}
+
+The corresponding six step Validated Query Cycle is summarized in Figure
+2, which shows how queries move from initial clinical intent through
+expert validation into durable organizational memory.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth,height=\textheight]{figures/knowledge-cycle.mmd.png}
+\caption{Six step validated query cycle for Human-in-the-Loop Semantic
+Governance. The cycle progresses from Natural Language Intent to
+AI-generated SQL, expert review and correction, creation of a Validated
+Query Triple, storage in organizational memory, and reuse for future
+queries.}
 \end{figure}
 
 \subsubsection{The Process of
@@ -867,7 +881,21 @@ localized solutions
 addresses this by capturing \emph{local} logic rather than enforcing
 \emph{global} standards.
 
+\subsection{Limitations}\label{limitations}
+
+This work is a narrative, design science informed framework rather than
+a systematic review or multi-site empirical evaluation. The literature
+base is concentrated on English-language sources and recent (2024--2025)
+workforce and NL2SQL studies, so findings may not capture all regional,
+specialty-specific, or technological contexts. The HiL-SG architecture
+and the proposed Analytics Resilience Index (ARI) are conceptual
+artifacts that require future implementation and validation in diverse
+health systems before their effectiveness and generalizability can be
+fully established.
+
 \section{Conclusion}\label{conclusion}
+
+\subsection{Strategic Implications}\label{strategic-implications}
 
 The crisis of Institutional Amnesia in healthcare requires a structural
 shift. As long as analytical maturity is tied to individual tenure,
@@ -875,6 +903,19 @@ organizations will remain fragile. By implementing
 \textbf{Human-in-the-Loop Semantic Governance}, health systems can
 decouple intelligence from turnover, building a library of validated
 knowledge that ensures maturity advances even as the workforce evolves.
+
+Future research should empirically validate and refine the HiL-SG
+framework and the proposed Analytics Resilience Index. Priority
+questions include: how ARI scores correlate with observed continuity of
+analytics performance during leadership and staff turnover; whether
+HiL-SG mediated natural language to SQL workflows reduce error rates,
+recovery time, and rework compared to baseline tooling; and which
+governance patterns most effectively balance safety, transparency, and
+equity when human validators operate at scale. Prospective multi-site
+implementation studies, controlled user experiments, and qualitative
+implementation research across diverse health systems will be needed to
+test these claims and adapt the framework to varying organizational,
+regulatory, and data environments.
 
 \section{Acknowledgments}\label{acknowledgments}
 
