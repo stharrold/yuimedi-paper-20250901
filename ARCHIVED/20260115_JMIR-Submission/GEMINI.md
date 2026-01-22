@@ -29,10 +29,11 @@ Context-specific guidance for 20260115_JMIR-Submission
 
 [How to work with code/content in this directory]
 
+
 ## Related Documentation
 
 - **[README.md](README.md)** - Human-readable documentation for this directory
-- **[../GEMINI.md](../GEMINI.md)** - Parent directory: Archived
+- **[../GEMINI.md](../GEMINI.md)** - Parent directory: ARCHIVED
 
 **Child Directories:**
 - **[ARCHIVED/GEMINI.md](ARCHIVED/GEMINI.md)** - Archived

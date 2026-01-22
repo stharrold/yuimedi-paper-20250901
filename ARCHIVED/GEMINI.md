@@ -29,4 +29,4 @@ Contains deprecated files compressed as timestamped .zip archives.
 - **[../GEMINI.md](../GEMINI.md)** - Parent directory: Root
 
 **Child Directories:**
-- **[20260115_JMIR-Submission/GEMINI.md](20260115_JMIR-Submission/GEMINI.md)** - 20260115_JMIR-Submission
+- **[20260115_JMIR-Submission/GEMINI.md](20260115_JMIR-Submission/GEMINI.md)** - 20260115 Jmir Submission
