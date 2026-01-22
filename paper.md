@@ -118,7 +118,9 @@ Efforts to standardize healthcare analytics often fail due to the tension betwee
 
 ## The Validator Paradox and Knowledge Ratchet
 
-A critical paradox exists: if experts are leaving (Pillar 2), who validates the AI (Pillar 3)? We resolve this via the concept of the "organizational knowledge ratchet" [@rao2006]. Validation becomes "standard work" (Kaizen), where even provisional validation by mid-level analysts captures operational logic into a durable artifact [@alukal2006]. This prevents the "sliding back to zero" characteristic of high-turnover environments [@hong2025]. Rather than requiring a permanent core of experts, the system accumulates knowledge incrementally.
+A critical paradox exists: if experts are leaving (Pillar 2), who validates the AI (Pillar 3)? We resolve this via the concept of the "organizational knowledge ratchet" [@rao2006]. Validation must be reframed not as *eternal truth* but as the "standard work" of informatics, drawing on Lean management principles [@alukal2006].
+
+In this model, a validated query represents the "current best way" to perform an analysis. As Alukal and Manos [@alukal2006] establish, standard work is the prerequisite for Kaizen (continuous improvement): without a documented standard, there is no baseline to improve upon. Even provisional validation by mid-level analysts captures operational logic into a durable artifact. This prevents the "sliding back to zero" characteristic of high-turnover environments [@hong2025]. Rather than requiring a permanent core of experts, the system accumulates knowledge incrementally, using the structure of the validation process to buffer against the disruptive effects of turnover.
 
 ## Lifecycle Management: Continuous Analytic Integration
 
