@@ -223,6 +223,12 @@ generate_html() {
     local common_args
     common_args=$(get_common_pandoc_args)
 
+    # Add header include
+    local header_arg=""
+    if [[ -f "${PROJECT_ROOT}/config/header.html" ]]; then
+        header_arg="--include-in-header=${PROJECT_ROOT}/config/header.html"
+    fi
+
     # shellcheck disable=SC2086
     pandoc "$INPUT_FILE" $common_args \
         --to=html5 \
@@ -231,6 +237,7 @@ generate_html() {
         --toc \
         --toc-depth=3 \
         --number-sections \
+        $header_arg \
         --output="$output"
 
     if [[ -f "$output" && -s "$output" ]]; then
