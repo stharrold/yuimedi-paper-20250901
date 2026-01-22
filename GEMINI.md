@@ -275,7 +275,7 @@ podman run --rm \
 ### Citations (pandoc-citeproc)
 Uses pandoc-citeproc for automatic bibliography generation:
 - Citation format: `[@key]` (e.g., `[@wu2024]`, `[@himss2024]`)
-- Multiple citations: `[@wu2024; <!-- Import failed: ren2024]` - ENOENT: no such file or directory, access '/Users/stharrold/Documents/GitHub/yuimedi-paper-20250901_feature_20260122T181038Z_rewrite-paper-framework-viewpoint/ren2024]' -->
+- Multiple citations: `[@wu2024; @himss2024]`
 - BibTeX file: `references.bib` (108 entries)
 - CSL style: `citation-style-ama.csl` (AMA 11th edition for JMIR compliance)
 

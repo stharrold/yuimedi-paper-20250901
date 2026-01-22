@@ -1855,7 +1855,7 @@ wheels = [
 
 [[package]]
 name = "yuiquery-research"
-version = "1.30.0"
+version = "2.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "biopython" },
