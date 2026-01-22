@@ -26,9 +26,9 @@ related_skills:
 - git-workflow-manager
 - agentdb-state-manager
 archived:
-- "planning/ \u2192 ARCHIVED/20260101T171631Z_planning_*.zip"
-- "specs/ \u2192 ARCHIVED/20260101T172405Z_specs_*.zip"
-- "ppr_review/ \u2192 ARCHIVED/20260101T171859Z_ppr_review.zip"
+- "planning/ ➔ ARCHIVED/20260101T171631Z_planning_*.zip"
+- "specs/ ➔ ARCHIVED/20260101T172405Z_specs_*.zip"
+- "ppr_review/ ➔ ARCHIVED/20260101T171859Z_ppr_review.zip"
 ---
 
 # GEMINI.md
@@ -39,10 +39,16 @@ This file provides guidance to Gemini (Gemini) when working with code in this re
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper with 136 verified citations (pandoc-citeproc format) addressing:
-1. Analytics maturity (updated with 2025 AMAM data)
-2. Workforce agility and institutional memory loss
-3. Technical enablement in natural language to SQL generation
+**Primary deliverable:** `paper.md` - Academic research paper (Review Article) with **139 verified citations** (pandoc-citeproc format).
+- **Word Count:** ~2,350 words (Main Text), ~2,630 words (Total).
+- **Focus:** Three-Pillar Analytical Framework connecting Analytics Maturity, Workforce Agility, and Technical Enablement.
+
+**Structural Consolidation (Jan 2026):**
+The paper has been structurally consolidated to meet high-impact journal standards (JMIR Medical Informatics):
+- **Structure:** Introduction → Methodology → Framework Development and Evidence → Discussion → Conclusion.
+- **Key Change:** The "Literature Review" has been merged into "Framework Development and Evidence" to create a tighter, argument-driven narrative.
+- **Theoretical Grounding:** Integrated into Introduction.
+- **Citations:** All 139 citations preserved and verified.
 
 **Citation verification:** All citations verified via DOI or authoritative sources. Methodology archived in `ARCHIVED/20260101T171645Z_specs_fix-paper-references.zip`.
 
@@ -50,10 +56,8 @@ This file provides guidance to Gemini (Gemini) when working with code in this re
 
 **Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). Framework ordering validated using Root Cause Analysis methodology (Allison & Peters, 2021). See `ARCHIVED/20260101T171859Z_ppr_review.zip` for assessment table.
 
-**Paper 1 structure:** Introduction → Methodology → Framework Development → Literature Review → Discussion → Conclusion. Executive Summary removed (redundant with YAML abstract); Sections 5-6 (Proposed Solution, Evaluation) previously removed to transform paper from solution-advocacy to pure analytical framework.
-
 **CRITICAL - Framework-first thesis:** The paper's primary contribution is the three-pillar analytical framework itself, NOT advocacy for conversational AI as a solution. When editing:
-- Frame conversational AI and the validated query cycle as "illustrative applications" of the framework
+- Frame conversational AI and the Validated Query Cycle as "illustrative applications" of the framework.
 - Avoid language like "compelling case for," "evidence-based solution," or "support the adoption of"
 - Subsection headers should be framework-focused, not solution-focused
 - The framework is descriptive (reveals interconnections) rather than prescriptive (recommends solutions)
@@ -288,7 +292,7 @@ python scripts/extract_abbreviations.py         # Generate abbreviations list
 
 **Citation key convention:** `{firstauthor}{year}{suffix}` (e.g., `wu2024`, `wu2024a`)
 
-**BibTeX entry format:** Use consistent author formatting with "and" (not `\&`):
+**BibTeX entry format:** Use consistent author formatting with "and" (not `&`):
 ```bibtex
 @article{wu2024,
   author = {Wu, F., Lao, Y., Feng, Y., and Li, L.},
@@ -313,6 +317,9 @@ python scripts/extract_abbreviations.py         # Generate abbreviations list
 ### Generated Files Strategy
 **Committed to git (intentional):**
 - `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
+- `submission/*` - Submission cover letters and artifacts
+- `multimedia_appendix_*` - Multimedia appendices
+- `docs/validation_report.md` - Generated validation report
 - `references.bib` - BibTeX bibliography (108 entries)
 - `citation-style-ama.csl` - AMA 11th edition (JMIR requirement, from Zotero CSL repository)
 - `figures/*` - All figure assets (source `.mmd`/`.dot`, generated `.jpg`/`.png`/`.svg`/`.pdf`)
