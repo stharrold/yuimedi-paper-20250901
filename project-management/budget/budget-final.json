@@ -1,18 +1,17 @@
 {
   "project": "YuiQuery Healthcare Analytics Whitepapers",
-  "version": "3.0-REMEDIATED",
-  "date": "2025-09-01",
+  "version": "5.0-CONSOLIDATED",
+  "date": "2026-01-16",
   "currency": "USD",
 
   "primary_work": {
-    "description": "Primary developer (DSH) - 3 papers",
-    "hours": 210,
+    "description": "Primary developer (DSH) - Consolidated Study",
+    "hours": 220,
     "rate": 75,
-    "total": 15750,
+    "total": 16500,
     "breakdown": {
       "paper_1": 70,
-      "paper_2": 70,
-      "paper_3": 70
+      "paper_2_consolidated": 150
     }
   },
 
@@ -26,68 +25,64 @@
 
   "sme_reviews": {
     "description": "Subject Matter Expert reviews",
-    "hours": 18,
+    "hours": 12,
     "rate": 150,
-    "total": 2700,
+    "total": 1800,
     "breakdown": {
-      "healthcare_it_expert": 6,
-      "data_science_expert": 6,
-      "fhir_standards_expert": 6
+      "paper_1_expert": 6,
+      "paper_2_expert": 6
     }
   },
 
-  "publication_fees": {
-    "description": "Journal submission and conference fees",
-    "total": 3500,
+  "author_services": {
+    "description": "Article processing and promotion",
+    "total": 8696,
     "breakdown": {
-      "journal_submission": 2000,
-      "conference_abstracts": 1000,
-      "open_access_fees": 500
+      "jmir_apc_paper_1": 3350,
+      "jmir_apc_paper_2": 3350,
+      "promotion_paper_1": 998,
+      "promotion_paper_2": 998
     }
   },
 
-  "tools_and_infrastructure": {
-    "description": "Software, cloud services, data storage",
-    "total": 1000,
+  "infrastructure": {
+    "description": "Cloud services and tools",
+    "total": 300,
     "breakdown": {
-      "cloud_compute": 300,
-      "data_storage": 200,
-      "software_licenses": 500
+      "gcp_compute_storage": 300
     }
   },
 
-  "subtotal": 30450,
-  "contingency_10_percent": 3045,
-  "grand_total": 33495,
+  "subtotal": 34796,
+  "contingency_buffer": 699,
+  "grand_total": 35495,
 
-  "comparison_to_original": {
-    "original_budget": 2700,
-    "increase_factor": 11.28,
-    "calculation_note": "subtotal ($30,450) / original ($2,700) = 11.28; using subtotal before contingency for fair comparison",
-    "justification": "Original budget only included SME reviews, missing all development and infrastructure costs"
+  "strategic_savings": {
+    "original_strategy_estimate": 46543,
+    "savings_realized": 13048,
+    "note": "Savings achieved through scope consolidation and removal of Scientific Editing services"
   },
 
   "payment_schedule": {
-    "phase_1": {
-      "date": "2025-09-30",
-      "amount": 11165,
-      "deliverable": "Paper 1 complete"
+    "phase_1_submission": {
+      "date": "2026-01-15",
+      "amount": 998,
+      "deliverable": "Paper 1 Submission (Promo Assets)"
     },
-    "phase_2": {
-      "date": "2026-01-10",
-      "amount": 11165,
-      "deliverable": "Paper 2 complete"
+    "phase_1_acceptance": {
+      "date": "2026-05-15",
+      "amount": 3350,
+      "deliverable": "Paper 1 APC"
     },
-    "phase_3": {
-      "date": "2026-03-15",
-      "amount": 11165,
-      "deliverable": "Paper 3 complete"
+    "phase_2_submission": {
+      "date": "2026-05-01",
+      "amount": 998,
+      "deliverable": "Paper 2 Submission (Promo Assets)"
+    },
+    "phase_2_acceptance": {
+      "date": "2026-08-15",
+      "amount": 3350,
+      "deliverable": "Paper 2 APC"
     }
-  },
-
-  "risk_provisions": {
-    "backup_developer_critical": "Must be assigned by 2025-09-06",
-    "budget_approval_required": "Executive approval needed for 10x increase",
-    "phased_approval_option": "Can approve per paper to reduce upfront commitment"
   }
 }
