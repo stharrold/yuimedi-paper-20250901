@@ -26,9 +26,9 @@ related_skills:
 - git-workflow-manager
 - agentdb-state-manager
 archived:
-- "planning/ \u2192 ARCHIVED/20260101T171631Z_planning_*.zip"
-- "specs/ \u2192 ARCHIVED/20260101T172405Z_specs_*.zip"
-- "ppr_review/ \u2192 ARCHIVED/20260101T171859Z_ppr_review.zip"
+- "planning/ ➔ ARCHIVED/20260101T171631Z_planning_*.zip"
+- "specs/ ➔ ARCHIVED/20260101T172405Z_specs_*.zip"
+- "ppr_review/ ➔ ARCHIVED/20260101T171859Z_ppr_review.zip"
 ---
 
 # GEMINI.md
@@ -52,13 +52,15 @@ The paper has been structurally consolidated to meet high-impact journal standar
 
 **Citation verification:** All citations verified via DOI or authoritative sources. Methodology archived in `ARCHIVED/20260101T171645Z_specs_fix-paper-references.zip`.
 
-**Paper classification:** Narrative review with original three-pillar analytical framework (NOT a systematic review with meta-analysis).
+**Paper classification:** Narrative review with original three-pillar analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/guides/journal-submission-guide.md`.
 
-**Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). Framework ordering validated using Root Cause Analysis methodology (Allison & Peters, 2021).
+**Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). Framework ordering validated using Root Cause Analysis methodology (Allison & Peters, 2021). See `ARCHIVED/20260101T171859Z_ppr_review.zip` for assessment table.
 
-**CRITICAL - Framework-first thesis:** The paper's primary contribution is the three-pillar analytical framework itself.
+**CRITICAL - Framework-first thesis:** The paper's primary contribution is the three-pillar analytical framework itself, NOT advocacy for conversational AI as a solution. When editing:
 - Frame conversational AI and the Validated Query Cycle as "illustrative applications" of the framework.
-- The framework is descriptive (reveals interconnections) rather than prescriptive.
+- Avoid language like "compelling case for," "evidence-based solution," or "support the adoption of"
+- Subsection headers should be framework-focused, not solution-focused
+- The framework is descriptive (reveals interconnections) rather than prescriptive (recommends solutions)
 
 ## Essential Commands
 
@@ -290,7 +292,7 @@ python scripts/extract_abbreviations.py         # Generate abbreviations list
 
 **Citation key convention:** `{firstauthor}{year}{suffix}` (e.g., `wu2024`, `wu2024a`)
 
-**BibTeX entry format:** Use consistent author formatting with "and" (not `\&`):
+**BibTeX entry format:** Use consistent author formatting with "and" (not `&`):
 ```bibtex
 @article{wu2024,
   author = {Wu, F., Lao, Y., Feng, Y., and Li, L.},
