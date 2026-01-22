@@ -39,28 +39,28 @@ This file provides guidance to Gemini (Gemini) when working with code in this re
 
 **Documentation-only repository** for a research paper on YuiQuery, a conversational AI platform for healthcare analytics. No source code to compile/run - all "development" is documentation writing, validation, and workflow automation.
 
-**Primary deliverable:** `paper.md` - Academic research paper (Review Article) with **139 verified citations** (pandoc-citeproc format).
+**Primary deliverable:** `paper.md` - Academic research paper (Theoretical Framework / Viewpoint) with **139 verified citations** (pandoc-citeproc format).
 - **Word Count:** ~2,350 words (Main Text), ~2,630 words (Total).
-- **Focus:** Three-Pillar Analytical Framework connecting Analytics Maturity, Workforce Agility, and Technical Enablement.
+- **Focus:** "Mitigating Institutional Amnesia" through a Design Science Framework connecting Analytics Maturity, Workforce Agility, and Technical Enablement.
 
-**Structural Consolidation (Jan 2026):**
-The paper has been structurally consolidated to meet high-impact journal standards (JMIR Medical Informatics):
-- **Structure:** Introduction → Methodology → Framework Development and Evidence → Discussion → Conclusion.
-- **Key Change:** The "Literature Review" has been merged into "Framework Development and Evidence" to create a tighter, argument-driven narrative.
-- **Theoretical Grounding:** Integrated into Introduction.
-- **Citations:** All 139 citations preserved and verified.
+**Framework Pivot (Jan 2026):**
+The paper has been fundamentally restructured from a general review into a rigorous **Viewpoint / Theoretical Framework** article targeting *JMIR Medical Informatics*:
+- **Core Concept:** "Institutional Amnesia" caused by the "Triple Threat" of low maturity, high turnover, and semantic barriers.
+- **Theoretical Basis:** Nonaka's SECI Model (Socialization failure $\rightarrow$ Externalization solution).
+- **Key Artifacts:** "Human-in-the-Loop Semantic Governance" (HiL-SG) and "Analytics Resilience Index" (ARI).
+- **Structure:** Introduction (Triple Threat) $\rightarrow$ Theoretical Framework (SECI) $\rightarrow$ Empirical Grounding (3 Pillars) $\rightarrow$ Discussion (Validator Paradox).
 
 **Citation verification:** All citations verified via DOI or authoritative sources. Methodology archived in `ARCHIVED/20260101T171645Z_specs_fix-paper-references.zip`.
 
-**Paper classification:** Narrative review with original three-pillar analytical framework (NOT a systematic review with meta-analysis). This affects publication options - see `docs/guides/journal-submission-guide.md`.
+**Paper classification:** Theoretical Framework / Viewpoint (NOT a systematic review). This affects publication options - see `docs/guides/journal-submission-guide.md`.
 
 **Quality assessment:** Grey literature sources assessed using AACODS checklist (Tyndall, 2010). Framework ordering validated using Root Cause Analysis methodology (Allison & Peters, 2021). See `ARCHIVED/20260101T171859Z_ppr_review.zip` for assessment table.
 
-**CRITICAL - Framework-first thesis:** The paper's primary contribution is the three-pillar analytical framework itself, NOT advocacy for conversational AI as a solution. When editing:
-- Frame conversational AI and the Validated Query Cycle as "illustrative applications" of the framework.
-- Avoid language like "compelling case for," "evidence-based solution," or "support the adoption of"
-- Subsection headers should be framework-focused, not solution-focused
-- The framework is descriptive (reveals interconnections) rather than prescriptive (recommends solutions)
+**CRITICAL - Framework-first thesis:** The paper's primary contribution is the socio-technical framework itself, NOT advocacy for conversational AI as a solution. When editing:
+- Frame conversational AI as a "Governance Forcing Function" for Externalization.
+- Avoid language like "compelling case for" or "solution."
+- Focus on "Resilience" (surviving turnover) rather than just "Maturity."
+- The framework is descriptive (reveals interconnections) rather than prescriptive (recommends solutions).
 
 ## Essential Commands
 
@@ -275,7 +275,7 @@ podman run --rm \
 ### Citations (pandoc-citeproc)
 Uses pandoc-citeproc for automatic bibliography generation:
 - Citation format: `[@key]` (e.g., `[@wu2024]`, `[@himss2024]`)
-- Multiple citations: `[@wu2024; @ren2024]`
+- Multiple citations: `[@wu2024; @himss2024]`
 - BibTeX file: `references.bib` (108 entries)
 - CSL style: `citation-style-ama.csl` (AMA 11th edition for JMIR compliance)
 
