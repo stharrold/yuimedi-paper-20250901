@@ -315,6 +315,9 @@ python scripts/extract_abbreviations.py         # Generate abbreviations list
 ### Generated Files Strategy
 **Committed to git (intentional):**
 - `paper.pdf`, `paper.html`, `paper.docx`, `paper.tex` - Release artifacts for journal submission
+- `submission/*` - Submission cover letters and artifacts
+- `multimedia_appendix_*` - Multimedia appendices
+- `docs/validation_report.md` - Generated validation report
 - `references.bib` - BibTeX bibliography (108 entries)
 - `citation-style-ama.csl` - AMA 11th edition (JMIR requirement, from Zotero CSL repository)
 - `figures/*` - All figure assets (source `.mmd`/`.dot`, generated `.jpg`/`.png`/`.svg`/`.pdf`)
