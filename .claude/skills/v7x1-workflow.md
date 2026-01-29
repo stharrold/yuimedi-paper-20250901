@@ -9,7 +9,7 @@ description: |
 
 # v7x1 Workflow Skill
 
-Wraps existing Python scripts in `.gemini/skills/git-workflow-manager/scripts/` with context-aware suggestions.
+Wraps existing Python scripts in `.claude/skills/git-workflow-manager/scripts/` with context-aware suggestions.
 
 ## Context Detection
 
@@ -36,13 +36,13 @@ git describe --tags --abbrev=0 origin/main 2>/dev/null  # Latest release
 **When:** Starting a new feature from contrib branch.
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/create_worktree.py \
+uv run python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
   feature <slug> contrib/<gh-user>
 ```
 
 **Example:**
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/create_worktree.py \
+uv run python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
   feature add-user-auth contrib/stharrold
 ```
 
@@ -63,7 +63,7 @@ uv run scripts/secrets_run.py gh pr create --base contrib/stharrold --head <feat
 # [MANUAL] Merge PR in GitHub UI
 
 # After merge, get cleanup instructions
-uv run python .gemini/skills/git-workflow-manager/scripts/cleanup_feature.py <slug>
+uv run python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py <slug>
 # Then execute the manual commands it outputs:
 #   git worktree remove <path>
 #   git branch -d <branch>
@@ -87,21 +87,21 @@ uv run scripts/secrets_run.py gh pr create --base develop --head contrib/stharro
 
 ```bash
 # Full workflow (auto-calculates version)
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py full
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py full
 
 # Or with explicit version
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py full --version v1.46.0
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py full --version v1.46.0
 ```
 
 **Step-by-step:**
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py create-release
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py pr-main
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py create-release
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py pr-main
 # [MANUAL] Merge PR in GitHub UI
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py tag-release
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py tag-release
 ```
 
-**Status:** `uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py status`
+**Status:** `uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py status`
 
 ## Phase 4: Backmerge
 
@@ -109,21 +109,21 @@ uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py ta
 
 ```bash
 # Full workflow
-uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py full
+uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py full
 ```
 
 **Step-by-step:**
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop
+uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop
 # [MANUAL] Merge PR in GitHub UI
-uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py rebase-contrib
-uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py cleanup-release
+uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py rebase-contrib
+uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py cleanup-release
 # Script outputs manual commands - execute them:
 #   git branch -d release/vX.Y.Z
 #   git push origin --delete release/vX.Y.Z
 ```
 
-**Status:** `uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py status`
+**Status:** `uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py status`
 
 ## Quick Reference
 
@@ -166,4 +166,4 @@ All PRs require manual approval in GitHub UI:
 ## Detailed Documentation
 
 For complete script arguments, error handling, and examples:
-- `.gemini/skills/git-workflow-manager/SKILL.md`
+- `.claude/skills/git-workflow-manager/SKILL.md`

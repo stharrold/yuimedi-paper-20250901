@@ -93,7 +93,7 @@ uv run scripts/secrets_run.py uv run pytest
 | `paper.md` | Main paper source (Markdown + pandoc-citeproc citations) |
 | `references.bib` | BibTeX bibliography |
 | `metadata.yaml` | Pandoc metadata for PDF generation |
-| `GEMINI.md` | Comprehensive AI context guide (detailed reference) |
+| `CLAUDE.md` | Comprehensive AI context guide (this file) |
 | `scripts/build_paper.sh` | Paper build pipeline |
 | `scripts/validate_references.py` | Citation URL validation |
 | `scripts/validate_jmir_compliance.py` | Journal compliance checks |

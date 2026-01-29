@@ -59,7 +59,7 @@ The current `validate_jmir_compliance.py` enforces IMRD structure and structured
 
 **Step 1: Write a failing test by running the current validator**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && uv run python scripts/validate_jmir_compliance.py`
+Run: `uv run python scripts/validate_jmir_compliance.py`
 
 Expected: Currently passes (IMRD is present). After paper restructuring it will fail. We need to make validator Viewpoint-aware first.
 
@@ -75,7 +75,7 @@ Modify `scripts/validate_jmir_compliance.py` to:
 
 **Step 3: Run updated validator against current paper**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && uv run python scripts/validate_jmir_compliance.py --article-type viewpoint`
+Run: `uv run python scripts/validate_jmir_compliance.py --article-type viewpoint`
 
 Expected: FAIL on structured abstract and IMRD headers. This confirms the validator correctly detects Viewpoint violations.
 
@@ -154,13 +154,13 @@ Keep all existing content under each section. Move content from old headers to n
 
 **Step 4: Run the Viewpoint validator**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && uv run python scripts/validate_jmir_compliance.py --article-type viewpoint`
+Run: `uv run python scripts/validate_jmir_compliance.py --article-type viewpoint`
 
 Expected: Abstract check PASS (unstructured). IMRD check PASS (no forbidden headers). Word count PASS (still ~1,928 words, well under 5,000).
 
 **Step 5: Build paper to verify rendering**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && ./scripts/build_paper.sh --format all`
+Run: `./scripts/build_paper.sh --format all`
 
 Expected: PDF/HTML/DOCX build successfully. Verify figures still render, citations resolve, TOC reflects new headers.
 
@@ -206,7 +206,7 @@ Use citations: `[@farnese2019]` (SECI model), `[@massingham2018]` (knowledge los
 
 **Step 3: Verify word count**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && cat paper.md | sed '1,/^---$/d' | sed '/^# Acknowledgments/,$d' | wc -w`
+Run: `cat paper.md | sed '1,/^---$/d' | sed '/^# Acknowledgments/,$d' | wc -w`
 
 Expected: ~2,200-2,400 words.
 
@@ -246,7 +246,7 @@ Add ~200-400 words covering:
 
 **Step 3: Verify word count**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && cat paper.md | sed '1,/^---$/d' | sed '/^# Acknowledgments/,$d' | wc -w`
+Run: `cat paper.md | sed '1,/^---$/d' | sed '/^# Acknowledgments/,$d' | wc -w`
 
 Expected: ~2,500-2,800 words.
 
@@ -376,7 +376,7 @@ Addresses #506 task 2.5"
 
 **Step 1: Search the library knowledge graph for updated turnover data**
 
-Run: `cd /Users/stharrold/Documents/GitHub/library && uv run python utils/tool_search.py "healthcare IT workforce turnover tenure 2024 2025"`
+Run: `cd ../library && uv run python utils/tool_search.py "healthcare IT workforce turnover tenure 2024 2025"`
 
 If the library graph has relevant results, extract the most current statistic on healthcare IT tenure or turnover rates. Prefer 2024-2025 sources: HIMSS Workforce Survey, KLAS Research, LinkedIn Workforce Reports, or NSI Nursing Solutions Report.
 
@@ -398,7 +398,7 @@ Find the passage referencing `[@ang2004]` and the "2.9 years" statistic. Replace
 
 **Step 4: Verify the citation is updated**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && grep -n "ang2004\|2\.9.year" paper.md`
+Run: `grep -n "ang2004\|2\.9.year" paper.md`
 
 Expected: Either `ang2004` is removed or reframed with modern context.
 
@@ -430,7 +430,7 @@ Search `paper.md` for:
 - Verify conversational AI is framed as "Governance Forcing Function" (enabler), not standalone solution
 - Verify the framework is descriptive (reveals interconnections), not prescriptive (recommends specific solutions)
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && grep -in "platform\|product\|solution\|our tool\|our system\|enables\|seamless" paper.md`
+Run: `grep -in "platform\|product\|solution\|our tool\|our system\|enables\|seamless" paper.md`
 
 Fix any vendor-sounding language.
 
@@ -465,7 +465,7 @@ Addresses #506 task 3.2, Closes #371"
 
 **Step 1: Run JMIR Viewpoint compliance validator**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && uv run python scripts/validate_jmir_compliance.py --article-type viewpoint`
+Run: `uv run python scripts/validate_jmir_compliance.py --article-type viewpoint`
 
 Expected: ALL PASS. Specifically:
 - Abstract: Unstructured, ≤450 words
@@ -477,19 +477,19 @@ Expected: ALL PASS. Specifically:
 
 **Step 2: Validate references**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && uv run python scripts/validate_references.py --all`
+Run: `uv run python scripts/validate_references.py --all`
 
 Expected: All citations in paper.md have matching entries in references.bib. No broken URLs (or known broken ones are flagged).
 
 **Step 3: Run quality checks**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && uv run ruff format . && uv run ruff check --fix . && uv run mypy scripts/`
+Run: `uv run ruff format . && uv run ruff check --fix . && uv run mypy scripts/`
 
 Expected: Clean.
 
 **Step 4: Final word count**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && cat paper.md | sed '1,/^---$/d' | sed '/^# Acknowledgments/,$d' | wc -w`
+Run: `cat paper.md | sed '1,/^---$/d' | sed '/^# Acknowledgments/,$d' | wc -w`
 
 Expected: 4,000-5,000 words. If over 5,000, trim the weakest evidence in the Three Pillars section. If under 4,000, further expand the Validator Paradox or ARI sections.
 
@@ -517,7 +517,7 @@ Addresses #506 Phase 3"
 
 **Step 1: Build all formats**
 
-Run: `cd /Users/stharrold/Documents/GitHub/yuimedi-paper-20250901 && ./scripts/build_paper.sh --format all`
+Run: `./scripts/build_paper.sh --format all`
 
 Expected: PDF, HTML, DOCX, LaTeX all generate without errors.
 
@@ -595,7 +595,7 @@ Tasks 3-8 can be done in any order and are independent of each other. All depend
 Task 8 uses the `../library` repo's semantic search to find updated workforce statistics. The relevant command:
 
 ```bash
-cd /Users/stharrold/Documents/GitHub/library
+cd ../library
 uv run python utils/tool_search.py "healthcare IT workforce turnover tenure 2024 2025"
 ```
 

@@ -218,6 +218,7 @@ def get_secret(service: str, name: str) -> str | None:
         # Re-raise system exceptions that shouldn't be caught
         if isinstance(e, (KeyboardInterrupt, SystemExit)):
             raise
+        print(f"[WARN] Keyring error for {name}: {e}")
         return None
 
 
@@ -297,12 +298,12 @@ def setup_secret(service: str, name: str, is_optional: bool = False) -> bool:
 
     if is_optional:
         # Use getpass for consistency and security (hides input)
-        response = getpass.getpass(f"{name}{optional_tag} — Enter value (or press Enter to skip): ")
+        response = getpass.getpass(f"{name}{optional_tag} - Enter value (or press Enter to skip): ")
         if not response:
             print("  -> Skipped")
             return True  # Optional secrets can be skipped
     else:
-        response = getpass.getpass(f"{name}{optional_tag} — Enter value: ")
+        response = getpass.getpass(f"{name}{optional_tag} - Enter value: ")
         if not response:
             print("  -> [FAIL] Required secret cannot be empty")
             return False
@@ -408,7 +409,7 @@ def print_usage() -> None:
     print()
     print("Options:")
     print("  --check              Verify secrets exist without modifying")
-    print("  --set <name> [val]   Set a specific secret (prompts if value missing)")
+    print("  --set <name>         Set a specific secret (always prompts securely)")
     print("  --root <path>        Specify the project root (defaults to CWD)")
     print("  --help               Show this help message")
     print()
@@ -447,18 +448,14 @@ def main() -> int:
 
     target_root = None
     if "--root" in args:
-        try:
-            idx = args.index("--root")
-            if len(args) > idx + 1:
-                target_root = Path(args[idx + 1])
-                # Clean up args so other parsers don't get confused
-                # We simply remove them from the list we process later
-                del args[idx : idx + 2]
-            else:
-                print("[FAIL] Usage: --root <path>")
-                return 1
-        except IndexError:
-            pass
+        idx = args.index("--root")
+        if len(args) > idx + 1:
+            target_root = Path(args[idx + 1])
+            # Clean up args so other parsers don't get confused
+            del args[idx : idx + 2]
+        else:
+            print("[FAIL] Usage: --root <path>")
+            return 1
 
     # Determine project root and load config
     root_path = get_repo_root(target_root)
@@ -471,17 +468,23 @@ def main() -> int:
         try:
             idx = args.index("--set")
             if len(args) <= idx + 1:
-                print("[FAIL] Usage: --set <name> [value]")
+                print("[FAIL] Usage: --set <name>")
                 return 1
 
             name = args[idx + 1]
-            value = None
-            if len(args) > idx + 2:
-                value = args[idx + 2]
 
-            return set_single_secret_cmd(root_path, config, name, value)
+            # Do not accept secret values as CLI arguments to avoid leaks
+            # via shell history and process listings. Always prompt securely.
+            if len(args) > idx + 2:
+                print("[FAIL] Usage: --set <name>")
+                print(
+                    "Do not pass secret values on the command line; you will be prompted securely."
+                )
+                return 1
+
+            return set_single_secret_cmd(root_path, config, name, None)
         except IndexError:
-            print("[FAIL] Usage: --set <name> [value]")
+            print("[FAIL] Usage: --set <name>")
             return 1
 
     return interactive_setup(config)

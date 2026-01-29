@@ -14,18 +14,18 @@ description: Release to production (Step 3 of 4)
 ## Step 1: Create Release Branch
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py create-release
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py create-release
 ```
 
 Or with explicit version:
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py create-release --version v1.2.0
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py create-release --version v1.2.0
 ```
 
 ## Step 2: Create PR to Main
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py pr-main
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py pr-main
 ```
 
 **MANUAL GATE**: User merges PR in GitHub UI.
@@ -33,7 +33,7 @@ uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py pr
 ## Step 3: Tag Release (After Merge)
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py tag-release
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py tag-release
 ```
 
 ## Step 4: Report Completion
@@ -53,7 +53,7 @@ Next: /v7x1_4-backmerge to sync back to develop
 Run all steps automatically (still requires manual PR merges):
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py full
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py full
 ```
 
 ## Reference

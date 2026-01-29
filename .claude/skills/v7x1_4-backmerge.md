@@ -12,7 +12,7 @@ description: Sync release to develop and contrib (Step 4 of 4)
 ## Step 1: PR release → develop
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop
+uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop
 ```
 
 **MANUAL GATE**: User merges PR in GitHub UI.
@@ -20,13 +20,13 @@ uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py 
 ## Step 2: Rebase Contrib (After Merge)
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py rebase-contrib
+uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py rebase-contrib
 ```
 
 ## Step 3: Cleanup Release Branch
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py cleanup-release
+uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py cleanup-release
 ```
 
 Then execute the manual commands it outputs:
@@ -53,7 +53,7 @@ Next: /v7x1_1-worktree "next feature"
 Run all steps automatically (still requires manual PR merge):
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py full
+uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py full
 ```
 
 ## Reference

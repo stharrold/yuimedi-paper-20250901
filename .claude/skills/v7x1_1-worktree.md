@@ -24,7 +24,7 @@ Example: "Add User Authentication" → `add-user-authentication`
 ## Step 2: Create Feature Worktree
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/create_worktree.py \
+uv run python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
   feature <slug> contrib/stharrold
 ```
 

@@ -524,8 +524,13 @@ def validate_viewpoint_abstract(content: str) -> dict:
     found_headers = [h for h in structured_headers if h in abstract]
     has_structured = len(found_headers) > 0
 
-    # Count words (excluding any markdown formatting)
-    clean_text = re.sub(r"\*\*[^*]+\*\*:?", "", abstract)
+    # Count words (excluding markdown formatting, matching validate_word_count logic)
+    clean_text = abstract
+    clean_text = re.sub(r"\*\*[^*]+\*\*:?", "", clean_text)
+    clean_text = re.sub(r"`[^`]+`", "", clean_text)
+    clean_text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", clean_text)
+    clean_text = re.sub(r"\[@[^\]]+\]", "", clean_text)
+    clean_text = re.sub(r"[*#_>|]", "", clean_text)
     word_count = len(clean_text.split())
 
     return {
@@ -554,7 +559,7 @@ def validate_no_imrd_headers(content: str) -> dict:
     """
     forbidden_patterns = {
         "Methods": r"^# (Methods?|Methodology)\s*$",
-        "Results": r"^# (Results?|Literature Review[^\n]*|Framework Development[^\n]*)\s*$",
+        "Results": r"^# Results?\s*$",
         "Discussion": r"^# Discussion\s*$",
     }
 

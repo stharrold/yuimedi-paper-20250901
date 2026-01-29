@@ -41,7 +41,7 @@ git pull origin contrib/stharrold
 ## Step 2: Cleanup Feature [FULL MODE ONLY]
 
 ```bash
-uv run python .gemini/skills/git-workflow-manager/scripts/cleanup_feature.py {slug}
+uv run python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py {slug}
 ```
 
 Then execute the manual commands it outputs.

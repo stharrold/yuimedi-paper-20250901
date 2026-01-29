@@ -287,15 +287,12 @@ def main() -> int:
     # Parse --root flag manually before handing over to command
     # We only look at the start of args to avoid stealing flags from the wrapped command
     if len(args) > 0 and args[0] == "--root":
-        try:
-            if len(args) > 1:
-                target_root = Path(args[1])
-                del args[0:2]  # Remove --root and value
-            else:
-                print("[FAIL] Usage: --root <path>")
-                return 1
-        except IndexError:
-            pass
+        if len(args) > 1:
+            target_root = Path(args[1])
+            del args[0:2]  # Remove --root and value
+        else:
+            print("[FAIL] Usage: --root <path>")
+            return 1
 
     if len(args) < 1:
         print_usage()
