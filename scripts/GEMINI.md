@@ -24,7 +24,7 @@ Automation scripts for GitHub Issues synchronization. **All scripts use Python s
 
 ## Zero Dependencies Architecture
 
-**CRITICAL:** Scripts in this directory must use only Python stdlib:
+**CRITICAL:** Scripts in this directory must use only Python stdlib, with one documented exception:
 
 ```python
 # Allowed imports
@@ -34,6 +34,10 @@ import sys, os, subprocess, json, pathlib, datetime, re, typing
 import requests  # Use subprocess + curl instead
 import click     # Use argparse instead
 ```
+
+**Exception:** `secrets_setup.py` and `secrets_run.py` use PEP 723 inline script
+dependencies (`keyring`, `tomlkit`) which are auto-installed by `uv run`. These
+scripts require OS keyring access which has no stdlib equivalent.
 
 ## Usage
 
