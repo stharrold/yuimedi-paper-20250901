@@ -29,9 +29,18 @@ uv run python scripts/validate_jmir_compliance.py --article-type viewpoint
 # Note: validator strips markdown artifacts; raw wc -w gives ~10% higher count
 cat paper.md | sed '1,/^---$/d' | sed '/^# Acknowledgments/,$d' | wc -w
 
+# Build artifacts: rebuild after any paper.md edit, then commit.
+# Pre-commit hooks fix trailing whitespace in generated HTML files,
+# so build artifact commits require two stages: first attempt triggers
+# hook fixes, then re-stage and commit.
+
 # GitHub CLI with secrets (injects GH_TOKEN from OS keyring)
+# IMPORTANT: Always use secrets_run.py for gh CLI. Bare `gh` lacks token permissions.
 uv run scripts/secrets_run.py gh issue list --label "P0"
 uv run scripts/secrets_run.py gh issue create --title "..."
+
+# PR inline review comments (not visible via `gh pr view --comments`):
+uv run scripts/secrets_run.py gh api repos/stharrold/yuimedi-paper-20250901/pulls/N/comments
 ```
 
 ## Branch Strategy
@@ -47,7 +56,7 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 
 ## Writing Rules
 
-- **No em-dashes (—)**. Use commas, colons, semicolons, or parentheses instead.
+- **No em-dashes (—) in any file** (paper, scripts, docs). Use commas, colons, semicolons, or parentheses instead. Python strings use ASCII hyphens.
 - Citations use pandoc-citeproc: `[@key]`, multiple: `[@wu2024; @himss2024]`
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
 - Framework is **descriptive** (reveals interconnections), not **prescriptive** (recommends solutions)
@@ -103,4 +112,5 @@ uv run scripts/secrets_run.py uv run pytest
 | `cover-letter.md` | Resubmission cover letter for JMIR ms#91493 |
 | `docs/plans/` | Implementation plans (created per task) |
 | `ARCHIVED/20260115_JMIR-Submission/` | Original rejected submission (~12,730 words) |
+| `tests/test_validate_jmir_compliance.py` | Tests for JMIR validator (58 tests, covers Viewpoint + Original) |
 | `../library/` | Sibling repo: semantic search engine for academic papers (DuckDB, 23+ ingested papers) |
