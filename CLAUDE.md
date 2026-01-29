@@ -6,7 +6,9 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 
 **Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Semantic Governance (HiL-SG).
 
-**Three-paper series:** Paper 1 (framework, nearly complete) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
+**Three-paper series:** Paper 1 (Viewpoint, resubmitting to JMIR ms#91493) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
+
+**Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint (~3,600 body words). See GH#506.
 
 ## Essential Commands
 
@@ -21,7 +23,11 @@ uv run ruff format . && uv run ruff check --fix .
 uv run mypy scripts/ lit_review/
 uv run pytest
 uv run python scripts/validate_references.py --all
-uv run python scripts/validate_jmir_compliance.py
+uv run python scripts/validate_jmir_compliance.py --article-type viewpoint
+
+# Word count (body only, excludes frontmatter + back matter)
+# Note: validator strips markdown artifacts; raw wc -w gives ~10% higher count
+cat paper.md | sed '1,/^---$/d' | sed '/^# Acknowledgments/,$d' | wc -w
 
 # GitHub CLI with secrets (injects GH_TOKEN from OS keyring)
 uv run scripts/secrets_run.py gh issue list --label "P0"
@@ -46,6 +52,7 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
 - Framework is **descriptive** (reveals interconnections), not **prescriptive** (recommends solutions)
 - Conversational AI is a "Governance Forcing Function," not the standalone solution
+- **JMIR Viewpoint format:** No "Methods" or "Results" H1 headers; unstructured abstract (≤450 words); body ≤5,000 words. See `standards/jmir_submission_article-types.md` lines 60-73.
 
 ## Secrets Management
 
@@ -93,3 +100,7 @@ uv run scripts/secrets_run.py uv run pytest
 | `secrets.toml` | Secret names declaration (no values; committed to git) |
 | `scripts/secrets_setup.py` | Interactive keyring setup for secrets |
 | `scripts/secrets_run.py` | Injects secrets from keyring before running commands |
+| `cover-letter.md` | Resubmission cover letter for JMIR ms#91493 |
+| `docs/plans/` | Implementation plans (created per task) |
+| `ARCHIVED/20260115_JMIR-Submission/` | Original rejected submission (~12,730 words) |
+| `../library/` | Sibling repo: semantic search engine for academic papers (DuckDB, 23+ ingested papers) |
