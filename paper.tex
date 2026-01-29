@@ -438,7 +438,7 @@ Socio-Technical Query Governance in Healthcare}
 
 \newpairofpagestyles{eisvogel-header-footer}{
   \clearpairofpagestyles
-  \ihead*{Healthcare Analytics Challenges}
+  \ihead*{Mitigating Institutional Amnesia}
   \chead*{}
   \ohead*{January 2026}
   \ifoot*{\hspace{0pt}}
@@ -490,42 +490,44 @@ Healthcare}}}
 % don't generate the default title
 % \maketitle
 \begin{abstract}
-\textbf{Background:} Healthcare organizations face a ``Triple Threat''
-of low analytics maturity, high workforce instability, and semantic
-technical barriers. Recent data reveals a crisis of ``Institutional
-Amnesia,'' where 53\% of healthcare CIOs have less than three years'
-tenure and 55\% of informatics specialists intend to leave their roles.
-This churn erases the tacit knowledge required to navigate complex
-clinical data schemas, trapping organizations in a cycle of low
-maturity.
+Healthcare organizations face a ``Triple Threat'' of low analytics
+maturity, high workforce instability, and semantic technical barriers
+that together produce a crisis of ``Institutional Amnesia.'' Recent data
+underscores the severity: 53\% of healthcare CIOs have held their roles
+for less than three years, and 55\% of informatics specialists intend to
+leave their positions. This churn systematically erases the tacit
+knowledge required to navigate complex clinical data schemas, trapping
+organizations in a cycle of low maturity where the rate of knowledge
+loss exceeds the rate of knowledge capture.
 
-\textbf{Objective:} This article proposes a socio-technical framework to
-mitigate institutional amnesia by decoupling organizational analytical
-capability from individual staff tenure. We aim to answer the research
-question: \emph{How can health systems maintain analytics maturity when
-workforce turnover exceeds the speed of documentation?}
-
-\textbf{Methods:} We employed a Design Science Research (DSR) approach,
+Viewed through Nonaka's SECI model of knowledge creation, the root cause
+is a ``Socialization Failure'': high turnover fractures the social
+networks required for mentorship, rendering the traditional
+apprenticeship model of informatics unsustainable. To address this
+failure, we employ a Design Science Research (DSR) approach,
 synthesizing evidence from healthcare informatics, knowledge management,
-and natural language processing. The framework is grounded in Nonaka's
-SECI model of knowledge creation, reinterpreting ``Socialization''
-vulnerabilities through the lens of workforce turnover data (2024-2025).
+and natural language processing (2024-2025 workforce and NL2SQL
+literature) to develop a socio-technical framework called
+Human-in-the-Loop Semantic Governance (HiL-SG).
 
-\textbf{Results:} We present the ``Human-in-the-Loop Semantic
-Governance'' (HiL-SG) framework. This architecture functions as a
-socio-technical artifact that converts tacit domain expertise into
-explicit, executable ``Validated Query Triples'' (Natural Language + SQL
-+ Rationale). By shifting the locus of knowledge from volatile human
-memory to durable semantic artifacts, the framework enables an
-``Analytics Resilience Index'' (ARI) that measures an organization's
-ability to sustain insights despite staff churn.
+HiL-SG shifts the locus of organizational knowledge from volatile human
+memory to durable semantic artifacts called ``Validated Query Triples,''
+each comprising a natural language intent, executable SQL, and rationale
+metadata. By embedding knowledge capture into the daily workflow of
+query generation, the framework converts the ephemeral act of analytics
+into permanent institutional assets. The accompanying Analytics
+Resilience Index (ARI) provides a measurement instrument that replaces
+static maturity checklists with dynamic resilience metrics, quantifying
+an organization's ability to sustain analytical capability despite staff
+churn.
 
-\textbf{Conclusions:} The ``Validator Paradox''---who validates the AI
-when experts leave?---is resolved by treating validation as ``standard
-work'' rather than eternal truth. By embedding knowledge capture into
-the daily workflow of query generation, healthcare systems can build a
-``knowledge ratchet'' that prevents the regression of capabilities,
-ensuring that analytics maturity advances even as the workforce evolves.
+A critical objection, the ``Validator Paradox'' (who validates the AI
+when experts leave?), is resolved by reframing validation through Lean
+``Standard Work'': each validated query establishes the current known
+standard rather than eternal truth, functioning as a ``knowledge
+ratchet'' that prevents regression. By decoupling analytical capability
+from individual tenure, healthcare systems can ensure that analytics
+maturity advances even as the workforce evolves.
 \end{abstract}
 
 
@@ -534,10 +536,8 @@ ensuring that analytics maturity advances even as the workforce evolves.
 \tableofcontents
 }
 \setstretch{1.15}
-\section{Introduction}\label{introduction}
-
-\subsection{The Triple Threat: A Crisis of Institutional
-Amnesia}\label{the-triple-threat-a-crisis-of-institutional-amnesia}
+\section{The Triple Threat: Institutional Amnesia in Healthcare
+Analytics}\label{the-triple-threat-institutional-amnesia-in-healthcare-analytics}
 
 The healthcare analytics landscape is currently paralyzed by a ``Triple
 Threat'' of compounding failures: (1) persistently \textbf{Low Analytics
@@ -564,15 +564,12 @@ positions (\citeproc{ref-rajamani2025}{7}).
 This turnover creates a phenomenon we define as \textbf{Institutional
 Amnesia}: the systematic erasure of the tacit knowledge required to
 interpret complex health data. In healthcare, ``data'' is never raw; it
-is wrapped in layers of institutional context---billing rules, workflow
-workarounds, and unwritten exclusions (\citeproc{ref-american2023}{8}).
+is wrapped in layers of institutional context (billing rules, workflow
+workarounds, and unwritten exclusions) (\citeproc{ref-american2023}{8}).
 When the analyst who knows that ``exclusion code 99'' actually means
 ``hospice transfer'' leaves, that knowledge evaporates. The organization
 does not just lose an employee; it loses the ability to accurately
 measure its own performance.
-
-\subsection{Gap Analysis: The Speed of
-Forgetting}\label{gap-analysis-the-speed-of-forgetting}
 
 Current literature approaches these problems in isolation. Analytics
 maturity models (e.g., HIMSS AMAM) assume a stable workforce capable of
@@ -584,18 +581,24 @@ solutions (e.g., NL2SQL) assume a stable schema and clear intent
 (``organizational forgetting'') often exceeds the rate of knowledge
 capture (\citeproc{ref-rao2006}{11}).
 
-Traditional knowledge management strategies---wikis, data dictionaries,
-and documentation---have failed because they are \emph{passive}
+Traditional knowledge management strategies (wikis, data dictionaries,
+and documentation) have failed because they are \emph{passive}
 (\citeproc{ref-mayo2016}{12}). They require overworked staff to stop
 working and write down what they know. In a high-burnout environment,
 this documentation is the first casualty. As a result, healthcare
 systems are trapped in a Sisyphus-like cycle: hiring new analysts who
-spend their average 2.9-year tenure (\citeproc{ref-ang2004}{13})
-relearning the same institutional secrets, only to leave just as they
-become productive
-(\citeproc{ref-ledikwe2013}{14},\citeproc{ref-mantas2010}{15}).
-
-\subsection{Research Question}\label{research-question}
+spend their limited tenure relearning the same institutional secrets,
+only to leave just as they become productive
+(\citeproc{ref-ledikwe2013}{13},\citeproc{ref-mantas2010}{14}). A
+foundational 2004 study established that healthcare IT staff had the
+lowest expected tenure among all IT sectors at just 2.9 years
+(\citeproc{ref-ang2004}{15}). That this two-decade-old study remains a
+key benchmark is itself evidence of the crisis: the industry lacks the
+stability to track its own attrition. Contemporary signals suggest the
+situation has worsened, with 30\% of new healthcare employees leaving
+within their first year (\citeproc{ref-nsi2025}{16}) and 55\% of
+informatics specialists intending to leave their positions
+(\citeproc{ref-rajamani2025}{7}).
 
 This viewpoint article addresses a critical socio-technical gap:
 \emph{How can health systems maintain analytics maturity when workforce
@@ -605,78 +608,134 @@ We propose that the solution lies not in better documentation, but in a
 fundamental architectural shift: moving from \emph{passive} knowledge
 management to \textbf{Human-in-the-Loop Semantic Governance (HiL-SG)}.
 
-\section{Methods}\label{methods}
+\section{Theoretical Grounding: SECI and the Unstable
+Workforce}\label{theoretical-grounding-seci-and-the-unstable-workforce}
 
-We employed a Design Science Research (DSR) approach to develop the
-HiL-SG framework. DSR involves the creation and evaluation of innovative
-artifacts (constructs, models, methods, and instantiations) to solve
-identified organizational problems.
-
-Our methodology followed three steps: 1. \textbf{Problem
-Identification}: We conducted a narrative review of the literature
-(n=139 sources) across three domains: healthcare analytics maturity,
-workforce turnover dynamics, and natural language processing. Grey
-literature was assessed using the AACODS checklist
-(\citeproc{ref-tyndall2010}{16}). 2. \textbf{Theoretical Grounding}: We
-analyzed the identified problem (``Institutional Amnesia'') through the
-lens of Nonaka's SECI model of knowledge creation
-(\citeproc{ref-farnese2019}{17}), mapping workforce turnover data to
-specific failure modes in knowledge transfer. 3. \textbf{Artifact
-Design}: We designed the HiL-SG framework and the ``Validated Query
-Triple'' artifact as socio-technical solutions to the identified
-``Socialization Failure,'' adhering to ``Human-on-the-Loop'' principles
-for AI safety (\citeproc{ref-bravorocca2023}{18}).
-
-\section{Results}\label{results}
-
-\subsection{Theoretical Framework: SECI for the Unstable
-Workforce}\label{theoretical-framework-seci-for-the-unstable-workforce}
+Using a Design Science Research (DSR) approach, we developed the HiL-SG
+framework through three steps: (1) a narrative review of the literature
+(n=139 sources) across healthcare analytics maturity, workforce turnover
+dynamics, and natural language processing, with grey literature assessed
+using the AACODS checklist (\citeproc{ref-tyndall2010}{17}); (2)
+theoretical grounding in Nonaka's SECI model of knowledge creation
+(\citeproc{ref-farnese2019}{18}), mapping workforce turnover data to
+specific failure modes in knowledge transfer; and (3) artifact design of
+the HiL-SG framework and the ``Validated Query Triple'' as
+socio-technical solutions to the identified ``Socialization Failure,''
+adhering to ``Human-on-the-Loop'' principles for AI safety
+(\citeproc{ref-bravorocca2023}{19}).
 
 We ground our approach in Nonaka's SECI Model of knowledge creation
-(Socialization, Externalization, Combination, Internalization),
-reinterpreted for the crisis of the modern healthcare workforce.
+(\citeproc{ref-farnese2019}{18}), which describes organizational
+knowledge as emerging through a continuous cycle of four conversion
+modes:
 
-\subsubsection{The Broken Cycle: Socialization
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Socialization} (tacit to tacit): Knowledge transfers through
+  shared experience and co-located practice, as when a senior analyst
+  teaches a junior colleague the unwritten rules of a clinical dataset.
+\item
+  \textbf{Externalization} (tacit to explicit): Individuals articulate
+  tacit know-how into explicit forms such as documents or coded
+  artifacts, as when an analyst records why a specific exclusion code
+  maps to hospice transfers.
+\item
+  \textbf{Combination} (explicit to explicit): Separately documented
+  knowledge is integrated and systematized into broader structures, as
+  when data dictionary entries are consolidated into a governed
+  analytics catalog.
+\item
+  \textbf{Internalization} (explicit to tacit): Individuals learn from
+  documented knowledge and convert it into personal expertise through
+  practice, as when a new analyst studies validated query libraries.
+\end{enumerate}
+
+In a healthy organization, these four modes form a self-reinforcing
+spiral: tacit insights become documented, documentation becomes
+systematized, and systematized knowledge is internalized by new members
+who then generate fresh tacit insights (\citeproc{ref-farnese2019}{18}).
+When any mode breaks down, the spiral stalls. In healthcare analytics,
+the breakdown is at the very first stage.
+
+\subsection{The Broken Cycle: Socialization
 Failure}\label{the-broken-cycle-socialization-failure}
 
-In Nonaka's model, \textbf{Socialization} is the transfer of tacit
-knowledge (experience, context) between individuals through shared
-experience (\citeproc{ref-farnese2019}{17}). In the current healthcare
-environment, this mechanism has collapsed. High turnover rates fracture
-the social networks required for mentorship
-(\citeproc{ref-wu2024}{19},\citeproc{ref-ren2024}{20}). When a senior
-analyst leaves every 3 years, the ``apprenticeship'' model of
-informatics breaks down. Socialization is no longer a viable strategy
-for resilience (\citeproc{ref-massingham2018}{21}).
+In Nonaka's model, \textbf{Socialization} is the foundational conversion
+mode: the primary channel through which newcomers absorb tacit context
+that formal training cannot convey (\citeproc{ref-farnese2019}{18}).
+Socialization depends on two preconditions: sustained interaction and
+sufficient temporal overlap between knowledge holders and receivers
+(\citeproc{ref-foos2006}{20}). It is, in effect, an apprenticeship model
+requiring years of shared practice.
 
-\subsubsection{The Solution: Externalization via Socio-Technical
+In the current healthcare environment, this mechanism has collapsed. The
+available workforce data reveals an ``apprenticeship window'' that is
+shorter than the knowledge transfer cycle it must support. With 53\% of
+healthcare CIOs holding their roles for less than three years
+(\citeproc{ref-wittkieffer2024}{5}), strategic knowledge at the
+leadership level turns over before it can be transmitted. At the
+operational level, 55\% of public health informatics specialists intend
+to leave their positions (\citeproc{ref-rajamani2025}{7}), and 30\% of
+new employees depart within their first year
+(\citeproc{ref-nsi2025}{16}). Meanwhile, specialized informatics roles
+require 18 to 24 months to reach fluency
+(\citeproc{ref-ledikwe2013}{13},\citeproc{ref-konrad2022}{21}). The
+arithmetic is unforgiving: by the time a new analyst has absorbed enough
+tacit context to be productive, their mentor may already be gone, and
+the new analyst is themselves halfway through an average tenure.
+
+High turnover rates fracture the social networks required for mentorship
+(\citeproc{ref-wu2024}{22},\citeproc{ref-ren2024}{23}). The resulting
+knowledge loss is compounding: each departure removes a node from the
+organization's informal knowledge network, making subsequent
+Socialization attempts less effective because fewer experienced
+practitioners remain to serve as mentors
+(\citeproc{ref-massingham2018}{24}). Socialization is no longer a viable
+strategy for resilience.
+
+\subsection{The Solution: Externalization via Socio-Technical
 Artifacts}\label{the-solution-externalization-via-socio-technical-artifacts}
 
 To survive, organizations must shift reliance from Socialization to
 \textbf{Externalization}: converting tacit knowledge into explicit,
-durable artifacts (\citeproc{ref-zhang2025}{22}). However, traditional
-externalization (writing reports) is too slow and low-fidelity
-(\citeproc{ref-goffin2011}{23},\citeproc{ref-foos2006}{24}).
+durable artifacts (\citeproc{ref-zhang2025}{25}). However, traditional
+Externalization (writing wikis, maintaining data dictionaries, composing
+runbooks) suffers from two critical weaknesses. First, it is passive: it
+requires overworked staff to interrupt their workflow and perform a
+separate documentation task (\citeproc{ref-goffin2011}{26}). In a
+high-burnout environment where 79\% of provider organizations report
+persistent shortages in digital health roles
+(\citeproc{ref-himssworkforce2024}{6}), this discretionary documentation
+is the first casualty. Second, it is low-fidelity: the act of writing
+down tacit knowledge inevitably loses nuance, context, and the
+conditional logic that makes institutional knowledge valuable
+(\citeproc{ref-foos2006}{20}). The result is documentation that exists
+but does not adequately capture what the departing expert actually knew.
 
-We propose a new socio-technical artifact: the \textbf{Validated Query
-Triple}. This artifact consists of: 1. \textbf{Natural Language Intent}:
-The clinical business question (e.g., ``Hypertension readmissions
-excluding planned transfers''). 2. \textbf{Executable SQL}: The
-technical implementation. 3. \textbf{Rationale Metadata}: The ``why''
-behind the logic (e.g., ``Excluding status 02 per CMS 2025 rule'').
+We propose a form of \emph{active} Externalization: one that captures
+tacit knowledge as a byproduct of the daily workflow of analytics rather
+than as a separate documentation burden. The mechanism is a new
+socio-technical artifact: the \textbf{Validated Query Triple}. This
+artifact consists of: 1. \textbf{Natural Language Intent}: The clinical
+business question (e.g., ``Hypertension readmissions excluding planned
+transfers''). 2. \textbf{Executable SQL}: The technical implementation.
+3. \textbf{Rationale Metadata}: The ``why'' behind the logic (e.g.,
+``Excluding status 02 per CMS 2025 rule'').
 
 By capturing these three components \emph{during the act of analytics},
 we transform the ephemeral work of query generation into a permanent
-institutional asset (\citeproc{ref-moore2018}{25}).
+institutional asset (\citeproc{ref-moore2018}{27}).
 
-\subsection{Human-in-the-Loop Semantic Governance
-(HiL-SG)}\label{human-in-the-loop-semantic-governance-hil-sg}
+\section{Human-in-the-Loop Semantic
+Governance}\label{human-in-the-loop-semantic-governance}
 
 We rename the traditional ``Validated Query Cycle'' to
 \textbf{Human-in-the-Loop Semantic Governance (HiL-SG)} to reflect its
 role as a governance mechanism rather than just a productivity tool.
 
-\subsubsection{The HiL-SG Architecture}\label{the-hil-sg-architecture}
+\subsection{The HiL-SG Architecture}\label{the-hil-sg-architecture}
 
 The HiL-SG architecture (Figure 1) functions as a \textbf{Governance
 Forcing Function}. It inserts a mandatory validation step into the
@@ -685,7 +744,7 @@ while simultaneously capturing expert knowledge.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.95\textwidth,height=\textheight]{figures/architecture.mmd.png}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio,alt={Healthcare Analytics Architecture as a Socio-Technical System. The architecture flows from Clinical Users through a Conversational AI interface to a healthcare NLP engine for context-aware SQL generation. Bi-directional arrows represent the iterative `Query \& Refine' loop. The critical validation step (dotted line) shows domain experts confirming SQL before results flow to `Organizational Memory' (dashed line), where they persist independent of staff tenure.}]{figures/architecture.mmd.png}
 \caption{Healthcare Analytics Architecture as a Socio-Technical System.
 The architecture flows from Clinical Users through a Conversational AI
 interface to a healthcare NLP engine for context-aware SQL generation.
@@ -701,7 +760,7 @@ expert validation into durable organizational memory.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth,height=\textheight]{figures/knowledge-cycle.mmd.png}
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio,alt={Six step validated query cycle for Human-in-the-Loop Semantic Governance. The cycle progresses from Natural Language Intent to AI-generated SQL, expert review and correction, creation of a Validated Query Triple, storage in organizational memory, and reuse for future queries.}]{figures/knowledge-cycle.mmd.png}
 \caption{Six step validated query cycle for Human-in-the-Loop Semantic
 Governance. The cycle progresses from Natural Language Intent to
 AI-generated SQL, expert review and correction, creation of a Validated
@@ -709,7 +768,7 @@ Query Triple, storage in organizational memory, and reuse for future
 queries.}
 \end{figure}
 
-\subsubsection{The Process of
+\subsection{The Process of
 Externalization}\label{the-process-of-externalization}
 
 \begin{enumerate}
@@ -718,88 +777,188 @@ Externalization}\label{the-process-of-externalization}
 \item
   \textbf{Query Generation}: A user asks a question. The AI proposes SQL
   based on schema knowledge
-  (\citeproc{ref-wang2020}{10},\citeproc{ref-lee2023}{26}).
+  (\citeproc{ref-wang2020}{10},\citeproc{ref-lee2023}{28}).
 \item
   \textbf{Semantic Translation}: The AI translates the SQL back into a
-  natural language explanation (\citeproc{ref-ziletti2024}{27}).
+  natural language explanation (\citeproc{ref-ziletti2024}{29}).
 \item
   \textbf{Expert Validation}: The domain expert confirms or corrects
   this interpretation. \emph{This is the critical moment of
   Externalization.} This ``Human-on-the-Loop'' (HotL) step transforms
   validation into an iterative knowledge capture process
-  (\citeproc{ref-bravorocca2023}{18},\citeproc{ref-mosqueirarey2023}{28}).
+  (\citeproc{ref-bravorocca2023}{19},\citeproc{ref-mosqueirarey2023}{30}).
 \item
   \textbf{Artifact Storage}: The validated triple is hashed and stored
-  in organizational memory (\citeproc{ref-benbya2004}{29}).
+  in organizational memory (\citeproc{ref-benbya2004}{31}).
 \item
   \textbf{Retrieval}: Future queries semantically match against this
   repository first, retrieving \emph{trusted} human knowledge before
   attempting \emph{probabilistic} generation
-  (\citeproc{ref-whittaker2008}{30}).
+  (\citeproc{ref-whittaker2008}{32}).
 \end{enumerate}
 
-\subsection{Empirical Grounding: The Evidence
-Base}\label{empirical-grounding-the-evidence-base}
+\section{The Evidence Base: Three
+Pillars}\label{the-evidence-base-three-pillars}
 
 The HiL-SG framework is supported by three pillars of empirical evidence
 synthesized from over 130 sources.
 
-\subsubsection{Pillar 1: Analytics Maturity
+\subsection{Pillar 1: Analytics Maturity
 Evidence}\label{pillar-1-analytics-maturity-evidence}
 
 Healthcare maturity remains chronically low. Assessments reveal only 26
 organizations achieved Stage 6 and 13 reached Stage 7 by late 2024
-(\citeproc{ref-himss2024}{1},\citeproc{ref-himss2024news}{31}). Most
+(\citeproc{ref-himss2024}{1},\citeproc{ref-himss2024news}{33}). Most
 organizations remain at Stages 0-3, characterized by fragmented data and
-limited predictive capabilities (\citeproc{ref-health2020}{32}).
+limited predictive capabilities (\citeproc{ref-health2020}{34}).
 However, maturity is not merely an IT metric; it is a clinical safety
 predictor. EMRAM levels 6-7 correlate with 3.25 times higher odds of
-better Leapfrog Safety Grades (\citeproc{ref-snowdon2024}{33}). Low
-maturity creates a ``low-maturity trap'' where data quality
-issues---such as the 39-71\% missing data rates in cancer databases
-(\citeproc{ref-yang2021}{34})---remain uncorrected because the experts
+better Leapfrog Safety Grades (\citeproc{ref-snowdon2024}{35}). Low
+maturity creates a ``low-maturity trap'' where data quality issues (such
+as the 39-71\% missing data rates in cancer databases
+(\citeproc{ref-yang2021}{36})) remain uncorrected because the experts
 who understand the context are leaving.
 
-\subsubsection{Pillar 2: Workforce Agility
+Critically, low maturity is not simply a status; it is a
+self-reinforcing trap. Organizations at Stages 0-3 lack the automated
+monitoring and data governance infrastructure needed to detect their own
+deficiencies, creating a vicious cycle in which poor data quality goes
+unrecognized because no systems exist to measure it. The clinical
+consequences of this trap are measurable: one Medicare ACO that
+implemented analytics to overcome EHR fragmentation reduced readmission
+rates from 24\% to 17.8\% and achieved \$1.6 million in cost savings
+(\citeproc{ref-latrella2024}{37}), demonstrating what becomes possible
+when organizations escape this cycle. Yet 68\% of healthcare
+organizations continue to cite data interoperability as the leading
+obstacle to analytics adoption, followed by privacy concerns (64\%) and
+insufficient staff training (59\%) (\citeproc{ref-nashid2023}{38}).
+Barriers including employee resistance to change and lack of
+organizational readiness further stall data-driven initiatives
+(\citeproc{ref-shahbaz2019}{39},\citeproc{ref-kamble2019}{40}). The
+low-maturity trap thus compounds over time: each year of delayed
+investment widens the gap between what the organization could know and
+what it actually knows.
+
+\subsection{Pillar 2: Workforce Agility
 Evidence}\label{pillar-2-workforce-agility-evidence}
 
 The cost of turnover in informatics is higher than standard IT.
 Knowledge loss can cost up to three times annual salary
-(\citeproc{ref-massingham2018}{21},\citeproc{ref-oracle2024}{35}). With
+(\citeproc{ref-massingham2018}{24},\citeproc{ref-oracle2024}{41}). With
 30\% of new employees leaving within their first year
-(\citeproc{ref-nsi2025}{36}), healthcare IT professionals spend a
+(\citeproc{ref-nsi2025}{16}), healthcare IT professionals spend a
 limited portion of their employment at full productivity, as specialized
 roles require 18-24 months to reach fluency
-(\citeproc{ref-ledikwe2013}{14},\citeproc{ref-konrad2022}{37}). This
+(\citeproc{ref-ledikwe2013}{13},\citeproc{ref-konrad2022}{21}). This
 ``revolving door'' prevents the accumulation of the ``Collective
 Knowledge Structures'' required for complex task performance
 (\citeproc{ref-rao2006}{11}).
 
-\subsubsection{Pillar 3: Technical Enablement
+The workforce crisis operates at multiple reinforcing levels. At the
+strategic level, 53\% of healthcare CIOs have tenures of less than three
+years (\citeproc{ref-wittkieffer2024}{5}), producing recurring shifts in
+analytics strategy that destabilize long-term initiatives. At the
+operational level, 79\% of provider organizations report persistent
+shortages in digital health roles
+(\citeproc{ref-himssworkforce2024}{6}). At the foundational level, 55\%
+of public health informatics specialists intend to leave their positions
+(\citeproc{ref-rajamani2025}{7}), draining the specialized talent needed
+to maintain analytics infrastructure. This multi-level instability
+directly undermines the SECI Socialization mode discussed in the
+Theoretical Grounding section: sustained mentorship requires temporal
+overlap between experienced practitioners and newcomers, yet the
+revolving door at every organizational tier ensures that overlap rarely
+materializes. A foundational 2004 study established that healthcare IT
+staff had the lowest expected tenure for new hires among all IT sectors
+at just 2.9 years (\citeproc{ref-ang2004}{15}). That this two-decade-old
+benchmark remains a primary reference point is itself evidence of the
+crisis: the field has lacked the stability even to systematically track
+its own attrition over the intervening decades.
+
+\subsection{Pillar 3: Technical Enablement
 Evidence}\label{pillar-3-technical-enablement-evidence}
 
 NL2SQL has reached a productivity tipping point. Natural language
 interfaces report a 63\% increase in self-service adoption and 37\%
-reduction in retrieval time (\citeproc{ref-dadi2025}{38}). Precision
+reduction in retrieval time (\citeproc{ref-dadi2025}{42}). Precision
 medicine platforms achieve 92.5\% accuracy in parsing complex queries
-(\citeproc{ref-yang2025}{39}). While current models are ``not yet
+(\citeproc{ref-yang2025}{43}). While current models are ``not yet
 sufficiently accurate for unsupervised use''
-(\citeproc{ref-ziletti2024}{27}), domain-adapted systems like MedT5SQL
-reach 80\% accuracy on benchmarks (\citeproc{ref-marshan2024}{40}).
+(\citeproc{ref-ziletti2024}{29}), domain-adapted systems like MedT5SQL
+reach 80\% accuracy on benchmarks (\citeproc{ref-marshan2024}{44}).
 These tools function as the ``externalization engine'' required for the
 HiL-SG framework.
 
-\subsection{Analytics Resilience Index
-(ARI)}\label{analytics-resilience-index-ari}
+However, NL2SQL is an enabler, not a solution in itself. Its deeper
+significance lies in the organizational prerequisites it demands. For an
+AI system to translate a natural language question into a correct SQL
+query, the organization must first establish validated data models,
+explicit business logic definitions, and codified domain terminology
+(\citeproc{ref-gal2019}{2},\citeproc{ref-zhang2024}{3}). In other words,
+the technology forces organizational discipline as a precondition for
+functioning, making it a governance forcing function even before
+considering the query results. This reframes NL2SQL from a convenience
+tool into a catalyst for the kind of systematic knowledge
+externalization that the HiL-SG framework requires. The interface
+bridges the semantic gap between clinical experts and technical schema,
+allowing non-technical domain experts to interact with data alongside
+broader modernization efforts
+(\citeproc{ref-anthropic2025}{45}--\citeproc{ref-arora2025}{48}). The
+technical barrier thus becomes, paradoxically, a governance opportunity:
+the very difficulty of making NL2SQL work correctly compels
+organizations to surface and formalize the tacit knowledge that would
+otherwise remain trapped in departing experts.
+
+\section{The Analytics Resilience
+Index}\label{the-analytics-resilience-index}
 
 To measure success, we propose the \textbf{Analytics Resilience Index
 (ARI)}, replacing static checklists with dynamic resilience metrics.
 
+\subsection{Why Resilience, Not
+Maturity}\label{why-resilience-not-maturity}
+
+Existing maturity models such as the HIMSS Analytics Maturity Assessment
+Model (AMAM) assume linear progression through discrete stages and
+implicitly presuppose a stable workforce capable of sustaining each
+level once achieved
+(\citeproc{ref-himss2024}{1},\citeproc{ref-wang2018}{9}). In practice,
+this assumption is violated routinely. An organization that reaches AMAM
+Stage 5 but regresses to Stage 3 after the departure of two senior
+analysts has not failed to mature; it has failed to be \emph{resilient}.
+Static maturity scores capture a snapshot of peak capability but reveal
+nothing about the organization's ability to sustain that capability
+through disruption. The ARI addresses this gap by shifting the
+measurement focus from ``where you are'' to ``how far you fall when
+someone leaves.''
+
+\subsection{Operationalizing the ARI}\label{operationalizing-the-ari}
+
+Each ARI dimension (Table 1) can be scored on a Likert-type scale from 1
+(fragile) to 5 (antifragile). For example, the ``Knowledge Locus''
+dimension would be scored by surveying whether key analytical queries
+are documented in a shared, version-controlled repository (score 5) or
+known only to named individuals who could leave at any time (score 1).
+Similarly, ``Turnover Impact'' could be assessed through scenario
+exercises that simulate the departure of a critical team member and
+measure the time required to restore reporting capability. An aggregate
+ARI score across all dimensions provides a composite indicator of
+organizational resilience posture, enabling longitudinal tracking and
+cross-institutional benchmarking.
+
+Critically, the ARI complements rather than replaces AMAM. Where AMAM
+measures the sophistication of an organization's analytical capabilities
+at a point in time, the ARI measures the durability of those
+capabilities under workforce stress. An organization should aspire to
+high scores on both instruments: AMAM for capability and ARI for
+sustainability. Used together, they provide a two-dimensional view of
+analytics health that neither instrument offers alone.
+
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \caption{The Analytics Resilience Index (ARI).
 \label{tab:ari}}\tabularnewline
 \toprule\noalign{}
@@ -830,58 +989,124 @@ Evidence
 \endlastfoot
 \textbf{Knowledge Locus} & Knowledge resides in ``Hero'' analysts. &
 Knowledge resides in the System/Repository. &
-(\citeproc{ref-hong2025}{4},\citeproc{ref-benbya2004}{29}) \\
+(\citeproc{ref-hong2025}{4},\citeproc{ref-benbya2004}{31}) \\
 \textbf{Turnover Impact} & Departure of 1 staff member stops reporting.
 & Departure causes minimal disruption; successors inherit queries. &
-(\citeproc{ref-rao2006}{11},\citeproc{ref-massingham2018}{21}) \\
+(\citeproc{ref-rao2006}{11},\citeproc{ref-massingham2018}{24}) \\
 \textbf{Validation Mode} & Ad-hoc, email-based, ephemeral. & Systematic,
 artifact-based, durable (HiL-SG). &
-(\citeproc{ref-moore2018}{25},\citeproc{ref-mosqueirarey2023}{28}) \\
+(\citeproc{ref-moore2018}{27},\citeproc{ref-mosqueirarey2023}{30}) \\
 \textbf{Schema Coupling} & Hard-coded reports break on schema change. &
 Semantic layer adapts; CI/CD detects drift. &
-(\citeproc{ref-mannapur2025}{41},\citeproc{ref-battula2025}{42}) \\
+(\citeproc{ref-mannapur2025}{49},\citeproc{ref-battula2025}{50}) \\
 \end{longtable}
 
-\section{Discussion}\label{discussion}
-
-\subsection{The Validator Paradox and Standard
+\section{The Validator Paradox and Standard
 Work}\label{the-validator-paradox-and-standard-work}
 
-A critical criticism of HiL-SG is the \textbf{Validator Paradox}:
-\emph{If the experts are leaving, who is left to validate the AI?} We
-resolve this by reframing validation through Lean ``Standard Work''
-(\citeproc{ref-alukal2006}{43}). Validation is the establishment of the
-\emph{current known standard}. When an analyst validates a query, they
-act as a \textbf{Knowledge Ratchet} (\citeproc{ref-rao2006}{11}),
-preventing the organization from sliding back to zero. This aligns with
-UC Davis Health's success in moving from AMAM Stage 0 to 6 by
-establishing standardized ``S.M.A.R.T.'' definitions
-(\citeproc{ref-himss2025ucdavis}{44}).
+A critical objection to HiL-SG is circular: if the framework requires
+domain experts to validate AI-generated queries, and the core problem is
+that domain experts are leaving, then the framework fails precisely when
+it is most needed. This \textbf{Validator Paradox} represents the
+strongest counterargument to the approach proposed here, and addressing
+it requires moving beyond simplistic reassurance.
 
-\subsection{Safety: Cognitive Forcing
-Functions}\label{safety-cognitive-forcing-functions}
+The resolution draws on Lean management's concept of ``Standard Work''
+(\citeproc{ref-alukal2006}{51}). In this framing, validation is not the
+establishment of \emph{eternal truth} but the documentation of the
+\emph{current known standard}. Each time an analyst validates a query
+triple, they record the best available understanding of how a business
+question maps to a data operation at that moment in time. The validation
+is time-stamped and contextual, not permanent. Critically, as Alukal and
+Manos (\citeproc{ref-alukal2006}{51}) establish, standard work is the
+prerequisite for Kaizen (continuous improvement): without a documented
+baseline, there is no foundation to improve upon. Each validated query
+therefore establishes a floor, not a ceiling. When the next expert
+arrives (whether a seasoned veteran or a competent mid-career hire),
+they inherit a baseline and can refine it rather than reconstructing
+institutional knowledge from scratch.
 
-Automating analytics risks ``laundering hallucinations.'' HiL-SG
-mitigates this via \textbf{Cognitive Forcing Functions}
-(\citeproc{ref-ziletti2024}{27}). By requiring AI to explain logic
-\emph{before} results, we force the user to engage analytical thinking.
-User studies show this reduces error recovery time by 30-40 seconds
-(\citeproc{ref-ipeirotis2025}{45}).
+This mechanism functions as a \textbf{Knowledge Ratchet}
+(\citeproc{ref-rao2006}{11}). Each validated triple prevents regression
+below the last confirmed state. Even if a subsequent validator is less
+experienced than their predecessor, the organization cannot slide below
+the previously validated standard. The analogy to version control is
+instructive: each commit in a software repository preserves a known-good
+state, and future contributors can build upon it even if they
+occasionally introduce errors. The ratchet does not guarantee forward
+progress, but it does prevent catastrophic backsliding, which is the
+central failure mode of institutional amnesia.
 
-\subsection{Structural Barriers: Why the Problem
+Real-world evidence supports this mechanism. UC Davis Health moved from
+AMAM Stage 0 to Stage 6 by establishing standardized ``S.M.A.R.T.''
+definitions for its analytics metrics
+(\citeproc{ref-himss2025ucdavis}{52}). Those codified standards survived
+staff turnover precisely because they existed as organizational
+artifacts rather than as knowledge held solely by the individuals who
+created them. The HiL-SG validated query library serves an analogous
+function: it encodes analytical decisions into durable, retrievable
+structures that persist independent of any single analyst's tenure.
+
+However, the Validator Paradox is not fully resolved. There exists a
+minimum viable expertise threshold below which validation becomes
+meaningless. A junior analyst rubber-stamping AI-generated output
+without genuine comprehension provides no knowledge ratchet; the
+validation artifact exists, but its epistemic value is nil. Identifying
+this threshold, and understanding how organizational factors (training,
+supervision, query complexity) influence it, remains an open empirical
+question. Future work in this series (Paper 2) should measure this
+threshold via controlled hallucination injection studies, in which
+AI-generated queries containing deliberate errors are presented to
+validators of varying experience levels to determine the conditions
+under which validation ceases to be meaningful.
+
+\section{Safety as Cognitive Forcing}\label{safety-as-cognitive-forcing}
+
+HiL-SG is fundamentally a \textbf{safety mechanism}, not a productivity
+tool. The central risk of unsupervised AI in clinical analytics is what
+we term ``laundering hallucinations'': a plausible-sounding but
+factually incorrect query result that enters the decision pipeline
+undetected and influences clinical or operational choices. Because large
+language models generate fluent, confident output regardless of
+correctness, the absence of a structured validation step means that
+errors arrive dressed in the language of expertise, making them harder
+to catch than obviously malformed output.
+
+HiL-SG mitigates this risk through \textbf{Cognitive Forcing Functions}
+(\citeproc{ref-ziletti2024}{29}), a design pattern borrowed from
+clinical decision-making and safety engineering. By requiring the AI to
+explain its reasoning \emph{before} presenting results, the architecture
+forces the human validator into System 2 (analytical, deliberate)
+thinking rather than allowing System 1 (fast, heuristic) acceptance of
+superficially plausible output. User studies confirm the practical
+benefit: structured explanation reduces error recovery time by 30 to 40
+seconds compared to unstructured output review
+(\citeproc{ref-ipeirotis2025}{53}).
+
+The parallel to aviation safety is instructive. Checklists and mandatory
+call-outs transformed commercial aviation from a high-risk endeavor into
+one of the safest modes of transportation, not by eliminating human
+error but by creating procedural structures that surface errors before
+they propagate. HiL-SG applies the same principle to analytics: the
+mandatory validation step functions as an analytical ``call-out'' that
+interrupts the default path of uncritical acceptance. In this framing,
+the friction introduced by validation is not a cost; it is the mechanism
+of safety itself.
+
+\section{Structural Barriers: Why the Problem
 Persists}\label{structural-barriers-why-the-problem-persists}
 
 Failed standardization approaches (e.g., IBM Watson Health
-(\citeproc{ref-ibm2022}{46},\citeproc{ref-strickland2019}{47}), Haven
-(\citeproc{ref-lavito2021}{48},\citeproc{ref-acchiardo2021}{49}))
+(\citeproc{ref-ibm2022}{54},\citeproc{ref-strickland2019}{55}), Haven
+(\citeproc{ref-lavito2021}{56},\citeproc{ref-acchiardo2021}{57}))
 demonstrate that centralized models fail clinical reality. Metadata
 uncertainties and ``messy'' institution-specific business logic require
 localized solutions
-(\citeproc{ref-gal2019}{2},\citeproc{ref-yang2020}{50}). HiL-SG
+(\citeproc{ref-gal2019}{2},\citeproc{ref-yang2020}{58}). HiL-SG
 addresses this by capturing \emph{local} logic rather than enforcing
 \emph{global} standards.
 
-\subsection{Limitations}\label{limitations}
+\section{Limitations}\label{limitations}
 
 This work is a narrative, design science informed framework rather than
 a systematic review or multi-site empirical evaluation. The literature
@@ -893,9 +1118,8 @@ artifacts that require future implementation and validation in diverse
 health systems before their effectiveness and generalizability can be
 fully established.
 
-\section{Conclusion}\label{conclusion}
-
-\subsection{Strategic Implications}\label{strategic-implications}
+\section{Implications and Future
+Research}\label{implications-and-future-research}
 
 The crisis of Institutional Amnesia in healthcare requires a structural
 shift. As long as analytical maturity is tied to individual tenure,
@@ -968,7 +1192,7 @@ Structured Query Language
 
 \section{References}\label{references}
 
-\phantomsection\label{refs}
+\protect\phantomsection\label{refs}
 \begin{CSLReferences}{0}{1}
 \bibitem[\citeproctext]{ref-himss2024}
 \CSLLeftMargin{1. }%
@@ -1053,127 +1277,142 @@ data-driven medicine?} International Journal of Radiation Oncology,
 Biology, Physics {[}Internet{]}. 2016; Available from:
 \url{https://www.redjournal.org/article/S0360-3016(16)00260-1/fulltext}}
 
-\bibitem[\citeproctext]{ref-ang2004}
-\CSLLeftMargin{13. }%
-\CSLRightInline{Ang \&S S. {Turnover of information technology
-professionals: The effects of internal labor market strategies}. {ACM}
-{SIGMIS} Database: The {DATABASE} for Advances in Information Systems
-{[}Internet{]}. 2004; Available from:
-\url{https://dl.acm.org/doi/10.1145/1017114.1017118}}
-
 \bibitem[\citeproctext]{ref-ledikwe2013}
-\CSLLeftMargin{14. }%
+\CSLLeftMargin{13. }%
 \CSLRightInline{Ledikwe R J. H. {Establishing a health information
 workforce: Innovation for low- and middle-income countries}. Human
 Resources for Health {[}Internet{]}. 2013; Available from:
 \url{https://human-resources-health.biomedcentral.com/articles/10.1186/1478-4491-11-35}}
 
 \bibitem[\citeproctext]{ref-mantas2010}
-\CSLLeftMargin{15. }%
+\CSLLeftMargin{14. }%
 \CSLRightInline{Mantas A J. {Recommendations of the International
 Medical Informatics Association (IMIA) on education in biomedical and
 health informatics: First revision}. Methods of Information in Medicine
 {[}Internet{]}. 2010; Available from:
 \url{https://pubmed.ncbi.nlm.nih.gov/20054502/}}
 
-\bibitem[\citeproctext]{ref-tyndall2010}
+\bibitem[\citeproctext]{ref-ang2004}
+\CSLLeftMargin{15. }%
+\CSLRightInline{Ang \&S S. {Turnover of information technology
+professionals: The effects of internal labor market strategies}. {ACM}
+{SIGMIS} Database: The {DATABASE} for Advances in Information Systems
+{[}Internet{]}. 2004; Available from:
+\url{https://dl.acm.org/doi/10.1145/1017114.1017118}}
+
+\bibitem[\citeproctext]{ref-nsi2025}
 \CSLLeftMargin{16. }%
+\CSLRightInline{NSI Nursing Solutions. {2025 National Health Care
+Retention \& RN Staffing Report} {[}Internet{]}. NSI Nursing Solutions;
+2024. Available from:
+\url{https://www.nsinursingsolutions.com/documents/library/nsi_national_health_care_retention_report.pdf}}
+
+\bibitem[\citeproctext]{ref-tyndall2010}
+\CSLLeftMargin{17. }%
 \CSLRightInline{Tyndall J. {{AACODS} Checklist. Flinders University}
 {[}Internet{]}. 2010. Available from:
 \url{https://dspace.flinders.edu.au/jspui/bitstream/2328/3326/4/AACODS_Checklist.pdf}}
 
 \bibitem[\citeproctext]{ref-farnese2019}
-\CSLLeftMargin{17. }%
+\CSLLeftMargin{18. }%
 \CSLRightInline{Farnese B M. L. {Managing knowledge in organizations: A
 Nonaka's {SECI} model operationalization}. Frontiers in Psychology
 {[}Internet{]}. 2019; Available from:
 \url{https://www.frontiersin.org/articles/10.3389/fpsyg.2019.02730}}
 
 \bibitem[\citeproctext]{ref-bravorocca2023}
-\CSLLeftMargin{18. }%
+\CSLLeftMargin{19. }%
 \CSLRightInline{Bravo Rocca GJ. Human-on-the-loop continual learning
 {[}Internet{]} {[}PhD thesis{]}. Universitat Polit{è}cnica de Catalunya;
 2023. Available from:
 \url{https://www.tdx.cat/bitstream/handle/10803/695722/TGJBR1de1.pdf?sequence=1}}
 
+\bibitem[\citeproctext]{ref-foos2006}
+\CSLLeftMargin{20. }%
+\CSLRightInline{Foos S T. {Tacit knowledge transfer and the knowledge
+disconnect}. Journal of Knowledge Management {[}Internet{]}. 2006;
+Available from:
+\url{https://www.emerald.com/insight/content/doi/10.1108/13673270610650067/full/html}}
+
+\bibitem[\citeproctext]{ref-konrad2022}
+\CSLLeftMargin{21. }%
+\CSLRightInline{Konrad \&S I. {Exploring the potential of an {IT}
+capability in its bootstrap phase from a task driven onboarding
+perspective: Insights toward information infrastructure in healthcare}
+{[}Internet{]} {[}Master's thesis{]}. 2022. Available from:
+\url{https://www.diva-portal.org/smash/record.jsf?pid=diva2:1684142}}
+
 \bibitem[\citeproctext]{ref-wu2024}
-\CSLLeftMargin{19. }%
+\CSLLeftMargin{22. }%
 \CSLRightInline{Wu L F., Li L. {Worldwide prevalence and associated
 factors of nursing staff turnover: A systematic review and
 meta-analysis}. Nursing Open {[}Internet{]}. 2024;11:e2097. Available
 from: \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC10802134/}}
 
 \bibitem[\citeproctext]{ref-ren2024}
-\CSLLeftMargin{20. }%
+\CSLLeftMargin{23. }%
 \CSLRightInline{Ren W L. {Global prevalence of nurse turnover rates: A
 meta-analysis of 21 studies from 14 countries}. Journal of Nursing
 Management {[}Internet{]}. 2024; Available from:
 \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC11919231/}}
 
 \bibitem[\citeproctext]{ref-massingham2018}
-\CSLLeftMargin{21. }%
+\CSLLeftMargin{24. }%
 \CSLRightInline{Massingham PR. {Measuring the impact of knowledge loss:
 A longitudinal study}. Journal of Knowledge Management {[}Internet{]}.
 2018; Available from: \url{https://doi.org/10.1108/JKM-08-2016-0338}}
 
 \bibitem[\citeproctext]{ref-zhang2025}
-\CSLLeftMargin{22. }%
+\CSLLeftMargin{25. }%
 \CSLRightInline{Zhang D W. {{AI} challenges conventional knowledge
 management: Light the way for reframing {SECI} model and Ba theory}.
 Journal of Knowledge Management {[}Internet{]}. 2025; Available from:
 \url{https://www.emerald.com/insight/content/doi/10.1108/JKM-03-2024-0262/full/html}}
 
 \bibitem[\citeproctext]{ref-goffin2011}
-\CSLLeftMargin{23. }%
+\CSLLeftMargin{26. }%
 \CSLRightInline{Goffin \&K K. {Tacit knowledge, lessons learnt, and new
 product development}. Journal of Product Innovation Management
 {[}Internet{]}. 2011; Available from:
 \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-5885.2010.00798.x}}
 
-\bibitem[\citeproctext]{ref-foos2006}
-\CSLLeftMargin{24. }%
-\CSLRightInline{Foos S T. {Tacit knowledge transfer and the knowledge
-disconnect}. Journal of Knowledge Management {[}Internet{]}. 2006;
-Available from:
-\url{https://www.emerald.com/insight/content/doi/10.1108/13673270610650067/full/html}}
-
 \bibitem[\citeproctext]{ref-moore2018}
-\CSLLeftMargin{25. }%
-\CSLRightInline{Moore D et al. {ActiveNavigator: Toward real-time
+\CSLLeftMargin{27. }%
+\CSLRightInline{{Moore D et al.} {ActiveNavigator: Toward real-time
 knowledge capture and feedback in active learning spaces}. International
 Journal of Engineering Education {[}Internet{]}. 2018;34(2):1--12.
 Available from: \url{https://wendyju.com/publications/18_ijee3593.pdf}}
 
 \bibitem[\citeproctext]{ref-lee2023}
-\CSLLeftMargin{26. }%
-\CSLRightInline{Lee et al G. {EHRSQL: A practical text-to-SQL benchmark
-for electronic health records}. In: Proceedings of NeurIPS 2022
-{[}Internet{]}. 2023. Available from:
+\CSLLeftMargin{28. }%
+\CSLRightInline{{Lee et al G.} {EHRSQL: A practical text-to-SQL
+benchmark for electronic health records}. In: Proceedings of NeurIPS
+2022 {[}Internet{]}. 2023. Available from:
 \url{https://arxiv.org/abs/2301.07695}}
 
 \bibitem[\citeproctext]{ref-ziletti2024}
-\CSLLeftMargin{27. }%
+\CSLLeftMargin{29. }%
 \CSLRightInline{Ziletti \&D A. {Retrieval augmented text-to-SQL
 generation for epidemiological question answering using electronic
 health records}. {NAACL} 2024 Clinical {NLP} Workshop {[}Internet{]}.
 2024; Available from: \url{https://arxiv.org/abs/2403.09226}}
 
 \bibitem[\citeproctext]{ref-mosqueirarey2023}
-\CSLLeftMargin{28. }%
-\CSLRightInline{Mosqueira-Rey E et al. Human-in-the-loop machine
+\CSLLeftMargin{30. }%
+\CSLRightInline{{Mosqueira-Rey E et al.} Human-in-the-loop machine
 learning: A state of the art. Artificial Intelligence Review
 {[}Internet{]}. 2023;56:3005--54. Available from:
 \url{https://link.springer.com/content/pdf/10.1007/s10462-022-10246-w.pdf}}
 
 \bibitem[\citeproctext]{ref-benbya2004}
-\CSLLeftMargin{29. }%
+\CSLLeftMargin{31. }%
 \CSLRightInline{Benbya P H. {Corporate portal: A tool for knowledge
 management synchronization}. International Journal of Information
 Management {[}Internet{]}. 2004; Available from:
 \url{https://doi.org/10.1016/j.ijinfomgt.2003.12.012}}
 
 \bibitem[\citeproctext]{ref-whittaker2008}
-\CSLLeftMargin{30. }%
+\CSLLeftMargin{32. }%
 \CSLRightInline{Whittaker S, Hyland P, Wiley M. Design and evaluation of
 systems to support interaction capture and retrieval. Personal and
 Ubiquitous Computing {[}Internet{]}. 2008;12(3):197--209. Available
@@ -1181,19 +1420,19 @@ from:
 \url{https://www.academia.edu/download/41283190/Design_and_evaluation_of_systems_to_supp20160117-25708-98zc50.pdf}}
 
 \bibitem[\citeproctext]{ref-himss2024news}
-\CSLLeftMargin{31. }%
+\CSLLeftMargin{33. }%
 \CSLRightInline{Healthcare IT News. {HIMSS launches modernised Analytics
 Maturity Assessment Model} {[}Internet{]}. 2024. Available from:
 \url{https://www.healthcareitnews.com/news/asia/himss24-apac-adoption-model-analytics-maturity-gets-facelift}}
 
 \bibitem[\citeproctext]{ref-health2020}
-\CSLLeftMargin{32. }%
+\CSLLeftMargin{34. }%
 \CSLRightInline{Catalyst H. {The healthcare analytics adoption model: A
 roadmap to analytic maturity} {[}Internet{]}. 2020. Available from:
 \url{https://www.healthcatalyst.com/learn/insights/healthcare-analytics-adoption-model-roadmap-analytic-maturity}}
 
 \bibitem[\citeproctext]{ref-snowdon2024}
-\CSLLeftMargin{33. }%
+\CSLLeftMargin{35. }%
 \CSLRightInline{Snowdon H A., Wright A. {Digital maturity as a predictor
 of quality and safety outcomes in {US} hospitals: Cross-sectional
 observational study}. Journal of Medical Internet Research
@@ -1201,36 +1440,51 @@ observational study}. Journal of Medical Internet Research
 \url{https://www.jmir.org/2024/1/e56316}}
 
 \bibitem[\citeproctext]{ref-yang2021}
-\CSLLeftMargin{34. }%
-\CSLRightInline{Yang DX, Khera R, Miccio JA, Jairam V, et al.
+\CSLLeftMargin{36. }%
+\CSLRightInline{{Yang DX, Khera R, Miccio JA, Jairam V, et al.}
 {Prevalence of missing data in the national cancer database and
 association with overall survival}. JAMA Network Open {[}Internet{]}.
 2021;4(3):e211793. Available from:
 \url{https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2777777}}
 
+\bibitem[\citeproctext]{ref-latrella2024}
+\CSLLeftMargin{37. }%
+\CSLRightInline{Latrella \&B M. {Improving patient outcomes while
+reducing readmissions with data analytics}. Management in Healthcare
+{[}Internet{]}. 2024; Available from:
+\url{https://www.ingentaconnect.com/content/hsp/mih/2024/00000008/00000004/art00006}}
+
+\bibitem[\citeproctext]{ref-nashid2023}
+\CSLLeftMargin{38. }%
+\CSLRightInline{Nashid P S., Hossain MI. {Advanced Business Analytics in
+Healthcare: Enhancing Clinical Decision Support and Operational
+Efficiency}. Business and Social Sciences {[}Internet{]}.
+2023;1(1):1--8. Available from:
+\url{https://doi.org/10.25163/business.1110345}}
+
+\bibitem[\citeproctext]{ref-shahbaz2019}
+\CSLLeftMargin{39. }%
+\CSLRightInline{Shahbaz G M. {Investigating the adoption of big data
+analytics in healthcare: The moderating role of resistance to change}.
+Journal of Big Data {[}Internet{]}. 2019; Available from:
+\url{https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0170-y}}
+
+\bibitem[\citeproctext]{ref-kamble2019}
+\CSLLeftMargin{40. }%
+\CSLRightInline{Kamble G S. S. {A systematic perspective on the
+applications of big data analytics in healthcare management}.
+International Journal of Healthcare Management {[}Internet{]}. 2019;
+Available from:
+\url{https://www.tandfonline.com/doi/full/10.1080/20479700.2018.1531606}}
+
 \bibitem[\citeproctext]{ref-oracle2024}
-\CSLLeftMargin{35. }%
+\CSLLeftMargin{41. }%
 \CSLRightInline{Oracle. {The real cost of turnover in healthcare}
 {[}Internet{]}. 2024. Available from:
 \url{https://www.oracle.com/human-capital-management/cost-employee-turnover-healthcare/}}
 
-\bibitem[\citeproctext]{ref-nsi2025}
-\CSLLeftMargin{36. }%
-\CSLRightInline{NSI Nursing Solutions. {2025 National Health Care
-Retention \& RN Staffing Report} {[}Internet{]}. NSI Nursing Solutions;
-2024. Available from:
-\url{https://www.nsinursingsolutions.com/documents/library/nsi_national_health_care_retention_report.pdf}}
-
-\bibitem[\citeproctext]{ref-konrad2022}
-\CSLLeftMargin{37. }%
-\CSLRightInline{Konrad \&S I. {Exploring the potential of an {IT}
-capability in its bootstrap phase from a task driven onboarding
-perspective: Insights toward information infrastructure in healthcare}
-{[}Internet{]} {[}Master's thesis{]}. 2022. Available from:
-\url{https://www.diva-portal.org/smash/record.jsf?pid=diva2:1684142}}
-
 \bibitem[\citeproctext]{ref-dadi2025}
-\CSLLeftMargin{38. }%
+\CSLLeftMargin{42. }%
 \CSLRightInline{Dadi CB, Hoque MR, Ali MM, Ferdausi S, Fatema K, Hasan
 MR. {Natural Language Interfaces for Database Management: Bridging the
 Gap Between Users and Data through Conversational {AI}}. Journal of
@@ -1239,29 +1493,58 @@ Computer Science and Technology Studies {[}Internet{]}.
 \url{https://al-kindipublisher.com/index.php/jcsts/article/view/9694}}
 
 \bibitem[\citeproctext]{ref-yang2025}
-\CSLLeftMargin{39. }%
-\CSLRightInline{Yang EW, Waldrup B, et al. {Conversational Artificial
+\CSLLeftMargin{43. }%
+\CSLRightInline{{Yang EW, Waldrup B, et al.} {Conversational Artificial
 Intelligence for Integrating Social Determinants, Genomics, and Clinical
 Data in Precision Medicine: Development and Evaluation}. JMIR
 Bioinformatics and Digital Health {[}Internet{]}. 2025; Available from:
 \url{https://bioinform.jmir.org/2025/1/e63139}}
 
 \bibitem[\citeproctext]{ref-marshan2024}
-\CSLLeftMargin{40. }%
+\CSLLeftMargin{44. }%
 \CSLRightInline{Marshan A A. {MedT5SQL: a transformers-based large
 language model for text-to-SQL conversion in the healthcare domain}.
 Frontiers in Big Data {[}Internet{]}. 2024; Available from:
 \url{https://www.frontiersin.org/articles/10.3389/fdata.2024.1371680}}
 
+\bibitem[\citeproctext]{ref-anthropic2025}
+\CSLLeftMargin{45. }%
+\CSLRightInline{Anthropic. {Code modernization playbook: A practical
+guide to modernizing legacy systems with {AI}} {[}Internet{]}. 2025.
+Available from:
+\url{https://resources.anthropic.com/code-modernization-playbook}}
+
+\bibitem[\citeproctext]{ref-hendrix1978}
+\CSLLeftMargin{46. }%
+\CSLRightInline{Hendrix S G. G. {Developing a natural language interface
+to complex data}. {ACM} Transactions on Database Systems {[}Internet{]}.
+1978; Available from:
+\url{https://dl.acm.org/doi/abs/10.1145/320251.320253}}
+
+\bibitem[\citeproctext]{ref-ogunwole2023}
+\CSLLeftMargin{47. }%
+\CSLRightInline{Ogunwole \&O O. {Modernizing legacy systems: A scalable
+approach to next-generation data architectures and seamless
+integration}. International Journal of Multidisciplinary Research
+{[}Internet{]}. 2023; Available from:
+\url{https://www.allmultidisciplinaryjournal.com/uploads/archives/20250306182550_MGE-2025-2-018.1.pdf}}
+
+\bibitem[\citeproctext]{ref-arora2025}
+\CSLLeftMargin{48. }%
+\CSLRightInline{Arora A. {Challenges of Integrating Artificial
+Intelligence in Legacy Systems and Potential Solutions for Seamless
+Integration}. {SSRN} {[}Internet{]}. 2025; Available from:
+\url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5268176}}
+
 \bibitem[\citeproctext]{ref-mannapur2025}
-\CSLLeftMargin{41. }%
+\CSLLeftMargin{49. }%
 \CSLRightInline{Mannapur S. Understanding data drift and concept drift
 in machine learning systems. International Journal of Scientific
 Research {[}Internet{]}. 2025; Available from:
 \url{https://www.quantbeckman.com/api/v1/file/5b240742-bf0d-4f8c-a0f9-cb29fab42611.pdf}}
 
 \bibitem[\citeproctext]{ref-battula2025}
-\CSLLeftMargin{42. }%
+\CSLLeftMargin{50. }%
 \CSLRightInline{Battula SKY.
 \href{https://doi.org/10.63282/3050-9262.IJAIDSML-V6I4P130}{{Adaptive
 Data Quality Management for Multi-Cloud Healthcare Warehouses:
@@ -1270,56 +1553,56 @@ Journal of Artificial Intelligence, Data Science, and Machine Learning.
 2025;6(4):218--26. }
 
 \bibitem[\citeproctext]{ref-alukal2006}
-\CSLLeftMargin{43. }%
+\CSLLeftMargin{51. }%
 \CSLRightInline{Alukal VG, Manos A. Lean kaizen: A simplified approach
 to process improvement {[}Internet{]}. Milwaukee, WI: ASQ Quality Press;
 2006. Available from:
 \url{https://books.google.com/books?id=9uqiEAAAQBAJ}}
 
 \bibitem[\citeproctext]{ref-himss2025ucdavis}
-\CSLLeftMargin{44. }%
+\CSLLeftMargin{52. }%
 \CSLRightInline{HIMSS. {UC Davis Health: From Stage 0 to AI Heroes}
 {[}Internet{]}. Healthcare Information; Management Systems Society;
 2025. Available from:
 \url{https://pages.himss.org/LP-HA-Case-Study-UC-Davis.html}}
 
 \bibitem[\citeproctext]{ref-ipeirotis2025}
-\CSLLeftMargin{45. }%
+\CSLLeftMargin{53. }%
 \CSLRightInline{Ipeirotis \&Z P. {Natural Language Interfaces for
 Databases: What Do Users Think?} arXiv preprint arXiv:251114718
 {[}Internet{]}. 2025; Available from:
 \url{https://arxiv.org/abs/2511.14718}}
 
 \bibitem[\citeproctext]{ref-ibm2022}
-\CSLLeftMargin{46. }%
+\CSLLeftMargin{54. }%
 \CSLRightInline{IBM. {Francisco Partners to Acquire IBM's Healthcare
 Data and Analytics Assets}. {IBM} Newsroom {[}Internet{]}. 2022;
 Available from:
 \url{https://newsroom.ibm.com/2022-01-21-Francisco-Partners-to-Acquire-IBMs-Healthcare-Data-and-Analytics-Assets}}
 
 \bibitem[\citeproctext]{ref-strickland2019}
-\CSLLeftMargin{47. }%
+\CSLLeftMargin{55. }%
 \CSLRightInline{Strickland E. {IBM Watson, heal thyself: How IBM
 overpromised and underdelivered on AI health care}. IEEE Spectrum
 {[}Internet{]}. 2019;56(4):24--31. Available from:
 \url{https://ieeexplore.ieee.org/abstract/document/8678513/}}
 
 \bibitem[\citeproctext]{ref-lavito2021}
-\CSLLeftMargin{48. }%
+\CSLLeftMargin{56. }%
 \CSLRightInline{LaVito A. {Haven, the Amazon-Berkshire-JPMorgan venture
 to disrupt healthcare, is disbanding after 3 years}. {CNBC}
 {[}Internet{]}. 2021; Available from:
 \url{https://www.cnbc.com/2021/01/04/haven-the-amazon-berkshire-jpmorgan-venture-to-disrupt-healthcare-is-disbanding-after-3-years.html}}
 
 \bibitem[\citeproctext]{ref-acchiardo2021}
-\CSLLeftMargin{49. }%
+\CSLLeftMargin{57. }%
 \CSLRightInline{Acchiardo JM, Gunderman RB. {The Failure of Haven
 Healthcare: Lessons for Radiology Learners}. Academic Radiology
 {[}Internet{]}. 2021;28(7):1036--7. Available from:
 \url{https://www.academicradiology.org/article/S1076-6332(21)00140-9/abstract}}
 
 \bibitem[\citeproctext]{ref-yang2020}
-\CSLLeftMargin{50. }%
+\CSLLeftMargin{58. }%
 \CSLRightInline{Yang J, Chesbrough H, Hurmelinna-Laukkanen P. {The rise,
 fall, and resurrection of IBM Watson Health} {[}Internet{]}. University
 of Oulu; 2020. Available from:
