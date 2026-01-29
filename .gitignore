@@ -129,7 +129,8 @@ cabal.project.local~
 .gemini-state/
 
 # Local secrets
-secrets.toml
+# NOTE: secrets.toml is NOT ignored — it declares secret names only, not values.
+# Values are stored in the OS keyring via scripts/secrets_setup.py.
 node_modules/
 test.html
 test.md
