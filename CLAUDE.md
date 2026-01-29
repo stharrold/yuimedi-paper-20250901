@@ -74,6 +74,7 @@ uv run scripts/secrets_run.py uv run pytest
 ## Architecture
 
 - **Scripts (`scripts/`):** Python stdlib only, except `secrets_*.py` which use PEP 723 inline deps (`keyring`, `tomlkit`) auto-installed by `uv run`
+- **Upstream for `secrets_*.py`:** `../library/scripts/` — sync changes from there
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
 - **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
 - **Container:** `Containerfile` with Python 3.12, Pandoc 3.2, TeXLive, Node.js

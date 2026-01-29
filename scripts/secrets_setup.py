@@ -289,22 +289,20 @@ def setup_secret(service: str, name: str, is_optional: bool = False) -> bool:
     optional_tag = " (optional)" if is_optional else ""
 
     if existing:
-        print(f"{name}{optional_tag}: [exists]", end=" ")
+        print(f"{name}{optional_tag}: [exists]", end=" ", flush=True)
         response = input("Keep existing value? [Y/n]: ").strip().lower()
         if response in ("", "y", "yes"):
             print("  -> Kept existing value")
             return True
-    else:
-        print(f"{name}{optional_tag}: ", end="")
 
     if is_optional:
         # Use getpass for consistency and security (hides input)
-        response = getpass.getpass("Enter value (or press Enter to skip): ")
+        response = getpass.getpass(f"{name}{optional_tag} — Enter value (or press Enter to skip): ")
         if not response:
             print("  -> Skipped")
             return True  # Optional secrets can be skipped
     else:
-        response = getpass.getpass("Enter value: ")
+        response = getpass.getpass(f"{name}{optional_tag} — Enter value: ")
         if not response:
             print("  -> [FAIL] Required secret cannot be empty")
             return False
