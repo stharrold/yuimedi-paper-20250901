@@ -4,11 +4,11 @@
 """
 Validate JMIR Medical Informatics compliance for paper.md with pandoc-citeproc system.
 
-Checks:
-- Abstract structure (5 sections: Background, Objective, Methods, Results, Conclusions)
+Supports article types: original, review, viewpoint.
+
+Checks (all article types):
 - Abstract word count (max 450 words)
 - Keywords (5-10 required)
-- Main body structure (IMRD for Review articles)
 - Required end sections (Funding, Conflicts of Interest, Data Availability, etc.)
 - Generative AI disclosure in Acknowledgments
 - CSL configuration in metadata.yaml
@@ -16,11 +16,21 @@ Checks:
 - Figure format (PNG files)
 - Abbreviations section
 
+Checks (original/review only):
+- Abstract structure (5 sections: Background, Objective, Methods, Results, Conclusions)
+- Main body structure (IMRD)
+
+Checks (viewpoint only):
+- Abstract is a single flowing narrative (no structured headers)
+- No IMRD headers (Methods, Results, Discussion) as H1 sections
+- Body word count (max 5,000 words)
+
 Uses Python stdlib only - no external dependencies.
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -467,8 +477,178 @@ def validate_abbreviations_usage(content: str, config_path: Path | None = None) 
     return result
 
 
+def validate_viewpoint_abstract(content: str) -> dict:
+    """
+    Check that a Viewpoint abstract is a single flowing narrative without structured headers.
+
+    For Viewpoint articles, JMIR expects an unstructured abstract (no Background,
+    Objective, Methods, Results, Conclusions headers). Word count must be <= 450.
+
+    Args:
+        content: Full paper.md content including YAML frontmatter.
+
+    Returns:
+        dict with keys:
+            - valid (bool): True if abstract has no structured headers
+            - has_structured_headers (bool): True if structured headers found
+            - found_headers (list[str]): List of structured headers found
+            - word_count (int): Total words in abstract
+            - within_limit (bool): True if word_count <= 450
+            - error (str, optional): Error message if abstract not found
+    """
+    abstract_match = re.search(
+        r"^abstract:\s*\|\s*(.+?)^(?=\w+:|---)",
+        content,
+        re.DOTALL | re.MULTILINE,
+    )
+    if not abstract_match:
+        return {
+            "valid": False,
+            "error": "No abstract found",
+            "has_structured_headers": False,
+            "found_headers": [],
+            "word_count": 0,
+            "within_limit": False,
+        }
+
+    abstract = abstract_match.group(1)
+
+    # Check for structured headers that should NOT be present in a Viewpoint abstract
+    structured_headers = [
+        "**Background:**",
+        "**Objective:**",
+        "**Methods:**",
+        "**Results:**",
+        "**Conclusions:**",
+    ]
+    found_headers = [h for h in structured_headers if h in abstract]
+    has_structured = len(found_headers) > 0
+
+    # Count words (excluding any markdown formatting)
+    clean_text = re.sub(r"\*\*[^*]+\*\*:?", "", abstract)
+    word_count = len(clean_text.split())
+
+    return {
+        "valid": not has_structured and word_count <= 450,
+        "has_structured_headers": has_structured,
+        "found_headers": found_headers,
+        "word_count": word_count,
+        "within_limit": word_count <= 450,
+    }
+
+
+def validate_no_imrd_headers(content: str) -> dict:
+    """
+    Check that Viewpoint articles do NOT have IMRD H1 headers.
+
+    Viewpoint articles should not contain # Methods, # Results, or # Discussion
+    as level-1 headers. These are reserved for Original Research and Review articles.
+
+    Args:
+        content: Full paper.md content.
+
+    Returns:
+        dict with keys:
+            - valid (bool): True if no IMRD headers found (good for Viewpoint)
+            - forbidden_headers_found (list[str]): List of forbidden H1 headers found
+    """
+    forbidden_patterns = {
+        "Methods": r"^# (Methods?|Methodology)\s*$",
+        "Results": r"^# (Results?|Literature Review[^\n]*|Framework Development[^\n]*)\s*$",
+        "Discussion": r"^# Discussion\s*$",
+    }
+
+    found = []
+    for section, pattern in forbidden_patterns.items():
+        if re.search(pattern, content, re.MULTILINE):
+            found.append(section)
+
+    return {
+        "valid": len(found) == 0,
+        "forbidden_headers_found": found,
+    }
+
+
+def validate_word_count(content: str, max_words: int = 5000) -> dict:
+    """
+    Count words in the body text of the paper.
+
+    Body text is defined as content between the end of the YAML frontmatter (---)
+    and the # Acknowledgments section. Excludes YAML frontmatter and back matter.
+
+    Args:
+        content: Full paper.md content.
+        max_words: Maximum allowed word count (default 5000 for Viewpoint).
+
+    Returns:
+        dict with keys:
+            - valid (bool): True if word count <= max_words
+            - word_count (int): Number of words in the body
+            - max_words (int): The limit applied
+            - error (str, optional): Error message if body boundaries not found
+    """
+    # Find end of YAML frontmatter (second ---)
+    frontmatter_end = None
+    dash_count = 0
+    for match in re.finditer(r"^---\s*$", content, re.MULTILINE):
+        dash_count += 1
+        if dash_count == 2:
+            frontmatter_end = match.end()
+            break
+
+    if frontmatter_end is None:
+        return {
+            "valid": False,
+            "word_count": 0,
+            "max_words": max_words,
+            "error": "Could not find end of YAML frontmatter",
+        }
+
+    # Find start of Acknowledgments section
+    ack_match = re.search(r"^# Acknowledgments?\s*$", content, re.MULTILINE)
+    if ack_match:
+        body_end = ack_match.start()
+    else:
+        # If no Acknowledgments, use entire remainder
+        body_end = len(content)
+
+    body_text = content[frontmatter_end:body_end]
+
+    # Strip markdown formatting for word count
+    # Remove image references ![...](...){...}
+    body_text = re.sub(r"!\[.*?\]\(.*?\)(?:\{.*?\})?", "", body_text)
+    # Remove inline code
+    body_text = re.sub(r"`[^`]+`", "", body_text)
+    # Remove markdown links but keep text: [text](url) -> text
+    body_text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", body_text)
+    # Remove citation keys [@...]
+    body_text = re.sub(r"\[@[^\]]+\]", "", body_text)
+    # Remove markdown formatting characters
+    body_text = re.sub(r"[*#_>|]", "", body_text)
+
+    word_count = len(body_text.split())
+
+    return {
+        "valid": word_count <= max_words,
+        "word_count": word_count,
+        "max_words": max_words,
+    }
+
+
 def main() -> int:
     """Main entry point. Returns 0 if compliant, 1 otherwise."""
+    parser = argparse.ArgumentParser(
+        description="Validate JMIR Medical Informatics compliance for paper.md."
+    )
+    parser.add_argument(
+        "--article-type",
+        choices=["original", "review", "viewpoint"],
+        default="viewpoint",
+        help="Article type to validate against (default: viewpoint)",
+    )
+    args = parser.parse_args()
+    article_type: str = args.article_type
+
     paper_path = Path("paper.md")
     metadata_path = Path("metadata.yaml")
     base_path = Path(".")
@@ -485,31 +665,53 @@ def main() -> int:
     metadata_content = metadata_path.read_text()
 
     print("# JMIR Medical Informatics Compliance Report")
-    print("# (Pandoc-Citeproc Edition)")
+    print(f"# (Pandoc-Citeproc Edition, article type: {article_type})")
     print()
 
     all_valid = True
 
-    # Abstract validation
-    abstract = validate_abstract_structure(paper_content)
-    print("## Abstract")
-    if abstract.get("error"):
-        print(f"  ✗ Error: {abstract['error']}")
-        all_valid = False
-    else:
-        valid_str = "✓" if abstract["valid"] else "✗"
-        print(
-            f"  {valid_str} Structure: {'5 sections present' if abstract['valid'] else 'missing headers'}"
-        )
-        if not abstract["valid"]:
-            print(f"      Missing: {', '.join(abstract['missing_headers'])}")
+    # Abstract validation (article-type-dependent)
+    if article_type == "viewpoint":
+        vp_abstract = validate_viewpoint_abstract(paper_content)
+        print("## Abstract (Viewpoint)")
+        if vp_abstract.get("error"):
+            print(f"  ✗ Error: {vp_abstract['error']}")
             all_valid = False
+        else:
+            if vp_abstract["has_structured_headers"]:
+                print(
+                    "  ✗ Structure: found structured headers (Viewpoint requires flowing narrative)"
+                )
+                print(f"      Found: {', '.join(vp_abstract['found_headers'])}")
+                all_valid = False
+            else:
+                print("  ✓ Structure: flowing narrative (no structured headers)")
 
-        limit_str = "✓" if abstract["within_limit"] else "✗"
-        print(f"  {limit_str} Word count: {abstract['word_count']}/450")
-        if not abstract["within_limit"]:
+            limit_str = "✓" if vp_abstract["within_limit"] else "✗"
+            print(f"  {limit_str} Word count: {vp_abstract['word_count']}/450")
+            if not vp_abstract["within_limit"]:
+                all_valid = False
+        print()
+    else:
+        abstract = validate_abstract_structure(paper_content)
+        print("## Abstract")
+        if abstract.get("error"):
+            print(f"  ✗ Error: {abstract['error']}")
             all_valid = False
-    print()
+        else:
+            valid_str = "✓" if abstract["valid"] else "✗"
+            print(
+                f"  {valid_str} Structure: {'5 sections present' if abstract['valid'] else 'missing headers'}"
+            )
+            if not abstract["valid"]:
+                print(f"      Missing: {', '.join(abstract['missing_headers'])}")
+                all_valid = False
+
+            limit_str = "✓" if abstract["within_limit"] else "✗"
+            print(f"  {limit_str} Word count: {abstract['word_count']}/450")
+            if not abstract["within_limit"]:
+                all_valid = False
+        print()
 
     # Keywords validation
     keywords = validate_keywords(paper_content)
@@ -528,17 +730,41 @@ def main() -> int:
             all_valid = False
     print()
 
-    # IMRD Structure validation
-    imrd = validate_imrd_structure(paper_content)
-    print("## Main Body Structure (IMRD)")
-    imrd_str = "✓" if imrd["valid"] else "✗"
-    print(f"  {imrd_str} Structure: {'IMRD complete' if imrd['valid'] else 'incomplete'}")
-    if imrd["sections_found"]:
-        print(f"      Found: {', '.join(imrd['sections_found'])}")
-    if imrd["missing_sections"]:
-        print(f"      Missing: {', '.join(imrd['missing_sections'])}")
-        all_valid = False
-    print()
+    # Body structure validation (article-type-dependent)
+    if article_type == "viewpoint":
+        no_imrd = validate_no_imrd_headers(paper_content)
+        print("## Main Body Structure (Viewpoint)")
+        if no_imrd["valid"]:
+            print("  ✓ No forbidden IMRD headers (Methods, Results, Discussion)")
+        else:
+            print("  ✗ Found forbidden IMRD headers for Viewpoint article")
+            print(f"      Found: {', '.join(no_imrd['forbidden_headers_found'])}")
+            all_valid = False
+        print()
+
+        # Word count validation (Viewpoint-specific)
+        wc = validate_word_count(paper_content)
+        print("## Body Word Count (Viewpoint)")
+        if wc.get("error"):
+            print(f"  ✗ Error: {wc['error']}")
+            all_valid = False
+        else:
+            wc_str = "✓" if wc["valid"] else "✗"
+            print(f"  {wc_str} Word count: {wc['word_count']}/{wc['max_words']}")
+            if not wc["valid"]:
+                all_valid = False
+        print()
+    else:
+        imrd = validate_imrd_structure(paper_content)
+        print("## Main Body Structure (IMRD)")
+        imrd_str = "✓" if imrd["valid"] else "✗"
+        print(f"  {imrd_str} Structure: {'IMRD complete' if imrd['valid'] else 'incomplete'}")
+        if imrd["sections_found"]:
+            print(f"      Found: {', '.join(imrd['sections_found'])}")
+        if imrd["missing_sections"]:
+            print(f"      Missing: {', '.join(imrd['missing_sections'])}")
+            all_valid = False
+        print()
 
     # Required end sections
     sections = validate_required_sections(paper_content)
@@ -642,10 +868,10 @@ def main() -> int:
     # Overall compliance
     print("## Overall Compliance")
     if all_valid:
-        print("  ✓ COMPLIANT - Ready for JMIR submission")
+        print(f"  ✓ COMPLIANT - Ready for JMIR submission ({article_type})")
         return 0
     else:
-        print("  ✗ NON-COMPLIANT - See issues above")
+        print(f"  ✗ NON-COMPLIANT - See issues above ({article_type})")
         return 1
 
 
