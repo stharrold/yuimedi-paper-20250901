@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Documentation-focused academic research repository. Primary deliverable: `paper.md` — a Theoretical Framework / Viewpoint paper targeting JMIR Medical Informatics.
+Documentation-focused academic research repository. Primary deliverable: `paper.md`, a Theoretical Framework / Viewpoint paper targeting JMIR Medical Informatics.
 
 **Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Semantic Governance (HiL-SG).
 
@@ -12,7 +12,7 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 
 ## Essential Commands
 
-**Always use `uv run` to execute Python** — never bare `python` or `python3`. This ensures the correct venv and dependencies.
+**Always use `uv run` to execute Python** (never bare `python` or `python3`). This ensures the correct venv and dependencies.
 
 ```bash
 # Build paper (all formats)
@@ -29,9 +29,18 @@ uv run python scripts/validate_jmir_compliance.py --article-type viewpoint
 # Note: validator strips markdown artifacts; raw wc -w gives ~10% higher count
 cat paper.md | sed '1,/^---$/d' | sed '/^# Acknowledgments/,$d' | wc -w
 
+# Build artifacts: rebuild after any paper.md edit, then commit.
+# Pre-commit hooks fix trailing whitespace in generated HTML files,
+# so build artifact commits require two stages: first attempt triggers
+# hook fixes, then re-stage and commit.
+
 # GitHub CLI with secrets (injects GH_TOKEN from OS keyring)
+# IMPORTANT: Always use secrets_run.py for gh CLI. Bare `gh` lacks token permissions.
 uv run scripts/secrets_run.py gh issue list --label "P0"
 uv run scripts/secrets_run.py gh issue create --title "..."
+
+# PR inline review comments (not visible via `gh pr view --comments`):
+uv run scripts/secrets_run.py gh api repos/OWNER/REPO/pulls/PULL_NUMBER/comments
 ```
 
 ## Branch Strategy
@@ -47,7 +56,7 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 
 ## Writing Rules
 
-- **No em-dashes (—)**. Use commas, colons, semicolons, or parentheses instead.
+- **No em-dashes (—) in any file** (paper, scripts, docs). Use commas, colons, semicolons, or parentheses instead. Python strings use ASCII hyphens.
 - Citations use pandoc-citeproc: `[@key]`, multiple: `[@wu2024; @himss2024]`
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
 - Framework is **descriptive** (reveals interconnections), not **prescriptive** (recommends solutions)
@@ -74,14 +83,14 @@ uv run scripts/secrets_run.py uv run pytest
 - `scripts/secrets_setup.py` stores values in OS keyring interactively
 - `scripts/secrets_run.py` injects keyring values into env vars before running a command
 - Precedence: env var > keyring (local) | env var only (CI/container)
-- **Do not set `GITHUB_TOKEN` or `GH_TOKEN` globally in shell profiles** — use `secrets_run.py` instead
-- `secrets.toml` uses `GH_TOKEN` (not `GITHUB_TOKEN`) — this is what `gh` CLI checks first
+- **Do not set `GITHUB_TOKEN` or `GH_TOKEN` globally in shell profiles**; use `secrets_run.py` instead
+- `secrets.toml` uses `GH_TOKEN` (not `GITHUB_TOKEN`); this is what `gh` CLI checks first
 - After regenerating a GitHub fine-grained PAT, verify write access: `uv run scripts/secrets_run.py gh api --method PATCH repos/OWNER/REPO/issues/1 -f state=open`
 
 ## Architecture
 
 - **Scripts (`scripts/`):** Python stdlib only, except `secrets_*.py` which use PEP 723 inline deps (`keyring`, `tomlkit`) auto-installed by `uv run`
-- **Upstream for `secrets_*.py`:** `../library/scripts/` — sync changes from there
+- **Upstream for `secrets_*.py`:** `../library/scripts/` (sync changes from there)
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
 - **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
 - **Container:** `Containerfile` with Python 3.12, Pandoc 3.2, TeXLive, Node.js
@@ -103,4 +112,5 @@ uv run scripts/secrets_run.py uv run pytest
 | `cover-letter.md` | Resubmission cover letter for JMIR ms#91493 |
 | `docs/plans/` | Implementation plans (created per task) |
 | `ARCHIVED/20260115_JMIR-Submission/` | Original rejected submission (~12,730 words) |
+| `tests/test_validate_jmir_compliance.py` | Tests for JMIR validator (58 tests, covers Viewpoint + Original) |
 | `../library/` | Sibling repo: semantic search engine for academic papers (DuckDB, 23+ ingested papers) |
