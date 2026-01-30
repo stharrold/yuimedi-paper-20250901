@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Documentation-focused academic research repository. Primary deliverable: `paper.md` — a Theoretical Framework / Viewpoint paper targeting JMIR Medical Informatics.
+Documentation-focused academic research repository. Primary deliverable: `paper.md`, a Theoretical Framework / Viewpoint paper targeting JMIR Medical Informatics.
 
 **Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Semantic Governance (HiL-SG).
 
@@ -12,7 +12,7 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 
 ## Essential Commands
 
-**Always use `uv run` to execute Python** — never bare `python` or `python3`. This ensures the correct venv and dependencies.
+**Always use `uv run` to execute Python** (never bare `python` or `python3`). This ensures the correct venv and dependencies.
 
 ```bash
 # Build paper (all formats)
@@ -40,7 +40,7 @@ uv run scripts/secrets_run.py gh issue list --label "P0"
 uv run scripts/secrets_run.py gh issue create --title "..."
 
 # PR inline review comments (not visible via `gh pr view --comments`):
-uv run scripts/secrets_run.py gh api repos/stharrold/yuimedi-paper-20250901/pulls/N/comments
+uv run scripts/secrets_run.py gh api repos/OWNER/REPO/pulls/PULL_NUMBER/comments
 ```
 
 ## Branch Strategy
@@ -83,14 +83,14 @@ uv run scripts/secrets_run.py uv run pytest
 - `scripts/secrets_setup.py` stores values in OS keyring interactively
 - `scripts/secrets_run.py` injects keyring values into env vars before running a command
 - Precedence: env var > keyring (local) | env var only (CI/container)
-- **Do not set `GITHUB_TOKEN` or `GH_TOKEN` globally in shell profiles** — use `secrets_run.py` instead
-- `secrets.toml` uses `GH_TOKEN` (not `GITHUB_TOKEN`) — this is what `gh` CLI checks first
+- **Do not set `GITHUB_TOKEN` or `GH_TOKEN` globally in shell profiles**; use `secrets_run.py` instead
+- `secrets.toml` uses `GH_TOKEN` (not `GITHUB_TOKEN`); this is what `gh` CLI checks first
 - After regenerating a GitHub fine-grained PAT, verify write access: `uv run scripts/secrets_run.py gh api --method PATCH repos/OWNER/REPO/issues/1 -f state=open`
 
 ## Architecture
 
 - **Scripts (`scripts/`):** Python stdlib only, except `secrets_*.py` which use PEP 723 inline deps (`keyring`, `tomlkit`) auto-installed by `uv run`
-- **Upstream for `secrets_*.py`:** `../library/scripts/` — sync changes from there
+- **Upstream for `secrets_*.py`:** `../library/scripts/` (sync changes from there)
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
 - **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
 - **Container:** `Containerfile` with Python 3.12, Pandoc 3.2, TeXLive, Node.js
