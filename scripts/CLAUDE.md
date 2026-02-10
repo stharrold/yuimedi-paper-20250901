@@ -1,0 +1,69 @@
+---
+type: claude-context
+directory: scripts
+purpose: GitHub sync automation scripts using Python stdlib only
+parent: ../CLAUDE.md
+sibling_readme: README.md
+children:
+- ARCHIVED/CLAUDE.md
+---
+
+# Claude Code Context: scripts
+
+## Purpose
+
+Automation scripts for GitHub Issues synchronization. **All scripts use Python stdlib only** - no external dependencies.
+
+## Contents
+
+- `validate_references.py` - Reference validation for paper.md citations
+- `sync_github_todos.py` - Main GitHub Issues sync script
+- `sync_todos.sh` - Bash wrapper for sync script
+- `github_project_sync.sh` - GitHub project board sync
+- `SYNC_GUIDE.md` - Detailed sync documentation
+
+## Zero Dependencies Architecture
+
+**CRITICAL:** Scripts in this directory must use only Python stdlib, with one documented exception:
+
+```python
+# Allowed imports
+import sys, os, subprocess, json, pathlib, datetime, re, typing
+
+# NOT allowed
+import requests  # Use subprocess + curl instead
+import click     # Use argparse instead
+```
+
+**Exception:** `secrets_setup.py` and `secrets_run.py` use PEP 723 inline script
+dependencies (`keyring`, `tomlkit`) which are auto-installed by `uv run`. These
+scripts require OS keyring access which has no stdlib equivalent.
+
+## Usage
+
+```bash
+# Validate paper.md references
+python scripts/validate_references.py --all
+python scripts/validate_references.py --check-citations
+python scripts/validate_references.py --check-urls --verbose
+python scripts/validate_references.py --report
+
+# Run sync script
+python scripts/sync_github_todos.py
+
+# Or use bash wrapper
+./scripts/sync_todos.sh
+```
+
+## Related
+
+- **Parent**: [Root CLAUDE.md](../CLAUDE.md)
+- **Sibling**: [README.md](README.md)
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../CLAUDE.md](../CLAUDE.md)** - Parent directory: Root
+
+**Child Directories:**
+- **[ARCHIVED/CLAUDE.md](ARCHIVED/CLAUDE.md)** - Archived

@@ -90,7 +90,7 @@ npj_digital-medicine_*.pdf
 
 # (All figures now tracked - removed PNG exclusion)
 
-# Gemini state database files
+# Claude state database files
 .claude-state/*.duckdb
 
 # Haskell (original patterns kept for compatibility)
@@ -118,8 +118,8 @@ cabal.project.local~
 .HTF/
 .ghc.environment.*
 
-.gemini/settings.local.json
-.gemini/gha-creds-*.json
+.claude/settings.local.json
+.claude/gha-creds-*.json
 
 # Workflow system
 .claude-state/
@@ -127,6 +127,7 @@ cabal.project.local~
 *.duckdb.wal
 
 .gemini-state/
+.claude-state/
 
 # Local secrets
 # NOTE: secrets.toml is NOT ignored — it declares secret names only, not values.

@@ -1,0 +1,14 @@
+description = "Show v7x1 workflow overview and status"
+prompt = """
+# /workflow:status - v7x1 Workflow
+
+**Current State**: !{python3 .claude/skills/agentdb-state-manager/scripts/query_workflow_state.py}
+
+**Branch**: !{git branch --show-current}
+
+## Commands
+- `/workflow:v7x1_1-worktree "desc"` - Step 1
+- `/workflow:v7x1_2-integrate ["branch"]` - Step 2
+- `/workflow:v7x1_3-release` - Step 3
+- `/workflow:v7x1_4-backmerge` - Step 4
+"""

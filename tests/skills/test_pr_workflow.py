@@ -13,8 +13,8 @@ from pathlib import Path
 
 # Add skills script directories to sys.path
 _root = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(_root / ".gemini" / "skills" / "workflow-utilities" / "scripts"))
-sys.path.insert(0, str(_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts"))
+sys.path.insert(0, str(_root / ".claude" / "skills" / "workflow-utilities" / "scripts"))
+sys.path.insert(0, str(_root / ".claude" / "skills" / "git-workflow-manager" / "scripts"))
 
 from unittest.mock import MagicMock, patch  # noqa: E402
 

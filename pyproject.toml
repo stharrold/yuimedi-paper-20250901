@@ -41,7 +41,7 @@ dependencies = [
     "duckdb>=1.4.2",
     "psycopg[binary]>=3.3.2",
     "pgvector>=0.4.2",
-    "google-genai>=0.3.0",
+    "anthropic>=0.40.0",
 ]
 
 [project.optional-dependencies]
@@ -58,7 +58,7 @@ workflow = [
     "duckdb>=1.4.0",  # Required for agentdb-state-manager workflow skill
 ]
 ai = [
-    "google-generativeai>=0.8.6",  # Gemini API for AI-powered analysis
+    "anthropic>=0.40.0",  # Claude API for AI-powered analysis
 ]
 export = [
     "python-docx>=0.8.11",  # Word export
