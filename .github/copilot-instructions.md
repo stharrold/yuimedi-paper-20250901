@@ -1,18 +1,18 @@
 ---
-type: gemini-context
+type: claude-context
 directory: .
 purpose: Research paper on YuiQuery healthcare analytics - documentation-only repository
 parent: null
 sibling_readme: README.md
 children:
-  - .gemini/GEMINI.md
-  - docs/GEMINI.md
-  - tests/GEMINI.md
+  - .claude/CLAUDE.md
+  - docs/CLAUDE.md
+  - tests/CLAUDE.md
 ---
 
-# GEMINI.md
+# CLAUDE.md
 
-This file provides guidance to Gemini Code (gemini.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
@@ -60,8 +60,8 @@ uv run pytest -m "not integration"         # Skip integration tests (pre-push de
 
 # Skills coverage (targeted modules)
 uv run pytest tests/skills/ \
-  --cov=.gemini/skills/git-workflow-manager/scripts \
-  --cov=.gemini/skills/workflow-utilities/scripts/vcs \
+  --cov=.claude/skills/git-workflow-manager/scripts \
+  --cov=.claude/skills/workflow-utilities/scripts/vcs \
   --cov-report=term
 
 # Task management
@@ -88,7 +88,7 @@ uv run pre-commit run --all-files
 Hooks run automatically on commit:
 - trailing whitespace, YAML/JSON validation
 - ruff linting/formatting (v0.14.8)
-- GEMINI.md frontmatter check
+- CLAUDE.md frontmatter check
 - skill structure validation
 - **SPDX license headers** - Validates Apache 2.0 headers on all Python files
 
@@ -111,7 +111,7 @@ uv run pytest -m "not integration and not benchmark"  # Exclude slow tests (defa
 
 ## v6 Workflow (feature-dev)
 
-Streamlined 4-phase workflow using Gemini's feature-dev plugin:
+Streamlined 4-phase workflow using Claude Code's feature-dev plugin:
 
 ```
 /worktree "feature description"
@@ -158,7 +158,7 @@ main (production) ← develop (integration) ← contrib/stharrold (active) ← f
 | `main` | No | PRs only |
 | `release/*` | Ephemeral | `/release` creates, `/backmerge` deletes |
 
-### Skills System (6 skills in `.gemini/skills/`)
+### Skills System (6 skills in `.claude/skills/`)
 
 | Skill | Purpose |
 |-------|---------|
@@ -186,7 +186,7 @@ docs/research/ → docs/guides/ → docs/archived/
 Use conventional commits format:
 - `fix(paper):` - Reference or content fixes
 - `feat(ci):` - New CI/CD features
-- `docs(GEMINI.md):` - Documentation updates
+- `docs(CLAUDE.md):` - Documentation updates
 - `build:` - Build/artifact changes
 
 Include `Closes #<issue>` in commit body to auto-close GitHub issues.
@@ -208,7 +208,7 @@ Include `Closes #<issue>` in commit body to auto-close GitHub issues.
 **Clean Architecture Layers:**
 1. **Domain (innermost):** Paper, Review, DOI entities; no external dependencies
 2. **Application:** SearchPapers, AnalyzeThemes, GenerateSynthesis use cases; port interfaces
-3. **Infrastructure:** Crossref, PubMed, ArXiv, SemanticScholar adapters; GeminiAnalyzer; JSONRepository
+3. **Infrastructure:** Crossref, PubMed, ArXiv, SemanticScholar adapters; ClaudeAnalyzer; JSONRepository
 4. **Interfaces (outermost):** CLI commands using Click framework
 
 **Key Features:**
@@ -287,7 +287,7 @@ podman-compose run --rm dev dot -Tpng figures/<name>.dot -o figures/<name>.dot.p
 
 **Excluded via .gitignore:**
 - `docs/references/*.pdf` - Downloaded reference PDFs (copyright, size)
-- `.gemini-state/*.duckdb` - Local database files
+- `.claude-state/*.duckdb` - Local database files
 
 ### Archiving
 Every directory uses local `ARCHIVED/` subdirectory for deprecated files.
@@ -350,23 +350,23 @@ All Python source files include SPDX headers:
 
 ```bash
 # Create feature worktree
-uv run python .gemini/skills/git-workflow-manager/scripts/create_worktree.py \
+uv run python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
   feature my-feature contrib/stharrold
 
 # Semantic version calculation
-uv run python .gemini/skills/git-workflow-manager/scripts/semantic_version.py develop v7x1.0
+uv run python .claude/skills/git-workflow-manager/scripts/semantic_version.py develop v7x1.0
 
 # Archive management
-uv run python .gemini/skills/workflow-utilities/scripts/archive_manager.py list
+uv run python .claude/skills/workflow-utilities/scripts/archive_manager.py list
 
 # Release workflow (develop → release → main)
-uv run python .gemini/skills/git-workflow-manager/scripts/release_workflow.py <step>
+uv run python .claude/skills/git-workflow-manager/scripts/release_workflow.py <step>
 # Steps: create-release, run-gates, pr-main, tag-release, full, status
 
 # Backmerge workflow (release → develop, rebase contrib)
 # Pattern: release/vX.Y.Z ──PR──> develop (direct, no intermediate branch)
 # Requires: release/* branch must exist when starting step 7
-uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py <step>
+uv run python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py <step>
 # Steps: pr-develop, rebase-contrib, cleanup-release, full, status
 
 # CRITICAL: Backmerge direction
@@ -374,7 +374,7 @@ uv run python .gemini/skills/git-workflow-manager/scripts/backmerge_workflow.py 
 # WRONG:   main -> develop (NEVER merge main to develop!)
 
 # Cleanup feature worktree and branches
-uv run python .gemini/skills/git-workflow-manager/scripts/cleanup_feature.py my-feature
+uv run python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py my-feature
 ```
 
 ## Workflow State Tracking (AgentDB)
@@ -383,10 +383,10 @@ Workflow state is tracked in AgentDB (DuckDB) instead of TODO*.md files:
 
 ```bash
 # Query current workflow phase
-uv run python .gemini/skills/agentdb-state-manager/scripts/query_workflow_state.py
+uv run python .claude/skills/agentdb-state-manager/scripts/query_workflow_state.py
 
 # Record workflow transition (called by slash commands)
-uv run python .gemini/skills/agentdb-state-manager/scripts/record_sync.py \
+uv run python .claude/skills/agentdb-state-manager/scripts/record_sync.py \
   --sync-type workflow_transition \
   --pattern v6_1_worktree \
   --source "contrib/stharrold" \
@@ -434,7 +434,7 @@ azure_devops:
   repository: "MyRepo"  # Optional, defaults to project name
 ```
 
-**VCS abstraction layer:** `.gemini/skills/workflow-utilities/scripts/vcs/`
+**VCS abstraction layer:** `.claude/skills/workflow-utilities/scripts/vcs/`
 - `provider.py` - Auto-detection from git remote
 - `github_adapter.py` - GitHub CLI operations
 - `azure_adapter.py` - Azure DevOps CLI operations
@@ -469,7 +469,7 @@ All Python files must use only ASCII characters (0x00-0x7F). No Unicode symbols.
 | `[warning]` | `[WARN]` | `format_warning()` |
 | `[arrow]` | `->` | `format_arrow()` |
 
-**Validation**: `uv run python .gemini/skills/workflow-utilities/scripts/check_ascii_only.py`
+**Validation**: `uv run python .claude/skills/workflow-utilities/scripts/check_ascii_only.py`
 
 **Pre-commit**: Enforced automatically via `ascii-only` hook.
 
@@ -514,23 +514,23 @@ All Python files require SPDX headers for Apache 2.0 compliance:
 # SPDX-License-Identifier: Apache-2.0
 ```
 
-**Validation**: `uv run python .gemini/skills/workflow-utilities/scripts/check_spdx_headers.py`
+**Validation**: `uv run python .claude/skills/workflow-utilities/scripts/check_spdx_headers.py`
 
 ## Worktree State Isolation
 
-Multiple Gemini Code instances can work on different features concurrently using git worktrees. Each worktree has isolated state in `.gemini-state/`:
+Multiple Claude Code instances can work on different features concurrently using git worktrees. Each worktree has isolated state in `.claude-state/`:
 
 ```
 repo/                         # Main repository
-├── .gemini/skills/          # Shared (read-only)
-├── .gemini-state/           # Per-worktree state
+├── .claude/skills/          # Shared (read-only)
+├── .claude-state/           # Per-worktree state
 │   ├── agentdb.duckdb       # Isolated database
 │   ├── workflow.json        # Workflow progress
 │   └── .worktree-id         # Stable identifier
 └── ...
 
 repo_feature_abc/            # Feature worktree
-├── .gemini-state/           # Separate state
+├── .claude-state/           # Separate state
 │   └── ...                  # Independent from main
 └── ...
 ```
@@ -557,10 +557,10 @@ repo_feature_abc/            # Feature worktree
 
 ```bash
 # Where am I in the workflow?
-uv run python .gemini/skills/agentdb-state-manager/scripts/query_workflow_state.py
+uv run python .claude/skills/agentdb-state-manager/scripts/query_workflow_state.py
 
 # Am I in the right context for this step?
-uv run python .gemini/skills/workflow-utilities/scripts/verify_workflow_context.py --step <N>
+uv run python .claude/skills/workflow-utilities/scripts/verify_workflow_context.py --step <N>
 
 # What branches exist?
 git branch -a | grep -E "(feature|release|contrib)"
@@ -635,14 +635,14 @@ This repository can bootstrap new projects with the full workflow system:
 
 ```bash
 # From any location with stharrold-templates available:
-python stharrold-templates/.gemini/skills/initialize-repository/scripts/initialize_repository.py \
+python stharrold-templates/.claude/skills/initialize-repository/scripts/initialize_repository.py \
   stharrold-templates /path/to/target-repo
 ```
 
 **Interactive 4-phase Q&A:**
 1. **Configuration** - Project name, description, VCS provider (GitHub/Azure DevOps)
 2. **Component selection** - Which skills to include
-3. **File generation** - Creates pyproject.toml, README.md, GEMINI.md, etc.
+3. **File generation** - Creates pyproject.toml, README.md, CLAUDE.md, etc.
 4. **Git initialization** - Sets up main/develop/contrib branch structure
 
 **Requirements for target repo:**
@@ -652,7 +652,7 @@ python stharrold-templates/.gemini/skills/initialize-repository/scripts/initiali
 - Podman for containerization
 - GitHub (`gh`) OR Azure DevOps (`az`) CLI
 
-**See:** `.gemini/skills/initialize-repository/GEMINI.md` for full documentation.
+**See:** `.claude/skills/initialize-repository/CLAUDE.md` for full documentation.
 
 ## Reference Documentation
 
@@ -662,17 +662,17 @@ python stharrold-templates/.gemini/skills/initialize-repository/scripts/initiali
 - `CHANGELOG.md` - Version history
 - `ARCHIVED/` - Archived specs, planning docs, and deprecated skills (zipped)
 
-## GEMINI.md Hierarchy
+## CLAUDE.md Hierarchy
 
-Every directory has a GEMINI.md with YAML frontmatter for AI navigation:
-- `parent` - Link to parent directory's GEMINI.md
-- `children` - Links to child directories' GEMINI.md files
+Every directory has a CLAUDE.md with YAML frontmatter for AI navigation:
+- `parent` - Link to parent directory's CLAUDE.md
+- `children` - Links to child directories' CLAUDE.md files
 - `sibling_readme` - Link to same-level README.md
 
 ```bash
-# Generate missing GEMINI.md files
-uv run python .gemini/skills/workflow-utilities/scripts/generate_gemini_md.py
+# Generate missing CLAUDE.md files
+uv run python .claude/skills/workflow-utilities/scripts/generate_claude_md.py
 
-# Update children references in existing GEMINI.md files
-uv run python .gemini/skills/workflow-utilities/scripts/update_gemini_md_refs.py
+# Update children references in existing CLAUDE.md files
+uv run python .claude/skills/workflow-utilities/scripts/update_claude_md_refs.py
 ```

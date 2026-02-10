@@ -2,14 +2,14 @@
 
 **Version:** 7.0.0
 **Date:** 2026-01-01
-**Architecture:** 4-phase workflow using built-in Gemini CLI tools
+**Architecture:** 4-phase workflow using built-in Claude Code tools
 
 ## Overview
 
 This repository uses a streamlined 4-phase workflow for Python development:
 - **Git-flow hybrid** with worktrees for isolation
-- **Built-in Gemini CLI tools** for planning, architecture, and implementation
-- **No separate manual quality gates** (Gemini Code Review automated via GitHub Actions)
+- **Built-in Claude Code tools** for planning, architecture, and implementation
+- **No separate manual quality gates** (Claude Code Review automated via GitHub Actions)
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ Required tools:
 - **uv** - Python package manager
 - **git** - Version control with worktree support
 - **Python 3.11+** - Language runtime
-- **Gemini Code** - AI development assistant
+- **Claude Code** - AI development assistant
 
 Verify prerequisites:
 ```bash
@@ -37,13 +37,13 @@ This repository provides a meta-skill to bootstrap other projects with this work
 
 ### From This Repository
 ```bash
-python .gemini/skills/initialize-repository/scripts/initialize_repository.py . /path/to/new-repo
+python .claude/skills/initialize-repository/scripts/initialize_repository.py . /path/to/new-repo
 ```
 
 ### From a Cloned Release
 If you have cloned `stharrold-templates` into a subdirectory (e.g., `.tmp/`):
 ```bash
-python .tmp/stharrold-templates/.gemini/skills/initialize-repository/scripts/apply_workflow.py .tmp/stharrold-templates .
+python .tmp/stharrold-templates/.claude/skills/initialize-repository/scripts/apply_workflow.py .tmp/stharrold-templates .
 ```
 
 ## v7x1 Workflow
@@ -78,15 +78,15 @@ Creates isolated git worktree for feature development.
 
 ### Step 2: Feature Implementation
 
-Run in the feature worktree (not main repo) using built-in Gemini CLI tools:
+Run in the feature worktree (not main repo) using built-in Claude Code tools:
 
 ```bash
 cd <worktree-path>
-# Then just chat with Gemini:
+# Then just chat with Claude Code:
 "Implement user authentication with JWT tokens"
 ```
 
-**Gemini handles:**
+**Claude Code handles:**
 - Understanding the codebase
 - Planning the implementation
 - Writing code and tests
@@ -166,10 +166,10 @@ feature/<timestamp>_<slug>    <- Isolated feature (worktree)
 
 | Aspect | v1-v6 | v7x1 |
 |--------|-------|-----|
-| Planning | BMAD documents + SpecKit specs | Built-in Gemini tools |
-| Quality gates | 5 separate gates | Gemini Code Review |
+| Planning | BMAD documents + SpecKit specs | Built-in Claude Code tools |
+| Quality gates | 5 separate gates | Claude Code Review |
 | Steps | 7 phases | 4 steps |
-| Artifacts | requirements.md, architecture.md, spec.md, plan.md | None (Gemini handles internally) |
+| Artifacts | requirements.md, architecture.md, spec.md, plan.md | None (Claude Code handles internally) |
 
 ## Skills System
 
@@ -189,6 +189,6 @@ feature/<timestamp>_<slug>    <- Isolated feature (worktree)
 
 ## Related Documentation
 
-- **[GEMINI.md](GEMINI.md)** - Main AI context file
+- **[CLAUDE.md](CLAUDE.md)** - Main AI context file
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture
 - **[CHANGELOG.md](CHANGELOG.md)** - Version history

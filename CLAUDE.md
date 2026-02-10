@@ -1,3 +1,25 @@
+---
+type: claude-context
+directory: .
+purpose: Root project context for yuimedi-paper-20250901 academic research repository.
+parent: null
+sibling_readme: README.md
+children:
+  - .claude/CLAUDE.md
+  - .github/CLAUDE.md
+  - ARCHIVED/CLAUDE.md
+  - compliance/CLAUDE.md
+  - config/CLAUDE.md
+  - docs/CLAUDE.md
+  - figures/CLAUDE.md
+  - lit_review/CLAUDE.md
+  - project-management/CLAUDE.md
+  - scripts/CLAUDE.md
+  - src/CLAUDE.md
+  - tests/CLAUDE.md
+  - tools/CLAUDE.md
+---
+
 # CLAUDE.md
 
 ## Project Overview
