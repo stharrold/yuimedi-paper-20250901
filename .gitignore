@@ -126,8 +126,6 @@ cabal.project.local~
 *.duckdb
 *.duckdb.wal
 
-.gemini-state/
-.claude-state/
 
 # Local secrets
 # NOTE: secrets.toml is NOT ignored — it declares secret names only, not values.

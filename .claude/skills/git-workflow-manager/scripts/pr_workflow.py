@@ -92,19 +92,24 @@ def return_to_editable_branch() -> bool:
 
 
 def run_quality_gates() -> bool:
-    """Run quality gates before PR."""
+    """Run quality gates before PR (tests, lint, format, type check)."""
     print("\n[Quality Gates] Running quality gates...")
-    script_path = Path(".claude/skills/quality-enforcer/scripts/run_quality_gates.py")
 
-    if not script_path.exists():
-        safe_print(format_warning("  Quality gates script not found, skipping"))
-        return True
+    gates = [
+        (["uv", "run", "pytest"], "tests"),
+        (["uv", "run", "ruff", "check", "."], "ruff check"),
+        (["uv", "run", "ruff", "format", "--check", "."], "ruff format"),
+    ]
 
-    result = subprocess.run(
-        ["podman-compose", "run", "--rm", "dev", "python", str(script_path)], check=False
-    )
+    for cmd, name in gates:
+        print(f"  Running {name}...")
+        result = subprocess.run(cmd, check=False, capture_output=True)
+        if result.returncode != 0:
+            safe_print(format_cross(f"  {name} failed"))
+            return False
+        safe_print(format_check(f"  {name} passed"))
 
-    return result.returncode == 0
+    return True
 
 
 def step_finish_feature() -> bool:

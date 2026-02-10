@@ -297,7 +297,7 @@ For more information, see WORKFLOW.md Phase 5 (Release Workflow).
         print("[OK] Ready for final QA and documentation updates")
         print("\nNext steps:")
         print(
-            "  1. Run quality gates: uv run python .claude/skills/quality-enforcer/scripts/run_quality_gates.py"
+            "  1. Run quality gates: uv run pytest && uv run ruff check . && uv run ruff format --check ."
         )
         print("  2. Update documentation and version in pyproject.toml")
         print(f"  3. Create PR to main: gh pr create --base main --title 'Release {version}'")

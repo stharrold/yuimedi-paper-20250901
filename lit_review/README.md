@@ -215,7 +215,7 @@ uv run academic-review delete TITLE --yes
 ### Environment Variables
 
 - `LIT_REVIEW_DATA_DIR` - Data storage location (default: `~/.lit_review`)
-- `ANTHROPIC_API_KEY` - Google AI API key for AI features (optional)
+- `ANTHROPIC_API_KEY` - Anthropic API key for Claude AI features (optional)
 - `PUBMED_EMAIL` - Email for PubMed API access (optional but recommended)
 
 ### Setup Example

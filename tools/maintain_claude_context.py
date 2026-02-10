@@ -16,7 +16,6 @@ IGNORE_DIRS = {
     ".ruff_cache",
     "__pycache__",
     ".claude-state",
-    ".claude-state",
 }
 
 
