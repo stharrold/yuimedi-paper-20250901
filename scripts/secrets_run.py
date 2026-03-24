@@ -5,49 +5,47 @@
 # ///
 # SPDX-FileCopyrightText: 2025 stharrold
 # SPDX-License-Identifier: Apache-2.0
-"""Injects secrets from OS keyring into environment, then runs a command.
+"""Universal secrets injector for cross-platform secret management.
 
-This is the ONE way to run commands that need secrets (e.g., gh CLI).
-Do NOT set GH_TOKEN or GITHUB_TOKEN in shell profiles. Use this script.
+This script injects secrets into the environment before running a command.
+It supports multiple secret sources with the following precedence:
 
-Precedence:
-    1. Environment variable already set -> use it (allows CI/container injection)
-    2. CI detected (GITHUB_ACTIONS, etc.) -> require env vars, skip keyring
-    3. Container detected (Docker/Podman) -> require env vars, skip keyring
-    4. Local development -> fetch from OS keyring
+1. Environment variable already set -> use it (allows external injection)
+2. CI detected -> require env vars, skip keyring
+3. Container detected -> require env vars, skip keyring
+4. Local development -> fetch from OS keyring
 
 Usage:
-    uv run scripts/secrets_run.py <command> [args...]
-    uv run scripts/secrets_run.py --root PATH <command> [args...]
+    uv run scripts/secrets_run.py [options] <command> [args...]
+    uv run scripts/secrets_run.py [options] --get-to-stdout SECRET_NAME
 
-Common patterns:
-    # GitHub issue operations
-    uv run scripts/secrets_run.py gh issue list --label "P0"
-    uv run scripts/secrets_run.py gh issue create --title "..." --label "paper-1" --body "..."
-    uv run scripts/secrets_run.py gh issue edit 123 --add-label "paper-1"
+Options:
+    --root PATH                Specify project root containing secrets.toml
+    --get-to-stdout SECRET_NAME  Print a single secret value to stdout (pipe-friendly)
 
-    # GitHub PR operations
-    uv run scripts/secrets_run.py gh pr create --base develop --head contrib/stharrold --fill
-    uv run scripts/secrets_run.py gh pr list
-
-    # GitHub API (REST)
-    uv run scripts/secrets_run.py gh api repos/stharrold/yuimedi-paper-20250901/issues/505
-
-    # Run tests with secrets available
+Example:
     uv run scripts/secrets_run.py uv run pytest
-
-Setup:
-    uv run scripts/secrets_setup.py          # First-time interactive setup
-    uv run scripts/secrets_setup.py --check  # Verify keyring has required secrets
+    uv run scripts/secrets_run.py --root ../project python main.py
+    uv run scripts/secrets_run.py --get-to-stdout API_KEY | pbcopy
+    export TOKEN=$(uv run scripts/secrets_run.py --get-to-stdout API_TOKEN)
 """
 
 from __future__ import annotations
 
+import importlib.util
 import os
 import subprocess
 import sys
 import tomllib
 from pathlib import Path
+
+# Import sibling module (works for both `uv run scripts/secrets_run.py` and `python -m scripts.secrets_run`)
+_env_utils_path = Path(__file__).parent / "environment_utils.py"
+_spec = importlib.util.spec_from_file_location("environment_utils", _env_utils_path)
+_env_utils = importlib.util.module_from_spec(_spec)  # type: ignore[arg-type]
+_spec.loader.exec_module(_env_utils)  # type: ignore[union-attr]
+is_ci = _env_utils.is_ci
+is_container = _env_utils.is_container
 
 # Lazy import keyring only when needed (CI/containers don't need it)
 keyring = None
@@ -95,16 +93,16 @@ def load_secrets_config(root_path: Path) -> dict:
     """
     config_path = root_path / "secrets.toml"
     if not config_path.exists():
-        print(f"[FAIL] secrets.toml not found at: {config_path}")
-        print()
-        print("Create a secrets.toml file at this location with a structure like:")
-        print()
-        print("[secrets]")
-        print('required = ["DB_PASSWORD", "API_KEY"]')
-        print('optional = ["ANALYTICS_TOKEN"]')
-        print()
-        print("[keyring]")
-        print('service = "your-service-name"')
+        print(f"[FAIL] secrets.toml not found at: {config_path}", file=sys.stderr)
+        print(file=sys.stderr)
+        print("Create a secrets.toml file at this location with a structure like:", file=sys.stderr)
+        print(file=sys.stderr)
+        print("[secrets]", file=sys.stderr)
+        print('required = ["DB_PASSWORD", "API_KEY"]', file=sys.stderr)
+        print('optional = ["ANALYTICS_TOKEN"]', file=sys.stderr)
+        print(file=sys.stderr)
+        print("[keyring]", file=sys.stderr)
+        print('service = "your-service-name"', file=sys.stderr)
         sys.exit(1)
 
     # Use Python 3.11+ stdlib tomllib for robust TOML parsing
@@ -116,53 +114,6 @@ def load_secrets_config(root_path: Path) -> dict:
         "optional": data.get("secrets", {}).get("optional", []),
         "service": data.get("keyring", {}).get("service", "default"),
     }
-
-
-def is_ci() -> bool:
-    """Detect if running in a CI environment.
-
-    Checks for common CI environment variables.
-    """
-    ci_vars = [
-        "CI",
-        "GITHUB_ACTIONS",
-        "GITLAB_CI",
-        "TF_BUILD",  # Azure DevOps
-        "JENKINS_URL",
-        "CIRCLECI",
-        "TRAVIS",
-        "BUILDKITE",
-        "DRONE",
-        "CODEBUILD_BUILD_ID",  # AWS CodeBuild
-    ]
-    return any(os.environ.get(var) for var in ci_vars)
-
-
-def is_container() -> bool:
-    """Detect if running inside a container.
-
-    Checks for Docker, Podman, and Kubernetes indicators.
-    """
-    # Docker
-    if Path("/.dockerenv").exists():
-        return True
-
-    # Podman
-    if Path("/run/.containerenv").exists():
-        return True
-
-    # Check cgroup for container indicators
-    cgroup_path = Path("/proc/1/cgroup")
-    if cgroup_path.exists():
-        try:
-            content = cgroup_path.read_text()
-            if "docker" in content or "kubepods" in content or "containerd" in content:
-                return True
-        except (OSError, PermissionError):
-            # Cannot read cgroup info (e.g., due to permissions), assume not in container
-            pass
-
-    return False
 
 
 def get_secret_from_keyring(service: str, name: str) -> str | None:
@@ -258,18 +209,58 @@ def inject_secrets(config: dict) -> tuple[list[str], list[str]]:
     return missing_required, missing_optional
 
 
+def get_secret_to_stdout(secret_name: str, root_path: Path) -> int:
+    """Print a single secret value to stdout.
+
+    All diagnostics go to stderr. Stdout contains only the raw secret value.
+
+    Args:
+        secret_name: Name of the secret to retrieve.
+        root_path: Project root directory containing secrets.toml.
+
+    Returns:
+        0 on success, 1 on failure.
+    """
+    config = load_secrets_config(root_path)
+
+    all_secrets = list(config["required"]) + list(config["optional"])
+    if secret_name not in all_secrets:
+        print(f"[FAIL] Secret '{secret_name}' is not defined in secrets.toml", file=sys.stderr)
+        return 1
+
+    in_ci = is_ci()
+    in_container = is_container()
+    service = config["service"]
+
+    env_type = "CI" if in_ci else ("container" if in_container else "local")
+    print(f"[INFO] Environment: {env_type}", file=sys.stderr)
+
+    value, source = resolve_secret(secret_name, service, in_ci, in_container)
+    if value is None:
+        print(f"[FAIL] {secret_name}: {source} (service: {service})", file=sys.stderr)
+        return 1
+
+    print(f"[OK] {secret_name}: loaded from {source}", file=sys.stderr)
+    sys.stdout.write(value)
+    return 0
+
+
 def print_usage() -> None:
     """Print usage information."""
     print("Usage: uv run scripts/secrets_run.py [options] <command> [args...]")
+    print("       uv run scripts/secrets_run.py [options] --get-to-stdout SECRET_NAME")
     print()
     print("Injects secrets from keyring/environment, then runs the command.")
     print()
     print("Options:")
-    print("  --root PATH    Specify project root containing secrets.toml")
+    print("  --root PATH                  Specify project root containing secrets.toml")
+    print("  --get-to-stdout SECRET_NAME  Print a single secret to stdout (pipe-friendly)")
     print()
     print("Examples:")
     print("  uv run scripts/secrets_run.py uv run pytest")
     print("  uv run scripts/secrets_run.py --root ../my-project python main.py")
+    print("  uv run scripts/secrets_run.py --get-to-stdout API_KEY | pbcopy")
+    print("  export TOKEN=$(uv run scripts/secrets_run.py --get-to-stdout API_TOKEN)")
     print()
     print("Setup (local development):")
     print("  uv run scripts/secrets_setup.py")
@@ -287,12 +278,27 @@ def main() -> int:
     # Parse --root flag manually before handing over to command
     # We only look at the start of args to avoid stealing flags from the wrapped command
     if len(args) > 0 and args[0] == "--root":
-        if len(args) > 1:
-            target_root = Path(args[1])
-            del args[0:2]  # Remove --root and value
-        else:
-            print("[FAIL] Usage: --root <path>")
+        try:
+            if len(args) > 1:
+                target_root = Path(args[1])
+                del args[0:2]  # Remove --root and value
+            else:
+                print("[FAIL] Usage: --root <path>")
+                return 1
+        except IndexError:
+            pass
+
+    # Check for --get-to-stdout mode
+    if len(args) > 0 and args[0] == "--get-to-stdout":
+        if len(args) < 2:
+            print("[FAIL] Usage: --get-to-stdout SECRET_NAME", file=sys.stderr)
             return 1
+        secret_name = args[1]
+        remaining = args[2:]
+        if remaining:
+            print("[FAIL] --get-to-stdout is mutually exclusive with command mode", file=sys.stderr)
+            return 1
+        return get_secret_to_stdout(secret_name, get_repo_root(target_root))
 
     if len(args) < 1:
         print_usage()

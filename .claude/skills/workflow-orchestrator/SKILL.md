@@ -21,6 +21,15 @@ description: |
   is high, then /init to reset before continuing workflow.
 ---
 
+## Quick Reference
+
+No executable scripts. This skill provides algorithmic guidance for:
+- Context detection (main repo vs worktree)
+- Phase determination and skill loading
+- Context management (checkpoint at 100K tokens)
+
+See SKILL.md body for decision trees and algorithms.
+
 # Workflow Orchestrator
 
 ## Purpose
@@ -250,7 +259,7 @@ print("✓ SpecKit specifications created")
 
 **Step 4.1:** Create PR from feature → contrib/<gh-user> (git-workflow-manager)
 
-**Step 4.2:** Reviewers add comments and conversations in GitHub/Azure DevOps web portal
+**Step 4.2:** Reviewers add comments and conversations in GitHub web portal
 
 **Step 4.3:** Handle PR Feedback via Work-Items (Optional)
 
@@ -295,18 +304,17 @@ result = subprocess.run([
 ```
 
 **What it does:**
-- Detects VCS provider (GitHub or Azure DevOps)
-- Fetches unresolved PR conversations (GitHub: `isResolved==false`, Azure: `status==active|pending`)
-- Creates work-items (GitHub issues or Azure DevOps tasks) with slug pattern `pr-{pr_number}-issue-{sequence}`
+- Fetches unresolved PR conversations via GitHub API (`isResolved==false`)
+- Creates work-items (GitHub issues) with slug pattern `pr-{pr_number}-issue-{sequence}`
 - Links work-items to original PR
 - Preserves conversation context (file, line, author, timestamps)
 
 **Benefits:**
 - Enables PR approval without blocking on follow-up work
 - Creates traceable lineage: PR → work-items → feature branches → new PRs
-- Compatible with all issue trackers (GitHub, Azure DevOps, others)
+- Uses GitHub Issues for tracking
 
-**Step 4.4:** User approves and merges PR in GitHub/Azure DevOps web portal
+**Step 4.4:** User approves and merges PR in GitHub web portal
 
 **Step 4.5:** Archive workflow and delete worktree
 

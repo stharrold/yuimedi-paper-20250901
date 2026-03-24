@@ -59,27 +59,28 @@ class TestGetCurrentBranch:
 
 
 class TestGetContribBranch:
-    """Test get_contrib_branch function."""
+    """Test get_contrib_branch function (delegates to vcs.operations with fallback=None)."""
 
     def test_returns_contrib_branch_format(self):
         """Test that contrib/username format is returned."""
-        with patch("release_workflow.run_cmd") as mock_run:
-            mock_run.return_value = MagicMock(stdout="testuser\n", returncode=0)
+        with patch("vcs.operations.get_username", return_value="testuser"):
             result = get_contrib_branch()
             assert result == "contrib/testuser"
 
     def test_raises_on_empty_username(self):
-        """Test that RuntimeError is raised when username is empty."""
-        with patch("release_workflow.run_cmd") as mock_run:
-            mock_run.return_value = MagicMock(stdout="", returncode=0)
-            with pytest.raises(RuntimeError, match="Failed to get GitHub username"):
+        """Test that RuntimeError is raised when username is empty.
+
+        release_workflow.get_contrib_branch calls _get_contrib_branch(fallback=None),
+        so an empty username causes RuntimeError.
+        """
+        with patch("vcs.operations.get_username", return_value=""):
+            with pytest.raises(RuntimeError, match="Failed to get VCS username"):
                 get_contrib_branch()
 
-    def test_raises_on_whitespace_only_username(self):
-        """Test that RuntimeError is raised when username is whitespace."""
-        with patch("release_workflow.run_cmd") as mock_run:
-            mock_run.return_value = MagicMock(stdout="   \n", returncode=0)
-            with pytest.raises(RuntimeError, match="Failed to get GitHub username"):
+    def test_raises_on_cli_failure(self):
+        """Test that RuntimeError is raised when VCS CLI fails."""
+        with patch("vcs.operations.get_username", side_effect=RuntimeError("CLI not found")):
+            with pytest.raises(RuntimeError):
                 get_contrib_branch()
 
 
@@ -304,26 +305,23 @@ class TestStepPrMain:
     def test_creates_pr_successfully(self):
         """Test that PR is created successfully."""
         with patch("release_workflow.get_current_branch", return_value="release/v1.6.0"):
-            with patch("release_workflow.run_cmd") as mock_run:
-                mock_run.return_value = MagicMock(returncode=0, stdout="", stderr="")
+            with patch("release_workflow.create_pr"):
                 result = step_pr_main()
                 assert result is True
 
     def test_returns_true_when_pr_exists(self):
         """Test that True is returned when PR already exists."""
         with patch("release_workflow.get_current_branch", return_value="release/v1.6.0"):
-            with patch("release_workflow.run_cmd") as mock_run:
-                mock_run.return_value = MagicMock(returncode=1, stdout="", stderr="already exists")
+            with patch("release_workflow.create_pr", side_effect=RuntimeError("already exists")):
                 result = step_pr_main()
                 assert result is True
 
     def test_returns_false_on_pr_creation_failure(self):
         """Test that False is returned when PR creation fails."""
         with patch("release_workflow.get_current_branch", return_value="release/v1.6.0"):
-            with patch("release_workflow.run_cmd") as mock_run:
-                mock_run.return_value = MagicMock(
-                    returncode=1, stdout="", stderr="error: permission denied"
-                )
+            with patch(
+                "release_workflow.create_pr", side_effect=RuntimeError("error: permission denied")
+            ):
                 result = step_pr_main()
                 assert result is False
 

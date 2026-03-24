@@ -2,19 +2,19 @@
 
 **Version:** 7.0.0
 **Date:** 2026-01-01
-**Architecture:** 4-phase workflow using built-in Claude Code tools
+**Architecture:** 4-phase workflow using Claude Code
 
 ## Overview
 
 This repository uses a streamlined 4-phase workflow for Python development:
 - **Git-flow hybrid** with worktrees for isolation
-- **Built-in Claude Code tools** for planning, architecture, and implementation
+- **Claude Code** for planning, architecture, and implementation
 - **No separate manual quality gates** (Claude Code Review automated via GitHub Actions)
 
 ## Prerequisites
 
 Required tools:
-- **VCS CLI** - GitHub (`gh`) OR Azure DevOps (`az`) for PR operations
+- **VCS CLI** - GitHub (`gh`) for PR operations
 - **uv** - Python package manager
 - **git** - Version control with worktree support
 - **Python 3.11+** - Language runtime
@@ -22,10 +22,8 @@ Required tools:
 
 Verify prerequisites:
 ```bash
-# VCS Provider (one of):
-gh auth status          # GitHub: Must be authenticated
-# OR
-az account show         # Azure DevOps: Must be logged in
+# GitHub CLI:
+gh auth status          # Must be authenticated
 
 uv --version            # Must be installed
 python3 --version       # Must be 3.11+
@@ -59,7 +57,7 @@ python .tmp/stharrold-templates/.claude/skills/initialize-repository/scripts/app
     | create release, PR to main, tag
     v
 /workflow:v7x1_4-backmerge
-    | PR release->develop, rebase contrib, cleanup
+    | PR release->develop, rebase contrib, manual cleanup
 ```
 
 ### Step 1: Create Worktree (`/workflow:v7x1_1-worktree`)
@@ -78,7 +76,7 @@ Creates isolated git worktree for feature development.
 
 ### Step 2: Feature Implementation
 
-Run in the feature worktree (not main repo) using built-in Claude Code tools:
+Run in the feature worktree (not main repo) using Claude Code:
 
 ```bash
 cd <worktree-path>
@@ -103,10 +101,10 @@ From main repo, after implementation is complete:
 ```
 
 **Two modes:**
-- **Full mode** (with branch arg): PR feature->contrib, cleanup worktree, PR contrib->develop
+- **Full mode** (with branch arg): PR feature->contrib, manual worktree cleanup, manual branch cleanup, PR contrib->develop
 - **Contrib-only mode** (no arg): PR contrib->develop only
 
-**Manual gates:** PRs require approval in GitHub/Azure DevOps UI.
+**Manual gates:** PRs require approval in GitHub UI.
 
 ### Step 4: Release (`/workflow:v7x1_3-release`)
 
@@ -133,7 +131,7 @@ Syncs release changes back:
 **Actions:**
 - PR release->develop (requires approval)
 - Rebases contrib on develop
-- Deletes release branch
+- Instructs manual deletion of release branch
 
 ## Branch Structure
 
@@ -160,11 +158,11 @@ feature/<timestamp>_<slug>    <- Isolated feature (worktree)
 - `feature/*` - Feature development
 
 **Ephemeral branches:**
-- `release/*` - Created in `/workflow:v7x1_3-release`, deleted in `/workflow:v7x1_4-backmerge`
+- `release/*` - Created in `/workflow:v7x1_3-release`, manually deleted after `/workflow:v7x1_4-backmerge`
 
-## Key Differences from v1-v6
+## Key Differences from v1-v7
 
-| Aspect | v1-v6 | v7x1 |
+| Aspect | v1-v7 | v7x1 |
 |--------|-------|-----|
 | Planning | BMAD documents + SpecKit specs | Built-in Claude Code tools |
 | Quality gates | 5 separate gates | Claude Code Review |
@@ -190,5 +188,4 @@ feature/<timestamp>_<slug>    <- Isolated feature (worktree)
 ## Related Documentation
 
 - **[CLAUDE.md](CLAUDE.md)** - Main AI context file
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture
 - **[CHANGELOG.md](CHANGELOG.md)** - Version history

@@ -308,14 +308,12 @@ def main():
         print("  Checking back-merge to develop...", file=sys.stderr)
         verify_commits_in_branch(release_branch, "develop")
 
-        # Step 3: Delete Branches
-        print("Deleting branches...", file=sys.stderr)
+        # Step 3: Instructions for branch deletion (Manual only)
+        print("Skipping automatic branch deletion (Manual only)...", file=sys.stderr)
 
-        print("  Deleting local branch...", file=sys.stderr)
-        delete_local_branch(release_branch)
-
-        print("  Deleting remote branch...", file=sys.stderr)
-        delete_remote_branch(release_branch)
+        print("\n[NOTE] To complete cleanup, manually delete branches:")
+        print(f"  git branch -d {release_branch}")
+        print(f"  git push origin --delete {release_branch}")
 
         # Step 4: Archive TODO File
         print("Archiving TODO file...", file=sys.stderr)
@@ -330,8 +328,7 @@ def main():
         print(f"\n[OK] Verified tag {version} exists")
         print("[OK] Verified tag on main branch")
         print("[OK] Verified back-merge to develop complete")
-        print(f"[OK] Deleted local branch: {release_branch}")
-        print(f"[OK] Deleted remote branch: origin/{release_branch}")
+        print(f"[NOTE] Manual branch deletion required for: {release_branch}")
 
         if todo_path:
             print(f"[OK] Archived: {todo_path.name}")

@@ -37,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Updated WORKFLOW.md to document pre-PR rebase pattern
 
 ### Fixed
-- **Back-merge PRs no longer require merge commits** - Identified during v1.9.0 release (PR #127)
+- **Back-merge PRs no longer require merge commits** - Identified during v1.9.0 release
   - Previous behavior: Created PR without rebasing, causing "branch out-of-date" warnings
   - New behavior: Rebases first, then creates PR with clean linear history
 

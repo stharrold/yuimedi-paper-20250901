@@ -25,6 +25,10 @@ import subprocess
 import sys
 from pathlib import Path
 
+# Add workflow-utilities to path for vcs
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"))
+from vcs import create_release
+
 # Constants with documented rationale
 VERSION_PATTERN = r"^v\d+\.\d+\.\d+$"
 # Rationale: Enforce semantic versioning (vMAJOR.MINOR.PATCH) for consistency
@@ -304,36 +308,18 @@ def verify_tag_pushed(version):
 
 def create_github_release(version):
     """
-    Create GitHub release using gh CLI (optional).
+    Create VCS release (e.g. GitHub release) using the vcs wrapper (optional).
 
     Args:
         version: Release version
 
     Returns:
-        GitHub release URL if successful, None if gh CLI unavailable
+        Release URL if successful, None if CLI unavailable or provider unsupported
     """
-    # Check if gh CLI is available
     try:
-        subprocess.run(["gh", "--version"], capture_output=True, check=True)
-    except (subprocess.CalledProcessError, FileNotFoundError):
-        print("Note: gh CLI not available, skipping GitHub release creation", file=sys.stderr)
-        return None
-
-    # Create GitHub release
-    try:
-        result = subprocess.run(
-            ["gh", "release", "create", version, "--generate-notes"],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-
-        # Extract URL from output
-        release_url = result.stdout.strip()
-        return release_url
-
-    except subprocess.CalledProcessError as e:
-        print(f"Warning: Failed to create GitHub release: {e.stderr.strip()}", file=sys.stderr)
+        return create_release(version)
+    except RuntimeError as e:
+        print(f"Warning: Failed to create release: {e}", file=sys.stderr)
         print(
             f"You can create it manually: gh release create {version} --generate-notes",
             file=sys.stderr,

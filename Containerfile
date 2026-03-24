@@ -1,69 +1,35 @@
 # Containerfile for yuimedi-paper-20250901
-# Python 3.12 + uv environment for development and CI/CD
+# Python 3.11 + uv environment for development and CI/CD
 #
 # Build:  podman build -t yuimedi-paper .
 # Run:    podman run --rm -v .:/app yuimedi-paper <command>
 # Shell:  podman run --rm -it -v .:/app yuimedi-paper bash
+#
+# Secrets Management:
+#   Secrets are detected via environment variables at runtime.
+#   The container auto-detects it's running in a container environment.
+#
+#   Podman (recommended - uses secrets store):
+#     podman run --secret db_pass,type=env,target=DB_PASSWORD \
+#                --secret api_key,type=env,target=API_KEY \
+#                -v .:/app stharrold-templates uv run scripts/run.py pytest
+#
+#   Docker/Podman (direct env vars):
+#     docker run -e DB_PASSWORD="$DB_PASSWORD" -e API_KEY="$API_KEY" \
+#                -v .:/app stharrold-templates uv run scripts/run.py pytest
+#
+#   See secrets.toml for required/optional secret definitions.
 
-FROM python:3.12-slim
+FROM python:3.11-slim
 
 LABEL maintainer="stharrold"
-LABEL description="YuiQuery research development environment with uv + Python 3.12"
+LABEL description="YuiQuery research development environment with uv + Python 3.11"
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
-    graphviz \
     && rm -rf /var/lib/apt/lists/*
-
-# Install GitHub CLI for workflow automation (gh pr, gh issue, etc.)
-RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
-        -o /usr/share/keyrings/githubcli-archive-keyring.gpg && \
-    chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
-        > /etc/apt/sources.list.d/github-cli.list && \
-    apt-get update && apt-get install -y --no-install-recommends gh && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install PDF generation dependencies (texlive)
-# Note: This adds ~450MB to the image size
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    texlive-xetex \
-    texlive-latex-extra \
-    texlive-fonts-recommended \
-    texlive-fonts-extra \
-    lmodern \
-    fonts-dejavu \
-    fonts-noto-core \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Pandoc (manual install for newer version)
-ENV PANDOC_VERSION=3.2
-RUN curl -fsSL -o /tmp/pandoc.tar.gz \
-    "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-linux-$(dpkg --print-architecture).tar.gz" && \
-    tar xzf /tmp/pandoc.tar.gz -C /tmp && \
-    mv /tmp/pandoc-${PANDOC_VERSION}/bin/pandoc /usr/local/bin/pandoc && \
-    rm -rf /tmp/pandoc*
-
-# Install Node.js and Chromium for Mermaid CLI diagram generation
-# Use system Chromium to avoid architecture issues with Puppeteer's bundled Chrome
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y --no-install-recommends nodejs chromium && \
-    rm -rf /var/lib/apt/lists/*
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-
-# Install Eisvogel template for academic PDF formatting
-# Pin to specific version for reproducibility and verify installation
-# Download to temp file first to handle GitHub redirects and verify download
-ENV EISVOGEL_VERSION=3.3.0
-RUN mkdir -p /root/.local/share/pandoc/templates && \
-    curl -fsSL -o /tmp/eisvogel.tar.gz \
-        "https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v${EISVOGEL_VERSION}/Eisvogel-${EISVOGEL_VERSION}.tar.gz" && \
-    tar xzf /tmp/eisvogel.tar.gz -C /root/.local/share/pandoc/templates --strip-components=1 && \
-    rm /tmp/eisvogel.tar.gz && \
-    test -f /root/.local/share/pandoc/templates/eisvogel.latex || (echo "Eisvogel template not found" && exit 1)
 
 # Install uv
 ENV UV_VERSION=0.5.5
@@ -74,11 +40,13 @@ ENV PATH="/root/.local/bin:$PATH"
 WORKDIR /app
 
 # Copy dependency files first (for layer caching)
-# LICENSE and README.md required by hatchling build backend
+# LICENSE and README.md are required because pyproject.toml references
+# license = {file = "LICENSE"} and readme = "README.md", and hatchling
+# validates these files exist during editable install
 COPY pyproject.toml uv.lock* LICENSE README.md ./
 
-# Install dependencies (including dev and workflow extras for full functionality)
-RUN uv sync --frozen --all-extras 2>/dev/null || uv sync --all-extras
+# Install dependencies
+RUN uv sync --frozen 2>/dev/null || uv sync
 
 # Copy project files
 COPY . .

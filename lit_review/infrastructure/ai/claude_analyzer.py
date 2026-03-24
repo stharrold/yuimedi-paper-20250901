@@ -190,8 +190,11 @@ Respond only with valid JSON using this structure:
             messages=[{"role": "user", "content": prompt}],
         )
 
-        # Parse response
-        content = response.content[0].text
+        # Parse response (filter for TextBlock from union type)
+        text_blocks = [block for block in response.content if hasattr(block, "text")]
+        if not text_blocks:
+            raise ValueError("Claude API returned no text content")
+        content = text_blocks[0].text
         if not content:
             raise ValueError("Claude API returned empty response")
         data = json.loads(content)
@@ -266,7 +269,10 @@ Generate a markdown-formatted synthesis that:
             messages=[{"role": "user", "content": prompt}],
         )
 
-        synthesis: str = str(response.content[0].text)
+        text_blocks = [block for block in response.content if hasattr(block, "text")]
+        if not text_blocks:
+            raise ValueError("Claude API returned no text content")
+        synthesis: str = str(text_blocks[0].text)
 
         # Cache result
         self._save_to_cache(cache_key, synthesis)

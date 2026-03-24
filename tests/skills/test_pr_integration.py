@@ -70,8 +70,9 @@ class TestFeatureToContribIntegration:
                 with patch("pr_workflow.run_quality_gates", return_value=True):
                     with patch("pr_workflow.run_cmd") as mock_run:
                         mock_run.return_value = MagicMock(returncode=0, stderr="")
-                        result = step_finish_feature()
-                        assert result is True
+                        with patch("pr_workflow.create_pr"):
+                            result = step_finish_feature()
+                            assert result is True
 
     def test_feature_to_contrib_quality_gates_failure(self):
         """Test that quality gate failure blocks PR creation."""
@@ -96,9 +97,10 @@ class TestContribToDevelopIntegration:
             with patch("pr_workflow.get_contrib_branch", return_value="contrib/user"):
                 with patch("pr_workflow.run_cmd") as mock_run:
                     mock_run.return_value = MagicMock(returncode=0, stderr="")
-                    with patch("pr_workflow.return_to_editable_branch", return_value=True):
-                        result = step_start_develop()
-                        assert result is True
+                    with patch("pr_workflow.create_pr"):
+                        with patch("pr_workflow.return_to_editable_branch", return_value=True):
+                            result = step_start_develop()
+                            assert result is True
 
     def test_contrib_to_develop_switches_branch(self):
         """Test that workflow switches to contrib branch if needed."""
@@ -108,13 +110,14 @@ class TestContribToDevelopIntegration:
             with patch("pr_workflow.get_contrib_branch", return_value="contrib/user"):
                 with patch("pr_workflow.run_cmd") as mock_run:
                     mock_run.return_value = MagicMock(returncode=0, stderr="")
-                    with patch("pr_workflow.return_to_editable_branch", return_value=True):
-                        step_start_develop()
-                        # Verify checkout was called
-                        checkout_calls = [
-                            c for c in mock_run.call_args_list if "checkout" in str(c)
-                        ]
-                        assert len(checkout_calls) > 0
+                    with patch("pr_workflow.create_pr"):
+                        with patch("pr_workflow.return_to_editable_branch", return_value=True):
+                            step_start_develop()
+                            # Verify checkout was called
+                            checkout_calls = [
+                                c for c in mock_run.call_args_list if "checkout" in str(c)
+                            ]
+                            assert len(checkout_calls) > 0
 
 
 @pytest.mark.integration
@@ -206,10 +209,9 @@ class TestBranchValidation:
 
     def test_contrib_branch_validation(self):
         """Test contrib branch name validation."""
-        from pr_workflow import get_contrib_branch
+        with patch("vcs.operations.get_username", return_value="testuser"):
+            from pr_workflow import get_contrib_branch
 
-        with patch("pr_workflow.run_cmd") as mock_run:
-            mock_run.return_value = MagicMock(stdout="testuser\n", returncode=0)
             branch = get_contrib_branch()
             assert branch == "contrib/testuser"
             assert branch.startswith("contrib/")

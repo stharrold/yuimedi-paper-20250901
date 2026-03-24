@@ -40,6 +40,9 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 # Build paper (all formats)
 ./scripts/build_paper.sh --format all
 
+# CLI tools (not in project deps)
+uv tool install yt-dlp                  # YouTube metadata/download
+
 # Quality checks (run before commits)
 uv run ruff format . && uv run ruff check --fix .
 uv run mypy scripts/ lit_review/
@@ -85,6 +88,14 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - Conversational AI is a "Governance Forcing Function," not the standalone solution
 - **JMIR Viewpoint format:** No "Methods" or "Results" H1 headers; unstructured abstract (≤450 words); body ≤5,000 words. See `standards/jmir_submission_article-types.md` lines 60-73.
 
+## Visual & Video Abstracts (AJE / Springer Nature Author Services)
+
+- **Visual abstract** (graphical abstract): Ticket #1144316, V2 delivered, revision requested 2026-03-23
+- **Video byte** (60-90s video): Ticket #1144097, approved and published 2026-02-25
+- YouTube: `q4sE4O9F9pU` (AJE Video Bytes channel), Vimeo: `1161046047` (Password: AJE_Healthcare)
+- Contact: support@as.springernature.com (Bhavik, Darshan J)
+- Framework is **descriptive** (reveals interconnections), not **prescriptive** (recommends solutions) -- enforce this in all communications
+
 ## Secrets Management
 
 Cross-platform secret injection via OS keyring (macOS Keychain, Windows Credential Locker, Linux SecretService). Chosen over `direnv` because `direnv` lacks native Windows/PowerShell support.
@@ -109,6 +120,12 @@ uv run scripts/secrets_run.py uv run pytest
 - `secrets.toml` uses `GH_TOKEN` (not `GITHUB_TOKEN`); this is what `gh` CLI checks first
 - After regenerating a GitHub fine-grained PAT, verify write access: `uv run scripts/secrets_run.py gh api --method PATCH repos/OWNER/REPO/issues/1 -f state=open`
 
+## Video Analysis
+
+- AJE video byte has no subtitle track; captions are burned into frames
+- Extract frames: `ffmpeg -i video.mp4 -vf "fps=0.5" -q:v 2 output/frame_%04d.jpg`
+- Read frames with Claude's multimodal capability to reconstruct narration transcript
+
 ## Architecture
 
 - **Scripts (`scripts/`):** Python stdlib only, except `secrets_*.py` which use PEP 723 inline deps (`keyring`, `tomlkit`) auto-installed by `uv run`
@@ -132,7 +149,9 @@ uv run scripts/secrets_run.py uv run pytest
 | `scripts/secrets_setup.py` | Interactive keyring setup for secrets |
 | `scripts/secrets_run.py` | Injects secrets from keyring before running commands |
 | `cover-letter.md` | Resubmission cover letter for JMIR ms#91493 |
+| `abstract-visual-video/` | AJE/Springer Nature deliverables: visual abstract, video byte, email correspondence, critical assessments |
 | `docs/plans/` | Implementation plans (created per task) |
 | `ARCHIVED/20260115_JMIR-Submission/` | Original rejected submission (~12,730 words) |
 | `tests/test_validate_jmir_compliance.py` | Tests for JMIR validator (58 tests, covers Viewpoint + Original) |
 | `../library/` | Sibling repo: semantic search engine for academic papers (DuckDB, 23+ ingested papers) |
+| `../yuimedi/` | Sibling repo: parent Yuimedi project (lead-gen, meeting notes in `20251212_Meeting_Paper-Conference-Review/`) |

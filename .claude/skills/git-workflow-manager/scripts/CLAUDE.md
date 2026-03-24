@@ -4,7 +4,8 @@ directory: .claude/skills/git-workflow-manager/scripts
 purpose: Executable Python scripts for this skill.
 parent: ../CLAUDE.md
 sibling_readme: null
-children: []
+children:
+  []
 ---
 
 # Claude Code Context: scripts

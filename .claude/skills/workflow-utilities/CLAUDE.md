@@ -42,11 +42,10 @@ Workflow Utilities provides **shared utilities** for all workflow skills. It inc
 │   ├── verify_workflow_context.py  # Workflow context validation + pending worktree detection
 │   ├── workflow_progress.py        # Workflow progress tracking
 │   ├── worktree_context.py         # Worktree state isolation
-│   ├── vcs/                        # VCS abstraction layer
-│   │   ├── provider.py             # VCS provider detection
-│   │   ├── github_adapter.py       # GitHub CLI adapter
-│   │   ├── azure_adapter.py        # Azure DevOps adapter
-│   │   └── ...
+│   ├── vcs/                        # VCS abstraction layer (GitHub + Azure DevOps)
+│   │   ├── provider.py             # VCS provider detection (auto-detect from remote URL)
+│   │   ├── operations.py           # Wrapper functions (create_pr, get_username, etc.)
+│   │   └── __init__.py
 │   └── __init__.py
 ├── SKILL.md                        # Complete skill documentation
 ├── CLAUDE.md                       # This file
@@ -296,7 +295,7 @@ python .claude/skills/workflow-utilities/scripts/create_skill.py my-new-skill
 8. Commits changes to current branch
 
 **Key features:**
-- Official docs integration (fetches from docs.claude.com)
+- Official docs integration (fetches from docs.anthropic.com)
 - Pattern comparison (local vs official)
 - Discrepancy alerts with citations
 - Complete file generation
@@ -340,45 +339,33 @@ python .claude/skills/workflow-utilities/scripts/sync_skill_docs.py \
 
 ### VCS Abstraction Layer (vcs/)
 
-**Purpose:** Provide unified interface for GitHub and Azure DevOps operations (PR creation, issue management)
+**Purpose:** Wrapper functions for GitHub (`gh`) and Azure DevOps (`az`) CLI operations
 
-**When to use:** When creating PRs, managing issues, or working with VCS providers
+**When to use:** When creating PRs, managing issues, releasing, or querying PR review threads
 
 **Key files:**
-- **provider.py** - Auto-detects VCS provider from git remote URL
-- **base_adapter.py** - Defines base adapter interface
-- **github_adapter.py** - GitHub CLI (gh) adapter
-- **azure_adapter.py** - Azure DevOps CLI (az) adapter
-- **config.py** - VCS configuration
+- **provider.py** - `VCSProvider` enum + `detect_provider()` (auto-detects from git remote URL, cached)
+- **operations.py** - 7 wrapper functions: `get_username`, `get_contrib_branch`, `create_pr`, `create_release`, `create_issue`, `query_pr_review_threads`, `check_auth`
 
 **Example usage (from git-workflow-manager):**
 ```python
-from .vcs.provider import detect_from_remote
-from .vcs.github_adapter import GitHubAdapter
-from .vcs.azure_adapter import AzureDevOpsAdapter
+from vcs import get_contrib_branch, create_pr
 
-# Auto-detect provider
-provider = detect_from_remote()
+branch = get_contrib_branch()  # auto-detects provider, returns "contrib/<username>"
 
-if provider == VCSProvider.GITHUB:
-    adapter = GitHubAdapter()
-elif provider == VCSProvider.AZURE_DEVOPS:
-    adapter = AzureDevOpsAdapter()
-
-# Create PR (unified interface)
-pr_url = adapter.create_pr(
+pr_url = create_pr(
+    base="develop",
+    head=branch,
     title="feat: auth system (v1.6.0)",
     body="PR body content",
-    source_branch="feature/20251103T143000Z_auth",
-    target_branch="contrib/stharrold"
 )
 ```
 
 **Key features:**
-- Auto-detection from git remote
-- Unified interface (GitHub/Azure DevOps)
-- CLI-based operations (gh/az)
-- Error handling with helpful messages
+- Auto-detects provider from `git remote.origin.url` (github.com / dev.azure.com)
+- Errors surfaced as `RuntimeError(stderr)` — callers inspect string contents (e.g. "already exists")
+- Module-level caching for provider detection
+- `get_contrib_branch(fallback=...)` consolidates 3 previous duplicate implementations
 
 ---
 
@@ -473,7 +460,7 @@ subprocess.run([
 
 ### VCS Operations (PR Creation)
 
-**Context:** User wants to create PR, need to detect VCS provider
+**Context:** User wants to create PR
 
 **User says:**
 - "Create PR"
@@ -488,31 +475,16 @@ import sys
 vcs_path = Path('.claude/skills/workflow-utilities/scripts')
 sys.path.insert(0, str(vcs_path))
 
-from vcs.provider import detect_from_remote, VCSProvider
-from vcs.github_adapter import GitHubAdapter
-from vcs.azure_adapter import AzureDevOpsAdapter
+from vcs import create_pr
 
-# Auto-detect provider
-provider = detect_from_remote()
+pr_url = create_pr(
+    base="contrib/stharrold",
+    head="feature/20251103T143000Z_auth",
+    title="feat: auth system (v1.6.0)",
+    body="PR body",
+)
 
-if provider == VCSProvider.GITHUB:
-    adapter = GitHubAdapter()
-    pr_url = adapter.create_pr(
-        title="feat: auth system (v1.6.0)",
-        body="PR body",
-        source_branch="feature/20251103T143000Z_auth",
-        target_branch="contrib/stharrold"
-    )
-elif provider == VCSProvider.AZURE_DEVOPS:
-    adapter = AzureDevOpsAdapter()
-    pr_url = adapter.create_pr(
-        title="feat: auth system (v1.6.0)",
-        body="PR body",
-        source_branch="feature/20251103T143000Z_auth",
-        target_branch="contrib/stharrold"
-    )
-
-print(f"✓ PR created: {pr_url}")
+print(f"PR created: {pr_url}")
 ```
 
 ---
@@ -586,8 +558,7 @@ directory/
 - ✅ Use sync_skill_docs.py after skill changes
 
 **VCS operations:**
-- ❌ Don't hardcode GitHub-specific commands
-- ✅ Use VCS abstraction layer for portability
+- ✅ Use VCS wrapper functions via `from vcs import create_pr, get_contrib_branch`
 
 ---
 
@@ -602,20 +573,13 @@ directory/
 **CLAUDE.md hierarchy:** Every directory has CLAUDE.md with parent/child refs
 - **Rationale:** AI navigation, context inheritance, documentation consistency
 
-**VCS abstraction:** Unified interface for GitHub/Azure DevOps
-- **Rationale:** Portability, maintainability, future-proof
+**VCS abstraction:** Wrapper functions for GitHub (`gh`) and Azure DevOps (`az`) CLIs
+- **Rationale:** Plain functions with provider branching; auto-detects from git remote URL
 
 **Semantic versioning:** `MAJOR.MINOR.PATCH`
 - **Rationale:** Industry standard, clear upgrade paths
 
 ---
-
-
-
-
-
-
-
 
 
 

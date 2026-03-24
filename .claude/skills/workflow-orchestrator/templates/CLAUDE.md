@@ -4,7 +4,8 @@ directory: .claude/skills/workflow-orchestrator/templates
 purpose: Markdown and code templates for this skill.
 parent: ../CLAUDE.md
 sibling_readme: null
-children: []
+children:
+  []
 ---
 
 # Claude Code Context: templates
