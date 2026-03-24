@@ -66,6 +66,12 @@ uv run scripts/secrets_run.py gh issue create --title "..."
 
 # PR inline review comments (not visible via `gh pr view --comments`):
 uv run scripts/secrets_run.py gh api repos/OWNER/REPO/pulls/PULL_NUMBER/comments
+
+# Container testing (catches issues local pytest misses)
+podman machine start                    # Start podman VM (macOS)
+podman build -t yuimedi-paper -f Containerfile .
+podman run --rm --security-opt label=disable -v "$(pwd)":/app yuimedi-paper uv run pytest -m "not integration and not benchmark"
+# WARNING: bind mount overwrites .venv with Linux binaries; run `uv sync` after
 ```
 
 ## Branch Strategy
@@ -119,12 +125,21 @@ uv run scripts/secrets_run.py uv run pytest
 - **Do not set `GITHUB_TOKEN` or `GH_TOKEN` globally in shell profiles**; use `secrets_run.py` instead
 - `secrets.toml` uses `GH_TOKEN` (not `GITHUB_TOKEN`); this is what `gh` CLI checks first
 - After regenerating a GitHub fine-grained PAT, verify write access: `uv run scripts/secrets_run.py gh api --method PATCH repos/OWNER/REPO/issues/1 -f state=open`
+- PEP 723 inline scripts (`secrets_run.py`, `secrets_setup.py`) use `importlib.util` for sibling imports because `from scripts.X` fails when run via `uv run scripts/X.py`
 
 ## Video Analysis
 
 - AJE video byte has no subtitle track; captions are burned into frames
 - Extract frames: `ffmpeg -i video.mp4 -vf "fps=0.5" -q:v 2 output/frame_%04d.jpg`
 - Read frames with Claude's multimodal capability to reconstruct narration transcript
+
+## stharrold-templates Bundles
+
+Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
+- Apply: `uv run python .tmp/stharrold-templates/scripts/apply_bundle.py .tmp/stharrold-templates . --bundle git --bundle secrets --bundle ci`
+- Dry run first: append `--dry-run`
+- After applying: check for residual Gemini naming (`grep -ri gemini .claude/skills/`), fix `Containerfile` COPY lines (needs `LICENSE README.md` before `uv sync`), and delete stale test files for removed modules
+- Template-owned files will be overwritten on next apply; repo-specific fixes should be upstreamed to `stharrold-templates`
 
 ## Architecture
 
@@ -133,6 +148,7 @@ uv run scripts/secrets_run.py uv run pytest
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
 - **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
 - **Container:** `Containerfile` with Python 3.12, Pandoc 3.2, TeXLive, Node.js
+- **Anthropic SDK**: `response.content[0]` is a union type; filter with `[b for b in response.content if hasattr(b, "text")]` before accessing `.text` (mypy `union-attr`)
 
 ## Key Files
 
