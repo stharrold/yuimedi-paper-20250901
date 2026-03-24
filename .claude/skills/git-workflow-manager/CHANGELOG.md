@@ -59,7 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Updated SKILL.md with comprehensive work-item generation documentation
-- Updated GEMINI.md with Phase 4 PR feedback workflow examples
+- Updated CLAUDE.md with Phase 4 PR feedback workflow examples
 - Added decision tree for simple fixes vs. work-item generation
 
 ### Token Efficiency

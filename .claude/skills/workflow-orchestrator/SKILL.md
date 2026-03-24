@@ -496,7 +496,7 @@ User can then:
 - Say "next step?" for next task
 - Reference TODO_*.md to see progress
 
-Gemini will:
+Claude Code will:
 1. Work with reduced token count (memory optimized)
 2. Reference TODO_*.md for workflow state as needed
 3. Continue from last checkpoint without data loss

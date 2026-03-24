@@ -295,7 +295,7 @@ python .claude/skills/workflow-utilities/scripts/create_skill.py my-new-skill
 8. Commits changes to current branch
 
 **Key features:**
-- Official docs integration (fetches from docs.gemini.com)
+- Official docs integration (fetches from docs.anthropic.com)
 - Pattern comparison (local vs official)
 - Discrepancy alerts with citations
 - Complete file generation

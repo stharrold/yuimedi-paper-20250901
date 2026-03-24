@@ -9,7 +9,7 @@ related_skills:
   - workflow-utilities
 ---
 
-# Gemini Code Context: Archived Content
+# Claude Code Context: Archived Content
 
 ## Purpose
 

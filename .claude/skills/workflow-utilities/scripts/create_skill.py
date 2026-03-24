@@ -40,9 +40,9 @@ from pathlib import Path
 
 # Constants with documented rationale
 OFFICIAL_DOCS_URLS = {
-    "agent_skills": "https://docs.gemini.com/en/docs/agents-and-tools/agent-skills",
-    "building_agents": "https://docs.gemini.com/en/docs/agents-and-tools/building-agents",
-    "getting_started": "https://docs.gemini.com/en/docs/gemini-code/getting-started",
+    "agent_skills": "https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills",
+    "building_agents": "https://docs.anthropic.com/en/docs/agents-and-tools/building-agents",
+    "getting_started": "https://docs.anthropic.com/en/docs/claude-code/getting-started",
 }  # Official Claude Code documentation sources
 
 LOCAL_SKILL_STRUCTURE = {
@@ -942,7 +942,7 @@ Refs: .claude/skills/{config.name}/CHANGELOG.md
 
 Generated with Claude Code (https://claude.ai/code)
 
-Co-Authored-By: Gemini <noreply@anthropic.com>
+Co-Authored-By: Claude Code <noreply@anthropic.com>
 """
 
     subprocess.run(["git", "commit", "-m", commit_msg], check=True)

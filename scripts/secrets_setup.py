@@ -435,17 +435,15 @@ def main() -> int:
         try:
             idx = args.index("--set")
             if len(args) <= idx + 1:
-                print("[FAIL] Usage: --set <name> [value]")
+                print("[FAIL] Usage: --set <name>")
                 return 1
 
             name = args[idx + 1]
-            value = None
-            if len(args) > idx + 2:
-                value = args[idx + 2]
-
-            return set_single_secret_cmd(root_path, config, name, value)
+            # Always prompt for value securely (never accept via CLI args
+            # to avoid leaking secrets in shell history/process listings)
+            return set_single_secret_cmd(root_path, config, name, None)
         except IndexError:
-            print("[FAIL] Usage: --set <name> [value]")
+            print("[FAIL] Usage: --set <name>")
             return 1
 
     return interactive_setup(config)

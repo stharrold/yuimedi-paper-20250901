@@ -102,8 +102,8 @@ class GeminiAnalyzer(AIAnalyzer):
         if self.use_api and self._client:
             try:
                 return self._extract_themes_with_gemini(papers, max_themes)
-            except Exception:
-                # Fall back to keyword method
+            except (ConnectionError, TimeoutError, ValueError, RuntimeError):
+                # Fall back to keyword method on known transient/parse errors
                 pass
 
         return self._extract_themes_keyword_based(papers, max_themes)
@@ -137,8 +137,8 @@ class GeminiAnalyzer(AIAnalyzer):
         if self.use_api and self._client:
             try:
                 return self._generate_synthesis_with_gemini(papers, themes, research_question)
-            except Exception:
-                # Fall back to simple method
+            except (ConnectionError, TimeoutError, ValueError, RuntimeError):
+                # Fall back to simple method on known transient/parse errors
                 pass
 
         return self._generate_synthesis_simple(papers, themes, research_question)
@@ -400,7 +400,8 @@ Generate a markdown-formatted synthesis that:
         # Create hash from paper DOIs and args
         hash_input = operation + "||"
         hash_input += "||".join(p.doi.value for p in papers)
-        hash_input += "||".join(str(arg) for arg in args)
+        if args:
+            hash_input += "||" + "||".join(str(arg) for arg in args)
 
         return hashlib.sha256(hash_input.encode()).hexdigest()
 

@@ -19,6 +19,10 @@ services:
     working_dir: /app
     volumes:
       - .:/app:Z
+      - venv:/app/.venv  # Isolate container venv from host
     stdin_open: true
     tty: true
     command: bash
+
+volumes:
+  venv:

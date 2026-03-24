@@ -281,7 +281,7 @@ CREATE TABLE IF NOT EXISTS sync_audit_trail (
     actor VARCHAR NOT NULL,
     actor_role VARCHAR NOT NULL CHECK (actor_role IN (
         'human_user',        -- Human operator
-        'autonomous_agent',  -- Gemini Code or other AI agent
+        'autonomous_agent',  -- Claude Code or other AI agent
         'system'             -- Automated system process
     )),
 

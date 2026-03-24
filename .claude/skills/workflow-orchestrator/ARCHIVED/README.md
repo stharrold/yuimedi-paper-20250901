@@ -2,7 +2,7 @@
 type: directory-documentation
 directory: .claude/skills/workflow-orchestrator/ARCHIVED
 title: Archived Files
-sibling_gemini: CLAUDE.md
+sibling_claude: CLAUDE.md
 parent: ../README.md
 children: []
 ---
@@ -27,5 +27,5 @@ Archive of deprecated files that are no longer in active use.
 
 ## Related Documentation
 
-- **[CLAUDE.md](CLAUDE.md)** - Context for Gemini Code
+- **[CLAUDE.md](CLAUDE.md)** - Context for Claude Code
 - **[../README.md](../README.md)** - Parent directory documentation

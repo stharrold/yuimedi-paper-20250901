@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 
-def get_all_gemini_files(root_dir: Path) -> list[Path]:
+def get_all_claude_files(root_dir: Path) -> list[Path]:
     """Find all CLAUDE.md files in the repository."""
     return sorted(root_dir.rglob("CLAUDE.md"))
 
@@ -39,10 +39,10 @@ def get_relative_path(from_file: Path, to_file: Path) -> str:
         return up_path + down_path
 
 
-def generate_cross_references(gemini_file: Path, root_dir: Path) -> str:
+def generate_cross_references(claude_file: Path, root_dir: Path) -> str:
     """Generate cross-reference section for a CLAUDE.md file."""
 
-    dir_path = gemini_file.parent
+    dir_path = claude_file.parent
     refs = []
 
     # Reference to README.md in same directory
@@ -56,7 +56,7 @@ def generate_cross_references(gemini_file: Path, root_dir: Path) -> str:
     if dir_path != root_dir:
         parent_claude = dir_path.parent / "CLAUDE.md"
         if parent_claude.exists():
-            rel_path = get_relative_path(gemini_file, parent_claude)
+            rel_path = get_relative_path(claude_file, parent_claude)
             parent_name = dir_path.parent.name if dir_path.parent != root_dir else "Root"
             refs.append(
                 f"- **[../{parent_claude.name}]({rel_path})** - Parent directory: {parent_name}"
@@ -66,20 +66,20 @@ def generate_cross_references(gemini_file: Path, root_dir: Path) -> str:
     child_dirs = sorted(
         [d for d in dir_path.iterdir() if d.is_dir() and not d.name.startswith(".")]
     )
-    child_geminis = []
+    child_claudes = []
 
     for child_dir in child_dirs:
-        child_gemini = child_dir / "CLAUDE.md"
-        if child_gemini.exists():
-            rel_path = get_relative_path(gemini_file, child_gemini)
-            child_geminis.append(
+        child_claude = child_dir / "CLAUDE.md"
+        if child_claude.exists():
+            rel_path = get_relative_path(claude_file, child_claude)
+            child_claudes.append(
                 f"- **[{child_dir.name}/CLAUDE.md]({rel_path})** - {child_dir.name.replace('-', ' ').replace('_', ' ').title()}"
             )
 
-    if child_geminis:
+    if child_claudes:
         refs.append("")
         refs.append("**Child Directories:**")
-        refs.extend(child_geminis)
+        refs.extend(child_claudes)
 
     if refs:
         section = "\n## Related Documentation\n\n"
@@ -90,10 +90,10 @@ def generate_cross_references(gemini_file: Path, root_dir: Path) -> str:
     return ""
 
 
-def update_gemini_file(gemini_file: Path, root_dir: Path, dry_run: bool = False):
+def update_claude_file(claude_file: Path, root_dir: Path, dry_run: bool = False):
     """Update a CLAUDE.md file with cross-references."""
 
-    content = gemini_file.read_text(encoding="utf-8")
+    content = claude_file.read_text(encoding="utf-8")
 
     # Remove existing "Related Documentation" section if present
     lines = content.split("\n")
@@ -115,7 +115,7 @@ def update_gemini_file(gemini_file: Path, root_dir: Path, dry_run: bool = False)
         new_lines.pop()
 
     # Generate new cross-references
-    cross_refs = generate_cross_references(gemini_file, root_dir)
+    cross_refs = generate_cross_references(claude_file, root_dir)
 
     # Add cross-references before any existing "Related Skills" section or at the end
     final_content = "\n".join(new_lines)
@@ -130,12 +130,12 @@ def update_gemini_file(gemini_file: Path, root_dir: Path, dry_run: bool = False)
 
     if dry_run:
         print(f"\n{'=' * 60}")
-        print(f"Would update: {gemini_file.relative_to(root_dir)}")
+        print(f"Would update: {claude_file.relative_to(root_dir)}")
         print(f"{'=' * 60}")
         print(cross_refs)
     else:
-        gemini_file.write_text(final_content, encoding="utf-8")
-        print(f"[OK] Updated {gemini_file.relative_to(root_dir)}")
+        claude_file.write_text(final_content, encoding="utf-8")
+        print(f"[OK] Updated {claude_file.relative_to(root_dir)}")
 
 
 def main():
@@ -146,9 +146,9 @@ def main():
     root_dir = Path.cwd()
 
     # Find all CLAUDE.md files
-    gemini_files = get_all_gemini_files(root_dir)
+    claude_files = get_all_claude_files(root_dir)
 
-    print(f"Found {len(gemini_files)} CLAUDE.md files")
+    print(f"Found {len(claude_files)} CLAUDE.md files")
     print()
 
     if dry_run:
@@ -156,11 +156,11 @@ def main():
         print()
 
     # Update each file
-    for gemini_file in gemini_files:
-        update_gemini_file(gemini_file, root_dir, dry_run)
+    for claude_file in claude_files:
+        update_claude_file(claude_file, root_dir, dry_run)
 
     print()
-    print(f"[OK] {'Would update' if dry_run else 'Updated'} {len(gemini_files)} CLAUDE.md files")
+    print(f"[OK] {'Would update' if dry_run else 'Updated'} {len(claude_files)} CLAUDE.md files")
 
     if dry_run:
         print()
