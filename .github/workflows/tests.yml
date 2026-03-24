@@ -28,7 +28,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Run pytest
-        run: docker run --rm -v $PWD:/app yuimedi-paper:latest uv run pytest -m "not integration and not benchmark"
+        run: docker run --rm yuimedi-paper:latest uv run pytest -m "not integration and not benchmark"
 
       - name: Run linting (ruff)
-        run: docker run --rm -v $PWD:/app yuimedi-paper:latest uv run ruff check .
+        run: docker run --rm yuimedi-paper:latest uv run ruff check .

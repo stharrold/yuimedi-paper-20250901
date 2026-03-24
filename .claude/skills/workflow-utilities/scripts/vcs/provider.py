@@ -63,3 +63,21 @@ def detect_provider() -> VCSProvider:
         raise RuntimeError(f"Unrecognised VCS provider in remote URL: {url}")
 
     return _cached_provider
+
+
+def try_detect_provider(fallback: "VCSProvider | None" = None) -> "VCSProvider | None":
+    """Best-effort VCS provider detection.
+
+    Wraps detect_provider() but returns fallback instead of raising
+    when detection fails (missing git remote, unrecognised provider, etc.).
+
+    Args:
+        fallback: Value to return when detection fails.
+
+    Returns:
+        Detected VCSProvider or fallback.
+    """
+    try:
+        return detect_provider()
+    except RuntimeError:
+        return fallback

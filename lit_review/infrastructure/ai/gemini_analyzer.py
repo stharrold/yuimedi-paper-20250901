@@ -62,8 +62,8 @@ class GeminiAnalyzer(AIAnalyzer):
             self.cache_dir = Path.home() / ".lit_review" / "cache"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
 
-        # Determine if we can use API
-        self.use_api = self.api_key is not None
+        # Determine if we can use API (reject empty/whitespace-only keys)
+        self.use_api = bool(self.api_key and self.api_key.strip())
 
         # Initialize client only if API key available
         self._client = None
@@ -240,7 +240,7 @@ Return JSON with this structure:
         papers_text = self._papers_to_text(papers)
         themes_text = json.dumps(themes.themes, indent=2)
 
-        prompt = f"""Generate a narrative synthesis for this systematic review.
+        prompt = f"""Generate a narrative synthesis for this narrative review.
 
 Research Question: {research_question}
 

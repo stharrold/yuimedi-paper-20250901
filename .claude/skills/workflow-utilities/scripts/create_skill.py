@@ -40,9 +40,9 @@ from pathlib import Path
 
 # Constants with documented rationale
 OFFICIAL_DOCS_URLS = {
-    "agent_skills": "https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills",
-    "building_agents": "https://docs.anthropic.com/en/docs/agents-and-tools/building-agents",
-    "getting_started": "https://docs.anthropic.com/en/docs/claude-code/getting-started",
+    "agent_skills": "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code-skills",
+    "building_agents": "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code-overview",
+    "getting_started": "https://docs.anthropic.com/en/docs/claude-code/overview",
 }  # Official Claude Code documentation sources
 
 LOCAL_SKILL_STRUCTURE = {

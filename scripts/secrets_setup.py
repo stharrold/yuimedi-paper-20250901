@@ -20,7 +20,7 @@ First-time setup:
 Usage:
     uv run scripts/secrets_setup.py                     # Interactive setup
     uv run scripts/secrets_setup.py --check             # Verify secrets exist
-    uv run scripts/secrets_setup.py --set NAME [VALUE]  # Set specific secret
+    uv run scripts/secrets_setup.py --set NAME             # Set specific secret
     uv run scripts/secrets_setup.py --root PATH         # Specify project root
 
 Example:
@@ -257,16 +257,18 @@ def setup_secret(service: str, name: str, is_optional: bool = False) -> bool:
             print("  -> Kept existing value")
             return True
     else:
-        print(f"{name}{optional_tag}: ", end="")
+        pass  # Fall through to prompt below
 
     if is_optional:
         # Use getpass for consistency and security (hides input)
-        response = getpass.getpass("Enter value (or press Enter to skip): ")
+        response = getpass.getpass(
+            f"Enter value for {name}{optional_tag} (or press Enter to skip): "
+        )
         if not response:
             print("  -> Skipped")
             return True  # Optional secrets can be skipped
     else:
-        response = getpass.getpass("Enter value: ")
+        response = getpass.getpass(f"Enter value for {name}: ")
         if not response:
             print("  -> [FAIL] Required secret cannot be empty")
             return False
@@ -372,7 +374,7 @@ def print_usage() -> None:
     print()
     print("Options:")
     print("  --check              Verify secrets exist without modifying")
-    print("  --set <name> [val]   Set a specific secret (prompts if value missing)")
+    print("  --set <name>         Set a specific secret (always prompts securely)")
     print("  --root <path>        Specify the project root (defaults to CWD)")
     print("  --help               Show this help message")
     print()
