@@ -7,35 +7,35 @@
 # SPDX-License-Identifier: Apache-2.0
 """Interactive keyring setup for secrets management.
 
-Stores secret values in the OS keyring for local development.
-Reads secret names from secrets.toml (which is committed to git; no values).
-
-Usage:
-    uv run scripts/secrets_setup.py                     # Interactive setup (all secrets)
-    uv run scripts/secrets_setup.py --check             # Verify secrets exist in keyring
-    uv run scripts/secrets_setup.py --set GH_TOKEN      # Set/update one secret (prompts)
-    uv run scripts/secrets_setup.py --root PATH         # Use a different project root
+This script helps configure secrets in the OS keyring for local development.
+It reads secret definitions from secrets.toml and prompts for values.
 
 First-time setup:
-    1. Create a GitHub fine-grained PAT at https://github.com/settings/tokens?type=beta
-       Required permissions: Issues (R/W), Pull requests (R/W), Contents (R/W)
+    1. Create a GitHub fine-grained PAT at:
+       https://github.com/settings/tokens?type=beta
+       Permissions: Issues (R/W), Pull requests (R/W), Contents (R/W)
     2. Run: uv run scripts/secrets_setup.py
-    3. Paste the token when prompted for GH_TOKEN
-    4. Verify: uv run scripts/secrets_setup.py --check
+    3. Paste the token when prompted
 
-After regenerating a PAT:
-    uv run scripts/secrets_setup.py --set GH_TOKEN
+Usage:
+    uv run scripts/secrets_setup.py                     # Interactive setup
+    uv run scripts/secrets_setup.py --check             # Verify secrets exist
+    uv run scripts/secrets_setup.py --set NAME [VALUE]  # Set specific secret
+    uv run scripts/secrets_setup.py --root PATH         # Specify project root
 
-Cross-platform keyring backends:
-    macOS: Keychain Access (service = "yuimedi-paper-20250901")
-    Windows: Credential Manager (Windows Credential Locker)
-    Linux: GNOME Keyring / KWallet (SecretService API)
+Example:
+    $ uv run scripts/secrets_setup.py
+    [INFO] Setting up secrets for service: stharrold-templates
+
+    Setting up required secrets:
+    GH_TOKEN: Enter value: ********
+
+    [OK] All secrets configured successfully
 """
 
 from __future__ import annotations
 
 import getpass
-import os
 import subprocess
 import sys
 import tomllib
@@ -43,6 +43,8 @@ from pathlib import Path
 
 import keyring
 import tomlkit
+
+from scripts.environment_utils import is_ci, is_container
 
 
 def get_repo_root(target_path: Path | None = None) -> Path:
@@ -155,53 +157,6 @@ def add_secret_to_config(root_path: Path, name: str, is_required: bool) -> bool:
         return False
 
 
-def is_ci() -> bool:
-    """Detect if running in a CI environment.
-
-    Checks for common CI environment variables.
-    """
-    ci_vars = [
-        "CI",
-        "GITHUB_ACTIONS",
-        "GITLAB_CI",
-        "TF_BUILD",  # Azure DevOps
-        "JENKINS_URL",
-        "CIRCLECI",
-        "TRAVIS",
-        "BUILDKITE",
-        "DRONE",
-        "CODEBUILD_BUILD_ID",  # AWS CodeBuild
-    ]
-    return any(os.environ.get(var) for var in ci_vars)
-
-
-def is_container() -> bool:
-    """Detect if running inside a container.
-
-    Checks for Docker, Podman, and Kubernetes indicators.
-    """
-    # Docker
-    if Path("/.dockerenv").exists():
-        return True
-
-    # Podman
-    if Path("/run/.containerenv").exists():
-        return True
-
-    # Check cgroup for container indicators
-    cgroup_path = Path("/proc/1/cgroup")
-    if cgroup_path.exists():
-        try:
-            content = cgroup_path.read_text()
-            if "docker" in content or "kubepods" in content or "containerd" in content:
-                return True
-        except (OSError, PermissionError):
-            # Cannot read cgroup info (e.g., due to permissions), assume not in container
-            pass
-
-    return False
-
-
 def get_secret(service: str, name: str) -> str | None:
     """Get a secret from keyring.
 
@@ -218,7 +173,6 @@ def get_secret(service: str, name: str) -> str | None:
         # Re-raise system exceptions that shouldn't be caught
         if isinstance(e, (KeyboardInterrupt, SystemExit)):
             raise
-        print(f"[WARN] Keyring error for {name}: {e}")
         return None
 
 
@@ -290,20 +244,22 @@ def setup_secret(service: str, name: str, is_optional: bool = False) -> bool:
     optional_tag = " (optional)" if is_optional else ""
 
     if existing:
-        print(f"{name}{optional_tag}: [exists]", end=" ", flush=True)
+        print(f"{name}{optional_tag}: [exists]", end=" ")
         response = input("Keep existing value? [Y/n]: ").strip().lower()
         if response in ("", "y", "yes"):
             print("  -> Kept existing value")
             return True
+    else:
+        print(f"{name}{optional_tag}: ", end="")
 
     if is_optional:
         # Use getpass for consistency and security (hides input)
-        response = getpass.getpass(f"{name}{optional_tag} - Enter value (or press Enter to skip): ")
+        response = getpass.getpass("Enter value (or press Enter to skip): ")
         if not response:
             print("  -> Skipped")
             return True  # Optional secrets can be skipped
     else:
-        response = getpass.getpass(f"{name}{optional_tag} - Enter value: ")
+        response = getpass.getpass("Enter value: ")
         if not response:
             print("  -> [FAIL] Required secret cannot be empty")
             return False
@@ -409,7 +365,7 @@ def print_usage() -> None:
     print()
     print("Options:")
     print("  --check              Verify secrets exist without modifying")
-    print("  --set <name>         Set a specific secret (always prompts securely)")
+    print("  --set <name> [val]   Set a specific secret (prompts if value missing)")
     print("  --root <path>        Specify the project root (defaults to CWD)")
     print("  --help               Show this help message")
     print()
@@ -448,14 +404,18 @@ def main() -> int:
 
     target_root = None
     if "--root" in args:
-        idx = args.index("--root")
-        if len(args) > idx + 1:
-            target_root = Path(args[idx + 1])
-            # Clean up args so other parsers don't get confused
-            del args[idx : idx + 2]
-        else:
-            print("[FAIL] Usage: --root <path>")
-            return 1
+        try:
+            idx = args.index("--root")
+            if len(args) > idx + 1:
+                target_root = Path(args[idx + 1])
+                # Clean up args so other parsers don't get confused
+                # We simply remove them from the list we process later
+                del args[idx : idx + 2]
+            else:
+                print("[FAIL] Usage: --root <path>")
+                return 1
+        except IndexError:
+            pass
 
     # Determine project root and load config
     root_path = get_repo_root(target_root)
@@ -468,23 +428,17 @@ def main() -> int:
         try:
             idx = args.index("--set")
             if len(args) <= idx + 1:
-                print("[FAIL] Usage: --set <name>")
+                print("[FAIL] Usage: --set <name> [value]")
                 return 1
 
             name = args[idx + 1]
-
-            # Do not accept secret values as CLI arguments to avoid leaks
-            # via shell history and process listings. Always prompt securely.
+            value = None
             if len(args) > idx + 2:
-                print("[FAIL] Usage: --set <name>")
-                print(
-                    "Do not pass secret values on the command line; you will be prompted securely."
-                )
-                return 1
+                value = args[idx + 2]
 
-            return set_single_secret_cmd(root_path, config, name, None)
+            return set_single_secret_cmd(root_path, config, name, value)
         except IndexError:
-            print("[FAIL] Usage: --set <name>")
+            print("[FAIL] Usage: --set <name> [value]")
             return 1
 
     return interactive_setup(config)

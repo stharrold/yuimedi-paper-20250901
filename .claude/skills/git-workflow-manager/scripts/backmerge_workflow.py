@@ -29,13 +29,14 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Add workflow-utilities to path for safe_output
+# Add workflow-utilities to path for safe_output and vcs
 sys.path.insert(
     0,
     str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"),
 )
 
 from safe_output import safe_print
+from vcs import create_pr, get_contrib_branch
 
 
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
@@ -48,13 +49,6 @@ def get_current_branch() -> str:
     """Get current git branch name."""
     result = run_cmd(["git", "branch", "--show-current"], check=False)
     return result.stdout.strip()
-
-
-def get_contrib_branch() -> str:
-    """Get the contrib branch name (contrib/<username>)."""
-    result = run_cmd(["gh", "api", "user", "-q", ".login"], check=False)
-    username = result.stdout.strip() or "stharrold"
-    return f"contrib/{username}"
 
 
 def return_to_editable_branch() -> bool:
@@ -194,36 +188,49 @@ def step_pr_develop(version: str | None = None) -> bool:
 
     # Create PR
     safe_print(f"\n[PR] Creating PR: {release_branch} -> develop...")
-    result = run_cmd(
-        [
-            "gh",
-            "pr",
-            "create",
-            "--base",
-            "develop",
-            "--head",
-            release_branch,
-            "--title",
-            f"backmerge: {version} -> develop",
-            "--body",
-            f"""## Summary
-
-Backmerge release {version} to develop.
-
-Keeps develop in sync with production.
-
-[BOT] Generated with [Claude Code](https://claude.ai/code)""",
-        ],
-        check=False,
-    )
-
-    if result.returncode != 0:
-        if "already exists" in result.stderr:
+    pr_body = f"## Summary\n\nBackmerge release {version} to develop.\n\nKeeps develop in sync with production.\n\n[BOT] Generated with [Claude Code](https://claude.ai/code)"
+    try:
+        create_pr(
+            base="develop",
+            head=release_branch,
+            title=f"backmerge: {version} -> develop",
+            body=pr_body,
+        )
+    except RuntimeError as e:
+        error_msg = str(e)
+        if "already exists" in error_msg:
             safe_print("[WARN]  PR already exists")
             return_to_editable_branch()
             return True
+        elif "No commits between" in error_msg:
+            safe_print(
+                "[WARN]  No unique commits on release branch, falling back to main -> develop"
+            )
+            fallback_body = (
+                f"## Summary\n\nBackmerge {version} to develop (fallback: main -> develop).\n\n"
+                "Release branch had no unique commits.\n\n"
+                "[BOT] Generated with [Claude Code](https://claude.ai/code)"
+            )
+            try:
+                create_pr(
+                    base="develop",
+                    head="main",
+                    title=f"backmerge: {version} -> develop",
+                    body=fallback_body,
+                )
+                safe_print("[OK] Fallback PR created: main -> develop")
+                return_to_editable_branch()
+                return True
+            except RuntimeError as fallback_e:
+                if "already exists" in str(fallback_e):
+                    safe_print("[WARN]  Fallback PR already exists")
+                    return_to_editable_branch()
+                    return True
+                safe_print(f"[FAIL] Fallback PR creation failed: {fallback_e}")
+                return_to_editable_branch()
+                return False
         else:
-            safe_print(f"[FAIL] PR creation failed: {result.stderr}")
+            safe_print(f"[FAIL] PR creation failed: {error_msg}")
             return_to_editable_branch()
             return False
 
@@ -334,16 +341,12 @@ def step_cleanup_release(version: str | None = None) -> bool:
 
     # Cleanup release branch
     release_branch = f"release/{version}"
-    safe_print(f"\n[Delete] Cleaning up {release_branch}...")
-    run_cmd(["git", "branch", "-D", release_branch], check=False)
-    result = run_cmd(["git", "push", "origin", "--delete", release_branch], check=False)
-    if result.returncode != 0:
-        if "remote ref does not exist" in result.stderr:
-            safe_print("  Release branch already deleted or never existed")
-        else:
-            safe_print(f"[WARN]  Release branch delete warning: {result.stderr}")
+    safe_print(f"\n[Info] Ready to cleanup {release_branch}")
+    safe_print("[NOTE] Branches must be deleted manually:")
+    safe_print(f"  git branch -d {release_branch}")
+    safe_print(f"  git push origin --delete {release_branch}")
 
-    safe_print("[OK] Step 3 complete: Release branch cleaned up")
+    safe_print("[OK] Step 3 complete: Release cleanup instructions provided")
     return True
 
 

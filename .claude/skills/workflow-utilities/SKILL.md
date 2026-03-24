@@ -4,7 +4,7 @@ version: 5.2.0
 description: |
   Shared utilities for file deprecation, directory structure creation,
   TODO file updates, workflow lifecycle management, archive management,
-  and VCS abstraction (GitHub/Azure DevOps PR feedback methods).
+  and VCS abstraction (GitHub/Azure DevOps).
   Used by all other skills.
 
   Use when: Need shared utilities, deprecating files, updating TODO,
@@ -14,6 +14,20 @@ description: |
   Triggers: deprecate, archive, update TODO, create directory, register workflow,
   archive workflow, sync manifest, VCS operations, PR feedback
 ---
+
+## Quick Reference
+
+```bash
+# Archive deprecated files
+uv run python .claude/skills/workflow-utilities/scripts/deprecate_files.py <desc> <files...>
+
+# List/extract archives
+uv run python .claude/skills/workflow-utilities/scripts/archive_manager.py list
+uv run python .claude/skills/workflow-utilities/scripts/archive_manager.py extract <archive>
+
+# Validate versions
+uv run python .claude/skills/workflow-utilities/scripts/validate_versions.py
+```
 
 # Workflow Utilities
 
@@ -166,236 +180,35 @@ python .claude/skills/workflow-utilities/scripts/sync_manifest.py
 
 ### VCS Abstraction Layer (vcs/)
 
-Provides unified interface for GitHub and Azure DevOps operations via CLI adapters.
-
-**Purpose:**
-- Abstract VCS provider differences (GitHub vs Azure DevOps)
-- Enable workflow portability across VCS platforms
-- Provide consistent interface for PR operations, issue management, and PR feedback
+Wrapper functions for GitHub (`gh`) and Azure DevOps (`az`) CLI operations.
 
 **Location:** `.claude/skills/workflow-utilities/scripts/vcs/`
 
 **Key files:**
-- `provider.py` - Auto-detect VCS provider from git remote URL
-- `base_adapter.py` - Base adapter interface (abstract methods)
-- `github_adapter.py` - GitHub CLI (gh) adapter implementation
-- `azure_adapter.py` - Azure DevOps CLI (az) adapter implementation
-- `config.py` - VCS configuration
+- `provider.py` - VCS provider enum + `detect_provider()` (auto-detects from git remote URL, cached)
+- `operations.py` - Wrapper functions: `get_username`, `get_contrib_branch`, `create_pr`, `create_release`, `create_issue`, `query_pr_review_threads`, `check_auth`
 
-**Provider Detection:**
+**Usage:**
 ```python
-from .vcs.provider import detect_from_remote, VCSProvider
+from vcs import create_pr, get_contrib_branch, get_username
 
-# Auto-detect from git remote
-provider = detect_from_remote()
-# Returns: VCSProvider.GITHUB or VCSProvider.AZURE_DEVOPS
-
-# Manual detection from URL
-provider = detect_from_url("https://github.com/user/repo.git")
-# Returns: VCSProvider.GITHUB
-```
-
-**Base Adapter Interface:**
-
-All adapters implement these methods:
-
-```python
-class BaseVCSAdapter(ABC):
-    @abstractmethod
-    def create_pr(self, title: str, body: str, source_branch: str, target_branch: str) -> str:
-        """Create pull request, returns PR URL."""
-        pass
-
-    @abstractmethod
-    def fetch_pr_comments(self, pr_number: int) -> list:
-        """Fetch review comments from a pull request.
-
-        Returns:
-            List of comment dictionaries with keys:
-                - author: Comment author
-                - body: Comment text
-                - file: File path (if file comment)
-                - line: Line number (if file comment)
-                - created_at: Comment timestamp
-        """
-        pass
-
-    @abstractmethod
-    def update_pr(self, pr_number: int, title: str = None, body: str = None) -> None:
-        """Update pull request title or description."""
-        pass
-
-    @abstractmethod
-    def get_pr_status(self, pr_number: int) -> dict:
-        """Get pull request status (approval, merge state).
-
-        Returns:
-            Dictionary with keys:
-                - state: PR state (open/closed/merged)
-                - mergeable: Boolean indicating if PR can be merged
-                - approved: Boolean indicating if PR is approved
-                - reviews_required: Number of approvals required
-        """
-        pass
-```
-
-**GitHub Adapter (github_adapter.py):**
-
-Uses GitHub CLI (`gh`) for all operations.
-
-```python
-from .vcs.github_adapter import GitHubAdapter
-
-adapter = GitHubAdapter()
+branch = get_contrib_branch()  # auto-detects provider
+username = get_username()
 
 # Create PR
-pr_url = adapter.create_pr(
+pr_url = create_pr(
+    base=branch,
+    head="feature/20251103T143000Z_auth",
     title="feat: auth system (v1.6.0)",
     body="PR body content",
-    source_branch="feature/20251103T143000Z_auth",
-    target_branch="contrib/stharrold"
 )
-# Returns: "https://github.com/user/repo/pull/94"
-
-# Fetch PR comments
-comments = adapter.fetch_pr_comments(94)
-# Returns: [
-#   {
-#     'author': 'reviewer1',
-#     'body': 'Please add error handling here',
-#     'file': 'src/auth.py',
-#     'line': 42,
-#     'created_at': '2025-11-08T10:30:00Z'
-#   },
-#   ...
-# ]
-
-# Update PR
-adapter.update_pr(94, title="feat: auth system (v1.7.0)")
-
-# Get PR status
-status = adapter.get_pr_status(94)
-# Returns: {
-#   'state': 'open',
-#   'mergeable': True,
-#   'approved': True,
-#   'reviews_required': 1
-# }
 ```
-
-**Azure DevOps Adapter (azure_adapter.py):**
-
-Uses Azure CLI (`az`) for all operations.
-
-```python
-from .vcs.azure_adapter import AzureDevOpsAdapter
-
-adapter = AzureDevOpsAdapter()
-
-# Create PR
-pr_url = adapter.create_pr(
-    title="feat: auth system (v1.6.0)",
-    body="PR body content",
-    source_branch="feature/20251103T143000Z_auth",
-    target_branch="contrib/stharrold"
-)
-# Returns: "https://dev.azure.com/org/project/_git/repo/pullrequest/94"
-
-# Fetch PR comments (threads)
-comments = adapter.fetch_pr_comments(94)
-# Returns: [
-#   {
-#     'author': 'reviewer1@example.com',
-#     'body': 'Please add error handling here',
-#     'file': 'src/auth.py',
-#     'line': 42,
-#     'created_at': '2025-11-08T10:30:00Z',
-#     'status': 'active'  # Azure-specific: active/pending/resolved
-#   },
-#   ...
-# ]
-
-# Update PR
-adapter.update_pr(94, title="feat: auth system (v1.7.0)")
-
-# Get PR status
-status = adapter.get_pr_status(94)
-# Returns: {
-#   'state': 'active',  # Azure-specific: active/completed/abandoned
-#   'mergeable': True,
-#   'approved': True,
-#   'reviews_required': 2
-# }
-```
-
-**PR Feedback Methods (Added v7x1.0):**
-
-Three new methods for PR feedback handling:
-
-1. **fetch_pr_comments(pr_number)**
-   - GitHub: Uses `gh pr view --json reviews,comments`
-   - Azure: Uses `az repos pr show --query threads`
-   - Returns unified comment format (author, body, file, line, timestamp)
-   - Used by `generate_work_items_from_pr.py` to extract unresolved conversations
-
-2. **update_pr(pr_number, title, body)**
-   - GitHub: Uses `gh pr edit`
-   - Azure: Uses `az repos pr update`
-   - Updates PR title or description
-   - Used for updating PR with work-item links
-
-3. **get_pr_status(pr_number)**
-   - GitHub: Uses `gh pr view --json state,mergeable,reviews`
-   - Azure: Uses `az repos pr show --query status,mergeStatus`
-   - Returns approval and merge status
-   - Used for validation before creating work-items
-
-**Integration Example (from git-workflow-manager):**
-```python
-from pathlib import Path
-import sys
-
-# Add vcs module to path
-vcs_path = Path('.claude/skills/workflow-utilities/scripts')
-sys.path.insert(0, str(vcs_path))
-
-from vcs.provider import detect_from_remote, VCSProvider
-from vcs.github_adapter import GitHubAdapter
-from vcs.azure_adapter import AzureDevOpsAdapter
-
-# Auto-detect provider
-provider = detect_from_remote()
-
-# Initialize adapter
-if provider == VCSProvider.GITHUB:
-    adapter = GitHubAdapter()
-elif provider == VCSProvider.AZURE_DEVOPS:
-    adapter = AzureDevOpsAdapter()
-else:
-    raise ValueError(f"Unsupported VCS provider: {provider}")
-
-# Fetch unresolved PR comments
-comments = adapter.fetch_pr_comments(94)
-unresolved = [c for c in comments if not c.get('resolved', False)]
-
-# For each unresolved comment, create work-item
-for i, comment in enumerate(unresolved, start=1):
-    # ... create GitHub issue or Azure DevOps task
-    pass
-```
-
-**When to use VCS abstraction:**
-- Creating PRs (Phase 4: Integration)
-- Fetching PR feedback (Phase 4: PR Feedback)
-- Updating PR status
-- Any VCS-specific operation that needs to work across GitHub and Azure DevOps
 
 **Key features:**
-- Provider auto-detection from git remote
-- Unified interface (same method signatures)
-- CLI-based (no API tokens required in most cases)
-- Error handling with helpful messages
-- Portable across GitHub and Azure DevOps
+- Auto-detects provider from `git remote.origin.url` (github.com / dev.azure.com)
+- Errors surfaced as `RuntimeError(stderr)` — callers inspect string contents
+- Module-level caching for provider detection
+- PR creation, issue creation, release management, auth checking
 
 ## Usage Examples
 

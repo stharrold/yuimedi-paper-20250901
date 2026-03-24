@@ -9,7 +9,7 @@ related_skills:
   - workflow-utilities
 ---
 
-# Claude Code Context: Archived Content
+# Gemini Code Context: Archived Content
 
 ## Purpose
 
@@ -26,13 +26,6 @@ Archive of deprecated files from git-workflow-manager
 ## Usage
 
 [How to work with code/content in this directory]
-
-
-
-
-
-
-
 
 
 

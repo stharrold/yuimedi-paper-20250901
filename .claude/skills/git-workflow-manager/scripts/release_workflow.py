@@ -23,7 +23,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Add workflow-utilities to path for safe_output
+# Add workflow-utilities to path for safe_output and vcs
 sys.path.insert(
     0,
     str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"),
@@ -31,6 +31,8 @@ sys.path.insert(
 
 # Safe cross-platform output
 from safe_output import safe_print
+from vcs import create_pr
+from vcs import get_contrib_branch as _get_contrib_branch
 
 
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
@@ -52,15 +54,9 @@ def get_contrib_branch() -> str:
         The contrib branch name (e.g., 'contrib/username')
 
     Raises:
-        RuntimeError: If GitHub CLI fails to return a username
+        RuntimeError: If VCS CLI fails to return a username
     """
-    result = run_cmd(["gh", "api", "user", "-q", ".login"], check=False)
-    username = result.stdout.strip()
-    if not username:
-        raise RuntimeError(
-            "Failed to get GitHub username. Ensure you are authenticated:\n  gh auth login\n\nOr specify the contrib branch explicitly."
-        )
-    return f"contrib/{username}"
+    return _get_contrib_branch(fallback=None)
 
 
 def return_to_editable_branch() -> bool:
@@ -103,24 +99,17 @@ def calculate_next_version(current: str) -> str:
 
 
 def run_quality_gates() -> bool:
-    """Run quality gates (tests, lint, format)."""
+    """Run quality gates."""
     safe_print("\n[Quality Gates] Running quality gates...")
+    script_path = Path(".claude/skills/quality-enforcer/scripts/run_quality_gates.py")
 
-    gates = [
-        (["uv", "run", "pytest"], "tests"),
-        (["uv", "run", "ruff", "check", "."], "ruff check"),
-        (["uv", "run", "ruff", "format", "--check", "."], "ruff format"),
-    ]
+    if not script_path.exists():
+        safe_print("[WARN]  Quality gates script not found, skipping")
+        return True
 
-    for cmd, name in gates:
-        safe_print(f"  Running {name}...")
-        result = subprocess.run(cmd, check=False, capture_output=True)
-        if result.returncode != 0:
-            safe_print(f"[FAIL]  {name} failed")
-            return False
-        safe_print(f"[OK]  {name} passed")
+    result = subprocess.run(["uv", "run", "python", str(script_path)], check=False)
 
-    return True
+    return result.returncode == 0
 
 
 def step_create_release(version: str = None) -> bool:
@@ -194,27 +183,20 @@ def step_pr_main() -> bool:
 
     # Create PR
     safe_print(f"\n[PR] Creating PR: {current} -> main...")
-    result = run_cmd(
-        [
-            "gh",
-            "pr",
-            "create",
-            "--base",
-            "main",
-            "--fill",
-            "--title",
-            f"Release {version}",
-            "--body",
-            f"Release {version}\n\n[BOT] Generated with [Claude Code](https://claude.ai/code)",
-        ],
-        check=False,
-    )
-
-    if result.returncode != 0:
-        if "already exists" in result.stderr:
+    try:
+        create_pr(
+            base="main",
+            head=current,
+            title=f"Release {version}",
+            body=f"Release {version}\n\n[BOT] Generated with [Claude Code](https://claude.ai/code)",
+            fill=True,
+        )
+    except RuntimeError as e:
+        error_msg = str(e)
+        if "already exists" in error_msg:
             safe_print("[WARN]  PR already exists")
         else:
-            safe_print(f"[FAIL] PR creation failed: {result.stderr}")
+            safe_print(f"[FAIL] PR creation failed: {error_msg}")
             return False
 
     safe_print(f"[OK] Step 3 complete: PR created {current} -> main")

@@ -1,7 +1,7 @@
 ---
 type: claude-context
 directory: .claude/skills/git-workflow-manager
-purpose: Git Workflow Manager provides **automated git operations** for the git-flow + GitHub-flow hybrid workflow with worktrees. It handles branch creation, worktree management, commits, PRs, semantic versioning, and daily rebase operations. All operations are designed to work with the isolated worktree development pattern and VCS provider abstraction (GitHub/Azure DevOps).
+purpose: Git Workflow Manager provides **automated git operations** for the git-flow + GitHub-flow hybrid workflow with worktrees. It handles branch creation, worktree management, commits, PRs, semantic versioning, and daily rebase operations. All operations are designed to work with the isolated worktree development pattern and VCS provider abstraction (GitHub).
 parent: ../CLAUDE.md
 sibling_readme: README.md
 children:
@@ -17,7 +17,7 @@ related_skills:
 
 ## Purpose
 
-Git Workflow Manager provides **automated git operations** for the git-flow + GitHub-flow hybrid workflow with worktrees. It handles branch creation, worktree management, commits, PRs, semantic versioning, and daily rebase operations. All operations are designed to work with the isolated worktree development pattern and VCS provider abstraction (GitHub/Azure DevOps).
+Git Workflow Manager provides **automated git operations** for the git-flow + GitHub-flow hybrid workflow with worktrees. It handles branch creation, worktree management, commits, PRs, semantic versioning, and daily rebase operations. All operations are designed to work with the isolated worktree development pattern and VCS provider abstraction (GitHub).
 
 > **Note**: As of v7x1.0, workflow state tracking has migrated from TODO_*.md files to AgentDB (DuckDB). Some scripts in this skill (create_worktree.py, cleanup_feature.py) still reference TODO files but will be updated in a future release. See `agentdb-state-manager` for the current state tracking system.
 
@@ -27,13 +27,13 @@ Git Workflow Manager provides **automated git operations** for the git-flow + Gi
 .claude/skills/git-workflow-manager/
 ├── scripts/                      # Git operation automation
 │   ├── create_worktree.py        # Create feature/release/hotfix worktrees (Phase 2)
-│   ├── cleanup_feature.py        # Atomic cleanup: archive TODO + delete worktree + delete branches (Phase 4)
+│   ├── cleanup_feature.py        # Atomic cleanup: archive TODO + manual worktree/branch deletion (Phase 4)
 │   ├── daily_rebase.py          # Rebase contrib onto develop (daily maintenance)
 │   ├── semantic_version.py       # Calculate semantic version from changes (Phase 3)
 │   ├── create_release.py         # Create release branch from develop (Phase 5)
 │   ├── tag_release.py            # Tag release on main after merge (Phase 5)
 │   ├── backmerge_workflow.py     # Backmerge workflow orchestrator (Step 7)
-│   ├── cleanup_release.py        # Cleanup release branch after completion (Phase 5)
+│   ├── cleanup_release.py        # Cleanup release branch (manual deletion) (Phase 5)
 │   └── __init__.py               # Package initialization
 ├── templates/                    # (none - no template files)
 ├── SKILL.md                      # Complete skill documentation
@@ -169,13 +169,13 @@ python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py \
 2. **Finds worktree:** Searches for `../feature_{slug}/` or `../{project}_feature_{slug}/`
 3. **Finds branch:** Searches for `feature/*_{slug}` branch
 4. **Archives TODO:** Calls `workflow_archiver.py` (MUST succeed before proceeding)
-5. **Deletes worktree:** Removes worktree directory (only if archive succeeded)
-6. **Deletes branches:** Removes local and remote branches (only if worktree deletion succeeded)
+5. **Instructions:** Prints commands for manual worktree deletion
+6. **Instructions:** Prints commands for manual branch deletion (git branches are NEVER deleted automatically)
 
 **Key features:**
 - **Atomic operation:** Either everything succeeds or nothing changes (safe to retry)
-- **Correct ordering:** Cannot delete worktree without archiving TODO first
-- **Error handling:** If TODO archive fails, worktree/branches NOT deleted (safe state)
+- **Correct ordering:** Instructions provided only after archiving TODO
+- **Error handling:** If TODO archive fails, instructions not printed (safe state)
 - **Single command:** Replaces 4 separate manual commands
 - **Clear feedback:** Emojis and progress indicators for each step
 
@@ -188,8 +188,7 @@ python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py \
 **Failure modes:**
 - **TODO not found:** Script fails immediately, nothing deleted
 - **Archive fails:** Script exits, worktree/branches preserved (safe to retry)
-- **Worktree deletion fails:** TODO archived, but worktree remains (manual cleanup instructions provided)
-- **Branch deletion fails:** TODO archived, worktree deleted, but branches remain (manual cleanup instructions provided)
+- **Manual cleanup:** User responsibility (script provides commands)
 
 ---
 
@@ -365,7 +364,7 @@ python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py cleanup
 1. Creates PR from release branch to develop
 2. (Manual) User merges PR in GitHub UI
 3. Rebases contrib branch on updated develop
-4. Deletes release branch
+4. Instructs user to manually delete release branch
 
 **Key features:**
 - Uses release branch directly (no separate backmerge branch)
@@ -396,13 +395,13 @@ python .claude/skills/git-workflow-manager/scripts/cleanup_release.py \
 
 **What it does:**
 1. Validates release is tagged and merged
-2. Deletes local branch: `release/<version>`
-3. Deletes remote branch: `origin/release/<version>`
+2. Instructs user to manually delete local branch: `release/<version>`
+3. Instructs user to manually delete remote branch: `origin/release/<version>`
 4. Archives TODO file to ARCHIVED/
 
 **Key features:**
 - Safety checks (tag must exist, branch must be merged)
-- Cleans up both local and remote branches
+- Prevents accidental deletion (manual steps required)
 - Archives release TODO file
 
 ---
@@ -533,7 +532,7 @@ for slug in work_items:
 import subprocess
 
 # Step 1: Feature branch merged to contrib via PR
-# (User merges PR #94 in GitHub/Azure DevOps UI)
+# (User merges PR #94 in GitHub UI)
 
 # Step 2: Generate work-items from unresolved conversations
 result = subprocess.run([
@@ -591,36 +590,6 @@ issue_list = json.loads(issues.stdout)
 # [{'number': 123, 'title': 'PR #94 feedback: ...', 'url': '...'}, ...]
 ```
 
-**Integration with Azure DevOps:**
-```python
-import subprocess
-import json
-
-# For Azure DevOps repositories
-result = subprocess.run([
-    'python',
-    '.claude/skills/git-workflow-manager/scripts/generate_work_items_from_pr.py',
-    '94'
-], capture_output=True, text=True, check=True)
-
-# Creates Azure DevOps tasks with:
-# - Type: Task
-# - Tags: "pr-feedback", "pr-94"
-# - Title: "PR #94 feedback: {thread subject}"
-# - Description: Full thread content with file context
-# - Relations: Links to PR URL
-
-# Check created work-items
-work_items = subprocess.run([
-    'az', 'boards', 'work-item', 'list',
-    '--query', "[?fields.'System.Tags' contains 'pr-94']",
-    '--output', 'json'
-], capture_output=True, text=True, check=True)
-
-item_list = json.loads(work_items.stdout)
-# [{'id': 456, 'fields': {'System.Title': 'PR #94 feedback: ...'}, ...}, ...]
-```
-
 ---
 
 ### Phase 5: Release Workflow
@@ -656,19 +625,27 @@ subprocess.run([
     'main'
 ], check=True)
 
-# Step 5: Back-merge to develop
+# Step 5: Back-merge to develop (Part 1: PR)
 subprocess.run([
     'python',
-    '.claude/skills/git-workflow-manager/scripts/backmerge_release.py',
-    'v1.6.0',
-    'develop'
+    '.claude/skills/git-workflow-manager/scripts/backmerge_workflow.py',
+    'pr-develop'
 ], check=True)
 
-# Step 6: Cleanup release branch
+# Step 6: User merges PR (release -> develop) in GitHub UI
+
+# Step 7: Rebase contrib (Part 2)
 subprocess.run([
     'python',
-    '.claude/skills/git-workflow-manager/scripts/cleanup_release.py',
-    'v1.6.0'
+    '.claude/skills/git-workflow-manager/scripts/backmerge_workflow.py',
+    'rebase-contrib'
+], check=True)
+
+# Step 8: Cleanup release branch (Part 3)
+subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/backmerge_workflow.py',
+    'cleanup-release'
 ], check=True)
 ```
 
@@ -734,13 +711,6 @@ This skill implements a hybrid workflow:
 - **Rationale:** Only force-pushes if remote hasn't changed since last fetch. Prevents accidental overwrites.
 
 ---
-
-
-
-
-
-
-
 
 
 

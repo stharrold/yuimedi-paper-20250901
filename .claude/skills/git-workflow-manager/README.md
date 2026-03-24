@@ -20,7 +20,7 @@ The Git Workflow Manager handles all git automation in the workflow system: bran
 - ✅ **Semantic versioning** - Automatic version calculation from code changes (MAJOR.MINOR.PATCH)
 - ✅ **Daily rebase automation** - Keep contrib branches current with develop using safe force push
 - ✅ **Release workflow** - Complete release management (create, tag, back-merge, cleanup)
-- ✅ **VCS abstraction** - Works with both GitHub and Azure DevOps
+- ✅ **GitHub integration** - PR creation and management via `gh` CLI
 - ✅ **TODO file integration** - Tracks all operations in workflow manifest
 - ✅ **Timestamp-based naming** - Avoid shell escaping issues with compact ISO8601 format
 
@@ -32,9 +32,8 @@ The Git Workflow Manager handles all git automation in the workflow system: bran
 # Ensure you're in a git repository
 git status
 
-# Have GitHub CLI or Azure DevOps CLI installed (for PR creation)
-gh --version  # GitHub
-az --version  # Azure DevOps
+# Have GitHub CLI installed (for PR creation)
+gh --version
 ```
 
 ### Create Feature Worktree
@@ -260,7 +259,7 @@ python .claude/skills/git-workflow-manager/scripts/semantic_version.py \
 ### Phase 4: Integration
 
 ```bash
-# Create PR: feature → contrib (done via GitHub/Azure DevOps UI)
+# Create PR: feature → contrib (done via GitHub UI)
 
 # After merge, rebase contrib
 python .claude/skills/git-workflow-manager/scripts/daily_rebase.py \
@@ -293,19 +292,13 @@ python .claude/skills/git-workflow-manager/scripts/cleanup_release.py \
 
 ## VCS Provider Support
 
-Works with both GitHub and Azure DevOps via VCS abstraction layer:
+Uses GitHub via `gh` CLI:
 
 ```bash
 # GitHub repository
-# Auto-detects from: git@github.com:user/repo.git
-
-# Azure DevOps repository
-# Auto-detects from: git@ssh.dev.azure.com:v3/org/project/repo
+# Uses: gh pr create, gh pr view, gh issue create
+gh auth status  # Must be authenticated
 ```
-
-**PR creation uses:**
-- `gh pr create` for GitHub
-- `az repos pr create` for Azure DevOps
 
 ## TODO File Integration
 

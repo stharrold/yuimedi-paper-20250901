@@ -12,14 +12,14 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-      issues: write
+      issues: read
       id-token: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Run Claude Code Review
         id: claude-review
@@ -28,21 +28,15 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           plugin_marketplaces: 'https://github.com/anthropics/claude-code.git'
           plugins: 'code-review@claude-code-plugins'
+          show_full_output: true
+          claude_args: "--allowedTools Bash,WebFetch,WebSearch,Skill,Task"
           prompt: |
-            REPO: ${{ github.repository }}
-            PR NUMBER: ${{ github.event.pull_request.number }}
+            IMPORTANT: You are running in GitHub Actions on Ubuntu. GITHUB_TOKEN and GH_TOKEN are already configured in the environment. Do NOT run "security find-generic-password" or override GITHUB_TOKEN — those are macOS-only patterns from CLAUDE.md that do not apply here.
 
-            Please review this pull request and provide feedback on:
-            - Code quality and best practices
-            - Potential bugs or issues
-            - Performance considerations
-            - Security concerns
-            - Test coverage
+            Review PR #${{ github.event.pull_request.number }} in ${{ github.repository }}.
 
-            Use the repository's CLAUDE.md for guidance on style and conventions. Be constructive and helpful in your feedback.
-
-            Use `gh pr comment` with your Bash tool to leave your review as a comment on the PR.
-
-          # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
-          # or https://docs.claude.com/en/docs/claude-code/cli-reference for available options
-          claude_args: '--allowed-tools "Bash(gh issue view:*),Bash(gh search:*),Bash(gh issue list:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr list:*)"'
+            Steps:
+            1. Run `gh pr diff ${{ github.event.pull_request.number }}` to get the changes
+            2. Read relevant files for context
+            3. Analyze for bugs, security issues, code quality, and adherence to project conventions
+            4. Post your review as a PR comment using `gh pr comment ${{ github.event.pull_request.number }} --body "<your review>"`

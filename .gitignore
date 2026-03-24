@@ -133,3 +133,15 @@ cabal.project.local~
 node_modules/
 test.html
 test.md
+
+# Added by apply_bundle
+coverage.xml
+test-results.xml
+coverage.json
+*.cover
+.uv/
+Thumbs.db
+outputs/
+*.log.jsonl
+.github/instructions/codacy.instructions.md
+gha-creds-*.json

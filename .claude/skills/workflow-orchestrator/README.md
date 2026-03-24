@@ -12,14 +12,14 @@ children:
 
 > **Main coordinator skill for the 6-phase workflow system - provides algorithmic guidance for Claude Code**
 
-The Workflow Orchestrator is the main coordinator skill that guides Claude Code through workflow phases. Unlike other skills, it contains no executable scripts - instead, it provides algorithmic guidance for context detection, skill loading, and phase transitions. This is a **conceptual skill** that directs Claude Code's behavior.
+The Workflow Orchestrator is the main coordinator skill that guides Claude Code through workflow phases. Unlike other skills, it contains no executable scripts - instead, it provides algorithmic guidance for context detection, skill loading, and phase transitions. This is a **conceptual skill** that directs Gemini's behavior.
 
 ## Key Concept
 
-**No executable scripts** - Orchestration logic is too dynamic for static scripts. Requires Claude Code's natural language understanding and real-time context detection.
+**No executable scripts** - Orchestration logic is too dynamic for static scripts. Requires Gemini's natural language understanding and real-time context detection.
 
 **What SKILL.md provides:**
-- Algorithms (Python pseudocode) for Claude Code to implement mentally
+- Algorithms (Python pseudocode) for Gemini to implement mentally
 - Decision trees for phase determination
 - Skill loading patterns (progressive loading for token efficiency)
 - Context management guidance (80K warning, 100K checkpoint)

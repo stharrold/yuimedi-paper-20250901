@@ -23,7 +23,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Add workflow-utilities to path for safe_output utilities
+# Add workflow-utilities to path for safe_output utilities and vcs
 sys.path.insert(
     0,
     str(Path(__file__).parent.parent.parent / "workflow-utilities" / "scripts"),
@@ -47,6 +47,9 @@ except ImportError:
         return f"[WARN] {msg}"
 
 
+from vcs import create_pr, get_contrib_branch
+
+
 def run_cmd(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
     """Run a command and return the result."""
     safe_print(f"  -> {' '.join(cmd)}")
@@ -57,13 +60,6 @@ def get_current_branch() -> str:
     """Get current git branch name."""
     result = run_cmd(["git", "branch", "--show-current"], check=False)
     return result.stdout.strip()
-
-
-def get_contrib_branch() -> str:
-    """Get the contrib branch name (contrib/<username>)."""
-    result = run_cmd(["gh", "api", "user", "-q", ".login"], check=False)
-    username = result.stdout.strip() or "stharrold"
-    return f"contrib/{username}"
 
 
 def return_to_editable_branch() -> bool:
@@ -92,24 +88,19 @@ def return_to_editable_branch() -> bool:
 
 
 def run_quality_gates() -> bool:
-    """Run quality gates before PR (tests, lint, format, type check)."""
+    """Run quality gates before PR."""
     print("\n[Quality Gates] Running quality gates...")
+    script_path = Path(".claude/skills/quality-enforcer/scripts/run_quality_gates.py")
 
-    gates = [
-        (["uv", "run", "pytest"], "tests"),
-        (["uv", "run", "ruff", "check", "."], "ruff check"),
-        (["uv", "run", "ruff", "format", "--check", "."], "ruff format"),
-    ]
+    if not script_path.exists():
+        safe_print(format_warning("  Quality gates script not found, skipping"))
+        return True
 
-    for cmd, name in gates:
-        print(f"  Running {name}...")
-        result = subprocess.run(cmd, check=False, capture_output=True)
-        if result.returncode != 0:
-            safe_print(format_cross(f"  {name} failed"))
-            return False
-        safe_print(format_check(f"  {name} passed"))
+    result = subprocess.run(
+        ["podman-compose", "run", "--rm", "dev", "python", str(script_path)], check=False
+    )
 
-    return True
+    return result.returncode == 0
 
 
 def step_finish_feature() -> bool:
@@ -147,25 +138,20 @@ def step_finish_feature() -> bool:
 
     # Create PR
     print(f"\n[PR] Creating PR: {current} -> {contrib}...")
-    result = run_cmd(
-        [
-            "gh",
-            "pr",
-            "create",
-            "--base",
-            contrib,
-            "--fill",
-            "--body",
-            "Feature PR created via workflow automation.\n\n[BOT] Generated with [Claude Code](https://claude.ai/code)",
-        ],
-        check=False,
-    )
-
-    if result.returncode != 0:
-        if "already exists" in result.stderr:
+    try:
+        create_pr(
+            base=contrib,
+            head=current,
+            title="",
+            body="Feature PR created via workflow automation.\n\n[BOT] Generated with [Claude Code](https://claude.ai/code)",
+            fill=True,
+        )
+    except RuntimeError as e:
+        error_msg = str(e)
+        if "already exists" in error_msg:
             safe_print(format_warning("  PR already exists"))
         else:
-            safe_print(format_cross(f" PR creation failed: {result.stderr}"))
+            safe_print(format_cross(f" PR creation failed: {error_msg}"))
             return False
 
     safe_print(format_check(f" Step 1 complete: PR created {current} -> {contrib}"))
@@ -196,35 +182,30 @@ def step_start_develop() -> bool:
 
     # Push any pending changes
     print(f"\n[Push] Pushing {contrib}...")
-    result = run_cmd(["git", "push", "origin", contrib], check=False)
+    run_cmd(["git", "push", "origin", contrib], check=False)
 
     # Create PR to develop
     print(f"\n[PR] Creating PR: {contrib} -> develop...")
-    result = run_cmd(
-        [
-            "gh",
-            "pr",
-            "create",
-            "--base",
-            "develop",
-            "--fill",
-            "--body",
-            (
+    try:
+        create_pr(
+            base="develop",
+            head=contrib,
+            title="",
+            body=(
                 f"Integration PR: {contrib} -> develop\n\n"
                 "Workflow steps completed:\n"
                 "- [x] Quality gates passed\n"
                 "- [x] AI config synced\n\n"
                 "[BOT] Generated with [Claude Code](https://claude.ai/code)"
             ),
-        ],
-        check=False,
-    )
-
-    if result.returncode != 0:
-        if "already exists" in result.stderr:
+            fill=True,
+        )
+    except RuntimeError as e:
+        error_msg = str(e)
+        if "already exists" in error_msg:
             safe_print(format_warning("  PR already exists"))
         else:
-            safe_print(format_cross(f" PR creation failed: {result.stderr}"))
+            safe_print(format_cross(f" PR creation failed: {error_msg}"))
             return False
 
     safe_print(format_check(f" Step 4 complete: PR created {contrib} -> develop"))

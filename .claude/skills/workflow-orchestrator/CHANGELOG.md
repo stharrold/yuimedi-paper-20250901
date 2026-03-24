@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Updated SKILL.md with work-item generation invocation and benefits
-- Updated CLAUDE.md Workflow Phase Map with detailed Phase 4 steps
+- Updated GEMINI.md Workflow Phase Map with detailed Phase 4 steps
 - Extended Phase 4 from integration-only to include PR feedback handling
 - Added guidance on when to use work-item generation vs. direct fixes
 
@@ -53,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Context-aware skill selection (main repo vs worktree)
 - User confirmation prompts before actions
 - TODO file state management at 100K token checkpoint
-- Templates for TODO, WORKFLOW.md, CLAUDE.md
+- Templates for TODO, WORKFLOW.md, GEMINI.md
 
 ### Changed
 - Migrated from monolithic workflow to modular orchestration

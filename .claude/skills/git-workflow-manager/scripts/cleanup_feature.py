@@ -157,37 +157,19 @@ def cleanup_feature(slug: str, project_name: str = None):
     print("Starting cleanup operations...")
     print("=" * 70 + "\n")
 
-    # Step 3: Delete worktree (if exists)
+    # Step 3: Instructions for worktree deletion (Manual only)
     if worktree_path:
-        try:
-            delete_worktree(worktree_path)
-        except subprocess.CalledProcessError as e:
-            print("\n[FAIL] ERROR: Failed to delete worktree", file=sys.stderr)
-            print(f"   Path: {worktree_path}", file=sys.stderr)
-            print(f"   Command failed: {e.cmd}", file=sys.stderr)
-            print("\n[WARN]  Worktree NOT deleted", file=sys.stderr)
-            print("   You can manually delete: git worktree remove", file=sys.stderr)
-            sys.exit(1)
+        print("\n[NOTE] Worktree must be deleted manually:")
+        print(f"  git worktree remove {worktree_path}")
 
-    # Step 4: Delete branches (local + remote)
-    try:
-        delete_branch(branch_name)
-    except subprocess.CalledProcessError as e:
-        print("\n[FAIL] ERROR: Failed to delete branch", file=sys.stderr)
-        print(f"   Branch: {branch_name}", file=sys.stderr)
-        print(f"   Command failed: {e.cmd}", file=sys.stderr)
-        print("\n[WARN]  Worktree deleted, but branch NOT deleted", file=sys.stderr)
-        print("   You can manually delete: git branch -D", file=sys.stderr)
-        sys.exit(1)
-
+    # Step 4: Instructions for branch deletion (Manual only)
     print("\n" + "=" * 70)
-    print(f"[OK] Feature cleanup complete: {slug}")
+    print(f"[OK] Feature cleanup instructions provided: {slug}")
     print("=" * 70)
-    print("\nCleaned up:")
-    if worktree_path:
-        print(f"  [OK] Worktree deleted: {worktree_path}")
-    print(f"  [OK] Local branch deleted: {branch_name}")
-    print(f"  [OK] Remote branch deleted: origin/{branch_name}")
+
+    print("\n[NOTE] Git branches must be deleted manually:")
+    print(f"  git branch -d {branch_name}")
+    print(f"  git push origin --delete {branch_name}")
     print()
 
 

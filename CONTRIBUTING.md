@@ -34,10 +34,9 @@ git --version             # Version control
 python3 --version         # Python 3.11+
 uv --version              # Python package manager
 
-# VCS Provider CLI (one of):
-gh --version              # GitHub CLI (for GitHub repos)
-# OR
-az --version              # Azure CLI (for Azure DevOps repos)
+# GitHub CLI (or az CLI for Azure DevOps repos):
+gh --version              # GitHub CLI (for PR operations)
+# az --version            # Azure DevOps CLI (alternative, if using Azure DevOps)
 ```
 
 ### Initial Setup
@@ -77,7 +76,7 @@ feature/* (isolated worktrees)
 ### Workflow Steps
 
 1. **Create Worktree**: `/workflow:v7x1_1-worktree "feature description"`
-2. **Implement**: Perform implementation using built-in Claude Code tools (in worktree).
+2. **Implement**: Perform implementation using Claude Code (in worktree).
 3. **Integrate**: `/workflow:v7x1_2-integrate` (in main repo)
 4. **Release**: `/workflow:v7x1_3-release`
 5. **Backmerge**: `/workflow:v7x1_4-backmerge`
