@@ -1,9 +1,9 @@
-# Containerfile for stharrold-templates
+# Containerfile for yuimedi-paper-20250901
 # Python 3.11 + uv environment for development and CI/CD
 #
-# Build:  podman build -t stharrold-templates .
-# Run:    podman run --rm -v .:/app stharrold-templates <command>
-# Shell:  podman run --rm -it -v .:/app stharrold-templates bash
+# Build:  podman build -t yuimedi-paper .
+# Run:    podman run --rm -v .:/app yuimedi-paper <command>
+# Shell:  podman run --rm -it -v .:/app yuimedi-paper bash
 #
 # Secrets Management:
 #   Secrets are detected via environment variables at runtime.
@@ -23,7 +23,7 @@
 FROM python:3.11-slim
 
 LABEL maintainer="stharrold"
-LABEL description="MCP templates development environment with uv + Python 3.11"
+LABEL description="YuiQuery research development environment with uv + Python 3.11"
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -40,7 +40,9 @@ ENV PATH="/root/.local/bin:$PATH"
 WORKDIR /app
 
 # Copy dependency files first (for layer caching)
-COPY pyproject.toml uv.lock* ./
+# LICENSE is required because pyproject.toml references license = {file = "LICENSE"}
+# and hatchling validates the file exists during editable install
+COPY pyproject.toml uv.lock* LICENSE ./
 
 # Install dependencies
 RUN uv sync --frozen 2>/dev/null || uv sync

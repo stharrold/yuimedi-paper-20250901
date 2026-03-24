@@ -1,4 +1,4 @@
-# podman-compose.yml - Development environment for stharrold-templates
+# podman-compose.yml - Development environment for yuimedi-paper-20250901
 #
 # Usage:
 #   podman-compose up -d      # Start container in background
@@ -14,8 +14,8 @@ services:
     build:
       context: .
       dockerfile: Containerfile
-    image: stharrold-templates:latest
-    container_name: stharrold-templates-dev
+    image: yuimedi-paper:latest
+    container_name: yuimedi-paper-dev
     working_dir: /app
     volumes:
       - .:/app:Z
