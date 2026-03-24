@@ -40,9 +40,10 @@ ENV PATH="/root/.local/bin:$PATH"
 WORKDIR /app
 
 # Copy dependency files first (for layer caching)
-# LICENSE is required because pyproject.toml references license = {file = "LICENSE"}
-# and hatchling validates the file exists during editable install
-COPY pyproject.toml uv.lock* LICENSE ./
+# LICENSE and README.md are required because pyproject.toml references
+# license = {file = "LICENSE"} and readme = "README.md", and hatchling
+# validates these files exist during editable install
+COPY pyproject.toml uv.lock* LICENSE README.md ./
 
 # Install dependencies
 RUN uv sync --frozen 2>/dev/null || uv sync

@@ -22,8 +22,9 @@ ENV PATH="/root/.local/bin:${PATH}"
 WORKDIR /build
 
 # Copy dependency files first for better caching
-# LICENSE is required because pyproject.toml references license = {file = "LICENSE"}
-COPY pyproject.toml uv.lock LICENSE ./
+# LICENSE and README.md are required because pyproject.toml references
+# license = {file = "LICENSE"} and readme = "README.md"
+COPY pyproject.toml uv.lock LICENSE README.md ./
 
 # Install dependencies (frozen for reproducibility)
 RUN uv sync --frozen --no-dev
