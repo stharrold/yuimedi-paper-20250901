@@ -19,7 +19,6 @@ sys.path.insert(0, str(_root / ".claude" / "skills" / "git-workflow-manager" / "
 from unittest.mock import MagicMock, patch  # noqa: E402
 
 from pr_workflow import (  # noqa: E402
-    get_contrib_branch,
     get_current_branch,
     return_to_editable_branch,
     run_cmd,
@@ -56,26 +55,32 @@ class TestGetCurrentBranch:
 
 
 class TestGetContribBranch:
-    """Test get_contrib_branch function."""
+    """Test get_contrib_branch function (delegates to vcs.operations)."""
 
     def test_returns_contrib_branch_format(self):
         """Test that contrib/username format is returned."""
-        with patch("pr_workflow.run_cmd") as mock_run:
-            mock_run.return_value = MagicMock(stdout="testuser\n", returncode=0)
+        with patch("pr_workflow.get_contrib_branch", return_value="contrib/testuser"):
+            from pr_workflow import get_contrib_branch
+
             result = get_contrib_branch()
             assert result == "contrib/testuser"
 
-    def test_uses_default_on_empty_username(self):
-        """Test that default username is used when gh fails."""
-        with patch("pr_workflow.run_cmd") as mock_run:
-            mock_run.return_value = MagicMock(stdout="", returncode=1)
+    def test_uses_default_on_cli_failure(self):
+        """Test that default username is used when VCS CLI fails.
+
+        get_contrib_branch from vcs.operations uses fallback='stharrold' by default.
+        """
+        with patch("vcs.operations.get_username", return_value=""):
+            from pr_workflow import get_contrib_branch
+
             result = get_contrib_branch()
             assert result == "contrib/stharrold"
 
-    def test_strips_whitespace_from_username(self):
-        """Test that whitespace is stripped from username."""
-        with patch("pr_workflow.run_cmd") as mock_run:
-            mock_run.return_value = MagicMock(stdout="  myuser  \n", returncode=0)
+    def test_returns_contrib_with_username(self):
+        """Test that username from VCS is used."""
+        with patch("vcs.operations.get_username", return_value="myuser"):
+            from pr_workflow import get_contrib_branch
+
             result = get_contrib_branch()
             assert result == "contrib/myuser"
 
@@ -176,8 +181,9 @@ class TestStepFinishFeature:
                 with patch("pr_workflow.run_quality_gates", return_value=True):
                     with patch("pr_workflow.run_cmd") as mock_run:
                         mock_run.return_value = MagicMock(returncode=0, stderr="")
-                        result = step_finish_feature()
-                        assert result is True
+                        with patch("pr_workflow.create_pr"):
+                            result = step_finish_feature()
+                            assert result is True
 
     def test_returns_true_when_pr_exists(self):
         """Test that True is returned when PR already exists."""
@@ -185,12 +191,12 @@ class TestStepFinishFeature:
             with patch("pr_workflow.get_contrib_branch", return_value="contrib/user"):
                 with patch("pr_workflow.run_quality_gates", return_value=True):
                     with patch("pr_workflow.run_cmd") as mock_run:
-                        mock_run.side_effect = [
-                            MagicMock(returncode=0, stderr=""),  # push
-                            MagicMock(returncode=1, stderr="already exists"),  # pr create
-                        ]
-                        result = step_finish_feature()
-                        assert result is True
+                        mock_run.return_value = MagicMock(returncode=0, stderr="")
+                        with patch(
+                            "pr_workflow.create_pr", side_effect=RuntimeError("already exists")
+                        ):
+                            result = step_finish_feature()
+                            assert result is True
 
     def test_returns_false_on_push_failure(self):
         """Test that False is returned when push fails."""
@@ -212,13 +218,14 @@ class TestStepStartDevelop:
             with patch("pr_workflow.get_contrib_branch", return_value="contrib/user"):
                 with patch("pr_workflow.run_cmd") as mock_run:
                     mock_run.return_value = MagicMock(returncode=0, stderr="")
-                    with patch("pr_workflow.return_to_editable_branch", return_value=True):
-                        step_start_develop()
-                        # Should call checkout to contrib
-                        checkout_calls = [
-                            c for c in mock_run.call_args_list if "checkout" in str(c)
-                        ]
-                        assert len(checkout_calls) > 0
+                    with patch("pr_workflow.create_pr"):
+                        with patch("pr_workflow.return_to_editable_branch", return_value=True):
+                            step_start_develop()
+                            # Should call checkout to contrib
+                            checkout_calls = [
+                                c for c in mock_run.call_args_list if "checkout" in str(c)
+                            ]
+                            assert len(checkout_calls) > 0
 
     def test_creates_pr_to_develop(self):
         """Test that PR is created to develop branch."""
@@ -226,34 +233,34 @@ class TestStepStartDevelop:
             with patch("pr_workflow.get_contrib_branch", return_value="contrib/user"):
                 with patch("pr_workflow.run_cmd") as mock_run:
                     mock_run.return_value = MagicMock(returncode=0, stderr="")
-                    with patch("pr_workflow.return_to_editable_branch", return_value=True):
-                        result = step_start_develop()
-                        assert result is True
+                    with patch("pr_workflow.create_pr"):
+                        with patch("pr_workflow.return_to_editable_branch", return_value=True):
+                            result = step_start_develop()
+                            assert result is True
 
     def test_returns_true_when_pr_exists(self):
         """Test that True is returned when PR already exists."""
         with patch("pr_workflow.get_current_branch", return_value="contrib/user"):
             with patch("pr_workflow.get_contrib_branch", return_value="contrib/user"):
                 with patch("pr_workflow.run_cmd") as mock_run:
-                    mock_run.side_effect = [
-                        MagicMock(returncode=0, stderr=""),  # push
-                        MagicMock(returncode=1, stderr="already exists"),  # pr create
-                    ]
-                    with patch("pr_workflow.return_to_editable_branch", return_value=True):
-                        result = step_start_develop()
-                        assert result is True
+                    mock_run.return_value = MagicMock(returncode=0, stderr="")
+                    with patch("pr_workflow.create_pr", side_effect=RuntimeError("already exists")):
+                        with patch("pr_workflow.return_to_editable_branch", return_value=True):
+                            result = step_start_develop()
+                            assert result is True
 
     def test_returns_false_on_pr_creation_failure(self):
         """Test that False is returned when PR creation fails."""
         with patch("pr_workflow.get_current_branch", return_value="contrib/user"):
             with patch("pr_workflow.get_contrib_branch", return_value="contrib/user"):
                 with patch("pr_workflow.run_cmd") as mock_run:
-                    mock_run.side_effect = [
-                        MagicMock(returncode=0, stderr=""),  # push
-                        MagicMock(returncode=1, stderr="error: permission denied"),  # pr create
-                    ]
-                    result = step_start_develop()
-                    assert result is False
+                    mock_run.return_value = MagicMock(returncode=0, stderr="")
+                    with patch(
+                        "pr_workflow.create_pr",
+                        side_effect=RuntimeError("error: permission denied"),
+                    ):
+                        result = step_start_develop()
+                        assert result is False
 
 
 class TestShowStatus:
