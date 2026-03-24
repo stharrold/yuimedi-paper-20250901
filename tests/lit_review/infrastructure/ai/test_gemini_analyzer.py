@@ -14,7 +14,10 @@ from lit_review.domain.values.author import Author
 from lit_review.domain.values.doi import DOI
 from lit_review.infrastructure.ai.gemini_analyzer import GeminiAnalyzer
 
-HAS_GEMINI_SDK = importlib.util.find_spec("google.genai") is not None
+try:
+    HAS_GEMINI_SDK = importlib.util.find_spec("google.genai") is not None
+except ModuleNotFoundError:
+    HAS_GEMINI_SDK = False
 
 
 @pytest.fixture
