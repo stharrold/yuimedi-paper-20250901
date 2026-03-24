@@ -32,13 +32,20 @@ Example:
 
 from __future__ import annotations
 
+import importlib.util
 import os
 import subprocess
 import sys
 import tomllib
 from pathlib import Path
 
-from scripts.environment_utils import is_ci, is_container
+# Import sibling module (works for both `uv run scripts/secrets_run.py` and `python -m scripts.secrets_run`)
+_env_utils_path = Path(__file__).parent / "environment_utils.py"
+_spec = importlib.util.spec_from_file_location("environment_utils", _env_utils_path)
+_env_utils = importlib.util.module_from_spec(_spec)  # type: ignore[arg-type]
+_spec.loader.exec_module(_env_utils)  # type: ignore[union-attr]
+is_ci = _env_utils.is_ci
+is_container = _env_utils.is_container
 
 # Lazy import keyring only when needed (CI/containers don't need it)
 keyring = None

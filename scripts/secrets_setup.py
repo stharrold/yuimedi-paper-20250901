@@ -36,6 +36,7 @@ Example:
 from __future__ import annotations
 
 import getpass
+import importlib.util
 import subprocess
 import sys
 import tomllib
@@ -44,7 +45,13 @@ from pathlib import Path
 import keyring
 import tomlkit
 
-from scripts.environment_utils import is_ci, is_container
+# Import sibling module (works for both `uv run scripts/secrets_setup.py` and `python -m scripts.secrets_setup`)
+_env_utils_path = Path(__file__).parent / "environment_utils.py"
+_spec = importlib.util.spec_from_file_location("environment_utils", _env_utils_path)
+_env_utils = importlib.util.module_from_spec(_spec)  # type: ignore[arg-type]
+_spec.loader.exec_module(_env_utils)  # type: ignore[union-attr]
+is_ci = _env_utils.is_ci
+is_container = _env_utils.is_container
 
 
 def get_repo_root(target_path: Path | None = None) -> Path:
