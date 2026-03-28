@@ -145,11 +145,11 @@ To measure success, we propose the **Analytics Resilience Index (ARI)**, extendi
 
 ## Why Resilience, Not Maturity
 
-Existing maturity models such as the HIMSS Analytics Maturity Assessment Model (AMAM) assume linear progression through discrete stages and implicitly presuppose a stable workforce capable of sustaining each level once achieved [@himss2024; @wang2018]. In practice, this assumption is violated routinely. An organization that reaches AMAM Stage 5 but regresses to Stage 3 after the departure of two senior analysts has not failed to mature; it has failed to be *resilient*. Static maturity scores capture a snapshot of peak capability but reveal nothing about the organization's ability to sustain that capability through disruption. The ARI addresses this gap by shifting the measurement focus from "where you are" to "how far you fall when someone leaves."
+Existing maturity models such as the HIMSS Analytics Maturity Assessment Model (AMAM), the DIKW hierarchy, and established knowledge management frameworks (see Table 2) assume linear progression through discrete stages and implicitly presuppose a stable workforce capable of sustaining each level once achieved [@himss2024; @wang2018]. In practice, this assumption is violated routinely. An organization that reaches AMAM Stage 5 but regresses to Stage 3 after the departure of two senior analysts has not failed to mature; it has failed to be *resilient*. Static maturity scores capture a snapshot of peak capability but reveal nothing about the organization's ability to sustain that capability through disruption. The ARI addresses this gap by shifting the measurement focus from "where you are" to "how far you fall when someone leaves."
 
 ## Operationalizing the ARI
 
-Each ARI dimension (Table 1) can be scored on a Likert-type scale from 1 (fragile) to 5 (antifragile). For example, the "Knowledge Locus" dimension would be scored by surveying whether key analytical queries are documented in a shared, version-controlled repository (score 5) or known only to named individuals who could leave at any time (score 1). Similarly, "Turnover Impact" could be assessed through scenario exercises that simulate the departure of a critical team member and measure the time required to restore reporting capability. An aggregate ARI score across all dimensions provides a composite indicator of organizational resilience posture, enabling longitudinal tracking and cross-institutional benchmarking.
+Each ARI dimension (Table 2) can be scored on a Likert-type scale from 1 (fragile) to 5 (antifragile). For example, the "Knowledge Locus" dimension would be scored by surveying whether key analytical queries are documented in a shared, version-controlled repository (score 5) or known only to named individuals who could leave at any time (score 1). Similarly, "Turnover Impact" could be assessed through scenario exercises that simulate the departure of a critical team member and measure the time required to restore reporting capability. An aggregate ARI score across all dimensions provides a composite indicator of organizational resilience posture, enabling longitudinal tracking and cross-institutional benchmarking.
 
 The "Schema Coupling" dimension can be operationalized through *Continuous Analytic Integration*: treating validated query triples not as static wiki entries but as software assets within a CI/CD pipeline [@valiaiev2025]. When a data warehouse schema is updated (e.g., a quarterly EHR upgrade), the system automatically re-runs the library of stored queries. Queries that fail or return anomalous results are flagged for review. This transforms "Institutional Memory" from a stagnant repository into a living, automated test suite that actively signals when organizational knowledge has drifted from technical reality [@betha2023]. Existing NL2SQL systems are known to lack resilience to vocabulary drift and OMOP CDM schema changes [@kottam2025], making such automated regression essential.
 
@@ -228,6 +228,7 @@ AI: Artificial Intelligence
 AMAM: Analytics Maturity Assessment Model
 ARI: Analytics Resilience Index
 CIO: Chief Information Officer
+DIKW: Data, Information, Knowledge, Wisdom
 DSR: Design Science Research
 EMRAM: Electronic Medical Record Adoption Model
 HITL-KG: Human-in-the-Loop Knowledge Governance
