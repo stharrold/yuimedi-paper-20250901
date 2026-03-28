@@ -149,7 +149,7 @@ Existing maturity models such as the HIMSS Analytics Maturity Assessment Model (
 
 ## Operationalizing the ARI
 
-Each ARI dimension (Table 2) can be scored on a Likert-type scale from 1 (fragile) to 5 (antifragile). For example, the "Knowledge Locus" dimension would be scored by surveying whether key analytical queries are documented in a shared, version-controlled repository (score 5) or known only to named individuals who could leave at any time (score 1). Similarly, "Turnover Impact" could be assessed through scenario exercises that simulate the departure of a critical team member and measure the time required to restore reporting capability. An aggregate ARI score across all dimensions provides a composite indicator of organizational resilience posture, enabling longitudinal tracking and cross-institutional benchmarking.
+Each ARI dimension (Table 2) can be scored on a Likert-type scale from 1 (fragile) to 5 (robust). For example, the "Knowledge Locus" dimension would be scored by surveying whether key analytical queries are documented in a shared, version-controlled repository (score 5) or known only to named individuals who could leave at any time (score 1). Similarly, "Turnover Impact" could be assessed through scenario exercises that simulate the departure of a critical team member and measure the time required to restore reporting capability. An aggregate ARI score across all dimensions provides a composite indicator of organizational resilience posture, enabling longitudinal tracking and cross-institutional benchmarking.
 
 The "Schema Coupling" dimension can be operationalized through *Continuous Analytic Integration*: treating validated query triples not as static wiki entries but as software assets within a CI/CD pipeline [@valiaiev2025]. When a data warehouse schema is updated (e.g., a quarterly EHR upgrade), the system automatically re-runs the library of stored queries. Queries that fail or return anomalous results are flagged for review. This transforms "Institutional Memory" from a stagnant repository into a living, automated test suite that actively signals when organizational knowledge has drifted from technical reality [@betha2023]. Existing NL2SQL systems are known to lack resilience to vocabulary drift and OMOP CDM schema changes [@kottam2025], making such automated regression essential.
 
@@ -157,7 +157,7 @@ A recent systematic review identified 23 distinct organizational resilience inst
 
 Critically, the ARI complements rather than replaces AMAM. Where AMAM measures the sophistication of an organization's analytical capabilities at a point in time, the ARI measures the durability of those capabilities under workforce stress. An organization should aspire to high scores on both instruments: AMAM for capability and ARI for sustainability. Used together, they provide a two-dimensional view of analytics health that neither instrument offers alone.
 
-| Dimension | Low Resilience (Fragile) | High Resilience (Antifragile) | Evidence |
+| Dimension | Low Resilience (Fragile) | High Resilience (Robust) | Evidence |
 |:---|:---|:---|:---|
 | **Knowledge Locus** | Knowledge resides in "Hero" analysts. | Knowledge resides in the System/Repository. | [@hong2025; @benbya2004] |
 | **Turnover Impact** | Departure of 1 staff member stops reporting. | Departure causes minimal disruption; successors inherit queries. | [@massingham2018; @rao2006] |
