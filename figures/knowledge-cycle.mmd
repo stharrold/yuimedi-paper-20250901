@@ -1,41 +1,20 @@
-%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false, 'nodeSpacing': 50, 'rankSpacing': 60}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '14pt'}}}%%
-flowchart TB
-    %% Validated Query Cycle - Knowledge Preservation Mechanism
-    %% Larger fonts (14pt) for print readability
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false, 'nodeSpacing': 25, 'rankSpacing': 40}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '12pt'}}}%%
+flowchart LR
+    %% Validated Query Cycle - Compact left-to-right layout
 
-    subgraph CYCLE["<b>Validated Query Cycle</b>"]
-        Q["<b>1. QUERY</b><br/>Domain expert asks<br/>natural language question"]
-        G["<b>2. GENERATION</b><br/>System generates<br/>candidate SQL"]
-        V{"<b>3. VALIDATION</b><br/>AI explains SQL logic<br/>and results;<br/>Expert confirms intent"}
-        S["<b>4. STORAGE</b><br/>Validated triple<br/>stored in memory"]
-        R["<b>5. RETRIEVAL</b><br/>Future queries match<br/>validated triples"]
-        P["<b>6. PERSISTENCE</b><br/>Knowledge survives<br/>staff turnover"]
-    end
-
-    subgraph PILLARS["<b>Three Pillars</b>"]
-        M["<b>Analytics</b><br/><b>Maturity</b>"]
-        T["<b>Workforce</b><br/><b>Agility</b>"]
-        B["<b>Technical</b><br/><b>Enablement</b>"]
-    end
-
-    %% Main cycle flow
-    Q --> G
-    G --> V
-    V -->|"Correct"| S
+    Q["<b>1. QUERY</b><br/>Expert asks<br/>question"] --> G["<b>2. GENERATION</b><br/>System generates<br/>SQL"]
+    G --> V{"<b>3. VALIDATION</b><br/>AI explains;<br/>Expert confirms"}
+    V -->|"Correct"| S["<b>4. STORAGE</b><br/>Triple stored"]
     V -->|"Incorrect"| G
-    S --> R
-    R --> P
-    P -->|"New expert uses<br/>validated queries"| Q
+    S --> R["<b>5. RETRIEVAL</b><br/>Future queries<br/>match"]
+    R --> P["<b>6. PERSISTENCE</b><br/>Knowledge survives<br/>turnover"]
+    P -.->|"New expert"| Q
 
-    %% How cycle advances each pillar
-    S -.->|"Advances"| M
-    P -.->|"Stabilizes"| T
-    R -.->|"Increases"| B
+    %% Three Pillars below
+    S -.->|"Advances"| M["<b>Analytics Maturity</b>"]
+    R -.->|"Increases"| B["<b>Technical Enablement</b>"]
+    P -.->|"Stabilizes"| T["<b>Workforce Agility</b>"]
 
     %% Styling
-    classDef group fill:#e8e8e8,stroke:#666,stroke-width:2px
-    classDef dashedGroup fill:#e8e8e8,stroke:#666,stroke-width:2px,stroke-dasharray:5 5
     classDef decision fill:#f5f5f5,stroke:#444,stroke-width:2px
-    class CYCLE group
-    class PILLARS dashedGroup
     class V decision
