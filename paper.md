@@ -104,7 +104,7 @@ The corresponding six step Validated Query Cycle is summarized in Figure 2, whic
 ## The Process of Externalization
 1.  **Query Generation**: A user asks a question. The AI proposes SQL based on schema knowledge [@lee2023; @wang2020].
 2.  **Semantic Translation**: The AI translates the SQL back into a natural language explanation [@ziletti2024].
-3.  **Expert Validation**: The domain expert confirms or corrects this interpretation. *This is the critical moment of Externalization.* This "Human-on-the-Loop" (HotL) step transforms validation into an iterative knowledge capture process [@bravorocca2023; @mosqueirarey2023].
+3.  **Expert Validation**: The domain expert confirms or corrects this interpretation. *This is the critical moment of Externalization.* This "Human-in-the-Loop" (HITL) step transforms validation into an iterative knowledge capture process [@bravorocca2023; @mosqueirarey2023].
 4.  **Artifact Storage**: The validated triple is hashed and stored in organizational memory [@benbya2004].
 5.  **Retrieval**: Future queries semantically match against this repository first, retrieving *trusted* human knowledge before attempting *probabilistic* generation [@whittaker2008].
 
@@ -232,7 +232,7 @@ DSR: Design Science Research
 EMRAM: Electronic Medical Record Adoption Model
 HiL-SG: Human-in-the-Loop Semantic Governance
 HIMSS: Healthcare Information Management Systems Society
-HotL: Human-on-the-Loop
+HITL: Human-in-the-Loop
 IT: Information Technology
 NL2SQL: Natural Language to SQL
 SECI: Socialization, Externalization, Combination, Internalization
