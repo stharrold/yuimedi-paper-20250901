@@ -1,18 +1,21 @@
-%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false, 'nodeSpacing': 30, 'rankSpacing': 35}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '13pt'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false, 'nodeSpacing': 30, 'rankSpacing': 35, 'padding': 20}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '13pt'}}}%%
 flowchart TB
-    %% Validated Query Cycle - Compact version
+    %% Validated Query Cycle
 
-    subgraph CYCLE["<b>Validated Query Cycle</b>"]
-        Q["<b>1. QUERY</b><br/>Expert asks question"]
+    subgraph CYCLE["Validated Query Cycle"]
+        direction TB
+        CYCLE_PAD[ ] ~~~ Q
+        Q["<b>1. QUERY</b><br/>Analyst asks question"]
         G["<b>2. GENERATION</b><br/>System generates SQL"]
-        V{"<b>3. VALIDATION</b><br/>AI explains logic;<br/>Expert confirms"}
+        V{"<b>3. VALIDATION</b><br/>AI explains logic;<br/>Analyst confirms"}
         S["<b>4. STORAGE</b><br/>Triple stored"]
         R["<b>5. RETRIEVAL</b><br/>Future queries match"]
         P["<b>6. PERSISTENCE</b><br/>Knowledge survives turnover"]
     end
 
-    subgraph PILLARS["<b>Three Pillars</b>"]
+    subgraph PILLARS["Three Pillars"]
         direction LR
+        PILLARS_PAD[ ] ~~~ M
         M["<b>Analytics<br/>Maturity</b>"]
         T["<b>Workforce<br/>Agility</b>"]
         B["<b>Technical<br/>Enablement</b>"]
@@ -22,7 +25,7 @@ flowchart TB
     Q --> G --> V
     V -->|"Correct"| S --> R --> P
     V -->|"Incorrect"| G
-    P -->|"New expert uses validated queries"| Q
+    P -->|"New analyst uses validated queries"| Q
 
     %% How cycle advances each pillar
     S -.->|"Advances"| M
@@ -33,6 +36,8 @@ flowchart TB
     classDef group fill:#e8e8e8,stroke:#666,stroke-width:2px
     classDef dashedGroup fill:#e8e8e8,stroke:#666,stroke-width:2px,stroke-dasharray:5 5
     classDef decision fill:#f5f5f5,stroke:#444,stroke-width:2px
+    classDef invisible fill:none,stroke:none,color:transparent
     class CYCLE group
     class PILLARS dashedGroup
     class V decision
+    class CYCLE_PAD,PILLARS_PAD invisible
