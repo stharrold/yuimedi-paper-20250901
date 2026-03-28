@@ -1,10 +1,9 @@
-%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false, 'nodeSpacing': 30, 'rankSpacing': 35, 'padding': 20}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '13pt'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false, 'nodeSpacing': 30, 'rankSpacing': 40, 'padding': 30}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '13pt'}}}%%
 flowchart TB
     %% Validated Query Cycle
+    %% padding: 30 gives more room between subgraph title and first node
 
-    subgraph CYCLE["<b>VALIDATED QUERY CYCLE</b>"]
-        direction TB
-        CYCLE_PAD[ ] ~~~ Q
+    subgraph CYCLE["&nbsp; &nbsp; VALIDATED QUERY CYCLE &nbsp; &nbsp;"]
         Q["<b>1. Query</b><br/>Analyst asks question"]
         G["<b>2. Generation</b><br/>System generates SQL"]
         V{"<b>3. Validation</b><br/>AI explains logic;<br/>Analyst confirms"}
@@ -13,9 +12,8 @@ flowchart TB
         P["<b>6. Persistence</b><br/>Knowledge survives turnover"]
     end
 
-    subgraph PILLARS["<b>THREE PILLARS</b>"]
+    subgraph PILLARS["&nbsp; &nbsp; THREE PILLARS &nbsp; &nbsp;"]
         direction LR
-        PILLARS_PAD[ ] ~~~ M
         M["<b>Analytics<br/>Maturity</b>"]
         T["<b>Workforce<br/>Agility</b>"]
         B["<b>Technical<br/>Enablement</b>"]
@@ -36,8 +34,6 @@ flowchart TB
     classDef group fill:#e8e8e8,stroke:#666,stroke-width:2px
     classDef dashedGroup fill:#e8e8e8,stroke:#666,stroke-width:2px,stroke-dasharray:5 5
     classDef decision fill:#f5f5f5,stroke:#444,stroke-width:2px
-    classDef invisible fill:none,stroke:none,color:transparent
     class CYCLE group
     class PILLARS dashedGroup
     class V decision
-    class CYCLE_PAD,PILLARS_PAD invisible
