@@ -11,7 +11,7 @@ abstract: |
   HiL-SG is designed to shift the locus of organizational knowledge from volatile human memory to durable semantic artifacts called "Validated Query Triples," each comprising a natural language intent, executable SQL, and rationale metadata. By embedding knowledge capture into the daily workflow of query generation, the framework aims to convert the ephemeral act of analytics into permanent institutional assets. The accompanying Analytics Resilience Index (ARI) proposes a measurement instrument that extends static maturity assessments with a complementary resilience dimension, quantifying an organization's ability to sustain analytical capability despite staff churn.
 
   A critical objection, the "Validator Paradox" (who validates the AI when experts leave?), is resolved by reframing validation through Lean "Standard Work": each validated query establishes the current known standard rather than eternal truth, functioning as a "knowledge ratchet" that prevents regression. By decoupling analytical capability from individual tenure, healthcare systems can ensure that analytics maturity advances even as the workforce evolves. This paper proposes and theoretically motivates the framework; empirical validation is deferred to a companion study.
-keywords: [institutional amnesia, healthcare analytics, socio-technical systems, query governance, natural language to SQL, SECI model, workforce turnover, design science research]
+keywords: [institutional amnesia, medical informatics, socio-technical systems, query governance, natural language processing, knowledge management, personnel turnover, organizational resilience]
 license: "CC BY 4.0"
 license-url: "https://creativecommons.org/licenses/by/4.0/"
 lang: en-US
@@ -207,7 +207,7 @@ The author (S.T.H.) takes full responsibility for the final content, conducted t
 
 # Author Contributions
 
-S.T.H. conceived the research, conducted the literature review, and wrote the manuscript.
+S.T.H.: Conceptualization, Investigation, Methodology, Writing (Original Draft), Writing (Review and Editing), Visualization.
 
 # Conflicts of Interest
 
