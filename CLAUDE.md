@@ -141,6 +141,24 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - After applying: check for residual Gemini naming (`grep -ri gemini .claude/skills/`), fix `Containerfile` COPY lines (needs `LICENSE README.md` before `uv sync`), and delete stale test files for removed modules
 - Template-owned files will be overwritten on next apply; repo-specific fixes should be upstreamed to `stharrold-templates`
 
+## Research Workflow
+
+- **Questions index:** `docs/research/Research-Questions.md` (35 answered, 13 unanswered)
+- **Answer files:** `docs/research/answers/Research_<slug>.md` (63 files, each with full citations + URLs)
+- **Every new paper claim must trace to a research answer file** with source URLs and citation metadata
+- **Google Scholar Labs:** Use Playwright MCP (`authuser=1` for second account if daily limit hit); click "New session" between questions; each query evaluates ~60-200 results, surfaces ~10 papers
+- **Scholar Labs workflow:** `docs/guides/scholar-labs-workflow.md`
+
+## Paper Revision Process
+
+1. Critical assessment of current PDF -> `ARCHIVED/` with timestamp
+2. Recommendations doc -> `ARCHIVED/` (may have multiple versions, v2 supersedes v1)
+3. Cross-reference with original rejected submission (`ARCHIVED/20260115_JMIR-Submission/`) for recoverable material
+4. Identify research gaps -> search Google Scholar Labs -> save to `docs/research/answers/`
+5. Update `docs/research/Research-Questions.md` with each answered question
+6. Implementation plan with line-level edits, word budget, commit sequence -> `ARCHIVED/`
+7. Execute in passes (language edits -> content additions -> supporting improvements -> figures)
+
 ## Architecture
 
 - **Scripts (`scripts/`):** Python stdlib only, except `secrets_*.py` which use PEP 723 inline deps (`keyring`, `tomlkit`) auto-installed by `uv run`
@@ -154,6 +172,9 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 
 | File | Purpose |
 |------|---------|
+| `ARCHIVED/YYYYMMDDTHHMMSSZ_critical-assessment_*.md` | Critical assessments of paper drafts |
+| `ARCHIVED/YYYYMMDDTHHMMSSZ_recommendations_*.md` | Revision recommendations (versioned) |
+| `ARCHIVED/YYYYMMDDTHHMMSSZ_implementation-plan_*.md` | Line-level implementation plans for paper edits |
 | `paper.md` | Main paper source (Markdown + pandoc-citeproc citations) |
 | `references.bib` | BibTeX bibliography |
 | `metadata.yaml` | Pandoc metadata for PDF generation |
