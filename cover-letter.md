@@ -27,7 +27,7 @@ The manuscript has been substantially revised to meet Viewpoint article requirem
 
 The revised manuscript retains the core intellectual contributions while removing the exhaustive methodology and literature review sections appropriate for a full research paper:
 
-- **Human-in-the-Loop Semantic Governance (HITL-SG) framework:** The socio-technical architecture for converting tacit domain expertise into durable validated query triples
+- **Human-in-the-Loop Knowledge Governance (HITL-KG) framework:** The socio-technical architecture for converting tacit domain expertise into durable validated query triples
 - **Theoretical grounding in Nonaka's SECI model:** Reinterpretation of knowledge creation theory for the unstable healthcare workforce
 - **The Validator Paradox:** Intellectually honest engagement with the circular objection to the framework, resolved through Lean "Standard Work"
 - **Analytics Resilience Index (ARI):** A proposed measurement instrument complementing static maturity models with dynamic resilience metrics

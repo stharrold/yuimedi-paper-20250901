@@ -26,7 +26,7 @@ children:
 
 Documentation-focused academic research repository. Primary deliverable: `paper.md`, a Theoretical Framework / Viewpoint paper targeting JMIR Medical Informatics.
 
-**Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Semantic Governance (HITL-SG).
+**Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Knowledge Governance (HITL-KG).
 
 **Three-paper series:** Paper 1 (Viewpoint, resubmitting to JMIR ms#91493) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
 
@@ -90,7 +90,7 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - **No em-dashes (—) in any file** (paper, scripts, docs). Use commas, colons, semicolons, or parentheses instead. Python strings use ASCII hyphens.
 - Citations use pandoc-citeproc: `[@key]`, multiple: `[@wu2024; @himss2024]`
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
-- As a Viewpoint, the paper advances a **prescriptive** position grounded in descriptive evidence. The framework's *analysis* of why current approaches fail is descriptive; the *recommendations* (HITL-SG, ARI, governance tiers) are intentionally directive.
+- As a Viewpoint, the paper advances a **prescriptive** position grounded in descriptive evidence. The framework's *analysis* of why current approaches fail is descriptive; the *recommendations* (HITL-KG, ARI, governance tiers) are intentionally directive.
 - Conversational AI is a "Governance Forcing Function," not the standalone solution
 - **JMIR Viewpoint format:** No "Methods" or "Results" H1 headers; unstructured abstract (≤450 words); body ≤5,000 words. See `standards/jmir_submission_article-types.md` lines 60-73.
 
