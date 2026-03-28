@@ -2,18 +2,18 @@
 flowchart TB
     %% Validated Query Cycle
 
-    subgraph CYCLE["Validated Query Cycle"]
+    subgraph CYCLE["<b>VALIDATED QUERY CYCLE</b>"]
         direction TB
         CYCLE_PAD[ ] ~~~ Q
-        Q["<b>1. QUERY</b><br/>Analyst asks question"]
-        G["<b>2. GENERATION</b><br/>System generates SQL"]
-        V{"<b>3. VALIDATION</b><br/>AI explains logic;<br/>Analyst confirms"}
-        S["<b>4. STORAGE</b><br/>Triple stored"]
-        R["<b>5. RETRIEVAL</b><br/>Future queries match"]
-        P["<b>6. PERSISTENCE</b><br/>Knowledge survives turnover"]
+        Q["<b>1. Query</b><br/>Analyst asks question"]
+        G["<b>2. Generation</b><br/>System generates SQL"]
+        V{"<b>3. Validation</b><br/>AI explains logic;<br/>Analyst confirms"}
+        S["<b>4. Storage</b><br/>Triple stored"]
+        R["<b>5. Retrieval</b><br/>Future queries match"]
+        P["<b>6. Persistence</b><br/>Knowledge survives turnover"]
     end
 
-    subgraph PILLARS["Three Pillars"]
+    subgraph PILLARS["<b>THREE PILLARS</b>"]
         direction LR
         PILLARS_PAD[ ] ~~~ M
         M["<b>Analytics<br/>Maturity</b>"]
