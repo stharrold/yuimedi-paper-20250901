@@ -2,7 +2,7 @@
 title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
 author: "Samuel T Harrold, Yuimedi, Inc."
 correspondence: "samuel.harrold@yuimedi.com"
-date: "January 2026"
+date: "March 2026"
 abstract: |
   Healthcare organizations face a "Triple Threat" of low analytics maturity, high workforce instability, and semantic technical barriers that together produce a crisis of "Institutional Amnesia." Recent data underscores the severity: 53% of healthcare CIOs have held their roles for less than three years, and 55% of informatics specialists intend to leave their positions. This churn systematically erases the tacit knowledge required to navigate complex clinical data schemas, trapping organizations in a cycle of low maturity where the rate of knowledge loss exceeds the rate of knowledge capture.
 
