@@ -48,7 +48,7 @@ We propose that the solution lies not in better documentation, but in a fundamen
 
 # Theoretical Grounding: SECI and the Unstable Workforce
 
-We ground our analysis in Nonaka's SECI model of knowledge creation [@farnese2019], informed by a narrative review of the literature (n=139 sources) across healthcare analytics maturity, workforce turnover dynamics, and natural language processing, with grey literature assessed using the AACODS checklist [@tyndall2010]. Grey literature sources were retained only when no peer-reviewed equivalent was available or when the source provided unique industry data not captured in academic literature. The SECI model describes organizational knowledge as emerging through a continuous cycle of four conversion modes:
+We ground our analysis in Nonaka's SECI model of knowledge creation [@farnese2019], informed by a narrative review of the literature across healthcare analytics maturity, workforce turnover dynamics, and natural language processing, with grey literature assessed using the AACODS checklist [@tyndall2010]. Grey literature sources were retained only when no peer-reviewed equivalent was available or when the source provided unique industry data not captured in academic literature. The SECI model describes organizational knowledge as emerging through a continuous cycle of four conversion modes:
 
 1. **Socialization** (tacit to tacit): Knowledge transfers through shared experience and co-located practice, as when a senior analyst teaches a junior colleague the unwritten rules of a clinical dataset.
 2. **Externalization** (tacit to explicit): Individuals articulate tacit know-how into explicit forms such as documents or coded artifacts, as when an analyst records why a specific exclusion code maps to hospice transfers.
@@ -193,7 +193,7 @@ The parallel to aviation safety is instructive. Checklists and mandatory call-ou
 Failed standardization approaches (e.g., IBM Watson Health [@ibm2022; @strickland2019], Haven [@lavito2021; @acchiardo2021]) demonstrate that centralized models fail clinical reality. Metadata uncertainties and "messy" institution-specific business logic require localized solutions [@gal2019; @yang2020]. HiL-SG addresses this by capturing *local* logic rather than enforcing *global* standards.
 
 # Limitations
-This work is a narrative, design science informed framework rather than a systematic review or multi-site empirical evaluation. The literature base is concentrated on English-language sources and recent (2024–2025) workforce and NL2SQL studies, so findings may not capture all regional, specialty-specific, or technological contexts. The HiL-SG architecture and the proposed Analytics Resilience Index (ARI) are conceptual artifacts that require future implementation and validation in diverse health systems before their effectiveness and generalizability can be fully established.
+This work is a narrative, design science informed framework rather than a systematic review or multi-site empirical evaluation. The literature base is concentrated on English-language sources and recent (2024-2026) workforce and NL2SQL studies, so findings may not capture all regional, specialty-specific, or technological contexts. The HiL-SG architecture and the proposed Analytics Resilience Index (ARI) are conceptual artifacts that require future implementation and validation in diverse health systems before their effectiveness and generalizability can be fully established.
 
 # Implications and Future Research
 

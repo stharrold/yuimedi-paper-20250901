@@ -144,12 +144,12 @@ Full construct validation, inter-rater reliability, discriminant validity agains
 
 ---
 
-## Paper 1 Text Change Required
+## Paper 1 Text Change (Applied)
 
-In `paper.md` line 158, change:
+Original wording in `paper.md`:
 > "This development is planned as part of Paper 2."
 
-To:
+Updated wording (now applied in `paper.md`):
 > "This development is planned for future work in this series."
 
 This avoids over-promising what Paper 2 will deliver for ARI psychometrics.
