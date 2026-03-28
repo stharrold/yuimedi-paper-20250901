@@ -1,45 +1,30 @@
-%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '10pt'}}}%%
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false, 'nodeSpacing': 40, 'rankSpacing': 50}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '14pt'}}}%%
 flowchart TD
-    %% Healthcare Analytics Architecture
-    %% Updated to align with paper.md Figure 1 caption
+    %% Simplified Healthcare Analytics Architecture
+    %% Higher-level block diagram for print readability
 
-    subgraph UI["<b>User Interaction Layer</b>"]
-        A["Clinical User"] -->|"1. Initiates"| B["Natural Language Query"]
-        B -->|"2. Transmits"| C["Conversational AI Interface"]
-    end
+    A["<b>Clinical User</b><br/>Asks natural language question"]
+    B["<b>Conversational AI</b><br/>NLP Engine + SQL Generation"]
+    C[("<b>Data Warehouse</b><br/>Healthcare Database")]
+    D{"<b>Expert Validation</b><br/>Confirms intent and SQL logic"}
+    E["<b>Insight Delivery</b><br/>Results and Visualizations"]
+    F[("<b>Organizational Memory</b><br/>Validated Query Triples")]
+    G[("<b>Knowledge Base</b><br/>Ontologies + Best Practices")]
 
-    subgraph Knowledge["<b>Knowledge Infrastructure</b>"]
-        D[("Organizational Memory")] -.-> G[("Institutional Knowledge Base")]
-        E[("Best Practices Repository")] -.-> G
-        F[("Healthcare Ontologies")]
-    end
+    %% Primary data flow
+    A -->|"1. Natural language query"| B
+    B -->|"2. Generates SQL"| C
+    C -->|"3. Returns data"| B
+    B -->|"4. Explains logic"| D
+    D -->|"5. Confirmed"| E
+    D -->|"Incorrect"| B
+    E -->|"6. Delivers insights"| A
 
-    subgraph Engine["<b>Analytics Processing Core</b>"]
-        H["Healthcare NLP Engine"] -->|"4. Interprets & Feeds"| I["Context-Aware SQL Generation"]
-    end
+    %% Knowledge persistence (dashed lines)
+    D -.->|"7. Stores validated triple"| F
+    F -.->|"Informs future queries"| B
+    G -.->|"Provides context"| B
 
-    J[("Healthcare Data Warehouse")]
-
-    subgraph Output["<b>Insight Delivery</b>"]
-        K["Intelligent Response Generation"] -->|"7. Processes"| L["Contextual Insights & Visualizations"]
-    end
-
-    %% Main flow (Solid lines)
-    C -->|"3. Connects to"| H
-    I <-->|"5. Queries & Refines"| J
-    J -->|"6. Returns Data"| K
-    L <-->|"8. Delivers Insights & Refines"| A
-
-    %% Validation Loop (Dotted line per caption)
-    I <.->|"Validation"| A
-
-    %% Knowledge Storage (Dashed line per caption)
-    I -.->|"Stores Validated Triple"| D
-
-    %% Knowledge injection (Dashed lines)
-    G -.->|"Provides Context"| H
-    F -.->|"Provides Semantics"| H
-
-    %% Styling - Grayscale
-    classDef group fill:#e8e8e8,stroke:#666,stroke-width:2px
-    class UI,Knowledge,Engine,Output group
+    %% Styling
+    classDef decision fill:#f5f5f5,stroke:#444,stroke-width:2px
+    class D decision
