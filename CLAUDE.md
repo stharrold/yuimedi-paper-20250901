@@ -100,7 +100,7 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - **Video byte** (60-90s video): Ticket #1144097, approved and published 2026-02-25
 - YouTube: `q4sE4O9F9pU` (AJE Video Bytes channel), Vimeo: `1161046047` (Password: AJE_Healthcare)
 - Contact: support@as.springernature.com (Bhavik, Darshan J)
-- Framework is **descriptive** (reveals interconnections), not **prescriptive** (recommends solutions) -- enforce this in all communications
+- In external communications (visual abstract, video byte), emphasize the framework's **descriptive** analysis of interconnected challenges; the paper's prescriptive recommendations are for the academic audience
 
 ## Secrets Management
 
