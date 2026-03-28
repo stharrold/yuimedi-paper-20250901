@@ -57,7 +57,7 @@ We ground our analysis in Nonaka's SECI model of knowledge creation [@farnese201
 
 In a healthy organization, these four modes form a self-reinforcing spiral: tacit insights become documented, documentation becomes systematized, and systematized knowledge is internalized by new members who then generate fresh tacit insights [@farnese2019]. When any mode breaks down, the spiral stalls. In healthcare analytics, the breakdown is at the very first stage.
 
-The three-pillar structure aligns with established models across healthcare informatics and knowledge management:
+The three-pillar structure aligns with established models across healthcare informatics and knowledge management (Table 1):
 
 | Pillar | HIMSS AMAM Alignment | DIKW Hierarchy | Knowledge Management |
 |:---|:---|:---|:---|
