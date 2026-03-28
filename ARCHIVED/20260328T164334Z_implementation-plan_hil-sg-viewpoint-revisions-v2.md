@@ -20,6 +20,44 @@
 
 ---
 
+## Pass 0: Restore Original Title
+
+**Rationale:** The original submission (JMIR ms#91493) used the title below. Restoring it ensures:
+1. The JMIR reviewer can easily identify this as a resubmission of the same manuscript
+2. The title matches the AJE/Springer Nature visual abstract and video byte already produced and delivered
+3. The title matches the YouTube (`q4sE4O9F9pU`) and Vimeo (`1161046047`) published video byte
+
+### Step 0.1: Update paper.md title
+
+**File:** `paper.md` line 2
+**Current:**
+```
+title: "Mitigating Institutional Amnesia: A Design Science Framework for Socio-Technical Query Governance in Healthcare"
+```
+
+**Replace with:**
+```
+title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
+```
+
+### Step 0.2: Update metadata.yaml title (if present)
+
+**File:** `metadata.yaml`
+**Action:** Check if file contains a `title:` field and update to match.
+
+### Step 0.3: Update cover-letter.md (if it references the title)
+
+**File:** `cover-letter.md`
+**Action:** Check if the cover letter references the paper title and update to match. The cover letter should note this is a resubmission of ms#91493, rewritten as a Viewpoint per reviewer guidance.
+
+### Step 0.4: Verify
+
+- [ ] `grep -n 'Mitigating Institutional Amnesia' paper.md` returns 0 matches
+- [ ] `grep -n 'Healthcare Analytics Challenges' paper.md` returns the title line
+- [ ] Commit: `fix(paper): restore original title for JMIR resubmission continuity`
+
+---
+
 ## New References to Add to `references.bib`
 
 These references were identified through 7 Google Scholar Labs searches and documented in `docs/research/Research_*.md` files. Add all to `references.bib` before editing `paper.md`.
@@ -370,6 +408,7 @@ grep -n 'dadi2025\|oracle2024' paper.md
 
 ## Commit Sequence
 
+0. `fix(paper): restore original title for JMIR resubmission continuity` (Pass 0)
 1. `build(refs): add 18 new references from literature search` (references.bib only)
 2. `fix(paper): tighten language, reduce repetition, clarify evidence-claim boundary` (Pass 1)
 3. `feat(paper): add comparative analysis, governance tiers, NL2SQL gradient, framework alignment` (Pass 2)

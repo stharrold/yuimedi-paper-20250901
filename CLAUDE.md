@@ -70,8 +70,8 @@ uv run scripts/secrets_run.py gh api repos/OWNER/REPO/pulls/PULL_NUMBER/comments
 # Container testing (catches issues local pytest misses)
 podman machine start                    # Start podman VM (macOS)
 podman build -t yuimedi-paper -f Containerfile .
-podman run --rm --security-opt label=disable -v "$(pwd)":/app yuimedi-paper uv run pytest -m "not integration and not benchmark"
-# WARNING: bind mount overwrites .venv with Linux binaries; run `uv sync` after
+podman run --rm --security-opt label=disable -v "$(pwd)":/app -v yuimedi_venv_cache:/app/.venv -w /app yuimedi-paper uv run pytest -m "not integration and not benchmark"
+# Named venv cache (`yuimedi_venv_cache`) avoids host/container binary conflicts and the need for manual `uv sync`
 ```
 
 ## Branch Strategy
