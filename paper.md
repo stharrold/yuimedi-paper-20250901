@@ -1,5 +1,5 @@
 ---
-title: "Mitigating Institutional Amnesia: A Design Science Framework for Socio-Technical Query Governance in Healthcare"
+title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
 author: "Samuel T Harrold, Yuimedi, Inc."
 correspondence: "samuel.harrold@yuimedi.com"
 date: "January 2026"

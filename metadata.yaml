@@ -2,7 +2,7 @@
 # See: https://pandoc.org/MANUAL.html#metadata-variables
 
 # Document information
-title: "Mitigating Institutional Amnesia: A Design Science Framework for Socio-Technical Query Governance in Healthcare"
+title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
 author: "Samuel T Harrold, Yuimedi, Inc."
 correspondence: "https://us.yuimedi.com/contact-us/ (include 'NL2SQL paper' in message)"
 date: "January 2026"
@@ -55,7 +55,7 @@ classoption:
   - oneside
 
 # Header and footer
-header-left: "Mitigating Institutional Amnesia"
+header-left: "Healthcare Analytics Challenges"
 header-right: "January 2026"
 footer-left: "\\hspace{0pt}"
 footer-center: "\\thepage"

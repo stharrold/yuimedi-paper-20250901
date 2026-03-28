@@ -7,7 +7,7 @@ subject: "Revised Manuscript Resubmission: ms#91493"
 
 Dear Editor,
 
-I am writing to resubmit the manuscript "Mitigating Institutional Amnesia: A Design Science Framework for Socio-Technical Query Governance in Healthcare" (ms#91493) for consideration as a **Viewpoint** article in JMIR Medical Informatics.
+I am writing to resubmit the manuscript "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement" (ms#91493) for consideration as a **Viewpoint** article in JMIR Medical Informatics.
 
 ## Response to Decision E2
 
