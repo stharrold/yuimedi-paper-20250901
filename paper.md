@@ -89,7 +89,7 @@ By capturing these three components *during the act of analytics*, we transform 
 
 # Human-in-the-Loop Semantic Governance
 
-We rename the traditional "Validated Query Cycle" to **Human-in-the-Loop Semantic Governance (HiL-SG)** to reflect its role as a governance mechanism rather than just a productivity tool.
+We propose **Human-in-the-Loop Semantic Governance (HiL-SG)** as the overarching governance framework, with the Validated Query Cycle as its core operational process. This framing reflects that the system serves as a governance mechanism, not just a productivity tool.
 
 ## The HiL-SG Architecture
 
