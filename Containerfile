@@ -1,5 +1,5 @@
 # Containerfile for yuimedi-paper-20250901
-# Python 3.11 + uv environment for development and CI/CD
+# Python 3.11 + uv + pandoc + texlive for development, CI/CD, and paper generation
 #
 # Build:  podman build -t yuimedi-paper .
 # Run:    podman run --rm -v .:/app yuimedi-paper <command>
@@ -23,12 +23,20 @@
 FROM python:3.11-slim
 
 LABEL maintainer="stharrold"
-LABEL description="YuiQuery research development environment with uv + Python 3.11"
+LABEL description="YuiQuery research environment with uv + Python 3.11 + pandoc + texlive"
 
-# Install system dependencies
+# Install system dependencies including pandoc and texlive for paper generation
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
+    pandoc \
+    texlive-xetex \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-latex-extra \
+    texlive-latex-recommended \
+    lmodern \
+    librsvg2-bin \
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv

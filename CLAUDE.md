@@ -90,7 +90,7 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - **No em-dashes (—) in any file** (paper, scripts, docs). Use commas, colons, semicolons, or parentheses instead. Python strings use ASCII hyphens.
 - Citations use pandoc-citeproc: `[@key]`, multiple: `[@wu2024; @himss2024]`
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
-- Framework is **descriptive** (reveals interconnections), not **prescriptive** (recommends solutions)
+- As a Viewpoint, the paper advances a **prescriptive** position grounded in descriptive evidence. The framework's *analysis* of why current approaches fail is descriptive; the *recommendations* (HiL-SG, ARI, governance tiers) are intentionally directive.
 - Conversational AI is a "Governance Forcing Function," not the standalone solution
 - **JMIR Viewpoint format:** No "Methods" or "Results" H1 headers; unstructured abstract (≤450 words); body ≤5,000 words. See `standards/jmir_submission_article-types.md` lines 60-73.
 
@@ -100,7 +100,7 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - **Video byte** (60-90s video): Ticket #1144097, approved and published 2026-02-25
 - YouTube: `q4sE4O9F9pU` (AJE Video Bytes channel), Vimeo: `1161046047` (Password: AJE_Healthcare)
 - Contact: support@as.springernature.com (Bhavik, Darshan J)
-- Framework is **descriptive** (reveals interconnections), not **prescriptive** (recommends solutions) -- enforce this in all communications
+- In external communications (visual abstract, video byte), emphasize the framework's **descriptive** analysis of interconnected challenges; the paper's prescriptive recommendations are for the academic audience
 
 ## Secrets Management
 
