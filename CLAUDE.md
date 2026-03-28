@@ -66,6 +66,12 @@ uv run scripts/secrets_run.py gh issue create --title "..."
 
 # PR inline review comments (not visible via `gh pr view --comments`):
 uv run scripts/secrets_run.py gh api repos/OWNER/REPO/pulls/PULL_NUMBER/comments
+
+# Container testing (catches issues local pytest misses)
+podman machine start                    # Start podman VM (macOS)
+podman build -t yuimedi-paper -f Containerfile .
+podman run --rm --security-opt label=disable -v "$(pwd)":/app -v yuimedi_venv_cache:/app/.venv -w /app yuimedi-paper uv run pytest -m "not integration and not benchmark"
+# Named venv cache (`yuimedi_venv_cache`) avoids host/container binary conflicts and the need for manual `uv sync`
 ```
 
 ## Branch Strategy
@@ -119,12 +125,39 @@ uv run scripts/secrets_run.py uv run pytest
 - **Do not set `GITHUB_TOKEN` or `GH_TOKEN` globally in shell profiles**; use `secrets_run.py` instead
 - `secrets.toml` uses `GH_TOKEN` (not `GITHUB_TOKEN`); this is what `gh` CLI checks first
 - After regenerating a GitHub fine-grained PAT, verify write access: `uv run scripts/secrets_run.py gh api --method PATCH repos/OWNER/REPO/issues/1 -f state=open`
+- PEP 723 inline scripts (`secrets_run.py`, `secrets_setup.py`) use `importlib.util` for sibling imports because `from scripts.X` fails when run via `uv run scripts/X.py`
 
 ## Video Analysis
 
 - AJE video byte has no subtitle track; captions are burned into frames
 - Extract frames: `ffmpeg -i video.mp4 -vf "fps=0.5" -q:v 2 output/frame_%04d.jpg`
 - Read frames with Claude's multimodal capability to reconstruct narration transcript
+
+## stharrold-templates Bundles
+
+Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
+- Apply: `uv run python .tmp/stharrold-templates/scripts/apply_bundle.py .tmp/stharrold-templates . --bundle git --bundle secrets --bundle ci`
+- Dry run first: append `--dry-run`
+- After applying: check for residual Gemini naming (`grep -ri gemini .claude/skills/`), fix `Containerfile` COPY lines (needs `LICENSE README.md` before `uv sync`), and delete stale test files for removed modules
+- Template-owned files will be overwritten on next apply; repo-specific fixes should be upstreamed to `stharrold-templates`
+
+## Research Workflow
+
+- **Questions index:** `docs/research/Research-Questions.md` (35 answered, 13 unanswered)
+- **Answer files:** `docs/research/answers/Research_<slug>.md` (63 files, each with full citations + URLs)
+- **Every new paper claim must trace to a research answer file** with source URLs and citation metadata
+- **Google Scholar Labs:** Use Playwright MCP (`authuser=1` for second account if daily limit hit); click "New session" between questions; each query evaluates ~60-200 results, surfaces ~10 papers
+- **Scholar Labs workflow:** `docs/guides/scholar-labs-workflow.md`
+
+## Paper Revision Process
+
+1. Critical assessment of current PDF -> `ARCHIVED/` with timestamp
+2. Recommendations doc -> `ARCHIVED/` (may have multiple versions, v2 supersedes v1)
+3. Cross-reference with original rejected submission (`ARCHIVED/20260115_JMIR-Submission/`) for recoverable material
+4. Identify research gaps -> search Google Scholar Labs -> save to `docs/research/answers/`
+5. Update `docs/research/Research-Questions.md` with each answered question
+6. Implementation plan with line-level edits, word budget, commit sequence -> `ARCHIVED/`
+7. Execute in passes (language edits -> content additions -> supporting improvements -> figures)
 
 ## Architecture
 
@@ -133,11 +166,15 @@ uv run scripts/secrets_run.py uv run pytest
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
 - **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
 - **Container:** `Containerfile` with Python 3.12, Pandoc 3.2, TeXLive, Node.js
+- **Anthropic SDK**: `response.content[0]` is a union type; filter with `[b for b in response.content if hasattr(b, "text")]` before accessing `.text` (mypy `union-attr`)
 
 ## Key Files
 
 | File | Purpose |
 |------|---------|
+| `ARCHIVED/YYYYMMDDTHHMMSSZ_critical-assessment_*.md` | Critical assessments of paper drafts |
+| `ARCHIVED/YYYYMMDDTHHMMSSZ_recommendations_*.md` | Revision recommendations (versioned) |
+| `ARCHIVED/YYYYMMDDTHHMMSSZ_implementation-plan_*.md` | Line-level implementation plans for paper edits |
 | `paper.md` | Main paper source (Markdown + pandoc-citeproc citations) |
 | `references.bib` | BibTeX bibliography |
 | `metadata.yaml` | Pandoc metadata for PDF generation |

@@ -15,7 +15,9 @@ Documentation and context for `research`.
 
 ## Contents
 
-(Auto-generated)
+- `Research-Questions.md` - Master index of all research questions (35 answered, 13 unanswered/partial)
+- `answers/` - 63 research answer files (`Research_*.md`), each documenting findings for one question
+- `ARCHIVED/` - Archived research files
 
 ## Related
 
