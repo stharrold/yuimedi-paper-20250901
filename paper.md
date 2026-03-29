@@ -149,9 +149,11 @@ Existing maturity models such as AMAM, the DIKW hierarchy, and established knowl
 
 ## The Three-Pillar Rubric
 
+Each indicator is scored as Low, Medium, or High Strength using evidence-based anchors from the literature reviewed in Section 4. Organizations scoring predominantly "Low Strength" across multiple pillars face the self-reinforcing degradation cycle that the framework identifies as the central threat.
+
 \newpage
 
-Each indicator is scored as Low, Medium, or High Strength using evidence-based anchors from the literature reviewed in Section 4. Organizations scoring predominantly "Low Strength" across multiple pillars face the self-reinforcing degradation cycle that the framework identifies as the central threat.
+**Table 2: Three-Pillar Organizational Assessment Rubric**
 
 **Pillar 1: Analytics Maturity**
 
@@ -177,7 +179,6 @@ Each indicator is scored as Low, Medium, or High Strength using evidence-based a
 | Interoperability | Fragmented systems; manual reconciliation | Partial integration; some automated feeds | Unified data platform; real-time integration | [@gal2019; @zhang2024] |
 | Schema coupling | Hard-coded reports break on schema change | Partial semantic layer; some automated feeds | Semantic layer adapts; CI/CD detects drift | [@mannapur2025; @battula2025] |
 
-: Three-Pillar Organizational Assessment Rubric. \label{tab:rubric}
 
 The "Schema Coupling" indicator can be operationalized through *Continuous Analytic Integration*: treating validated query triples as software assets within a CI/CD pipeline [@valiaiev2025]. When a data warehouse schema is updated, the system automatically re-runs stored queries and flags failures, transforming institutional memory into a living test suite [@betha2023; @kottam2025].
 
