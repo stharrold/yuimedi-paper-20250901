@@ -1,6 +1,7 @@
 ---
 title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
 author: "Samuel T Harrold, Yuimedi, Inc."
+orcid: "https://orcid.org/0009-0008-4596-6921"
 correspondence: "samuel.harrold@yuimedi.com"
 date: "March 2026"
 abstract: |

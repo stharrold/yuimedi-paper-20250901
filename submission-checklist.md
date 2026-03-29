@@ -70,7 +70,7 @@ grep -n '—' paper.md
 ### Author Metadata
 - [ ] **Corresponding Author**: Samuel T Harrold
 - [ ] **Email**: samuel.harrold@yuimedi.com
-- [ ] **ORCID**: [Enter]
+- [ ] **ORCID**: 0009-0008-4596-6921
 - [ ] **Highest Academic Degree**: [Enter]
 - [ ] **Affiliation**: Yuimedi, Inc., Indianapolis, IN, United States
 
