@@ -262,6 +262,7 @@ generate_docx() {
         --toc \
         --toc-depth=3 \
         --number-sections \
+        --reference-doc="${PROJECT_ROOT}/reference.docx" \
         --output="$output"
 
     if [[ -f "$output" && -s "$output" ]]; then
@@ -366,6 +367,7 @@ generate_appendix() {
         # shellcheck disable=SC2086
         pandoc "$file" $common_args \
             --to=docx \
+            --reference-doc="${PROJECT_ROOT}/reference.docx" \
             --output="$output_docx" \
             --metadata=title:"Multimedia Appendix"
 
