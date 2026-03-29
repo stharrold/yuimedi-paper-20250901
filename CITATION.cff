@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Dynamics, and Technical Barriers"
+title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -7,26 +7,32 @@ type: software
 authors:
   - given-names: Samuel T.
     family-names: Harrold
-    email: research@yuimedi.com
+    email: samuel.harrold@yuimedi.com
     affiliation: Yuimedi, Inc.
     orcid: 'https://orcid.org/0009-0008-4596-6921'
 repository-code: 'https://github.com/stharrold/yuimedi-paper-20250901'
 url: 'https://github.com/stharrold/yuimedi-paper-20250901'
 abstract: >-
-  Research repository containing the narrative review 'Healthcare Analytics Challenges' and a Python-based systematic literature review tool. The paper synthesizes evidence on analytics maturity, workforce turnover, and NL2SQL technologies. The included tool implements Clean Architecture for rigorous academic claim verification.
+  Research repository for a Viewpoint paper proposing Human-in-the-Loop
+  Knowledge Governance (HITL-KG), a socio-technical framework for
+  mitigating institutional amnesia in healthcare analytics. Includes a
+  Three-Pillar Assessment Rubric, validated query triple architecture,
+  and a Python-based literature review tool implementing Clean
+  Architecture for academic claim verification.
 keywords:
   - healthcare analytics
-  - workforce turnover
+  - institutional amnesia
+  - knowledge governance
+  - human-in-the-loop
+  - natural language processing
   - NL2SQL
-  - institutional memory
+  - workforce turnover
+  - organizational resilience
   - HIMSS AMAM
-  - literature review
-  - systematic review
-  - clean architecture
 license: Apache-2.0
-version: 1.29.0
-date-released: '2026-01-16'
+version: 1.30.0
+date-released: '2026-03-29'
 identifiers:
   - type: doi
     value: 10.5281/zenodo.XXXXXXX
-    description: Zenodo DOI
+    description: Zenodo DOI (to be assigned)
