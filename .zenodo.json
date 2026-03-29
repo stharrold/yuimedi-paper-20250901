@@ -1,9 +1,9 @@
 {
-    "title": "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Dynamics, and Technical Barriers",
-    "description": "Research repository containing the narrative review 'Healthcare Analytics Challenges' and a Python-based systematic literature review tool. The paper synthesizes evidence on analytics maturity, workforce turnover, and NL2SQL technologies. The included tool implements Clean Architecture for rigorous academic claim verification.",
-    "version": "1.29.0",
+    "title": "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+    "description": "Research repository for a Viewpoint paper proposing Human-in-the-Loop Knowledge Governance (HITL-KG), a socio-technical framework for mitigating institutional amnesia in healthcare analytics. Includes a Three-Pillar Assessment Rubric, validated query triple architecture, and a Python-based literature review tool implementing Clean Architecture for academic claim verification.",
+    "version": "2.0.0",
     "upload_type": "software",
-    "publication_date": "2026-01-16",
+    "publication_date": "2026-03-29",
     "creators": [
         {
             "name": "Harrold, Samuel T.",
@@ -13,13 +13,14 @@
     ],
     "keywords": [
         "healthcare analytics",
-        "workforce turnover",
+        "institutional amnesia",
+        "knowledge governance",
+        "human-in-the-loop",
+        "natural language processing",
         "NL2SQL",
-        "institutional memory",
-        "HIMSS AMAM",
-        "literature review",
-        "systematic review",
-        "clean architecture"
+        "workforce turnover",
+        "organizational resilience",
+        "HIMSS AMAM"
     ],
     "license": "Apache-2.0",
     "access_right": "open",
@@ -35,8 +36,9 @@
     "grants": [],
     "subjects": [
         {"term": "Healthcare Analytics", "scheme": "keyword"},
-        {"term": "Systematic Literature Review", "scheme": "keyword"},
-        {"term": "Natural Language Processing", "scheme": "keyword"}
+        {"term": "Knowledge Governance", "scheme": "keyword"},
+        {"term": "Natural Language Processing", "scheme": "keyword"},
+        {"term": "Organizational Resilience", "scheme": "keyword"}
     ],
-    "notes": "Version 1.28.0 includes the full Paper 1 manuscript submitted to JMIR Medical Informatics and the accompanying literature review toolset."
+    "notes": "Version 2.0.0 includes the Viewpoint paper resubmitted to JMIR Medical Informatics (ms#91493) proposing HITL-KG for mitigating institutional amnesia, and the accompanying literature review toolset."
 }
