@@ -26,10 +26,10 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 INPUT_FILE="${PROJECT_ROOT}/paper.md"
-APPENDIX_FILE="${PROJECT_ROOT}/multimedia_appendix.md"
+# Legacy fallback removed; appendix files discovered via multimedia_appendix_*.md glob
 METADATA_FILE="${PROJECT_ROOT}/metadata.yaml"
 BIBLIOGRAPHY="${PROJECT_ROOT}/references.bib"
-CSL_FILE="${PROJECT_ROOT}/citation-style.csl"
+CSL_FILE="${PROJECT_ROOT}/citation-style-ama.csl"
 OUTPUT_DIR="${PROJECT_ROOT}"
 
 # Eisvogel template configuration
@@ -305,12 +305,8 @@ generate_appendix() {
     appendix_files=$(ls "${PROJECT_ROOT}"/multimedia_appendix_*.md 2>/dev/null || true)
 
     if [[ -z "$appendix_files" ]]; then
-        if [[ -f "$APPENDIX_FILE" ]]; then
-            appendix_files="$APPENDIX_FILE"
-        else
-            warn "No appendix files found matching multimedia_appendix_*.md or $APPENDIX_FILE"
-            return
-        fi
+        warn "No appendix files found matching multimedia_appendix_*.md"
+        return
     fi
 
     local common_args
