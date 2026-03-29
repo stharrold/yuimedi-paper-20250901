@@ -157,7 +157,7 @@ A recent systematic review identified 23 distinct organizational resilience inst
 
 Critically, the ARI complements rather than replaces AMAM. Where AMAM measures the sophistication of an organization's analytical capabilities at a point in time, the ARI measures the durability of those capabilities under workforce stress. An organization should aspire to high scores on both instruments: AMAM for capability and ARI for sustainability. Used together, they provide a two-dimensional view of analytics health that neither instrument offers alone.
 
-| Dimension | Fragile (1) | Resilient (5) | Evidence |
+| Dimension | Fragile, score: 1 | Resilient, score: 5 | Evidence |
 |:---|:---|:---|:---|
 | **Knowledge Locus** | Knowledge resides in "Hero" analysts. | Knowledge resides in the System/Repository. | [@hong2025; @benbya2004] |
 | **Turnover Impact** | Departure of 1 staff member stops reporting. | Departure causes minimal disruption; successors inherit queries. | [@massingham2018; @rao2006] |
