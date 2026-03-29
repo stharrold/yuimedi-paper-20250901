@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Samuel T.
+    family-names: Harrold
+    email: samuel.harrold@yuimedi.com
+    affiliation: Yuimedi, Inc.
+    orcid: 'https://orcid.org/0009-0008-4596-6921'
+repository-code: 'https://github.com/stharrold/yuimedi-paper-20250901'
+url: 'https://github.com/stharrold/yuimedi-paper-20250901'
+abstract: >-
+  Research repository for a Viewpoint paper proposing Human-in-the-Loop
+  Knowledge Governance (HITL-KG), a socio-technical framework for
+  mitigating institutional amnesia in healthcare analytics. Includes a
+  Three-Pillar Assessment Rubric, validated query triple architecture,
+  and a Python-based literature review tool implementing Clean
+  Architecture for academic claim verification.
+keywords:
+  - healthcare analytics
+  - institutional amnesia
+  - knowledge governance
+  - human-in-the-loop
+  - natural language processing
+  - NL2SQL
+  - workforce turnover
+  - organizational resilience
+  - HIMSS AMAM
+license: Apache-2.0
+version: 2.0.0
+date-released: '2026-03-29'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.XXXXXXX
+    description: Zenodo DOI (to be assigned)

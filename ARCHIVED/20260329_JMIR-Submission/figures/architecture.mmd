@@ -1,0 +1,30 @@
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false, 'nodeSpacing': 40, 'rankSpacing': 50}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '14pt'}}}%%
+flowchart TD
+    %% Simplified Healthcare Analytics Architecture
+    %% Higher-level block diagram for print readability
+
+    A["<b>Clinical User</b><br/>Asks natural language question"]
+    B["<b>Conversational AI</b><br/>NLP Engine + SQL Generation"]
+    C[("<b>Data Warehouse</b><br/>Healthcare Database")]
+    D{"<b>Expert Validation</b><br/>Confirms intent and SQL logic"}
+    E["<b>Insight Delivery</b><br/>Results and Visualizations"]
+    F[("<b>Organizational Memory</b><br/>Validated Query Triples")]
+    G[("<b>Knowledge Base</b><br/>Ontologies + Best Practices")]
+
+    %% Primary data flow
+    A -->|"1. Natural language query"| B
+    B -->|"2. Generates SQL"| C
+    C -->|"3. Returns data"| B
+    B -->|"4. Explains logic"| D
+    D -->|"5. Confirmed"| E
+    D -->|"Incorrect"| B
+    E -->|"6. Delivers insights"| A
+
+    %% Knowledge persistence (dashed lines)
+    D -.->|"7. Stores validated triple"| F
+    F -.->|"Informs future queries"| B
+    G -.->|"Provides context"| B
+
+    %% Styling
+    classDef decision fill:#f5f5f5,stroke:#444,stroke-width:2px
+    class D decision

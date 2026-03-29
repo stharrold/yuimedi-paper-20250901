@@ -1,0 +1,39 @@
+%%{init: {'theme': 'base', 'flowchart': {'useMaxWidth': false, 'markdownAutoWrap': false, 'nodeSpacing': 30, 'rankSpacing': 40, 'padding': 30}, 'themeVariables': { 'primaryColor': '#e0e0e0', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666', 'lineColor': '#4a4a4a', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#fafafa', 'fontFamily': 'Arial, sans-serif', 'fontSize': '13pt'}}}%%
+flowchart TB
+    %% Validated Query Cycle
+    %% padding: 30 gives more room between subgraph title and first node
+
+    subgraph CYCLE["&nbsp; &nbsp; &nbsp; VALIDATED QUERY CYCLE &nbsp; &nbsp; &nbsp;"]
+        Q["<b>1. Query</b><br/>Analyst asks question"]
+        G["<b>2. Generation</b><br/>System generates SQL"]
+        V{"<b>3. Validation</b><br/>AI explains logic;<br/>Analyst confirms"}
+        S["<b>4. Storage</b><br/>Triple stored"]
+        R["<b>5. Retrieval</b><br/>Future queries match"]
+        P["<b>6. Persistence</b><br/>Knowledge survives turnover"]
+    end
+
+    subgraph PILLARS["&nbsp; &nbsp; THREE PILLARS &nbsp; &nbsp;"]
+        direction LR
+        M["<b>Analytics<br/>Maturity</b>"]
+        T["<b>Workforce<br/>Agility</b>"]
+        B["<b>Technical<br/>Enablement</b>"]
+    end
+
+    %% Main cycle flow
+    Q --> G --> V
+    V -->|"Correct"| S --> R --> P
+    V -->|"Incorrect"| G
+    P -->|"New analyst uses validated queries"| Q
+
+    %% How cycle advances each pillar
+    S -.->|"Advances"| M
+    P -.->|"Stabilizes"| T
+    R -.->|"Increases"| B
+
+    %% Styling
+    classDef group fill:#e8e8e8,stroke:#666,stroke-width:2px
+    classDef dashedGroup fill:#e8e8e8,stroke:#666,stroke-width:2px,stroke-dasharray:5 5
+    classDef decision fill:#f5f5f5,stroke:#444,stroke-width:2px
+    class CYCLE group
+    class PILLARS dashedGroup
+    class V decision
