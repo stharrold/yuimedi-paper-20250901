@@ -8,7 +8,7 @@ abstract: |
 
   Viewed through Nonaka's SECI model of knowledge creation, the root cause is a "Socialization Failure": high turnover fractures the social networks required for mentorship, rendering the traditional apprenticeship model of informatics unsustainable. To address this failure, we employ a Design Science Research (DSR) approach, synthesizing evidence from healthcare informatics, knowledge management, and natural language processing (2024-2026 workforce and NL2SQL literature) to develop a socio-technical framework called Human-in-the-Loop Knowledge Governance (HITL-KG).
 
-  HITL-KG is designed to shift the locus of organizational knowledge from volatile human memory to durable semantic artifacts called "Validated Query Triples," each comprising a natural language intent, executable SQL, and rationale metadata. By embedding knowledge capture into the daily workflow of query generation, the framework aims to convert the ephemeral act of analytics into permanent institutional assets. The accompanying Analytics Resilience Index (ARI) proposes a measurement instrument that extends static maturity assessments with a complementary resilience dimension, quantifying an organization's ability to sustain analytical capability despite staff churn.
+  HITL-KG is designed to shift the locus of organizational knowledge from volatile human memory to durable semantic artifacts called "Validated Query Triples," each comprising a natural language intent, executable SQL, and rationale metadata. By embedding knowledge capture into the daily workflow of query generation, the framework aims to convert the ephemeral act of analytics into permanent institutional assets. The accompanying Three-Pillar Assessment Rubric provides a structured self-assessment tool that enables organizations to identify compounding vulnerabilities across analytics maturity, workforce agility, and technical enablement.
 
   A critical objection, the "Validator Paradox" (who validates the AI when experts leave?), is resolved by reframing validation through Lean "Standard Work": each validated query establishes the current known standard rather than eternal truth, functioning as a "knowledge ratchet" that prevents regression. By decoupling analytical capability from individual tenure, healthcare systems can ensure that analytics maturity advances even as the workforce evolves. This paper proposes and theoretically motivates the framework; empirical validation is deferred to a companion study.
 keywords: [institutional amnesia, medical informatics, socio-technical systems, query governance, natural language processing, knowledge management, personnel turnover, organizational resilience]
@@ -139,32 +139,46 @@ NL2SQL technology has matured along a clear accuracy gradient: general-purpose m
 
 However, NL2SQL is an enabler, not a solution in itself. Its deeper significance lies in the organizational prerequisites it demands. For an AI system to translate a natural language question into a correct SQL query, the organization must first establish validated data models, explicit business logic definitions, and codified domain terminology [@gal2019; @zhang2024]. In other words, the technology forces organizational discipline as a precondition for functioning, making it a governance forcing function even before considering the query results. This reframes NL2SQL from a convenience tool into a catalyst for the kind of systematic knowledge externalization that the HITL-KG framework requires. The interface bridges the semantic gap between clinical experts and technical schema, allowing non-technical domain experts to interact with data alongside broader modernization efforts [@anthropic2025; @hendrix1978; @ogunwole2023; @arora2025]. The technical barrier thus becomes, paradoxically, a governance opportunity: the very difficulty of making NL2SQL work correctly compels organizations to surface and formalize the tacit knowledge that would otherwise remain trapped in departing experts.
 
-# The Analytics Resilience Index
+# Organizational Self-Assessment
 
-To measure success, we propose the **Analytics Resilience Index (ARI)**, extending static maturity assessments with a complementary resilience dimension.
+To operationalize the framework, we propose a **Three-Pillar Assessment Rubric** (Table 2) that enables healthcare organizations to evaluate their current position across each pillar and identify compounding vulnerabilities.
 
-## Why Resilience, Not Maturity
+## Why Assessment, Not Just Maturity
 
-Existing maturity models such as the HIMSS Analytics Maturity Assessment Model (AMAM), the DIKW hierarchy, and established knowledge management frameworks (see Table 1) assume linear progression through discrete stages and implicitly presuppose a stable workforce capable of sustaining each level once achieved [@himss2024; @wang2018]. In practice, this assumption is violated routinely. An organization that reaches AMAM Stage 5 but regresses to Stage 3 after the departure of two senior analysts has not failed to mature; it has failed to be *resilient*. Static maturity scores capture a snapshot of peak capability but reveal nothing about the organization's ability to sustain that capability through disruption. The ARI addresses this gap by shifting the measurement focus from "where you are" to "how far you fall when someone leaves."
+Existing maturity models such as AMAM, the DIKW hierarchy, and established knowledge management frameworks (see Table 1) assume linear progression and implicitly presuppose a stable workforce [@himss2024; @wang2018]. In practice, an organization that reaches AMAM Stage 5 but regresses to Stage 3 after the departure of two senior analysts has not failed to mature; it has failed to be *resilient*. A recent systematic review identified 23 distinct organizational resilience instruments applied in health facilities, yet found no consensus on what to measure [@ignatowicz2023]. Only four instruments have been developed specifically for healthcare, and only two have been validated [@ratliff2025]. The Three-Pillar Assessment addresses this gap by organizing evidence-based indicators around the specific domains where institutional amnesia operates, measuring not just where an organization stands but how vulnerable it is to the compounding effects identified in Section 1.
 
-## Operationalizing the ARI
+## The Three-Pillar Rubric
 
-Each ARI dimension (Table 2) can be scored on a Likert-type scale from 1 (Fragile) to 5 (Resilient). For example, the "Knowledge Locus" dimension would be scored by surveying whether key analytical queries are documented in a shared, version-controlled repository (score 5) or known only to named individuals who could leave at any time (score 1). Similarly, "Turnover Impact" could be assessed through scenario exercises that simulate the departure of a critical team member and measure the time required to restore reporting capability. An aggregate ARI score across all dimensions provides a composite indicator of organizational resilience posture, enabling longitudinal tracking and cross-institutional benchmarking.
+Each indicator is scored as Low, Medium, or High Strength using evidence-based anchors from the literature reviewed in Section 4. Organizations scoring predominantly "Low Strength" across multiple pillars face the self-reinforcing degradation cycle that the framework identifies as the central threat.
 
-The "Schema Coupling" dimension can be operationalized through *Continuous Analytic Integration*: treating validated query triples not as static wiki entries but as software assets within a CI/CD pipeline [@valiaiev2025]. When a data warehouse schema is updated (e.g., a quarterly EHR upgrade), the system automatically re-runs the library of stored queries. Queries that fail or return anomalous results are flagged for review. This transforms "Institutional Memory" from a stagnant repository into a living, automated test suite that actively signals when organizational knowledge has drifted from technical reality [@betha2023]. Existing NL2SQL systems are known to lack resilience to vocabulary drift and OMOP CDM schema changes [@kottam2025], making such automated validation essential.
+**Pillar 1: Analytics Maturity**
 
-A recent systematic review identified 23 distinct organizational resilience instruments applied in health facilities, yet found no consensus on what to measure or which indicators to use [@ignatowicz2023]. Only four instruments have been developed specifically for healthcare, and only two have been validated [@ratliff2025]. The newest, the Resilience in Healthcare Capacities Assessment (RHCA), demonstrates significant correlations between organizational resilience and both staff turnover intention and patient safety outcomes [@ellis2026]. The ARI extends this emerging measurement tradition into the specific domain of analytics capability resilience, which no existing instrument addresses. The ARI requires psychometric development, including construct validation, inter-rater reliability testing, and discriminant validity assessment against AMAM, before organizational deployment. This development is planned for future work in this series.
+| Indicator | Low Strength | Med. Strength | High Strength | Evidence |
+|:---|:---|:---|:---|:---|
+| HIMSS AMAM Stage | Stages 0-2: Fragmented data, limited reporting | Stages 3-4: Integrated warehouse, standardized definitions | Stages 5-7: Predictive analytics, AI integration | [@himss2024; @himss2024news] |
+| Self-service analytics | None; all analytics require IT intervention | Partial; BI tools available but underutilized | Widespread; clinical staff access data directly | [@health2020; @shahbaz2019] |
+| AI/NL interface | No NL2SQL or conversational analytics | Pilot programs or evaluation underway | Natural language query capability deployed | [@ziletti2024; @yuan2019] |
 
-Critically, the ARI complements rather than replaces AMAM. Where AMAM measures the sophistication of an organization's analytical capabilities at a point in time, the ARI measures the durability of those capabilities under workforce stress. An organization should aspire to high scores on both instruments: AMAM for capability and ARI for sustainability. Used together, they provide a two-dimensional view of analytics health that neither instrument offers alone.
+**Pillar 2: Workforce Agility**
 
-| Dimension | Fragile, score: 1 | Resilient, score: 5 | Evidence |
-|:---|:---|:---|:---|
-| **Knowledge Locus** | Knowledge resides in "Hero" analysts. | Knowledge resides in the System/Repository. | [@hong2025; @benbya2004] |
-| **Turnover Impact** | Departure of 1 staff member stops reporting. | Departure causes minimal disruption; successors inherit queries. | [@massingham2018; @rao2006] |
-| **Validation Mode** | Ad-hoc, email-based, ephemeral. | Systematic, artifact-based, durable (HITL-KG). | [@moore2018; @mosqueirarey2023] |
-| **Schema Coupling** | Hard-coded reports break on schema change. | Semantic layer adapts; CI/CD detects drift. | [@mannapur2025; @battula2025] |
+| Indicator | Low Strength | Med. Strength | High Strength | Evidence |
+|:---|:---|:---|:---|:---|
+| First-year staff turnover | >30% (High instability) | 15-30% | <15% (High stability) | [@nsi2025] |
+| Leadership stability (CIO) | Tenure < 3 years | Tenure 3-5 years | Tenure > 5 years | [@wittkieffer2024] |
+| Knowledge concentration | Critical expertise held by 3 or fewer individuals | Partial documentation; some cross-training | Distributed expertise; documented processes | [@massingham2018; @foss2007] |
 
-: The Analytics Resilience Index (ARI). \label{tab:ari}
+**Pillar 3: Technical Enablement**
+
+| Indicator | Low Strength | Med. Strength | High Strength | Evidence |
+|:---|:---|:---|:---|:---|
+| Data access | SQL/technical expertise required for all queries | IT queue for complex queries; basic self-service | Natural language or visual query interfaces | [@shahbaz2019; @yuan2019] |
+| Schema coupling | Hard-coded reports break on schema change | Partial semantic layer; some automated feeds | Semantic layer adapts; CI/CD detects drift | [@mannapur2025; @battula2025] |
+
+: Three-Pillar Organizational Assessment Rubric. \label{tab:rubric}
+
+The "Schema Coupling" indicator can be operationalized through *Continuous Analytic Integration*: treating validated query triples as software assets within a CI/CD pipeline [@valiaiev2025]. When a data warehouse schema is updated, the system automatically re-runs stored queries and flags failures, transforming institutional memory into a living test suite [@betha2023; @kottam2025].
+
+The rubric complements rather than replaces AMAM. Where AMAM measures the sophistication of analytical capabilities at a point in time, the Three-Pillar Assessment reveals how vulnerable those capabilities are to the compounding effects of turnover, low maturity, and technical barriers. Used together, they provide a two-dimensional view of analytics health.
 
 # The Validator Paradox and Standard Work
 A critical objection to HITL-KG is circular: if the framework requires domain experts to validate AI-generated queries, and the core problem is that domain experts are leaving, then the framework fails precisely when it is most needed. This **Validator Paradox** represents the strongest counterargument to the approach proposed here, and addressing it requires moving beyond simplistic reassurance.
@@ -193,13 +207,13 @@ The parallel to aviation safety is instructive. Checklists and mandatory call-ou
 Failed standardization approaches (e.g., IBM Watson Health [@ibm2022; @strickland2019], Haven [@lavito2021; @acchiardo2021]) demonstrate that centralized models fail clinical reality. Metadata uncertainties and "messy" institution-specific business logic require localized solutions [@gal2019; @yang2020]. HITL-KG addresses this by capturing *local* logic rather than enforcing *global* standards.
 
 # Limitations
-This work is a narrative, design science informed framework rather than a systematic review or multi-site empirical evaluation. The literature base is concentrated on English-language sources and recent (2024-2026) workforce and NL2SQL studies, so findings may not capture all regional, specialty-specific, or technological contexts. The HITL-KG architecture and the proposed Analytics Resilience Index (ARI) are conceptual artifacts that require future implementation and validation in diverse health systems before their effectiveness and generalizability can be fully established.
+This work is a narrative, design science informed framework rather than a systematic review or multi-site empirical evaluation. The literature base is concentrated on English-language sources and recent (2024-2026) workforce and NL2SQL studies, so findings may not capture all regional, specialty-specific, or technological contexts. The HITL-KG architecture and the proposed Three-Pillar Assessment Rubric are conceptual artifacts that require future implementation and validation in diverse health systems before their effectiveness and generalizability can be fully established.
 
 # Implications and Future Research
 
 The crisis of Institutional Amnesia in healthcare requires a structural shift. As long as analytical maturity is tied to individual tenure, organizations will remain fragile. By implementing **Human-in-the-Loop Knowledge Governance**, health systems can decouple intelligence from turnover, building a library of validated knowledge that ensures maturity advances even as the workforce evolves.
 
-Future research should empirically validate and refine the HITL-KG framework and the proposed Analytics Resilience Index. Priority questions include: how ARI scores correlate with observed continuity of analytics performance during leadership and staff turnover; whether HITL-KG mediated natural language to SQL workflows reduce error rates, recovery time, and rework compared to baseline tooling; and which governance patterns most effectively balance safety, transparency, and equity when human validators operate at scale. Prospective multi-site implementation studies, controlled user experiments, and qualitative implementation research across diverse health systems will be needed to test these claims and adapt the framework to varying organizational, regulatory, and data environments.
+Future research should empirically validate and refine the HITL-KG framework and the proposed Three-Pillar Assessment Rubric. Priority questions include: how pillar scores correlate with observed continuity of analytics performance during leadership and staff turnover; whether HITL-KG mediated natural language to SQL workflows reduce error rates, recovery time, and rework compared to baseline tooling; and which governance patterns most effectively balance safety, transparency, and equity when human validators operate at scale. Prospective multi-site implementation studies, controlled user experiments, and qualitative implementation research across diverse health systems will be needed to test these claims and adapt the framework to varying organizational, regulatory, and data environments.
 
 # Acknowledgments
 
@@ -226,7 +240,6 @@ Yuimedi provided funding for the author's time writing and researching this manu
 AACODS: Authority, Accuracy, Coverage, Objectivity, Date, Significance
 AI: Artificial Intelligence
 AMAM: Analytics Maturity Assessment Model
-ARI: Analytics Resilience Index
 CIO: Chief Information Officer
 DIKW: Data, Information, Knowledge, Wisdom
 DSR: Design Science Research
