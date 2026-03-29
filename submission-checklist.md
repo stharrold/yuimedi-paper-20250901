@@ -61,8 +61,7 @@ grep -n '—' paper.md
 | `cover-letter.md` | Resubmission cover letter | Markdown |
 | `figures/architecture.mmd.png` | Figure 1: HITL-KG Architecture | PNG |
 | `figures/knowledge-cycle.mmd.png` | Figure 2: Validated Query Cycle | PNG |
-| `multimedia_appendix_1.pdf` | Multimedia Appendix 1 | PDF |
-| `multimedia_appendix_2.pdf` | Multimedia Appendix 2 | PDF |
+| `multimedia_appendix_1.pdf` | Multimedia Appendix 1: Validated Query Triple Examples | PDF |
 | `references.bib` | Bibliography | BibTeX |
 
 ## During Submission (JMIR System)
@@ -84,7 +83,7 @@ grep -n '—' paper.md
 - [ ] **Manuscript**: Upload `paper.docx`
 - [ ] **Figures**: Upload each PNG as Figure type
 - [ ] **Cover Letter**: Paste content from `cover-letter.md`
-- [ ] **Multimedia Appendices**: Upload `multimedia_appendix_1.pdf` and `multimedia_appendix_2.pdf`
+- [ ] **Multimedia Appendix**: Upload `multimedia_appendix_1.pdf`
 
 ### Cover Letter Notes
 - References ms#91493 (resubmission)
