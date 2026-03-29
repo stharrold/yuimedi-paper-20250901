@@ -50,9 +50,11 @@ uv run pytest
 uv run python scripts/validate_references.py --all
 uv run python scripts/validate_jmir_compliance.py --article-type viewpoint
 
-# Word count (body only, excludes frontmatter + back matter)
-# Note: validator strips markdown artifacts; raw wc -w gives ~10% higher count
-cat paper.md | sed '1,/^---$/d' | sed '/^# Acknowledgments/,$d' | wc -w
+# Word count (JMIR method: body + end sections, excludes frontmatter + references)
+# JMIR includes: abstract, body, tables, captions, acknowledgments, contributions,
+# COI, data availability, funding, abbreviations. Excludes: metadata, references.
+# See: https://support.jmir.org/hc/en-us/articles/360002687871
+cat paper.md | sed '1,/^---$/d' | sed '/^# References/,$d' | wc -w
 
 # Build artifacts: rebuild after any paper.md edit, then commit.
 # Pre-commit hooks fix trailing whitespace in generated HTML files,
