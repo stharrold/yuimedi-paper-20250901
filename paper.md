@@ -149,6 +149,8 @@ Existing maturity models such as AMAM, the DIKW hierarchy, and established knowl
 
 ## The Three-Pillar Rubric
 
+\newpage
+
 Each indicator is scored as Low, Medium, or High Strength using evidence-based anchors from the literature reviewed in Section 4. Organizations scoring predominantly "Low Strength" across multiple pillars face the self-reinforcing degradation cycle that the framework identifies as the central threat.
 
 **Pillar 1: Analytics Maturity**
@@ -172,6 +174,7 @@ Each indicator is scored as Low, Medium, or High Strength using evidence-based a
 | Indicator | Low Strength | Med. Strength | High Strength | Evidence |
 |:---|:---|:---|:---|:---|
 | Data access | SQL/technical expertise required for all queries | IT queue for complex queries; basic self-service | Natural language or visual query interfaces | [@shahbaz2019; @yuan2019] |
+| Interoperability | Fragmented systems; manual reconciliation | Partial integration; some automated feeds | Unified data platform; real-time integration | [@gal2019; @zhang2024] |
 | Schema coupling | Hard-coded reports break on schema change | Partial semantic layer; some automated feeds | Semantic layer adapts; CI/CD detects drift | [@mannapur2025; @battula2025] |
 
 : Three-Pillar Organizational Assessment Rubric. \label{tab:rubric}
