@@ -1,1 +1,1 @@
-HIMSS Analytics Maturity Assessment Model (AMAM) stages.
+HIMSS Analytics Maturity Assessment Model (AMAM) stage definitions used in the Three-Pillar Assessment Rubric.

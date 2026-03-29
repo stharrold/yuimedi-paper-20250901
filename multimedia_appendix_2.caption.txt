@@ -1,1 +1,1 @@
-Healthcare natural language to SQL (NL2SQL) query examples.
+Validated Query Triple examples for healthcare analytics, illustrating the HITL-KG knowledge capture artifact.

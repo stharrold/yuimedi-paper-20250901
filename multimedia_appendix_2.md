@@ -1,13 +1,16 @@
 # Multimedia Appendix 2
 
-## Healthcare NL2SQL Query Examples
+## Validated Query Triple Examples for Healthcare Analytics
 
-### Patient Population Analysis
-Natural Language: "Show me all diabetic patients over 65 who had an HbA1c test in the last 6 months"
+This appendix illustrates the Validated Query Triple artifact proposed by the HITL-KG framework (see Section 2.2 of the main paper). Each triple comprises three components: (1) **Natural Language Intent**, the clinical business question; (2) **Executable SQL**, the technical implementation; and (3) **Rationale Metadata**, the contextual "why" behind the logic. Together, these components capture not just *what* query was run but *why* it was constructed that way, preserving institutional knowledge that would otherwise be lost during staff turnover.
 
-Rationale: Aligned with NCQA HEDIS measures for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult populations.
+---
 
-Generated SQL:
+### Triple 1: Diabetes Care Monitoring
+
+**Natural Language Intent:** "Show me all diabetic patients over 65 who had an HbA1c test in the last 6 months"
+
+**Executable SQL:**
 ```sql
 SELECT p.patient_id, p.age, l.test_date, l.result_value
 FROM patients p
@@ -19,15 +22,17 @@ WHERE d.icd10_code LIKE 'E11%'  -- Type 2 Diabetes
   AND l.test_date >= DATE_SUB(CURRENT_DATE, INTERVAL 6 MONTH)
 ```
 
-### Complex Clinical Cohort: Heart Failure Readmission Risk
-Natural Language: "Identify patients discharged with Heart Failure in 2024 who had a readmission within 30 days, excluding those discharged to hospice. For each, calculate their max creatinine levels during the index stay."
+**Rationale Metadata:** Aligned with NCQA HEDIS measures for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult populations. Uses ICD-10 E11% for Type 2 Diabetes specifically (not E10% for Type 1) per organizational coding convention. Six-month window matches the HEDIS reporting period.
 
-Rationale: Supports CMS Hospital Readmissions Reduction Program (HRRP) tracking by identifying 30-day all-cause readmissions for Heart Failure (HF) index stays, with standard exclusions (hospice).
+---
 
-Generated SQL:
+### Triple 2: Heart Failure Readmission Cohort
+
+**Natural Language Intent:** "Identify patients discharged with Heart Failure in 2024 who had a readmission within 30 days, excluding those discharged to hospice. For each, calculate their max creatinine levels during the index stay."
+
+**Executable SQL:**
 ```sql
 WITH IndexAdmissions AS (
-    -- Identify index admissions for Heart Failure
     SELECT
         a.admission_id,
         a.patient_id,
@@ -35,12 +40,11 @@ WITH IndexAdmissions AS (
         a.discharge_disposition
     FROM admissions a
     JOIN diagnoses d ON a.admission_id = d.admission_id
-    WHERE d.icd10_code LIKE 'I50%'          -- Heart Failure codes
+    WHERE d.icd10_code LIKE 'I50%'
       AND a.discharge_date BETWEEN '2024-01-01' AND '2024-12-31'
-      AND a.discharge_disposition != 'HOSPICE' -- Exclusion Criteria
+      AND a.discharge_disposition != 'HOSPICE'
 ),
 Readmissions AS (
-    -- Find readmissions within 30 days
     SELECT
         i.patient_id,
         i.admission_id AS index_admission_id,
@@ -51,28 +55,30 @@ Readmissions AS (
     WHERE r.admission_date > i.discharge_date
       AND r.admission_date <= DATE_ADD(i.discharge_date, INTERVAL 30 DAY)
 )
--- Final Output: Cohort with Max Creatinine
 SELECT
     r.patient_id,
     r.index_admission_id,
     r.days_to_readmit,
     MAX(CASE
         WHEN l.unit = 'mg/dL' THEN l.val_num
-        WHEN l.unit = 'mmol/L' THEN l.val_num / 88.4  -- Value Normalization
+        WHEN l.unit = 'mmol/L' THEN l.val_num / 88.4
         ELSE NULL
     END) as max_creatinine_mgdl
 FROM Readmissions r
 JOIN lab_events l ON r.index_admission_id = l.admission_id
-WHERE l.itemid IN (50912, 50913) -- Creatinine lab codes
+WHERE l.itemid IN (50912, 50913)
 GROUP BY r.patient_id, r.index_admission_id, r.days_to_readmit;
 ```
 
-### Quality Metrics
-Natural Language: "How many patients were readmitted within 30 days of discharge for heart failure?"
+**Rationale Metadata:** Supports CMS Hospital Readmissions Reduction Program (HRRP) tracking. Hospice exclusion per CMS 2025 rules (discharge disposition != 'HOSPICE'). Creatinine unit normalization (mmol/L to mg/dL via /88.4) required because our lab system stores results in mixed units depending on the originating facility. Lab item IDs 50912 and 50913 are MIMIC-III creatinine codes; local implementations must map to their own lab dictionary.
 
-Rationale: Aligned with CMS Hospital Readmissions Reduction Program (HRRP) requirements, demonstrating aggregation capabilities for organizational quality reporting by specifically tracking 30-day readmission rates for heart failure populations.
+---
 
-Generated SQL:
+### Triple 3: Quality Metric Aggregation
+
+**Natural Language Intent:** "How many patients were readmitted within 30 days of discharge for heart failure?"
+
+**Executable SQL:**
 ```sql
 SELECT COUNT(DISTINCT r.patient_id) as readmission_count
 FROM (
@@ -80,8 +86,24 @@ FROM (
   FROM admissions a1
   JOIN admissions a2 ON a1.patient_id = a2.patient_id
   JOIN diagnoses d ON a2.admission_id = d.admission_id
-  WHERE d.icd10_code LIKE 'I50%'  -- Heart failure
-    AND a2.admission_date BETWEEN a1.discharge_date AND DATE_ADD(a1.discharge_date, INTERVAL 30 DAY)
+  WHERE d.icd10_code LIKE 'I50%'
+    AND a2.admission_date BETWEEN a1.discharge_date
+        AND DATE_ADD(a1.discharge_date, INTERVAL 30 DAY)
     AND a1.admission_id != a2.admission_id
 ) r
 ```
+
+**Rationale Metadata:** Aligned with CMS HRRP requirements for organizational quality reporting. COUNT(DISTINCT patient_id) ensures each patient is counted once even if they have multiple readmissions. This is the aggregate metric version of Triple 2; the detailed cohort query should be run first to validate individual cases before reporting the aggregate number.
+
+---
+
+## How Triples Preserve Institutional Knowledge
+
+In traditional analytics workflows, only the SQL (component 2) would be saved, if anything. The Natural Language Intent (component 1) would exist only in an email or chat message. The Rationale Metadata (component 3), the most critical knowledge for institutional continuity, would exist only in the departing analyst's memory.
+
+When a new analyst inherits these triples, they receive not just executable code but the clinical reasoning, regulatory context, and institutional conventions that informed the query's construction. This is the mechanism by which HITL-KG converts ephemeral analytical work into durable organizational memory.
+
+## References
+
+1. National Committee for Quality Assurance (NCQA). HEDIS measures and technical resources. 2025. Available from: https://www.ncqa.org/hedis/
+2. Centers for Medicare and Medicaid Services (CMS). Hospital Readmissions Reduction Program (HRRP). 2025. Available from: https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/hospital-readmissions-reduction-program-hrrp
