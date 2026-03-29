@@ -164,7 +164,7 @@ Each indicator is scored as Low, Medium, or High Strength using evidence-based a
 | Indicator | Low Strength | Med. Strength | High Strength | Evidence |
 |:---|:---|:---|:---|:---|
 | First-year analytics staff turnover | >30% (High instability) | 15-30% | <15% (High stability) | [@nsi2025; @hackney2024] |
-| Leadership stability (CIO) | Tenure < 3 years | Tenure 3-5 years | Tenure > 5 years | [@wittkieffer2024] |
+| Avg. leadership tenure | < 3 years | 3-5 years | > 5 years | [@wittkieffer2024] |
 | Knowledge concentration | Critical expertise held by 3 or fewer individuals | Partial documentation; some cross-training | Distributed expertise; documented processes | [@massingham2018; @foss2007] |
 
 **Pillar 3: Technical Enablement**
