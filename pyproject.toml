@@ -1,6 +1,6 @@
 [project]
 name = "yuiquery-research"
-version = "2.1.0"
+version = "2.0.0"
 description = "YuiQuery Healthcare Analytics Research - Natural Language to SQL in Healthcare"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -96,9 +96,19 @@ dev-dependencies = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--tb=short",
+    "--showlocals",
+]
 markers = [
     "benchmark: marks tests as benchmark tests (deselect with '-m \"not benchmark\"')",
     "integration: marks tests as integration tests requiring network/external services (deselect with '-m \"not integration\"')",
+    "slow: marks slow tests (deselect with '-m \"not slow\"')",
 ]
 
 [tool.coverage.run]
