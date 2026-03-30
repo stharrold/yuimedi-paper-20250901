@@ -60,8 +60,11 @@ echo ""
 # Detect Python runner (uv run python if available, else python3)
 if command -v uv &> /dev/null; then
     PYTHON_CMD=("uv" "run" "python")
-else
+elif command -v python3 &> /dev/null; then
     PYTHON_CMD=("python3")
+else
+    echo "ERROR: Neither 'uv' nor 'python3' found. Install one to run reference validation."
+    exit 1
 fi
 
 # Test 6: Reference validation (citations and URLs)
