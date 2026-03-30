@@ -7,7 +7,7 @@ subject: "Revised Manuscript Resubmission: ms#91493"
 
 Dear Editor,
 
-I am writing to resubmit the manuscript "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement" (ms#91493) for consideration as a **Viewpoint** article in JMIR Medical Informatics.
+I am writing to resubmit the manuscript "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement" (ms#91493) for consideration as a *Viewpoint* article in JMIR Medical Informatics.
 
 ## Response to Decision E2
 
@@ -17,23 +17,23 @@ I appreciate the editor's feedback that the work is "interesting" and the invita
 
 The manuscript has been substantially revised to meet Viewpoint article requirements:
 
-**Structural changes:**
+*Structural changes:*
 
 - Reduced from approximately 12,730 words to approximately 4,600 body words (within the 5,000-word recommendation)
 - Converted from IMRD structure (Introduction, Methods, Results, Discussion) to descriptive thematic headers appropriate for Viewpoint articles
 - Converted the structured abstract to an unstructured flowing narrative (302 words)
 
-**Content focus:**
+*Content focus:*
 
 The revised manuscript retains the core intellectual contributions while removing the exhaustive methodology and literature review sections appropriate for a full research paper:
 
-- **Human-in-the-Loop Knowledge Governance (HITL-KG) framework:** The socio-technical architecture for converting tacit domain expertise into durable validated query triples
-- **Theoretical grounding in Nonaka's SECI model:** Reinterpretation of knowledge creation theory for the unstable healthcare workforce
-- **The Validator Paradox:** Intellectually honest engagement with the circular objection to the framework, resolved through Lean "Standard Work"
-- **Analytics Resilience Index (ARI):** A proposed measurement instrument complementing static maturity models with dynamic resilience metrics
-- **Three pillars of evidence:** Synthesized evidence on analytics maturity, workforce agility, and technical enablement
+- *Human-in-the-Loop Knowledge Governance (HITL-KG) framework:* The socio-technical architecture for converting tacit domain expertise into durable validated query triples
+- *Theoretical grounding in Nonaka's SECI model:* Reinterpretation of knowledge creation theory for the unstable healthcare workforce
+- *The Validator Paradox:* Intellectually honest engagement with the circular objection to the framework, resolved through Lean "Standard Work"
+- *Three-Pillar Assessment Rubric:* A structured self-assessment tool with evidence-based indicators across analytics maturity, workforce agility, and technical enablement
+- *Three pillars of evidence:* Synthesized evidence on analytics maturity, workforce agility, and technical enablement
 
-**Quality assurance:**
+*Quality assurance:*
 
 - All citations updated to 2024-2026 data where available
 - Framework advances a prescriptive Viewpoint position grounded in descriptive evidence; conversational AI framed as enabler, not solution
@@ -41,7 +41,7 @@ The revised manuscript retains the core intellectual contributions while removin
 
 ## Article Type
 
-This submission is a **Viewpoint** article: an evidence-based scholarly perspective on mitigating institutional amnesia in healthcare analytics, grounded in peer-reviewed literature and knowledge management theory.
+This submission is a *Viewpoint* article: an evidence-based scholarly perspective on mitigating institutional amnesia in healthcare analytics, grounded in peer-reviewed literature and knowledge management theory.
 
 Thank you for your continued consideration.
 
