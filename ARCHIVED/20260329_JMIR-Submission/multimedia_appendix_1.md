@@ -2,15 +2,15 @@
 
 ## Validated Query Triple Examples for Healthcare Analytics
 
-This appendix illustrates the Validated Query Triple artifact proposed by the HITL-KG framework (see Section 2.2 of the main paper). Each triple comprises three components: (1) **Natural Language Intent**, the clinical business question; (2) **Executable SQL**, the technical implementation; and (3) **Rationale Metadata**, the contextual "why" behind the logic. Together, these components capture not just *what* query was run but *why* it was constructed that way, preserving institutional knowledge that would otherwise be lost during staff turnover.
+This appendix illustrates the Validated Query Triple artifact proposed by the HITL-KG framework (see Section 2.2 of the main paper). Each triple comprises three components: (1) *Natural Language Intent*, the clinical business question; (2) *Executable SQL*, the technical implementation; and (3) *Rationale Metadata*, the contextual "why" behind the logic. Together, these components capture not just *what* query was run but *why* it was constructed that way, preserving institutional knowledge that would otherwise be lost during staff turnover.
 
 ---
 
 ### Triple 1: Diabetes Care Monitoring
 
-**Natural Language Intent:** "Show me all diabetic patients over 65 who had an HbA1c test in the last 6 months"
+*Natural Language Intent:* "Show me all diabetic patients over 65 who had an HbA1c test in the last 6 months"
 
-**Executable SQL:**
+*Executable SQL:*
 ```sql
 SELECT p.patient_id, p.age, l.test_date, l.result_value
 FROM patients p
@@ -22,15 +22,15 @@ WHERE d.icd10_code LIKE 'E11%'  -- Type 2 Diabetes
   AND l.test_date >= DATE_SUB(CURRENT_DATE, INTERVAL 6 MONTH)
 ```
 
-**Rationale Metadata:** Aligned with NCQA HEDIS measures for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult populations. Uses ICD-10 E11% for Type 2 Diabetes specifically (not E10% for Type 1) per organizational coding convention. Six-month window matches the HEDIS reporting period.
+*Rationale Metadata:* Aligned with NCQA HEDIS measures for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult populations. Uses ICD-10 E11% for Type 2 Diabetes specifically (not E10% for Type 1) per organizational coding convention. Six-month window matches the HEDIS reporting period.
 
 ---
 
 ### Triple 2: Heart Failure Readmission Cohort
 
-**Natural Language Intent:** "Identify patients discharged with Heart Failure in 2024 who had a readmission within 30 days, excluding those discharged to hospice. For each, calculate their max creatinine levels during the index stay."
+*Natural Language Intent:* "Identify patients discharged with Heart Failure in 2024 who had a readmission within 30 days, excluding those discharged to hospice. For each, calculate their max creatinine levels during the index stay."
 
-**Executable SQL:**
+*Executable SQL:*
 ```sql
 WITH IndexAdmissions AS (
     SELECT
@@ -70,15 +70,15 @@ WHERE l.itemid IN (50912, 50913)
 GROUP BY r.patient_id, r.index_admission_id, r.days_to_readmit;
 ```
 
-**Rationale Metadata:** Supports CMS Hospital Readmissions Reduction Program (HRRP) tracking. Hospice exclusion per CMS 2025 rules (discharge disposition != 'HOSPICE'). Creatinine unit normalization (mmol/L to mg/dL via /88.4) required because our lab system stores results in mixed units depending on the originating facility. Lab item IDs 50912 and 50913 are MIMIC-III creatinine codes; local implementations must map to their own lab dictionary.
+*Rationale Metadata:* Supports CMS Hospital Readmissions Reduction Program (HRRP) tracking. Hospice exclusion per CMS 2025 rules (discharge disposition != 'HOSPICE'). Creatinine unit normalization (mmol/L to mg/dL via /88.4) required because our lab system stores results in mixed units depending on the originating facility. Lab item IDs 50912 and 50913 are MIMIC-III creatinine codes; local implementations must map to their own lab dictionary.
 
 ---
 
 ### Triple 3: Quality Metric Aggregation
 
-**Natural Language Intent:** "How many patients were readmitted within 30 days of discharge for heart failure?"
+*Natural Language Intent:* "How many patients were readmitted within 30 days of discharge for heart failure?"
 
-**Executable SQL:**
+*Executable SQL:*
 ```sql
 SELECT COUNT(DISTINCT r.patient_id) as readmission_count
 FROM (
@@ -93,7 +93,7 @@ FROM (
 ) r
 ```
 
-**Rationale Metadata:** Aligned with CMS HRRP requirements for organizational quality reporting. COUNT(DISTINCT patient_id) ensures each patient is counted once even if they have multiple readmissions. This is the aggregate metric version of Triple 2; the detailed cohort query should be run first to validate individual cases before reporting the aggregate number.
+*Rationale Metadata:* Aligned with CMS HRRP requirements for organizational quality reporting. COUNT(DISTINCT patient_id) ensures each patient is counted once even if they have multiple readmissions. This is the aggregate metric version of Triple 2; the detailed cohort query should be run first to validate individual cases before reporting the aggregate number.
 
 ---
 

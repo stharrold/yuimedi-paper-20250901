@@ -74,6 +74,7 @@ grep -n '—' paper.md
 - [ ] **Affiliation**: Yuimedi, Inc., Indianapolis, IN, United States
 
 ### Article Metadata
+- [ ] **Section**: Select "Advanced Data Analytics in eHealth"
 - [ ] **Article Type**: Select "Viewpoint"
 - [ ] **Title**: Copy from paper.md YAML frontmatter
 - [ ] **Abstract**: Copy unstructured abstract from paper.md

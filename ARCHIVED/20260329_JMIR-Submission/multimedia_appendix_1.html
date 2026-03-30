@@ -254,19 +254,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 Query Triple Examples for Healthcare Analytics</h2>
 <p>This appendix illustrates the Validated Query Triple artifact
 proposed by the HITL-KG framework (see Section 2.2 of the main paper).
-Each triple comprises three components: (1) <strong>Natural Language
-Intent</strong>, the clinical business question; (2) <strong>Executable
-SQL</strong>, the technical implementation; and (3) <strong>Rationale
-Metadata</strong>, the contextual “why” behind the logic. Together,
-these components capture not just <em>what</em> query was run but
-<em>why</em> it was constructed that way, preserving institutional
-knowledge that would otherwise be lost during staff turnover.</p>
+Each triple comprises three components: (1) <em>Natural Language
+Intent</em>, the clinical business question; (2) <em>Executable
+SQL</em>, the technical implementation; and (3) <em>Rationale
+Metadata</em>, the contextual “why” behind the logic. Together, these
+components capture not just <em>what</em> query was run but <em>why</em>
+it was constructed that way, preserving institutional knowledge that
+would otherwise be lost during staff turnover.</p>
 <hr />
 <h3 id="triple-1-diabetes-care-monitoring">Triple 1: Diabetes Care
 Monitoring</h3>
-<p><strong>Natural Language Intent:</strong> “Show me all diabetic
-patients over 65 who had an HbA1c test in the last 6 months”</p>
-<p><strong>Executable SQL:</strong></p>
+<p><em>Natural Language Intent:</em> “Show me all diabetic patients over
+65 who had an HbA1c test in the last 6 months”</p>
+<p><em>Executable SQL:</em></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> p.patient_id, p.age, l.test_date, l.result_value</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> patients p</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> lab_results l <span class="kw">ON</span> p.patient_id <span class="op">=</span> l.patient_id</span>
@@ -275,19 +275,19 @@ patients over 65 who had an HbA1c test in the last 6 months”</p>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> p.age <span class="op">&gt;</span> <span class="dv">65</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> l.test_name <span class="op">=</span> <span class="st">&#39;HbA1c&#39;</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> l.test_date <span class="op">&gt;=</span> DATE_SUB(<span class="fu">CURRENT_DATE</span>, <span class="dt">INTERVAL</span> <span class="dv">6</span> <span class="dt">MONTH</span>)</span></code></pre></div>
-<p><strong>Rationale Metadata:</strong> Aligned with NCQA HEDIS measures
-for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing
-compliance in older adult populations. Uses ICD-10 E11% for Type 2
-Diabetes specifically (not E10% for Type 1) per organizational coding
-convention. Six-month window matches the HEDIS reporting period.</p>
+<p><em>Rationale Metadata:</em> Aligned with NCQA HEDIS measures for
+Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance
+in older adult populations. Uses ICD-10 E11% for Type 2 Diabetes
+specifically (not E10% for Type 1) per organizational coding convention.
+Six-month window matches the HEDIS reporting period.</p>
 <hr />
 <h3 id="triple-2-heart-failure-readmission-cohort">Triple 2: Heart
 Failure Readmission Cohort</h3>
-<p><strong>Natural Language Intent:</strong> “Identify patients
-discharged with Heart Failure in 2024 who had a readmission within 30
-days, excluding those discharged to hospice. For each, calculate their
-max creatinine levels during the index stay.”</p>
-<p><strong>Executable SQL:</strong></p>
+<p><em>Natural Language Intent:</em> “Identify patients discharged with
+Heart Failure in 2024 who had a readmission within 30 days, excluding
+those discharged to hospice. For each, calculate their max creatinine
+levels during the index stay.”</p>
+<p><em>Executable SQL:</em></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> IndexAdmissions <span class="kw">AS</span> (</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        a.admission_id,</span>
@@ -324,19 +324,19 @@ max creatinine levels during the index stay.”</p>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> lab_events l <span class="kw">ON</span> r.index_admission_id <span class="op">=</span> l.admission_id</span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> l.itemid <span class="kw">IN</span> (<span class="dv">50912</span>, <span class="dv">50913</span>)</span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> r.patient_id, r.index_admission_id, r.days_to_readmit;</span></code></pre></div>
-<p><strong>Rationale Metadata:</strong> Supports CMS Hospital
-Readmissions Reduction Program (HRRP) tracking. Hospice exclusion per
-CMS 2025 rules (discharge disposition != ‘HOSPICE’). Creatinine unit
-normalization (mmol/L to mg/dL via /88.4) required because our lab
-system stores results in mixed units depending on the originating
-facility. Lab item IDs 50912 and 50913 are MIMIC-III creatinine codes;
-local implementations must map to their own lab dictionary.</p>
+<p><em>Rationale Metadata:</em> Supports CMS Hospital Readmissions
+Reduction Program (HRRP) tracking. Hospice exclusion per CMS 2025 rules
+(discharge disposition != ‘HOSPICE’). Creatinine unit normalization
+(mmol/L to mg/dL via /88.4) required because our lab system stores
+results in mixed units depending on the originating facility. Lab item
+IDs 50912 and 50913 are MIMIC-III creatinine codes; local
+implementations must map to their own lab dictionary.</p>
 <hr />
 <h3 id="triple-3-quality-metric-aggregation">Triple 3: Quality Metric
 Aggregation</h3>
-<p><strong>Natural Language Intent:</strong> “How many patients were
-readmitted within 30 days of discharge for heart failure?”</p>
-<p><strong>Executable SQL:</strong></p>
+<p><em>Natural Language Intent:</em> “How many patients were readmitted
+within 30 days of discharge for heart failure?”</p>
+<p><em>Executable SQL:</em></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> r.patient_id) <span class="kw">as</span> readmission_count</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> a1.patient_id, a1.discharge_date, a2.admission_date</span>
@@ -348,12 +348,12 @@ readmitted within 30 days of discharge for heart failure?”</p>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">AND</span> DATE_ADD(a1.discharge_date, <span class="dt">INTERVAL</span> <span class="dv">30</span> <span class="dt">DAY</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">AND</span> a1.admission_id <span class="op">!=</span> a2.admission_id</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>) r</span></code></pre></div>
-<p><strong>Rationale Metadata:</strong> Aligned with CMS HRRP
-requirements for organizational quality reporting. COUNT(DISTINCT
-patient_id) ensures each patient is counted once even if they have
-multiple readmissions. This is the aggregate metric version of Triple 2;
-the detailed cohort query should be run first to validate individual
-cases before reporting the aggregate number.</p>
+<p><em>Rationale Metadata:</em> Aligned with CMS HRRP requirements for
+organizational quality reporting. COUNT(DISTINCT patient_id) ensures
+each patient is counted once even if they have multiple readmissions.
+This is the aggregate metric version of Triple 2; the detailed cohort
+query should be run first to validate individual cases before reporting
+the aggregate number.</p>
 <hr />
 <h2 id="how-triples-preserve-institutional-knowledge">How Triples
 Preserve Institutional Knowledge</h2>
