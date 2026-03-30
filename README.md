@@ -27,7 +27,7 @@ This repository contains research documentation for the YuiQuery two-paper serie
 .
 ├── paper.md                    # Main research document (comprehensive whitepaper)
 ├── README.md                   # Project overview and quick start guide
-├── GEMINI.md                   # AI assistant instructions and project context
+├── CLAUDE.md                   # AI assistant instructions and project context
 ├── CONTRIBUTING.md             # Contribution guidelines
 ├── LICENSE                     # Apache 2.0 (code) / CC BY 4.0 (research content)
 │
@@ -38,7 +38,7 @@ This repository contains research documentation for the YuiQuery two-paper serie
 │   └── compliance/             # Compliance requirements
 ├── project-management.md       # Project management overview
 │
-├── .gemini-state/             # Workflow state tracking (AgentDB)
+├── .claude-state/             # Workflow state tracking (AgentDB)
 │
 ├── scripts/                    # Validation and build scripts
 │   ├── validate_references.py # Reference validation + URL checks

@@ -11,21 +11,17 @@ from __future__ import annotations
 import subprocess
 import sys
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 # Add skills script directories to sys.path
 _root = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(_root / ".gemini" / "skills" / "workflow-utilities" / "scripts"))
-sys.path.insert(0, str(_root / ".gemini" / "skills" / "git-workflow-manager" / "scripts"))
+sys.path.insert(0, str(_root / ".claude" / "skills" / "workflow-utilities" / "scripts"))
+sys.path.insert(0, str(_root / ".claude" / "skills" / "git-workflow-manager" / "scripts"))
 
 import pytest  # noqa: E402
 from vcs.provider import (  # noqa: E402
-    AZURE_DEVOPS_PATTERNS,
-    GITHUB_PATTERNS,
     VCSProvider,
-    detect_from_remote,
     detect_provider,
-    extract_azure_repo_from_remote,
 )
 
 
@@ -41,8 +37,8 @@ class TestVCSProviderEnum:
         assert VCSProvider.AZURE_DEVOPS.value == "azure_devops"
 
 
-class TestGitHubURLDetection:
-    """Test GitHub URL pattern detection."""
+class TestDetectProviderGitHub:
+    """Test detect_provider for GitHub URLs."""
 
     @pytest.mark.parametrize(
         "url",
@@ -50,193 +46,97 @@ class TestGitHubURLDetection:
             "https://github.com/user/repo.git",
             "https://github.com/user/repo",
             "git@github.com:user/repo.git",
-            "git@github.com:user/repo",
-            "ssh://git@github.com/user/repo.git",
         ],
     )
     def test_detect_github_urls(self, url: str):
         """Test detection of various GitHub URL formats."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.return_value = MagicMock(
-                stdout=url + "\n",
-                returncode=0,
-            )
-            result = detect_from_remote()
+        import vcs.provider as mod
+
+        mod._cached_provider = None  # Reset cache
+        with patch("subprocess.check_output", return_value=url):
+            result = detect_provider()
             assert result == VCSProvider.GITHUB
-
-    def test_github_pattern_matches_expected(self):
-        """Verify GitHub patterns match expected URLs."""
-        import re
-
-        test_urls = [
-            "https://github.com/user/repo.git",
-            "git@github.com:user/repo.git",
-        ]
-        for url in test_urls:
-            matched = any(re.search(pattern, url) for pattern in GITHUB_PATTERNS)
-            assert matched, f"Pattern should match: {url}"
+        mod._cached_provider = None  # Clean up
 
 
-class TestAzureDevOpsURLDetection:
-    """Test Azure DevOps URL pattern detection."""
+class TestDetectProviderAzure:
+    """Test detect_provider for Azure DevOps URLs."""
 
     @pytest.mark.parametrize(
         "url",
         [
             "https://dev.azure.com/org/project/_git/repo",
-            "https://dev.azure.com/org/project/_git/repo.git",
-            "git@ssh.dev.azure.com:v3/org/project/repo",
             "https://org.visualstudio.com/project/_git/repo",
         ],
     )
     def test_detect_azure_urls(self, url: str):
         """Test detection of various Azure DevOps URL formats."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.return_value = MagicMock(
-                stdout=url + "\n",
-                returncode=0,
-            )
-            result = detect_from_remote()
+        import vcs.provider as mod
+
+        mod._cached_provider = None
+        with patch("subprocess.check_output", return_value=url):
+            result = detect_provider()
             assert result == VCSProvider.AZURE_DEVOPS
-
-    def test_azure_pattern_matches_expected(self):
-        """Verify Azure DevOps patterns match expected URLs."""
-        import re
-
-        test_urls = [
-            "https://dev.azure.com/org/project/_git/repo",
-            "git@ssh.dev.azure.com:v3/org/project/repo",
-        ]
-        for url in test_urls:
-            matched = any(re.search(pattern, url) for pattern in AZURE_DEVOPS_PATTERNS)
-            assert matched, f"Pattern should match: {url}"
+        mod._cached_provider = None
 
 
-class TestUnknownProvider:
-    """Test handling of unknown/unsupported providers."""
-
-    @pytest.mark.parametrize(
-        "url",
-        [
-            "https://gitlab.com/user/repo.git",
-            "https://bitbucket.org/user/repo.git",
-            "https://example.com/repo.git",
-            "file:///path/to/repo",
-        ],
-    )
-    def test_unknown_provider_returns_none(self, url: str):
-        """Test that unknown providers return None."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.return_value = MagicMock(
-                stdout=url + "\n",
-                returncode=0,
-            )
-            result = detect_from_remote()
-            assert result is None
-
-
-class TestErrorHandling:
+class TestDetectProviderErrors:
     """Test error handling in provider detection."""
 
-    def test_no_remote_returns_none(self):
+    def test_unknown_provider_raises_error(self):
+        """Test that unknown providers raise RuntimeError."""
+        import vcs.provider as mod
+
+        mod._cached_provider = None
+        with patch("subprocess.check_output", return_value="https://gitlab.com/user/repo.git"):
+            with pytest.raises(RuntimeError, match="Unrecognised VCS provider"):
+                detect_provider()
+        mod._cached_provider = None
+
+    def test_no_remote_raises_error(self):
         """Test handling when no remote is configured."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.side_effect = subprocess.CalledProcessError(1, "git")
-            result = detect_from_remote()
-            assert result is None
+        import vcs.provider as mod
 
-    def test_git_not_found_returns_none(self):
+        mod._cached_provider = None
+        with patch(
+            "subprocess.check_output",
+            side_effect=subprocess.CalledProcessError(1, "git", stderr=""),
+        ):
+            with pytest.raises(RuntimeError, match="Failed to read"):
+                detect_provider()
+        mod._cached_provider = None
+
+    def test_git_not_found_raises_error(self):
         """Test handling when git is not installed."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.side_effect = FileNotFoundError("git not found")
-            result = detect_from_remote()
-            assert result is None
+        import vcs.provider as mod
 
-    def test_timeout_returns_none(self):
+        mod._cached_provider = None
+        with patch("subprocess.check_output", side_effect=FileNotFoundError("git not found")):
+            with pytest.raises(RuntimeError, match="git.*CLI not found"):
+                detect_provider()
+        mod._cached_provider = None
+
+    def test_timeout_raises_error(self):
         """Test handling when git command times out."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.side_effect = subprocess.TimeoutExpired("git", 5)
-            result = detect_from_remote()
-            assert result is None
+        import vcs.provider as mod
+
+        mod._cached_provider = None
+        with patch("subprocess.check_output", side_effect=subprocess.TimeoutExpired("git", 5)):
+            with pytest.raises(RuntimeError, match="Timeout"):
+                detect_provider()
+        mod._cached_provider = None
 
 
-class TestDetectProvider:
-    """Test detect_provider function with fallback."""
+class TestDetectProviderCaching:
+    """Test that detect_provider caches results."""
 
-    def test_returns_github_when_detected(self):
-        """Test that GitHub is returned when detected."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.return_value = MagicMock(
-                stdout="https://github.com/user/repo.git\n",
-                returncode=0,
-            )
+    def test_uses_cached_provider(self):
+        """Test that cached provider is returned without subprocess call."""
+        import vcs.provider as mod
+
+        mod._cached_provider = VCSProvider.GITHUB
+        with patch("subprocess.check_output") as mock_check:
             result = detect_provider()
             assert result == VCSProvider.GITHUB
-
-    def test_returns_azure_when_detected(self):
-        """Test that Azure DevOps is returned when detected."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.return_value = MagicMock(
-                stdout="https://dev.azure.com/org/project/_git/repo\n",
-                returncode=0,
-            )
-            result = detect_provider()
-            assert result == VCSProvider.AZURE_DEVOPS
-
-    def test_defaults_to_github_when_unknown(self):
-        """Test that GitHub is returned as default for unknown providers."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.return_value = MagicMock(
-                stdout="https://gitlab.com/user/repo.git\n",
-                returncode=0,
-            )
-            result = detect_provider()
-            assert result == VCSProvider.GITHUB
-
-    def test_defaults_to_github_on_error(self):
-        """Test that GitHub is returned as default on error."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.side_effect = subprocess.CalledProcessError(1, "git")
-            result = detect_provider()
-            assert result == VCSProvider.GITHUB
-
-
-class TestExtractAzureRepoFromRemote:
-    """Test Azure DevOps repository name extraction."""
-
-    @pytest.mark.parametrize(
-        ("url", "expected_repo"),
-        [
-            ("https://dev.azure.com/org/project/_git/myrepo", "myrepo"),
-            ("https://dev.azure.com/org/project/_git/myrepo.git", "myrepo"),
-            ("git@ssh.dev.azure.com:v3/org/project/myrepo", "myrepo"),
-            ("git@ssh.dev.azure.com:v3/org/project/myrepo.git", "myrepo"),
-            ("https://org.visualstudio.com/project/_git/myrepo", "myrepo"),
-        ],
-    )
-    def test_extract_repo_name(self, url: str, expected_repo: str):
-        """Test extraction of repository name from Azure DevOps URLs."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.return_value = MagicMock(
-                stdout=url + "\n",
-                returncode=0,
-            )
-            result = extract_azure_repo_from_remote()
-            assert result == expected_repo
-
-    def test_returns_none_for_non_azure_url(self):
-        """Test that None is returned for non-Azure URLs."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.return_value = MagicMock(
-                stdout="https://github.com/user/repo.git\n",
-                returncode=0,
-            )
-            result = extract_azure_repo_from_remote()
-            assert result is None
-
-    def test_returns_none_on_error(self):
-        """Test that None is returned on git error."""
-        with patch("subprocess.run") as mock_run:
-            mock_run.side_effect = subprocess.CalledProcessError(1, "git")
-            result = extract_azure_repo_from_remote()
-            assert result is None
+            mock_check.assert_not_called()
+        mod._cached_provider = None

@@ -34,10 +34,9 @@ git --version             # Version control
 python3 --version         # Python 3.11+
 uv --version              # Python package manager
 
-# VCS Provider CLI (one of):
-gh --version              # GitHub CLI (for GitHub repos)
-# OR
-az --version              # Azure CLI (for Azure DevOps repos)
+# GitHub CLI (or az CLI for Azure DevOps repos):
+gh --version              # GitHub CLI (for PR operations)
+# az --version            # Azure DevOps CLI (alternative, if using Azure DevOps)
 ```
 
 ### Initial Setup
@@ -77,7 +76,7 @@ feature/* (isolated worktrees)
 ### Workflow Steps
 
 1. **Create Worktree**: `/workflow:v7x1_1-worktree "feature description"`
-2. **Implement**: Perform implementation using built-in Gemini CLI tools (in worktree).
+2. **Implement**: Perform implementation using Claude Code (in worktree).
 3. **Integrate**: `/workflow:v7x1_2-integrate` (in main repo)
 4. **Release**: `/workflow:v7x1_3-release`
 5. **Backmerge**: `/workflow:v7x1_4-backmerge`
@@ -86,16 +85,16 @@ feature/* (isolated worktrees)
 
 ```bash
 # Rebase contrib branch onto develop
-uv run python .gemini/skills/git-workflow-manager/scripts/daily_rebase.py contrib/stharrold
+uv run python .claude/skills/git-workflow-manager/scripts/daily_rebase.py contrib/stharrold
 ```
 
 ## Documentation Requirements
 
-### Modular GEMINI.md Pattern
+### Modular CLAUDE.md Pattern
 
 All directories must have:
 
-1. **GEMINI.md** - AI context and navigation.
+1. **CLAUDE.md** - AI context and navigation.
 2. **README.md** - Human-readable documentation.
 3. **ARCHIVED/** - Deprecated files subdirectory.
 
@@ -121,7 +120,7 @@ gh pr create \
 ### 2. PR Requirements
 
 - [ ] All CI/CD tests pass.
-- [ ] Gemini Code Review completed.
+- [ ] Claude Code Review completed.
 - [ ] Documentation updated to reflect changes.
 - [ ] Commit messages follow Conventional Commits.
 
@@ -132,7 +131,7 @@ gh pr create \
 
 <body>
 
-🤖 Generated with [Gemini Code](https://gemini.com/gemini-code)
+🤖 Generated with [Claude Code](https://claude.ai/code)
 ```
 
 **Types:** feat, fix, docs, style, refactor, test, chore.
@@ -148,7 +147,7 @@ gh pr create \
 
 ### Workflow Tools
 
-This repository includes 6 active workflow skills in `.gemini/skills/`:
+This repository includes 6 active workflow skills in `.claude/skills/`:
 - `workflow-orchestrator`: Main coordinator.
 - `git-workflow-manager`: Git automation.
 - `tech-stack-adapter`: Stack detection.
@@ -160,16 +159,16 @@ This repository includes 6 active workflow skills in `.gemini/skills/`:
 
 | To change... | Edit this | NOT this |
 |--------------|-----------|----------|
-| Skills | `.gemini/skills/` | `.agents/` |
-| Commands | `.gemini/commands.toml` | N/A |
-| Root instructions | `GEMINI.md` | `AGENTS.md` |
+| Skills | `.claude/skills/` | `.agents/` |
+| Commands | `.claude/commands.toml` | N/A |
+| Root instructions | `CLAUDE.md` | `AGENTS.md` |
 
-**Note**: `.agents/` and `AGENTS.md` are automatically synced from `.gemini/` sources.
+**Note**: `.agents/` and `AGENTS.md` are automatically synced from `.claude/` sources.
 
 ## Questions or Issues?
 
 - Open an issue on GitHub.
-- Check `GEMINI.md` for detailed guidance.
+- Check `CLAUDE.md` for detailed guidance.
 
 ## License
 

@@ -59,7 +59,7 @@ echo ""
 
 # Test 6: Reference validation (citations and URLs)
 echo "Test 6: Reference validation"
-python3 "$REPO_ROOT/scripts/validate_references.py" --check-citations
+uv run python "$REPO_ROOT/scripts/validate_references.py" --check-citations
 if [ $? -ne 0 ]; then
     ((total_errors++))
     echo "  ❌ Reference validation failed"
@@ -70,7 +70,7 @@ echo ""
 
 # Test 7: LaTeX-in-URL validation
 echo "Test 7: LaTeX-in-URL validation"
-python3 "$REPO_ROOT/scripts/validate_references.py" --check-latex
+uv run python "$REPO_ROOT/scripts/validate_references.py" --check-latex
 if [ $? -ne 0 ]; then
     ((total_errors++))
     echo "  ❌ LaTeX-in-URL validation failed"

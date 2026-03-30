@@ -1,0 +1,735 @@
+---
+type: claude-context
+directory: .claude/skills/git-workflow-manager
+purpose: Git Workflow Manager provides **automated git operations** for the git-flow + GitHub-flow hybrid workflow with worktrees. It handles branch creation, worktree management, commits, PRs, semantic versioning, and daily rebase operations. All operations are designed to work with the isolated worktree development pattern and VCS provider abstraction (GitHub).
+parent: ../CLAUDE.md
+sibling_readme: README.md
+children:
+  - ARCHIVED/CLAUDE.md
+  - scripts/CLAUDE.md
+related_skills:
+  - workflow-orchestrator
+  - workflow-utilities
+  - agentdb-state-manager
+---
+
+# Claude Code Context: git-workflow-manager
+
+## Purpose
+
+Git Workflow Manager provides **automated git operations** for the git-flow + GitHub-flow hybrid workflow with worktrees. It handles branch creation, worktree management, commits, PRs, semantic versioning, and daily rebase operations. All operations are designed to work with the isolated worktree development pattern and VCS provider abstraction (GitHub).
+
+> **Note**: As of v7x1.0, workflow state tracking has migrated from TODO_*.md files to AgentDB (DuckDB). Some scripts in this skill (create_worktree.py, cleanup_feature.py) still reference TODO files but will be updated in a future release. See `agentdb-state-manager` for the current state tracking system.
+
+## Directory Structure
+
+```
+.claude/skills/git-workflow-manager/
+├── scripts/                      # Git operation automation
+│   ├── create_worktree.py        # Create feature/release/hotfix worktrees (Phase 2)
+│   ├── cleanup_feature.py        # Atomic cleanup: archive TODO + manual worktree/branch deletion (Phase 4)
+│   ├── daily_rebase.py          # Rebase contrib onto develop (daily maintenance)
+│   ├── semantic_version.py       # Calculate semantic version from changes (Phase 3)
+│   ├── create_release.py         # Create release branch from develop (Phase 5)
+│   ├── tag_release.py            # Tag release on main after merge (Phase 5)
+│   ├── backmerge_workflow.py     # Backmerge workflow orchestrator (Step 7)
+│   ├── cleanup_release.py        # Cleanup release branch (manual deletion) (Phase 5)
+│   └── __init__.py               # Package initialization
+├── templates/                    # (none - no template files)
+├── SKILL.md                      # Complete skill documentation
+├── CLAUDE.md                     # This file
+├── README.md                     # Human-readable overview
+├── CHANGELOG.md                  # Version history
+└── ARCHIVED/                     # Deprecated files
+    ├── backmerge_release.py      # [DEPRECATED] Replaced by backmerge_workflow.py
+    ├── CLAUDE.md
+    └── README.md
+```
+
+## Key Scripts
+
+### create_worktree.py
+
+**Purpose:** Create isolated worktree for feature/release/hotfix development with automatic TODO file creation
+
+**When to use:** Phase 2 (Implementation) - after BMAD planning (optional), before SpecKit
+
+**Invocation:**
+```bash
+# Feature worktree from contrib branch
+python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
+  feature <slug> contrib/<gh-user>
+
+# Release worktree from develop
+python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
+  release <version> develop
+
+# Hotfix worktree from main
+python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
+  hotfix <slug> main
+```
+
+**Examples:**
+```bash
+# Feature: Create feature/20251104T143000Z_auth-system from contrib/stharrold
+python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
+  feature auth-system contrib/stharrold
+
+# Release: Create release/v1.6.0 from develop
+python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
+  release v1.6.0 develop
+
+# Hotfix: Create hotfix/20251104T150000Z_security-patch from main
+python .claude/skills/git-workflow-manager/scripts/create_worktree.py \
+  hotfix security-patch main
+```
+
+**What it does:**
+1. Validates workflow type (feature/release/hotfix) and slug format
+2. Generates timestamp in compact ISO8601 format (YYYYMMDDTHHMMSSZ)
+3. **For feature worktrees only:** Verifies planning documents are committed and pushed
+4. Creates branch: `<type>/<timestamp>_<slug>` or `release/<version>`
+5. Creates worktree directory: `../{repo}_<type>_<timestamp>_<slug>/`
+6. Initializes `.claude-state/` directory for worktree state isolation
+7. Prints worktree path and instructions
+
+**Planning Document Verification (Feature Only):**
+
+For feature worktrees, `create_worktree.py` verifies that planning documents are committed and pushed before allowing worktree creation:
+
+1. **Planning directory exists:** `planning/{slug}/` must exist
+2. **No uncommitted changes:** Planning directory must be clean (`git status --porcelain`)
+3. **Branch is pushed:** Local branch must not be ahead of remote
+
+If verification fails, the script provides clear error messages with resolution commands:
+```
+Planning directory not found: planning/my-feature/
+
+Resolution: Run /1_specify to create planning documents first.
+```
+
+```
+Uncommitted changes detected in planning/my-feature/
+
+Resolution: Commit and push planning documents first:
+  git add planning/my-feature/
+  git commit -m 'docs(planning): add planning for my-feature'
+  git push
+```
+
+**Key features:**
+- Timestamp format avoids shell escaping issues (no colons/hyphens)
+- TODO file stored in main repo (not worktree) for persistence
+- Validates base branch exists
+- Creates compliant directory structure
+- Error handling with cleanup on failure
+
+---
+
+### cleanup_feature.py
+
+**Purpose:** Atomically archive TODO and cleanup feature worktree in correct order: Archive TODO → Delete worktree → Delete branches
+
+**When to use:** Phase 4 (Integration) - after PR merged to contrib
+
+**⚠️ CRITICAL:** This script prevents orphaned TODO files by enforcing proper cleanup ordering. Manual cleanup is error-prone and NOT recommended.
+
+**Invocation:**
+```bash
+python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py \
+  <slug> \
+  --summary "Completion summary" \
+  --version "X.Y.Z"
+```
+
+**Examples:**
+```bash
+# Cleanup feature
+python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py \
+  auth-system \
+  --summary "Implemented user authentication with JWT tokens" \
+  --version "1.5.0"
+
+# Cleanup issue fix
+python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py \
+  issue-243-todo-status \
+  --summary "Updated TODO file to reflect completion" \
+  --version "1.13.0"
+
+# Cleanup with project-specific worktree pattern
+python .claude/skills/git-workflow-manager/scripts/cleanup_feature.py \
+  auth-system \
+  --summary "Implemented user authentication" \
+  --version "1.5.0" \
+  --project-name german
+```
+
+**What it does:**
+1. **Finds TODO file:** Searches for `TODO_feature_*_{slug}.md` in main repo
+2. **Finds worktree:** Searches for `../feature_{slug}/` or `../{project}_feature_{slug}/`
+3. **Finds branch:** Searches for `feature/*_{slug}` branch
+4. **Archives TODO:** Calls `workflow_archiver.py` (MUST succeed before proceeding)
+5. **Instructions:** Prints commands for manual worktree deletion
+6. **Instructions:** Prints commands for manual branch deletion (git branches are NEVER deleted automatically)
+
+**Key features:**
+- **Atomic operation:** Either everything succeeds or nothing changes (safe to retry)
+- **Correct ordering:** Instructions provided only after archiving TODO
+- **Error handling:** If TODO archive fails, instructions not printed (safe state)
+- **Single command:** Replaces 4 separate manual commands
+- **Clear feedback:** Emojis and progress indicators for each step
+
+**Why atomic cleanup:**
+- Prevents orphaned TODO files (main repo cleanup issue)
+- Prevents confusion about workflow state
+- Safe rollback on errors (idempotent)
+- Single source of truth for cleanup logic
+
+**Failure modes:**
+- **TODO not found:** Script fails immediately, nothing deleted
+- **Archive fails:** Script exits, worktree/branches preserved (safe to retry)
+- **Manual cleanup:** User responsibility (script provides commands)
+
+---
+
+### daily_rebase.py
+
+**Purpose:** Rebase contrib branch onto develop to stay current with integration branch
+
+**When to use:** Daily maintenance, before starting new work, before creating PR
+
+**Invocation:**
+```bash
+python .claude/skills/git-workflow-manager/scripts/daily_rebase.py \
+  contrib/<gh-user>
+```
+
+**Example:**
+```bash
+python .claude/skills/git-workflow-manager/scripts/daily_rebase.py \
+  contrib/stharrold
+```
+
+**What it does:**
+1. Validates branch starts with `contrib/`
+2. Checks for uncommitted changes (fails if dirty)
+3. Checks out contrib branch
+4. Fetches from origin
+5. Rebases onto origin/develop
+6. Force pushes with `--force-with-lease` (safe force push)
+
+**Key features:**
+- Safe force push: `--force-with-lease` prevents overwriting others' work
+- Validates clean working tree before rebase
+- Comprehensive error handling
+- Target branch: `origin/develop` (documented rationale)
+
+---
+
+### semantic_version.py
+
+**Purpose:** Calculate semantic version automatically based on code changes
+
+**When to use:** Phase 3 (Quality Gates) - after implementation, before PR
+
+**Invocation:**
+```bash
+python .claude/skills/git-workflow-manager/scripts/semantic_version.py \
+  <base-branch> <current-version>
+```
+
+**Example:**
+```bash
+# From feature branch, compare to develop, current version v1.5.0
+python .claude/skills/git-workflow-manager/scripts/semantic_version.py \
+  develop v1.5.0
+
+# Output: 1.6.0 (if new features detected)
+```
+
+**What it does:**
+1. Compares changed files between current branch and base branch
+2. Analyzes changes using semver rules:
+   - **MAJOR** (X.0.0): Breaking changes (API changes, removed features)
+   - **MINOR** (1.X.0): New features (new files in src/, new endpoints)
+   - **PATCH** (1.5.X): Bug fixes, refactoring, docs, tests
+3. Calculates next version from current version + change type
+4. Outputs new version (e.g., `1.6.0`)
+
+**Key features:**
+- Automatic version calculation (no manual decisions)
+- File-based change analysis
+- Semantic versioning compliance
+- Used by quality-enforcer to update TODO frontmatter
+
+---
+
+### create_release.py
+
+**Purpose:** Create release branch from develop for final QA and release preparation
+
+**When to use:** Phase 5 (Release) - when develop is ready for production
+
+**Invocation:**
+```bash
+python .claude/skills/git-workflow-manager/scripts/create_release.py \
+  <version> <base-branch>
+```
+
+**Example:**
+```bash
+# Create release/v1.6.0 from develop
+python .claude/skills/git-workflow-manager/scripts/create_release.py \
+  v1.6.0 develop
+```
+
+**What it does:**
+1. Validates version format (vX.Y.Z)
+2. Creates branch: `release/<version>` from base branch
+3. Creates TODO file: `TODO_release_<timestamp>_<version-slug>.md`
+4. Initializes TODO with YAML frontmatter
+5. Prints instructions for next steps
+
+**Key features:**
+- Version format validation (semantic versioning)
+- TODO file tracking for release workflow
+- Prevents duplicate release branches
+
+---
+
+### tag_release.py
+
+**Purpose:** Tag release on main branch after PR merge
+
+**When to use:** Phase 5 (Release) - after merging release PR to main
+
+**Invocation:**
+```bash
+python .claude/skills/git-workflow-manager/scripts/tag_release.py \
+  <version> <branch>
+```
+
+**Example:**
+```bash
+# Tag v1.6.0 on main branch
+python .claude/skills/git-workflow-manager/scripts/tag_release.py \
+  v1.6.0 main
+```
+
+**What it does:**
+1. Validates version format (vX.Y.Z)
+2. Checks out specified branch (usually main)
+3. Creates annotated git tag: `<version>`
+4. Pushes tag to origin
+5. Updates CHANGELOG.md (if exists)
+
+**Key features:**
+- Annotated tags (includes message)
+- Version validation
+- Automatic CHANGELOG updates
+
+---
+
+### backmerge_workflow.py
+
+**Purpose:** Orchestrate backmerge of release changes to develop (Step 7)
+
+**When to use:** Step 7 (/7_backmerge) - after tagging release on main
+
+**Invocation:**
+```bash
+python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py <step>
+```
+
+**Available steps:**
+- `pr-develop` - Create PR from release branch to develop
+- `rebase-contrib` - Rebase contrib on updated develop
+- `cleanup-release` - Delete release branch
+- `full` - Run all steps in sequence
+- `status` - Show current backmerge status
+
+**Example:**
+```bash
+# Create PR from release to develop
+python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py pr-develop
+
+# After PR merged, rebase contrib
+python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py rebase-contrib
+
+# Cleanup release branch
+python .claude/skills/git-workflow-manager/scripts/backmerge_workflow.py cleanup-release
+```
+
+**What it does:**
+1. Creates PR from release branch to develop
+2. (Manual) User merges PR in GitHub UI
+3. Rebases contrib branch on updated develop
+4. Instructs user to manually delete release branch
+
+**Key features:**
+- Uses release branch directly (no separate backmerge branch)
+- Returns to editable branch (contrib) at end
+- Handles merge conflicts gracefully
+- Idempotent (safe to re-run)
+
+---
+
+### cleanup_release.py
+
+**Purpose:** Delete release branch after successful completion
+
+**When to use:** Phase 5 (Release) - after back-merge completes
+
+**Invocation:**
+```bash
+python .claude/skills/git-workflow-manager/scripts/cleanup_release.py \
+  <version>
+```
+
+**Example:**
+```bash
+# Delete release/v1.6.0 locally and remotely
+python .claude/skills/git-workflow-manager/scripts/cleanup_release.py \
+  v1.6.0
+```
+
+**What it does:**
+1. Validates release is tagged and merged
+2. Instructs user to manually delete local branch: `release/<version>`
+3. Instructs user to manually delete remote branch: `origin/release/<version>`
+4. Archives TODO file to ARCHIVED/
+
+**Key features:**
+- Safety checks (tag must exist, branch must be merged)
+- Prevents accidental deletion (manual steps required)
+- Archives release TODO file
+
+---
+
+## Usage by Claude Code
+
+### Phase 2: Create Feature Worktree
+
+**Context:** User wants to start implementing a feature
+
+**User says:**
+- "Create feature worktree for auth system"
+- "Start working on new feature"
+- "Begin implementation"
+
+**Claude Code should:**
+```python
+import subprocess
+
+# Call create_worktree.py
+result = subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/create_worktree.py',
+    'feature',
+    'auth-system',  # slug
+    'contrib/stharrold'  # base branch
+], check=True)
+
+# After worktree created, move to SpecKit (Phase 2.3)
+```
+
+---
+
+### Daily Maintenance: Rebase Contrib
+
+**Context:** User starts new session or before creating PR
+
+**User says:**
+- "Rebase my branch"
+- "Update contrib branch"
+- "Sync with develop"
+
+**Claude Code should:**
+```python
+import subprocess
+
+# Call daily_rebase.py
+result = subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/daily_rebase.py',
+    'contrib/stharrold'
+], check=True)
+```
+
+---
+
+### Phase 3: Calculate Version
+
+**Context:** Implementation complete, need semantic version for PR
+
+**User says:**
+- "What version should this be?"
+- "Calculate semantic version"
+- "Run quality gates"
+
+**Claude Code should:**
+```python
+import subprocess
+
+# Call semantic_version.py
+result = subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/semantic_version.py',
+    'develop',  # base branch
+    'v1.5.0'    # current version
+], capture_output=True, text=True, check=True)
+
+new_version = result.stdout.strip()  # e.g., "1.6.0"
+
+# Use new_version in TODO file, PR title, etc.
+```
+
+---
+
+### Phase 4: Handle PR Feedback via Work-Items
+
+**Context:** PR reviewed, has unresolved conversations requiring follow-up work
+
+**User says:**
+- "Generate work-items from PR feedback"
+- "Create issues for PR #94 conversations"
+- "Extract unresolved PR comments"
+
+**Claude Code should:**
+```python
+import subprocess
+
+# Call generate_work_items_from_pr.py
+result = subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/generate_work_items_from_pr.py',
+    '94'  # PR number
+], capture_output=True, text=True, check=True)
+
+# Script outputs work-item URLs and slugs
+# Example output:
+# ✓ Found 3 unresolved conversations
+# ✓ Created work-item: pr-94-issue-1 (https://github.com/user/repo/issues/123)
+# ✓ Created work-item: pr-94-issue-2 (https://github.com/user/repo/issues/124)
+# ✓ Created work-item: pr-94-issue-3 (https://github.com/user/repo/issues/125)
+
+# For each work-item, create feature worktree
+work_items = ['pr-94-issue-1', 'pr-94-issue-2', 'pr-94-issue-3']
+for slug in work_items:
+    # User approves PR in web portal first
+    # Then create worktree for each work-item
+    subprocess.run([
+        'python',
+        '.claude/skills/git-workflow-manager/scripts/create_worktree.py',
+        'feature',
+        slug,
+        'contrib/stharrold'
+    ], check=True)
+```
+
+**Complete PR Feedback Workflow:**
+```python
+import subprocess
+
+# Step 1: Feature branch merged to contrib via PR
+# (User merges PR #94 in GitHub UI)
+
+# Step 2: Generate work-items from unresolved conversations
+result = subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/generate_work_items_from_pr.py',
+    '94'
+], capture_output=True, text=True, check=True)
+
+# Step 3: For first work-item, create feature worktree
+subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/create_worktree.py',
+    'feature',
+    'pr-94-issue-1',
+    'contrib/stharrold'
+], check=True)
+
+# Step 4: Implement fix in worktree
+# (SpecKit, implementation, quality gates)
+
+# Step 5: Create PR: feature/YYYYMMDDTHHMMSSZ_pr-94-issue-1 → contrib/stharrold
+# Step 6: User merges PR in web portal
+# Step 7: Repeat steps 3-6 for remaining work-items
+
+# Step 8: After all work-items resolved, approve original PR in web portal
+```
+
+**Integration with GitHub:**
+```python
+import subprocess
+import json
+
+# For GitHub repositories
+result = subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/generate_work_items_from_pr.py',
+    '94'
+], capture_output=True, text=True, check=True)
+
+# Creates GitHub issues with:
+# - Label: "pr-feedback"
+# - Label: "pr-94"
+# - Title: "PR #94 feedback: {conversation summary}"
+# - Body: Full conversation with file/line context
+# - Links to original PR
+
+# Check created issues
+issues = subprocess.run([
+    'gh', 'issue', 'list',
+    '--label', 'pr-94',
+    '--json', 'number,title,url'
+], capture_output=True, text=True, check=True)
+
+issue_list = json.loads(issues.stdout)
+# [{'number': 123, 'title': 'PR #94 feedback: ...', 'url': '...'}, ...]
+```
+
+---
+
+### Phase 5: Release Workflow
+
+**Context:** Develop ready for production release
+
+**User says:**
+- "Create release"
+- "Prepare v1.6.0 for production"
+- "Start release process"
+
+**Claude Code should execute sequence:**
+```python
+import subprocess
+
+# Step 1: Create release branch
+subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/create_release.py',
+    'v1.6.0',
+    'develop'
+], check=True)
+
+# Step 2: User performs QA, updates docs in release branch
+
+# Step 3: User creates PR (release/v1.6.0 → main) and merges in GitHub UI
+
+# Step 4: Tag release on main
+subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/tag_release.py',
+    'v1.6.0',
+    'main'
+], check=True)
+
+# Step 5: Back-merge to develop (Part 1: PR)
+subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/backmerge_workflow.py',
+    'pr-develop'
+], check=True)
+
+# Step 6: User merges PR (release -> develop) in GitHub UI
+
+# Step 7: Rebase contrib (Part 2)
+subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/backmerge_workflow.py',
+    'rebase-contrib'
+], check=True)
+
+# Step 8: Cleanup release branch (Part 3)
+subprocess.run([
+    'python',
+    '.claude/skills/git-workflow-manager/scripts/backmerge_workflow.py',
+    'cleanup-release'
+], check=True)
+```
+
+---
+
+## Integration with Other Skills
+
+**workflow-orchestrator:**
+- Orchestrator calls create_worktree.py at workflow start
+- Orchestrator calls semantic_version.py at release phase
+- Orchestrator calls daily_rebase.py as needed
+
+**workflow-utilities:**
+- Uses workflow_archiver.py to archive TODO files
+- Uses vcs abstraction for PR creation (gh/az cli)
+
+**agentdb-state-manager:**
+- Tracks workflow state transitions
+- Replaces legacy TODO file tracking
+
+**Legacy Skills (Archived):**
+- **bmad-planner**: Replaced by autonomous planning
+- **speckit-author**: Replaced by autonomous implementation
+- **quality-enforcer**: Replaced by Claude Code Review
+
+---
+
+## Git-Flow + GitHub-Flow Hybrid
+
+This skill implements a hybrid workflow:
+
+**Git-Flow elements:**
+- Long-lived branches: main, develop, contrib/<user>
+- Feature branches from contrib
+- Release branches from develop
+- Hotfix branches from main
+
+**GitHub-Flow elements:**
+- PRs for all merges
+- Short-lived feature branches
+- Continuous integration via develop
+- Worktree isolation
+
+**Worktree pattern:**
+- Feature work happens in isolated worktrees
+- TODO files stored in main repo (persistent)
+- Clean separation between main repo and worktrees
+
+---
+
+## Constants and Rationale
+
+**TIMESTAMP_FORMAT:** `YYYYMMDDTHHMMSSZ` (compact ISO8601)
+- **Rationale:** No colons/hyphens avoids shell escaping issues. Remains intact when branch names are parsed by underscores.
+
+**VALID_WORKFLOW_TYPES:** `['feature', 'release', 'hotfix']`
+- **Rationale:** Supports all workflow phases with clear naming
+
+**TARGET_BRANCH:** `origin/develop`
+- **Rationale:** Integration branch for all contributions. All contrib branches rebase onto develop.
+
+**Force push safety:** `--force-with-lease`
+- **Rationale:** Only force-pushes if remote hasn't changed since last fetch. Prevents accidental overwrites.
+
+---
+
+
+
+
+
+
+
+
+## Related Documentation
+
+- **[README.md](README.md)** - Human-readable documentation for this directory
+- **[../CLAUDE.md](../CLAUDE.md)** - Parent directory: skills
+
+**Child Directories:**
+- **[ARCHIVED/CLAUDE.md](ARCHIVED/CLAUDE.md)** - Archived
+- **[scripts/CLAUDE.md](scripts/CLAUDE.md)** - Scripts
+
+## Related Skills
+
+- **workflow-orchestrator** - Calls git-workflow-manager scripts
+- **workflow-utilities** - Provides VCS abstraction and TODO utilities
+- **agentdb-state-manager** - Tracks workflow state

@@ -90,7 +90,7 @@ npj_digital-medicine_*.pdf
 
 # (All figures now tracked - removed PNG exclusion)
 
-# Gemini state database files
+# Claude state database files
 .claude-state/*.duckdb
 
 # Haskell (original patterns kept for compatibility)
@@ -118,18 +118,30 @@ cabal.project.local~
 .HTF/
 .ghc.environment.*
 
-.gemini/settings.local.json
-.gemini/gha-creds-*.json
+.claude/settings.local.json
+.claude/gha-creds-*.json
 
 # Workflow system
 .claude-state/
 *.duckdb
 *.duckdb.wal
 
-.gemini-state/
 
 # Local secrets
-secrets.toml
+# NOTE: secrets.toml is NOT ignored — it declares secret names only, not values.
+# Values are stored in the OS keyring via scripts/secrets_setup.py.
 node_modules/
 test.html
 test.md
+
+# Added by apply_bundle
+coverage.xml
+test-results.xml
+coverage.json
+*.cover
+.uv/
+Thumbs.db
+outputs/
+*.log.jsonl
+.github/instructions/codacy.instructions.md
+gha-creds-*.json

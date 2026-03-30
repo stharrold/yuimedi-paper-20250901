@@ -9,7 +9,7 @@ Automates the end-to-end research workflow:
 1. Selects next unanswered question.
 2. Searches Google Scholar Labs (via Chrome Debugger).
 3. Generates Research_*.md note.
-4. Updates Research_Questions.md.
+4. Updates Research-Questions.md.
 5. Downloads PDFs.
 
 Usage:
@@ -34,7 +34,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_LIB_PATH = REPO_ROOT.parent / "library" / "docs"
 REFS_DIR = Path(os.getenv("EXTERNAL_LIBRARY_PATH", DEFAULT_LIB_PATH))
 
-TRACKER_FILE = DOCS_DIR / "Research_Questions.md"
+TRACKER_FILE = DOCS_DIR / "Research-Questions.md"
 
 
 def slugify(text):
@@ -170,7 +170,7 @@ def generate_markdown(question_data, search_results):
 
 
 def update_tracker(question_data, filename):
-    """Update the status in Research_Questions.md."""
+    """Update the status in Research-Questions.md."""
     content = TRACKER_FILE.read_text()
 
     # Escape regex specials in question
@@ -188,7 +188,7 @@ def update_tracker(question_data, filename):
 
         # Better: Replace the whole line logic?
         # Let's just print instructions for now to avoid data loss bugs.
-        print("\n⚠️  MANUAL ACTION REQUIRED: Update Research_Questions.md")
+        print("\n⚠️  MANUAL ACTION REQUIRED: Update Research-Questions.md")
         print(f"Find: {question_data['question']}")
         print("Set Status: Answered")
         print(f"Add Note: [`{filename}`]({filename})")

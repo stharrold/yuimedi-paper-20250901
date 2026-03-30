@@ -4,14 +4,14 @@ Literature review findings organized by research question.
 
 ## Question Tracker
 
-See `Research_Questions.md` for the master list of research questions with:
+See `Research-Questions.md` for the master list of research questions with:
 - Status (Answered, Partial, Unanswered, Gap)
 - Links to GitHub issues
 - Citation ranges when merged into paper.md
 
 ## Naming Convention
 
-Files follow the pattern: `Research_{question-slug}.md`
+Answer files are in the `answers/` subdirectory following the pattern: `answers/Research_{question-slug}.md`
 
 Each file contains:
 - Research question
@@ -21,7 +21,7 @@ Each file contains:
 
 ## Contents
 
-38 research note files covering topics including:
+63 research note files covering topics including:
 - Healthcare analytics maturity (HIMSS AMAM)
 - Workforce turnover and knowledge loss
 - NL2SQL systems for healthcare

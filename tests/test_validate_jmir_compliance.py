@@ -34,9 +34,12 @@ from validate_jmir_compliance import (  # noqa: E402
     validate_figure_format,
     validate_imrd_structure,
     validate_keywords,
+    validate_no_imrd_headers,
     validate_no_old_citations,
     validate_pandoc_citations,
     validate_required_sections,
+    validate_viewpoint_abstract,
+    validate_word_count,
 )
 
 # Sample content for testing
@@ -660,6 +663,212 @@ class TestValidateNoOldCitations:
         assert result["old_industry_count"] == 0
 
 
+# Viewpoint test content
+VIEWPOINT_ABSTRACT_CONTENT = """---
+title: "Test Viewpoint"
+abstract: |
+  Healthcare organizations face challenges in analytics maturity.
+  This viewpoint proposes a framework for addressing workforce instability
+  through socio-technical governance mechanisms.
+keywords: [one, two, three, four, five]
+---
+
+# The Problem
+
+Content here.
+"""
+
+VIEWPOINT_STRUCTURED_ABSTRACT = """---
+title: "Test Viewpoint"
+abstract: |
+  **Background:** Healthcare organizations face challenges.
+
+  **Objective:** This viewpoint proposes a framework.
+
+  **Methods:** We conducted a review.
+
+  **Results:** Findings show improvement.
+
+  **Conclusions:** The framework works.
+keywords: [one, two, three, four, five]
+---
+
+# The Problem
+
+Content here.
+"""
+
+VIEWPOINT_BODY_CONTENT = (
+    """---
+title: "Test Viewpoint"
+abstract: |
+  Short abstract here.
+keywords: [one, two, three, four, five]
+---
+
+# The Problem
+
+"""
+    + " ".join(["word"] * 3000)
+    + """
+
+# Acknowledgments
+
+Thanks.
+"""
+)
+
+VIEWPOINT_BODY_TOO_LONG = (
+    """---
+title: "Test Viewpoint"
+abstract: |
+  Short abstract here.
+keywords: [one, two, three, four, five]
+---
+
+# The Problem
+
+"""
+    + " ".join(["word"] * 5500)
+    + """
+
+# Acknowledgments
+
+Thanks.
+"""
+)
+
+VIEWPOINT_WITH_IMRD = """
+# Introduction
+
+Content.
+
+# Methods
+
+Methods content.
+
+# Results
+
+Results content.
+
+# Discussion
+
+Discussion content.
+"""
+
+VIEWPOINT_WITHOUT_IMRD = """
+# The Triple Threat
+
+Content.
+
+# Theoretical Grounding
+
+More content.
+
+# Literature Review
+
+This is fine for Viewpoint.
+"""
+
+
+class TestValidateViewpointAbstract:
+    """Tests for validate_viewpoint_abstract function."""
+
+    def test_valid_flowing_narrative(self):
+        """Should accept unstructured abstract."""
+        result = validate_viewpoint_abstract(VIEWPOINT_ABSTRACT_CONTENT)
+
+        assert result["valid"] is True
+        assert result["has_structured_headers"] is False
+        assert result["found_headers"] == []
+        assert result["within_limit"] is True
+
+    def test_rejects_structured_headers(self):
+        """Should reject abstract with IMRD headers."""
+        result = validate_viewpoint_abstract(VIEWPOINT_STRUCTURED_ABSTRACT)
+
+        assert result["has_structured_headers"] is True
+        assert len(result["found_headers"]) == 5
+
+    def test_no_abstract_returns_error(self):
+        """Should return error when no abstract found."""
+        result = validate_viewpoint_abstract(NO_ABSTRACT_CONTENT)
+
+        assert result["valid"] is False
+        assert "error" in result
+
+    def test_word_count_within_limit(self):
+        """Should report word count within 450 limit."""
+        result = validate_viewpoint_abstract(VIEWPOINT_ABSTRACT_CONTENT)
+
+        assert result["word_count"] > 0
+        assert result["word_count"] <= 450
+        assert result["within_limit"] is True
+
+
+class TestValidateNoImrdHeaders:
+    """Tests for validate_no_imrd_headers function."""
+
+    def test_no_imrd_headers_valid(self):
+        """Should pass when no IMRD headers present."""
+        result = validate_no_imrd_headers(VIEWPOINT_WITHOUT_IMRD)
+
+        assert result["valid"] is True
+        assert result["forbidden_headers_found"] == []
+
+    def test_detects_imrd_headers(self):
+        """Should detect forbidden IMRD headers."""
+        result = validate_no_imrd_headers(VIEWPOINT_WITH_IMRD)
+
+        assert result["valid"] is False
+        assert "Methods" in result["forbidden_headers_found"]
+        assert "Results" in result["forbidden_headers_found"]
+        assert "Discussion" in result["forbidden_headers_found"]
+
+    def test_allows_literature_review(self):
+        """Should not flag 'Literature Review' as forbidden."""
+        content = """
+# Literature Review
+
+This is allowed in Viewpoint.
+"""
+        result = validate_no_imrd_headers(content)
+
+        assert result["valid"] is True
+
+
+class TestValidateWordCount:
+    """Tests for validate_word_count function."""
+
+    def test_word_count_within_limit(self):
+        """Should pass when body is within 5000 words."""
+        result = validate_word_count(VIEWPOINT_BODY_CONTENT)
+
+        assert result["valid"] is True
+        assert result["word_count"] <= 5000
+
+    def test_word_count_exceeds_limit(self):
+        """Should fail when body exceeds 5000 words."""
+        result = validate_word_count(VIEWPOINT_BODY_TOO_LONG)
+
+        assert result["valid"] is False
+        assert result["word_count"] > 5000
+
+    def test_no_frontmatter_returns_error(self):
+        """Should return error when no YAML frontmatter found."""
+        result = validate_word_count("No frontmatter here.")
+
+        assert result["valid"] is False
+        assert "error" in result
+
+    def test_custom_max_words(self):
+        """Should respect custom max_words parameter."""
+        result = validate_word_count(VIEWPOINT_BODY_CONTENT, max_words=100)
+
+        assert result["valid"] is False
+        assert result["max_words"] == 100
+
+
 class TestWithRealPaper:
     """Integration tests using actual paper.md."""
 
@@ -684,11 +893,12 @@ class TestWithRealPaper:
             pytest.skip("metadata.yaml not found")
         return metadata_path.read_text()
 
-    def test_real_paper_abstract_valid(self, paper_content: str):
-        """Real paper should have valid 5-section abstract."""
-        result = validate_abstract_structure(paper_content)
+    def test_real_paper_viewpoint_abstract_valid(self, paper_content: str):
+        """Real paper (Viewpoint) should have flowing narrative abstract."""
+        result = validate_viewpoint_abstract(paper_content)
 
-        assert result["valid"] is True, f"Missing headers: {result.get('missing_headers', [])}"
+        assert result["valid"] is True, f"Found headers: {result.get('found_headers', [])}"
+        assert result["has_structured_headers"] is False
         assert result["within_limit"] is True, f"Word count: {result['word_count']}/450"
 
     def test_real_paper_sections_present(self, paper_content: str):
@@ -722,12 +932,19 @@ class TestWithRealPaper:
         assert result["valid"] is True, f"Keywords count: {result['count']}/5-10"
         assert 5 <= result["count"] <= 10
 
-    def test_real_paper_imrd_structure(self, paper_content: str):
-        """Real paper should have IMRD structure."""
-        result = validate_imrd_structure(paper_content)
+    def test_real_paper_no_imrd_headers(self, paper_content: str):
+        """Real paper (Viewpoint) should not have IMRD headers."""
+        result = validate_no_imrd_headers(paper_content)
 
-        assert result["valid"] is True, f"Missing sections: {result['missing_sections']}"
-        assert len(result["sections_found"]) == 4
+        assert result["valid"] is True, (
+            f"Found forbidden headers: {result['forbidden_headers_found']}"
+        )
+
+    def test_real_paper_word_count(self, paper_content: str):
+        """Real paper (Viewpoint) should be within 5000 word limit."""
+        result = validate_word_count(paper_content)
+
+        assert result["valid"] is True, f"Word count: {result['word_count']}/5000"
 
     def test_real_paper_ai_disclosure(self, paper_content: str):
         """Real paper should have AI disclosure in Acknowledgments."""

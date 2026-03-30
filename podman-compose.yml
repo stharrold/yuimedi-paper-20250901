@@ -1,16 +1,13 @@
 # podman-compose.yml - Development environment for yuimedi-paper-20250901
 #
 # Usage:
-#   podman-compose build           # Build container
-#   podman-compose up -d           # Start container in background
-#   podman-compose exec dev bash   # Shell into container
-#   podman-compose down            # Stop and remove container
+#   podman-compose up -d      # Start container in background
+#   podman-compose exec dev bash  # Shell into container
+#   podman-compose down       # Stop and remove container
 #
-# Run commands:
-#   podman-compose run --rm dev uv run pytest
+# Or with podman directly:
+#   podman-compose run --rm dev pytest
 #   podman-compose run --rm dev uv run ruff check .
-#   podman-compose run --rm dev uv run ruff format .
-#   podman-compose run --rm dev ./validate_documentation.sh
 
 services:
   dev:
@@ -22,11 +19,10 @@ services:
     working_dir: /app
     volumes:
       - .:/app:Z
-      - venv_cache:/app/.venv  # Use named volume for container venv (avoids macOS/Linux binary mismatch)
+      - venv:/app/.venv  # Isolate container venv from host
     stdin_open: true
     tty: true
     command: bash
 
 volumes:
-  venv_cache:
-    # Named volume to persist container's .venv separately from host
+  venv:

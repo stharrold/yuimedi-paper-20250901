@@ -19,7 +19,7 @@ This algorithm captures the semi-automated workflow for answering research quest
 *   **Navigate:** Go to [https://scholar.google.com/scholar_labs/search](https://scholar.google.com/scholar_labs/search).
 
 ### 2. Question Selection (Automated)
-*   Read `docs/research/Research_Questions.md`.
+*   Read `docs/research/Research-Questions.md`.
 *   Identify the next question marked `Unanswered` or `Partial`.
 *   Extract the **Scope** (Paper1/Paper2/Paper3).
 
@@ -33,10 +33,10 @@ This algorithm captures the semi-automated workflow for answering research quest
 *   **Extract:** Scrapes the AI overview text and the list of source citations (Title, URL, Snippet).
 
 ### 4. Documentation (Automated Script)
-*   **Create Note:** Generates `docs/research/Research_<question-slug>.md`.
+*   **Create Note:** Generates `docs/research/answers/Research_<question-slug>.md`.
     *   Populates "Key Findings" from the AI summary.
     *   Populates "Sources" table with links.
-*   **Update Tracker:** Updates `Research_Questions.md`:
+*   **Update Tracker:** Updates `Research-Questions.md`:
     *   Change Status to `Answered` or `Partial`.
     *   Add Link to the new research note.
     *   Add Date/Note about findings.

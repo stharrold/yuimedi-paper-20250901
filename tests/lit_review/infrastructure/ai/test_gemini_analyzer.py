@@ -14,7 +14,10 @@ from lit_review.domain.values.author import Author
 from lit_review.domain.values.doi import DOI
 from lit_review.infrastructure.ai.gemini_analyzer import GeminiAnalyzer
 
-HAS_GENINI_SDK = importlib.util.find_spec("google.genai") is not None
+try:
+    HAS_GEMINI_SDK = importlib.util.find_spec("google.genai") is not None
+except ModuleNotFoundError:
+    HAS_GEMINI_SDK = False
 
 
 @pytest.fixture
@@ -67,7 +70,7 @@ class TestGeminiAnalyzerInit:
             analyzer = GeminiAnalyzer(cache_dir=temp_cache_dir)
             assert analyzer.use_api is False
 
-    @pytest.mark.skipif(not HAS_GENINI_SDK, reason="google-genai module not installed")
+    @pytest.mark.skipif(not HAS_GEMINI_SDK, reason="google-genai module not installed")
     def test_init_with_api_key_enables_api(self, temp_cache_dir: Path) -> None:
         """__init__ sets use_api=True when API key provided."""
         with patch("google.genai.Client"):
