@@ -89,6 +89,8 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 
 - **No em-dashes (—) in any file** (paper, scripts, docs). Use commas, colons, semicolons, or parentheses instead. Python strings use ASCII hyphens.
 - **No bold for emphasis** in paper.md or appendices. JMIR requires italics only (`*text*` not `**text**`). Bold is stripped on acceptance.
+- **Figure max dimension:** 1200px for JMIR upload. Resize with `sips --resampleHeight 1200 <file>` (preserves aspect ratio).
+- **Always rebuild ALL artifacts** after editing paper.md: `./scripts/build_paper.sh --format all`. Reviewers check paper.tex/paper.docx for stale terminology.
 - Citations use pandoc-citeproc: `[@key]`, multiple: `[@wu2024; @himss2024]`
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
 - As a Viewpoint, the paper advances a **prescriptive** position grounded in descriptive evidence. The framework's *analysis* of why current approaches fail is descriptive; the *recommendations* (HITL-KG, Three-Pillar Assessment, governance tiers) are intentionally directive.
@@ -166,6 +168,12 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 5. Update `docs/research/Research-Questions.md` with each answered question
 6. Implementation plan with line-level edits, word budget, commit sequence -> `ARCHIVED/`
 7. Execute in passes (language edits -> content additions -> supporting improvements -> figures)
+
+## CI Notes
+
+- `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
+- CI auto-commits (`[skip ci]`) can diverge from local; may need `--force-with-lease` on contrib branch
+- Paper Artifacts Generation requires pandoc + texlive in Containerfile
 
 ## Architecture
 
