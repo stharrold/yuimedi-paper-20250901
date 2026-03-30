@@ -50,11 +50,9 @@ uv run pytest
 uv run python scripts/validate_references.py --all
 uv run python scripts/validate_jmir_compliance.py --article-type viewpoint
 
-# Word count (JMIR method: body + end sections, excludes frontmatter + references)
-# JMIR includes: abstract, body, tables, captions, acknowledgments, contributions,
-# COI, data availability, funding, abbreviations. Excludes: metadata, references.
-# See: https://support.jmir.org/hc/en-us/articles/360002687871
-cat paper.md | sed '1,/^---$/d' | sed '/^# References/,$d' | wc -w
+# Word count (JMIR method: excludes metadata + references only)
+# See: standards/jmir_submission_word-count-elements.md
+cat paper.md | sed '1,/^---$/d' | sed '/^# References/,$d' | wc -w  # limit: 5,000
 
 # Build artifacts: rebuild after any paper.md edit, then commit.
 # Pre-commit hooks fix trailing whitespace in generated HTML files,
@@ -90,9 +88,10 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 ## Writing Rules
 
 - **No em-dashes (—) in any file** (paper, scripts, docs). Use commas, colons, semicolons, or parentheses instead. Python strings use ASCII hyphens.
+- **No bold for emphasis** in paper.md or appendices. JMIR requires italics only (`*text*` not `**text**`). Bold is stripped on acceptance.
 - Citations use pandoc-citeproc: `[@key]`, multiple: `[@wu2024; @himss2024]`
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
-- As a Viewpoint, the paper advances a **prescriptive** position grounded in descriptive evidence. The framework's *analysis* of why current approaches fail is descriptive; the *recommendations* (HITL-KG, ARI, governance tiers) are intentionally directive.
+- As a Viewpoint, the paper advances a **prescriptive** position grounded in descriptive evidence. The framework's *analysis* of why current approaches fail is descriptive; the *recommendations* (HITL-KG, Three-Pillar Assessment, governance tiers) are intentionally directive.
 - Conversational AI is a "Governance Forcing Function," not the standalone solution
 - **JMIR Viewpoint format:** No "Methods" or "Results" H1 headers; unstructured abstract (≤450 words); body ≤5,000 words. See `standards/jmir_submission_article-types.md` lines 60-73.
 
@@ -134,6 +133,13 @@ uv run scripts/secrets_run.py uv run pytest
 - AJE video byte has no subtitle track; captions are burned into frames
 - Extract frames: `ffmpeg -i video.mp4 -vf "fps=0.5" -q:v 2 output/frame_%04d.jpg`
 - Read frames with Claude's multimodal capability to reconstruct narration transcript
+
+## Terminology
+
+- **HITL-KG**: Human-in-the-Loop Knowledge Governance (was HiL-SG). Industry-standard HITL acronym + established "knowledge governance" field (Foss 2007).
+- **Three-Pillar Assessment Rubric**: Replaced Analytics Resilience Index (ARI). 9 indicators across 3 pillars with Low/Medium/High anchors.
+- **Validated Query Triple**: NL Intent + Executable SQL + Rationale Metadata. Keep "triple" (not "tuple").
+- **Zenodo DOI**: 10.5281/zenodo.18338990
 
 ## stharrold-templates Bundles
 
@@ -190,6 +196,10 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 | `cover-letter.md` | Resubmission cover letter for JMIR ms#91493 |
 | `abstract-visual-video/` | AJE/Springer Nature deliverables: visual abstract, video byte, email correspondence, critical assessments |
 | `docs/plans/` | Implementation plans (created per task) |
+| `submission-checklist.md` | JMIR submission checklist (Viewpoint, ms#91493) |
+| `project-status.md` | Lightweight project status for all 3 papers |
+| `reference.docx` | Custom Word template (Times New Roman 12pt, double-spaced, black headings) |
+| `ARCHIVED/20260329_JMIR-Submission/` | Complete submission archive (37 files) |
 | `ARCHIVED/20260115_JMIR-Submission/` | Original rejected submission (~12,730 words) |
 | `tests/test_validate_jmir_compliance.py` | Tests for JMIR validator (58 tests, covers Viewpoint + Original) |
 | `../library/` | Sibling repo: semantic search engine for academic papers (DuckDB, 23+ ingested papers) |
