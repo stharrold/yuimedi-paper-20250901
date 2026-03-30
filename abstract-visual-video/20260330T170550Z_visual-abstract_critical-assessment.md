@@ -115,6 +115,10 @@ The visual abstract shows four challenges:
 5. **Strengthen bottom bar** to reflect prescriptive stance and specific contributions (validated query triples, knowledge governance).
 6. **Clarify "(6,0) Persistence"** notation or replace with "Persistence -> feeds back to Query."
 
+### Visual fix
+
+7. **Left panel arrows:** Use all red arrows (not mixed blue/red). Red = problem/threat; blue/teal = solution. This creates clear visual contrast between the challenges (left, red) and the framework/cycle (right, blue).
+
 ### Nice-to-have
 
 7. Reference SECI model or "Socialization Failure" in Workforce Agility pillar.
