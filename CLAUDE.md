@@ -100,6 +100,8 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 ## Visual & Video Abstracts (AJE / Springer Nature Author Services)
 
 - **Visual abstract** (graphical abstract): Ticket #1144316, V2 delivered, revision requested 2026-03-23
+- **Visual abstract assessments:** Two-pass: (1) paper-consistency for author, (2) general-audience for vendor email. General audience assessment drives revision requests. Saved to `abstract-visual-video/YYYYMMDDTHHMMSSZ_visual-abstract_critical-assessment.md`
+- **Pre-commit blocks files >10MB.** Video byte (51MB) cannot be committed to git.
 - **Video byte** (60-90s video): Ticket #1144097, approved and published 2026-02-25
 - YouTube: `q4sE4O9F9pU` (AJE Video Bytes channel), Vimeo: `1161046047` (Password: AJE_Healthcare)
 - Contact: support@as.springernature.com (Bhavik, Darshan J)
