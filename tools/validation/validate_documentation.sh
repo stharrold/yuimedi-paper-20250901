@@ -57,9 +57,21 @@ if [ $? -ne 0 ]; then
 fi
 echo ""
 
+# Detect Python runner (prefer uv, then python3, then python)
+if command -v uv &> /dev/null; then
+    PYTHON_CMD=("uv" "run" "python")
+elif command -v python3 &> /dev/null; then
+    PYTHON_CMD=("python3")
+elif command -v python &> /dev/null; then
+    PYTHON_CMD=("python")
+else
+    echo "ERROR: No Python interpreter found (tried uv, python3, python). Install one to run reference validation."
+    exit 1
+fi
+
 # Test 6: Reference validation (citations and URLs)
 echo "Test 6: Reference validation"
-uv run python "$REPO_ROOT/scripts/validate_references.py" --check-citations
+"${PYTHON_CMD[@]}" "$REPO_ROOT/scripts/validate_references.py" --check-citations
 if [ $? -ne 0 ]; then
     ((total_errors++))
     echo "  ❌ Reference validation failed"
@@ -70,7 +82,7 @@ echo ""
 
 # Test 7: LaTeX-in-URL validation
 echo "Test 7: LaTeX-in-URL validation"
-uv run python "$REPO_ROOT/scripts/validate_references.py" --check-latex
+"${PYTHON_CMD[@]}" "$REPO_ROOT/scripts/validate_references.py" --check-latex
 if [ $? -ne 0 ]; then
     ((total_errors++))
     echo "  ❌ LaTeX-in-URL validation failed"
