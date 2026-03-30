@@ -11,24 +11,24 @@ I am writing to resubmit the manuscript "Healthcare Analytics Challenges: A Thre
 
 ## Response to Decision E2
 
-I appreciate the editor's feedback that the work is "interesting" and the invitation to resubmit after addressing the length concern. The original submission was approximately 12,730 words, which the editor correctly identified as "thesis length."
+I appreciate the editor's feedback that the work is "interesting" and the invitation to resubmit after addressing the length concern and submission type.
 
 ## Summary of Revisions
 
-The manuscript has been substantially revised to meet Viewpoint article requirements:
+The manuscript has been revised to meet Viewpoint article requirements:
 
 *Structural changes:*
 
-- Reduced from approximately 12,730 words to approximately 4,600 body words (within the 5,000-word recommendation)
+- Reduced to approximately 4,600 body words (within the 5,000-word limit)
 - Converted from IMRD structure (Introduction, Methods, Results, Discussion) to descriptive thematic headers appropriate for Viewpoint articles
 - Converted the structured abstract to an unstructured flowing narrative (302 words)
 
 *Content focus:*
 
-The revised manuscript retains the core intellectual contributions while removing the exhaustive methodology and literature review sections appropriate for a full research paper:
+The revised manuscript retains the core intellectual contributions while removing the exhaustive methodology and literature review sections:
 
 - *Human-in-the-Loop Knowledge Governance (HITL-KG) framework:* The socio-technical architecture for converting tacit domain expertise into durable validated query triples
-- *Theoretical grounding in Nonaka's SECI model:* Reinterpretation of knowledge creation theory for the unstable healthcare workforce
+- *Theoretical grounding in Nonaka's SECI model:* Reinterpretation of knowledge creation theory for the unstable healthcare analytics workforce
 - *The Validator Paradox:* Intellectually honest engagement with the circular objection to the framework, resolved through Lean "Standard Work"
 - *Three-Pillar Assessment Rubric:* A structured self-assessment tool with evidence-based indicators across analytics maturity, workforce agility, and technical enablement
 - *Three pillars of evidence:* Synthesized evidence on analytics maturity, workforce agility, and technical enablement
