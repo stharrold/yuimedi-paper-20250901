@@ -544,13 +544,13 @@ to a companion study.
 Analytics}\label{the-triple-threat-institutional-amnesia-in-healthcare-analytics}
 
 The healthcare analytics landscape is currently paralyzed by a ``Triple
-Threat'' of compounding failures: (1) persistently \textbf{Low Analytics
+Threat'' of compounding failures: (1) persistently \emph{Low Analytics
 Maturity}, where despite decades of investment, only 39 organizations
 globally, 26 at HIMSS AMAM Stage 6 and 13 at Stage 7, have achieved
 these maturity levels\textsuperscript{\citeproc{ref-himss2024}{1}}; (2)
-a \textbf{Semantic Gap} between clinical intent and technical schema
+a \emph{Semantic Gap} between clinical intent and technical schema
 implementation\textsuperscript{\citeproc{ref-gal2019}{2},\citeproc{ref-zhang2024}{3}};
-and (3) a profound crisis of \textbf{Workforce Instability} that creates
+and (3) a profound crisis of \emph{Workforce Instability} that creates
 ``Institutional Amnesia''\textsuperscript{\citeproc{ref-hong2025}{4}}.
 
 While technical barriers and maturity models are well-documented, the
@@ -566,7 +566,7 @@ roles\textsuperscript{\citeproc{ref-himssworkforce2024}{6}}, and a 2025
 study found that 55\% of public health informatics specialists intend to
 leave their positions\textsuperscript{\citeproc{ref-rajamani2025}{7}}.
 
-This turnover creates a phenomenon we define as \textbf{Institutional
+This turnover creates a phenomenon we define as \emph{Institutional
 Amnesia}: the systematic erasure of the tacit knowledge required to
 interpret complex health data. In healthcare, ``data'' is never raw; it
 is wrapped in layers of institutional context (billing rules, workflow
@@ -616,7 +616,7 @@ fail, but the architectural recommendations are intentionally directive.
 
 We propose that the solution lies not in better documentation, but in a
 fundamental architectural shift: moving from \emph{passive} knowledge
-management to \textbf{Human-in-the-Loop Knowledge Governance (HITL-KG)}.
+management to \emph{Human-in-the-Loop Knowledge Governance (HITL-KG)}.
 
 \section{Theoretical Grounding: SECI and the Unstable
 Workforce}\label{theoretical-grounding-seci-and-the-unstable-workforce}
@@ -637,21 +637,21 @@ modes:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Socialization} (tacit to tacit): Knowledge transfers through
+  \emph{Socialization} (tacit to tacit): Knowledge transfers through
   shared experience and co-located practice, as when a senior analyst
   teaches a junior colleague the unwritten rules of a clinical dataset.
 \item
-  \textbf{Externalization} (tacit to explicit): Individuals articulate
+  \emph{Externalization} (tacit to explicit): Individuals articulate
   tacit know-how into explicit forms such as documents or coded
   artifacts, as when an analyst records why a specific exclusion code
   maps to hospice transfers.
 \item
-  \textbf{Combination} (explicit to explicit): Separately documented
+  \emph{Combination} (explicit to explicit): Separately documented
   knowledge is integrated and systematized into broader structures, as
   when data dictionary entries are consolidated into a governed
   analytics catalog.
 \item
-  \textbf{Internalization} (explicit to tacit): Individuals learn from
+  \emph{Internalization} (explicit to tacit): Individuals learn from
   documented knowledge and convert it into personal expertise through
   practice, as when a new analyst studies validated query libraries.
 \end{enumerate}
@@ -720,7 +720,7 @@ preservation)\textsuperscript{\citeproc{ref-rao2006}{11},\citeproc{ref-farnese20
 \subsection{The Broken Cycle: Socialization
 Failure}\label{the-broken-cycle-socialization-failure}
 
-In Nonaka's model, \textbf{Socialization} is the foundational conversion
+In Nonaka's model, \emph{Socialization} is the foundational conversion
 mode: the primary channel through which newcomers absorb tacit context
 that formal training cannot
 convey\textsuperscript{\citeproc{ref-farnese2019}{16}}. Socialization
@@ -759,7 +759,7 @@ Socialization is no longer a viable strategy for resilience.
 Artifacts}\label{the-solution-externalization-via-socio-technical-artifacts}
 
 To survive, organizations must shift reliance from Socialization to
-\textbf{Externalization}: converting tacit knowledge into explicit,
+\emph{Externalization}: converting tacit knowledge into explicit,
 durable artifacts\textsuperscript{\citeproc{ref-zhang2025}{24}}.
 However, traditional Externalization (writing wikis, maintaining data
 dictionaries, composing runbooks) suffers from two critical weaknesses.
@@ -779,13 +779,13 @@ the departing expert actually knew.
 We propose a form of \emph{active} Externalization: one that captures
 tacit knowledge as a byproduct of the daily workflow of analytics rather
 than as a separate documentation burden. The mechanism is a new
-socio-technical artifact: the \textbf{Validated Query Triple} (see
+socio-technical artifact: the \emph{Validated Query Triple} (see
 Multimedia Appendix 1 for worked examples). This artifact consists of:
-1. \textbf{Natural Language Intent}: The clinical business question
-(e.g., ``Hypertension readmissions excluding planned transfers''). 2.
-\textbf{Executable SQL}: The technical implementation. 3.
-\textbf{Rationale Metadata}: The ``why'' behind the logic (e.g.,
-``Excluding status 02 per CMS 2025 rule'').
+1. \emph{Natural Language Intent}: The clinical business question (e.g.,
+``Hypertension readmissions excluding planned transfers''). 2.
+\emph{Executable SQL}: The technical implementation. 3. \emph{Rationale
+Metadata}: The ``why'' behind the logic (e.g., ``Excluding status 02 per
+CMS 2025 rule'').
 
 By capturing these three components \emph{during the act of analytics},
 we transform the ephemeral work of query generation into a permanent
@@ -794,7 +794,7 @@ institutional asset\textsuperscript{\citeproc{ref-moore2018}{26}}.
 \section{Human-in-the-Loop Knowledge
 Governance}\label{human-in-the-loop-knowledge-governance}
 
-We propose \textbf{Human-in-the-Loop Knowledge Governance (HITL-KG)} as
+We propose \emph{Human-in-the-Loop Knowledge Governance (HITL-KG)} as
 the overarching governance framework, extending the knowledge governance
 approach\textsuperscript{\citeproc{ref-foss2007}{27}} with the Validated
 Query Cycle as its core operational process. This framing reflects that
@@ -803,7 +803,7 @@ tool.
 
 \subsection{The HITL-KG Architecture}\label{the-hitl-kg-architecture}
 
-The HITL-KG architecture (Figure 1) functions as a \textbf{Governance
+The HITL-KG architecture (Figure 1) functions as a \emph{Governance
 Forcing Function}. It inserts a mandatory validation step into the
 analytics workflow, preventing the ``laundering'' of hallucinations
 while simultaneously capturing expert knowledge.
@@ -851,25 +851,24 @@ Externalization}\label{the-process-of-externalization}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Query Generation}: A user asks a question. The AI proposes SQL
+  \emph{Query Generation}: A user asks a question. The AI proposes SQL
   based on schema
   knowledge\textsuperscript{\citeproc{ref-wang2020}{10},\citeproc{ref-lee2023}{28}}.
 \item
-  \textbf{Semantic Translation}: The AI translates the SQL back into a
+  \emph{Semantic Translation}: The AI translates the SQL back into a
   natural language
   explanation\textsuperscript{\citeproc{ref-ziletti2024}{29}}.
 \item
-  \textbf{Expert Validation}: The domain expert confirms or corrects
-  this interpretation. \emph{This is the critical moment of
-  Externalization.} This ``Human-in-the-Loop'' (HITL) step transforms
-  validation into an iterative knowledge capture
+  \emph{Expert Validation}: The domain expert confirms or corrects this
+  interpretation. \emph{This is the critical moment of Externalization.}
+  This ``Human-in-the-Loop'' (HITL) step transforms validation into an
+  iterative knowledge capture
   process\textsuperscript{\citeproc{ref-bravorocca2023}{30},\citeproc{ref-mosqueirarey2023}{31}}.
 \item
-  \textbf{Artifact Storage}: The validated triple is hashed and stored
-  in organizational
-  memory\textsuperscript{\citeproc{ref-benbya2004}{32}}.
+  \emph{Artifact Storage}: The validated triple is hashed and stored in
+  organizational memory\textsuperscript{\citeproc{ref-benbya2004}{32}}.
 \item
-  \textbf{Retrieval}: Future queries semantically match against this
+  \emph{Retrieval}: Future queries semantically match against this
   repository first, retrieving \emph{trusted} human knowledge before
   attempting \emph{probabilistic}
   generation\textsuperscript{\citeproc{ref-whittaker2008}{33}}.
@@ -1042,7 +1041,7 @@ otherwise remain trapped in departing experts.
 \section{Organizational
 Self-Assessment}\label{organizational-self-assessment}
 
-To operationalize the framework, we propose a \textbf{Three-Pillar
+To operationalize the framework, we propose a \emph{Three-Pillar
 Assessment Rubric} (Table 2) that enables healthcare organizations to
 evaluate their current position across each pillar and identify
 compounding vulnerabilities.
@@ -1078,7 +1077,7 @@ identifies as the central threat.
 
 \newpage
 
-\textbf{Pillar 1: Analytics Maturity}
+\emph{Pillar 1: Analytics Maturity}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -1117,7 +1116,7 @@ or evaluation underway & Natural language query capability deployed &
 \end{longtable}
 }
 
-\textbf{Pillar 2: Workforce Agility}
+\emph{Pillar 2: Workforce Agility}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -1155,7 +1154,7 @@ expertise; documented processes &
 \end{longtable}
 }
 
-\textbf{Pillar 3: Technical Enablement}
+\emph{Pillar 3: Technical Enablement}
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
@@ -1231,7 +1230,7 @@ Work}\label{the-validator-paradox-and-standard-work}
 A critical objection to HITL-KG is circular: if the framework requires
 domain experts to validate AI-generated queries, and the core problem is
 that domain experts are leaving, then the framework fails precisely when
-it is most needed. This \textbf{Validator Paradox} represents the
+it is most needed. This \emph{Validator Paradox} represents the
 strongest counterargument to the approach proposed here, and addressing
 it requires moving beyond simplistic reassurance.
 
@@ -1251,7 +1250,7 @@ next expert arrives (whether a seasoned veteran or a competent
 mid-career hire), they inherit a baseline and can refine it rather than
 reconstructing institutional knowledge from scratch.
 
-This mechanism functions as a \textbf{Knowledge
+This mechanism functions as a \emph{Knowledge
 Ratchet}\textsuperscript{\citeproc{ref-rao2006}{11}}. Each validated
 triple prevents regression below the last confirmed state. Even if a
 subsequent validator is less experienced than their predecessor, the
@@ -1313,7 +1312,7 @@ preserving analytical agility.
 
 \section{Safety as Cognitive Forcing}\label{safety-as-cognitive-forcing}
 
-HITL-KG is fundamentally a \textbf{safety mechanism}, not a productivity
+HITL-KG is fundamentally a \emph{safety mechanism}, not a productivity
 tool. The central risk of unsupervised AI in clinical analytics is what
 we term ``laundering hallucinations'': a plausible-sounding but
 factually incorrect query result that enters the decision pipeline
@@ -1323,7 +1322,7 @@ correctness, the absence of a structured validation step means that
 errors arrive dressed in the language of expertise, making them harder
 to catch than obviously malformed output.
 
-HITL-KG mitigates this risk through \textbf{Cognitive Forcing
+HITL-KG mitigates this risk through \emph{Cognitive Forcing
 Functions}\textsuperscript{\citeproc{ref-ziletti2024}{29}}, a design
 pattern borrowed from clinical decision-making and safety engineering.
 By requiring the AI to explain its reasoning \emph{before} presenting
@@ -1375,7 +1374,7 @@ Research}\label{implications-and-future-research}
 The crisis of Institutional Amnesia in healthcare requires a structural
 shift. As long as analytical maturity is tied to individual tenure,
 organizations will remain fragile. By implementing
-\textbf{Human-in-the-Loop Knowledge Governance}, health systems can
+\emph{Human-in-the-Loop Knowledge Governance}, health systems can
 decouple intelligence from turnover, building a library of validated
 knowledge that ensures maturity advances even as the workforce evolves.
 
