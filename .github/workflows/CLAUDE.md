@@ -1,6 +1,6 @@
 ---
 type: claude-context
-directory: workflows
+directory: .github/workflows
 purpose: Documentation and context for workflows
 parent: ../CLAUDE.md
 children: []
