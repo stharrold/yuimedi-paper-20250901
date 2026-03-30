@@ -57,13 +57,15 @@ if [ $? -ne 0 ]; then
 fi
 echo ""
 
-# Detect Python runner (uv run python if available, else python3)
+# Detect Python runner (prefer uv, then python3, then python)
 if command -v uv &> /dev/null; then
     PYTHON_CMD=("uv" "run" "python")
 elif command -v python3 &> /dev/null; then
     PYTHON_CMD=("python3")
+elif command -v python &> /dev/null; then
+    PYTHON_CMD=("python")
 else
-    echo "ERROR: Neither 'uv' nor 'python3' found. Install one to run reference validation."
+    echo "ERROR: No Python interpreter found (tried uv, python3, python). Install one to run reference validation."
     exit 1
 fi
 
