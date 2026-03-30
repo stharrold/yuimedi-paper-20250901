@@ -1,20 +1,20 @@
 # Reference Validation Report
 
-**Generated:** 2026-01-29 17:03:04 UTC
+**Generated:** 2026-03-28 19:43:35 UTC
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total References | 139 |
-| Academic [A*] | 126 |
+| Total References | 155 |
+| Academic [A*] | 142 |
 | Industry [I*] | 13 |
-| Total Citations | 96 |
-| Accessible URLs | 74 |
-| Broken URLs | 55 |
+| Total Citations | 111 |
+| Accessible URLs | 83 |
+| Broken URLs | 62 |
 | Missing URLs | 10 |
 | Orphaned Citations | 0 |
-| Unused References | 81 |
+| Unused References | 83 |
 
 ## Issues
 
@@ -28,13 +28,13 @@ References defined but never cited in the paper body:
 - [aveiro2023]
 - [bardsley2016]
 - [berkshire2024]
-- [blaskovic2025]
 - [bogaert2021]
 - [bokov2017]
 - [carvalho2019]
 - [chen2025]
 - [chowdhury2020]
 - [cmuh2025]
+- [dadi2025]
 - [dugas2016]
 - [elkamouchi2023]
 - [forrester2024]
@@ -42,6 +42,7 @@ References defined but never cited in the paper body:
 - [goffin2010]
 - [gokalp2023]
 - [gomes2025]
+- [halter2017]
 - [han2019]
 - [himss2024apac]
 - [holmes2019]
@@ -63,6 +64,7 @@ References defined but never cited in the paper body:
 - [navarro2023]
 - [oliveira2023]
 - [openai2025]
+- [oracle2024]
 - [ozalp2022]
 - [park2024]
 - [pennington2023]
@@ -99,7 +101,7 @@ References defined but never cited in the paper body:
 - [willardgrace2019]
 - [woods2024]
 - [wu2024a]
-- [yuan2019]
+- [yang2025]
 - [yupopa2005]
 - [zheng2020]
 - [zimmermann2017]
@@ -121,6 +123,7 @@ References with inaccessible URLs:
 | [richesson2007] | https://academic.oup.com/jamia/article/14/6/687/750453 | HTTP 403: Forbidden |
 | [zheng2020] | https://www.acpjournals.org/doi/10.7326/M19-0871 | HTTP 403: Forbidden |
 | [bogaert2021] | https://www.sciencedirect.com/science/article/pii/S016885102... | HTTP 403: Forbidden |
+| [pervaiz2025] | https://imjstb.com/index.php/Journal/article/view/95 | Timeout |
 | [yuan2019] | https://academic.oup.com/jamia/article-abstract/26/4/294/530... | HTTP 403: Forbidden |
 | [shah2020] | https://dl.acm.org/doi/abs/10.1145/3318464.3389777 | HTTP 403: Forbidden |
 | [safari2014] | https://www.sciencedirect.com/science/article/pii/S153204641... | HTTP 403: Forbidden |
@@ -136,12 +139,11 @@ References with inaccessible URLs:
 | [latrella2024] | https://www.ingentaconnect.com/content/hsp/mih/2024/00000008... | URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
 | [nashid2023] | https://doi.org/10.25163/business.1110345 | HTTP 404: Not Found |
 | [rajamani2025] | https://academic.oup.com/jpubhealth | HTTP 403: Forbidden |
-| [willardgrace2019] | https://www.annfammed.org/content/17/1/36 | HTTP 403: Forbidden |
 | [blaskovic2025] | https://www.mdpi.com/2504-2289/9/10/256 | HTTP 403: Forbidden |
 | [wang2017] | https://www.sciencedirect.com/science/article/abs/pii/S01482... | HTTP 403: Forbidden |
 | [chen2025] | https://www.sciencedirect.com/science/article/pii/S003132032... | HTTP 403: Forbidden |
 | [park2024] | https://www.sciencedirect.com/science/article/pii/S153204642... | HTTP 403: Forbidden |
-| [konrad2022] | https://www.diva-portal.org/smash/record.jsf?pid=diva2:16841... | HTTP 403: Forbidden |
+| [konrad2022] | https://www.diva-portal.org/smash/record.jsf?pid=diva2:16841... | URL Error: timed out |
 | [zhang2025] | https://www.emerald.com/insight/content/doi/10.1108/JKM-03-2... | HTTP 403: Forbidden |
 | [nashid2023a] | https://doi.org/10.25163/business.1110345 | HTTP 404: Not Found |
 | [himss2024] | https://www.himss.org/maturity-models/amam/ | HTTP 403: Forbidden |
@@ -158,6 +160,7 @@ References with inaccessible URLs:
 | [hovenga2013] | https://ebooks.iospress.nl/volumearticle/35106 | URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
 | [woods2024] | https://www.sciencedirect.com/science/article/pii/S138650562... | HTTP 403: Forbidden |
 | [himssworkforce2024] | https://www.himss.org/resources/the-future-of-workforce/ | HTTP 403: Forbidden |
+| [whittaker2008] | https://www.academia.edu/download/41283190/Design_and_evalua... | HTTP 403: Forbidden |
 | [rao2006] | https://onlinelibrary.wiley.com/doi/abs/10.1057/palgrave.emr... | HTTP 403: Forbidden |
 | [hong2025] | https://academic.oup.com/jpart/advance-article-abstract/doi/... | HTTP 403: Forbidden |
 | [bravorocca2023] | https://www.tdx.cat/bitstream/handle/10803/695722/TGJBR1de1.... | URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
@@ -165,6 +168,12 @@ References with inaccessible URLs:
 | [holmes2019] | https://dl.acm.org/doi/abs/10.1145/3335082.3335094 | HTTP 403: Forbidden |
 | [soylemez2017] | https://openurl.ebsco.com/EPDB%3Agcd%3A3%3A34056963/detailv2... | HTTP 400: Bad Request |
 | [forrester2024a] | https://tools.totaleconomicimpact.com/go/microsoft/powerapps... | URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
+| [ellis2026] | https://www.sciencedirect.com/science/article/pii/S000368702... | HTTP 403: Forbidden |
+| [ratliff2025] | https://journals.lww.com/jhmonline/fulltext/2025/05000/organ... | HTTP 403: Forbidden |
+| [labkoff2024] | https://academic.oup.com/jamia/article-abstract/31/11/2730/7... | HTTP 403: Forbidden |
+| [kalyanasundaram2025] | https://www.ijetcsit.org/index.php/ijetcsit/article/view/522 | HTTP 502: Bad Gateway |
+| [chen2026graph] | https://www.sciencedirect.com/science/article/pii/S003132032... | HTTP 403: Forbidden |
+| [tarbell2024] | https://pmc.ncbi.nlm.nih.gov/articles/PMC10785918/ | HTTP 403: Forbidden |
 
 ### References Without URLs
 
@@ -202,17 +211,20 @@ References that don't have a URL:
 | [battula2025] | academic | No URL |
 | [benbya2004] | academic | OK (200) |
 | [berkshire2024] | industry | Failed: HTTP 403: Forbidden |
+| [betha2023] | academic | OK (200) |
 | [blaskovic2025] | academic | Failed: HTTP 403: Forbidden |
 | [bogaert2021] | academic | Failed: HTTP 403: Forbidden |
 | [bokov2017] | academic | OK (200) |
 | [bravorocca2023] | academic | Failed: URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
 | [carvalho2019] | academic | No URL |
 | [chen2025] | academic | Failed: HTTP 403: Forbidden |
+| [chen2026graph] | academic | Failed: HTTP 403: Forbidden |
 | [chowdhury2020] | academic | OK (200) |
 | [cmuh2025] | academic | OK (200) |
 | [dadi2025] | academic | OK (200) |
 | [dugas2016] | academic | Failed: HTTP 403: Forbidden |
 | [elkamouchi2023] | academic | OK (200) |
+| [ellis2026] | academic | Failed: HTTP 403: Forbidden |
 | [farnese2019] | academic | OK (200) |
 | [foos2006] | academic | Failed: HTTP 403: Forbidden |
 | [forrester2024] | industry | OK (200) |
@@ -222,6 +234,8 @@ References that don't have a URL:
 | [goffin2011] | academic | Failed: HTTP 403: Forbidden |
 | [gokalp2023] | academic | Failed: HTTP 403: Forbidden |
 | [gomes2025] | academic | Failed: HTTP 403: Forbidden |
+| [hackney2024] | academic | OK (200) |
+| [halter2017] | academic | OK (200) |
 | [han2019] | academic | OK (200) |
 | [health2020] | industry | OK (200) |
 | [hendrix1978] | academic | Failed: HTTP 403: Forbidden |
@@ -234,13 +248,18 @@ References that don't have a URL:
 | [hong2025] | academic | Failed: HTTP 403: Forbidden |
 | [hovenga2013] | academic | Failed: URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
 | [ibm2022] | industry | OK (200) |
+| [ignatowicz2023] | academic | OK (200) |
 | [ipeirotis2025] | academic | OK (200) |
 | [jiao2023] | academic | OK (200) |
+| [kalyanasundaram2025] | academic | Failed: HTTP 502: Bad Gateway |
 | [kamble2019] | academic | OK (200) |
 | [khandelwal2025] | academic | OK (200) |
-| [konrad2022] | academic | Failed: HTTP 403: Forbidden |
+| [konrad2022] | academic | Failed: URL Error: timed out |
 | [kopper2020] | academic | No URL |
+| [kottam2025] | academic | OK (200) |
 | [ksa2024] | academic | OK (200) |
+| [kumar2025caos] | academic | OK (200) |
+| [labkoff2024] | academic | Failed: HTTP 403: Forbidden |
 | [latrella2024] | academic | Failed: URL Error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010) |
 | [lavito2021] | industry | OK (200) |
 | [ledikwe2013] | academic | OK (200) |
@@ -248,6 +267,7 @@ References that don't have a URL:
 | [lee2025] | academic | OK (200) |
 | [lenz2007] | academic | No URL |
 | [lismont2017] | academic | Failed: HTTP 403: Forbidden |
+| [loshin2010] | academic | OK (200) |
 | [lucyk2017] | academic | OK (200) |
 | [mannapur2025] | academic | OK (200) |
 | [mantas2010] | academic | Failed: HTTP 403: Forbidden |
@@ -264,6 +284,7 @@ References that don't have a URL:
 | [nashid2023] | academic | Failed: HTTP 404: Not Found |
 | [nashid2023a] | academic | Failed: HTTP 404: Not Found |
 | [navarro2023] | academic | Failed: HTTP 403: Forbidden |
+| [nittala2024] | academic | OK (200) |
 | [nsi2025] | academic | OK (200) |
 | [ogunwole2023] | academic | OK (200) |
 | [oliveira2023] | academic | OK (200) |
@@ -272,7 +293,7 @@ References that don't have a URL:
 | [ozalp2022] | academic | Failed: HTTP 403: Forbidden |
 | [park2024] | academic | Failed: HTTP 403: Forbidden |
 | [pennington2023] | academic | OK (200) |
-| [pervaiz2025] | academic | OK (200) |
+| [pervaiz2025] | academic | Failed: Timeout |
 | [pesqueira2020] | academic | OK (200) |
 | [pintovalverde2013] | academic | OK (200) |
 | [precedence2024] | industry | OK (200) |
@@ -280,6 +301,7 @@ References that don't have a URL:
 | [rajamani2025] | academic | Failed: HTTP 403: Forbidden |
 | [rangachari2020] | academic | Failed: HTTP 403: Forbidden |
 | [rao2006] | academic | Failed: HTTP 403: Forbidden |
+| [ratliff2025] | academic | Failed: HTTP 403: Forbidden |
 | [ren2024] | academic | Failed: HTTP 403: Forbidden |
 | [richesson2007] | academic | Failed: HTTP 403: Forbidden |
 | [rintala2006] | academic | Failed: HTTP 403: Forbidden |
@@ -303,20 +325,23 @@ References that don't have a URL:
 | [soylemez2017] | academic | Failed: HTTP 400: Bad Request |
 | [strickland2019] | academic | OK (200) |
 | [syed2025] | academic | OK (200) |
+| [tarbell2024] | academic | Failed: HTTP 403: Forbidden |
 | [tgh2025] | academic | OK (200) |
 | [tyndall2010] | academic | OK (200) |
 | [ulrich2022] | academic | OK (200) |
+| [valiaiev2025] | academic | OK (200) |
 | [wang2017] | academic | Failed: HTTP 403: Forbidden |
 | [wang2018] | academic | OK (200) |
 | [wang2019] | academic | Failed: HTTP 403: Forbidden |
 | [wang2020] | academic | OK (200) |
 | [wang2025] | academic | OK (200) |
-| [whittaker2008] | academic | OK (200) |
-| [willardgrace2019] | academic | Failed: HTTP 403: Forbidden |
+| [whittaker2008] | academic | Failed: HTTP 403: Forbidden |
+| [willardgrace2019] | academic | OK (200) |
 | [wittkieffer2024] | academic | OK (200) |
 | [woods2024] | academic | Failed: HTTP 403: Forbidden |
 | [wu2024] | academic | Failed: HTTP 403: Forbidden |
 | [wu2024a] | academic | OK (200) |
+| [wynendaele2025] | academic | OK (200) |
 | [yang2020] | academic | OK (200) |
 | [yang2021] | academic | Failed: HTTP 403: Forbidden |
 | [yang2025] | academic | OK (200) |
