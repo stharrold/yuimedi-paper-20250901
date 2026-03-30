@@ -59,14 +59,14 @@ echo ""
 
 # Detect Python runner (uv run python if available, else python3)
 if command -v uv &> /dev/null; then
-    PYTHON_CMD="uv run python"
+    PYTHON_CMD=("uv" "run" "python")
 else
-    PYTHON_CMD="python3"
+    PYTHON_CMD=("python3")
 fi
 
 # Test 6: Reference validation (citations and URLs)
 echo "Test 6: Reference validation"
-$PYTHON_CMD "$REPO_ROOT/scripts/validate_references.py" --check-citations
+"${PYTHON_CMD[@]}" "$REPO_ROOT/scripts/validate_references.py" --check-citations
 if [ $? -ne 0 ]; then
     ((total_errors++))
     echo "  ❌ Reference validation failed"
@@ -77,7 +77,7 @@ echo ""
 
 # Test 7: LaTeX-in-URL validation
 echo "Test 7: LaTeX-in-URL validation"
-$PYTHON_CMD "$REPO_ROOT/scripts/validate_references.py" --check-latex
+"${PYTHON_CMD[@]}" "$REPO_ROOT/scripts/validate_references.py" --check-latex
 if [ $? -ne 0 ]; then
     ((total_errors++))
     echo "  ❌ LaTeX-in-URL validation failed"
