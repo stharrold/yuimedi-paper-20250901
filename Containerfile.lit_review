@@ -18,21 +18,26 @@ RUN apt-get update && \
 
 ENV PATH="/root/.local/bin:${PATH}"
 
-# Set working directory
-WORKDIR /build
+# Set working directory to match the runtime stage path so the venv's
+# console-script shebangs (absolute paths) remain valid after COPY --from=builder.
+WORKDIR /home/reviewer/app
 
 # Copy dependency files first for better caching
 # LICENSE and README.md are required because pyproject.toml references
 # license = {file = "LICENSE"} and readme = "README.md"
 COPY pyproject.toml uv.lock LICENSE README.md ./
 
-# Install dependencies (frozen for reproducibility)
-RUN uv sync --frozen --no-dev
+# Install dependencies only (project install deferred until sources are present)
+RUN uv sync --frozen --no-dev --no-install-project
 
-# Copy application code
+# Copy application code (required for hatchling to build the project wheel)
 COPY lit_review/ ./lit_review/
 COPY scripts/ ./scripts/
-COPY README.md LICENSE ./
+
+# Install the project non-editable so the `academic-review` console script
+# and package contents are baked into .venv and survive being copied to a
+# different path in the runtime stage.
+RUN uv sync --frozen --no-dev --no-editable
 
 # Stage 2: Runtime - minimal image with only what's needed
 FROM python:3.11-slim-bookworm AS runtime
@@ -53,11 +58,11 @@ RUN useradd -m -u 1000 -s /bin/bash reviewer && \
 WORKDIR /home/reviewer/app
 
 # Copy virtual environment from builder
-COPY --from=builder --chown=reviewer:reviewer /build/.venv ./.venv
-COPY --from=builder --chown=reviewer:reviewer /build/lit_review ./lit_review
-COPY --from=builder --chown=reviewer:reviewer /build/scripts ./scripts
-COPY --from=builder --chown=reviewer:reviewer /build/pyproject.toml ./
-COPY --from=builder --chown=reviewer:reviewer /build/README.md ./
+COPY --from=builder --chown=reviewer:reviewer /home/reviewer/app/.venv ./.venv
+COPY --from=builder --chown=reviewer:reviewer /home/reviewer/app/lit_review ./lit_review
+COPY --from=builder --chown=reviewer:reviewer /home/reviewer/app/scripts ./scripts
+COPY --from=builder --chown=reviewer:reviewer /home/reviewer/app/pyproject.toml ./
+COPY --from=builder --chown=reviewer:reviewer /home/reviewer/app/README.md ./
 
 # Set environment variables
 ENV PATH="/home/reviewer/app/.venv/bin:${PATH}" \
