@@ -89,7 +89,7 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 
 - **No em-dashes (—) in any file** (paper, scripts, docs). Use commas, colons, semicolons, or parentheses instead. Python strings use ASCII hyphens.
 - **No bold for emphasis** in paper.md or appendices. JMIR requires italics only (`*text*` not `**text**`). Bold is stripped on acceptance.
-- **Figure max dimension:** 1200px for JMIR upload. Resize with `sips --resampleHeight 1200 <file>` (preserves aspect ratio).
+- **Figure max dimension:** 1200px for JMIR upload. Resize preserving aspect ratio: macOS `sips --resampleHeight 1200 <file>`, cross-platform (ImageMagick) `mogrify -resize x1200 <file>`.
 - **Always rebuild ALL artifacts** after editing paper.md: `./scripts/build_paper.sh --format all`. Reviewers check paper.tex/paper.docx for stale terminology.
 - Citations use pandoc-citeproc: `[@key]`, multiple: `[@wu2024; @himss2024]`
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
