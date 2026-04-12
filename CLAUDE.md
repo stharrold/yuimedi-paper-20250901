@@ -143,7 +143,7 @@ uv run scripts/secrets_run.py uv run pytest
 - **HITL-KG**: Human-in-the-Loop Knowledge Governance (was HiL-SG). Industry-standard HITL acronym + established "knowledge governance" field (Foss 2007).
 - **Three-Pillar Assessment Rubric**: Replaced Analytics Resilience Index (ARI). 9 indicators across 3 pillars with Low/Medium/High anchors.
 - **Validated Query Triple**: NL Intent + Executable SQL + Rationale Metadata. Keep "triple" (not "tuple").
-- **Zenodo DOI**: 10.5281/zenodo.18338990
+- **Zenodo DOI**: 10.5281/zenodo.19325627
 
 ## stharrold-templates Bundles
 
