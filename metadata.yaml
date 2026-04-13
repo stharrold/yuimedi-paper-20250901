@@ -68,6 +68,7 @@ prevent-widows: true
 # LaTeX packages for figures and URL formatting
 header-includes:
   - \usepackage{graphicx}
+  - \setkeys{Gin}{keepaspectratio}
   - \usepackage{xurl}
   - \usepackage{rotating}
   - \usepackage{booktabs}
