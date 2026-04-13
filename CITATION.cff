@@ -34,5 +34,5 @@ version: 2.1.0
 date-released: '2026-04-12'
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.19325627
-    description: Zenodo DOI
+    value: 10.5281/zenodo.18264359
+    description: Zenodo concept DOI (resolves to latest version)

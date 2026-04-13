@@ -364,7 +364,7 @@ If you use this tool in your research, please cite:
   year = {2025},
   url = {https://github.com/stharrold/yuimedi-paper-20250901},
   version = {1.0.0},
-  doi = {10.5281/zenodo.XXXXXXX}
+  doi = {10.5281/zenodo.18264359}
 }
 ```
 
