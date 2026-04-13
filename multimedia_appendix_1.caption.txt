@@ -1,1 +1,1 @@
-Validated Query Triple examples for healthcare analytics, illustrating the HITL-KG knowledge capture artifact.
+Validated Query Triple examples illustrating the Human-in-the-Loop Knowledge Governance (HITL-KG) knowledge capture artifact. Each triple comprises a natural language intent, executable SQL, and rationale metadata for three clinical analytics scenarios: diabetes care monitoring, heart failure readmission cohort identification, and quality metric aggregation.
