@@ -92,6 +92,8 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - **No bold for emphasis** in paper.md or appendices. JMIR requires italics only (`*text*` not `**text**`). Bold is stripped on acceptance.
 - **Corporate authors in `references.bib`** need double braces (`author = {{HIMSS Analytics}}`) to prevent CSL name inversion (e.g., "Analytics H."). Use `and` not `&` inside the protected block.
 - **Figure max dimension:** 1200px for JMIR upload. Resize preserving aspect ratio: macOS `sips --resampleHeight 1200 <file>`, cross-platform (ImageMagick) `mogrify -resize x1200 <file>`.
+- **Pandoc image sizing in paper.md:** specify only ONE of `{width=X%}` or `{height=Yin}`. LaTeX preserves aspect ratio by default when a single dimension is given; both together distorts unless `keepaspectratio` is set. Size square figures by width, portrait figures by height (a modest width on a tall figure blows past page bottom).
+- **Figure float gotcha:** if a figure is slightly too large, the caption stays on-page with the figure but the figure's *introductory sentence* gets orphaned on a blank preceding page (LaTeX floats don't drag their intro text). After resizing, verify total page count; a nearly-blank page between figures means the next image needs a small reduction.
 - **Always rebuild ALL artifacts** after editing paper.md: `./scripts/build_paper.sh --format all`. Reviewers check paper.tex/paper.docx for stale terminology.
 - Citations use pandoc-citeproc: `[@key]`, multiple: `[@wu2024; @himss2024]`
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
