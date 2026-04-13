@@ -74,8 +74,8 @@ elif command -v python &> /dev/null && \
 fi
 
 # Reference validation (tests 6-7) requires Python 3.11+. If no interpreter is
-# available, fail fast with a clear error rather than labelling tests as
-# "Skipped" while still counting them as errors (which confuses CI logs).
+# available, fail fast with a clear error rather than silently skipping these
+# checks and giving a misleading validation result in local runs or CI.
 if [ ${#PYTHON_CMD[@]} -eq 0 ]; then
     echo "❌ ERROR: No Python 3.11+ interpreter found (tried uv, python3, python)."
     echo "   Tests 6-7 (reference validation) require Python 3.11+ (scripts/validate_references.py uses datetime.UTC)."
