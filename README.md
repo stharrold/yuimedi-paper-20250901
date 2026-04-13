@@ -2,6 +2,7 @@
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18264359.svg)](https://doi.org/10.5281/zenodo.18264359)
 
 Research whitepaper on natural language to SQL in healthcare - a comprehensive analysis of conversational AI platforms for healthcare analytics addressing low analytics maturity, workforce turnover, and technical barriers in natural language query processing.
 
