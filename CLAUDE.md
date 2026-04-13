@@ -196,6 +196,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 ## Zenodo Integration
 
 - Repo has an active release webhook (hook id `591675875`) to `zenodo.org/api/hooks/receivers/github/events/`.
+- Webhook fires on GitHub **Release publish**, not tag push. `release_workflow.py tag-release` only creates the tag; run `gh release create vX.Y.Z` afterward (with the concept DOI leading the notes) to actually trigger Zenodo archival.
 - Webhook `202 Accepted` is only queue ack; actual archival is async and can fail silently. Verify a new version actually appears on the [Zenodo record page](https://doi.org/10.5281/zenodo.18264359) after each release.
 - Diagnose failures at https://zenodo.org/account/settings/github/ (shows last-build status per repo).
 - Redeliver a failed webhook: `gh api --method POST repos/{owner}/{repo}/hooks/591675875/deliveries/<id>/attempts` (gh CLI resolves `{owner}/{repo}` from the current git remote).
