@@ -79,6 +79,7 @@ podman run --rm --security-opt label=disable -v "$(pwd)":/app -v yuimedi_venv_ca
 `main` ← `release/*` ← `develop` ← `contrib/stharrold` ← `feature/*`
 - Direct commits allowed on `feature/*` and `contrib/*`
 - `develop` and `main` require PRs
+- `/workflow:v7x1_3-release` cuts the release branch from `origin/develop`. Always run `/workflow:v7x1_2-integrate` first to move `contrib/*` commits into `develop`, otherwise the release will ship without them.
 
 ## Commit Convention
 
@@ -89,7 +90,10 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 
 - **No em-dashes (—) in any file** (paper, scripts, docs). Use commas, colons, semicolons, or parentheses instead. Python strings use ASCII hyphens.
 - **No bold for emphasis** in paper.md or appendices. JMIR requires italics only (`*text*` not `**text**`). Bold is stripped on acceptance.
+- **Corporate authors in `references.bib`** need double braces (`author = {{HIMSS Analytics}}`) to prevent CSL name inversion (e.g., "Analytics H."). Use `and` not `&` inside the protected block.
 - **Figure max dimension:** 1200px for JMIR upload. Resize preserving aspect ratio: macOS `sips --resampleHeight 1200 <file>`, cross-platform (ImageMagick) `mogrify -resize x1200 <file>`.
+- **Pandoc image sizing in paper.md:** specify only ONE of `{width=X%}` or `{height=Yin}`. Pandoc's LaTeX template auto-injects *both* `keepaspectratio` AND a page-fit secondary dimension (`height=\textheight` or `width=\linewidth`), so aspect ratio is always preserved in the output. The single-dimension rule is about authoring clarity, not distortion prevention. Size square figures by width, portrait figures by height (a modest width on a tall figure blows past page bottom). GitHub's diff view truncates long `\includegraphics` lines after `alt={...}`, so review bots (Copilot, Gemini) can falsely flag `keepaspectratio` as missing; verify the full line in `paper.tex` before acting on those suggestions.
+- **Figure float gotcha:** if a figure is slightly too large, the caption stays on-page with the figure but the figure's *introductory sentence* gets orphaned on a blank preceding page (LaTeX floats don't drag their intro text). After resizing, verify total page count; a nearly-blank page between figures means the next image needs a small reduction.
 - **Always rebuild ALL artifacts** after editing paper.md: `./scripts/build_paper.sh --format all`. Reviewers check paper.tex/paper.docx for stale terminology.
 - Citations use pandoc-citeproc: `[@key]`, multiple: `[@wu2024; @himss2024]`
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
@@ -176,6 +180,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
 - CI auto-commits (`[skip ci]`) can diverge from local; may need `--force-with-lease` on contrib branch
 - Paper Artifacts Generation requires pandoc + texlive in Containerfile
+- Don't pipe remote install scripts in Containerfiles. For `uv`, use `COPY --from=ghcr.io/astral-sh/uv:<version> /uv /uvx /usr/local/bin/` (astral.sh install endpoint has returned 502s that hard-fail builds).
 
 ## Architecture
 
@@ -184,7 +189,15 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
 - **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
 - **Container:** `Containerfile` with Python 3.12, Pandoc 3.2, TeXLive, Node.js
+- **Multi-stage Python containers:** builder `WORKDIR` must equal runtime `WORKDIR` (console-script shebangs are absolute paths baked at venv-creation time). Use `uv sync --no-editable` after copying sources so entry points survive `COPY --from=builder`. Multi-stage structure pattern lives in `Containerfile.lit_review`; `uv` installation pattern (via `COPY --from=ghcr.io/astral-sh/uv:...`) lives in the main `Containerfile`. Note: `Containerfile.lit_review` currently installs uv via `curl | sh` and should eventually be migrated to the `COPY --from=ghcr.io/astral-sh/uv` pattern.
 - **Anthropic SDK**: `response.content[0]` is a union type; filter with `[b for b in response.content if hasattr(b, "text")]` before accessing `.text` (mypy `union-attr`)
+
+## Zenodo Integration
+
+- Repo has an active release webhook (hook id `591675875`) to `zenodo.org/api/hooks/receivers/github/events/`.
+- Webhook `202 Accepted` is only queue ack; actual archival is async and can fail silently. Verify a new version actually appears on the [Zenodo record page](https://doi.org/10.5281/zenodo.18264359) after each release.
+- Diagnose failures at https://zenodo.org/account/settings/github/ (shows last-build status per repo).
+- Redeliver a failed webhook: `gh api --method POST repos/{owner}/{repo}/hooks/591675875/deliveries/<id>/attempts` (gh CLI resolves `{owner}/{repo}` from the current git remote).
 
 ## Key Files
 
