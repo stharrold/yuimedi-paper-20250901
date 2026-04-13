@@ -39,10 +39,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     librsvg2-bin \
     && rm -rf /var/lib/apt/lists/*
 
-# Install uv
-ENV UV_VERSION=0.5.5
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.local/bin:$PATH"
+# Install uv from the official distroless image. Avoids piping a remote
+# install script (the astral.sh endpoint has returned transient 502s in CI
+# and that hard-fails the build); the COPY pulls a pinned, multi-arch binary.
+COPY --from=ghcr.io/astral-sh/uv:0.5.5 /uv /uvx /usr/local/bin/
 
 # Set working directory
 WORKDIR /app
