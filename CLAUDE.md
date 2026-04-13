@@ -89,6 +89,8 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 
 - **No em-dashes (—) in any file** (paper, scripts, docs). Use commas, colons, semicolons, or parentheses instead. Python strings use ASCII hyphens.
 - **No bold for emphasis** in paper.md or appendices. JMIR requires italics only (`*text*` not `**text**`). Bold is stripped on acceptance.
+- **Figure max dimension:** 1200px for JMIR upload. Resize preserving aspect ratio: macOS `sips --resampleHeight 1200 <file>`, cross-platform (ImageMagick) `mogrify -resize x1200 <file>`.
+- **Always rebuild ALL artifacts** after editing paper.md: `./scripts/build_paper.sh --format all`. Reviewers check paper.tex/paper.docx for stale terminology.
 - Citations use pandoc-citeproc: `[@key]`, multiple: `[@wu2024; @himss2024]`
 - BibTeX in `references.bib`, styled with `citation-style-ama.csl` (AMA 11th ed)
 - As a Viewpoint, the paper advances a **prescriptive** position grounded in descriptive evidence. The framework's *analysis* of why current approaches fail is descriptive; the *recommendations* (HITL-KG, Three-Pillar Assessment, governance tiers) are intentionally directive.
@@ -98,6 +100,8 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 ## Visual & Video Abstracts (AJE / Springer Nature Author Services)
 
 - **Visual abstract** (graphical abstract): Ticket #1144316, V2 delivered, revision requested 2026-03-23
+- **Visual abstract assessments:** Two-pass: (1) paper-consistency for author, (2) general-audience for vendor email. General audience assessment drives revision requests. Saved to `abstract-visual-video/YYYYMMDDTHHMMSSZ_visual-abstract_critical-assessment.md`
+- **Pre-commit blocks files >10MB.** Video byte (51MB) cannot be committed to git.
 - **Video byte** (60-90s video): Ticket #1144097, approved and published 2026-02-25
 - YouTube: `q4sE4O9F9pU` (AJE Video Bytes channel), Vimeo: `1161046047` (Password: AJE_Healthcare)
 - Contact: support@as.springernature.com (Bhavik, Darshan J)
@@ -139,7 +143,7 @@ uv run scripts/secrets_run.py uv run pytest
 - **HITL-KG**: Human-in-the-Loop Knowledge Governance (was HiL-SG). Industry-standard HITL acronym + established "knowledge governance" field (Foss 2007).
 - **Three-Pillar Assessment Rubric**: Replaced Analytics Resilience Index (ARI). 9 indicators across 3 pillars with Low/Medium/High anchors.
 - **Validated Query Triple**: NL Intent + Executable SQL + Rationale Metadata. Keep "triple" (not "tuple").
-- **Zenodo DOI**: 10.5281/zenodo.18338990
+- **Zenodo DOI**: 10.5281/zenodo.18264359 (concept DOI: resolves to latest version; always use this, never a version-specific DOI)
 
 ## stharrold-templates Bundles
 
@@ -166,6 +170,12 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 5. Update `docs/research/Research-Questions.md` with each answered question
 6. Implementation plan with line-level edits, word budget, commit sequence -> `ARCHIVED/`
 7. Execute in passes (language edits -> content additions -> supporting improvements -> figures)
+
+## CI Notes
+
+- `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
+- CI auto-commits (`[skip ci]`) can diverge from local; may need `--force-with-lease` on contrib branch
+- Paper Artifacts Generation requires pandoc + texlive in Containerfile
 
 ## Architecture
 
