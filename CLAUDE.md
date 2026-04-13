@@ -179,6 +179,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 
 - `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
 - CI auto-commits (`[skip ci]`) can diverge from local; may need `--force-with-lease` on contrib branch
+- **Verify against CI-committed artifacts, not local rebuilds.** The Containerfile's pandoc is older than typical local pandoc and emits different `\includegraphics` attributes (no auto-injected `keepaspectratio`, `\textwidth` in place of `\linewidth`). After a CI `[skip ci]` regeneration, re-inspect the committed `paper.tex`/`paper.pdf` directly; a local `build_paper.sh` run can mask bugs that only surface in CI output.
 - Paper Artifacts Generation requires pandoc + texlive in Containerfile
 - Don't pipe remote install scripts in Containerfiles. For `uv`, use `COPY --from=ghcr.io/astral-sh/uv:<version> /uv /uvx /usr/local/bin/` (astral.sh install endpoint has returned 502s that hard-fail builds).
 
