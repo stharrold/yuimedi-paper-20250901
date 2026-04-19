@@ -28,7 +28,7 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 
 **Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Knowledge Governance (HITL-KG).
 
-**Three-paper series:** Paper 1 (Viewpoint, resubmitting to JMIR ms#91493) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
+**Three-paper series:** Paper 1 (Viewpoint, ms#96541 rejected pre-review 2026-04-17 Decision E2; transfer/reinstatement request sent 2026-04-19, awaiting routing; deadline ~2026-05-15) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
 
 **Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint (~3,600 body words). See GH#506.
 
@@ -224,7 +224,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 | `submission-checklist.md` | JMIR submission checklist (Viewpoint, ms#91493) |
 | `project-status.md` | Lightweight project status for all 3 papers |
 | `reference.docx` | Custom Word template (Times New Roman 12pt, double-spaced, black headings) |
-| `ARCHIVED/20260329_JMIR-Submission/` | Complete submission archive (37 files) |
+| `ARCHIVED/20260329_JMIR-Submission/` | Complete submission archive (37 files); rejection email and transfer request email draft also here |
 | `ARCHIVED/20260115_JMIR-Submission/` | Original rejected submission (~12,730 words) |
 | `tests/test_validate_jmir_compliance.py` | Tests for JMIR validator (58 tests, covers Viewpoint + Original) |
 | `../library/` | Sibling repo: semantic search engine for academic papers (DuckDB, 23+ ingested papers) |
