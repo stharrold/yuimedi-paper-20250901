@@ -28,7 +28,7 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 
 **Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Knowledge Governance (HITL-KG).
 
-**Three-paper series:** Paper 1 (Viewpoint, ms#96541 rejected pre-review 2026-04-17 Decision E2; transfer/reinstatement request sent 2026-04-19, awaiting routing; deadline ~2026-05-15) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
+**Three-paper series:** Paper 1 (Viewpoint, ms#96541 rejected pre-review 2026-04-17 Decision E2; transfer to i-JMR requested 2026-04-22, awaiting i-JMR editor acceptance) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
 
 **Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint (~3,600 body words). See GH#506.
 
@@ -190,7 +190,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
 - **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
 - **Container:** `Containerfile` with Python 3.12, Pandoc 3.2, TeXLive, Node.js
-- **Multi-stage Python containers:** builder `WORKDIR` must equal runtime `WORKDIR` (console-script shebangs are absolute paths baked at venv-creation time). Use `uv sync --no-editable` after copying sources so entry points survive `COPY --from=builder`. Multi-stage structure pattern lives in `Containerfile.lit_review`; `uv` installation pattern (via `COPY --from=ghcr.io/astral-sh/uv:...`) lives in the main `Containerfile`. Note: `Containerfile.lit_review` currently installs uv via `curl | sh` and should eventually be migrated to the `COPY --from=ghcr.io/astral-sh/uv` pattern.
+- **Multi-stage Python containers:** builder `WORKDIR` must equal runtime `WORKDIR` (console-script shebangs are absolute paths baked at venv-creation time). Use `uv sync --no-editable` after copying sources so entry points survive `COPY --from=builder`. Multi-stage structure pattern lives in `Containerfile.lit_review`; `uv` installation pattern (via `COPY --from=ghcr.io/astral-sh/uv:...`) lives in the main `Containerfile`. Both `Containerfile` and `Containerfile.lit_review` install uv via `COPY --from=ghcr.io/astral-sh/uv:0.5.5`.
 - **Anthropic SDK**: `response.content[0]` is a union type; filter with `[b for b in response.content if hasattr(b, "text")]` before accessing `.text` (mypy `union-attr`)
 
 ## Zenodo Integration
