@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 36 answered, 16 unanswered/partial (i-JMR R1: +4 added, 1 answered 2026-06-06)
+**Status:** 39 answered, 13 unanswered/partial (i-JMR R1: +4 added, all 4 answered 2026-06-06)
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -184,9 +184,9 @@ Reviewer T#1 requires the three title constructs to be explicitly defined with d
 
 | Question | Scope | Issue | Status | Notes |
 |----------|-------|-------|--------|-------|
-| How is "analytics maturity" defined as a construct in the literature, beyond the HIMSS AMAM staging model? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Unanswered | Existing HIMSS AMAM files cover staging data, not a construct definition |
-| How is "workforce agility" defined in the organizational / IT-workforce literature? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Unanswered | Term appears incidentally in corpus, not as a defined construct |
-| How is "technical enablement" (or analytics/data enablement) defined in the literature? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Unanswered | Partly an author coinage; needs anchoring in adjacent literature |
+| How is "analytics maturity" defined as a construct in the literature, beyond the HIMSS AMAM staging model? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Answered | [`Research_Defining-Analytics-Maturity-and-Maturity-Models.md`](answers/Research_Defining-Analytics-Maturity-and-Maturity-Models.md) (10 results, 2026-06-06) |
+| How is "workforce agility" defined in the organizational / IT-workforce literature? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Answered | [`Research_Defining-Workforce-Agility-in-Organizational-Research.md`](answers/Research_Defining-Workforce-Agility-in-Organizational-Research.md) (10 results, 2026-06-06) |
+| How is "technical enablement" (or analytics/data enablement) defined in the literature? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Answered | [`Research_Defining-Technical-Enablement-Self-Service-Analytics.md`](answers/Research_Defining-Technical-Enablement-Self-Service-Analytics.md) (10 results, anchored in SSBI/SSBA lit, 2026-06-06) |
 
 ### Schema Discovery and Validation
 
