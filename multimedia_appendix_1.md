@@ -4,6 +4,18 @@
 
 This appendix illustrates the Validated Query Triple artifact proposed by the HITL-KG framework (see Section 2.2 of the main paper). Each triple comprises three components: (1) *Natural Language Intent*, the clinical business question; (2) *Executable SQL*, the technical implementation; and (3) *Rationale Metadata*, the contextual "why" behind the logic. Together, these components capture not just *what* query was run but *why* it was constructed that way, preserving institutional knowledge that would otherwise be lost during staff turnover.
 
+## The Externalization Process
+
+Each Validated Query Triple is produced through a five-step cycle that captures tacit knowledge as a byproduct of routine analytics:
+
+1. *Query Generation*: A user asks a question in natural language; the AI proposes candidate SQL based on schema knowledge.
+2. *Semantic Translation*: The AI translates the SQL back into a natural-language explanation of what it will do.
+3. *Expert Validation*: The domain expert confirms or corrects this interpretation. This is the critical moment of Externalization, where the Human-in-the-Loop step transforms validation into iterative knowledge capture.
+4. *Artifact Storage*: The validated triple is hashed and stored in organizational memory.
+5. *Retrieval*: Future queries semantically match against this repository first, retrieving trusted human knowledge before attempting probabilistic generation.
+
+The worked examples below show the artifacts this process produces.
+
 ---
 
 ### Triple 1: Diabetes Care Monitoring

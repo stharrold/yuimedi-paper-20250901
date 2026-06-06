@@ -103,11 +103,7 @@ The corresponding six step Validated Query Cycle is summarized in Figure 2, whic
 ![Flowchart of the six-step Validated Query Cycle for Human-in-the-Loop Knowledge Governance. Step 1 (Query): analyst asks a natural language question. Step 2 (Generation): system generates candidate SQL. Step 3 (Validation): AI explains SQL logic and results; analyst confirms intent. If incorrect, the cycle loops back to Generation. If correct, Step 4 (Storage): validated triple is stored in organizational memory. Step 5 (Retrieval): future queries match against validated triples. Step 6 (Persistence): knowledge survives staff turnover, and new analysts reuse validated queries. Dashed arrows connect the cycle to three outcome pillars: Storage advances Analytics Maturity, Persistence stabilizes Workforce Agility, and Retrieval increases Technical Enablement.](figures/knowledge-cycle.mmd.png){height=6.67in}
 
 ## The Process of Externalization
-1.  *Query Generation*: A user asks a question. The AI proposes SQL based on schema knowledge [@lee2023; @wang2020].
-2.  *Semantic Translation*: The AI translates the SQL back into a natural language explanation [@ziletti2024].
-3.  *Expert Validation*: The domain expert confirms or corrects this interpretation. *This is the critical moment of Externalization.* This "Human-in-the-Loop" (HITL) step transforms validation into an iterative knowledge capture process [@bravorocca2023; @mosqueirarey2023].
-4.  *Artifact Storage*: The validated triple is hashed and stored in organizational memory [@benbya2004].
-5.  *Retrieval*: Future queries semantically match against this repository first, retrieving *trusted* human knowledge before attempting *probabilistic* generation [@whittaker2008].
+The cycle proceeds from AI query generation [@lee2023] through semantic translation to *Expert Validation*, the critical moment of Externalization, where the domain expert confirms or corrects the AI's interpretation and thereby captures tacit knowledge [@bravorocca2023; @mosqueirarey2023]. The validated triple is hashed and stored in organizational memory [@benbya2004], then retrieved ahead of future probabilistic generation [@whittaker2008]. Multimedia Appendix 1 details each step alongside worked examples.
 
 ## Comparison with Existing Approaches
 
