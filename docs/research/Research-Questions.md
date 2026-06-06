@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 39 answered, 13 unanswered/partial (i-JMR R1: +4 added, all 4 answered 2026-06-06)
+**Status:** 41 answered, 13 unanswered/partial (i-JMR R1: 6 added and all 6 answered 2026-06-06)
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -187,6 +187,15 @@ Reviewer T#1 requires the three title constructs to be explicitly defined with d
 | How is "analytics maturity" defined as a construct in the literature, beyond the HIMSS AMAM staging model? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Answered | [`Research_Defining-Analytics-Maturity-and-Maturity-Models.md`](answers/Research_Defining-Analytics-Maturity-and-Maturity-Models.md) (10 results, 2026-06-06) |
 | How is "workforce agility" defined in the organizational / IT-workforce literature? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Answered | [`Research_Defining-Workforce-Agility-in-Organizational-Research.md`](answers/Research_Defining-Workforce-Agility-in-Organizational-Research.md) (10 results, 2026-06-06) |
 | How is "technical enablement" (or analytics/data enablement) defined in the literature? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Answered | [`Research_Defining-Technical-Enablement-Self-Service-Analytics.md`](answers/Research_Defining-Technical-Enablement-Self-Service-Analytics.md) (10 results, anchored in SSBI/SSBA lit, 2026-06-06) |
+
+### Reviewer Q concerns: scope and assessment bias (i-JMR R1)
+
+Reviewer Q raised two substantive concerns that need empirical grounding before the related manuscript edits.
+
+| Question | Scope | Issue | Status | Notes |
+|----------|-------|-------|--------|-------|
+| (Q#2) What do repetition and reuse patterns in analytical SQL query workloads look like; how concentrated/recurring are organizational queries vs ad-hoc? | Paper1 | [#535](https://github.com/stharrold/yuimedi-paper-20250901/issues/535) | Answered | [`Research_Query-Reuse-and-Repetition-in-Analytical-SQL-Workloads.md`](answers/Research_Query-Reuse-and-Repetition-in-Analytical-SQL-Workloads.md) (10 results; 50-97% repetition reported, 2026-06-06) |
+| (Q#1) Does the literature acknowledge self-selection / non-response bias in organizational IT-maturity benchmark assessments? | Paper1 | [#534](https://github.com/stharrold/yuimedi-paper-20250901/issues/534) | Answered | [`Research_Self-Selection-Bias-in-Organizational-Maturity-Assessments.md`](answers/Research_Self-Selection-Bias-in-Organizational-Maturity-Assessments.md) (10 results; El Emam & Madhavji 1995 maturity-specific, 2026-06-06) |
 
 ### Schema Discovery and Validation
 
