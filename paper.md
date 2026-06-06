@@ -111,13 +111,13 @@ The corresponding six step Validated Query Cycle is summarized in Figure 2, whic
 
 ## Comparison with Existing Approaches
 
-Organizations have attempted to address institutional memory loss through several strategies, each with limitations that HITL-KG is designed to overcome.
+Organizations have addressed institutional memory loss through several strategies, each with limitations HITL-KG overcomes.
 
-*Code-based semantic layers* (e.g., dbt, LookML) encode business logic in version-controlled repositories. However, these layers suffer from "schema rot" in healthcare environments where EMR data models change frequently (e.g., quarterly upgrades). The maintenance burden often exceeds the capacity of high-turnover teams, leading to misalignment between the layer and the underlying data [@mannapur2025; @battula2025]. HITL-KG's validated query triples share the version-control principle but add the rationale metadata that semantic layers lack: not just *what* the query does, but *why* it was constructed that way.
+*Code-based semantic layers* (e.g., dbt, LookML) encode business logic in version-controlled repositories, but suffer "schema rot" where EMR data models change frequently and maintenance exceeds high-turnover teams' capacity, misaligning the layer from the underlying data [@mannapur2025; @battula2025]. HITL-KG's validated query triples share the version-control principle but add the rationale metadata semantic layers lack: not just *what* a query does, but *why*.
 
-*Traditional knowledge management* (wikis, data dictionaries, runbooks) relies on passive capture where users must stop working to document. Evidence suggests this negatively impacts participation and produces inaccurate records due to cognitive load [@mayo2016; @goffin2011]. HITL-KG instead implements active capture: the query itself is the documentation, and validation happens at the point of use rather than as a separate maintenance task [@moore2018].
+*Traditional knowledge management* (wikis, data dictionaries, runbooks) relies on passive capture where users must stop working to document, which reduces participation and produces inaccurate records under cognitive load [@mayo2016; @goffin2011]. Such documentation might suffice for a small, stable query set, but real workloads are neither: more than half of queries recur at large providers [@jindal2019], yet even small databases log thousands of distinct query strings [@kul2018], so a fixed set of documented queries captures neither the large recurring core nor the evolving ad-hoc tail. HITL-KG instead implements active capture across both regimes: the query itself is the documentation, validated at the point of use [@moore2018].
 
-*Unsupervised AI querying* represents the opposite extreme: removing human oversight entirely. Current NL2SQL accuracy levels make this unsafe for clinical analytics [@ziletti2024]. HITL-KG occupies the middle ground, using AI as the generation engine while preserving human judgment as the validation gate.
+*Unsupervised AI querying* removes human oversight entirely; current NL2SQL accuracy makes this unsafe for clinical analytics [@ziletti2024]. HITL-KG occupies the middle ground: AI generates, humans validate.
 
 # The Evidence Base: Three Pillars
 
