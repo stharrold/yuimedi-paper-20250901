@@ -40,8 +40,8 @@ TRACKER_FILE = DOCS_DIR / "Research-Questions.md"
 def slugify(text):
     """Convert text to filename-safe slug."""
     text = text.lower().strip()
-    text = re.sub(r"[^\\w\\s-]", "", text)
-    text = re.sub(r"[-\\s]+", "-", text)
+    text = re.sub(r"[^\w\s-]", "", text)
+    text = re.sub(r"[-\s]+", "-", text)
     return text[:100]
 
 
@@ -146,7 +146,7 @@ def generate_markdown(question_data, search_results):
     date = datetime.date.today().isoformat()
     slug = slugify(question_data["question"])
     filename = f"Research_{slug}.md"
-    filepath = DOCS_DIR / filename
+    filepath = DOCS_DIR / "answers" / filename
 
     content = f"""# Research: {question_data["question"]}
 
@@ -198,8 +198,12 @@ def update_tracker(question_data, filename):
 
 async def main():
     # 1. Find Question
-    if len(sys.argv) > 1:
-        q_data = {"question": sys.argv[1], "scope": "Manual", "status": "Manual"}
+    # Accept the question as a positional arg OR via --question (the value, not the flag).
+    # NOTE: prefer the user-level `scholar-labs-search` skill, whose scholar_search.py
+    # fixes session contamination, early extraction, and adds a free --read-only re-read.
+    argv = [a for a in sys.argv[1:] if a != "--question"]
+    if argv:
+        q_data = {"question": argv[0], "scope": "Manual", "status": "Manual"}
     else:
         q_data = find_next_question()
 

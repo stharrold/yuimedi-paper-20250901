@@ -2,7 +2,7 @@
 
 Unified tracking for all literature/research questions supporting the paper series.
 
-**Status:** 35 answered, 13 unanswered/partial
+**Status:** 36 answered, 16 unanswered/partial (i-JMR R1: +4 added, 1 answered 2026-06-06)
 
 **Scope Key:**
 - `Paper1` = Three-Pillar Analytical Framework
@@ -176,6 +176,17 @@ Questions needing literature search. Mark with "→ Gap" if searched but not fou
 | Question | Scope | Issue | Research File |
 |----------|-------|-------|---------------|
 | What frameworks exist for 'provisional validation' or 'human-in-the-loop' systems where domain knowledge is captured incrementally through iterative feedback cycles? | Paper1 | - | [`Research_frameworks-for-provisional-validation-and-hitl.md`](answers/Research_frameworks-for-provisional-validation-and-hitl.md) |
+| (i-JMR R1, Reviewer Q#3) What empirical evidence shows that human experts reliably detect and correct LLM/AI errors in NL-to-SQL or analytics tasks, and do humans-in-the-loop outperform the model alone? | Paper1 | [#544](https://github.com/stharrold/yuimedi-paper-20250901/issues/544) | Answered — [`Research_Human-in-the-Loop-Detection-Correction-of-LLM-Errors-in-Text-to-SQL.md`](answers/Research_Human-in-the-Loop-Detection-Correction-of-LLM-Errors-in-Text-to-SQL.md) (10 results, 2026-06-06) |
+
+### Definitions & Constructs (i-JMR R1, Reviewer T#1)
+
+Reviewer T#1 requires the three title constructs to be explicitly defined with definitions grounded in or adapted from existing literature.
+
+| Question | Scope | Issue | Status | Notes |
+|----------|-------|-------|--------|-------|
+| How is "analytics maturity" defined as a construct in the literature, beyond the HIMSS AMAM staging model? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Unanswered | Existing HIMSS AMAM files cover staging data, not a construct definition |
+| How is "workforce agility" defined in the organizational / IT-workforce literature? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Unanswered | Term appears incidentally in corpus, not as a defined construct |
+| How is "technical enablement" (or analytics/data enablement) defined in the literature? | Paper1 | [#547](https://github.com/stharrold/yuimedi-paper-20250901/issues/547) | Unanswered | Partly an author coinage; needs anchoring in adjacent literature |
 
 ### Schema Discovery and Validation
 
