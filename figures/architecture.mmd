@@ -20,8 +20,9 @@ flowchart TD
     D -->|"Incorrect"| B
     E -->|"6. Delivers insights"| A
 
-    %% Knowledge persistence (dashed lines)
+    %% Knowledge persistence and continuous-learning loop (dashed lines)
     D -.->|"7. Stores validated triple"| F
+    F -.->|"8. Curates best practices"| G
     F -.->|"Informs future queries"| B
     G -.->|"Provides context"| B
 
