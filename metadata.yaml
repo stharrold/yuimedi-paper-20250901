@@ -25,7 +25,7 @@ linestretch: 1.5
 # Table of contents
 toc: true
 toc-depth: 3
-numbersections: true
+numbersections: false
 
 # Bibliography (pandoc-citeproc)
 bibliography: references.bib

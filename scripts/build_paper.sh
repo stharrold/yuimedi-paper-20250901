@@ -202,7 +202,6 @@ generate_pdf() {
         --pdf-engine="$pdf_engine" \
         --template=eisvogel \
         --listings \
-        --number-sections \
         --toc \
         --toc-depth=3 \
         --output="$output"
@@ -236,7 +235,6 @@ generate_html() {
         --standalone \
         --toc \
         --toc-depth=3 \
-        --number-sections \
         $header_arg \
         --output="$output"
 
@@ -261,7 +259,6 @@ generate_docx() {
         --to=docx \
         --toc \
         --toc-depth=3 \
-        --number-sections \
         --reference-doc="${PROJECT_ROOT}/reference.docx" \
         --output="$output"
 
@@ -286,7 +283,6 @@ generate_latex() {
         --to=latex \
         --template=eisvogel \
         --listings \
-        --number-sections \
         --toc \
         --toc-depth=3 \
         --output="$output"
