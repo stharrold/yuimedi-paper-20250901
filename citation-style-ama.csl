@@ -135,7 +135,7 @@
     <sort>
       <key variable="citation-number"/>
     </sort>
-    <layout delimiter="," vertical-align="sup">
+    <layout prefix="[" suffix="]" delimiter=",">
       <text variable="citation-number"/>
       <group prefix="(" suffix=")">
         <label form="short" strip-periods="true" variable="locator"/>
