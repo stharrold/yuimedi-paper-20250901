@@ -28,9 +28,9 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 
 **Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Knowledge Governance (HITL-KG).
 
-**Three-paper series:** Paper 1 (Viewpoint, ms#96541 rejected pre-review 2026-04-17 Decision E2; transfer to i-JMR requested 2026-04-22, awaiting i-JMR editor acceptance) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
+**Three-paper series:** Paper 1 (Viewpoint, ms#96541 at i-JMR; transferred from JMIR Medical Informatics after Decision E2 desk-reject 2026-04-17; peer-reviewed and returned major revision Decision D 2026-06-05; R1 revision complete, due 2026-07-03; tracked under #529 epic / milestone "i-JMR R1") → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
 
-**Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint (~3,600 body words). See GH#506.
+**Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint (~4,470 body words). Desk-rejected at JMIR Medical Informatics (Decision E2), transferred to i-JMR, returned major revision (Decision D, 2026-06-05); R1 revision complete (see #529 epic; point-by-point response at `docs/20260607_i-jmr-r1-response-to-reviewers.md`). GH#506 (resubmit to JMIR Medical Informatics) is retired/superseded by the i-JMR transfer.
 
 ## Essential Commands
 

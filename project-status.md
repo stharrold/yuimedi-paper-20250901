@@ -1,6 +1,6 @@
 # Project Status
 
-**Last updated:** 2026-03-29
+**Last updated:** 2026-06-07
 **Tracking:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
 **Version:** 2.0.0
 
@@ -10,28 +10,36 @@
 
 | Paper | Title | Status | Target | Issues |
 |-------|-------|--------|--------|--------|
-| **Paper 1** | Healthcare Analytics Challenges (Viewpoint) | Ready for JMIR submission | March 2026 | [paper-1](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-1) |
+| **Paper 1** | Healthcare Analytics Challenges (Viewpoint) | i-JMR: R1 major revision (due 2026-07-03) | 2026 | [paper-1](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-1) |
 | **Paper 2** | Empirical Validation of HITL-KG (Synthea/GCP) | Not started | TBD | [paper-2](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-2) |
 | **Paper 3** | FHIR/OMOP Interoperability + Safety | Not started | TBD | [paper-3](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-3) |
 
 ---
 
-## Paper 1: Viewpoint (JMIR Medical Informatics)
+## Paper 1: Viewpoint (Interactive Journal of Medical Research, i-JMR)
 
-**Status:** Ready for submission
-**Manuscript ID:** ms#91493 (resubmission)
-**Key issue:** [#506](https://github.com/stharrold/yuimedi-paper-20250901/issues/506)
+**Status:** Major revision (Decision D), revisions complete; pending author resubmission
+**Manuscript ID:** ms#96541 (transferred from JMIR Medical Informatics)
+**Revision due:** 2026-07-03 (extendable once)
+**Tracking:** [#529 epic](https://github.com/stharrold/yuimedi-paper-20250901/issues/529), milestone "i-JMR R1"
+
+**History:** Submitted to JMIR Medical Informatics; desk-rejected pre-review (Decision E2, 2026-04-17); transferred to i-JMR (2026-04-22); externally peer-reviewed; major revision returned (Decision D, 2026-06-05).
 
 | Metric | Value |
 |--------|-------|
-| Word count | ~4,952 / 5,000 |
-| References | 76 |
+| Word count (validator) | 4,469 / 5,000 |
+| References | 89 |
 | Figures | 2 |
 | Tables | 2 |
 | JMIR compliance | Pass |
 
-**Remaining:**
-- [ ] Submit via JMIR portal (#506)
+**R1 revision status (all reviewer/editor points addressed and verified in built artifacts):**
+- [x] Reviewer Q (self-selection bias + acronyms, query reuse, HITL-vs-LLM, drift/training, refresh refs)
+- [x] Reviewer T (define constructs, de-duplicate, Figure 1 feedback loop, replace 2004 stat, complete metadata)
+- [x] Editor (in-text square-bracket citations, no numbered headings, funding statement, generative-AI disclosure)
+- [x] Artifacts rebuilt and verified end-to-end (DOCX + PDF)
+- [x] Point-by-point response letter drafted (`docs/20260607_i-jmr-r1-response-to-reviewers.md`)
+- [ ] Author action: upload clean DOCX + tracked-changes supplementary file, paste response letter, resubmit
 
 ---
 
