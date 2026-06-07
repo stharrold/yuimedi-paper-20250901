@@ -221,7 +221,7 @@ Future research should empirically validate and refine the HITL-KG framework and
 
 # Acknowledgments
 
-The author (S.T.H.) takes full responsibility for the final content, conducted the research, and verified all claims and citations. Gemini CLI (Gemini 3, Google) and Claude Code (Claude Opus 4, Anthropic) assisted with manuscript editing, refinement, and literature search. Figures were generated using the Mermaid graph language.
+The author (S.T.H.) is the sole author and takes full responsibility for the manuscript's content. Generative AI was used to assist this work: Gemini CLI (Gemini 3, Google) and Claude Code (Claude Opus 4, Anthropic) supported manuscript editing, language refinement, and literature search. Generative AI was not used to generate research findings, data, or conclusions; the author conducted the research and verified all claims, citations, and AI-assisted text. Figures were generated using the Mermaid graph language.
 
 # Author Contributions
 
