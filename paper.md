@@ -150,7 +150,7 @@ Each indicator is scored as Low, Medium, or High Strength using evidence-based a
 
 \newpage
 
-*Pillar 1: Analytics Maturity*
+### Pillar 1: Analytics Maturity
 
 | Indicator | Low Strength | Med. Strength | High Strength | Evidence |
 |:---|:---|:---|:---|:---|
@@ -158,7 +158,7 @@ Each indicator is scored as Low, Medium, or High Strength using evidence-based a
 | Self-service analytics | None; all analytics require IT intervention | Partial; BI tools available but underutilized | Widespread; clinical staff access data directly | [@health2020; @shahbaz2019] |
 | AI/NL interface | No NL2SQL or conversational analytics | Pilot programs or evaluation underway | Natural language query capability deployed | [@ziletti2024; @yuan2019] |
 
-*Pillar 2: Workforce Agility*
+### Pillar 2: Workforce Agility
 
 | Indicator | Low Strength | Med. Strength | High Strength | Evidence |
 |:---|:---|:---|:---|:---|
@@ -166,7 +166,7 @@ Each indicator is scored as Low, Medium, or High Strength using evidence-based a
 | Avg. leadership tenure | < 3 years | 3-5 years | > 5 years | [@wittkieffer2024] |
 | Knowledge concentration | Critical expertise held by 3 or fewer individuals | Partial documentation; some cross-training | Distributed expertise; documented processes | [@massingham2018; @foss2007] |
 
-*Pillar 3: Technical Enablement*
+### Pillar 3: Technical Enablement
 
 | Indicator | Low Strength | Med. Strength | High Strength | Evidence |
 |:---|:---|:---|:---|:---|
