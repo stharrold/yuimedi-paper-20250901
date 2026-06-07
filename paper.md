@@ -237,7 +237,7 @@ This is a narrative review synthesizing existing literature. No primary datasets
 
 # Funding
 
-Yuimedi provided funding for the author's time writing and researching this manuscript.
+Yuimedi, Inc. funded the author's time researching and writing this manuscript.
 
 # Abbreviations
 
