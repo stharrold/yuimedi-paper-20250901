@@ -221,7 +221,7 @@ Future research should empirically validate and refine the HITL-KG framework and
 
 # Acknowledgments
 
-The author (S.T.H.) is the sole author and takes full responsibility for the manuscript's content. Generative AI was used to assist this work: Gemini CLI (Gemini 3, Google) and Claude Code (Claude Opus 4, Anthropic) supported manuscript editing, language refinement, and literature search. Generative AI was not used to generate research findings, data, or conclusions; the author conducted the research and verified all claims, citations, and AI-assisted text. Figures were generated using the Mermaid graph language.
+The author (S.T.H.) is the sole author and takes full responsibility for the manuscript's content. Generative AI disclosure: generative AI was used to assist this work, specifically Gemini CLI (Gemini 3, Google) and Claude Code (Claude Opus 4, Anthropic) for manuscript editing, language refinement, and literature search. Generative AI was not used to generate research findings, data, or conclusions; the author conducted the research and verified all claims, citations, and AI-assisted text. Figures were generated using the Mermaid graph language.
 
 # Author Contributions
 
@@ -237,7 +237,7 @@ This is a narrative review synthesizing existing literature. No primary datasets
 
 # Funding
 
-Yuimedi, Inc. funded the author's time researching and writing this manuscript.
+Yuimedi, Inc. provided financial support for the author's time researching and writing this manuscript.
 
 # Abbreviations
 
