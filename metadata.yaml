@@ -72,3 +72,4 @@ header-includes:
   - \usepackage{xurl}
   - \usepackage{rotating}
   - \usepackage{booktabs}
+  - \setcounter{secnumdepth}{-\maxdimen}
