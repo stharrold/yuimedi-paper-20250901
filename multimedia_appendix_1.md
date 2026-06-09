@@ -2,7 +2,7 @@
 
 ## Validated Query Triple Examples for Healthcare Analytics
 
-This appendix illustrates the Validated Query Triple artifact proposed by the HITL-KG framework (see Section 2.2 of the main paper). Each triple comprises three components: (1) *Natural Language Intent*, the clinical business question; (2) *Executable SQL*, the technical implementation; and (3) *Rationale Metadata*, the contextual "why" behind the logic. Together, these components capture not just *what* query was run but *why* it was constructed that way, preserving institutional knowledge that would otherwise be lost during staff turnover.
+This appendix illustrates the Validated Query Triple artifact proposed by the HITL-KG framework (see the main paper's section "The Solution: Externalization via Socio-Technical Artifacts"). Each triple comprises three components: (1) *Natural Language Intent*, the clinical business question; (2) *Executable SQL*, the technical implementation; and (3) *Rationale Metadata*, the contextual "why" behind the logic. Together, these components capture not just *what* query was run but *why* it was constructed that way, preserving institutional knowledge that would otherwise be lost during staff turnover.
 
 ## The Externalization Process
 
