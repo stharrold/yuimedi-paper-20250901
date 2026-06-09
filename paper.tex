@@ -55,7 +55,7 @@
 
 % add backlinks to footnote references, cf. https://tex.stackexchange.com/questions/302266/make-footnote-clickable-both-ways
 \usepackage{footnotebackref}
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -202,7 +202,7 @@ resilience},
 Connecting Analytics Maturity, Workforce Agility, and Technical
 Enablement}
 \author{Samuel T Harrold, Yuimedi, Inc.}
-\date{March 2026}
+\date{June 2026}
 
 
 %
@@ -294,7 +294,7 @@ Enablement}
 Connecting Analytics Maturity, Workforce Agility, and Technical
 Enablement}
 \author{Samuel T Harrold, Yuimedi, Inc.}
-\date{March 2026}
+\date{June 2026}
 
 %
 % tables
@@ -486,7 +486,7 @@ and Technical Enablement}}}
 }
 
 
-\textsf{March 2026}
+\textsf{June 2026}
 \end{flushleft}
 \end{titlepage}
 \restoregeometry
@@ -526,7 +526,7 @@ vulnerabilities across analytics maturity, workforce agility, and
 technical enablement.
 
 A critical objection, the ``Validator Paradox'' (who validates the AI
-when experts leave?), is resolved by reframing validation through Lean
+when experts leave?), is addressed by reframing validation through Lean
 ``Standard Work'': each validated query establishes the current known
 standard rather than eternal truth, functioning as a ``knowledge
 ratchet'' that prevents regression. By decoupling analytical capability
@@ -547,10 +547,10 @@ Analytics}\label{the-triple-threat-institutional-amnesia-in-healthcare-analytics
 
 The healthcare analytics landscape is currently paralyzed by a ``Triple
 Threat'' of compounding failures: (1) persistently \emph{Low Analytics
-Maturity}, where despite decades of investment, only 39 organizations
-globally have reached the top tiers of the Healthcare Information and
-Management Systems Society (HIMSS) Analytics Maturity Assessment Model
-(AMAM), 26 at Stage 6 and 13 at Stage 7
+Maturity}, where despite decades of investment, as of late 2024 only 39
+organizations globally had reached the top tiers of the Healthcare
+Information and Management Systems Society (HIMSS) Analytics Maturity
+Assessment Model (AMAM), 26 at Stage 6 and 13 at Stage 7
 {[}\citeproc{ref-himss2024}{1}{]}; (2) a \emph{Semantic Gap} between
 clinical intent and technical schema implementation
 {[}\citeproc{ref-gal2019}{2},\citeproc{ref-zhang2024}{3}{]}; and (3) a
@@ -561,13 +561,14 @@ While technical barriers and maturity models are well-documented, the
 workforce dimension has shifted from a management concern to an
 existential threat. Modern longitudinal data on analytics staff is
 fragmented, but the available signals are alarming. As of 2024, 53\% of
-healthcare CIOs have held their roles for less than three years
-{[}\citeproc{ref-wittkieffer2024}{5}{]}, creating a strategic vacuum at
-the top. At the operational level, the situation is equally precarious:
-79\% of provider organizations report persistent shortages in digital
-health roles {[}\citeproc{ref-himssworkforce2024}{6}{]}, and a 2025
-study found that 55\% of public health informatics specialists intend to
-leave their positions {[}\citeproc{ref-rajamani2025}{7}{]}.
+healthcare chief information officers (CIOs) have held their roles for
+less than three years {[}\citeproc{ref-wittkieffer2024}{5}{]}, creating
+a strategic vacuum at the top. At the operational level, the situation
+is equally precarious: 79\% of provider organizations report persistent
+shortages in digital health roles
+{[}\citeproc{ref-himssworkforce2024}{6}{]}, and a 2025 study found that
+55\% of public health informatics specialists intend to leave their
+positions {[}\citeproc{ref-rajamani2025}{7}{]}.
 
 This turnover creates a phenomenon we define as \emph{Institutional
 Amnesia}: the systematic erasure of the tacit knowledge required to
@@ -626,7 +627,8 @@ We ground our analysis in Nonaka's SECI model of knowledge creation
 {[}\citeproc{ref-farnese2019}{16}{]}, informed by a narrative review of
 the literature across healthcare analytics maturity, workforce turnover
 dynamics, and natural language processing, with grey literature assessed
-using the AACODS checklist {[}\citeproc{ref-tyndall2010}{17}{]}. Grey
+using the AACODS (Authority, Accuracy, Coverage, Objectivity, Date,
+Significance) checklist {[}\citeproc{ref-tyndall2010}{17}{]}. Grey
 literature sources were retained only when no peer-reviewed equivalent
 was available or when the source provided unique industry data not
 captured in academic literature. The SECI model describes organizational
@@ -709,12 +711,12 @@ Technical Enablement & Stages 6-7 requirements & Information
 \end{longtable}
 
 HIMSS AMAM provides organizational benchmarks but does not address
-workforce knowledge retention. The DIKW hierarchy explains progression
-from raw data to actionable insight but does not account for
-institutional memory loss. The three-pillar framework synthesizes these
-perspectives, positioning workforce dynamics as the critical enabler
-connecting data access (analytics maturity) with organizational wisdom
-(knowledge preservation)
+workforce knowledge retention. The Data, Information, Knowledge, Wisdom
+(DIKW) hierarchy explains progression from raw data to actionable
+insight but does not account for institutional memory loss. The
+three-pillar framework synthesizes these perspectives, positioning
+workforce dynamics as the critical enabler connecting data access
+(analytics maturity) with organizational wisdom (knowledge preservation)
 {[}\citeproc{ref-rao2006}{11},\citeproc{ref-farnese2019}{16}{]}.
 
 \subsection{The Broken Cycle: Socialization
@@ -816,7 +818,7 @@ best practices evolve as new knowledge is validated rather than
 remaining static.}
 \end{figure}
 
-The corresponding six step Validated Query Cycle is summarized in Figure
+The corresponding six-step Validated Query Cycle is summarized in Figure
 2, which shows how queries move from initial clinical intent through
 expert validation into durable organizational memory.
 
@@ -873,9 +875,9 @@ document, which reduces participation and produces inaccurate records
 under cognitive load
 {[}\citeproc{ref-mayo2016}{12},\citeproc{ref-goffin2011}{25}{]}. Such
 documentation might suffice for a small, stable query set, but real
-workloads are neither: more than half of queries recur at large
-providers {[}\citeproc{ref-jindal2019}{35}{]}, yet even small databases
-log thousands of distinct query strings
+workloads are neither: more than half of analytical queries recur in
+large production workloads {[}\citeproc{ref-jindal2019}{35}{]}, yet even
+small databases log thousands of distinct query strings
 {[}\citeproc{ref-kul2018}{36}{]}, so a fixed set of documented queries
 captures neither the large recurring core nor the evolving ad-hoc tail.
 HITL-KG instead implements active capture across both regimes: the query
@@ -897,7 +899,7 @@ itself, which remains a theoretically grounded, testable proposition
 whose empirical evaluation is the subject of future work.
 
 The HITL-KG framework is supported by three pillars of empirical
-evidence synthesized from over 130 sources.
+evidence synthesized from the literature cited throughout this article.
 
 \subsection{Pillar 1: Analytics Maturity
 Evidence}\label{pillar-1-analytics-maturity-evidence}
@@ -917,11 +919,13 @@ may be even more widespread than the counts suggest
 Most organizations remain at Stages 0-3, characterized by fragmented
 data and limited predictive capabilities
 {[}\citeproc{ref-health2020}{44}{]}. However, maturity is not merely an
-IT metric; it is a clinical safety predictor. Electronic Medical Record
-Adoption Model (EMRAM) levels 6-7 correlate with 3.25 times higher odds
-of better Leapfrog Safety Grades {[}\citeproc{ref-snowdon2024}{45}{]}.
-Low maturity creates a ``low-maturity trap'' where data quality issues
-(such as the 39-71\% missing data rates in cancer databases
+IT metric; it is a clinical safety predictor. In HIMSS's companion
+Electronic Medical Record Adoption Model (EMRAM), which measures the EMR
+adoption underlying analytics capability, levels 6-7 correlate with 3.25
+times higher odds of better Leapfrog Safety Grades
+{[}\citeproc{ref-snowdon2024}{45}{]}. Low maturity creates a
+``low-maturity trap'' where data quality issues (such as the 39-71\%
+missing data rates in cancer databases
 {[}\citeproc{ref-yang2021}{46}{]}) remain uncorrected because the
 experts who understand the context are leaving.
 
@@ -951,9 +955,11 @@ Evidence}\label{pillar-2-workforce-agility-evidence}
 
 \emph{Workforce agility} is a workforce's capacity for proactivity,
 adaptability, and resilience under change
-{[}\citeproc{ref-breu2002}{51},\citeproc{ref-tessarini2021}{52}{]}. The
-cost of turnover in informatics is higher than standard IT. Knowledge
-loss can cost up to three times annual salary
+{[}\citeproc{ref-breu2002}{51},\citeproc{ref-tessarini2021}{52}{]}. In
+healthcare analytics, the evidence below documents the instability that
+systematically erodes this capacity. The cost of turnover in informatics
+is higher than standard IT. Knowledge loss can cost up to three times
+annual salary
 {[}\citeproc{ref-massingham2018}{23},\citeproc{ref-wynendaele2025}{53}{]}.
 In clinical informatics specifically, replacement costs range from
 \$50,000 to \$230,000 per departing employee, with a single department
@@ -1050,15 +1056,15 @@ developed specifically for healthcare, and only two have been validated
 addresses this gap by organizing evidence-based indicators around the
 specific domains where institutional amnesia operates, measuring not
 just where an organization stands but how vulnerable it is to the
-compounding effects identified in Section 1.
+compounding effects identified at the outset of this article.
 
 \subsection{The Three-Pillar Rubric}\label{the-three-pillar-rubric}
 
 Each indicator is scored as Low, Medium, or High Strength using
-evidence-based anchors from the literature reviewed in Section 4.
-Organizations scoring predominantly ``Low Strength'' across multiple
-pillars face the self-reinforcing degradation cycle that the framework
-identifies as the central threat.
+evidence-based anchors from the literature reviewed in the preceding
+Evidence Base section. Organizations scoring predominantly ``Low
+Strength'' across multiple pillars face the self-reinforcing degradation
+cycle that the framework identifies as the central threat.
 
 \newpage
 
@@ -1231,7 +1237,8 @@ next expert arrives (whether a seasoned veteran or a competent
 mid-career hire), they inherit a baseline and can refine it rather than
 reconstructing institutional knowledge from scratch.
 
-This mechanism functions as a \emph{Knowledge Ratchet}
+This mechanism functions as what we term a \emph{Knowledge Ratchet},
+consistent with findings on collective knowledge structures
 {[}\citeproc{ref-rao2006}{11}{]}. Each validated triple prevents
 regression below the last confirmed state. Even if a subsequent
 validator is less experienced than their predecessor, the organization
