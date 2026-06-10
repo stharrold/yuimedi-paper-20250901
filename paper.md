@@ -30,7 +30,7 @@ citecolor: blue
 
 # The Triple Threat: Institutional Amnesia in Healthcare Analytics
 
-The healthcare analytics landscape is currently paralyzed by a "Triple Threat" of compounding failures: (1) persistently *Low Analytics Maturity*, where despite decades of investment, as of late 2024 only 39 organizations globally had reached the top tiers of the Healthcare Information and Management Systems Society (HIMSS) Analytics Maturity Assessment Model (AMAM), 26 at Stage 6 and 13 at Stage 7 [@himss2024]; (2) a *Semantic Gap* between clinical intent and technical schema implementation [@gal2019; @zhang2024]; and (3) a profound crisis of *Workforce Instability* that creates "Institutional Amnesia" [@hong2025].
+The healthcare analytics landscape is currently paralyzed by a "Triple Threat" of compounding failures: (1) persistently *Low Analytics Maturity*, where despite decades of investment, as of late 2024 only 39 organizations globally had reached the top tiers of the Healthcare Information and Management Systems Society (HIMSS) Adoption Model for Analytics Maturity (AMAM), 26 at Stage 6 and 13 at Stage 7 [@himss2024]; (2) a *Semantic Gap* between clinical intent and technical schema implementation [@gal2019; @zhang2024]; and (3) a profound crisis of *Workforce Instability* that creates "Institutional Amnesia" [@hong2025].
 
 While technical barriers and maturity models are well-documented, the workforce dimension has shifted from a management concern to an existential threat. Modern longitudinal data on analytics staff is fragmented, but the available signals are alarming. As of 2024, 53% of healthcare chief information officers (CIOs) have held their roles for less than three years [@wittkieffer2024], creating a strategic vacuum at the top. At the operational level, the situation is equally precarious: 79% of provider organizations report persistent shortages in digital health roles [@himssworkforce2024], and a 2025 study found that 55% of public health informatics specialists intend to leave their positions [@rajamani2025].
 
@@ -221,7 +221,7 @@ Future research should empirically validate and refine the HITL-KG framework and
 
 # Acknowledgments
 
-The author (S.T.H.) is the sole author and takes full responsibility for the manuscript's content. Generative AI disclosure: generative AI was used to assist this work, specifically Gemini CLI (Gemini 3, Google) and Claude Code (Claude Opus 4, Anthropic) for manuscript editing, language refinement, and literature search. Generative AI was not used to generate research findings, data, or conclusions; the author conducted the research and verified all claims, citations, and AI-assisted text. Figures were generated using the Mermaid graph language.
+The author (S.T.H.) is the sole author and takes full responsibility for the manuscript's content. Generative AI disclosure: generative AI was used to assist this work, specifically Gemini CLI (Gemini 3, Google) and Claude Code (Claude 5, Anthropic) for manuscript editing, language refinement, and literature search. Generative AI was not used to generate research findings, data, or conclusions; the author conducted the research and verified all claims, citations, and AI-assisted text. Figures were generated using the Mermaid graph language.
 
 # Author Contributions
 
@@ -244,7 +244,7 @@ Yuimedi, Inc. provided financial support for the author's time researching and w
 AACODS: Authority, Accuracy, Coverage, Objectivity, Date, Significance
 ACO: Accountable Care Organization
 AI: Artificial Intelligence
-AMAM: Analytics Maturity Assessment Model
+AMAM: Adoption Model for Analytics Maturity
 BI: Business Intelligence
 CI/CD: Continuous Integration and Continuous Delivery
 CIO: Chief Information Officer
