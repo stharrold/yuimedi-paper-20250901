@@ -57,7 +57,7 @@ classoption:
 
 # Header and footer
 header-left: "Healthcare Analytics Challenges"
-header-right: "March 2026"
+header-right: "June 2026"
 footer-left: "\\hspace{0pt}"
 footer-center: "\\thepage"
 footer-right: "\\hspace{0pt}"
