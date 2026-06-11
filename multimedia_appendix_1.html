@@ -240,12 +240,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 
 
 
+
 </head>
 <body>
 <header id="title-block-header">
 <h1 class="title">Multimedia Appendix</h1>
 <p class="author">Samuel T Harrold, Yuimedi, Inc.</p>
-<p class="date">March 2026</p>
+<p class="date">June 2026</p>
 </header>
 <nav id="TOC" role="doc-toc">
 
@@ -254,14 +255,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 <h2 id="validated-query-triple-examples-for-healthcare-analytics">Validated
 Query Triple Examples for Healthcare Analytics</h2>
 <p>This appendix illustrates the Validated Query Triple artifact
-proposed by the HITL-KG framework (see Section 2.2 of the main paper).
-Each triple comprises three components: (1) <em>Natural Language
-Intent</em>, the clinical business question; (2) <em>Executable
-SQL</em>, the technical implementation; and (3) <em>Rationale
-Metadata</em>, the contextual “why” behind the logic. Together, these
-components capture not just <em>what</em> query was run but <em>why</em>
-it was constructed that way, preserving institutional knowledge that
-would otherwise be lost during staff turnover.</p>
+proposed by the HITL-KG framework (see the main paper’s section “The
+Solution: Externalization via Socio-Technical Artifacts”). Each triple
+comprises three components: (1) <em>Natural Language Intent</em>, the
+clinical business question; (2) <em>Executable SQL</em>, the technical
+implementation; and (3) <em>Rationale Metadata</em>, the contextual
+“why” behind the logic. Together, these components capture not just
+<em>what</em> query was run but <em>why</em> it was constructed that
+way, preserving institutional knowledge that would otherwise be lost
+during staff turnover.</p>
+<h2 id="the-externalization-process">The Externalization Process</h2>
+<p>Each Validated Query Triple is produced through a five-step cycle
+that captures tacit knowledge as a byproduct of routine analytics:</p>
+<ol type="1">
+<li><em>Query Generation</em>: A user asks a question in natural
+language; the AI proposes candidate SQL based on schema knowledge.</li>
+<li><em>Semantic Translation</em>: The AI translates the SQL back into a
+natural-language explanation of what it will do.</li>
+<li><em>Expert Validation</em>: The domain expert confirms or corrects
+this interpretation. This is the critical moment of Externalization,
+where the Human-in-the-Loop step transforms validation into iterative
+knowledge capture.</li>
+<li><em>Artifact Storage</em>: The validated triple is hashed and stored
+in organizational memory.</li>
+<li><em>Retrieval</em>: Future queries semantically match against this
+repository first, retrieving trusted human knowledge before attempting
+probabilistic generation.</li>
+</ol>
+<p>The worked examples below show the artifacts this process
+produces.</p>
 <hr />
 <h3 id="triple-1-diabetes-care-monitoring">Triple 1: Diabetes Care
 Monitoring</h3>

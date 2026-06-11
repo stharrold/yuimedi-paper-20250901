@@ -62,9 +62,9 @@ The three-pillar structure aligns with established models across healthcare info
 
 | Pillar | HIMSS AMAM Alignment | DIKW Hierarchy | Knowledge Management |
 |:---|:---|:---|:---|
-| Analytics Maturity | Stages 0-7 progression | Data -> Information | Organizational Learning |
-| Workforce Agility | Implicit in advanced stages | Knowledge (tacit) -> Wisdom | Tacit Knowledge Transfer |
-| Technical Enablement | Stages 6-7 requirements | Information -> Knowledge | Knowledge Codification |
+| Analytics Maturity | Stages 0-7 progression | Data → Information | Organizational Learning |
+| Workforce Agility | Implicit in advanced stages | Knowledge (tacit) → Wisdom | Tacit Knowledge Transfer |
+| Technical Enablement | Stages 6-7 requirements | Information → Knowledge | Knowledge Codification |
 
 : Framework alignment with established models. \label{tab:alignment}
 
