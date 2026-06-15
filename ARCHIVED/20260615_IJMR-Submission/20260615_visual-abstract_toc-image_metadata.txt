@@ -24,8 +24,8 @@ Licensed by the authors (purchased). Proof of purchase: AJE / Springer Nature Au
 
 --- Uploading the License/Permission file to JMIR (section 3) ---
 
-- Upload the FULL (unredacted) invoice 20260115_Invoice_SL73WR5YH_998.pdf plus 20260615_AJE_Terms-of-Service.pdf to the JMIR portal (a private system) as the License/Permission supplementary file(s).
-- The unredacted invoice and receipt contain the author's home address and are deliberately kept OUT of this public repository (see .gitignore). A redacted copy (home address removed; itemization preserved) is archived here as 20260115_Invoice_SL73WR5YH_redacted.png for the public record.
+- Upload 20260115_Invoice_SL73WR5YH_redacted.png (itemized: "Graphical Abstract" $499.00, payment made, $0.00 balance) plus 20260615_AJE_Terms-of-Service.pdf to the JMIR portal as the License/Permission supplementary file(s). Section 3 accepts both .png and .pdf. The redacted invoice is sufficient proof of purchase; only the author's home address is masked, which JMIR does not require.
+- The unredacted invoice/receipt PDFs (which showed the author's home address) were deleted locally and were never committed to this public repository. If an unredacted copy is ever needed, re-download it from the Springer Nature Author Services (AJE) account or the original emailed receipt.
 
 --- Notes ---
 
