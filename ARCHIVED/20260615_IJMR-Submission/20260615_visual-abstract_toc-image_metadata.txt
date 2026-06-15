@@ -14,16 +14,21 @@ Source:
 American Journal Experts (Springer Nature Author Services)
 
 Copyright:
-Yuimedi, Inc. (the visual abstract was commissioned by the author in his advisory capacity at Yuimedi, Inc., which funded its purchase; consistent with the manuscript's funding statement and author affiliation)
+Samuel T Harrold, Yuimedi, Inc. (purchased by the author, whose Yuimedi affiliation and the manuscript funding statement reflect that Yuimedi funded the work; AJE invoice SL73WR5YH itemizes the Graphical Abstract)
 
 Source Image URL:
 Not applicable (commissioned visual abstract; no public source page). Repository archive: https://doi.org/10.5281/zenodo.18264359
 
 License:
-Licensed by the authors (purchased). Proof of purchase: American Journal Experts correspondence in abstract-visual-video/ (e.g., 20260209_Email_American-Journal-Experts_Visual-Abstract.pdf, 20260225_Email_American-Journal-Experts_Visual-Abstract.pdf, 20260323_Email_American-Journal-Experts_Visual-Abstract-Revisions-Request.pdf).
+Licensed by the authors (purchased). Proof of purchase: AJE / Springer Nature Author Services itemized invoice SL73WR5YH (15 Jan 2026; line item "Graphical Abstract" $499.00; paid in full). License basis: AJE Terms of Service (20260615_AJE_Terms-of-Service.pdf).
+
+--- Uploading the License/Permission file to JMIR (section 3) ---
+
+- Upload the FULL (unredacted) invoice 20260115_Invoice_SL73WR5YH_998.pdf plus 20260615_AJE_Terms-of-Service.pdf to the JMIR portal (a private system) as the License/Permission supplementary file(s).
+- The unredacted invoice and receipt contain the author's home address and are deliberately kept OUT of this public repository (see .gitignore). A redacted copy (home address removed; itemization preserved) is archived here as 20260115_Invoice_SL73WR5YH_redacted.png for the public record.
 
 --- Notes ---
 
 - JMIR TOC image spec met: PNG only, max 5 MB, minimum 300 x 225 px, maximum 1200 x 900 px.
 - The AJE logo (top-left) is retained intentionally.
-- When the License is set to "Licensed by the authors," JMIR requires proof of purchase; attach one of the AJE emails listed above.
+- The invoice (SL73WR5YH) bundles the Graphical Abstract ($499) and the Video Byte ($499); only the Graphical Abstract is relevant to this TOC image.
