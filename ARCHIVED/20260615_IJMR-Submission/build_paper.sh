@@ -202,8 +202,6 @@ generate_pdf() {
         --pdf-engine="$pdf_engine" \
         --template=eisvogel \
         --listings \
-        --toc \
-        --toc-depth=3 \
         --output="$output"
 
     if [[ -f "$output" && -s "$output" ]]; then
@@ -233,8 +231,6 @@ generate_html() {
         --to=html5 \
         --embed-resources \
         --standalone \
-        --toc \
-        --toc-depth=3 \
         $header_arg \
         --output="$output"
 
@@ -257,8 +253,6 @@ generate_docx() {
     # shellcheck disable=SC2086
     pandoc "$INPUT_FILE" $common_args \
         --to=docx \
-        --toc \
-        --toc-depth=3 \
         --reference-doc="${PROJECT_ROOT}/reference.docx" \
         --output="$output"
 
@@ -283,8 +277,6 @@ generate_latex() {
         --to=latex \
         --template=eisvogel \
         --listings \
-        --toc \
-        --toc-depth=3 \
         --output="$output"
 
     if [[ -f "$output" && -s "$output" ]]; then

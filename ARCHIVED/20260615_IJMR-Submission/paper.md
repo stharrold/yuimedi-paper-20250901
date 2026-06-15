@@ -16,8 +16,7 @@ keywords: [institutional amnesia, medical informatics, socio-technical systems, 
 license: "CC BY 4.0"
 license-url: "https://creativecommons.org/licenses/by/4.0/"
 lang: en-US
-toc: true
-toc-depth: 3
+toc: false
 numbersections: false
 geometry: margin=1in
 fontsize: 11pt

@@ -23,8 +23,7 @@ linestretch: 1.5
 # monofont: "DejaVu Sans Mono"
 
 # Table of contents
-toc: true
-toc-depth: 3
+toc: false
 numbersections: false
 
 # Bibliography (pandoc-citeproc)
