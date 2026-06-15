@@ -27,6 +27,14 @@ Licensed by the authors (purchased). Proof of purchase: AJE / Springer Nature Au
 - Upload 20260115_Invoice_SL73WR5YH_redacted.png (itemized: "Graphical Abstract" $499.00, payment made, $0.00 balance) plus 20260615_AJE_Terms-of-Service.pdf to the JMIR portal as the License/Permission supplementary file(s). Section 3 accepts both .png and .pdf. The redacted invoice is sufficient proof of purchase; only the author's home address is masked, which JMIR does not require.
 - The unredacted invoice/receipt PDFs (which showed the author's home address) were deleted locally and were never committed to this public repository. If an unredacted copy is ever needed, re-download it from the Springer Nature Author Services (AJE) account or the original emailed receipt.
 
+--- Supplementary file descriptions (paste into each file's Description field) ---
+
+20260615_AJE_Terms-of-Service.pdf:
+Terms of Service of American Journal Experts (Springer Nature Author Services), the vendor that produced the purchased visual/graphical abstract used as this submission's TOC/feature image (invoice SL73WR5YH). Provided as the License/Permission documentation supporting the image's "Licensed by the authors" designation, together with the itemized purchase invoice.
+
+20260115_Invoice_SL73WR5YH_redacted.png:
+Itemized AJE (Springer Nature Author Services) invoice SL73WR5YH, showing purchase of the "Graphical Abstract" ($499.00, paid in full), as proof of purchase for the "Licensed by the authors" TOC/feature image. The author's home address is redacted; all transaction details are intact.
+
 --- Notes ---
 
 - JMIR TOC image spec met: PNG only, max 5 MB, minimum 300 x 225 px, maximum 1200 x 900 px.
