@@ -1,0 +1,18 @@
+i-JMR Resubmission ms#96541 - Response-to-Reviewers Metadata
+(Resubmission form, section 3: additional material for editors/reviewers)
+
+File: 20260607_response-to-reviewers.pdf
+Format: PDF, 5 pages. Clean copy of the point-by-point response with the internal author-only notes removed (the "NOTE FOR SUBMISSION" and "DO NOT SEND" lines are stripped; section dividers rendered as headings).
+
+--- Description (paste into the supplementary file's Description field) ---
+
+Point-by-point response to the editor's and reviewers' comments (Decision D), addressing each editorial and peer-review point. Uploaded as additional material alongside the tracked-changes manuscript; the same response text is entered in the editor notification (section B).
+
+Short version (if the field is length-limited):
+Point-by-point response to the editor and reviewers (Decision D), addressing each comment. Provided as an additional file; the same text is entered in the editor notification (section B).
+
+--- Notes ---
+
+- Upload in section 3 ("additional material for editors/reviewers"), together with the tracked-changes manuscript.
+- This PDF is the file copy; the identical response text is also pasted into section B (the editor notification). Paste the plain text from 20260607_response-to-reviewers.md, not this PDF.
+- This response supersedes a cover letter for the revision; the i-JMR revision form has no cover-letter slot, so cover-letter.pdf is not uploaded (retained in the archive as a record).
