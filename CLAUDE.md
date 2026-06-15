@@ -85,6 +85,7 @@ podman run --rm --security-opt label=disable -v "$(pwd)":/app -v yuimedi_venv_ca
 
 Conventional commits: `fix(paper):`, `feat(ci):`, `docs:`, `build:`
 Include `Closes #<issue>` to auto-close GitHub issues.
+- Avoid `git add -A <dir>` when the dir holds untracked large files (e.g. the 51MB video byte in `abstract-visual-video/`): it stages them, trips the >10MB pre-commit hook, and silently aborts the commit (the push then reports "Everything up-to-date" with HEAD unchanged). Stage specific files instead.
 
 ## Writing Rules
 
@@ -175,6 +176,12 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 6. Implementation plan with line-level edits, word budget, commit sequence -> `ARCHIVED/`
 7. Execute in passes (language edits -> content additions -> supporting improvements -> figures)
 
+## Submission Tooling
+
+- PDF redaction for the public repo: rasterize first (`pdftoppm -png -r 150`) then paint an opaque box with Pillow (`uv run --with pillow`). A black box drawn over a PDF text layer leaves the underlying text extractable.
+- Tracked-changes (redline) manuscript: `npx --yes pandiff old.docx paper.docx -o out.docx` produces native Word tracked changes (`w:ins`/`w:del`). Set the author with `sed -i '' 's/w:author="unknown"/w:author="Samuel T Harrold"/g' word/document.xml` then re-zip. pandiff can't embed images mid-diff, so figures render as their captions; upload figure files separately.
+- i-JMR resubmission form structure: section A = clean manuscript (no tracked changes), B = editor notification (paste the plain-text point-by-point response), D = title + Unstructured abstract (plain text, the easy-to-miss field) + keywords, section 1 = figures, section 3 = additional material (tracked-changes docx + response PDF + TOC/feature image + License/Permission proof). No cover-letter slot on the revision form.
+
 ## CI Notes
 
 - `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
@@ -182,6 +189,9 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **Verify against CI-committed artifacts, not local rebuilds.** The `Containerfile`'s pandoc is older than typical local pandoc and emits different `\includegraphics` attributes (no auto-injected `keepaspectratio`, `\textwidth` in place of `\linewidth`). After a CI `[skip ci]` regeneration, re-inspect the committed `paper.tex`/`paper.pdf` directly; a local `build_paper.sh` run can mask bugs that only surface in CI output.
 - Paper Artifacts Generation requires pandoc + texlive in Containerfile
 - Don't pipe remote install scripts in Containerfiles. For `uv`, use `COPY --from=ghcr.io/astral-sh/uv:<version> /uv /uvx /usr/local/bin/` (astral.sh install endpoint has returned 502s that hard-fail builds).
+- Build PDF engine: `build_paper.sh` falls back to `tectonic` (xelatex not on direct shell PATH). Standalone pandoc PDF builds (cover letter, response-to-reviewers) need `--pdf-engine=tectonic`.
+- Pandoc CLI flags override in-document metadata: `--toc` / `--number-sections` in `build_paper.sh` win over `toc:` / `number-sections:` in `metadata.yaml`. To drop a TOC from the submission, remove the `--toc`/`--toc-depth` flags from all four pandoc calls, not just edit metadata (local and CI pandoc resolve the conflict differently).
+- `metadata.yaml` `header-right` is a hardcoded literal (e.g. `"June 2026"`), NOT derived from `date:`. Update it by hand when the submission month changes.
 
 ## Architecture
 
