@@ -32,6 +32,9 @@ Licensed by the authors (purchased). Proof of purchase: AJE / Springer Nature Au
 20260615_AJE_Terms-of-Service.pdf:
 Terms of Service of American Journal Experts (Springer Nature Author Services), the vendor that produced the purchased visual/graphical abstract used as this submission's TOC/feature image (invoice SL73WR5YH). Provided as the License/Permission documentation supporting the image's "Licensed by the authors" designation, together with the itemized purchase invoice.
 
+Editor notification note (optional, paste into section B; no specific ToS section needs to be cited):
+The TOC/feature image is a visual abstract that the author commissioned and purchased from American Journal Experts (Springer Nature Author Services) for use in this publication; the itemized invoice and the vendor's Terms of Service are attached, and the image is designated "Licensed by the authors."
+
 20260115_Invoice_SL73WR5YH_redacted.png:
 Itemized AJE (Springer Nature Author Services) invoice SL73WR5YH, showing purchase of the "Graphical Abstract" ($499.00, paid in full), as proof of purchase for the "Licensed by the authors" TOC/feature image. The author's home address is redacted; all transaction details are intact.
 
