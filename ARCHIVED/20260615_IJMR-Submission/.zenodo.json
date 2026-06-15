@@ -1,0 +1,44 @@
+{
+    "title": "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+    "description": "Research repository for a Viewpoint paper proposing Human-in-the-Loop Knowledge Governance (HITL-KG), a socio-technical framework for mitigating institutional amnesia in healthcare analytics. Includes a Three-Pillar Assessment Rubric, validated query triple architecture, and a Python-based literature review tool implementing Clean Architecture for academic claim verification.",
+    "version": "2.0.0",
+    "upload_type": "software",
+    "publication_date": "2026-03-29",
+    "creators": [
+        {
+            "name": "Harrold, Samuel T.",
+            "affiliation": "Yuimedi, Inc.",
+            "orcid": "0009-0008-4596-6921"
+        }
+    ],
+    "keywords": [
+        "healthcare analytics",
+        "institutional amnesia",
+        "knowledge governance",
+        "human-in-the-loop",
+        "natural language processing",
+        "NL2SQL",
+        "workforce turnover",
+        "organizational resilience",
+        "HIMSS AMAM"
+    ],
+    "license": "Apache-2.0",
+    "access_right": "open",
+    "language": "eng",
+    "communities": [{"identifier": "zenodo"}],
+    "related_identifiers": [
+        {
+            "relation": "isSupplementTo",
+            "identifier": "https://github.com/stharrold/yuimedi-paper-20250901",
+            "resource_type": "software"
+        }
+    ],
+    "grants": [],
+    "subjects": [
+        {"term": "Healthcare Analytics", "scheme": "keyword"},
+        {"term": "Knowledge Governance", "scheme": "keyword"},
+        {"term": "Natural Language Processing", "scheme": "keyword"},
+        {"term": "Organizational Resilience", "scheme": "keyword"}
+    ],
+    "notes": "Version 2.0.0 includes the Viewpoint paper resubmitted to JMIR Medical Informatics (ms#91493) proposing HITL-KG for mitigating institutional amnesia, and the accompanying literature review toolset."
+}
