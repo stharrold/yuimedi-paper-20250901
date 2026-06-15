@@ -162,6 +162,7 @@ def generate_markdown(question_data, search_results):
     for link in search_results["links"]:
         content += f"\n*   **{link['title']}**\n    *   URL: {link['url']}\n"
 
+    filepath.parent.mkdir(parents=True, exist_ok=True)
     with open(filepath, "w") as f:
         f.write(content)
 

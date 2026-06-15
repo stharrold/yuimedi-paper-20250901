@@ -1,8 +1,8 @@
-# JMIR Medical Informatics Submission Checklist
+# Interactive Journal of Medical Research (i-JMR) Submission Checklist
 
 **Article type:** Viewpoint
-**Manuscript ID:** ms#91493 (resubmission)
-**Date:** March 2026
+**Manuscript ID:** ms#96541 (R1 major revision; transferred from JMIR Medical Informatics ms#91493)
+**Date:** June 2026
 
 ## Quick Validation
 
@@ -64,7 +64,7 @@ grep -n '—' paper.md
 | `multimedia_appendix_1.pdf` | Multimedia Appendix 1: Validated Query Triple Examples | PDF |
 | `references.bib` | Bibliography | BibTeX |
 
-## During Submission (JMIR System)
+## During Submission (i-JMR Resubmission Form)
 
 ### Author Metadata
 - [ ] **Corresponding Author**: Samuel T Harrold
@@ -81,19 +81,20 @@ grep -n '—' paper.md
 - [ ] **Keywords**: institutional amnesia; medical informatics; socio-technical systems; query governance; natural language processing; knowledge management; personnel turnover; organizational resilience
 
 ### File Uploads
-- [ ] **Manuscript**: Upload `paper.docx`
-- [ ] **Figures**: Upload each PNG as Figure type
-- [ ] **Cover Letter**: Paste content from `cover-letter.md`
-- [ ] **Multimedia Appendix**: Upload `multimedia_appendix_1.pdf`
+- [ ] **Manuscript (section A)**: Upload clean `paper.docx` (no tracked changes)
+- [ ] **Figures (section 1)**: Upload each PNG as Figure type
+- [ ] **Multimedia Appendix (section 2)**: Upload `multimedia_appendix_1.pdf`
+- [ ] **Additional material (section 3)**: Upload the tracked-changes manuscript and the point-by-point response-to-reviewers PDF (the i-JMR revision form has no cover-letter slot)
+- [ ] **Editor notification (section B)**: Paste the plain-text point-by-point response
 
-### Cover Letter Notes
-- References ms#91493 (resubmission)
-- Explains conversion from Original Paper to Viewpoint per editor guidance
+### Response-to-Reviewers Notes
+- References ms#96541 (R1 major revision, Decision D)
+- Point-by-point response entered in the editor notification (section B) and uploaded as a PDF in section 3
 - Discloses AI tools used
 - Notes prescriptive Viewpoint stance
 
 ## Post-Submission
 
 - [ ] **Verify** submission confirmation email
-- [ ] **Monitor** JMIR submission portal for reviewer assignment
-- [ ] **Track** in GitHub issue #506
+- [ ] **Monitor** i-JMR submission portal for editor/reviewer assignment
+- [ ] **Track** under the i-JMR R1 epic (GitHub issue #529 / milestone "i-JMR R1"); issue #506 is retired/superseded by the i-JMR transfer
