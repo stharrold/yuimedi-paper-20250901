@@ -5,6 +5,18 @@ from: Samuel T Harrold, Yuimedi, Inc.
 subject: "Revised Manuscript (R1) Resubmission: ms#96541, Decision D (major revision)"
 ---
 
+Samuel T Harrold\
+Yuimedi, Inc.\
+samuel.harrold@yuimedi.com
+
+June 2026
+
+Dr. Matthew Balcarras\
+Editor, Interactive Journal of Medical Research\
+JMIR Publications
+
+RE: Revised Manuscript (R1) Resubmission: ms#96541, Decision D (major revision and re-review)
+
 Dear Dr. Balcarras,
 
 I am writing to resubmit the manuscript "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement" (ms#96541) as a *Viewpoint* article, revised in response to Decision D (major revision and re-review).
