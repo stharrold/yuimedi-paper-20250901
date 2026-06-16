@@ -145,3 +145,9 @@ outputs/
 *.log.jsonl
 .github/instructions/codacy.instructions.md
 gha-creds-*.json
+
+# AJE proof-of-purchase originals contain the author's home address.
+# Keep out of this PUBLIC repo; upload to the JMIR portal directly.
+# A redacted PNG of the invoice is committed instead.
+abstract-visual-video/20260115_Receipt_SL73WR5YH_998.pdf
+abstract-visual-video/20260115_Invoice_SL73WR5YH_998.pdf

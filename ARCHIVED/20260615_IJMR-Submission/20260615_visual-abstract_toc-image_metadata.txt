@@ -1,0 +1,45 @@
+i-JMR Resubmission ms#96541 - TOC/Feature Image Metadata
+(Resubmission form, section 3: "TOC/Feature image for homepage")
+
+File: 20260615_visual-abstract_toc-image.png
+Format: PNG, 1200 x 667 px, opaque, ~516 KB
+Derived from: "20260331T154000Z_GAb0243_SNIndv_trategic Framework for Healthcare Analytics 02.V3" (AJE visual abstract, version 3), downscaled from the 2340 x 1301 JPEG to 1200 px wide.
+
+--- Form fields (paste into the TOC image metadata) ---
+
+Description:
+Visual abstract of the Three-Pillar Framework: how low analytics maturity, workforce instability, and technical barriers drive institutional amnesia in healthcare analytics, and how the Validated Query Cycle of Human-in-the-Loop Knowledge Governance (HITL-KG) addresses them.
+
+Source:
+American Journal Experts (Springer Nature Author Services)
+
+Copyright:
+Samuel T Harrold, Yuimedi, Inc. (purchased by the author, whose Yuimedi affiliation and the manuscript funding statement reflect that Yuimedi funded the work; AJE invoice SL73WR5YH itemizes the Graphical Abstract)
+
+Source Image URL:
+Not applicable (commissioned visual abstract; no public source page). Repository archive: https://doi.org/10.5281/zenodo.18264359
+
+License:
+Licensed by the authors (purchased). Proof of purchase: AJE / Springer Nature Author Services itemized invoice SL73WR5YH (15 Jan 2026; line item "Graphical Abstract" $499.00; paid in full). License basis: AJE Terms of Service (20260615_AJE_Terms-of-Service.pdf).
+
+--- Uploading the License/Permission file to JMIR (section 3) ---
+
+- Upload 20260115_AJE_Invoice_SL73WR5YH_redacted.png (itemized: "Graphical Abstract" $499.00, payment made, $0.00 balance) plus 20260615_AJE_Terms-of-Service.pdf to the JMIR portal as the License/Permission supplementary file(s). Section 3 accepts both .png and .pdf. The redacted invoice is sufficient proof of purchase; only the author's home address is masked, which JMIR does not require.
+- The unredacted invoice/receipt PDFs (which showed the author's home address) were deleted locally and were never committed to this public repository. If an unredacted copy is ever needed, re-download it from the Springer Nature Author Services (AJE) account or the original emailed receipt.
+
+--- Supplementary file descriptions (paste into each file's Description field) ---
+
+20260615_AJE_Terms-of-Service.pdf:
+Terms of Service of American Journal Experts (Springer Nature Author Services), the vendor that produced the purchased visual/graphical abstract used as this submission's TOC/feature image (invoice SL73WR5YH). Provided as the License/Permission documentation supporting the image's "Licensed by the authors" designation, together with the itemized purchase invoice.
+
+Editor notification note (optional, paste into section B; no specific ToS section needs to be cited):
+The TOC/feature image is a visual abstract that the author commissioned and purchased from American Journal Experts (Springer Nature Author Services) for use in this publication; the itemized invoice and the vendor's Terms of Service are attached, and the image is designated "Licensed by the authors."
+
+20260115_AJE_Invoice_SL73WR5YH_redacted.png:
+Itemized AJE (Springer Nature Author Services) invoice SL73WR5YH, showing purchase of the "Graphical Abstract" ($499.00, paid in full), as proof of purchase for the "Licensed by the authors" TOC/feature image. The author's home address is redacted; all transaction details are intact.
+
+--- Notes ---
+
+- JMIR TOC image spec met: PNG only, max 5 MB, minimum 300 x 225 px, maximum 1200 x 900 px.
+- The AJE logo (top-left) is retained intentionally.
+- The invoice (SL73WR5YH) bundles the Graphical Abstract ($499) and the Video Byte ($499); only the Graphical Abstract is relevant to this TOC image.

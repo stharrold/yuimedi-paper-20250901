@@ -28,9 +28,9 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 
 **Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Knowledge Governance (HITL-KG).
 
-**Three-paper series:** Paper 1 (Viewpoint, resubmitting to JMIR ms#91493) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
+**Three-paper series:** Paper 1 (Viewpoint, ms#96541 at i-JMR; transferred from JMIR Medical Informatics after Decision E2 desk-reject 2026-04-17; peer-reviewed and returned major revision Decision D 2026-06-05; R1 revision complete, due 2026-07-03; tracked under #529 epic / milestone "i-JMR R1") → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
 
-**Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint (~3,600 body words). See GH#506.
+**Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint (~4,470 body words). Desk-rejected at JMIR Medical Informatics (Decision E2), transferred to i-JMR, returned major revision (Decision D, 2026-06-05); R1 revision complete (see #529 epic; point-by-point response at `docs/20260607_i-jmr-r1-response-to-reviewers.md`). GH#506 (resubmit to JMIR Medical Informatics) is retired/superseded by the i-JMR transfer.
 
 ## Essential Commands
 
@@ -85,6 +85,7 @@ podman run --rm --security-opt label=disable -v "$(pwd)":/app -v yuimedi_venv_ca
 
 Conventional commits: `fix(paper):`, `feat(ci):`, `docs:`, `build:`
 Include `Closes #<issue>` to auto-close GitHub issues.
+- Avoid `git add -A <dir>` when the dir holds untracked large files (e.g. the 51MB video byte in `abstract-visual-video/`): it stages them, trips the >10MB pre-commit hook, and silently aborts the commit (the push then reports "Everything up-to-date" with HEAD unchanged). Stage specific files instead.
 
 ## Writing Rules
 
@@ -175,6 +176,12 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 6. Implementation plan with line-level edits, word budget, commit sequence -> `ARCHIVED/`
 7. Execute in passes (language edits -> content additions -> supporting improvements -> figures)
 
+## Submission Tooling
+
+- PDF redaction for the public repo: rasterize first (`pdftoppm -png -r 150`) then paint an opaque box with Pillow (`uv run --with pillow`). A black box drawn over a PDF text layer leaves the underlying text extractable.
+- Tracked-changes (redline) manuscript: `npx --yes pandiff old.docx paper.docx -o out.docx` produces native Word tracked changes (`w:ins`/`w:del`). Set the author with `sed -i '' 's/w:author="unknown"/w:author="Samuel T Harrold"/g' word/document.xml` then re-zip. pandiff can't embed images mid-diff, so figures render as their captions; upload figure files separately.
+- i-JMR resubmission form structure: section A = clean manuscript (no tracked changes), B = editor notification (paste the plain-text point-by-point response), D = title + Unstructured abstract (plain text, the easy-to-miss field) + keywords, section 1 = figures, section 3 = additional material (tracked-changes docx + response PDF + TOC/feature image + License/Permission proof). No cover-letter slot on the revision form.
+
 ## CI Notes
 
 - `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
@@ -182,6 +189,9 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **Verify against CI-committed artifacts, not local rebuilds.** The `Containerfile`'s pandoc is older than typical local pandoc and emits different `\includegraphics` attributes (no auto-injected `keepaspectratio`, `\textwidth` in place of `\linewidth`). After a CI `[skip ci]` regeneration, re-inspect the committed `paper.tex`/`paper.pdf` directly; a local `build_paper.sh` run can mask bugs that only surface in CI output.
 - Paper Artifacts Generation requires pandoc + texlive in Containerfile
 - Don't pipe remote install scripts in Containerfiles. For `uv`, use `COPY --from=ghcr.io/astral-sh/uv:<version> /uv /uvx /usr/local/bin/` (astral.sh install endpoint has returned 502s that hard-fail builds).
+- Build PDF engine: `build_paper.sh` falls back to `tectonic` (xelatex not on direct shell PATH). Standalone pandoc PDF builds (cover letter, response-to-reviewers) need `--pdf-engine=tectonic`.
+- Pandoc CLI flags override in-document metadata: `--toc` / `--number-sections` in `build_paper.sh` win over `toc:` / `number-sections:` in `metadata.yaml`. To drop a TOC from the submission, remove the `--toc`/`--toc-depth` flags from all four pandoc calls, not just edit metadata (local and CI pandoc resolve the conflict differently).
+- `metadata.yaml` `header-right` is a hardcoded literal (e.g. `"June 2026"`), NOT derived from `date:`. Update it by hand when the submission month changes.
 
 ## Architecture
 
@@ -190,12 +200,13 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
 - **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
 - **Container:** `Containerfile` with Python 3.12, Pandoc 3.2, TeXLive, Node.js
-- **Multi-stage Python containers:** builder `WORKDIR` must equal runtime `WORKDIR` (console-script shebangs are absolute paths baked at venv-creation time). Use `uv sync --no-editable` after copying sources so entry points survive `COPY --from=builder`. Multi-stage structure pattern lives in `Containerfile.lit_review`; `uv` installation pattern (via `COPY --from=ghcr.io/astral-sh/uv:...`) lives in the main `Containerfile`. Note: `Containerfile.lit_review` currently installs uv via `curl | sh` and should eventually be migrated to the `COPY --from=ghcr.io/astral-sh/uv` pattern.
+- **Multi-stage Python containers:** builder `WORKDIR` must equal runtime `WORKDIR` (console-script shebangs are absolute paths baked at venv-creation time). Use `uv sync --no-editable` after copying sources so entry points survive `COPY --from=builder`. Multi-stage structure pattern lives in `Containerfile.lit_review`; `uv` installation pattern (via `COPY --from=ghcr.io/astral-sh/uv:...`) lives in the main `Containerfile`. Both `Containerfile` and `Containerfile.lit_review` install uv via `COPY --from=ghcr.io/astral-sh/uv:0.5.5`.
 - **Anthropic SDK**: `response.content[0]` is a union type; filter with `[b for b in response.content if hasattr(b, "text")]` before accessing `.text` (mypy `union-attr`)
 
 ## Zenodo Integration
 
 - Repo has an active release webhook (hook id `591675875`) to `zenodo.org/api/hooks/receivers/github/events/`.
+- Webhook fires on GitHub **Release publish**, not tag push. `release_workflow.py tag-release` only creates the tag; run `gh release create vX.Y.Z` afterward (with the concept DOI leading the notes) to actually trigger Zenodo archival.
 - Webhook `202 Accepted` is only queue ack; actual archival is async and can fail silently. Verify a new version actually appears on the [Zenodo record page](https://doi.org/10.5281/zenodo.18264359) after each release.
 - Diagnose failures at https://zenodo.org/account/settings/github/ (shows last-build status per repo).
 - Redeliver a failed webhook: `gh api --method POST repos/{owner}/{repo}/hooks/591675875/deliveries/<id>/attempts` (gh CLI resolves `{owner}/{repo}` from the current git remote).
@@ -223,7 +234,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 | `submission-checklist.md` | JMIR submission checklist (Viewpoint, ms#91493) |
 | `project-status.md` | Lightweight project status for all 3 papers |
 | `reference.docx` | Custom Word template (Times New Roman 12pt, double-spaced, black headings) |
-| `ARCHIVED/20260329_JMIR-Submission/` | Complete submission archive (37 files) |
+| `ARCHIVED/20260329_JMIR-Submission/` | Complete submission archive (37 files); rejection email and transfer request email draft also here |
 | `ARCHIVED/20260115_JMIR-Submission/` | Original rejected submission (~12,730 words) |
 | `tests/test_validate_jmir_compliance.py` | Tests for JMIR validator (58 tests, covers Viewpoint + Original) |
 | `../library/` | Sibling repo: semantic search engine for academic papers (DuckDB, 23+ ingested papers) |

@@ -1,5 +1,34 @@
 # **Global State of Healthcare Analytics Maturity: A Comprehensive Report on HIMSS AMAM Adoption Patterns, 2024-2025**
 
+> ## Source verification and re-sourcing (2026-06-06)
+>
+> Independently re-verified for the i-JMR R1 revision via a deep-research adversarial pass (100 agents, 18 sources fetched, 25 claims verified by 3-vote majority). **Use only the upgraded sources below in the manuscript.** The vendor marketing blogs originally cited (hakkoda.io, 314e.com, clindcast.com) are not authoritative and must be dropped; no verified figure depends on them. (WebFetch hit HTTP 403 on himss.org/healthcareitnews; verbatim text was recovered via search snippets and the Wayback Machine.)
+>
+> | Claim | Verdict | Authoritative source | Manuscript guidance |
+> |---|---|---|---|
+> | 26 orgs at AMAM Stage 6 (HIMSS24 APAC, Oct 2024) | CONFIRMED (single trade-press source) | HealthcareITNews (a HIMSS Media publication) | Cite strictly as an "as of HIMSS24 APAC, Oct 2024" point-in-time benchmark, not as current |
+> | 13 orgs at AMAM Stage 7 (Oct 2024) | CONFIRMED | HealthcareITNews | Same; drop the informal "Club of 13" label (not HIMSS terminology) |
+> | "Club of 13 expanding to 15-16 by mid-2025" | UNVERIFIABLE | none | DROP |
+> | >60% in Stages 0-2 | PARTIAL: inferred from 2015 EMRAM, not an AMAM census | HIMSS CIO Summit 2015 EMRAM deck | Keep only if explicitly framed as an EMRAM-derived inference; AMAM Stage 0-5 census is proprietary |
+> | Tampa General first in Florida at AMAM Stage 7, Jun 2025, responsible AI | CONFIRMED | tgh.org press release (Jun 17, 2025) | "First in Florida" is a self-published superlative: attribute, do not assert. Do NOT cite the hcinnovationgroup article (it is the 2013 EMRAM award, not 2025 AMAM) |
+> | CMUH (Taiwan) AMAM Stage 7, Mar 2025 | CONFIRMED | PRNewswire 302390824 (Mar 3, 2025); BioSpace | "Taiwan's first and Asia-Pacific's second" (after Samsung Medical Center). Do NOT read the 2023 HealthcareITNews article (CMUH then at Stage 6) as a contradiction |
+> | Modernized "AMAM24" rolled out 2024 (governance dimension, prescriptive analytics, responsible AI) | CONFIRMED | primary HIMSS news pages + HealthcareITNews | Launched Oct 2, 2024 at HIMSS24 APAC (Seoul); "AMAM24" vs "AMAM Classic." King Abdulaziz Medical City-Riyadh = first globally on the MODERNIZED AMAM (Jun 2025), so write "first on modernized AMAM" to avoid contradicting legacy Stage 7 awardees |
+> | AMAM "introduced in 2015" | UNVERIFIABLE in this pass | none | Soften or separately source before using |
+> | Orgs avoid HIMSS assessment due to high cost/fees (Q#1) | UNVERIFIABLE; no fee figure found | none | DROP the cost-specific claim; ground the self-selection critique via [[Research_Self-Selection-Bias-in-Organizational-Maturity-Assessments]] instead |
+>
+> **Biggest data-integrity risk: EMRAM-vs-AMAM conflation.** Two sources describe EMRAM/Stage-6 events that resemble but are NOT the 2025 AMAM Stage 7 milestones: the hcinnovationgroup TGH article (2013 EMRAM, recognized at HIMSS14) and the 2023 HealthcareITNews CMUH article (AMAM Stage 6 at that time). Neither may be cited for a 2025 AMAM milestone.
+>
+> **Upgraded sources to use:**
+> - HealthcareITNews, HIMSS24 APAC AMAM facelift (26/13 census; AMAM24 launch): https://www.healthcareitnews.com/news/asia/himss24-apac-adoption-model-analytics-maturity-gets-facelift
+> - HIMSS, new Analytics Maturity Adoption Model (modernized AMAM, 2024): https://www.himss.org/news-center/new-analytics-maturity-adoption-model-pushes-digital-transformation-and-data-driven-decisions/
+> - HIMSS, newly improved AMAM centered on patient outcomes and AI: https://www.himss.org/news-center/newly-improved-analytics-maturity-assessment-model-amam-centered-patient-outcomes-improve-ai/
+> - HIMSS, King Abdulaziz Medical City-Riyadh first globally on modernized AMAM: https://www.himss.org/news-center/king-abdulaziz-medical-city-riyadh-becomes-first-facility-globally-achieve-stage-7-modernized/
+> - Tampa General Hospital press release (Jun 17, 2025): https://www.tgh.org/news/tgh-press-releases/2025/june/tampa-general-hospital-awarded-highest-designation-analytics-himss
+> - PRNewswire, Taiwan's first hospital to achieve AMAM Stage 7 (CMUH, Mar 3, 2025): https://www.prnewswire.com/news-releases/taiwans-first-hospital-to-achieve-amam-stage-7-certification-302390824.html
+> - HIMSS CIO Summit 2015 EMRAM cross-country distribution deck (EMRAM Stages 0-2 inference only): https://na.eventscloud.com/file_uploads/0cf548ab2f4eaeafd0a6b4ce615f0399_Hoyt_Session_1_European_Hospitals_EMRAM_Maturity_Overview_CIOSummit.pdf
+>
+> **Drop from manuscript:** hakkoda.io, 314e.com, clindcast.com (vendor blogs); hcinnovationgroup TGH (2013 EMRAM); 2023 HealthcareITNews CMUH (Stage 6).
+
 ## **1\. Executive Summary: The Era of Intelligence**
 
 The global healthcare ecosystem stands at a definitive crossroads. After two decades of aggressive digitization—characterized by the near-universal adoption of Electronic Medical Records (EMR) in developed markets—the industry is pivoting toward a new, more elusive objective: intelligence. This shift is codified by the Healthcare Information and Management Systems Society (HIMSS) through its **Adoption Model for Analytics Maturity (AMAM)**. Unlike its predecessor, the Electronic Medical Record Adoption Model (EMRAM), which measured the *deployment* of digital tools, the AMAM measures the *utility* of the data they generate. It is the definitive scorecard for the transition from data accumulation to prescriptive action.
