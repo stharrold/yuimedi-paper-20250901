@@ -6,6 +6,9 @@ on:
     paths:
       - 'paper.md'
       - 'metadata.yaml'
+      - 'references.bib'
+      - 'citation-style-ama.csl'
+      - 'multimedia_appendix_*.md'
       - 'figures/**'
       - 'scripts/build_paper.sh'
       - 'Containerfile'
@@ -14,6 +17,9 @@ on:
     paths:
       - 'paper.md'
       - 'metadata.yaml'
+      - 'references.bib'
+      - 'citation-style-ama.csl'
+      - 'multimedia_appendix_*.md'
       - 'figures/**'
       - 'scripts/build_paper.sh'
   release:
