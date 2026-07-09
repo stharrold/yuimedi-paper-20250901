@@ -279,40 +279,39 @@ existential threat. Modern longitudinal data on analytics staff is
 fragmented, but the available signals are alarming. As of 2024, 53% of
 healthcare chief information officers (CIOs) have held their roles for
 less than three years <span class="citation" data-cites="wittkieffer2024">[<a href="#ref-wittkieffer2024" role="doc-biblioref">6</a>]</span>, creating a strategic vacuum at the
-top. At the operational level, the situation is equally precarious: 79%
-of provider organizations report persistent shortages in digital health
-roles <span class="citation" data-cites="himssworkforce2024">[<a href="#ref-himssworkforce2024" role="doc-biblioref">7</a>]</span>, and a
-2025 study found that 55% of public health informatics specialists
-intend to leave their positions <span class="citation" data-cites="rajamani2025">[<a href="#ref-rajamani2025" role="doc-biblioref">8</a>]</span>.</p>
+top. At the operational level, the situation is equally precarious:
+global nurse turnover runs at 16% to 18% annually <span class="citation" data-cites="ren2024 wu2024">[<a href="#ref-ren2024" role="doc-biblioref">7</a>,<a href="#ref-wu2024" role="doc-biblioref">8</a>]</span>, and a 2025 study found that 55% of
+public health informatics specialists intend to leave their positions
+<span class="citation" data-cites="rajamani2025">[<a href="#ref-rajamani2025" role="doc-biblioref">9</a>]</span>.</p>
 <p>This turnover creates a phenomenon we define as <em>Institutional
 Amnesia</em>: the systematic erasure of the tacit knowledge required to
 interpret complex health data. In healthcare, “data” is never raw; it is
 wrapped in layers of institutional context (billing rules, workflow
-workarounds, and unwritten exclusions) <span class="citation" data-cites="gitelman2013">[<a href="#ref-gitelman2013" role="doc-biblioref">9</a>]</span>. When the analyst who knows that
+workarounds, and unwritten exclusions) <span class="citation" data-cites="gitelman2013">[<a href="#ref-gitelman2013" role="doc-biblioref">10</a>]</span>. When the analyst who knows that
 “exclusion code 99” actually means “hospice transfer” leaves, that
 knowledge evaporates. The organization does not just lose an employee;
 it loses the ability to accurately measure its own performance.</p>
 <p>Current literature approaches these problems in isolation. Analytics
 maturity models (e.g., HIMSS AMAM) assume a stable workforce capable of
-linear progression <span class="citation" data-cites="himss2024 wang2018">[<a href="#ref-himss2024" role="doc-biblioref">1</a>,<a href="#ref-wang2018" role="doc-biblioref">10</a>]</span>. Technical solutions (e.g., natural
+linear progression <span class="citation" data-cites="himss2024 wang2018">[<a href="#ref-himss2024" role="doc-biblioref">1</a>,<a href="#ref-wang2018" role="doc-biblioref">11</a>]</span>. Technical solutions (e.g., natural
 language to SQL, or NL2SQL) assume a stable schema and clear intent
-<span class="citation" data-cites="wang2020">[<a href="#ref-wang2020" role="doc-biblioref">11</a>]</span>. Neither accounts for the reality of
+<span class="citation" data-cites="wang2020">[<a href="#ref-wang2020" role="doc-biblioref">12</a>]</span>. Neither accounts for the reality of
 the “Great Resignation,” where the rate of knowledge loss
 (“organizational forgetting”) often exceeds the rate of knowledge
-capture <span class="citation" data-cites="rao2006">[<a href="#ref-rao2006" role="doc-biblioref">12</a>]</span>.</p>
+capture <span class="citation" data-cites="rao2006">[<a href="#ref-rao2006" role="doc-biblioref">13</a>]</span>.</p>
 <p>Traditional knowledge management strategies (wikis, data
 dictionaries, and documentation) have failed because they are
-<em>passive</em> <span class="citation" data-cites="mayo2016">[<a href="#ref-mayo2016" role="doc-biblioref">13</a>]</span>. They require
+<em>passive</em> <span class="citation" data-cites="mayo2016">[<a href="#ref-mayo2016" role="doc-biblioref">14</a>]</span>. They require
 overworked staff to stop working and write down what they know. In a
 high-burnout environment, this documentation is the first casualty. As a
 result, healthcare systems are trapped in a Sisyphus-like cycle: hiring
 new analysts who spend their limited tenure relearning the same
 institutional secrets, only to leave just as they become productive
-<span class="citation" data-cites="ledikwe2013 mantas2010">[<a href="#ref-ledikwe2013" role="doc-biblioref">14</a>,<a href="#ref-mantas2010" role="doc-biblioref">15</a>]</span>. A
+<span class="citation" data-cites="ledikwe2013 mantas2010">[<a href="#ref-ledikwe2013" role="doc-biblioref">15</a>,<a href="#ref-mantas2010" role="doc-biblioref">16</a>]</span>. A
 foundational 2004 study established that technical IT staff in
 organizations where IT is a support function, as in healthcare delivery,
 had the lowest expected tenure of any organizational category at just
-2.9 years <span class="citation" data-cites="ang2004">[<a href="#ref-ang2004" role="doc-biblioref">16</a>]</span>. That this
+2.9 years <span class="citation" data-cites="ang2004">[<a href="#ref-ang2004" role="doc-biblioref">17</a>]</span>. That this
 two-decade-old study remains a key benchmark is itself evidence of the
 crisis: the industry lacks the stability to track its own attrition.
 Contemporary signals suggest the situation has worsened, as detailed in
@@ -333,11 +332,11 @@ knowledge management to <em>Human-in-the-Loop Knowledge Governance
 <h1 id="theoretical-grounding-seci-and-the-unstable-workforce">Theoretical
 Grounding: SECI and the Unstable Workforce</h1>
 <p>We ground our analysis in Nonaka’s SECI model of knowledge creation
-<span class="citation" data-cites="farnese2019">[<a href="#ref-farnese2019" role="doc-biblioref">17</a>]</span>, informed by
+<span class="citation" data-cites="farnese2019">[<a href="#ref-farnese2019" role="doc-biblioref">18</a>]</span>, informed by
 a narrative review of the literature across healthcare analytics
 maturity, workforce turnover dynamics, and natural language processing,
 with grey literature assessed using the AACODS (Authority, Accuracy,
-Coverage, Objectivity, Date, Significance) checklist <span class="citation" data-cites="tyndall2010">[<a href="#ref-tyndall2010" role="doc-biblioref">18</a>]</span>. Grey literature sources were
+Coverage, Objectivity, Date, Significance) checklist <span class="citation" data-cites="tyndall2010">[<a href="#ref-tyndall2010" role="doc-biblioref">19</a>]</span>. Grey literature sources were
 retained only when no peer-reviewed equivalent was available or when the
 source provided unique industry data not captured in academic
 literature. The SECI model describes organizational knowledge as
@@ -362,7 +361,7 @@ practice, as when a new analyst studies validated query libraries.</li>
 <p>In a healthy organization, these four modes form a self-reinforcing
 spiral: tacit insights become documented, documentation becomes
 systematized, and systematized knowledge is internalized by new members
-who then generate fresh tacit insights <span class="citation" data-cites="farnese2019">[<a href="#ref-farnese2019" role="doc-biblioref">17</a>]</span>. When any mode breaks down, the
+who then generate fresh tacit insights <span class="citation" data-cites="farnese2019">[<a href="#ref-farnese2019" role="doc-biblioref">18</a>]</span>. When any mode breaks down, the
 spiral stalls. In healthcare analytics, the breakdown is at the very
 first stage.</p>
 <p>The three-pillar structure aligns with established models across
@@ -411,45 +410,44 @@ insight but does not account for institutional memory loss. The
 three-pillar framework synthesizes these perspectives, positioning
 workforce dynamics as the critical enabler connecting data access
 (analytics maturity) with organizational wisdom (knowledge preservation)
-<span class="citation" data-cites="farnese2019 rao2006">[<a href="#ref-rao2006" role="doc-biblioref">12</a>,<a href="#ref-farnese2019" role="doc-biblioref">17</a>]</span>.</p>
+<span class="citation" data-cites="farnese2019 rao2006">[<a href="#ref-rao2006" role="doc-biblioref">13</a>,<a href="#ref-farnese2019" role="doc-biblioref">18</a>]</span>.</p>
 <h2 id="the-broken-cycle-socialization-failure">The Broken Cycle:
 Socialization Failure</h2>
 <p>In Nonaka’s model, <em>Socialization</em> is the foundational
 conversion mode: the primary channel through which newcomers absorb
-tacit context that formal training cannot convey <span class="citation" data-cites="farnese2019">[<a href="#ref-farnese2019" role="doc-biblioref">17</a>]</span>. Socialization depends on two
+tacit context that formal training cannot convey <span class="citation" data-cites="farnese2019">[<a href="#ref-farnese2019" role="doc-biblioref">18</a>]</span>. Socialization depends on two
 preconditions: sustained interaction and sufficient temporal overlap
-between knowledge holders and receivers <span class="citation" data-cites="foos2006">[<a href="#ref-foos2006" role="doc-biblioref">19</a>]</span>. It is, in effect, an apprenticeship
+between knowledge holders and receivers <span class="citation" data-cites="foos2006">[<a href="#ref-foos2006" role="doc-biblioref">20</a>]</span>. It is, in effect, an apprenticeship
 model requiring years of shared practice.</p>
 <p>In the current healthcare environment, this mechanism has collapsed.
 The leadership and operational turnover documented above reveals an
 “apprenticeship window” shorter than the knowledge transfer cycle it
-must support: 30% of new employees depart within their first year <span class="citation" data-cites="nsi2025">[<a href="#ref-nsi2025" role="doc-biblioref">20</a>]</span>, while specialized informatics roles
-require 18 to 24 months to reach fluency <span class="citation" data-cites="ledikwe2013">[<a href="#ref-ledikwe2013" role="doc-biblioref">14</a>]</span>. The arithmetic is unforgiving: by
+must support: 30% of new employees depart within their first year <span class="citation" data-cites="nsi2025">[<a href="#ref-nsi2025" role="doc-biblioref">21</a>]</span>, while specialized informatics roles
+require 18 to 24 months to reach fluency <span class="citation" data-cites="ledikwe2013">[<a href="#ref-ledikwe2013" role="doc-biblioref">15</a>]</span>. The arithmetic is unforgiving: by
 the time a new analyst has absorbed enough tacit context to be
 productive, their mentor may already be gone, and the new analyst is
 themselves halfway through an average tenure.</p>
 <p>High turnover rates fracture the social networks required for
-mentorship <span class="citation" data-cites="wu2024 ren2024">[<a href="#ref-wu2024" role="doc-biblioref">21</a>,<a href="#ref-ren2024" role="doc-biblioref">22</a>]</span>. The resulting knowledge loss is
+mentorship <span class="citation" data-cites="wu2024 ren2024">[<a href="#ref-ren2024" role="doc-biblioref">7</a>,<a href="#ref-wu2024" role="doc-biblioref">8</a>]</span>. The resulting knowledge loss is
 compounding: each departure removes a node from the organization’s
 informal knowledge network, making subsequent Socialization attempts
 less effective because fewer experienced practitioners remain to serve
-as mentors <span class="citation" data-cites="massingham2018">[<a href="#ref-massingham2018" role="doc-biblioref">23</a>]</span>.
+as mentors <span class="citation" data-cites="massingham2018">[<a href="#ref-massingham2018" role="doc-biblioref">22</a>]</span>.
 Socialization is no longer a viable strategy for resilience.</p>
 <h2 id="the-solution-externalization-via-socio-technical-artifacts">The
 Solution: Externalization via Socio-Technical Artifacts</h2>
 <p>To survive, organizations must shift reliance from Socialization to
 <em>Externalization</em>: converting tacit knowledge into explicit,
-durable artifacts <span class="citation" data-cites="zhang2025">[<a href="#ref-zhang2025" role="doc-biblioref">24</a>]</span>. However,
+durable artifacts <span class="citation" data-cites="zhang2025">[<a href="#ref-zhang2025" role="doc-biblioref">23</a>]</span>. However,
 traditional Externalization (writing wikis, maintaining data
 dictionaries, composing runbooks) suffers from two critical weaknesses.
 First, it is passive: it requires overworked staff to interrupt their
-workflow and perform a separate documentation task <span class="citation" data-cites="goffin2011">[<a href="#ref-goffin2011" role="doc-biblioref">25</a>]</span>. In a high-burnout environment where
-provider organizations report persistent shortages in digital health
-roles <span class="citation" data-cites="himssworkforce2024">[<a href="#ref-himssworkforce2024" role="doc-biblioref">7</a>]</span>, this
+workflow and perform a separate documentation task <span class="citation" data-cites="goffin2011">[<a href="#ref-goffin2011" role="doc-biblioref">24</a>]</span>. In a high-burnout environment where
+organizations face persistent attrition and talent shortages <span class="citation" data-cites="himssworkforce2024">[<a href="#ref-himssworkforce2024" role="doc-biblioref">25</a>]</span>, this
 discretionary documentation is the first casualty. Second, it is
 low-fidelity: the act of writing down tacit knowledge inevitably loses
 nuance, context, and the conditional logic that makes institutional
-knowledge valuable <span class="citation" data-cites="foos2006">[<a href="#ref-foos2006" role="doc-biblioref">19</a>]</span>. The result is
+knowledge valuable <span class="citation" data-cites="foos2006">[<a href="#ref-foos2006" role="doc-biblioref">20</a>]</span>. The result is
 documentation that exists but does not adequately capture what the
 departing expert actually knew.</p>
 <p>We propose a form of <em>active</em> Externalization: one that
@@ -535,7 +533,7 @@ semantic layers lack: not just <em>what</em> a query does, but
 <p><em>Traditional knowledge management</em> (wikis, data dictionaries,
 runbooks) relies on passive capture where users must stop working to
 document, which reduces participation and produces inaccurate records
-under cognitive load <span class="citation" data-cites="mayo2016 goffin2011">[<a href="#ref-mayo2016" role="doc-biblioref">13</a>,<a href="#ref-goffin2011" role="doc-biblioref">25</a>]</span>. Such documentation might suffice
+under cognitive load <span class="citation" data-cites="mayo2016 goffin2011">[<a href="#ref-mayo2016" role="doc-biblioref">14</a>,<a href="#ref-goffin2011" role="doc-biblioref">24</a>]</span>. Such documentation might suffice
 for a small, stable query set, but real workloads are neither: more than
 half of analytical queries recur in large production workloads <span class="citation" data-cites="jindal2019">[<a href="#ref-jindal2019" role="doc-biblioref">34</a>]</span>, yet even small databases log
 hundreds to thousands of distinct query strings <span class="citation" data-cites="kul2018">[<a href="#ref-kul2018" role="doc-biblioref">35</a>]</span>, so a fixed set of documented
@@ -597,16 +595,16 @@ Evidence</h2>
 adaptability, and resilience under change <span class="citation" data-cites="breu2002 tessarini2021">[<a href="#ref-breu2002" role="doc-biblioref">48</a>,<a href="#ref-tessarini2021" role="doc-biblioref">49</a>]</span>. In healthcare analytics, the
 evidence below documents the instability that systematically erodes this
 capacity. The cost of turnover in informatics is higher than standard
-IT. Knowledge loss can cost up to three times annual salary <span class="citation" data-cites="massingham2018 wynendaele2025">[<a href="#ref-massingham2018" role="doc-biblioref">23</a>,<a href="#ref-wynendaele2025" role="doc-biblioref">50</a>]</span>. In
+IT. Knowledge loss can cost up to three times annual salary <span class="citation" data-cites="massingham2018 wynendaele2025">[<a href="#ref-massingham2018" role="doc-biblioref">22</a>,<a href="#ref-wynendaele2025" role="doc-biblioref">50</a>]</span>. In
 clinical informatics specifically, replacement costs range from $50,000
 to $230,000 per departing employee, with a single department losing 39
 staff in one year at a total cost of up to $8.97 million <span class="citation" data-cites="hackney2024">[<a href="#ref-hackney2024" role="doc-biblioref">51</a>]</span>. With 30% of new employees leaving
-within their first year <span class="citation" data-cites="nsi2025">[<a href="#ref-nsi2025" role="doc-biblioref">20</a>]</span>, healthcare IT
+within their first year <span class="citation" data-cites="nsi2025">[<a href="#ref-nsi2025" role="doc-biblioref">21</a>]</span>, healthcare IT
 professionals spend a limited portion of their employment at full
 productivity, as specialized roles require 18-24 months to reach fluency
-<span class="citation" data-cites="ledikwe2013">[<a href="#ref-ledikwe2013" role="doc-biblioref">14</a>]</span>. This
+<span class="citation" data-cites="ledikwe2013">[<a href="#ref-ledikwe2013" role="doc-biblioref">15</a>]</span>. This
 “revolving door” prevents the accumulation of the “Collective Knowledge
-Structures” required for complex task performance <span class="citation" data-cites="rao2006">[<a href="#ref-rao2006" role="doc-biblioref">12</a>]</span>.</p>
+Structures” required for complex task performance <span class="citation" data-cites="rao2006">[<a href="#ref-rao2006" role="doc-biblioref">13</a>]</span>.</p>
 <p>The workforce crisis operates at multiple reinforcing levels, as
 detailed in the Theoretical Grounding section: leadership churn,
 operational shortages, and foundational attrition collectively prevent
@@ -661,7 +659,7 @@ compounding vulnerabilities.</p>
 Maturity</h2>
 <p>Existing maturity models such as AMAM, the DIKW hierarchy, and
 established knowledge management frameworks (see Table 1) assume linear
-progression and implicitly presuppose a stable workforce <span class="citation" data-cites="himss2024 wang2018">[<a href="#ref-himss2024" role="doc-biblioref">1</a>,<a href="#ref-wang2018" role="doc-biblioref">10</a>]</span>. In practice, an organization that
+progression and implicitly presuppose a stable workforce <span class="citation" data-cites="himss2024 wang2018">[<a href="#ref-himss2024" role="doc-biblioref">1</a>,<a href="#ref-wang2018" role="doc-biblioref">11</a>]</span>. In practice, an organization that
 reaches AMAM Stage 5 but regresses to Stage 3 after the departure of two
 senior analysts has not failed to mature; it has failed to be
 <em>resilient</em>. A recent systematic review of organizational
@@ -752,7 +750,7 @@ deployed</td>
 <td style="text-align: left;">&gt;30% (High instability)</td>
 <td style="text-align: left;">15-30%</td>
 <td style="text-align: left;">&lt;15% (High stability)</td>
-<td style="text-align: left;"><span class="citation" data-cites="nsi2025 hackney2024">[<a href="#ref-nsi2025" role="doc-biblioref">20</a>,<a href="#ref-hackney2024" role="doc-biblioref">51</a>]</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="nsi2025 hackney2024">[<a href="#ref-nsi2025" role="doc-biblioref">21</a>,<a href="#ref-hackney2024" role="doc-biblioref">51</a>]</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Avg. leadership tenure</td>
@@ -769,7 +767,7 @@ individuals</td>
 cross-training</td>
 <td style="text-align: left;">Distributed expertise; documented
 processes</td>
-<td style="text-align: left;"><span class="citation" data-cites="massingham2018 foss2007">[<a href="#ref-massingham2018" role="doc-biblioref">23</a>,<a href="#ref-foss2007" role="doc-biblioref">27</a>]</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="massingham2018 foss2007">[<a href="#ref-massingham2018" role="doc-biblioref">22</a>,<a href="#ref-foss2007" role="doc-biblioref">27</a>]</span></td>
 </tr>
 </tbody>
 </table>
@@ -862,7 +860,7 @@ they inherit a baseline and can refine it rather than reconstructing
 institutional knowledge from scratch.</p>
 <p>This mechanism functions as what we term a <em>Knowledge
 Ratchet</em>, consistent with findings on collective knowledge
-structures <span class="citation" data-cites="rao2006">[<a href="#ref-rao2006" role="doc-biblioref">12</a>]</span>. Each validated
+structures <span class="citation" data-cites="rao2006">[<a href="#ref-rao2006" role="doc-biblioref">13</a>]</span>. Each validated
 triple prevents regression below the last confirmed state. Even if a
 subsequent validator is less experienced than their predecessor, the
 organization cannot slide below the previously validated standard. The
@@ -970,7 +968,7 @@ generalizability can be fully established.</p>
 <p>HITL-KG also complements rather than replaces workforce development:
 it decouples institutional knowledge from individual tenure, but still
 presumes investment in the training and analytics literacy through which
-staff learn to pose, validate, and interpret queries <span class="citation" data-cites="ledikwe2013">[<a href="#ref-ledikwe2013" role="doc-biblioref">14</a>]</span>. This complementarity also bounds
+staff learn to pose, validate, and interpret queries <span class="citation" data-cites="ledikwe2013">[<a href="#ref-ledikwe2013" role="doc-biblioref">15</a>]</span>. This complementarity also bounds
 the framework. Where data models and business rules change continually,
 no approach is self-maintaining; precisely because retained expertise
 cannot manually keep pace with constant change, knowledge must be
@@ -1079,13 +1077,20 @@ Administration Research and Theory</em>. 2025;35(4):434-451. doi:<a href="https:
 Insights: The State of Healthcare IT Leadership</span></em>.
 WittKieffer; 2024. <a href="https://api.wittkieffer.com/wp-content/uploads/2012/10/cio-insights-the-state-of-healthcare-it-leadership-wittkieffer-october-2024.pdf">https://api.wittkieffer.com/wp-content/uploads/2012/10/cio-insights-the-state-of-healthcare-it-leadership-wittkieffer-october-2024.pdf</a></div>
 </div>
-<div id="ref-himssworkforce2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">HIMSS. <em><span class="nocase">The Future of
-Workforce</span></em>. Healthcare Information; Management Systems
-Society; 2024. <a href="https://www.himss.org/resources/the-future-of-workforce/">https://www.himss.org/resources/the-future-of-workforce/</a></div>
+<div id="ref-ren2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Hui
+Ren, Pan Li, Yingchun Xue, Wenhao Xin, Xin Yin, Hongyan Li. <span class="nocase">Global prevalence of nurse turnover rates: A
+meta-analysis of 21 studies from 14 countries</span>. <em>Journal of
+Nursing Management</em>. 2024;2024(1). doi:<a href="https://doi.org/10.1155/2024/5063998">10.1155/2024/5063998</a></div>
+</div>
+<div id="ref-wu2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Lao
+Wu F., L. Li. <span class="nocase">Worldwide prevalence and associated
+factors of nursing staff turnover: A systematic review and
+meta-analysis</span>. <em>Nursing Open</em>. 2024;11:e2097. doi:<a href="https://doi.org/10.1002/nop2.2097">10.1002/nop2.2097</a></div>
 </div>
 <div id="ref-rajamani2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">8. </div><div class="csl-right-inline">Sripriya Rajamani, Jonathon P. Leider, Divya
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Sripriya Rajamani, Jonathon P. Leider, Divya
 Rupini Gunashekar, Brian E. Dixon. <span class="nocase">Public health
 informatics specialists in state and local public health workforce:
 Insights from public health workforce interests and needs survey</span>.
@@ -1093,47 +1098,47 @@ Insights from public health workforce interests and needs survey</span>.
 2025;32(4):748-754. doi:<a href="https://doi.org/10.1093/jamia/ocaf019">10.1093/jamia/ocaf019</a></div>
 </div>
 <div id="ref-gitelman2013" class="csl-entry" role="listitem">
-<div class="csl-left-margin">9. </div><div class="csl-right-inline">,
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">,
 ed.Lisa Gitelman. <em><span class="nocase">&quot;Raw Data&quot; Is an
 Oxymoron</span></em>. MIT Press; 2013. doi:<a href="https://doi.org/10.7551/mitpress/9302.001.0001">10.7551/mitpress/9302.001.0001</a></div>
 </div>
 <div id="ref-wang2018" class="csl-entry" role="listitem">
-<div class="csl-left-margin">10. </div><div class="csl-right-inline">Kung Wang Y., T. A. Byrd. <span class="nocase">Big data analytics: Understanding its capabilities and
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">Kung Wang Y., T. A. Byrd. <span class="nocase">Big data analytics: Understanding its capabilities and
 potential benefits for healthcare organizations</span>.
 <em>Technological Forecasting and Social Change</em>. 2018;126:3-13.
 doi:<a href="https://doi.org/10.1016/j.techfore.2015.12.019">10.1016/j.techfore.2015.12.019</a></div>
 </div>
 <div id="ref-wang2020" class="csl-entry" role="listitem">
-<div class="csl-left-margin">11. </div><div class="csl-right-inline">Shi
+<div class="csl-left-margin">12. </div><div class="csl-right-inline">Shi
 Wang P. <span class="nocase">Text-to-SQL generation for question
 answering on electronic medical records</span>. In: <em>Proceedings of
 the Web Conference 2020</em>. 2020. doi:<a href="https://doi.org/10.1145/3366423.3380120">10.1145/3366423.3380120</a></div>
 </div>
 <div id="ref-rao2006" class="csl-entry" role="listitem">
-<div class="csl-left-margin">12. </div><div class="csl-right-inline">R.
+<div class="csl-left-margin">13. </div><div class="csl-right-inline">R.
 D. Rao, L. Argote. Organizational learning and forgetting: The effects
 of turnover and structure. <em>European Management Review</em>.
 2006;3(2):77-85. doi:<a href="https://doi.org/10.1057/palgrave.emr.1500057">10.1057/palgrave.emr.1500057</a></div>
 </div>
 <div id="ref-mayo2016" class="csl-entry" role="listitem">
-<div class="csl-left-margin">13. </div><div class="csl-right-inline">Charles S. Mayo, Joseph O. Deasy, Bhishamjit S.
+<div class="csl-left-margin">14. </div><div class="csl-right-inline">Charles S. Mayo, Joseph O. Deasy, Bhishamjit S.
 Chera, John Freymann, Justin S. Kirby, Patricia H. Hardenberg. <span class="nocase">How can we effect culture change toward data-driven
 medicine?</span> <em>International Journal of Radiation Oncology,
 Biology, Physics</em>. 2016;95(3):916-921. doi:<a href="https://doi.org/10.1016/j.ijrobp.2015.12.355">10.1016/j.ijrobp.2015.12.355</a></div>
 </div>
 <div id="ref-ledikwe2013" class="csl-entry" role="listitem">
-<div class="csl-left-margin">14. </div><div class="csl-right-inline">Reason Ledikwe J. H. <span class="nocase">Establishing a health information workforce: Innovation
+<div class="csl-left-margin">15. </div><div class="csl-right-inline">Reason Ledikwe J. H. <span class="nocase">Establishing a health information workforce: Innovation
 for low- and middle-income countries</span>. <em>Human Resources for
 Health</em>. 2013;11(1). doi:<a href="https://doi.org/10.1186/1478-4491-11-35">10.1186/1478-4491-11-35</a></div>
 </div>
 <div id="ref-mantas2010" class="csl-entry" role="listitem">
-<div class="csl-left-margin">15. </div><div class="csl-right-inline">Ammenwerth Mantas J. <span class="nocase">Recommendations of the International Medical Informatics
+<div class="csl-left-margin">16. </div><div class="csl-right-inline">Ammenwerth Mantas J. <span class="nocase">Recommendations of the International Medical Informatics
 Association (IMIA) on education in biomedical and health informatics:
 First revision</span>. <em>Methods of Information in Medicine</em>.
 2010;49(2):105-120. doi:<a href="https://doi.org/10.3414/ME5119">10.3414/ME5119</a></div>
 </div>
 <div id="ref-ang2004" class="csl-entry" role="listitem">
-<div class="csl-left-margin">16. </div><div class="csl-right-inline">S.
+<div class="csl-left-margin">17. </div><div class="csl-right-inline">S.
 Ang, S. Slaughter. <span class="nocase">Turnover of information
 technology professionals: The effects of internal labor market
 strategies</span>. <em><span>ACM</span> <span>SIGMIS</span> Database:
@@ -1141,55 +1146,48 @@ The <span>DATABASE</span> for Advances in Information Systems</em>.
 2004;35(3):11-27. doi:<a href="https://doi.org/10.1145/1017114.1017118">10.1145/1017114.1017118</a></div>
 </div>
 <div id="ref-farnese2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">17. </div><div class="csl-right-inline">Barbieri Farnese M. L. <span class="nocase">Managing knowledge in organizations: A Nonaka’s
+<div class="csl-left-margin">18. </div><div class="csl-right-inline">Barbieri Farnese M. L. <span class="nocase">Managing knowledge in organizations: A Nonaka’s
 <span>SECI</span> model operationalization</span>. <em>Frontiers in
 Psychology</em>. 2019;10. doi:<a href="https://doi.org/10.3389/fpsyg.2019.02730">10.3389/fpsyg.2019.02730</a></div>
 </div>
 <div id="ref-tyndall2010" class="csl-entry" role="listitem">
-<div class="csl-left-margin">18. </div><div class="csl-right-inline">J
+<div class="csl-left-margin">19. </div><div class="csl-right-inline">J
 Tyndall. <span><span>AACODS</span> Checklist. Flinders
 University</span>. Published online 2010. <a href="https://fac.flinders.edu.au/dspace/api/core/bitstreams/e94a96eb-0334-4300-8880-c836d4d9a676/content">https://fac.flinders.edu.au/dspace/api/core/bitstreams/e94a96eb-0334-4300-8880-c836d4d9a676/content</a></div>
 </div>
 <div id="ref-foos2006" class="csl-entry" role="listitem">
-<div class="csl-left-margin">19. </div><div class="csl-right-inline">Ted
+<div class="csl-left-margin">20. </div><div class="csl-right-inline">Ted
 Foos, Gary Schum, Sandra Rothenberg. <span class="nocase">Tacit
 knowledge transfer and the knowledge disconnect</span>. <em>Journal of
 Knowledge Management</em>. 2006;10(1):6-18. doi:<a href="https://doi.org/10.1108/13673270610650067">10.1108/13673270610650067</a></div>
 </div>
 <div id="ref-nsi2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">20. </div><div class="csl-right-inline">NSI
+<div class="csl-left-margin">21. </div><div class="csl-right-inline">NSI
 Nursing Solutions. <em><span>2025 National Health Care Retention &amp;
 RN Staffing Report</span></em>. NSI Nursing Solutions; 2024. <a href="https://www.nsinursingsolutions.com/documents/library/nsi_national_health_care_retention_report.pdf">https://www.nsinursingsolutions.com/documents/library/nsi_national_health_care_retention_report.pdf</a></div>
 </div>
-<div id="ref-wu2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">21. </div><div class="csl-right-inline">Lao
-Wu F., L. Li. <span class="nocase">Worldwide prevalence and associated
-factors of nursing staff turnover: A systematic review and
-meta-analysis</span>. <em>Nursing Open</em>. 2024;11:e2097. doi:<a href="https://doi.org/10.1002/nop2.2097">10.1002/nop2.2097</a></div>
-</div>
-<div id="ref-ren2024" class="csl-entry" role="listitem">
-<div class="csl-left-margin">22. </div><div class="csl-right-inline">Hui
-Ren, Pan Li, Yingchun Xue, Wenhao Xin, Xin Yin, Hongyan Li. <span class="nocase">Global prevalence of nurse turnover rates: A
-meta-analysis of 21 studies from 14 countries</span>. <em>Journal of
-Nursing Management</em>. 2024;2024(1). doi:<a href="https://doi.org/10.1155/2024/5063998">10.1155/2024/5063998</a></div>
-</div>
 <div id="ref-massingham2018" class="csl-entry" role="listitem">
-<div class="csl-left-margin">23. </div><div class="csl-right-inline">P.
+<div class="csl-left-margin">22. </div><div class="csl-right-inline">P.
 R Massingham. <span class="nocase">Measuring the impact of knowledge
 loss: A longitudinal study</span>. <em>Journal of Knowledge
 Management</em>. 2018;22(4):721-758. doi:<a href="https://doi.org/10.1108/JKM-08-2016-0338">10.1108/JKM-08-2016-0338</a></div>
 </div>
 <div id="ref-zhang2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">24. </div><div class="csl-right-inline">Wenyao Zhang, Wei Zhang, Tugrul Daim, Haydar
+<div class="csl-left-margin">23. </div><div class="csl-right-inline">Wenyao Zhang, Wei Zhang, Tugrul Daim, Haydar
 Yalçın. <span class="nocase"><span>AI</span> challenges conventional
 knowledge management: Light the way for reframing <span>SECI</span>
 model and Ba theory</span>. <em>Journal of Knowledge Management</em>.
 2025;29(5):1618-1654. doi:<a href="https://doi.org/10.1108/JKM-02-2024-0203">10.1108/JKM-02-2024-0203</a></div>
 </div>
 <div id="ref-goffin2011" class="csl-entry" role="listitem">
-<div class="csl-left-margin">25. </div><div class="csl-right-inline">Keith Goffin, Ursula Koners. <span class="nocase">Tacit knowledge, lessons learnt, and new product
+<div class="csl-left-margin">24. </div><div class="csl-right-inline">Keith Goffin, Ursula Koners. <span class="nocase">Tacit knowledge, lessons learnt, and new product
 development</span>. <em>Journal of Product Innovation Management</em>.
 2011;28(2):300-318. doi:<a href="https://doi.org/10.1111/j.1540-5885.2010.00798.x">10.1111/j.1540-5885.2010.00798.x</a></div>
+</div>
+<div id="ref-himssworkforce2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">25. </div><div class="csl-right-inline">HIMSS. <em><span class="nocase">The Future of
+Workforce: HIMSS25 Europe Outcomes Report</span></em>. Healthcare
+Information; Management Systems Society; 2025. <a href="https://www.himss.org/resources/the-future-of-workforce/">https://www.himss.org/resources/the-future-of-workforce/</a></div>
 </div>
 <div id="ref-moore2018" class="csl-entry" role="listitem">
 <div class="csl-left-margin">26. </div><div class="csl-right-inline">D.
