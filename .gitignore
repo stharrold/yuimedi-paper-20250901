@@ -152,3 +152,5 @@ gha-creds-*.json
 abstract-visual-video/20260115_Receipt_SL73WR5YH_998.pdf
 abstract-visual-video/20260115_Invoice_SL73WR5YH_998.pdf
 bibliography-audit/
+.playwright-mcp/
+abstract-visual-video/*.mp4
