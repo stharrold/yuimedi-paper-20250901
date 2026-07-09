@@ -640,6 +640,96 @@ def validate_word_count(content: str, max_words: int = 5000) -> dict:
     }
 
 
+def validate_jmir_word_count(content: str, max_words: int = 5000) -> dict:
+    """
+    Count words using JMIR's official method, approximating the typeset DOCX.
+
+    Per https://support.jmir.org/hc/en-us/articles/360002687871, the count
+    INCLUDES: title, abstract, keywords, manuscript body, table content and
+    captions, figure captions, Acknowledgments, Authors' Contributions, and
+    Conflicts of Interest (plus similar end matter such as Funding, Data
+    Availability, and the Abbreviations list, which are typeset content).
+    It EXCLUDES: author metadata, figure image content, multimedia
+    appendices, and the reference list.
+
+    Rendered citations appear in the DOCX as bracketed numbers ([1], [2,3]),
+    so each citation cluster is counted as one token rather than stripped.
+
+    Args:
+        content: Full paper.md content (YAML frontmatter + body).
+        max_words: Limit to check against (default 5000 for Viewpoint).
+
+    Returns:
+        dict with keys:
+            - valid (bool): True if word count <= max_words
+            - word_count (int): JMIR-method word count
+            - max_words (int): The limit applied
+            - error (str, optional): Error message if boundaries not found
+    """
+    frontmatter_end = None
+    dash_count = 0
+    frontmatter_start = 0
+    for match in re.finditer(r"^---\s*$", content, re.MULTILINE):
+        dash_count += 1
+        if dash_count == 1:
+            frontmatter_start = match.end()
+        elif dash_count == 2:
+            frontmatter_end = match.end()
+            break
+
+    if frontmatter_end is None:
+        return {
+            "valid": False,
+            "word_count": 0,
+            "max_words": max_words,
+            "error": "Could not find end of YAML frontmatter",
+        }
+
+    frontmatter = content[frontmatter_start : frontmatter_end - 3]
+
+    # Title, abstract, and keywords from frontmatter (all counted by JMIR)
+    front_words = 0
+    title_match = re.search(r"^title:\s*(.+)$", frontmatter, re.MULTILINE)
+    if title_match:
+        front_words += len(title_match.group(1).strip("'\" ").split())
+    # YAML block scalar: everything indented (including blank lines between
+    # paragraphs) until the next top-level key
+    abstract_match = re.search(
+        r"^abstract:\s*\|?\s*\n((?:(?:[ \t]+.*)?\n)+?)(?=^\S)",
+        frontmatter + "\nEND: 1\n",
+        re.MULTILINE,
+    )
+    if abstract_match:
+        front_words += len(abstract_match.group(1).split())
+    keywords_match = re.search(r"^keywords:\s*\[(.*?)\]", frontmatter, re.DOTALL)
+    if keywords_match:
+        front_words += len(re.split(r",\s*", keywords_match.group(1)))
+
+    # Body through the end of typeset content, excluding the reference list.
+    refs_match = re.search(r"^# References?\s*$", content, re.MULTILINE)
+    body_end = refs_match.start() if refs_match else len(content)
+    body_text = content[frontmatter_end:body_end]
+
+    # Keep figure captions (alt text); drop only the image path/attributes
+    body_text = re.sub(r"!\[([^\]]*)\]\([^)]*\)(?:\{[^}]*\})?", r"\1", body_text)
+    # Inline code content still typesets; keep the text, drop backticks only
+    body_text = body_text.replace("`", "")
+    # Markdown links render their text
+    body_text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", body_text)
+    # Citation clusters render as one bracketed number token, e.g. [1] or [2,3]
+    body_text = re.sub(r"\[@[^\]]+\]", "[N]", body_text)
+    # Strip residual markdown formatting characters (table pipes keep cell words)
+    body_text = re.sub(r"[*#_>|]", "", body_text)
+
+    word_count = front_words + len(body_text.split())
+
+    return {
+        "valid": word_count <= max_words,
+        "word_count": word_count,
+        "max_words": max_words,
+    }
+
+
 def main() -> int:
     """Main entry point. Returns 0 if compliant, 1 otherwise."""
     parser = argparse.ArgumentParser(
@@ -757,6 +847,20 @@ def main() -> int:
             wc_str = "✓" if wc["valid"] else "✗"
             print(f"  {wc_str} Word count: {wc['word_count']}/{wc['max_words']}")
             if not wc["valid"]:
+                all_valid = False
+        print()
+
+        jmir_wc = validate_jmir_word_count(paper_content)
+        print("## JMIR-Method Word Count (Viewpoint)")
+        print("#  (title + abstract + keywords + body incl. tables and figure")
+        print("#   captions + end matter + abbreviations; excludes references)")
+        if jmir_wc.get("error"):
+            print(f"  ✗ Error: {jmir_wc['error']}")
+            all_valid = False
+        else:
+            jmir_str = "✓" if jmir_wc["valid"] else "✗"
+            print(f"  {jmir_str} Word count: {jmir_wc['word_count']}/{jmir_wc['max_words']}")
+            if not jmir_wc["valid"]:
                 all_valid = False
         print()
     else:

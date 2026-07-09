@@ -50,9 +50,13 @@ uv run pytest
 uv run python scripts/validate_references.py --all
 uv run python scripts/validate_jmir_compliance.py --article-type viewpoint
 
-# Word count (JMIR method: excludes metadata + references only)
-# See: standards/jmir_submission_word-count-elements.md
-cat paper.md | sed '1,/^---$/d' | sed '/^# References/,$d' | wc -w  # limit: 5,000
+# Word count: the compliance validator reports BOTH counts; the JMIR-Method
+# count is the authoritative one (title + abstract + keywords + body incl.
+# tables and figure captions + end matter + abbreviations; excludes only
+# references, author metadata, figure content, appendices; limit 5,000).
+# The editor counts the whole DOCX in Word, which tracks the JMIR-method
+# count once references are subtracted. Do NOT use a body-only count to
+# judge compliance. See: standards/jmir_submission_word-count-elements.md
 
 # Build artifacts: rebuild after any paper.md edit, then commit.
 # Pre-commit hooks fix trailing whitespace in generated HTML files,
