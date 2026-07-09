@@ -1,0 +1,85 @@
+------------------------------------------
+Decision B: (minor revision)
+------------------------------------------
+Dear Samuel Harrold,
+
+Your manuscript (#96541) in Interactive Journal of Medical Research has now been reviewed. The relevant reviewer/editor comments are listed at the end of this email.
+
+Please address the issues mentioned below and submit your revised manuscript for editorial review.
+
+A minor revision decision is not a guarantee of a final decision of acceptance. Please note that the editor may determine upon re-review that the paper is better suited for publication in another JMIR Publications journal and recommend a manuscript transfer, especially if critical issues remain unaddressed or are introduced in the course of further revision.
+
+-----------------------------------------------------------------------------------------
+The due date for your revision and responses to reviewers is 2026-07-14.
+-----------------------------------------------------------------------------------------
+
+This deadline can be extended once (see https://jmir.zendesk.com/hc/en-us/articles/115001333167).
+
+Revision & Resubmission Instructions
+--------------------------------------------------
+To upload a revised version of your manuscript, go to https://www.i-jmr.org/author/submissionReview/96541 and do the following:
+
+1) Revised Manuscript: Use the "Revised Ms Upload" file-upload function and upload a clean (non-tracked) revised Word document of your manuscript.
+
+2) Author Response to Comments: Copy and paste point-by-point responses to reviewer/editor comments into the notification email to the editor. Please do not upload a separate file containing responses. There are no formatting options (e.g., bold, italics) in this field.
+
+3) Upload a revised version with tracked changes (or highlighted sections of text where changes were made) as a supplementary file, in addition to providing a clean version under "Revised Ms". See https://jmir.zendesk.com/hc/en-us/articles/115001400448 for details on how to respond to reviewer comments and upload a revised manuscript. Supplying a version of the manuscript with tracked changes facilitates the review process.
+
+Note that it is the authors' responsibility to ensure adherence to JMIR Publications style and formatting, including final word count.
+
+Author names and metadata
+--------------------------------
+All co-authors should verify how their names and affiliations will be displayed by informing the submitting author if edits are required.
+
+Also note that for the final publication (if accepted), metadata (author names and affiliations) will be taken from the database information you entered when submitting this article, NOT the manuscript file.
+
+Thank you.
+
+Best regards,
+
+Matthew Balcarras, PhD
+matt.balcarras@jmir.org
+(Editor)
+
+Interactive Journal of Medical Research
+JMIR Publications
+
+For status updates, please first read the FAQ (https://support.jmir.org/hc/en-us/articles/115001358188).
+
+For scientific content questions only, please use the "Contact Editor" function on your manuscript link (https://support.jmir.org/hc/en-us/articles/115001332927).
+
+For all other administrative or technical issues, or if you do not hear back from the academic editor on an urgent matter, please email ed-support@jmir.org with your manuscript number. Please note that academic editors will not respond to status queries or questions answered in the FAQ.
+
+[Ms link for editor only: https://www.i-jmr.org/editor/submissionReview/96541
+For section/guest editor: https://www.i-jmr.org/sectionEditor/submissionReview/96541]
+
+
+-------------------
+EDITORIAL COMMENTS (Decision: B)
+-------------------
+
+
+Thank you for the revisions to your manuscript. Please note the comments below and provide a point by point response.
+
+
+### Further Editorial / Peer-reviewer Comments:
+
+Please see this link for details on manuscript length, the current version is too long: https://support.jmir.org/hc/en-us/articles/115004950787-What-are-the-article-types-for-JMIR-Publications-journals#h_01GB60593SQ0DCKPYTARYGRV6S
+
+The reference list includes items with incorrect or invalid DOIs. Please review all references for accuracy, appropriateness and validity.
+
+Please ensure that all tables and figures are included in the manuscript in proper format so that they can be viewed correctly. The current version has text that should probably be in tables but is not formatted in a way that can be viewed clearly.
+
+
+
+
+---------- snip ----------
+------------------------------------------------------
+Reviewer Q:
+General comments
+=============
+Thank you for addressing the reviewers' comments. The current draft has sufficient potential for publication in IJMR.
+My only recommendation is that the proposed model has strong potential to be further expanded and empirically evaluated. Two particularly promising directions for future work are:
+1. Empirical assessment of the human-in-the-loop component. Specifically, the authors could investigate whether incorporating a human expert into the validation process leads to a measurable improvement in the accuracy and quality of the generated knowledge base compared to a fully automated approach.
+2. Comparative evaluation against existing models. The proposed framework could be compared with established approaches in a controlled or simulated setting to assess differences in the quality, completeness, and reliability of the generated knowledge base when responding to the same set of inquiries.
+While I do not consider these analyses essential for the current manuscript, I believe they represent valuable avenues for future research that would further strengthen and validate the proposed framework.
