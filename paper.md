@@ -65,7 +65,7 @@ The three-pillar structure aligns with established models across healthcare info
 | Workforce Agility | Implicit in advanced stages | Knowledge (tacit) → Wisdom | Tacit Knowledge Transfer |
 | Technical Enablement | Stages 6-7 requirements | Information → Knowledge | Knowledge Codification |
 
-: Framework alignment with established models. \label{tab:alignment}
+: Table 1. Framework alignment with established models. \label{tab:alignment}
 
 HIMSS AMAM provides organizational benchmarks but does not address workforce knowledge retention. The Data, Information, Knowledge, Wisdom (DIKW) hierarchy explains progression from raw data to actionable insight but does not account for institutional memory loss. The three-pillar framework synthesizes these perspectives, positioning workforce dynamics as the critical enabler connecting data access (analytics maturity) with organizational wisdom (knowledge preservation) [@farnese2019; @rao2006].
 
@@ -95,13 +95,13 @@ We propose *Human-in-the-Loop Knowledge Governance (HITL-KG)* as the overarching
 
 The HITL-KG architecture (Figure 1) functions as a *Governance Forcing Function*. It inserts a mandatory validation step into the analytics workflow, preventing laundered hallucinations while capturing expert knowledge.
 
-![Human-in-the-Loop Knowledge Governance (HITL-KG) architecture.](figures/architecture.mmd.png){width=86.5%}
+![Figure 1. Human-in-the-Loop Knowledge Governance (HITL-KG) architecture.](figures/architecture.mmd.png){width=86.5%}
 
 A clinical user's natural language query (step 1) is translated to SQL and run against the data warehouse (steps 2-3); an expert validation gate (step 4) either returns confirmed insights (steps 5-6) or loops back for correction. Confirmed query triples enter organizational memory (step 7, dashed line), which informs future queries and curates the knowledge base (step 8), closing a continuous-learning loop in which best practices evolve rather than remain static.
 
 Figure 2 summarizes the corresponding six-step Validated Query Cycle, tracing queries from clinical intent through expert validation into durable organizational memory.
 
-![The six-step Validated Query Cycle and its mapping to the three pillars.](figures/knowledge-cycle.mmd.png){height=6.67in}
+![Figure 2. The six-step Validated Query Cycle and its mapping to the three pillars.](figures/knowledge-cycle.mmd.png){height=6.67in}
 
 A natural language question (step 1) yields candidate SQL (step 2) that the analyst validates against the system's explained logic (step 3), looping back if incorrect. Validated triples are stored in organizational memory (step 4), matched by future queries (step 5), and persist across staff turnover (step 6). Dashed arrows mark the pillar outcomes: storage advances analytics maturity, persistence stabilizes workforce agility, and retrieval increases technical enablement.
 
@@ -157,7 +157,7 @@ Each indicator is scored as Low, Medium, or High Strength using evidence-based a
 | Workforce Agility | First-year analytics staff turnover; leadership tenure; knowledge concentration |
 | Technical Enablement | Data access; interoperability; schema coupling |
 
-: Three-Pillar Assessment Rubric indicators (full rubric with anchors in Multimedia Appendix 2). \label{tab:rubric}
+: Table 2. Three-Pillar Assessment Rubric indicators (full rubric with anchors in Multimedia Appendix 2). \label{tab:rubric}
 
 The "Schema Coupling" indicator can be operationalized through *Continuous Analytic Integration*: treating validated query triples as software assets within a CI/CD pipeline that detects data and schema drift [@valiaiev2025; @mannapur2025; @battula2025]. When a data warehouse schema is updated, the system automatically re-runs stored queries and flags failures, transforming institutional memory into a living test suite [@betha2023; @kottam2025].
 
@@ -168,7 +168,7 @@ A critical objection to HITL-KG is circular: if the framework requires domain ex
 
 The resolution draws on Lean management's concept of "Standard Work" [@alukal2006]. In this framing, validation is not the establishment of *eternal truth* but the documentation of the *current known standard*. Each validated query triple records the best available understanding of how a business question maps to a data operation at that moment; the validation is time-stamped and contextual, not permanent. Critically, as Alukal and Manos [@alukal2006] establish, standard work is the prerequisite for Kaizen (continuous improvement): without a documented baseline, there is no foundation to improve upon. Each validated query therefore establishes a floor, not a ceiling. The next expert, veteran or mid-career hire, inherits a baseline to refine rather than reconstructing institutional knowledge from scratch.
 
-This mechanism functions as what we term a *Knowledge Ratchet*, consistent with findings on collective knowledge structures [@rao2006]. Each validated triple prevents regression below the last confirmed state. Even if a subsequent validator is less experienced, the organization cannot slide below the previously validated standard. The analogy to version control is instructive: each commit preserves a known-good state that future contributors build upon. The ratchet does not guarantee forward progress, but it prevents the catastrophic backsliding that is the central failure mode of institutional amnesia.
+This mechanism functions as what we term a *Knowledge Ratchet*, consistent with findings on collective knowledge structures [@rao2006]. Each validated triple prevents regression below the last confirmed state. Even if a subsequent validator is less experienced, the organization cannot slide below the previously validated standard. The ratchet does not guarantee forward progress, but it prevents the catastrophic backsliding that is the central failure mode of institutional amnesia.
 
 Real-world evidence supports this: UC Davis Health moved from AMAM Stage 0 to Stage 6 by establishing standardized "S.M.A.R.T." definitions for its analytics metrics [@himss2025ucdavis]. Those codified standards survived staff turnover because they existed as organizational artifacts rather than knowledge held solely by their creators. The HITL-KG validated query library serves an analogous function: it encodes analytical decisions into durable, retrievable structures that persist independent of any single analyst's tenure.
 

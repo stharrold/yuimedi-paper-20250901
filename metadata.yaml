@@ -72,3 +72,7 @@ header-includes:
   - \usepackage{rotating}
   - \usepackage{booktabs}
   - \setcounter{secnumdepth}{-\maxdimen}
+  # Captions carry literal "Figure N."/"Table N." prefixes in the markdown
+  # (pandoc's DOCX writer emits no numbering); suppress LaTeX's auto-label
+  # so the PDF does not render "Figure 1: Figure 1. ..."
+  - \usepackage[labelformat=empty]{caption}
