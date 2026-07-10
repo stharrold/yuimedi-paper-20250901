@@ -6,7 +6,7 @@ This appendix illustrates the Validated Query Triple artifact proposed by the HI
 
 ## The Externalization Process
 
-Each Validated Query Triple is produced through a five-step cycle that captures tacit knowledge as a byproduct of routine analytics:
+Each Validated Query Triple is produced through a five-step externalization cycle that captures tacit knowledge as a byproduct of routine analytics. These steps correspond to steps 1-5 of the six-step Validated Query Cycle shown in the main paper's Figure 2; the sixth step, Persistence, is the cumulative outcome of repeated cycles:
 
 1. *Query Generation*: A user asks a question in natural language; the AI proposes candidate SQL based on schema knowledge.
 2. *Semantic Translation*: The AI translates the SQL back into a natural-language explanation of what it will do.
