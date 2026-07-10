@@ -1,0 +1,3 @@
+Figure 1. Human-in-the-Loop Knowledge Governance (HITL-KG) architecture.
+
+A clinical user's natural language query (step 1) is translated to SQL and run against the data warehouse (steps 2-3); an expert validation gate (step 4) either returns confirmed insights (steps 5-6) or loops back for correction. Confirmed query triples enter organizational memory (step 7, dashed line), which informs future queries and curates the knowledge base (step 8), closing a continuous-learning loop in which best practices evolve rather than remain static.
