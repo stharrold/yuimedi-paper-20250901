@@ -6,20 +6,20 @@ EDITORIAL COMMENTS (Decision B)
 
 COMMENT (Editor): Please see this link for details on manuscript length, the current version is too long.
 
-RESPONSE: The manuscript has been shortened to within the 5,000-word Viewpoint limit under JMIR's published counting method ("Which elements of my article are included in the word count?", which includes the title, abstract, keywords, body, table content and captions, figure captions, and end-matter sections, and excludes references, author metadata, figure image content, and multimedia appendices). By that method the previous submission measured approximately 5,430 words; the revision measures 4,986. The reduction was achieved by:
+RESPONSE: The manuscript has been shortened to within the 5,000-word Viewpoint limit under JMIR's published counting method ("Which elements of my article are included in the word count?", which includes the title, abstract, keywords, body, table content and captions, figure captions, and end-matter sections, and excludes references, author metadata, figure image content, and multimedia appendices). By that method the previous submission measured approximately 5,430 words; the revision measures 4,990. The reduction was achieved by:
 1. Moving the full Three-Pillar Assessment Rubric (three tables with Low/Medium/High scoring anchors and evidence citations) to a new Multimedia Appendix 2, following JMIR's guidance that lengthy tables are better suited to appendices. An abridged one-table summary of the nine indicators remains in the main text (Table 2), with a pointer to the appendix. All sources cited in the appendix rubric also remain cited in the main text and reference list.
 2. Shortening the two figure descriptions into concise numbered captions with brief explanatory footnotes (see Reviewer T below).
-3. Tightening prose throughout and shortening the abstract from 305 to 266 words.
+3. Tightening prose throughout and shortening the abstract from 305 to 270 words.
 No substantive claim, statistic, construct, worked example, or reviewer-requested addition from the first revision was removed.
 
 COMMENT (Editor): The reference list includes items with incorrect or invalid DOIs. Please review all references for accuracy, appropriateness and validity.
 
 RESPONSE: We conducted a complete audit of the reference list. Every entry was checked for (a) DOI registration at doi.org, (b) agreement between the entry's title, authors, year, venue, volume, issue, and pages and the DOI's registered Crossref record, and (c) support for the specific claim cited to it, verified against the full text or publisher record wherever available. As a result:
 - 8 incorrect or invalid DOIs were corrected (several were valid DOIs that resolved to a different article, typically citation-manager autofill errors; the corrected entries also received the right volume, issue, and page numbers, and in two cases the right journal or conference).
-- DOIs were added to 6 entries that lacked them; 25 entries legitimately without DOIs (reports, news, and web resources) were verified by URL.
+- DOIs were added to 9 entries that lacked them; 25 entries legitimately without DOIs (reports, news, and web resources) were verified by URL.
 - 2 duplicate entries were removed.
-- 5 references were removed or replaced after verification: two whose publisher site no longer serves any content, one student research report replaced by the established IEEE Spectrum account of the same case, one inaccessible thesis replaced by an already-cited peer-reviewed source that supports the same point, and one whose claim we re-grounded in two sources already in the reference list.
-- Author names were corrected against publisher records in 9 entries (including wrong or incomplete given names and missing co-authors), and bibliographic fields (volume, issue, pages) were completed throughout.
+- 7 references were removed or replaced after verification: two whose publisher site no longer serves any content, one student research report replaced by the established IEEE Spectrum account of the same case, one inaccessible thesis replaced by an already-cited peer-reviewed source that supports the same point, one press release replaced by the canonical scholarly source for the claim it supported, one removed from two sentences whose specific claims its content did not support, and one whose claim we re-grounded in two sources already in the reference list.
+- Author names were corrected against publisher records in 15 entries (including wrong or incomplete given names and missing co-authors), and bibliographic fields (volume, issue, pages) were completed throughout.
 The revised list contains 84 references; every DOI resolves and matches its registered metadata.
 
 COMMENT (Editor): Please ensure that all tables and figures are included in the manuscript in proper format so that they can be viewed correctly. The current version has text that should probably be in tables but is not formatted in a way that can be viewed clearly.

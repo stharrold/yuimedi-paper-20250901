@@ -34,7 +34,7 @@ I am grateful to you and to both reviewers for the assessment across two rounds.
 
 *Reference accuracy and validity (Editor):*
 
-- Every reference was audited for DOI registration, agreement with its registered Crossref metadata, and support for the claim cited to it. Eight incorrect or invalid DOIs were corrected, DOIs were added to six entries, two duplicate entries were removed, five references were removed or replaced with stronger established sources after verification, and author names and bibliographic fields were corrected against publisher records throughout. The revised list contains 84 references; every DOI resolves and matches its registered metadata.
+- Every reference was audited for DOI registration, agreement with its registered Crossref metadata, and support for the claim cited to it. Eight incorrect or invalid DOIs were corrected, DOIs were added to nine entries, two duplicate entries were removed, seven references were removed or replaced with stronger established sources after verification, and author names and bibliographic fields were corrected against publisher records throughout. The revised list contains 84 references; every DOI resolves and matches its registered metadata.
 
 *Table and figure formatting (Editor):*
 
