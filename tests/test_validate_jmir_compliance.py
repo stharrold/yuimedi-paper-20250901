@@ -33,6 +33,7 @@ from validate_jmir_compliance import (  # noqa: E402
     validate_csl_configuration,
     validate_figure_format,
     validate_imrd_structure,
+    validate_jmir_word_count,
     validate_keywords,
     validate_no_imrd_headers,
     validate_no_old_citations,
@@ -867,6 +868,91 @@ class TestValidateWordCount:
 
         assert result["valid"] is False
         assert result["max_words"] == 100
+
+
+class TestValidateJmirWordCount:
+    """Tests for validate_jmir_word_count (JMIR's inclusive counting method)."""
+
+    FIXTURE = """---
+title: One two three four five
+abstract: |
+  First paragraph has five words.
+
+  Second paragraph also has five.
+keywords: [alpha, beta, gamma, delta, epsilon]
+---
+
+# Body
+
+Ten body words follow here now making exactly ten total [@cite2020; @other2021].
+
+![Caption words count here.](figures/x.png){width=50%}
+
+| Cell | Words |
+|:---|:---|
+| count | too |
+
+# Acknowledgments
+
+Two words.
+
+# References
+"""
+
+    def test_counts_title_abstract_keywords_and_body(self):
+        """Title (5) + abstract both paragraphs (10) + keywords (5) counted."""
+        result = validate_jmir_word_count(self.FIXTURE)
+        # front matter = 5 title + 10 abstract + 5 keywords = 20
+        # body: heading + 10 words + 1 citation token + 4 caption words
+        #       + 4 table cell words + heading + 2 end-matter words
+        assert result["word_count"] >= 20 + 10
+
+    def test_multiparagraph_abstract_fully_counted(self):
+        """Regression: abstract paragraphs after a blank line must count."""
+        single = self.FIXTURE.replace("\n\n  Second paragraph also has five.", "")
+        full = validate_jmir_word_count(self.FIXTURE)["word_count"]
+        partial = validate_jmir_word_count(single)["word_count"]
+        assert full - partial == 5
+
+    def test_excludes_references_section(self):
+        """Words after # References must not count."""
+        with_refs = self.FIXTURE + "\nRef one. Ref two. Ref three. Ref four.\n"
+        assert (
+            validate_jmir_word_count(with_refs)["word_count"]
+            == validate_jmir_word_count(self.FIXTURE)["word_count"]
+        )
+
+    def test_figure_caption_counted_image_path_not(self):
+        """Figure alt text counts; the file path and attributes do not."""
+        no_fig = self.FIXTURE.replace(
+            "![Caption words count here.](figures/x.png){width=50%}\n\n", ""
+        )
+        diff = (
+            validate_jmir_word_count(self.FIXTURE)["word_count"]
+            - validate_jmir_word_count(no_fig)["word_count"]
+        )
+        assert diff == 4
+
+    def test_citation_cluster_counts_as_one_token(self):
+        """[@a; @b] renders as one bracketed number, so counts as one word."""
+        doubled = self.FIXTURE.replace(
+            "[@cite2020; @other2021]", "[@cite2020; @other2021] [@third2022]"
+        )
+        diff = (
+            validate_jmir_word_count(doubled)["word_count"]
+            - validate_jmir_word_count(self.FIXTURE)["word_count"]
+        )
+        assert diff == 1
+
+    def test_no_frontmatter_returns_error(self):
+        result = validate_jmir_word_count("No frontmatter here.")
+        assert result["valid"] is False
+        assert "error" in result
+
+    def test_limit_applied(self):
+        result = validate_jmir_word_count(self.FIXTURE, max_words=10)
+        assert result["valid"] is False
+        assert result["max_words"] == 10
 
 
 class TestWithRealPaper:

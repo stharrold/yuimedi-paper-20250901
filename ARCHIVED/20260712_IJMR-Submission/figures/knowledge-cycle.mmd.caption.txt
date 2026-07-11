@@ -1,0 +1,3 @@
+Figure 2. The six-step Validated Query Cycle and its mapping to the three pillars.
+
+A natural language question (step 1) yields candidate SQL (step 2) that the analyst validates against the system's explained logic (step 3), looping back if incorrect. Validated triples are stored in organizational memory (step 4), matched by future queries (step 5), and persist across staff turnover (step 6). Dashed arrows mark the pillar outcomes: storage advances analytics maturity, persistence stabilizes workforce agility, and retrieval increases technical enablement.
