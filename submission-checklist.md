@@ -87,7 +87,7 @@ https://www.i-jmr.org/author/submissionReview/96541
 - [ ] **Revised Ms (section A)**: clean `paper.docx` (no tracked changes)
 - [ ] **Figures (section 1)**: `architecture.figure.png`, `knowledge-cycle.figure.png` (max 1200x1200 px) with captions from the caption files
 - [ ] **Multimedia Appendices (section 2)**: BOTH `multimedia_appendix_1.pdf` AND `multimedia_appendix_2.pdf` with their captions
-- [ ] **Additional material (section 3)**: `20260710_tracked-changes_R1-to-R2.docx` + response letter PDF (no cover-letter slot on the revision form)
+- [ ] **Additional material (section 3)**: `20260710_tracked-changes_R1-to-R2.docx` + response letter PDF + TOC/feature image (`20260615_visual-abstract_toc-image.png`, unchanged from R1) + license/permission proof (`20260615_AJE_Terms-of-Service.pdf`, `20260115_AJE_Invoice_SL73WR5YH_redacted.png`) (no cover-letter slot on the revision form)
 - [ ] **Editor notification (section B)**: paste `20260710_response-to-reviewers_sectionB-paste.txt` (plain text, no formatting)
 
 ## Pre-Send Verification (against the CI-committed paper.docx, not a local rebuild)
