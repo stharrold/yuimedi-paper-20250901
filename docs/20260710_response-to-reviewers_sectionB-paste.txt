@@ -19,7 +19,7 @@ RESPONSE: We conducted a complete audit of the reference list. Every entry was c
 - DOIs were added to 9 entries that lacked them; 25 entries legitimately without DOIs (reports, news, and web resources) were verified by URL.
 - 2 duplicate entries were removed.
 - 7 references were removed or replaced after verification: two whose publisher site no longer serves any content, one student research report replaced by the established IEEE Spectrum account of the same case, one inaccessible thesis replaced by an already-cited peer-reviewed source that supports the same point, one press release replaced by the canonical scholarly source for the claim it supported, one removed from two sentences whose specific claims its content did not support, and one whose claim we re-grounded in two sources already in the reference list.
-- Author names were corrected against publisher records in 15 entries (including wrong or incomplete given names and missing co-authors), and bibliographic fields (volume, issue, pages) were completed throughout.
+- Author names were corrected against publisher records in 29 entries (including wrong or incomplete given names, missing co-authors, and malformed name-list formatting that rendered incorrectly in the reference list), and bibliographic fields (volume, issue, pages) were completed throughout.
 The revised list contains 84 references; every DOI resolves and matches its registered metadata.
 
 COMMENT (Editor): Please ensure that all tables and figures are included in the manuscript in proper format so that they can be viewed correctly. The current version has text that should probably be in tables but is not formatted in a way that can be viewed clearly.
