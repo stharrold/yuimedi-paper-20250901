@@ -190,7 +190,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 
 - `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
 - CI auto-commits (`[skip ci]`) can diverge from local; may need `--force-with-lease` on contrib branch
-- **Verify against CI-committed artifacts, not local rebuilds.** The `Containerfile`'s pandoc is older than typical local pandoc and emits different `\includegraphics` attributes (no auto-injected `keepaspectratio`, `\textwidth` in place of `\linewidth`). After a CI `[skip ci]` regeneration, re-inspect the committed `paper.tex`/`paper.pdf` directly; a local `build_paper.sh` run can mask bugs that only surface in CI output.
+- **CI pandoc is pinned to 3.8.2.1** (official release .deb in the `Containerfile`) to match local builds. Debian's apt pandoc (2.x) previously caused CI/local divergence: non-AMA author rendering in reference lists ("Michal S. Gal" instead of "Gal MS") and different `\includegraphics` attributes. The pdf-generation workflow now includes an AMA-rendering regression check on the built paper.docx. Still spot-check CI-committed artifacts after a `[skip ci]` regeneration; keep the pinned version in sync with the local pandoc used for submission builds.
 - Paper Artifacts Generation requires pandoc + texlive in Containerfile
 - Don't pipe remote install scripts in Containerfiles. For `uv`, use `COPY --from=ghcr.io/astral-sh/uv:<version> /uv /uvx /usr/local/bin/` (astral.sh install endpoint has returned 502s that hard-fail builds).
 - Build PDF engine: `build_paper.sh` falls back to `tectonic` (xelatex not on direct shell PATH). Standalone pandoc PDF builds (cover letter, response-to-reviewers) need `--pdf-engine=tectonic`.
@@ -203,7 +203,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **Upstream for `secrets_*.py`:** `../library/scripts/` (sync changes from there)
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
 - **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
-- **Container:** `Containerfile` with Python 3.12, Pandoc 3.2, TeXLive, Node.js
+- **Container:** `Containerfile` with Python 3.11, pinned Pandoc 3.8.2.1, TeXLive, Node.js
 - **Multi-stage Python containers:** builder `WORKDIR` must equal runtime `WORKDIR` (console-script shebangs are absolute paths baked at venv-creation time). Use `uv sync --no-editable` after copying sources so entry points survive `COPY --from=builder`. Multi-stage structure pattern lives in `Containerfile.lit_review`; `uv` installation pattern (via `COPY --from=ghcr.io/astral-sh/uv:...`) lives in the main `Containerfile`. Both `Containerfile` and `Containerfile.lit_review` install uv via `COPY --from=ghcr.io/astral-sh/uv:0.5.5`.
 - **Anthropic SDK**: `response.content[0]` is a union type; filter with `[b for b in response.content if hasattr(b, "text")]` before accessing `.text` (mypy `union-attr`)
 

@@ -25,11 +25,10 @@ FROM python:3.11-slim
 LABEL maintainer="stharrold"
 LABEL description="YuiQuery research environment with uv + Python 3.11 + pandoc + texlive"
 
-# Install system dependencies including pandoc and texlive for paper generation
+# Install system dependencies including texlive for paper generation
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
-    pandoc \
     texlive-xetex \
     texlive-fonts-recommended \
     texlive-fonts-extra \
@@ -38,6 +37,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     lmodern \
     librsvg2-bin \
     && rm -rf /var/lib/apt/lists/*
+
+# Install pinned pandoc from the official release. Debian's apt pandoc is
+# 2.x, whose citeproc does NOT apply AMA author-name inversion (renders
+# "Michal S. Gal" instead of "Gal MS"), so CI-built reference lists
+# diverged from local builds. Pin to the version verified locally.
+ARG PANDOC_VERSION=3.8.2.1
+RUN arch="$(dpkg --print-architecture)" && \
+    curl -fsSL -o /tmp/pandoc.deb \
+      "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-${arch}.deb" && \
+    dpkg -i /tmp/pandoc.deb && \
+    rm /tmp/pandoc.deb && \
+    pandoc --version | head -1
 
 # Install uv from the official distroless image. Avoids piping a remote
 # install script (the astral.sh endpoint has returned transient 502s in CI

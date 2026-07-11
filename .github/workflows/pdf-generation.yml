@@ -73,6 +73,24 @@ jobs:
             echo "$file: $(du -h $file | cut -f1)"
           done
 
+      - name: Verify AMA citation rendering
+        # Guard against citeproc regressions: Debian's apt pandoc (2.x)
+        # rendered reference-list authors without AMA name inversion.
+        run: |
+          python3 - <<'EOF'
+          import re, zipfile, sys
+          with zipfile.ZipFile('paper.docx') as z:
+              text = re.sub(r'<[^>]+>', '', z.read('word/document.xml').decode('utf-8'))
+          inverted_present = 'Gal MS, Rubinfeld DL' in text
+          uninverted_absent = 'Michal S. Gal' not in text
+          if not (inverted_present and uninverted_absent):
+              print('FAIL: reference list is not AMA-inverted '
+                    f'(inverted_present={inverted_present}, uninverted_absent={uninverted_absent}); '
+                    'check the pinned pandoc version in the Containerfile')
+              sys.exit(1)
+          print('OK: reference list renders AMA-style author names')
+          EOF
+
       - name: Auto-commit updated artifacts
         # Only auto-commit on contrib branches (main/develop require PRs per CLAUDE.md branch strategy)
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/contrib/')
