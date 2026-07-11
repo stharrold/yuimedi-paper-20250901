@@ -1,17 +1,17 @@
 # Reference Validation Report
 
-**Generated:** 2026-07-09 18:18:46 UTC
+**Generated:** 2026-07-11 11:45:50 UTC
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total References | 82 |
-| Academic [A*] | 76 |
+| Total References | 84 |
+| Academic [A*] | 78 |
 | Industry [I*] | 6 |
-| Total Citations | 128 |
-| Accessible URLs | 49 |
-| Broken URLs | 31 |
+| Total Citations | 116 |
+| Accessible URLs | 48 |
+| Broken URLs | 34 |
 | Missing URLs | 2 |
 | Orphaned Citations | 0 |
 | Unused References | 0 |
@@ -55,6 +55,9 @@ References with inaccessible URLs:
 | [jindal2019] | https://doi.org/10.1145/3357223.3362726 | HTTP 403: Forbidden |
 | [gartlehner2025] | https://doi.org/10.7326/ANNALS-25-00739 | HTTP 403: Forbidden |
 | [ning2024] | https://doi.org/10.1145/3650114 | HTTP 403: Forbidden |
+| [pollitt2000] | https://doi.org/10.1080/08109020050000627 | HTTP 403: Forbidden |
+| [stark2019] | https://doi.org/10.1080/13501763.2018.1535612 | HTTP 403: Forbidden |
+| [deholan2004] | https://doi.org/10.1287/mnsc.1040.0273 | HTTP 403: Forbidden |
 
 ### References Without URLs
 
@@ -86,6 +89,7 @@ References that don't have a URL:
 | [breu2002] | academic | Failed: HTTP 403: Forbidden |
 | [chen2026graph] | academic | Failed: HTTP 403: Forbidden |
 | [davenport2007] | academic | No URL |
+| [deholan2004] | academic | Failed: HTTP 403: Forbidden |
 | [farnese2019] | academic | OK (200) |
 | [foos2006] | academic | Failed: HTTP 403: Forbidden |
 | [foss2007] | academic | Failed: HTTP 403: Forbidden |
@@ -128,19 +132,20 @@ References that don't have a URL:
 | [ning2024] | academic | Failed: HTTP 403: Forbidden |
 | [nsi2025] | academic | OK (200) |
 | [ogunwole2023] | academic | OK (200) |
+| [pollitt2000] | academic | Failed: HTTP 403: Forbidden |
 | [rajamani2025] | academic | Failed: HTTP 403: Forbidden |
 | [rao2006] | academic | Failed: HTTP 403: Forbidden |
 | [ratliff2025] | academic | Failed: HTTP 403: Forbidden |
 | [ren2024] | academic | OK (200) |
 | [shahbaz2019] | academic | OK (200) |
 | [snowdon2024] | academic | OK (202) |
+| [stark2019] | academic | Failed: HTTP 403: Forbidden |
 | [strickland2019] | academic | OK (200) |
 | [tarbell2024] | academic | OK (200) |
 | [tessarini2021] | academic | OK (200) |
 | [tomaskovic1994] | academic | Failed: HTTP 403: Forbidden |
 | [tyndall2010] | academic | OK (200) |
 | [valiaiev2025] | academic | OK (200) |
-| [wang2018] | academic | OK (200) |
 | [wang2020] | academic | OK (200) |
 | [whittaker2008] | academic | OK (200) |
 | [wittkieffer2024] | academic | OK (200) |
