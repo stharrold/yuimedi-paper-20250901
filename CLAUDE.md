@@ -50,9 +50,13 @@ uv run pytest
 uv run python scripts/validate_references.py --all
 uv run python scripts/validate_jmir_compliance.py --article-type viewpoint
 
-# Word count (JMIR method: excludes metadata + references only)
-# See: standards/jmir_submission_word-count-elements.md
-cat paper.md | sed '1,/^---$/d' | sed '/^# References/,$d' | wc -w  # limit: 5,000
+# Word count: the compliance validator reports BOTH counts; the JMIR-Method
+# count is the authoritative one (title + abstract + keywords + body incl.
+# tables and figure captions + end matter + abbreviations; excludes only
+# references, author metadata, figure content, appendices; limit 5,000).
+# The editor counts the whole DOCX in Word, which tracks the JMIR-method
+# count once references are subtracted. Do NOT use a body-only count to
+# judge compliance. See: standards/jmir_submission_word-count-elements.md
 
 # Build artifacts: rebuild after any paper.md edit, then commit.
 # Pre-commit hooks fix trailing whitespace in generated HTML files,
@@ -186,7 +190,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 
 - `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
 - CI auto-commits (`[skip ci]`) can diverge from local; may need `--force-with-lease` on contrib branch
-- **Verify against CI-committed artifacts, not local rebuilds.** The `Containerfile`'s pandoc is older than typical local pandoc and emits different `\includegraphics` attributes (no auto-injected `keepaspectratio`, `\textwidth` in place of `\linewidth`). After a CI `[skip ci]` regeneration, re-inspect the committed `paper.tex`/`paper.pdf` directly; a local `build_paper.sh` run can mask bugs that only surface in CI output.
+- **CI pandoc is pinned to 3.8.2.1** (official release .deb in the `Containerfile`) to match local builds. Debian's apt pandoc (2.x) previously caused CI/local divergence: non-AMA author rendering in reference lists ("Michal S. Gal" instead of "Gal MS") and different `\includegraphics` attributes. The pdf-generation workflow now includes an AMA-rendering regression check on the built paper.docx. Still spot-check CI-committed artifacts after a `[skip ci]` regeneration; keep the pinned version in sync with the local pandoc used for submission builds.
 - Paper Artifacts Generation requires pandoc + texlive in Containerfile
 - Don't pipe remote install scripts in Containerfiles. For `uv`, use `COPY --from=ghcr.io/astral-sh/uv:<version> /uv /uvx /usr/local/bin/` (astral.sh install endpoint has returned 502s that hard-fail builds).
 - Build PDF engine: `build_paper.sh` falls back to `tectonic` (xelatex not on direct shell PATH). Standalone pandoc PDF builds (cover letter, response-to-reviewers) need `--pdf-engine=tectonic`.
@@ -199,7 +203,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **Upstream for `secrets_*.py`:** `../library/scripts/` (sync changes from there)
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
 - **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
-- **Container:** `Containerfile` with Python 3.12, Pandoc 3.2, TeXLive, Node.js
+- **Container:** `Containerfile` with Python 3.11, pinned Pandoc 3.8.2.1, TeXLive, Node.js
 - **Multi-stage Python containers:** builder `WORKDIR` must equal runtime `WORKDIR` (console-script shebangs are absolute paths baked at venv-creation time). Use `uv sync --no-editable` after copying sources so entry points survive `COPY --from=builder`. Multi-stage structure pattern lives in `Containerfile.lit_review`; `uv` installation pattern (via `COPY --from=ghcr.io/astral-sh/uv:...`) lives in the main `Containerfile`. Both `Containerfile` and `Containerfile.lit_review` install uv via `COPY --from=ghcr.io/astral-sh/uv:0.5.5`.
 - **Anthropic SDK**: `response.content[0]` is a union type; filter with `[b for b in response.content if hasattr(b, "text")]` before accessing `.text` (mypy `union-attr`)
 
@@ -228,10 +232,10 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 | `secrets.toml` | Secret names declaration (no values; committed to git) |
 | `scripts/secrets_setup.py` | Interactive keyring setup for secrets |
 | `scripts/secrets_run.py` | Injects secrets from keyring before running commands |
-| `cover-letter.md` | Resubmission cover letter for JMIR ms#91493 |
+| `cover-letter.md` | R2 resubmission cover letter (i-JMR ms#96541, Decision B) |
 | `abstract-visual-video/` | AJE/Springer Nature deliverables: visual abstract, video byte, email correspondence, critical assessments |
 | `docs/plans/` | Implementation plans (created per task) |
-| `submission-checklist.md` | JMIR submission checklist (Viewpoint, ms#91493) |
+| `submission-checklist.md` | i-JMR R2 submission checklist (Viewpoint, ms#96541) |
 | `project-status.md` | Lightweight project status for all 3 papers |
 | `reference.docx` | Custom Word template (Times New Roman 12pt, double-spaced, black headings) |
 | `ARCHIVED/20260329_JMIR-Submission/` | Complete submission archive (37 files); rejection email and transfer request email draft also here |

@@ -38,5 +38,5 @@
         {"term": "Natural Language Processing", "scheme": "keyword"},
         {"term": "Organizational Resilience", "scheme": "keyword"}
     ],
-    "notes": "Research repository for the Viewpoint paper proposing Human-in-the-Loop Knowledge Governance (HITL-KG) for mitigating institutional amnesia in healthcare analytics, under major revision at the Interactive Journal of Medical Research (i-JMR, ms#96541), together with the accompanying literature review toolset. The version and publication date for each release are derived automatically from the corresponding GitHub release tag."
+    "notes": "Research repository for the Viewpoint paper proposing Human-in-the-Loop Knowledge Governance (HITL-KG) for mitigating institutional amnesia in healthcare analytics, under review at the Interactive Journal of Medical Research (i-JMR, ms#96541; second revision submitted 2026-07-11), together with the accompanying literature review toolset. The version and publication date for each release are derived automatically from the corresponding GitHub release tag."
 }
