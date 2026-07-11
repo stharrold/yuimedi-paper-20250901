@@ -283,8 +283,8 @@ in organizational memory.</li>
 repository first, retrieving trusted human knowledge before attempting
 probabilistic generation.</li>
 </ol>
-<p>The worked examples below show the artifacts this process
-produces.</p>
+<p>The worked examples below show the artifacts this process produces on
+a synthetic database.</p>
 <hr />
 <h3 id="triple-1-diabetes-care-monitoring">Triple 1: Diabetes Care
 Monitoring</h3>
@@ -302,8 +302,9 @@ Monitoring</h3>
 <p><em>Rationale Metadata:</em> Aligned with NCQA HEDIS measures for
 Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance
 in older adult populations. Uses ICD-10 E11% for Type 2 Diabetes
-specifically (not E10% for Type 1) per organizational coding convention.
-Six-month window matches the HEDIS reporting period.</p>
+specifically (not E10% for Type 1) per the synthetic organization’s
+coding convention. Six-month window matches the HEDIS reporting
+period.</p>
 <hr />
 <h3 id="triple-2-heart-failure-readmission-cohort">Triple 2: Heart
 Failure Readmission Cohort</h3>
@@ -351,9 +352,9 @@ levels during the index stay.”</p>
 <p><em>Rationale Metadata:</em> Supports CMS Hospital Readmissions
 Reduction Program (HRRP) tracking. Hospice exclusion per CMS 2025 rules
 (discharge disposition != ‘HOSPICE’). Creatinine unit normalization
-(mmol/L to mg/dL via /88.4) required because our lab system stores
-results in mixed units depending on the originating facility. Lab item
-IDs 50912 and 50913 are MIMIC-III creatinine codes; local
+(mmol/L to mg/dL via /88.4) required because this synthetic lab system
+stores results in mixed units depending on the originating facility. Lab
+item IDs 50912 and 50913 are MIMIC-III creatinine codes; local
 implementations must map to their own lab dictionary.</p>
 <hr />
 <h3 id="triple-3-quality-metric-aggregation">Triple 3: Quality Metric

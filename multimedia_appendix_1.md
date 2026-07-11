@@ -14,7 +14,7 @@ Each Validated Query Triple is produced through a five-step externalization cycl
 4. *Artifact Storage*: The validated triple is hashed and stored in organizational memory.
 5. *Retrieval*: Future queries semantically match against this repository first, retrieving trusted human knowledge before attempting probabilistic generation.
 
-The worked examples below show the artifacts this process produces.
+The worked examples below show the artifacts this process produces on a synthetic database.
 
 ---
 
@@ -34,7 +34,7 @@ WHERE d.icd10_code LIKE 'E11%'  -- Type 2 Diabetes
   AND l.test_date >= DATE_SUB(CURRENT_DATE, INTERVAL 6 MONTH)
 ```
 
-*Rationale Metadata:* Aligned with NCQA HEDIS measures for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult populations. Uses ICD-10 E11% for Type 2 Diabetes specifically (not E10% for Type 1) per organizational coding convention. Six-month window matches the HEDIS reporting period.
+*Rationale Metadata:* Aligned with NCQA HEDIS measures for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult populations. Uses ICD-10 E11% for Type 2 Diabetes specifically (not E10% for Type 1) per the synthetic organization's coding convention. Six-month window matches the HEDIS reporting period.
 
 ---
 
@@ -82,7 +82,7 @@ WHERE l.itemid IN (50912, 50913)
 GROUP BY r.patient_id, r.index_admission_id, r.days_to_readmit;
 ```
 
-*Rationale Metadata:* Supports CMS Hospital Readmissions Reduction Program (HRRP) tracking. Hospice exclusion per CMS 2025 rules (discharge disposition != 'HOSPICE'). Creatinine unit normalization (mmol/L to mg/dL via /88.4) required because our lab system stores results in mixed units depending on the originating facility. Lab item IDs 50912 and 50913 are MIMIC-III creatinine codes; local implementations must map to their own lab dictionary.
+*Rationale Metadata:* Supports CMS Hospital Readmissions Reduction Program (HRRP) tracking. Hospice exclusion per CMS 2025 rules (discharge disposition != 'HOSPICE'). Creatinine unit normalization (mmol/L to mg/dL via /88.4) required because this synthetic lab system stores results in mixed units depending on the originating facility. Lab item IDs 50912 and 50913 are MIMIC-III creatinine codes; local implementations must map to their own lab dictionary.
 
 ---
 
