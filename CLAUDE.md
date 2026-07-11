@@ -232,10 +232,10 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 | `secrets.toml` | Secret names declaration (no values; committed to git) |
 | `scripts/secrets_setup.py` | Interactive keyring setup for secrets |
 | `scripts/secrets_run.py` | Injects secrets from keyring before running commands |
-| `cover-letter.md` | Resubmission cover letter for JMIR ms#91493 |
+| `cover-letter.md` | R2 resubmission cover letter (i-JMR ms#96541, Decision B) |
 | `abstract-visual-video/` | AJE/Springer Nature deliverables: visual abstract, video byte, email correspondence, critical assessments |
 | `docs/plans/` | Implementation plans (created per task) |
-| `submission-checklist.md` | JMIR submission checklist (Viewpoint, ms#91493) |
+| `submission-checklist.md` | i-JMR R2 submission checklist (Viewpoint, ms#96541) |
 | `project-status.md` | Lightweight project status for all 3 papers |
 | `reference.docx` | Custom Word template (Times New Roman 12pt, double-spaced, black headings) |
 | `ARCHIVED/20260329_JMIR-Submission/` | Complete submission archive (37 files); rejection email and transfer request email draft also here |
