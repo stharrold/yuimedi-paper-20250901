@@ -62,6 +62,6 @@ Thank you for your continued consideration.
 
 Respectfully,
 
-Samuel T Harrold
-Yuimedi, Inc.
+Samuel T Harrold\
+Yuimedi, Inc.\
 samuel.harrold@yuimedi.com
