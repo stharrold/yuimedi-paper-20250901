@@ -59,8 +59,9 @@ grep -n '—' paper.md
 | `20260710_tracked-changes_R1-to-R2.docx` | Tracked changes vs R1 submission (section 3 upload) |
 | `20260710_response-to-reviewers_sectionB-paste.txt` | Plain-text point-by-point (paste into section B) |
 | `20260710_i-jmr-r2-response-to-reviewers.pdf` | Response letter PDF (section 3 upload) |
-| `20260710_abstract-plaintext.txt` | Abstract for section D (Unstructured, 266 words) |
-| `20260710_title-plaintext.txt` | Title for section D |
+| `20260711_abstract-plaintext.txt` | Abstract for section D (Unstructured, 270 words) |
+| `20260711_title-plaintext.txt` | Title for section D |
+| `20260711_keywords-plaintext.txt` | Keywords for section D (semicolon-separated) |
 | `figures/architecture.figure.png` | Figure 1 upload (1052x1200 px) |
 | `figures/knowledge-cycle.figure.png` | Figure 2 upload (665x1200 px) |
 | `figures/*.mmd.caption.txt` | Figure captions + footnotes for the form |
@@ -79,9 +80,9 @@ https://www.i-jmr.org/author/submissionReview/96541
 
 ### Article Metadata (section D)
 - [ ] **Article Type**: Viewpoint
-- [ ] **Title**: paste from `20260710_title-plaintext.txt`
-- [ ] **Abstract**: set to Unstructured; paste from `20260710_abstract-plaintext.txt` (easy-to-miss field)
-- [ ] **Keywords**: institutional amnesia; medical informatics; socio-technical systems; query governance; natural language processing; knowledge management; personnel turnover; organizational resilience
+- [ ] **Title**: paste from `20260711_title-plaintext.txt`
+- [ ] **Abstract**: set to Unstructured; paste from `20260711_abstract-plaintext.txt` (easy-to-miss field)
+- [ ] **Keywords**: paste from `20260711_keywords-plaintext.txt`
 
 ### File Uploads
 - [ ] **Revised Ms (section A)**: clean `paper.docx` (no tracked changes)
