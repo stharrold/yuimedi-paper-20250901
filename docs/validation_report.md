@@ -22,13 +22,13 @@
 
 References with inaccessible URLs:
 
-| Reference | URL | Error |
-|-----------|-----|-------|
-| [ang2004] | https://doi.org/10.1145/1017114.1017118 | HTTP 403: Forbidden |
-| [mantas2010] | https://pubmed.ncbi.nlm.nih.gov/20054502/ | HTTP 403: Forbidden |
-| [mayo2016] | https://www.redjournal.org/article/S0360-3016(15)27193-3/ful... | HTTP 403: Forbidden |
-| [massingham2018] | https://doi.org/10.1108/JKM-08-2016-0338 | HTTP 403: Forbidden |
-| [yuan2019] | https://academic.oup.com/jamia/article-abstract/26/4/294/530... | HTTP 403: Forbidden |
+| Reference | URL | Error | Confirmed URL |
+|-----------|-----|-------|---------------|
+| [ang2004] | https://doi.org/10.1145/1017114.1017118 | HTTP 403: Forbidden | https://dl.acm.org/doi/10.1145/1017114.1017118 |
+| [mantas2010] | https://pubmed.ncbi.nlm.nih.gov/20054502/ | HTTP 403: Forbidden | https://pubmed.ncbi.nlm.nih.gov/20054502/ |
+| [mayo2016] | https://www.redjournal.org/article/S0360-3016(15)27193-3/ful... | HTTP 403: Forbidden | https://pubmed.ncbi.nlm.nih.gov/27302507/ |
+| [massingham2018] | https://doi.org/10.1108/JKM-08-2016-0338 | HTTP 403: Forbidden | https://www.emerald.com/jkm/article-abstract/22/4/721/434436/Measuring-the-impact-of-knowledge-loss-a |
+| [yuan2019] | https://academic.oup.com/jamia/article-abstract/26/4/294/530... | HTTP 403: Forbidden | https://academic.oup.com/jamia/article/26/4/294/5308980 |
 | [hendrix1978] | https://dl.acm.org/doi/abs/10.1145/320251.320253 | HTTP 403: Forbidden |
 | [goffin2011] | https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-5885.... | HTTP 403: Forbidden |
 | [foos2006] | https://www.emerald.com/insight/content/doi/10.1108/13673270... | HTTP 403: Forbidden |
