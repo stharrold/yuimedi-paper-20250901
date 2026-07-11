@@ -30,8 +30,8 @@ keywords:
   - organizational resilience
   - HIMSS AMAM
 license: Apache-2.0
-version: 3.0.0
-date-released: '2026-06-16'
+version: 4.0.0
+date-released: 2026-07-11
 identifiers:
   - type: doi
     value: 10.5281/zenodo.18264359
