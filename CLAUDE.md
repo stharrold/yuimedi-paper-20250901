@@ -28,9 +28,9 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 
 **Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Knowledge Governance (HITL-KG).
 
-**Three-paper series:** Paper 1 (Viewpoint, ms#96541 at i-JMR; transferred from JMIR Medical Informatics after Decision E2 desk-reject 2026-04-17; peer-reviewed and returned major revision Decision D 2026-06-05; R1 revision complete, due 2026-07-03; tracked under #529 epic / milestone "i-JMR R1") → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
+**Three-paper series:** Paper 1 (Viewpoint, ms#96541 at i-JMR; transferred from JMIR Medical Informatics after Decision E2 desk-reject 2026-04-17; major revision Decision D 2026-06-05, R1 resubmitted 2026-06-15; minor revision Decision B 2026-07-07, R2 submitted 2026-07-11, awaiting decision; epics #529/#551 closed; released as v4.0.0) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
 
-**Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint (~4,470 body words). Desk-rejected at JMIR Medical Informatics (Decision E2), transferred to i-JMR, returned major revision (Decision D, 2026-06-05); R1 revision complete (see #529 epic; point-by-point response at `docs/20260607_i-jmr-r1-response-to-reviewers.md`). GH#506 (resubmit to JMIR Medical Informatics) is retired/superseded by the i-JMR transfer.
+**Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint (~4,470 body words). Desk-rejected at JMIR Medical Informatics (Decision E2), transferred to i-JMR, major revision (Decision D, 2026-06-05; R1 response at `docs/20260607_i-jmr-r1-response-to-reviewers.md`), then minor revision (Decision B, 2026-07-07; R2 response at `docs/20260710_i-jmr-r2-response-to-reviewers.md`); R2 submitted 2026-07-11, awaiting decision. GH#506 (resubmit to JMIR Medical Informatics) is retired/superseded by the i-JMR transfer.
 
 ## Essential Commands
 
@@ -49,6 +49,7 @@ uv run mypy scripts/ lit_review/
 uv run pytest
 uv run python scripts/validate_references.py --all
 uv run python scripts/validate_jmir_compliance.py --article-type viewpoint
+uv run python scripts/audit_references.py --skip-landing  # DOI/metadata audit; run after any references.bib edit
 
 # Word count: the compliance validator reports BOTH counts; the JMIR-Method
 # count is the authoritative one (title + abstract + keywords + body incl.
@@ -90,13 +91,20 @@ podman run --rm --security-opt label=disable -v "$(pwd)":/app -v yuimedi_venv_ca
 Conventional commits: `fix(paper):`, `feat(ci):`, `docs:`, `build:`
 Include `Closes #<issue>` to auto-close GitHub issues.
 - Avoid `git add -A <dir>` when the dir holds untracked large files (e.g. the 51MB video byte in `abstract-visual-video/`): it stages them, trips the >10MB pre-commit hook, and silently aborts the commit (the push then reports "Everything up-to-date" with HEAD unchanged). Stage specific files instead.
+- ANY commit whose hooks modify files (trailing whitespace in generated HTML) silently aborts the same way ("[INFO] Restored changes from .../pre-commit/patch..."). Recovery: `git add -u && git commit` with the same message; always verify HEAD moved with `git log --oneline -1`.
+- New Python files under `scripts/` need SPDX headers after the shebang (`# SPDX-FileCopyrightText: 2025 stharrold` + `# SPDX-License-Identifier: Apache-2.0`) or the spdx-headers hook rejects the commit.
 
 ## Writing Rules
 
 - **No em-dashes (—) in any file** (paper, scripts, docs). Use commas, colons, semicolons, or parentheses instead. Python strings use ASCII hyphens.
 - **No bold for emphasis** in paper.md or appendices. JMIR requires italics only (`*text*` not `**text**`). Bold is stripped on acceptance.
 - **Corporate authors in `references.bib`** need double braces (`author = {{HIMSS Analytics}}`) to prevent CSL name inversion (e.g., "Analytics H."). Use `and` not `&` inside the protected block.
-- **Figure max dimension:** 1200px for JMIR upload. Resize preserving aspect ratio: macOS `sips --resampleHeight 1200 <file>`, cross-platform (ImageMagick) `mogrify -resize x1200 <file>`.
+- **BibTeX author fields must use `Family, Given and Family, Given` separators.** Comma/`&`/`et al` blobs parse as single names and render mangled in the reference list ("Latrella &B M."). Name particles need braces: `{{de Holan}, Pablo Martin}` renders "de Holan PM" (unbraced, the CSL demotes to "Holan PM de"). Use `and others` for et-al.
+- **`references.bib` is hand-maintained** (the converter workflow is retired). AMA CSL renders `doi:` for DOI-bearing entries, so `url` field edits don't change their rendered reference; URLs still matter for no-DOI entries and `validate_references.py`. `scripts/url_allowlist.json` (bib-key -> URL) suppresses known publisher bot-wall 403s; keep its URLs synced when bib URLs change, and prune keys removed from the bib.
+- **Bibliography audit evidence** lives in gitignored `bibliography-audit/` (files 0-7 per citation; `audit_references.py` regenerates 0-5 idempotently and never touches the hand-written 6 = author-verified metadata and 7 = full-text verification records). `VERIFICATION-LOG.md` there documents the layout. Full texts for grep-verification: `../library/docs/<paper-dir>/page_NNN.md` chunks.
+- **Figure max dimension:** 1200px for JMIR upload. Resize preserving aspect ratio: macOS `sips --resampleHeight 1200 <file>`, cross-platform (ImageMagick) `mogrify -resize x1200 <file>`. Upload copies are `figures/*.figure.png`; build sources (`*.mmd.png`) stay full-size.
+- **Figure/table caption numbering:** pandoc's DOCX writer emits captions with NO "Figure N"/"Table N" prefix (only LaTeX auto-numbers), so the reviewed DOCX shows bare caption text. Captions carry literal "Figure 1." / "Table 1." prefixes in paper.md, with `\usepackage[labelformat=empty]{caption}` in `metadata.yaml` header-includes suppressing LaTeX's auto-label (else the PDF shows "Figure 1: Figure 1."). JMIR figure style = short numbered caption + separate footnote paragraph below the image.
+- **DOCX table borders come from `reference.docx`'s `Table` style** (pandoc emits no inline borders). The style now defines full gridlines; edit it by unzipping `reference.docx`, patching `word/styles.xml`, re-zipping. Keywords render only in DOCX document properties (docProps/core.xml), never in the body.
 - **Pandoc image sizing in paper.md:** specify only ONE of `{width=X%}` or `{height=Yin}`. Pandoc *always* injects a page-fit secondary dimension (`height=\textheight` or `width=\linewidth`), but whether `keepaspectratio` is auto-injected depends on the pandoc version: recent local pandoc emits it, but the CI container's pandoc does not, so without the `\setkeys{Gin}{keepaspectratio}` `header-includes` entry in `metadata.yaml`, CI-built figures get stretched to exactly the specified width-by-height box. Size square figures by width, portrait figures by height (a modest width on a tall figure blows past page bottom).
 - **Figure float gotcha:** if a figure is slightly too large, the caption stays on-page with the figure but the figure's *introductory sentence* gets orphaned on a blank preceding page (LaTeX floats don't drag their intro text). After resizing, verify total page count; a nearly-blank page between figures means the next image needs a small reduction.
 - **Always rebuild ALL artifacts** after editing paper.md: `./scripts/build_paper.sh --format all`. Reviewers check paper.tex/paper.docx for stale terminology.
@@ -184,12 +192,14 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 
 - PDF redaction for the public repo: rasterize first (`pdftoppm -png -r 150`) then paint an opaque box with Pillow (`uv run --with pillow`). A black box drawn over a PDF text layer leaves the underlying text extractable.
 - Tracked-changes (redline) manuscript: `npx --yes pandiff old.docx paper.docx -o out.docx` produces native Word tracked changes (`w:ins`/`w:del`). Set the author with `sed -i '' 's/w:author="unknown"/w:author="Samuel T Harrold"/g' word/document.xml` then re-zip. pandiff can't embed images mid-diff, so figures render as their captions; upload figure files separately.
-- i-JMR resubmission form structure: section A = clean manuscript (no tracked changes), B = editor notification (paste the plain-text point-by-point response), D = title + Unstructured abstract (plain text, the easy-to-miss field) + keywords, section 1 = figures, section 3 = additional material (tracked-changes docx + response PDF + TOC/feature image + License/Permission proof). No cover-letter slot on the revision form.
+- i-JMR resubmission form structure: section A = clean manuscript (no tracked changes), B = editor notification (paste the plain-text point-by-point response), D = title + Unstructured abstract (plain text, the easy-to-miss field) + keywords, section 1 = figures, section 2 = ALL multimedia appendices, section 3 = additional material (tracked-changes docx + response PDF + TOC/feature image + License/Permission proof). No cover-letter slot on the revision form.
+- **The submission package dir (`ARCHIVED/<date>_IJMR-Submission/`) is the submission source of truth**; repo-root artifacts are CI builds. Conventions: every section-3 upload gets a `_metadata.txt` companion (generation provenance + Description field text in long/short variants); the response PDF is a CLEAN copy (internal "NOTE FOR SUBMISSION"/"DO NOT SEND" blocks stripped, `====` ASCII dividers converted to headings; the .md keeps them for the plain-text section-B paste); dated plaintext files for every form field (`_title-`, `_abstract-`, `_keywords-plaintext.txt`, keywords semicolon-separated); archive the submitted system file (`96541-NNNNNNN-1-ED.docx`), form PDF, and confirmation email after submission.
+- Point-by-point response letters: verify every quoted caption/count against the built manuscript before submitting (letters go stale as edits continue; understated audit counts read as undisclosed changes against the tracked-changes diff).
 
 ## CI Notes
 
 - `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
-- CI auto-commits (`[skip ci]`) can diverge from local; may need `--force-with-lease` on contrib branch
+- Every push to contrib triggers Paper Artifacts Generation, which auto-commits `[skip ci]` artifacts; the NEXT push then rejects as non-fast-forward. Recipe: `git pull --rebase origin contrib/stharrold`; conflicts land on artifact binaries (paper.docx/pdf); resolve with `git checkout --theirs -- <file>` (during rebase, "theirs" = your replayed commit, i.e. keep your build), `git add`, `git rebase --continue`, push. Do NOT force-push.
 - **CI pandoc is pinned to 3.8.2.1** (official release .deb in the `Containerfile`) to match local builds. Debian's apt pandoc (2.x) previously caused CI/local divergence: non-AMA author rendering in reference lists ("Michal S. Gal" instead of "Gal MS") and different `\includegraphics` attributes. The pdf-generation workflow now includes an AMA-rendering regression check on the built paper.docx. Still spot-check CI-committed artifacts after a `[skip ci]` regeneration; keep the pinned version in sync with the local pandoc used for submission builds.
 - Paper Artifacts Generation requires pandoc + texlive in Containerfile
 - Don't pipe remote install scripts in Containerfiles. For `uv`, use `COPY --from=ghcr.io/astral-sh/uv:<version> /uv /uvx /usr/local/bin/` (astral.sh install endpoint has returned 502s that hard-fail builds).
@@ -211,7 +221,8 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 
 - Repo has an active release webhook (hook id `591675875`) to `zenodo.org/api/hooks/receivers/github/events/`.
 - Webhook fires on GitHub **Release publish**, not tag push. `release_workflow.py tag-release` only creates the tag; run `gh release create vX.Y.Z` afterward (with the concept DOI leading the notes) to actually trigger Zenodo archival.
-- Webhook `202 Accepted` is only queue ack; actual archival is async and can fail silently. Verify a new version actually appears on the [Zenodo record page](https://doi.org/10.5281/zenodo.18264359) after each release.
+- Webhook `202 Accepted` is only queue ack; actual archival is async and can fail silently. Verify a new version actually appears on the [Zenodo record page](https://doi.org/10.5281/zenodo.18264359) after each release, or via API: `curl -s "https://zenodo.org/api/records?q=conceptdoi:%2210.5281/zenodo.18264359%22&sort=mostrecent&size=1"` (check `metadata.version`).
+- Release train (v4.0.0 pattern): PR contrib->develop (wait for the artifact run's `[skip ci]` auto-commit to land on the branch first), release/vX.Y.Z from origin/develop, bump `pyproject.toml` + `CITATION.cff` (version AND `date-released`) + `.zenodo.json` notes, PR->main, tag, `gh release create` (concept DOI first in notes + "Cite this release" block), verify Zenodo, backmerge PR main->develop, re-sync contrib.
 - Diagnose failures at https://zenodo.org/account/settings/github/ (shows last-build status per repo).
 - Redeliver a failed webhook: `gh api --method POST repos/{owner}/{repo}/hooks/591675875/deliveries/<id>/attempts` (gh CLI resolves `{owner}/{repo}` from the current git remote).
 
@@ -228,6 +239,9 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 | `CLAUDE.md` | Comprehensive AI context guide (this file) |
 | `scripts/build_paper.sh` | Paper build pipeline |
 | `scripts/validate_references.py` | Citation URL validation |
+| `scripts/audit_references.py` | Per-citation DOI/metadata audit (evidence -> `bibliography-audit/`, gitignored) |
+| `scripts/url_allowlist.json` | Bib-key -> URL allowlist for publisher bot-wall 403s |
+| `ARCHIVED/20260712_IJMR-Submission/` | R2 submission package of record (submitted system file + form + confirmation email) |
 | `scripts/validate_jmir_compliance.py` | Journal compliance checks |
 | `secrets.toml` | Secret names declaration (no values; committed to git) |
 | `scripts/secrets_setup.py` | Interactive keyring setup for secrets |
