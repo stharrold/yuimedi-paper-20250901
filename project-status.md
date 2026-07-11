@@ -1,8 +1,8 @@
 # Project Status
 
-**Last updated:** 2026-06-07
+**Last updated:** 2026-07-11
 **Tracking:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
-**Version:** 2.0.0
+**Version:** 4.0.0
 
 ---
 
@@ -10,7 +10,7 @@
 
 | Paper | Title | Status | Target | Issues |
 |-------|-------|--------|--------|--------|
-| **Paper 1** | Healthcare Analytics Challenges (Viewpoint) | i-JMR: R1 major revision (due 2026-07-03) | 2026 | [paper-1](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-1) |
+| **Paper 1** | Healthcare Analytics Challenges (Viewpoint) | i-JMR: R2 submitted 2026-07-11, awaiting decision | 2026 | [paper-1](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-1) |
 | **Paper 2** | Empirical Validation of HITL-KG (Synthea/GCP) | Not started | TBD | [paper-2](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-2) |
 | **Paper 3** | FHIR/OMOP Interoperability + Safety | Not started | TBD | [paper-3](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-3) |
 
@@ -18,28 +18,30 @@
 
 ## Paper 1: Viewpoint (Interactive Journal of Medical Research, i-JMR)
 
-**Status:** Major revision (Decision D), revisions complete; pending author resubmission
+**Status:** R2 (minor revision) submitted 2026-07-11; awaiting editorial decision
 **Manuscript ID:** ms#96541 (transferred from JMIR Medical Informatics)
-**Revision due:** 2026-07-03 (extendable once)
-**Tracking:** [#529 epic](https://github.com/stharrold/yuimedi-paper-20250901/issues/529), milestone "i-JMR R1"
+**Tracking:** [#551 epic](https://github.com/stharrold/yuimedi-paper-20250901/issues/551) (closed), milestone "i-JMR R2" (closed)
 
-**History:** Submitted to JMIR Medical Informatics; desk-rejected pre-review (Decision E2, 2026-04-17); transferred to i-JMR (2026-04-22); externally peer-reviewed; major revision returned (Decision D, 2026-06-05).
+**History:** Submitted to JMIR Medical Informatics; desk-rejected pre-review (Decision E2, 2026-04-17); transferred to i-JMR (2026-04-22); externally peer-reviewed; major revision (Decision D, 2026-06-05); R1 resubmitted 2026-06-15; minor revision (Decision B, 2026-07-07; both reviewers signed off on content); R2 submitted 2026-07-11 (system file 96541-1518835-1-ED.docx).
 
 | Metric | Value |
 |--------|-------|
-| Word count (validator) | 4,469 / 5,000 |
-| References | 89 |
-| Figures | 2 |
-| Tables | 2 |
+| Word count (JMIR method) | 4,990 / 5,000 |
+| References | 84 (all DOIs registered + Crossref-matched) |
+| Figures | 2 (numbered captions + footnotes) |
+| Tables | 2 in-text (bordered) + rubric in Multimedia Appendix 2 |
+| Multimedia appendices | 2 |
 | JMIR compliance | Pass |
 
-**R1 revision status (all reviewer/editor points addressed and verified in built artifacts):**
-- [x] Reviewer Q (self-selection bias + acronyms, query reuse, HITL-vs-LLM, drift/training, refresh refs)
-- [x] Reviewer T (define constructs, de-duplicate, Figure 1 feedback loop, replace 2004 stat, complete metadata)
-- [x] Editor (in-text square-bracket citations, no numbered headings, funding statement, generative-AI disclosure)
-- [x] Artifacts rebuilt and verified end-to-end (DOCX + PDF)
-- [x] Point-by-point response letter drafted (`docs/20260607_i-jmr-r1-response-to-reviewers.md`)
-- [ ] Author action: upload clean DOCX + tracked-changes supplementary file, paste response letter, resubmit
+**R2 revision status (all Decision-B items resolved and submitted):**
+- [x] Editor: length (5,430 -> 4,990 under JMIR's counting method; rubric to Appendix 2)
+- [x] Editor: reference DOI audit (8 corrected, 9 added, 2 duplicates removed, 7 removed/replaced, 29 author corrections)
+- [x] Editor: table/figure formatting (bordered Table style; numbered captions)
+- [x] Reviewer T: figure captions + footnotes
+- [x] Reviewer Q: future-work directions mapped to Conclusion + planned companion study
+- [x] Submission package of record: `ARCHIVED/20260712_IJMR-Submission/`
+- [x] Released as v4.0.0 (Zenodo archival verified)
+- [ ] Author action: archive the confirmation email; rate reviewers via the Decision-B links
 
 ---
 
