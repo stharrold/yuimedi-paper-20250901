@@ -12,7 +12,7 @@ abstract: |
   HITL-KG is designed to shift the locus of organizational knowledge from volatile human memory to durable semantic artifacts called "Validated Query Triples," each comprising a natural language intent, executable SQL, and rationale metadata. By embedding knowledge capture into the daily query workflow, the framework aims to convert ephemeral analytics into permanent institutional assets. The accompanying Three-Pillar Assessment Rubric enables organizations to identify compounding vulnerabilities across analytics maturity, workforce agility, and technical enablement.
 
   The "Validator Paradox" (who validates the AI when experts leave?) is addressed by reframing validation through Lean "Standard Work": each validated query establishes the current known standard rather than eternal truth, functioning as a "knowledge ratchet" that prevents regression. Decoupling analytical capability from individual tenure lets analytics maturity advance even as the workforce evolves. This paper proposes and theoretically motivates the framework; empirical validation is deferred to a companion study.
-keywords: [institutional amnesia, medical informatics, socio-technical systems, query governance, natural language processing, knowledge management, personnel turnover, organizational resilience]
+keywords: [institutional amnesia, organizational forgetting, human-in-the-loop, medical informatics, socio-technical systems, query governance, natural language processing, knowledge management, personnel turnover, organizational resilience]
 license: "CC BY 4.0"
 license-url: "https://creativecommons.org/licenses/by/4.0/"
 lang: en-US
