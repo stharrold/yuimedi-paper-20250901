@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
+title: "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -30,9 +30,12 @@ keywords:
   - organizational resilience
   - HIMSS AMAM
 license: Apache-2.0
-version: 4.0.0
-date-released: 2026-07-11
+version: 5.0.0
+date-released: 2026-08-10
 identifiers:
   - type: doi
     value: 10.5281/zenodo.18264359
     description: Zenodo concept DOI (resolves to latest version)
+  - type: doi
+    value: 10.2196/96541
+    description: "Published article: Interact J Med Res 2026;15:e96541 (accepted 2026-07-13, publishing 2026-08-21)"
