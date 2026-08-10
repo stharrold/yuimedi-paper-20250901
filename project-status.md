@@ -18,20 +18,37 @@
 
 ## Paper 1: Viewpoint (Interactive Journal of Medical Research, i-JMR)
 
-**Status:** R2 (minor revision) submitted 2026-07-11; awaiting editorial decision
+**Status:** ACCEPTED 2026-07-13 (Decision A). Copyediting completed and approved 2026-08-10. **Publication scheduled 21.Aug.2026.**
 **Manuscript ID:** ms#96541 (transferred from JMIR Medical Informatics)
+**Citation:** Interact J Med Res 2026;15:e96541 | doi [10.2196/96541](https://doi.org/10.2196/96541) | https://www.i-jmr.org/2026/1/e96541
+**Editor:** Matthew Balcarras | **Peer reviewers:** Moez Hamedani, Xiaoni Zhang
 **Tracking:** [#551 epic](https://github.com/stharrold/yuimedi-paper-20250901/issues/551) (closed), milestone "i-JMR R2" (closed)
 
-**History:** Submitted to JMIR Medical Informatics; desk-rejected pre-review (Decision E2, 2026-04-17); transferred to i-JMR (2026-04-22); externally peer-reviewed; major revision (Decision D, 2026-06-05); R1 resubmitted 2026-06-15; minor revision (Decision B, 2026-07-07; both reviewers signed off on content); R2 submitted 2026-07-11 (system file 96541-1518835-1-ED.docx).
+**History:** Submitted to JMIR Medical Informatics; desk-rejected pre-review (Decision E2, 2026-04-17); transferred to i-JMR (2026-04-22); externally peer-reviewed; major revision (Decision D, 2026-06-05); R1 resubmitted 2026-06-15; minor revision (Decision B, 2026-07-07; both reviewers signed off on content); R2 submitted 2026-07-11 (system file 96541-1518835-1-ED.docx); accepted 2026-07-13; copyedited and approved 2026-08-10.
 
 | Metric | Value |
 |--------|-------|
-| Word count (JMIR method) | 4,990 / 5,000 |
-| References | 84 (all DOIs registered + Crossref-matched) |
-| Figures | 2 (numbered captions + footnotes) |
+| Word count (JMIR method) | 5,065 / 5,000 (overage accepted by the copyeditor) |
+| References | 84 (59 DOI-verified; 24 no-DOI entries title-verified 2026-08-10, 5 corrected) |
+| Figures | 2 (regenerated 2026-08-10 for sentence case and "health care") |
 | Tables | 2 in-text (bordered) + rubric in Multimedia Appendix 2 |
 | Multimedia appendices | 2 |
-| JMIR compliance | Pass |
+| JMIR compliance | Pass except word count (accepted deviation; commit with `SKIP=validate-jmir-compliance`) |
+
+**Copyediting round (2026-08-10, all queries resolved, package `ARCHIVED/20260810_IJMR-Copyediting/`):**
+- [x] Defined the 3 pillars at first use in the body; named the conversational AI at first use
+- [x] "healthcare" to "health care" throughout (HIMSS legal name preserved; bibliography exempt)
+- [x] AMAM expansion corrected to the current HIMSS name, "Analytics Maturity Assessment Model"
+- [x] Both figures regenerated: sentence case, "Health care database", plus signs replaced with "and", "3 pillars"
+- [x] JMIR data availability template 4 adopted, code deposit disclosure retained
+- [x] 5 bibliography corrections from a sweep of all no-DOI entries
+- [x] Reply to copyeditor archived at `20260810_Email-Reply_IJMR-96541_Copyediting.txt`
+
+**Remaining (post-publication, non-blocking):**
+- [ ] Style sync `paper.md` to the published version (numerals, lowercase coined terms) after 2026-08-21
+- [ ] Propagate the title change to `CITATION.cff`, `.zenodo.json`, `README.md` at the next release
+- [ ] Repair 11 stale `file =` paths in `references.bib` (library reorganized its directory naming)
+- [ ] JMIR visual abstract: draft expected late Aug 2026, ONE author review round
 
 **R2 revision status (all Decision-B items resolved and submitted):**
 - [x] Editor: length (5,430 -> 4,990 under JMIR's counting method; rubric to Appendix 2)

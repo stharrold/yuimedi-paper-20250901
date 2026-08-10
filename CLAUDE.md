@@ -28,9 +28,11 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 
 **Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Knowledge Governance (HITL-KG).
 
-**Three-paper series:** Paper 1 (Viewpoint, ms#96541 at i-JMR; transferred from JMIR Medical Informatics after Decision E2 desk-reject 2026-04-17; major revision Decision D 2026-06-05, R1 resubmitted 2026-06-15; minor revision Decision B 2026-07-07, R2 submitted 2026-07-11, awaiting decision; epics #529/#551 closed; released as v4.0.0) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
+**Three-paper series:** Paper 1 (Viewpoint, **ACCEPTED** at i-JMR 2026-07-13; copyediting completed 2026-08-10; publication scheduled 21.Aug.2026 as Interact J Med Res 2026;15:e96541, doi 10.2196/96541) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
 
-**Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint (~4,470 body words). Desk-rejected at JMIR Medical Informatics (Decision E2), transferred to i-JMR, major revision (Decision D, 2026-06-05; R1 response at `docs/20260607_i-jmr-r1-response-to-reviewers.md`), then minor revision (Decision B, 2026-07-07; R2 response at `docs/20260710_i-jmr-r2-response-to-reviewers.md`); R2 submitted 2026-07-11, awaiting decision. GH#506 (resubmit to JMIR Medical Informatics) is retired/superseded by the i-JMR transfer.
+**Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint. Desk-rejected at JMIR Medical Informatics (Decision E2, 2026-04-17), transferred to i-JMR 2026-04-22, major revision (Decision D, 2026-06-05; response at `docs/20260607_i-jmr-r1-response-to-reviewers.md`), minor revision (Decision B, 2026-07-07; response at `docs/20260710_i-jmr-r2-response-to-reviewers.md`), R2 submitted 2026-07-11, **accepted 2026-07-13 (Decision A)**. Editor Matthew Balcarras; peer reviewers Moez Hamedani and Xiaoni Zhang (neither was among the 5 nominated on the original submission form, which was desk-rejected before review). Epics #529/#551 closed; released as v4.0.0. GH#506 is retired/superseded by the i-JMR transfer.
+
+**Post-acceptance state:** the published article is the source of truth, not `paper.md`. i-JMR house style differs from this repo: numerals ("3 pillars", "6-step") and lowercase coined terms ("triple threat", "validated query triple"). A one-pass style sync of `paper.md` to the published version is deferred until after 2026-08-21 so the repo matches the article of record.
 
 ## Essential Commands
 
@@ -93,6 +95,8 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - Avoid `git add -A <dir>` when the dir holds untracked large files (e.g. the 51MB video byte in `abstract-visual-video/`): it stages them, trips the >10MB pre-commit hook, and silently aborts the commit (the push then reports "Everything up-to-date" with HEAD unchanged). Stage specific files instead.
 - ANY commit whose hooks modify files (trailing whitespace in generated HTML) silently aborts the same way ("[INFO] Restored changes from .../pre-commit/patch..."). Recovery: `git add -u && git commit` with the same message; always verify HEAD moved with `git log --oneline -1`.
 - New Python files under `scripts/` need SPDX headers after the shebang (`# SPDX-FileCopyrightText: 2025 stharrold` + `# SPDX-License-Identifier: Apache-2.0`) or the spdx-headers hook rejects the commit.
+- **The whitespace hooks edit `.diff` files.** Trailing whitespace is semantically significant in a diff (context lines can legitimately end in spaces). After any commit whose hooks touched a `.diff`, re-verify with `git apply --check --reverse <file>` before re-committing.
+- **Pre-commit `ruff` creates `.ruff_cache/` inside `ARCHIVED/<package>/`** because the archived `pyproject.toml` reads as a project root, the same trap as the `.venv` one. It is gitignored so it never enters the commit, but it DOES pollute a filesystem-generated `MANIFEST.sha256`. Regenerate the manifest after the hooks run, then `--amend`.
 
 ## Writing Rules
 
@@ -101,6 +105,8 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - **Corporate authors in `references.bib`** need double braces (`author = {{HIMSS Analytics}}`) to prevent CSL name inversion (e.g., "Analytics H."). Use `and` not `&` inside the protected block.
 - **BibTeX author fields must use `Family, Given and Family, Given` separators.** Comma/`&`/`et al` blobs parse as single names and render mangled in the reference list ("Latrella &B M."). Name particles need braces: `{{de Holan}, Pablo Martin}` renders "de Holan PM" (unbraced, the CSL demotes to "Holan PM de"). Use `and others` for et-al.
 - **`references.bib` is hand-maintained** (the converter workflow is retired). AMA CSL renders `doi:` for DOI-bearing entries, so `url` field edits don't change their rendered reference; URLs still matter for no-DOI entries and `validate_references.py`. `scripts/url_allowlist.json` (bib-key -> URL) suppresses known publisher bot-wall 403s; keep its URLs synced when bib URLs change, and prune keys removed from the bib.
+- **`audit_references.py` cannot verify no-DOI entries.** It cross-matches titles via Crossref, which requires a DOI; 25 of 84 entries have none, so their titles were never checked against anything while `validate_references.py` passed them (the URL resolves, the title is wrong). A 2026-08-10 sweep of all 24 no-DOI entries with URLs found **5 defective** (`himss2024news`, `moore2018`, `anthropic2025`, `bravorocca2023`, `nsi2025`). Sweep method: fetch each URL with a browser User-Agent, take the HTML `<title>`/`og:title` or page 1 of the PDF, diff against the stored title. Use one temp file per URL (a shared path races across threads). Bot-walled publishers (HIMSS, ScienceDirect) must be checked against the local copies in `../library/docs/`.
+- **Unversioned source URLs rot by overwrite.** `nsi2025` cites an annual report at a URL NSI replaces each year; it now serves the 2026 edition. Check `note` fields for edition caveats before trusting a year.
 - **Bibliography audit evidence** lives in gitignored `bibliography-audit/` (files 0-7 per citation; `audit_references.py` regenerates 0-5 idempotently and never touches the hand-written 6 = author-verified metadata and 7 = full-text verification records). `VERIFICATION-LOG.md` there documents the layout. Full texts for grep-verification: `../library/docs/<paper-dir>/page_NNN.md` chunks.
 - **Figure max dimension:** 1200px for JMIR upload. Resize preserving aspect ratio: macOS `sips --resampleHeight 1200 <file>`, cross-platform (ImageMagick) `mogrify -resize x1200 <file>`. Upload copies are `figures/*.figure.png`; build sources (`*.mmd.png`) stay full-size.
 - **Figure/table caption numbering:** pandoc's DOCX writer emits captions with NO "Figure N"/"Table N" prefix (only LaTeX auto-numbers), so the reviewed DOCX shows bare caption text. Captions carry literal "Figure 1." / "Table 1." prefixes in paper.md, with `\usepackage[labelformat=empty]{caption}` in `metadata.yaml` header-includes suppressing LaTeX's auto-label (else the PDF shows "Figure 1: Figure 1."). JMIR figure style = short numbered caption + separate footnote paragraph below the image.
@@ -160,6 +166,7 @@ uv run scripts/secrets_run.py uv run pytest
 - **HITL-KG**: Human-in-the-Loop Knowledge Governance (was HiL-SG). Industry-standard HITL acronym + established "knowledge governance" field (Foss 2007).
 - **Three-Pillar Assessment Rubric**: Replaced Analytics Resilience Index (ARI). 9 indicators across 3 pillars with Low/Medium/High anchors.
 - **Validated Query Triple**: NL Intent + Executable SQL + Rationale Metadata. Keep "triple" (not "tuple").
+- **AMAM**: expand as "**Analytics Maturity Assessment Model**". HIMSS renamed the model at its 2024-10-02 relaunch (HIMSS24 APAC); "Adoption Model for Analytics Maturity" is the legacy name, surviving only on himssanalytics.org. This supersedes the R1-era decision in commit `64ca59f`, which chose the legacy expansion. Cited source titles keep their published wording either way.
 - **Zenodo DOI**: 10.5281/zenodo.18264359 (concept DOI: resolves to latest version; always use this, never a version-specific DOI)
 
 ## stharrold-templates Bundles
@@ -196,6 +203,15 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **The submission package dir (`ARCHIVED/<date>_IJMR-Submission/`) is the submission source of truth**; repo-root artifacts are CI builds. Conventions: every section-3 upload gets a `_metadata.txt` companion (generation provenance + Description field text in long/short variants); the response PDF is a CLEAN copy (internal "NOTE FOR SUBMISSION"/"DO NOT SEND" blocks stripped, `====` ASCII dividers converted to headings; the .md keeps them for the plain-text section-B paste); dated plaintext files for every form field (`_title-`, `_abstract-`, `_keywords-plaintext.txt`, keywords semicolon-separated); archive the submitted system file (`96541-NNNNNNN-1-ED.docx`), form PDF, and confirmation email after submission.
 - Point-by-point response letters: verify every quoted caption/count against the built manuscript before submitting (letters go stale as edits continue; understated audit counts read as undisclosed changes against the tracked-changes diff).
 
+### Copyediting stage (post-acceptance)
+
+- Copyediting happens **in JMIR's Kriyadocs web system** (Chrome only, submitting author only), NOT by uploading a DOCX to a form. Address every query in-system, add queries for anything the system can't do, then Approve and Submit, which closes author access until final proofs. Turnaround: 2-3 business days.
+- The copyedited proof PDF arrives as an email attachment (`96541.pdf`); the reply-with-edits is `96541_modified.pdf`. Archive both.
+- The proof's end matter carries the **planned publication date** and the assigned DOI. It is a pre-populated field, not a commitment.
+- Review the modified proof by text-diffing it against the original: `pdftotext -layout` both, flatten with `tr -s ' \n' ' '`, then grep short needles. Two-column layout interleaves columns, so long contiguous phrases produce false negatives; verify a failed match by eye before reporting it.
+- Expect "not previously stated" queries on terms that live only in the title/abstract/figures. Compression from the 12,730-word Original Paper to the ~4,500-word Viewpoint cut introducing passages while leaving downstream references intact (hit twice: "three-pillar structure", "AI query generation").
+- The copyeditor may silently correct your bibliography. Diff their reference list against `references.bib` and back-port their fixes.
+
 ## CI Notes
 
 - `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
@@ -212,7 +228,8 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **Scripts (`scripts/`):** Python stdlib only, except `secrets_*.py` which use PEP 723 inline deps (`keyring`, `tomlkit`) auto-installed by `uv run`
 - **Upstream for `secrets_*.py`:** `../library/scripts/` (sync changes from there)
 - **Literature review (`lit_review/`):** Clean Architecture with external deps (pydantic, httpx, click, scikit-learn)
-- **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer
+- **Figures:** Mermaid `.mmd` sources → PNG via container + Puppeteer. `figures/puppeteer-config.json` hardcodes `/usr/bin/chromium` and works only in the container; on macOS mermaid-cli fails with "Could not find Chrome". Pass a host config instead: `npx --yes @mermaid-js/mermaid-cli@latest -p <cfg> -i figures/X.mmd -o figures/X.mmd.png`, where `<cfg>` sets `executablePath` to `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`. Regenerate the 1200px upload copy afterward (`cp X.mmd.png X.figure.png && sips --resampleHeight 1200 X.figure.png`) and check for style drift by comparing dimensions and viewing both renders.
+- **Figure label text is rasterized into the PNG**, so copyeditor requests on figure wording require editing the `.mmd` and re-rendering; a manuscript rebuild alone changes nothing. The `figures/*.caption.txt` files are upload-form metadata (not build inputs) and go stale silently when node labels change.
 - **Container:** `Containerfile` with Python 3.11, pinned Pandoc 3.8.2.1, TeXLive, Node.js
 - **Multi-stage Python containers:** builder `WORKDIR` must equal runtime `WORKDIR` (console-script shebangs are absolute paths baked at venv-creation time). Use `uv sync --no-editable` after copying sources so entry points survive `COPY --from=builder`. Multi-stage structure pattern lives in `Containerfile.lit_review`; `uv` installation pattern (via `COPY --from=ghcr.io/astral-sh/uv:...`) lives in the main `Containerfile`. Both `Containerfile` and `Containerfile.lit_review` install uv via `COPY --from=ghcr.io/astral-sh/uv:0.5.5`.
 - **Anthropic SDK**: `response.content[0]` is a union type; filter with `[b for b in response.content if hasattr(b, "text")]` before accessing `.text` (mypy `union-attr`)
@@ -242,6 +259,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 | `scripts/audit_references.py` | Per-citation DOI/metadata audit (evidence -> `bibliography-audit/`, gitignored) |
 | `scripts/url_allowlist.json` | Bib-key -> URL allowlist for publisher bot-wall 403s |
 | `ARCHIVED/20260712_IJMR-Submission/` | R2 submission package of record (submitted system file + form + confirmation email) |
+| `ARCHIVED/20260810_IJMR-Copyediting/` | Copyediting round of record: both proofs, correspondence, reply, full build snapshot (inputs + tooling + artifacts + vendored Eisvogel template), `BUILD-PROVENANCE.md`, `MANIFEST.sha256`, source diff |
 | `scripts/validate_jmir_compliance.py` | Journal compliance checks |
 | `secrets.toml` | Secret names declaration (no values; committed to git) |
 | `scripts/secrets_setup.py` | Interactive keyring setup for secrets |
