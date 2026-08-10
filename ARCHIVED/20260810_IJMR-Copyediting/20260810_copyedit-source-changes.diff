@@ -1,13 +1,37 @@
+diff --git a/metadata.yaml b/metadata.yaml
+index 880f6c5..13dfc5b 100644
+--- a/metadata.yaml
++++ b/metadata.yaml
+@@ -2,7 +2,7 @@
+ # See: https://pandoc.org/MANUAL.html#metadata-variables
+
+ # Document information
+-title: "Health Care Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
++title: "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
+ author: "Samuel T Harrold, Yuimedi, Inc."
+ orcid: "https://orcid.org/0009-0008-4596-6921"
+ correspondence: "https://us.yuimedi.com/contact-us/ (include 'NL2SQL paper' in message)"
+diff --git a/paper.md b/paper.md
+index 6d130f1..5734433 100644
+--- a/paper.md
++++ b/paper.md
+@@ -1,5 +1,5 @@
+ ---
+-title: "Health Care Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
++title: "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
+ author: "Samuel T Harrold, Yuimedi, Inc."
+ orcid: "https://orcid.org/0009-0008-4596-6921"
+ correspondence: "samuel.harrold@yuimedi.com"
 diff --git a/references.bib b/references.bib
-index fcd65da..d290c4b 100644
+index d290c4b..b8cf5ad 100644
 --- a/references.bib
 +++ b/references.bib
-@@ -483,7 +483,7 @@
-   institution = {NSI Nursing Solutions},
-   url = {https://www.nsinursingsolutions.com/documents/library/nsi_national_health_care_retention_report.pdf},
-   file = {../library/docs/2024_NSI_Report_National-Health-Care-Retention/2024_NSI_Report_National-Health-Care-Retention.pdf},
--  note = {Retention baseline data. NSI overwrites this URL annually; it now serves the 2026 edition (29.5% of new hires leave within a year). The locally archived copy is the 2025 edition (29.9%). Both support the ~30% first-year turnover claim.}
-+  note = {Retention baseline data. NSI overwrites this URL annually; it now serves the 2026 edition (29.5% of new hires leave within a year), which is the edition cited here. The local archive under file= is the 2025 edition (29.9%); its directory carries a 2024 prefix from the library's naming scheme, but the report cover reads "2025 NSI National Health Care Retention & RN Staffing Report". Both editions support the ~30% first-year turnover claim.}
+@@ -519,7 +519,7 @@
+   journal = {International Journal of Engineering Education},
+   volume = {34},
+   number = {2},
+-  pages = {723-733},
++  pages = {723--733},
+   url = {https://wendyju.com/publications/18_ijee3593.pdf},
+   note = {Original citation: [A77]},
  }
-
- @article{mannapur2025,
