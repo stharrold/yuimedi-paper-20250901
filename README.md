@@ -8,7 +8,7 @@ Research whitepaper on natural language to SQL in healthcare - a comprehensive a
 
 ## 📄 Research Documents
 
-- **[Paper 1 (Framework)](paper.md)** - Academic research paper on healthcare analytics challenges with 136 verified citations.
+- **[Paper 1 (Framework)](paper.md)** - Academic research paper on health care analytics challenges with 84 verified citations. Accepted at the Interactive Journal of Medical Research; publishing 21.Aug.2026 as Interact J Med Res 2026;15:e96541, doi [10.2196/96541](https://doi.org/10.2196/96541).
 - **[Paper 2 (Consolidated)](docs/paper2/README.md)** - Reference implementation and interoperability mapping (Planned).
 
 ## 📋 Project Overview
