@@ -151,6 +151,13 @@ gha-creds-*.json
 # A redacted PNG of the invoice is committed instead.
 abstract-visual-video/20260115_Receipt_SL73WR5YH_998.pdf
 abstract-visual-video/20260115_Invoice_SL73WR5YH_998.pdf
+
+# i-JMR proof-of-purchase and e-signature originals: the receipts carry the
+# billing address and card last-four, the signed agreement's audit trail logs
+# the signer's IP. Redacted PNG/PDF counterparts are committed instead.
+ARCHIVED/20260712_IJMR-Submission/20260724_IJMR_Payment_Receipt.pdf
+ARCHIVED/20260712_IJMR-Submission/20260804_IJMR_Payment_Receipt_2.pdf
+ARCHIVED/20260712_IJMR-Submission/20260713_Publication-Agreement_ms-96541_Signed.pdf
 bibliography-audit/
 .playwright-mcp/
 abstract-visual-video/*.mp4

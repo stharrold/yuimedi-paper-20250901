@@ -1,0 +1,13 @@
+diff --git a/references.bib b/references.bib
+index fcd65da..d290c4b 100644
+--- a/references.bib
++++ b/references.bib
+@@ -483,7 +483,7 @@
+   institution = {NSI Nursing Solutions},
+   url = {https://www.nsinursingsolutions.com/documents/library/nsi_national_health_care_retention_report.pdf},
+   file = {../library/docs/2024_NSI_Report_National-Health-Care-Retention/2024_NSI_Report_National-Health-Care-Retention.pdf},
+-  note = {Retention baseline data. NSI overwrites this URL annually; it now serves the 2026 edition (29.5% of new hires leave within a year). The locally archived copy is the 2025 edition (29.9%). Both support the ~30% first-year turnover claim.}
++  note = {Retention baseline data. NSI overwrites this URL annually; it now serves the 2026 edition (29.5% of new hires leave within a year), which is the edition cited here. The local archive under file= is the 2025 edition (29.9%); its directory carries a 2024 prefix from the library's naming scheme, but the report cover reads "2025 NSI National Health Care Retention & RN Staffing Report". Both editions support the ~30% first-year turnover claim.}
+ }
+
+ @article{mannapur2025,

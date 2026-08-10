@@ -1,0 +1,104 @@
+REPLY TO COPYEDITING REQUEST, i-JMR ms#96541
+Sent 2026-08-10, after completing the copyedit review in Kriyadocs and
+clicking Approve and Submit.
+
+To:      copyedit@editage.com
+Cc:      copyediting@jmir.org
+Subject: Re: [Interact J Med Res 96541] Request to review copyedited manuscript
+
+Plain text below the divider is the message as sent.
+
+====================================================================
+
+Dear Copyeditor,
+
+I have completed my review of the copyedited manuscript, addressed all queries
+in the system, and clicked Approve and Submit. Thank you for the careful edit;
+several of your catches were substantive.
+
+A few notes on how I handled specific queries:
+
+Three-pillar structure (Table 1 discussion). You were right that the term had
+not been introduced in the body. I added a defining sentence at first use: "The
+framework's 3 pillars name the organizational capabilities at stake in the
+'triple threat': analytics maturity, workforce agility, and technical
+enablement."
+
+AI queries. Also correct; the body never established that the queries are
+AI-generated. I revised the sentence so it introduces this rather than assuming
+it, naming the conversational AI system at first mention.
+
+26 organizations. Worldwide. Both figures are global counts from the HIMSS
+Analytics AMAM global report. They were announced at the HIMSS24 Asia-Pacific
+conference in October 2024 but are not regional, and they are the same cohort
+described earlier in the article as "39 organizations globally" (26 at stage 6
+plus 13 at stage 7). I have added "worldwide" to remove the ambiguity.
+
+Turnover cost sentence. Confirmed, with one small change: I retained the word
+"total" ("incurring a total cost of up to US $8.97 million"). The preceding
+clause gives a per-employee range, and "total" is what distinguishes the
+aggregate figure from another per-person one.
+
+Data availability statement. I adopted template 4, "Data sharing is not
+applicable to this article as no data sets were generated or analyzed during
+this study," which fits a Viewpoint with no primary data collection. I retained
+two following sentences: one noting that all cited figures come from published
+literature, and one disclosing the code deposit, since the knowledge base states
+that code generated during the study should also be included. I left the Zenodo
+identifier as an inline DOI rather than adding it to the reference list, as the
+instruction to cite a persistent identifier in the reference list appears under
+template 1, where the deposit is the study's dataset. Please let me know if you
+would prefer it as a numbered reference.
+
+Figures. Both have been regenerated from source and re-uploaded, with all text
+set to sentence case, "Healthcare" revised to "Health care," and Figure 2's
+"THREE PILLARS" revised to "3 pillars." On the plus signs in Figure 1, I
+replaced them with the word "and" rather than closing up the spaces: "NLP
+engine+SQL generation" can be misread as "NLP (engine+SQL) generation," since a
+plus sign binds tightly to the tokens on either side. This satisfies the request
+while removing the ambiguity, but I am happy to supply the closed-up form if you
+prefer it.
+
+References 28 and 61. Yes to both URLs, and thank you for querying them; my
+submitted entries were wrong. Two corrections to the entries as they stood:
+
+Reference 28: the published title reads "design workspaces," not "design
+spaces," and the second author is Ge X rather than GE X (the source PDF prints
+author names in full capitals). Your page range and author list were otherwise
+correct.
+
+Reference 61: I have given the full title, "The code modernization playbook:
+transforming legacy systems with AI," and added the publication year 2025, so
+the entry matches the other web references that carry a year.
+
+I should also thank you for two corrections you made without querying: the 2026
+edition of the NSI retention report, and the 2025 date on the Bravo Rocca
+thesis. Both were errors in my bibliography, and I have corrected them at
+source.
+
+Please let me know if anything further is needed before the proofs.
+
+Best regards,
+Samuel Thomas Harrold
+
+====================================================================
+
+CONTEXT FOR THE RECORD (not part of the message)
+
+Queries received 2026-08-10, due within 2 to 3 business days. Completed and
+submitted the same day. Publication scheduled 21.Aug.2026 as
+Interact J Med Res 2026;15:e96541, doi 10.2196/96541.
+
+Final proof reviewed before approval: 96541_modified.pdf (14 pages). All agreed
+changes verified present, no regressions. Three defects were caught in the first
+modified version and fixed in the second: "three pillars" breaking the numeral
+convention, a missing comma after citation [30], and reference 61 in title case
+with no publication year.
+
+Two queue items were resolved by the copyeditor without the author raising them:
+"health care-specific" was set with an en dash, and the six abbreviations used
+in the body but absent from the Abbreviations list (SECI, AACODS, CIO, CMS, EHR,
+NLP) were resolved by spelling the terms out in the body, defining NLP in the
+Figure 1 caption, and defining CMS inline at first use.
+
+See 20260810_copyedit-changes.md for the full round log.
