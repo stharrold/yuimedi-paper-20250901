@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-08-10
 **Tracking:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
-**Version:** 4.0.0
+**Version:** 5.0.0
 
 ---
 
@@ -10,7 +10,7 @@
 
 | Paper | Title | Status | Target | Issues |
 |-------|-------|--------|--------|--------|
-| **Paper 1** | Healthcare Analytics Challenges (Viewpoint) | i-JMR: R2 submitted 2026-07-11, awaiting decision | 2026 | [paper-1](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-1) |
+| **Paper 1** | Health Care Analytics Challenges (Viewpoint) | i-JMR: ACCEPTED 2026-07-13; copyedited 2026-08-10; publishing 21.Aug.2026 | 2026 | [paper-1](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-1) |
 | **Paper 2** | Empirical Validation of HITL-KG (Synthea/GCP) | Not started | TBD | [paper-2](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-2) |
 | **Paper 3** | FHIR/OMOP Interoperability + Safety | Not started | TBD | [paper-3](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-3) |
 
@@ -45,8 +45,8 @@
 - [x] Reply to copyeditor archived at `20260810_Email-Reply_IJMR-96541_Copyediting.txt`
 
 **Remaining (post-publication, non-blocking):**
-- [ ] Style sync `paper.md` to the published version (numerals, lowercase coined terms) after 2026-08-21
-- [ ] Propagate the title change to `CITATION.cff`, `.zenodo.json`, `README.md` at the next release
+- [x] Propagate the published title to `paper.md`, `metadata.yaml`, `CITATION.cff`, `.zenodo.json`, `README.md` (done in v5.0.0; the title is final in the accepted proof)
+- [ ] Style sync the *body* of `paper.md` to the published version after 2026-08-21: numerals ("3 pillars", "6-step") and lowercase coined terms ("triple threat", "validated query triple"). The title already uses the numeral form, so the source is intentionally mixed until this runs (#561)
 - [ ] Repair 11 stale `file =` paths in `references.bib` (library reorganized its directory naming)
 - [ ] JMIR visual abstract: draft expected late Aug 2026, ONE author review round
 

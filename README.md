@@ -89,7 +89,7 @@ This repository contains research documentation for the YuiQuery two-paper serie
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/yuimedi-paper-20250901.git
+git clone https://github.com/stharrold/yuimedi-paper-20250901.git
 cd yuimedi-paper-20250901
 
 # Setup UV environment (automatic .venv creation)
@@ -160,7 +160,7 @@ uv run python tools/workflow-utilities/validate_versions.py
 
 ```bash
 # Fork and clone
-git clone https://github.com/yourusername/yuimedi-paper-20250901.git
+git clone https://github.com/stharrold/yuimedi-paper-20250901.git
 cd yuimedi-paper-20250901
 
 # Setup development environment
@@ -225,21 +225,36 @@ This licensing approach promotes open access to healthcare research while ensuri
 ## 📮 Contact
 
 **Research Team**: YuiQuery Healthcare Analytics Project
-**Repository**: [https://github.com/yourusername/yuimedi-paper-20250901](https://github.com/yourusername/yuimedi-paper-20250901)
-**Discussions**: [GitHub Discussions](https://github.com/yourusername/yuimedi-paper-20250901/discussions)
+**Repository**: [https://github.com/stharrold/yuimedi-paper-20250901](https://github.com/stharrold/yuimedi-paper-20250901)
+**Discussions**: [GitHub Discussions](https://github.com/stharrold/yuimedi-paper-20250901/discussions)
 
 ## 📈 Citation
 
+Cite the published article:
+
 ```bibtex
-@techreport{harrold2026,
-  title = {Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Dynamics, and Technical Barriers},
-  author = {Harrold, Samuel T.},
+@article{harrold2026,
+  title = {Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement},
+  author = {Harrold, Samuel Thomas},
   year = {2026},
-  month = {1},
-  institution = {Yuimedi, Inc.},
-  type = {Technical Whitepaper},
-  url = {https://github.com/stharrold/yuimedi-paper-20250901},
-  note = {Research on conversational AI platforms addressing healthcare analytics challenges}
+  journal = {Interactive Journal of Medical Research},
+  volume = {15},
+  pages = {e96541},
+  doi = {10.2196/96541},
+  url = {https://www.i-jmr.org/2026/1/e96541}
+}
+```
+
+To cite this repository (source, build pipeline, and literature review tool), use the Zenodo concept DOI, which always resolves to the latest version:
+
+```bibtex
+@software{harrold2026repo,
+  title = {Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement (research repository)},
+  author = {Harrold, Samuel Thomas},
+  year = {2026},
+  publisher = {Zenodo},
+  doi = {10.5281/zenodo.18264359},
+  url = {https://doi.org/10.5281/zenodo.18264359}
 }
 ```
 
