@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-08-10
 **Tracking:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
-**Version:** 5.0.0
+**Version:** 5.0.0 (released 2026-08-10; Zenodo `v5.0.0`, DOI 10.5281/zenodo.21880033)
 
 ---
 
@@ -48,7 +48,9 @@
 - [x] Propagate the published title to `paper.md`, `metadata.yaml`, `CITATION.cff`, `.zenodo.json`, `README.md` (done in v5.0.0; the title is final in the accepted proof)
 - [ ] Style sync the *body* of `paper.md` to the published version after 2026-08-21: numerals ("3 pillars", "6-step") and lowercase coined terms ("triple threat", "validated query triple"). The title already uses the numeral form, so the source is intentionally mixed until this runs (#561)
 - [ ] Repair 11 stale `file =` paths in `references.bib` (library reorganized its directory naming)
-- [ ] JMIR visual abstract: draft expected late Aug 2026, ONE author review round
+- [ ] JMIR visual abstract: draft expected ~2026-08-27 (3 weeks from the 2026-08-06 questionnaire), ONE author review round
+- [ ] **Timing conflict raised with production 2026-08-10** (`ARCHIVED/20260810_IJMR-Copyediting/20260810_Email-Reply_JMIR-Production_Visual-Abstract-Timing.txt`). Awaiting JMIR on three points: whether the visual abstract can reach the author by ~2026-08-18; whether the Sponsored Tweet Campaign can be deferred until the graphic is live rather than firing at publication with a placeholder; and what the post-publication ToC swap updates (landing page / TOC / PDF). Chase by 2026-08-12 if silent.
+- [x] AJE-commissioned graphic declined as a Multimedia Appendix (superseded title, does not name HITL-KG)
 
 **R2 revision status (all Decision-B items resolved and submitted):**
 - [x] Editor: length (5,430 -> 4,990 under JMIR's counting method; rubric to Appendix 2)

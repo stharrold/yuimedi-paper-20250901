@@ -154,6 +154,8 @@ uv run scripts/secrets_run.py uv run pytest
 - `secrets.toml` uses `GH_TOKEN` (not `GITHUB_TOKEN`); this is what `gh` CLI checks first
 - After regenerating a GitHub fine-grained PAT, verify write access: `uv run scripts/secrets_run.py gh api --method PATCH repos/OWNER/REPO/issues/1 -f state=open`
 - PEP 723 inline scripts (`secrets_run.py`, `secrets_setup.py`) use `importlib.util` for sibling imports because `from scripts.X` fails when run via `uv run scripts/X.py`
+- **`secrets_run.py` prints `[INFO]`/`[OK]`/`[WARN]` banner lines to stdout**, so `gh ... --json ... | python3 -c "json.load(...)"` fails with "Extra data". Use `gh --jq` and grep the formatted line out of the banner noise instead of parsing the whole stream.
+- **Do not put `<(...)` process substitution inside a shell function** in this environment; it silently yields no matches, so a verification helper reports every check as failing. Pre-write the data to a file and grep that.
 
 ## Video Analysis
 
@@ -212,6 +214,15 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - Expect "not previously stated" queries on terms that live only in the title/abstract/figures. Compression from the 12,730-word Original Paper to the ~4,500-word Viewpoint cut introducing passages while leaving downstream references intact (hit twice: "three-pillar structure", "AI query generation").
 - The copyeditor may silently correct your bibliography. Diff their reference list against `references.bib` and back-port their fixes.
 
+### Production stage: who owns what
+
+- **Laura McReynolds** (laura.mcreynolds@jmir.org, Production Editor, cc production@jmir.org) owns the publication date, the ToC image, and the purchased promotion products. Thread runs to the **yuimedi** address. She is the escalation point for anything cross-team.
+- **Natalia March** (natalia.march@jmir.org, Author Experience Manager) owns the in-house visual abstract. Thread runs to the **gmail** address, so the two are separate threads and neither sees the other by default.
+- Purchased promotion products on ms#96541: **Sponsored Tweet Campaign** and **Lifelong Author Ad** (banner points to https://us.yuimedi.com/).
+- Visual abstract service: **3 weeks from receipt of the completed questionnaire**, **ONE** author review round, extensive later changes may incur charges. If the article is production-ready first it publishes with a JMIR-selected standard ToC image and the graphic is swapped in later.
+- The **sponsored tweet is the timing exposure, not the ToC image.** A ToC image swaps after publication for free; a sponsored tweet is a one-shot spend that would carry the placeholder. Raise timing with Laura, not Natalia.
+- The AJE-commissioned graphic **cannot be the ToC image** (JMIR policy) and was declined as a Multimedia Appendix on 2026-08-10: it carries the pre-copyediting title, never names HITL-KG, and would reintroduce superseded terminology. Rights were never the obstacle (AJE's ToS makes no copyright claim over Manuscript Services; copyright is Harrold / Yuimedi).
+
 ## CI Notes
 
 - `validate_documentation.sh` uses `uv` -> `python3` fallback (CI lacks `uv`)
@@ -234,11 +245,19 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **Multi-stage Python containers:** builder `WORKDIR` must equal runtime `WORKDIR` (console-script shebangs are absolute paths baked at venv-creation time). Use `uv sync --no-editable` after copying sources so entry points survive `COPY --from=builder`. Multi-stage structure pattern lives in `Containerfile.lit_review`; `uv` installation pattern (via `COPY --from=ghcr.io/astral-sh/uv:...`) lives in the main `Containerfile`. Both `Containerfile` and `Containerfile.lit_review` install uv via `COPY --from=ghcr.io/astral-sh/uv:0.5.5`.
 - **Anthropic SDK**: `response.content[0]` is a union type; filter with `[b for b in response.content if hasattr(b, "text")]` before accessing `.text` (mypy `union-attr`)
 
+## Release Train (learned running v5.0.0)
+
+- **Version comes from the tag convention, not from tooling.** MAJOR marks a manuscript lifecycle milestone: v2.0.0 submission, v3.0.0 R1, v4.0.0 R2, v5.0.0 accepted+copyedited. `.claude/skills/git-workflow-manager/scripts/semantic_version.py` only classifies `src/**.py` as a feature and `tests/`/`docs/`/`resources/`/`pyproject.toml` as a patch, so this repo's content (`paper.md`, `references.bib`, `figures/`, `ARCHIVED/`) matches **nothing** and it always defaults to PATCH. It returned 4.0.1 for a 103-file release. Record the override reasoning in the release PR.
+- **The CI gate cannot be satisfied on `contrib/stharrold`.** Every push triggers Paper Artifacts Generation, which pushes a `[skip ci]` commit that becomes the PR head with zero check-runs, so `gh pr checks` returns exit 1 and "no checks reported". The PDF rebuild is nondeterministic (differs by ~5 bytes), so it commits every time and the loop never converges. Verify the **source** commit's checks instead, then confirm the artifacts by content: grep `paper.docx` for the expected changes and hash `word/media/*` against `figures/*.mmd.png`. On `release/*` branches the gate behaves normally.
+- Release order that worked: PR contrib->develop (wait for the artifact `[skip ci]` commit first) -> confirm version -> `release/vN.N.N` from develop -> bump `pyproject.toml` + `uv lock` + `CITATION.cff` (version AND `date-released`) + `.zenodo.json` -> PR to main -> merge -> annotated tag on the merge commit -> `gh release create` -> verify Zenodo -> backmerge main->develop -> fast-forward contrib.
+- `Build and Push Container` **fails on every release** at the SBOM-attach step (`Resource not accessible by integration`); the workflow has no `permissions:` block. Non-required, so it does not block merges. Tracked in #565; the `[skip ci]` head-commit problem is #566.
+
 ## Zenodo Integration
 
 - Repo has an active release webhook (hook id `591675875`) to `zenodo.org/api/hooks/receivers/github/events/`.
 - Webhook fires on GitHub **Release publish**, not tag push. `release_workflow.py tag-release` only creates the tag; run `gh release create vX.Y.Z` afterward (with the concept DOI leading the notes) to actually trigger Zenodo archival.
 - Webhook `202 Accepted` is only queue ack; actual archival is async and can fail silently. Verify a new version actually appears on the [Zenodo record page](https://doi.org/10.5281/zenodo.18264359) after each release, or via API: `curl -s "https://zenodo.org/api/records?q=conceptdoi:%2210.5281/zenodo.18264359%22&sort=mostrecent&size=1"` (check `metadata.version`).
+- **`metadata.version` is the tag verbatim, i.e. `v5.0.0` with the `v`.** A poll comparing against `5.0.0` never matches and runs to its iteration limit, which looks identical to a failed archival. Compare against the tag string, and make any wait-loop emit on failure as well as success.
 - Release train (v4.0.0 pattern): PR contrib->develop (wait for the artifact run's `[skip ci]` auto-commit to land on the branch first), release/vX.Y.Z from origin/develop, bump `pyproject.toml` + `CITATION.cff` (version AND `date-released`) + `.zenodo.json` notes, PR->main, tag, `gh release create` (concept DOI first in notes + "Cite this release" block), verify Zenodo, backmerge PR main->develop, re-sync contrib.
 - Diagnose failures at https://zenodo.org/account/settings/github/ (shows last-build status per repo).
 - Redeliver a failed webhook: `gh api --method POST repos/{owner}/{repo}/hooks/591675875/deliveries/<id>/attempts` (gh CLI resolves `{owner}/{repo}` from the current git remote).
