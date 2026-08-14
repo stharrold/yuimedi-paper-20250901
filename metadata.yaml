@@ -3,10 +3,10 @@
 
 # Document information
 title: "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement"
-author: "Samuel T Harrold, Yuimedi, Inc."
+author: "Samuel Thomas Harrold, Yuimedi, Inc."
 orcid: "https://orcid.org/0009-0008-4596-6921"
 correspondence: "https://us.yuimedi.com/contact-us/ (include 'NL2SQL paper' in message)"
-date: "July 2026"
+date: "August 2026"
 lang: en-US
 
 # Document class settings
@@ -56,7 +56,7 @@ classoption:
 
 # Header and footer
 header-left: "Health Care Analytics Challenges"
-header-right: "July 2026"
+header-right: "August 2026"
 footer-left: "\\hspace{0pt}"
 footer-center: "\\thepage"
 footer-right: "\\hspace{0pt}"
