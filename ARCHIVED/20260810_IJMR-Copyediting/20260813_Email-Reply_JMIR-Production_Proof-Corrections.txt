@@ -1,0 +1,379 @@
+REPLY TO PROOF NOTIFICATION, i-JMR ms#96541
+Drafted 2026-08-13, in response to the proof-ready notification received
+2026-08-13 16:51 EDT. Revised three times the same evening as the author applied
+corrections in Kriyadocs and supplied further files for review. Current against
+96541_modified4.pdf, 96541_appendix1.docx, and 96541_appendix2.docx.
+
+To:      laura.mcreynolds@jmir.org
+Cc:      production@jmir.org
+Subject: Re: [Interact J Med Res 96541] Manuscript proof is now ready for review
+
+Attachments: multimedia_appendix_1.docx, multimedia_appendix_2.docx
+             (corrected replacements; see item 5)
+
+The notification came from donotreply@exeterpremedia.com with reply-to set to
+Laura McReynolds, so this goes to her directly.
+
+Plain text below the divider is the message.
+
+====================================================================
+
+Dear Laura,
+
+Thank you, I have the proof and the two multimedia appendices. I have made the
+corrections I could make myself in Kriyadocs and will approve within the 3-day
+window so the proof stage does not hold anything up, on the understanding that my
+approval is not authorization to schedule publication. More on that at the end.
+
+Six items. The first two are in the article text and I could not fix them myself,
+the third is metadata, the fourth is cosmetic, and the fifth concerns the two
+multimedia appendices, where I have attached corrected files.
+
+1. Reference 38 reads "Ziletti A, DAmbrosi L." The apostrophe has been dropped
+   from the second author's name, which should read "D'Ambrosi L". I checked the
+   rest of the reference list and this appears to be the only casualty: it is the
+   only author name in the bibliography carrying an apostrophe, and the two
+   reference titles that contain one, "IBM's healthcare data and analytics
+   assets" in reference 81 and "a paradox of the 'information age'" in reference
+   10, both render correctly. So I do not think there is a systematic encoding
+   problem, just this one character.
+
+2. On page 7, in "The 3-Pillar Rubric", the sentence reads "Each indicator is
+   scored as being of low, medium, or high strength using evidence-based anchors
+   from the literature reviewed in the The Evidence Base: 3 Pillars section." The
+   article "the" is doubled. It should read "reviewed in the Evidence Base: 3
+   Pillars section" or "in The Evidence Base: 3 Pillars section", whichever fits
+   your house pattern for section cross-references.
+
+   For what it is worth, I think this arose when section cross-references were
+   converted to named references during copyediting, since the pattern is "in the
+   <Section Title> section" and this particular section title begins with "The".
+   The parallel reference on page 6 reads correctly ("as detailed in the
+   Theoretical Grounding: Socialization Failure section") because that title does
+   not start with "The". It has been in the file since the version I approved on
+   10 August; I did not catch it then.
+
+3. The article title was wrong in the proof I received and may still be wrong in
+   the metadata. It was set as "InHealth Care Analytics Challenges: A 3-Pillar
+   Framework Connecting Analytics Maturity, Workforce Agility, and Technical
+   Enablement". The stray "In" was introduced during typesetting; the correct
+   title is "Health Care Analytics Challenges: ..." as submitted and as it
+   appears in the copyedited version I approved on 10 August.
+
+   I have corrected the two places I can reach, the title block on page 1 and the
+   "Please cite as" block on page 14, and both now read correctly. What I cannot
+   see or edit is the title metadata field, and I think it is still wrong: the
+   corrupted title appeared in the subject line and body of the proof
+   notification email itself, which is generated from metadata rather than from
+   the typeset text. Could you please confirm the metadata field and any running
+   or short title are corrected as well? The metadata is what gets deposited to
+   Crossref and PubMed, so a fix confined to the typeset pages would leave the
+   wrong title in the permanent record.
+
+4. Reference 85 cited a version-specific Zenodo record,
+   https://zenodo.org/records/21880033, which is frozen at release v5.0.0 and
+   will not resolve to later versions of the deposit. I have replaced it with the
+   concept DOI, 10.5281/zenodo.18264359, which always resolves to the current
+   version. The identifier is now correct. The only thing I could not do was
+   render it in the bracketed [doi: ...] form the other entries use, which I
+   assume comes from a DOI field rather than typed text. If your system can
+   normalize it, please do; if not, the entry is accurate as it stands and
+   consistent with the other URL-only references, so please do not hold anything
+   up for it.
+
+5. The two multimedia appendices need replacing. The files in production are the
+   ones I uploaded with the R2 revision in July, which predate copyediting, so
+   the copyeditor's corrections were applied to the article but never reached the
+   appendices. Two entries in Appendix 2's reference list now contradict the
+   article's own reference list:
+
+   - Appendix 2 reference 2 gives the Healthcare IT News article as "HIMSS
+     launches modernised Analytics Maturity Assessment Model". The article's
+     reference 2 gives it as "At HIMSS24 APAC, the Adoption Model for Analytics
+     Maturity gets facelift", which is correct; I verified it against the page
+     itself, and the URL slug matches.
+   - Appendix 2 reference 7 gives the NSI staffing report as the 2025 edition
+     published in 2024. The article's reference 23 gives the 2026 edition
+     published in 2026, which is correct and was one of the corrections your
+     copyeditor made without querying.
+
+   Separately, two author lists in Appendix 2 have been mangled in typesetting.
+   They are correct in the file I uploaded and correct in the article, so this
+   happened on your side:
+
+   - Reference 4 reads "Shahbaz G M." and should read "Shahbaz M, Gao C, Zhai L,
+     Shahzad F, Hu Y." (as in the article's reference 48).
+   - Reference 5 reads "Ziletti &D A." and should read "Ziletti A, D'Ambrosi L."
+     (as in the article's reference 38, subject to item 1 above).
+
+   Appendix 1 has problems of the same kind. Its heading reads "Validated Query
+   Triple Examples for Healthcare Analytics", which predates the health care
+   copyedit and now contradicts the article's own title. Both appendices also
+   quote section titles that no longer exist: Appendix 1 cites "The Solution:
+   Externalization via Socio-Technical Artifacts", now "Sociotechnical" and
+   unhyphenated, and Appendix 2 cites "The Three-Pillar Rubric", now "The
+   3-Pillar Rubric".
+
+   I have attached corrected replacements for both appendices. Alongside the
+   corrections above, I took the opportunity to bring their wording into line
+   with the copyedited article, since the files as they stand were written before
+   copyediting and still use the conventions it removed. Specifically, coined
+   terms are now lowercase in running text ("validated query triple", "natural
+   language intent", "rationale metadata") to match the article, small numbers
+   are numerals mid-sentence ("3 components", "6-step") to match the article, and
+   the scoring anchors in Appendix 2 read "low, medium, or high strength" to
+   match the article's own description of the same rubric. I also set the author
+   line on both appendices to "Samuel Thomas Harrold", matching the article's
+   byline; the files as submitted read "Samuel T Harrold". Section headings are
+   unchanged and remain title case, as in the article. No substantive content,
+   no data, and no reference has been altered beyond the corrections listed
+   above. The front matter is dated August 2026, when these replacements were
+   prepared; the files as submitted were dated July 2026.
+
+   Please use these in place of the files currently in production. If you would
+   rather I upload them somewhere specific, let me know.
+
+On timing. The end matter carries "published 21.Aug.2026", and the copyright line
+on the final page repeats it as "Originally published in the Interactive Journal
+of Medical Research (https://www.i-jmr.org/), 21.Aug.2026." Both will need
+updating when the article actually publishes, under the hold we agreed on 11
+August: the article is kept at the final production stage until the in-house
+visual abstract is complete, then published with the visual abstract in place and
+the sponsored tweet sent alongside it. I mention the copyright line specifically
+because it is easy to miss, sitting apart from the publication date field.
+
+The notification says the paper is scheduled for publication once approval is in
+and no queries are pending, so I want to be sure the hold travels with the file
+rather than living only in this thread. Could you confirm it is recorded against
+the file before I approve? I will enter it as a query to the Publisher as well,
+but I would rather it be a note on the record than depend on a query staying
+open.
+
+Finally, I would like to take the option mentioned in the notification to view
+the final version before the paper is scheduled. The title was correct in the
+previous round and became wrong in this one, and the appendices turn out to be
+the pre-copyediting versions, so I would rather see the assembled article once
+more than assume.
+
+Thank you again for keeping the pieces of this coordinated.
+
+Best regards,
+Samuel Thomas Harrold
+
+====================================================================
+
+IN-SYSTEM QUERIES (Kriyadocs)
+
+The title, reference 85, the "four conversion modes" numeral, and the Funding
+statement period are already applied as author edits. The queries below cover
+what an author edit cannot reach. The appendices are separately uploaded files,
+so they go to Laura as attachments rather than as in-system edits.
+
+Query 1, reference 38:
+
+  Reference 38 reads "Ziletti A, DAmbrosi L." The apostrophe has been dropped
+  from the second author's name; it should read "D'Ambrosi L". This appears to be
+  the only affected name: it is the only author name in the bibliography with an
+  apostrophe, and the apostrophes in reference 81 ("IBM's") and reference 10
+  ("'information age'") both render correctly.
+
+Query 2, page 7 doubled article:
+
+  On page 7 under "The 3-Pillar Rubric": "anchors from the literature reviewed in
+  the The Evidence Base: 3 Pillars section" has a doubled "the". Please set it as
+  "reviewed in the Evidence Base: 3 Pillars section", or whichever form matches
+  house style for a section cross-reference whose title begins with "The".
+
+Query 3, title metadata:
+
+  The title was set as "InHealth Care Analytics Challenges" in this proof. I have
+  corrected the title block on page 1 and the "Please cite as" block on page 14.
+  Please also correct the title metadata field and any running or short title;
+  the corrupted string appeared in the proof notification email, which is
+  generated from metadata, so I expect the metadata field is still wrong. The
+  correct title is "Health Care Analytics Challenges: A 3-Pillar Framework
+  Connecting Analytics Maturity, Workforce Agility, and Technical Enablement".
+
+Query 4, reference 85 formatting:
+
+  Reference 85 now cites the correct concept DOI, but as "URL:
+  https://doi.org/10.5281/zenodo.18264359" rather than in the bracketed "[doi:
+  10.5281/zenodo.18264359]" form used by other entries. If the DOI can be moved
+  into the DOI field so it renders consistently, please do. Formatting only; the
+  identifier is correct as it stands.
+
+Query 5, multimedia appendices:
+
+  Both multimedia appendices in production are the versions uploaded with the R2
+  revision and predate copyediting, so the copyeditor's bibliography corrections
+  never reached them. Appendix 2's references 2 and 7 now contradict the
+  article's references 2 and 23, and its references 4 and 5 have mangled author
+  lists ("Shahbaz G M." and "Ziletti &D A.") that are correct in both the
+  uploaded file and the article. Appendix 1's heading reads "Healthcare
+  Analytics" rather than "Health Care Analytics" and quotes a section title that
+  no longer exists ("Socio-Technical" rather than "Sociotechnical"). Corrected
+  replacement files have been sent to the Production Editor by email.
+
+Query 6, production hold:
+
+  Production hold agreed with Laura McReynolds on 2026-08-11: this article is to
+  be held at the final production stage until the in-house visual abstract is
+  complete, then published with the visual abstract in place and the sponsored
+  tweet sent alongside it. Approving this proof is not a request to schedule
+  publication. The visual abstract questionnaire was submitted 2026-08-06. The
+  publication date in the end matter and the date in the copyright line on the
+  final page will both need updating when the article publishes.
+
+====================================================================
+
+CONTEXT FOR THE RECORD (not part of the message)
+
+Proof notification received 2026-08-13 16:51 EDT from
+donotreply@exeterpremedia.com, reply-to laura.mcreynolds@jmir.org, cc
+production@jmir.org. Archived as 20260813_Email_JMIR-Production-Editor.pdf.
+Sign-off due within 3 days, so approximately 2026-08-16.
+
+Files of record:
+  96541_modified.pdf     approved at the close of copyediting, 2026-08-10
+  96541_modified2.pdf    proof as received, 2026-08-13 18:12 EDT
+  96541_modified3.pdf    after title and reference 85 fixes, 2026-08-13 18:44 EDT
+  96541_modified4.pdf    after numeral and Funding fixes, 2026-08-13 19:42 EDT
+  96541_appendix1.docx   appendix as held in production, 2026-08-13 19:23 EDT
+  96541_appendix2.docx   appendix as held in production, 2026-08-13 19:23 EDT
+
+Verification is documented in 20260813_Proof-Review_IJMR-96541_corrections.md.
+
+Every author edit was verified by word-frequency diff against the preceding
+version, and each round changed only the intended tokens with total word count
+unchanged at 8018 throughout.
+
+ATTACHMENTS, built and verified 2026-08-13 22:10 EDT. Archived here as
+96541-Multimedia-Appendix-1.docx and 96541-Multimedia-Appendix-2.docx.
+`96541-Multimedia-Appendix-N.docx` is the filename the system REQUIRES for
+appendix uploads, so the repo's own `multimedia_appendix_N.docx` name cannot be
+used as-is; rename on the way out. Both are byte-identical to the tracked repo
+builds.
+
+The production-held originals are kept alongside them as 96541_appendix1.docx and
+96541_appendix2.docx, the R2 uploads as JMIR held them, which is the evidence for
+every appendix finding in the letter.
+
+Built from `multimedia_appendix_1.md` and `multimedia_appendix_2.md` via
+`./scripts/build_paper.sh --format all`. `references.bib` is unchanged since the
+2026-08-10 snapshot, so the rebuild reproduces the copyeditor's bibliography
+corrections exactly rather than reintroducing anything.
+
+Source edits made, in two tiers.
+
+Tier 1, the corrections the letter argues for:
+  - appendix 1 line 5, "Socio-Technical Artifacts" to "Sociotechnical Artifacts"
+    (the article's heading changed at copyediting)
+  - appendix 2 line 5, section "The Three-Pillar Rubric" to "The 3-Pillar Rubric"
+    (same class, found while reading appendix 2 for the capitalization pass)
+  - appendix 2 line 5, cross-reference to the Evidence Base section made exact:
+    section "The Evidence Base: 3 Pillars"
+  The "Health Care" heading, both intact author lists, "gets facelift", and the
+  2026 NSI edition all come from the 2026-08-10 rebuild and needed no edit.
+
+Tier 2, alignment to the published article's conventions:
+  - coined terms lowercase in running text: validated query triple, natural
+    language intent, executable SQL, rationale metadata, query generation,
+    semantic translation, expert validation, artifact storage, externalization,
+    human-in-the-loop
+  - line-initial term labels set in sentence case ("Natural language intent:")
+  - numerals mid-sentence: "3 components", "5-step", "6-step"
+  - appendix 2 scoring anchors lowercased throughout, "Low, Medium, or High
+    Strength" to "low, medium, or high strength", matching the article's own
+    sentence describing this rubric; table headers to sentence case ("Low
+    strength", "Medium strength", "High strength"); "Med." expanded to "Medium"
+  - appendix 2 internal inconsistencies fixed: "(High instability)" and "(High
+    stability)" lowercased, "HIMSS AMAM Stage" to "HIMSS AMAM stage", "AI/NL
+    interface" to "AI and NL interface" (matching the article's Table 2), "Avg."
+    expanded to "Average"
+  - disease names lowercased per AMA: "Type 2 Diabetes" to "type 2 diabetes",
+    "Heart Failure" to "heart failure", in prose only
+  - section headings left untouched, still title case, as in the article
+  - SQL code blocks left untouched
+
+Tier 3, the author byline. Pandoc renders `author` into the DOCX body, so both
+appendices carried a visible "Samuel T Harrold, Yuimedi, Inc." line while the
+published article's byline is "Samuel Thomas Harrold". Note that a DOCX to plain
+conversion moves title/author into metadata rather than body text, which is why
+several earlier text-only reads of these files never surfaced it. Fixed by
+changing `author:` in BOTH `metadata.yaml` (which feeds the appendices) and
+`paper.md`'s own YAML header (which feeds paper.docx); they are separate fields
+and changing only one splits them. paper.docx, paper.pdf, paper.html, and
+paper.tex were therefore rebuilt and kept this time, since a real source field
+changed rather than nondeterministic build noise. No body text of the manuscript
+changed: the diff on paper.md is the single `author:` line.
+
+Tier 4, the front-matter date. The appendices were dated "July 2026", the R2
+revision month. Set to "August 2026", when these replacements were prepared.
+This is a THREE-field change, not one: `date:` in `metadata.yaml` (feeds the
+appendices), `date:` in `paper.md`'s own YAML header (feeds paper.docx), and
+`header-right:` in `metadata.yaml`, which the root CLAUDE.md notes is a
+hardcoded literal that is NOT derived from `date:` and has to be updated by hand.
+Missing any one of the three leaves the repo internally inconsistent. Verified
+afterward that no "July 2026" literal survives in any build input or in either
+sent artifact.
+
+Verified after the build: all six original corrections still present; zero Title
+Case coined terms remain in running text in either file; the only surviving
+Title Case instance is appendix 1's own H2 heading, which is correct because
+headings are title case in the article too. Both appendices' headings were
+checked and match the article's heading style.
+
+`paper.docx` and `paper.pdf` were reverted after each build. No source feeding
+them changed, so their diffs were nondeterministic build noise only.
+
+Optional and deliberately not raised: Appendix 1 spells out "three components",
+"five-step", and "six-step" where the article uses numerals. JMIR appears to
+treat appendices as author-supplied files rather than copyediting them to house
+style, and these are internal to the appendix rather than contradicting the
+article, so they are discretionary. If the appendix is being rebuilt anyway they
+could be changed at no extra cost, but they are not worth arguing for.
+
+Evidence for the Healthcare IT News title, which is the one item where the
+appendix and the article disagree and the direction was not obvious: the saved
+landing page in `bibliography-audit/himss2024news/5-landing-page.html`, fetched
+2026-07-09, carries `<title>At HIMSS24 APAC, the Adoption Model for Analytics
+Maturity gets facelift | Healthcare IT News</title>` and the same string as
+og:title. The article's form is correct and the appendix's "modernised" form is
+the stale one. Three earlier submission packages and
+`docs/research/2024_HealthcareITNews_HIMSS-Launches-Modernised-AMAM.md` carry the
+"modernised" wording, which is what the 2026-08-10 bibliography sweep flagged as
+defective and corrected.
+
+WITHDRAWN, and wrong on my part: two proposed caption changes, Table 2's
+"Three-pillar assessment rubric indicators" and the Multimedia Appendix 2
+caption's "Three-pillar organizational assessment rubric". They are correct as
+set. i-JMR and AMA style do not open a sentence or title with a numeral, and a
+caption is a sentence. Figure 2's caption is the control that proves the rule was
+applied consistently: "The 6-step validated query cycle and its mapping to the 3
+pillars" begins with "The", so both numerals fall mid-sentence and correctly stay
+numerals. Appendix 2's own heading, "Three-Pillar Organizational Assessment
+Rubric", is correct for the same reason.
+
+On "Yuimedi, Inc." with the comma, raised and resolved: it is the author's own
+supplied form, carried through from metadata.yaml, paper.md, CITATION.cff, and
+.zenodo.json, and it matches the page 1 affiliation. The journal did not impose
+it. Chicago and AMA both prefer dropping the comma before Inc, but style guides
+defer to an organization's legal registration for proper names, and the form is
+already consistent across the article and the ORCID, Zenodo, and citation
+records. Changing it at proof stage would be a discretionary style change. Not
+raised. The missing period in the Funding statement was a separate matter and was
+corrected.
+
+Also not raised, and a judgment call rather than a clear error: in Figure 2 the
+"Stabilizes" edge label and arrowhead overlap the "3 pillars" subgraph title and
+clip it. The collision comes from the PNG supplied at copyediting, so it was
+present in the approved version and every earlier proof, and correcting it would
+mean re-rendering figures/knowledge-cycle.mmd and re-uploading at a stage that
+asks for errors only. If it is raised, it should go in as a query with a
+replacement PNG.
+
+Other copyeditor changes accepted without comment: "colocated" to "co-located";
+"2-decade-old" with the numeral added; reference 19's journal name expanded to
+"ACM SIGMIS DATABASE: the DATABASE for Advances in Information Systems"; the
+table footnote set to "cNL: natural language."; and the Data Availability
+statement restructured to cite reference 85 in place of the inline DOI URL.
