@@ -301,3 +301,9 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 | `tests/test_validate_jmir_compliance.py` | Tests for JMIR validator (58 tests, covers Viewpoint + Original) |
 | `../library/` | Sibling repo: semantic search engine for academic papers (DuckDB, 23+ ingested papers) |
 | `../yuimedi/` | Sibling repo: parent Yuimedi project (lead-gen, meeting notes in `20251212_Meeting_Paper-Conference-Review/`) |
+
+## i-JMR house style (learned at the 96541 proof rounds)
+
+- **Numerals never open a sentence or a title.** House style converts small numbers to numerals ("3 pillars", "6-step", "2 critical weaknesses") EXCEPT sentence-initially. A caption is a sentence, so "Three-pillar assessment rubric indicators" is correct while "The 6-step validated query cycle and its mapping to the 3 pillars" is also correct. Check position before calling a spelled-out number an inconsistency.
+- **Section cross-references take the form `the <Section Title>` with the title verbatim.** When the section title itself begins with "The", this produces "the The Evidence Base: 3 Pillars section". That doubling is REQUIRED, not a typo. The control case is "in the Theoretical Grounding: Socialization Failure section", same rule, no doubling only because that title does not start with "The".
+- Both of the above are constructions that read as errors in isolation but are mandated by a rule operating one level up. Verify the rule before raising either.

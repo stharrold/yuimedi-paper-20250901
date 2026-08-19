@@ -221,11 +221,14 @@ on 2026-08-10.
   "'information age'") render correctly, so this is single-character loss rather than
   an encoding pass.
 - Page 7, under "The 3-Pillar Rubric": "reviewed in the The Evidence Base: 3 Pillars
-  section" doubles the article. Confirmed visually. It comes from the copyediting-era
-  conversion of section cross-references to the pattern "in the <Section Title>
-  section", colliding with a section title that itself begins with "The". The parallel
-  on page 6, "as detailed in the Theoretical Grounding: Socialization Failure section",
-  reads correctly because that title does not begin with "The".
+  section" doubles the article. WITHDRAWN 2026-08-19, and wrong on my part. House
+  style requires the form "the <Section Title>" with the title reproduced verbatim,
+  so a section whose own title begins with "The" necessarily yields "the The". It is
+  correct as set, and production was right to leave it. The parallel on page 6, "as
+  detailed in the Theoretical Grounding: Socialization Failure section", is the
+  control: same rule, no doubling, only because that title does not begin with "The".
+  This is the same trap as the sentence-initial numeral: a construction that reads as
+  an error in isolation is required by a rule operating one level up.
 
 ### The appendices in production are the R2 uploads
 

@@ -38,6 +38,10 @@ multimedia appendices, where I have attached corrected files.
    10, both render correctly. So I do not think there is a systematic encoding
    problem, just this one character.
 
+[ITEM 2 WAS WRONG. Production correctly declined it; see RESOLVED note in the
+record section below. House style requires "the <Section Title>" verbatim, so a
+title beginning with "The" yields "the The". Left as sent, for the record.]
+
 2. On page 7, in "The 3-Pillar Rubric", the sentence reads "Each indicator is
    scored as being of low, medium, or high strength using evidence-based anchors
    from the literature reviewed in the The Evidence Base: 3 Pillars section." The
@@ -343,6 +347,15 @@ the stale one. Three earlier submission packages and
 `docs/research/2024_HealthcareITNews_HIMSS-Launches-Modernised-AMAM.md` carry the
 "modernised" wording, which is what the 2026-08-10 bibliography sweep flagged as
 defective and corrected.
+
+RESOLVED 2026-08-19, item 2 / Query 2 (the doubled article on page 7). Production
+did not action it, correctly. House style requires the form "the <Section Title>"
+with the title reproduced verbatim, so a section whose own title begins with "The"
+necessarily produces "the The Evidence Base: 3 Pillars". It is correct as set. The
+page 6 parallel, "in the Theoretical Grounding: Socialization Failure section", is
+the control: identical rule, no doubling, only because that title does not begin
+with "The". The letter offered production a choice of two rewordings; both would
+have been wrong. Do not re-raise this.
 
 WITHDRAWN, and wrong on my part: two proposed caption changes, Table 2's
 "Three-pillar assessment rubric indicators" and the Multimedia Appendix 2
