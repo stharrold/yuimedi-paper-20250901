@@ -188,7 +188,7 @@
   pdfauthor={Samuel Thomas Harrold, Yuimedi, Inc.},
   pdflang={en-US},
   pdfkeywords={institutional amnesia, organizational
-forgetting, human-in-the-loop, medical informatics, socio-technical
+forgetting, human-in-the-loop, medical informatics, sociotechnical
 systems, query governance, natural language processing, knowledge
 management, personnel turnover, organizational resilience},
   colorlinks=true,
@@ -494,37 +494,37 @@ Technical Enablement}}}
 % don't generate the default title
 % \maketitle
 \begin{abstract}
-Health care organizations face a ``Triple Threat'' of low analytics
+Health care organizations face a ``triple threat'' of low analytics
 maturity, high workforce instability, and semantic technical barriers
-that together produce a crisis of ``Institutional Amnesia.'' Leadership
+that together produce a crisis of ``institutional amnesia.'' Leadership
 turnover, workforce shortages, and widespread intent to leave among
 informatics specialists systematically erase the tacit knowledge
 required to navigate complex clinical data schemas, trapping
 organizations in a cycle where knowledge loss outpaces knowledge
 capture.
 
-Viewed through Nonaka's SECI (Socialization, Externalization,
-Combination, Internalization) model of knowledge creation, the root
-cause is a ``Socialization Failure'': high turnover fractures the social
-networks required for mentorship, rendering the traditional
-apprenticeship model of informatics unsustainable. To address this
-failure, we employ a Design Science Research (DSR) approach,
-synthesizing evidence from health care informatics, knowledge
-management, and natural language processing to develop a socio-technical
-framework: Human-in-the-Loop Knowledge Governance (HITL-KG).
+Viewed through the socialization, externalization, combination, and
+internalization model of knowledge creation by Nonaka, the root cause is
+a ``socialization failure'': high turnover fractures the social networks
+required for mentorship, rendering the traditional apprenticeship model
+of informatics unsustainable. To address this failure, we used a design
+science research approach synthesizing evidence from health care
+informatics, knowledge management, and natural language processing to
+develop a sociotechnical framework: human-in-the-loop knowledge
+governance (HITL-KG).
 
 HITL-KG is designed to shift the locus of organizational knowledge from
-volatile human memory to durable semantic artifacts called ``Validated
-Query Triples,'' each comprising a natural language intent, executable
+volatile human memory to durable semantic artifacts called ``validated
+query triples,'' each comprising a natural language intent, executable
 SQL, and rationale metadata. By embedding knowledge capture into the
 daily query workflow, the framework aims to convert ephemeral analytics
-into permanent institutional assets. The accompanying Three-Pillar
-Assessment Rubric enables organizations to identify compounding
+into permanent institutional assets. The accompanying 3-pillar
+assessment rubric enables organizations to identify compounding
 vulnerabilities across analytics maturity, workforce agility, and
 technical enablement.
 
-The ``Validator Paradox'' (who validates the AI when experts leave?) is
-addressed by reframing validation through Lean ``Standard Work'': each
+The ``validator paradox'' (who validates the AI when experts leave?) is
+addressed by reframing validation through Lean ``standard work'': each
 validated query establishes the current known standard rather than
 eternal truth, functioning as a ``knowledge ratchet'' that prevents
 regression. Decoupling analytical capability from individual tenure lets
@@ -538,25 +538,25 @@ is deferred to a companion study.
 \section{The Triple Threat: Institutional Amnesia in Health Care
 Analytics}\label{the-triple-threat-institutional-amnesia-in-health-care-analytics}
 
-The health care analytics landscape is currently paralyzed by a ``Triple
-Threat'' of compounding failures: (1) persistently \emph{Low Analytics
-Maturity}, where despite decades of investment, as of late 2024 only 39
-organizations globally had reached the top tiers of the Healthcare
+The health care analytics landscape is currently paralyzed by a ``triple
+threat'' of compounding failures: (1) persistently \emph{low analytics
+maturity}, where despite decades of investment, as of late 2024 only 39
+organizations worldwide had reached the top tiers of the Healthcare
 Information and Management Systems Society (HIMSS) Analytics Maturity
 Assessment Model (AMAM)
 {[}\citeproc{ref-himss2024}{1},\citeproc{ref-himss2024news}{2}{]}; (2) a
-\emph{Semantic Gap} between clinical intent and technical schema
+\emph{semantic gap} between clinical intent and technical schema
 implementation
 {[}\citeproc{ref-gal2019}{3},\citeproc{ref-zhang2024}{4}{]}; and (3) a
-profound crisis of \emph{Workforce Instability} that creates
-``Institutional Amnesia'' {[}\citeproc{ref-hong2025}{5}{]}.
+profound crisis of \emph{workforce instability} that creates
+``institutional amnesia'' {[}\citeproc{ref-hong2025}{5}{]}.
 
-While technical barriers and maturity models are well-documented, the
+While technical barriers and maturity models are well documented, the
 workforce dimension has shifted from a management concern to an
 existential threat. Modern longitudinal data on analytics staff is
-fragmented, but the available signals are alarming. As of 2024, 53\% of
-health care chief information officers (CIOs) have held their roles for
-less than three years {[}\citeproc{ref-wittkieffer2024}{6}{]}, creating
+fragmented, but the available signals are alarming. As of 2024, a total
+of 53\% of health care chief information officers have held their roles
+for less than 3 years {[}\citeproc{ref-wittkieffer2024}{6}{]}, creating
 a strategic vacuum at the top. At the operational level, global nurse
 turnover runs at 16\% to 18\% annually
 {[}\citeproc{ref-ren2024}{7},\citeproc{ref-wu2024}{8}{]}, and a 2025
@@ -582,7 +582,7 @@ maturity models (e.g., HIMSS AMAM) assume a stable workforce capable of
 linear progression {[}\citeproc{ref-himss2024}{1}{]}. Technical
 solutions (e.g., natural language to SQL, or NL2SQL) assume a stable
 schema and clear intent {[}\citeproc{ref-wang2020}{15}{]}. Neither
-accounts for the reality of the ``Great Resignation,'' where the rate of
+accounts for the reality of the ``great resignation,'' where the rate of
 knowledge loss often exceeds the rate of knowledge capture
 {[}\citeproc{ref-rao2006}{13}{]}.
 
@@ -599,12 +599,12 @@ foundational 2004 study established that technical IT staff in
 organizations where IT is a support function, as in health care
 delivery, had the lowest expected tenure of any organizational category
 at just 2.9 years {[}\citeproc{ref-ang2004}{19}{]}. That this
-two-decade-old study remains a key benchmark is itself evidence of the
+2-decade-old study remains a key benchmark is itself evidence of the
 crisis: the industry lacks the stability to track its own attrition.
 Contemporary signals, detailed below, suggest the situation has
 worsened.
 
-This viewpoint article addresses a critical socio-technical gap:
+This viewpoint article addresses a critical sociotechnical gap:
 \emph{How can health systems maintain analytics maturity when workforce
 turnover exceeds the speed of documentation?}
 
@@ -616,22 +616,22 @@ fail, but the architectural recommendations are intentionally directive.
 
 We propose that the solution lies not in better documentation, but in a
 fundamental architectural shift: moving from \emph{passive} knowledge
-management to \emph{Human-in-the-Loop Knowledge Governance (HITL-KG)}.
+management to \emph{human-in-the-loop knowledge governance (HITL-KG)}.
 
-\section{Theoretical Grounding: SECI and the Unstable
-Workforce}\label{theoretical-grounding-seci-and-the-unstable-workforce}
+\section{Theoretical Grounding: Socialization, Externalization,
+Combination, and Internalization and the Unstable
+Workforce}\label{theoretical-grounding-socialization-externalization-combination-and-internalization-and-the-unstable-workforce}
 
-We ground our analysis in Nonaka's SECI (Socialization, Externalization,
-Combination, Internalization) model of knowledge creation
+We ground our analysis in the socialization, externalization,
+combination, and internalization model of knowledge creation by Nonaka
 {[}\citeproc{ref-farnese2019}{20}{]}, informed by a narrative literature
 review across health care analytics maturity, workforce turnover, and
-natural language processing, with grey literature assessed using the
-AACODS (Authority, Accuracy, Coverage, Objectivity, Date, Significance)
-checklist {[}\citeproc{ref-tyndall2010}{21}{]}. Grey literature was
+natural language processing, with gray literature assessed using the
+authority, accuracy, coverage, objectivity, date, and significance
+checklist {[}\citeproc{ref-tyndall2010}{21}{]}. Gray literature was
 retained only when no peer-reviewed equivalent existed or when it
 provided unique industry data. The model describes organizational
-knowledge as emerging through a continuous cycle of four conversion
-modes:
+knowledge as emerging through a continuous cycle of 4 conversion modes:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -656,16 +656,15 @@ modes:
   practice, as when a new analyst studies validated query libraries.
 \end{enumerate}
 
-In a healthy organization, these four modes form a self-reinforcing
-spiral: tacit insights become documented, documentation becomes
-systematized, and systematized knowledge is internalized by new members
-who then generate fresh tacit insights
-{[}\citeproc{ref-farnese2019}{20}{]}. When any mode breaks down, the
-spiral stalls. In health care analytics, the breakdown is at the very
-first stage.
+In a healthy organization, these 4 modes form a self-reinforcing spiral:
+tacit insights become documented, documentation becomes systematized,
+and systematized knowledge is internalized by new members who then
+generate fresh tacit insights {[}\citeproc{ref-farnese2019}{20}{]}. When
+any mode breaks down, the spiral stalls. In health care analytics, the
+breakdown is at the very first stage.
 
-The framework's three pillars name the organizational capabilities at
-stake in the Triple Threat: analytics maturity, workforce agility, and
+The framework's 3 pillars name the organizational capabilities at stake
+in the triple threat: analytics maturity, workforce agility, and
 technical enablement. This structure aligns with established models
 across health care informatics and knowledge management (Table 1):
 
@@ -680,11 +679,11 @@ across health care informatics and knowledge management (Table 1):
 \begin{minipage}[b]{\linewidth}\raggedright
 Pillar
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-HIMSS AMAM Alignment
+HIMSS AMAM alignment
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-DIKW Hierarchy
+DIKW hierarchy
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Knowledge Management
+Knowledge management
 \end{minipage} \\
 \midrule\noalign{}
 \endfirsthead
@@ -692,40 +691,40 @@ Knowledge Management
 \begin{minipage}[b]{\linewidth}\raggedright
 Pillar
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-HIMSS AMAM Alignment
+HIMSS AMAM alignment
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-DIKW Hierarchy
+DIKW hierarchy
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Knowledge Management
+Knowledge management
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Analytics Maturity & Stages 0-7 progression & Data → Information &
-Organizational Learning \\
-Workforce Agility & Implicit in advanced stages & Knowledge (tacit) →
-Wisdom & Tacit Knowledge Transfer \\
-Technical Enablement & Stages 6-7 requirements & Information → Knowledge
-& Knowledge Codification \\
+Analytics maturity & Progression from stages 0-7 & Data → information &
+Organizational learning \\
+Workforce agility & Implicit in advanced stages & Knowledge (tacit) →
+wisdom & Tacit knowledge transfer \\
+Technical enablement & Stages 6-7 requirements & Information → knowledge
+& Knowledge codification \\
 \end{longtable}
 
-HIMSS AMAM provides organizational benchmarks but does not address
-workforce knowledge retention. The Data, Information, Knowledge, Wisdom
-(DIKW) hierarchy explains progression from raw data to actionable
-insight but does not account for institutional memory loss. The
-three-pillar framework synthesizes these perspectives, positioning
-workforce dynamics as the critical enabler connecting data access
-(analytics maturity) with organizational wisdom (knowledge preservation)
+The HIMSS AMAM provides organizational benchmarks but does not address
+workforce knowledge retention. The data, information, knowledge, and
+wisdom hierarchy explains progression from raw data to actionable
+insights but does not account for institutional memory loss. The
+3-pillar framework synthesizes these perspectives, positioning workforce
+dynamics as the critical enabler connecting data access (analytics
+maturity) with organizational wisdom (knowledge preservation)
 {[}\citeproc{ref-rao2006}{13},\citeproc{ref-farnese2019}{20}{]}.
 
 \subsection{The Broken Cycle: Socialization
 Failure}\label{the-broken-cycle-socialization-failure}
 
-In Nonaka's model, \emph{Socialization} is the foundational conversion
+In the model by Nonaka, socialization is the foundational conversion
 mode: the primary channel through which newcomers absorb tacit context
 that formal training cannot convey {[}\citeproc{ref-farnese2019}{20}{]}.
-Socialization depends on two preconditions: sustained interaction and
+Socialization depends on 2 preconditions: sustained interaction and
 sufficient temporal overlap between knowledge holders and receivers
 {[}\citeproc{ref-foos2006}{22}{]}. It is, in effect, an apprenticeship
 model requiring years of shared practice.
@@ -745,19 +744,19 @@ High turnover rates fracture the social networks required for mentorship
 {[}\citeproc{ref-ren2024}{7},\citeproc{ref-wu2024}{8}{]}. The resulting
 knowledge loss is compounding: each departure removes a node from the
 organization's informal knowledge network, making subsequent
-Socialization attempts less effective because fewer experienced
+socialization attempts less effective because fewer experienced
 practitioners remain to serve as mentors
 {[}\citeproc{ref-massingham2018}{24}{]}. Socialization is no longer a
 viable strategy for resilience.
 
-\subsection{The Solution: Externalization via Socio-Technical
-Artifacts}\label{the-solution-externalization-via-socio-technical-artifacts}
+\subsection{The Solution: Externalization via Sociotechnical
+Artifacts}\label{the-solution-externalization-via-sociotechnical-artifacts}
 
-To survive, organizations must shift reliance from Socialization to
-\emph{Externalization}: converting tacit knowledge into explicit,
+To survive, organizations must shift reliance from socialization to
+\emph{externalization}: converting tacit knowledge into explicit,
 durable artifacts {[}\citeproc{ref-zhang2025}{25}{]}. However,
-traditional Externalization (writing wikis, maintaining data
-dictionaries, composing runbooks) suffers from two critical weaknesses.
+traditional externalization (writing wikis, maintaining data
+dictionaries, composing runbooks) suffers from 2 critical weaknesses.
 First, it is passive: it requires overworked staff to interrupt their
 workflow and perform a separate documentation task
 {[}\citeproc{ref-goffin2011}{26}{]}. In a high-burnout environment where
@@ -770,42 +769,41 @@ the conditional logic that makes institutional knowledge valuable
 exists but does not adequately capture what the departing expert
 actually knew.
 
-We propose a form of \emph{active} Externalization: one that captures
-tacit knowledge as a byproduct of the daily analytics workflow rather
+We propose a form of \emph{active} externalization: one that captures
+tacit knowledge as a by-product of the daily analytics workflow rather
 than a separate documentation burden. The mechanism is a new
-socio-technical artifact: the \emph{Validated Query Triple} (see
+sociotechnical artifact: the \emph{validated query triple} (see
 Multimedia Appendix 1 for worked examples). This artifact consists of:
-1. \emph{Natural Language Intent}: The clinical business question (e.g.,
+1. \emph{natural language intent}: The clinical business question (e.g.,
 ``Hypertension readmissions excluding planned transfers''). 2.
-\emph{Executable SQL}: The technical implementation. 3. \emph{Rationale
-Metadata}: The ``why'' behind the logic (e.g., ``Excluding status 02 per
+\emph{executable SQL}: The technical implementation. 3. \emph{rationale
+metadata}: The ``why'' behind the logic (e.g., ``Excluding status 02 per
 Centers for Medicare and Medicaid Services (CMS) 2025 rule'').
 
-By capturing these three components \emph{during the act of analytics},
-we transform the ephemeral work of query generation into a permanent
+By capturing these 3 components \emph{during the act of analytics}, we
+transform the ephemeral work of query generation into a permanent
 institutional asset {[}\citeproc{ref-moore2018}{28}{]}.
 
-\section{Human-in-the-Loop Knowledge
-Governance}\label{human-in-the-loop-knowledge-governance}
+\section{HITL-KG}\label{hitl-kg}
 
-We propose \emph{Human-in-the-Loop Knowledge Governance (HITL-KG)} as
+We propose \emph{human-in-the-loop knowledge governance (HITL-KG)} as
 the overarching governance framework, extending the knowledge governance
-approach {[}\citeproc{ref-foss2007}{29}{]} with the Validated Query
-Cycle as its core operational process. This framing reflects that the
+approach {[}\citeproc{ref-foss2007}{29}{]} with the validated query
+cycle as its core operational process. This framing reflects that the
 system serves as a governance mechanism, not just a productivity tool.
 
 \subsection{The HITL-KG Architecture}\label{the-hitl-kg-architecture}
 
-The HITL-KG architecture (Figure 1) functions as a \emph{Governance
-Forcing Function}. It inserts a mandatory validation step into the
+The HITL-KG architecture (Figure 1) functions as a \emph{governance
+forcing function}. It inserts a mandatory validation step into the
 analytics workflow, preventing laundered hallucinations while capturing
 expert knowledge.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.865\linewidth,height=\textheight,keepaspectratio,alt={Figure 1. Human-in-the-Loop Knowledge Governance (HITL-KG) architecture.}]{figures/architecture.mmd.png}
-\caption{Figure 1. Human-in-the-Loop Knowledge Governance (HITL-KG)
-architecture.}
+\includegraphics[width=0.865\linewidth,height=\textheight,keepaspectratio,alt={Figure 1. Human-in-the-loop knowledge governance architecture. NLP: natural language processing.}]{figures/architecture.mmd.png}
+\caption{Figure 1. Human-in-the-loop knowledge governance architecture.
+NLP: natural language processing.}
 \end{figure}
 
 A clinical user's natural language query (step 1) is translated to SQL
@@ -816,15 +814,15 @@ back for correction. Confirmed query triples enter organizational memory
 knowledge base (step 8), closing a continuous-learning loop in which
 best practices evolve rather than remain static.
 
-Figure 2 summarizes the corresponding six-step Validated Query Cycle,
+Figure 2 summarizes the corresponding 6-step validated query cycle,
 tracing queries from clinical intent through expert validation into
 durable organizational memory.
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth,height=6.67in,keepaspectratio,alt={Figure 2. The six-step Validated Query Cycle and its mapping to the three pillars.}]{figures/knowledge-cycle.mmd.png}
-\caption{Figure 2. The six-step Validated Query Cycle and its mapping to
-the three pillars.}
+\includegraphics[width=\linewidth,height=6.67in,keepaspectratio,alt={Figure 2. The 6-step validated query cycle and its mapping to the 3 pillars.}]{figures/knowledge-cycle.mmd.png}
+\caption{Figure 2. The 6-step validated query cycle and its mapping to
+the 3 pillars.}
 \end{figure}
 
 A natural language question (step 1) yields candidate SQL (step 2) that
@@ -840,8 +838,8 @@ Externalization}\label{the-process-of-externalization}
 
 The cycle proceeds from query generation, in which a conversational AI
 system translates the user's natural language question into candidate
-SQL {[}\citeproc{ref-lee2023}{30}{]}, to \emph{Expert Validation}, the
-critical moment of Externalization, where the domain expert confirms or
+SQL {[}\citeproc{ref-lee2023}{30}{]}, to \emph{expert validation}, the
+critical moment of externalization, where the domain expert confirms or
 corrects the AI's interpretation and thereby captures tacit knowledge
 {[}\citeproc{ref-bravorocca2023}{31},\citeproc{ref-mosqueirarey2023}{32}{]}.
 The validated triple is hashed and stored in organizational memory
@@ -849,7 +847,7 @@ The validated triple is hashed and stored in organizational memory
 probabilistic generation {[}\citeproc{ref-whittaker2008}{34}{]}.
 Multimedia Appendix 1 details each step alongside worked examples.
 
-\subsection{Comparison with Existing
+\subsection{Comparison With Existing
 Approaches}\label{comparison-with-existing-approaches}
 
 Organizations have addressed institutional memory loss through several
@@ -874,7 +872,7 @@ workloads are neither: more than half of analytical queries recur in
 large production workloads {[}\citeproc{ref-jindal2019}{36}{]}, yet even
 small databases log hundreds to thousands of distinct query strings
 {[}\citeproc{ref-kul2018}{37}{]}, so a fixed set of documented queries
-captures neither the large recurring core nor the evolving ad-hoc tail.
+captures neither the large recurring core nor the evolving ad hoc tail.
 HITL-KG instead implements active capture across both regimes: the query
 itself is the documentation, validated at the point of use
 {[}\citeproc{ref-moore2018}{28}{]}.
@@ -884,8 +882,8 @@ current NL2SQL accuracy makes this unsafe for clinical analytics
 {[}\citeproc{ref-ziletti2024}{38}{]}. HITL-KG occupies the middle
 ground: AI generates, humans validate.
 
-\section{The Evidence Base: Three
-Pillars}\label{the-evidence-base-three-pillars}
+\section{The Evidence Base: 3
+Pillars}\label{the-evidence-base-3-pillars}
 
 The evidence presented below supports the existence and severity of the
 problem HITL-KG addresses, and the maturity of the technologies it
@@ -893,8 +891,8 @@ requires. It does not constitute empirical validation of the framework
 itself, which remains a theoretically grounded, testable proposition
 whose empirical evaluation is the subject of future work.
 
-The HITL-KG framework is supported by three pillars of empirical
-evidence synthesized from the literature cited throughout this article.
+The HITL-KG framework is supported by 3 pillars of empirical evidence
+synthesized from the literature cited throughout this article.
 
 \subsection{Pillar 1: Analytics Maturity
 Evidence}\label{pillar-1-analytics-maturity-evidence}
@@ -904,9 +902,10 @@ using data and quantitative models for fact-based decisions
 {[}\citeproc{ref-davenport2007}{39}{]}, a construct operationalized by
 staged maturity models that extend beyond the HIMSS AMAM
 {[}\citeproc{ref-grossman2018}{40},\citeproc{ref-langer2025}{41}{]}.
-Health care maturity remains chronically low. Assessments reveal only 26
-organizations worldwide achieved Stage 6 and 13 reached Stage 7 by late
-2024 {[}\citeproc{ref-himss2024}{1},\citeproc{ref-himss2024news}{2}{]}.
+Health care maturity remains chronically low. Assessments reveal that
+only 26 organizations worldwide achieved AMAM stage 6 and 13 reached
+stage 7 by late 2024
+{[}\citeproc{ref-himss2024}{1},\citeproc{ref-himss2024news}{2}{]}.
 Because AMAM assessment is voluntary and self-selected, these figures
 likely overrepresent analytics-committed organizations, so low maturity
 may be even more widespread than the counts suggest
@@ -915,28 +914,26 @@ The corollary is that the vast majority of organizations remain at the
 lower stages, characterized by fragmented data and limited predictive
 capabilities {[}\citeproc{ref-health2020}{44}{]}. However, maturity is
 not merely an IT metric; it is a clinical safety predictor. In HIMSS's
-companion Electronic Medical Record Adoption Model (EMRAM), which
-measures the EMR adoption underlying analytics capability, levels 6-7
-correlate with 3.25 times higher odds of better Leapfrog Safety Grades
-{[}\citeproc{ref-snowdon2024}{45}{]}. Low maturity creates a
-``low-maturity trap'' where data quality issues (such as the 39-71\%
-missing data rates in cancer databases
-{[}\citeproc{ref-yang2021}{46}{]}) remain uncorrected because the
-experts who understand the context are leaving.
+companion, the EMR adoption model, which measures the EMR adoption
+underlying analytics capability, levels 6 and 7 correlate with 3.25
+times higher odds of better Leapfrog Hospital Safety Grades
+{[}\citeproc{ref-snowdon2024}{45}{]}. Low maturity creates a ``low
+maturity trap'' where data quality issues (such as the 39\%-71\% missing
+data rates in cancer databases {[}\citeproc{ref-yang2021}{46}{]}) remain
+uncorrected because the experts who understand the context are leaving.
 
 Critically, low maturity is not simply a status; it is a
-self-reinforcing trap. Organizations at Stages 0-3 lack the automated
+self-reinforcing trap. Organizations at stages 0 to 3 lack the automated
 monitoring and data governance infrastructure needed to detect their own
 deficiencies, so poor data quality goes unrecognized. The clinical
 consequences are measurable: one Medicare accountable care organization
-(ACO) that implemented analytics to overcome electronic health record
-(EHR) fragmentation reduced readmission rates from 24\% to 17.8\% and
-achieved US \$1.6 million in cost savings
-{[}\citeproc{ref-latrella2024}{47}{]}. Yet data interoperability remains
-a leading obstacle to analytics adoption
-{[}\citeproc{ref-gal2019}{3},\citeproc{ref-zhang2024}{4}{]}. Barriers
-including employee resistance to change and lack of organizational
-readiness further stall data-driven initiatives
+that implemented analytics to overcome electronic health record
+fragmentation reduced readmission rates from 24\% to 17.8\% and achieved
+US \$1.6 million in cost savings {[}\citeproc{ref-latrella2024}{47}{]}.
+However, data interoperability remains a leading obstacle to analytics
+adoption {[}\citeproc{ref-gal2019}{3},\citeproc{ref-zhang2024}{4}{]}.
+Barriers including employee resistance to change and lack of
+organizational readiness further stall data-driven initiatives
 {[}\citeproc{ref-shahbaz2019}{48},\citeproc{ref-kamble2019}{49}{]}. The
 trap thus compounds: each year of delayed investment widens the gap
 between what the organization could know and what it does know.
@@ -949,8 +946,8 @@ adaptability, and resilience under change
 {[}\citeproc{ref-breu2002}{50},\citeproc{ref-tessarini2021}{51}{]}. In
 health care analytics, the evidence below documents the instability that
 systematically erodes this capacity. The cost of turnover in informatics
-is higher than standard IT. Knowledge loss can cost up to three times
-annual salary
+is higher than standard IT. Knowledge loss can cost up to 3 times annual
+salary
 {[}\citeproc{ref-massingham2018}{24},\citeproc{ref-wynendaele2025}{52}{]}.
 In clinical informatics specifically, replacement costs range from US
 \$50,000 to US \$230,000 per departing employee, with a loss of 39 staff
@@ -961,21 +958,22 @@ employees leaving within their first year
 limited portion of their employment at full productivity, as specialized
 roles require 18-24 months to reach fluency
 {[}\citeproc{ref-ledikwe2013}{17}{]}. This ``revolving door'' prevents
-the accumulation of the ``Collective Knowledge Structures'' required for
+the accumulation of the ``collective knowledge structures'' required for
 complex task performance {[}\citeproc{ref-rao2006}{13}{]}.
 
 The workforce crisis operates at multiple reinforcing levels, as
-detailed in the Theoretical Grounding section: leadership churn,
-operational shortages, and foundational attrition collectively prevent
-the sustained mentorship that Socialization requires. This multi-level
-instability ensures that the temporal overlap between experienced
-practitioners and newcomers rarely materializes.
+detailed in the Theoretical Grounding: Socialization, Externalization,
+Combination, and Internalization and the Unstable Workforce section:
+leadership churn, operational shortages, and foundational attrition
+collectively prevent the sustained mentorship that socialization
+requires. This multi-level instability ensures that the temporal overlap
+between experienced practitioners and newcomers rarely materializes.
 
 \subsection{Pillar 3: Technical Enablement
 Evidence}\label{pillar-3-technical-enablement-evidence}
 
 \emph{Technical enablement} denotes the technologies and practices that
-let non-specialist domain users access and analyze data without heavy
+let nonspecialist domain users access and analyze data without heavy
 reliance on central IT
 {[}\citeproc{ref-alpar2016}{54},\citeproc{ref-banihani2020}{55}{]}.
 NL2SQL technology has matured along a clear accuracy gradient:
@@ -1008,7 +1006,7 @@ explicit business logic definitions, and codified domain terminology
 reframes NL2SQL from a convenience tool into a catalyst for the kind of
 systematic knowledge externalization that the HITL-KG framework
 requires. The interface bridges the semantic gap between clinical
-experts and technical schema, allowing non-technical domain experts to
+experts and technical schema, allowing nontechnical domain experts to
 interact with data alongside broader modernization efforts
 {[}\citeproc{ref-anthropic2025}{61}--\citeproc{ref-arora2025}{64}{]}.
 The very difficulty of making NL2SQL work correctly thus becomes a
@@ -1018,10 +1016,10 @@ formalize tacit knowledge that would otherwise depart with its experts.
 \section{Organizational
 Self-Assessment}\label{organizational-self-assessment}
 
-To operationalize the framework, we propose a \emph{Three-Pillar
-Assessment Rubric} (Table 2) that enables health care organizations to
-evaluate their current position across each pillar and identify
-compounding vulnerabilities.
+To operationalize the framework, we propose a \emph{3-pillar assessment
+rubric} (Table 2) that enables health care organizations to evaluate
+their current position across each pillar and identify compounding
+vulnerabilities.
 
 \subsection{Why Assessment, Not Just
 Maturity}\label{why-assessment-not-just-maturity}
@@ -1029,32 +1027,32 @@ Maturity}\label{why-assessment-not-just-maturity}
 As noted, the maturity models and knowledge management frameworks in
 Table 1 assume linear progression by a stable workforce
 {[}\citeproc{ref-himss2024}{1}{]}. In practice, an organization that
-reaches AMAM Stage 5 but regresses to Stage 3 after the departure of two
+reaches AMAM Stage 5 but regresses to Stage 3 after the departure of 2
 senior analysts has not failed to mature; it has failed to be
 \emph{resilient}. A recent systematic review of organizational
 resilience measurement in health care found no consensus on what to
-measure {[}\citeproc{ref-ignatowicz2023}{65}{]}. Only four instruments
-have been developed specifically for health care, and only two have been
-validated {[}\citeproc{ref-ratliff2025}{66}{]}. The Three-Pillar
-Assessment addresses this gap by organizing evidence-based indicators
-around the domains where institutional amnesia operates, measuring not
-just where an organization stands but how vulnerable it is.
+measure {[}\citeproc{ref-ignatowicz2023}{65}{]}. Only 4 instruments have
+been developed specifically for health care, and only 2 have been
+validated {[}\citeproc{ref-ratliff2025}{66}{]}. The 3-pillar assessment
+rubric addresses this gap by organizing evidence-based indicators around
+the domains where institutional amnesia operates, measuring not just
+where an organization stands but how vulnerable it is.
 
-\subsection{The Three-Pillar Rubric}\label{the-three-pillar-rubric}
+\subsection{The 3-Pillar Rubric}\label{the-3-pillar-rubric}
 
-Each indicator is scored as Low, Medium, or High Strength using
-evidence-based anchors from the literature reviewed in the preceding
-Evidence Base section. Organizations scoring predominantly ``Low
-Strength'' across multiple pillars face the self-reinforcing degradation
+Each indicator is scored as being of low, medium, or high strength using
+evidence-based anchors from the literature reviewed in the The Evidence
+Base: 3 Pillars section. Organizations scoring predominantly ``low
+strength'' across multiple pillars face the self-reinforcing degradation
 cycle that the framework identifies as the central threat. Table 2
-summarizes the nine indicators; the full rubric with scoring anchors and
+summarizes the 9 indicators; the full rubric with scoring anchors and
 evidence appears in Multimedia Appendix 2.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
   >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
-\caption{Table 2. Three-Pillar Assessment Rubric indicators (full rubric
-with anchors in Multimedia Appendix 2).
+\caption{Table 2. Three-pillar assessment rubric indicators (the full
+rubric with anchors can be found in Multimedia Appendix 2).
 \label{tab:rubric}}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
@@ -1074,27 +1072,28 @@ Indicators
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Analytics Maturity & HIMSS AMAM stage; self-service analytics; AI/NL
-interface \\
-Workforce Agility & First-year analytics staff turnover; leadership
-tenure; knowledge concentration \\
-Technical Enablement & Data access; interoperability; schema coupling \\
+Analytics maturity & HIMSS AMAM stage, self-service analytics, and AI
+and NL interface \\
+Workforce agility & First-year analytics staff turnover, leadership
+tenure, and knowledge concentration \\
+Technical enablement & Data access, interoperability, and schema
+coupling \\
 \end{longtable}
 
-The ``Schema Coupling'' indicator can be operationalized through
-\emph{Continuous Analytic Integration}: treating validated query triples
-as software assets within a CI/CD pipeline that detects data and schema
-drift
+The ``schema coupling'' indicator can be operationalized through
+\emph{continuous analytic integration}: treating validated query triples
+as software assets within a continuous integration and continuous
+delivery pipeline that detects data and schema drift
 {[}\citeproc{ref-battula2025}{35},\citeproc{ref-valiaiev2025}{67},\citeproc{ref-mannapur2025}{68}{]}.
-When a data warehouse schema is updated, the system automatically
-re-runs stored queries and flags failures, transforming institutional
-memory into a living test suite
+When a data warehouse schema is updated, the system automatically reruns
+stored queries and flags failures, transforming institutional memory
+into a living test suite
 {[}\citeproc{ref-betha2023}{69},\citeproc{ref-kottam2025}{70}{]}.
 
 The rubric complements rather than replaces AMAM. Where AMAM measures
 the sophistication of analytical capabilities at a point in time, the
-Three-Pillar Assessment reveals how vulnerable those capabilities are to
-the compounding effects of turnover, low maturity, and technical
+3-pillar assessment rubric reveals how vulnerable those capabilities are
+to the compounding effects of turnover, low maturity, and technical
 barriers. Used together, they provide a two-dimensional view of
 analytics health.
 
@@ -1104,11 +1103,11 @@ Work}\label{the-validator-paradox-and-standard-work}
 A critical objection to HITL-KG is circular: if the framework requires
 domain experts to validate AI-generated queries, and the core problem is
 that domain experts are leaving, then the framework fails precisely when
-it is most needed. This \emph{Validator Paradox} represents the
+it is most needed. This \emph{validator paradox} represents the
 strongest counterargument to the approach proposed here, and addressing
 it requires moving beyond simplistic reassurance.
 
-The resolution draws on Lean management's concept of ``Standard Work''
+The resolution draws on Lean management's concept of ``standard work''
 {[}\citeproc{ref-alukal2006}{71}{]}. In this framing, validation is not
 the establishment of \emph{eternal truth} but the documentation of the
 \emph{current known standard}. Each validated query triple records the
@@ -1122,7 +1121,7 @@ therefore establishes a floor, not a ceiling. The next expert, veteran
 or mid-career hire, inherits a baseline to refine rather than
 reconstructing institutional knowledge from scratch.
 
-This mechanism functions as what we term a \emph{Knowledge Ratchet},
+This mechanism functions as what we term a \emph{knowledge ratchet},
 consistent with findings on collective knowledge structures
 {[}\citeproc{ref-rao2006}{13}{]}. Each validated triple prevents
 regression below the last confirmed state. Even if a subsequent
@@ -1140,7 +1139,7 @@ creators. The HITL-KG validated query library serves an analogous
 function: it encodes analytical decisions into durable, retrievable
 structures that persist independent of any single analyst's tenure.
 
-The Validator Paradox is not fully resolved: below a minimum viable
+The validator paradox is not fully resolved: below a minimum viable
 expertise threshold, validation becomes meaningless. A junior analyst
 rubber-stamping AI-generated output without genuine comprehension
 provides no knowledge ratchet; the validation artifact exists, but its
@@ -1169,7 +1168,7 @@ Organizational governance requirements include who can validate queries
 query versioning as schemas evolve, and retrieval policies. Drawing on
 established master data governance practice
 {[}\citeproc{ref-loshin2010}{75}{]}, organizations can designate
-specific validated triples as ``Golden Queries,'' certified by a
+specific validated triples as ``golden queries'' certified by a
 governance committee as the authoritative source of truth for key
 metrics. Only these certified triples serve as official standards,
 mitigating Shadow IT risks {[}\citeproc{ref-zimmermann2017}{76}{]} while
@@ -1186,7 +1185,7 @@ language models generate fluent, confident output regardless of
 correctness, errors arrive dressed in the language of expertise, harder
 to catch than obviously malformed output.
 
-HITL-KG mitigates this risk through \emph{Cognitive Forcing Functions}
+HITL-KG mitigates this risk through \emph{cognitive forcing functions}
 {[}\citeproc{ref-ziletti2024}{38}{]}, a design pattern borrowed from
 clinical decision-making and safety engineering. Requiring the AI to
 explain its reasoning \emph{before} presenting results forces the
@@ -1200,13 +1199,13 @@ Critically, the human validator's value is not merely assumed. Recent
 studies show that human oversight measurably improves AI-generated
 analytics: large-language-model output verified by a reviewer
 outperformed a human-only workflow (91.0\% versus 89.0\% accuracy)
-across six systematic reviews {[}\citeproc{ref-gartlehner2025}{78}{]},
-and a text-to-SQL validation gate in which experts correct generated
-queries improved semantic correctness by 28.4\% over end-to-end model
-output {[}\citeproc{ref-benzarti2026}{79}{]}. These gains are
-conditional on well-designed interaction
-{[}\citeproc{ref-ning2024}{80}{]}; the comparative effectiveness of
-HITL-KG itself remains the subject of the planned empirical validation.
+across 6 systematic reviews {[}\citeproc{ref-gartlehner2025}{78}{]}, and
+a text-to-SQL validation gate in which experts correct generated queries
+improved semantic correctness by 28.4\% over end-to-end model output
+{[}\citeproc{ref-benzarti2026}{79}{]}. These gains are conditional on
+well-designed interaction {[}\citeproc{ref-ning2024}{80}{]}; the
+comparative effectiveness of HITL-KG itself remains the subject of the
+planned empirical validation.
 
 The parallel to aviation safety is instructive: checklists and mandatory
 call-outs made commercial aviation exceptionally safe not by eliminating
@@ -1236,7 +1235,7 @@ a systematic review or multi-site empirical evaluation. The literature
 base is concentrated on English-language sources and recent (2024-2026)
 workforce and NL2SQL studies, so findings may not capture all regional,
 specialty-specific, or technological contexts. The HITL-KG architecture
-and the proposed Three-Pillar Assessment Rubric are conceptual artifacts
+and the proposed 3-pillar assessment rubric are conceptual artifacts
 that require future implementation and validation in diverse health
 systems before their effectiveness and generalizability can be fully
 established.
@@ -1250,21 +1249,21 @@ the framework. Where data models and business rules change continually,
 no approach is self-maintaining; precisely because retained expertise
 cannot manually keep pace with constant change, knowledge must be
 externalized into curated artifacts, yet the validated query library
-must itself be actively maintained, a burden the Continuous Analytic
-Integration mechanism mitigates but does not remove.
+must itself be actively maintained, a burden the continuous analytic
+integration mechanism mitigates but does not remove.
 
 \section{Implications and Future
 Research}\label{implications-and-future-research}
 
-The crisis of Institutional Amnesia in health care requires a structural
+The crisis of institutional amnesia in health care requires a structural
 shift. As long as analytical maturity is tied to individual tenure,
 organizations will remain fragile. By implementing
-\emph{Human-in-the-Loop Knowledge Governance}, health systems can
+\emph{human-in-the-loop knowledge governance}, health systems can
 decouple intelligence from turnover, building a library of validated
 knowledge that ensures maturity advances even as the workforce evolves.
 
 Future research should empirically validate and refine the HITL-KG
-framework and the proposed Three-Pillar Assessment Rubric. Priority
+framework and the proposed 3-pillar assessment rubric. Priority
 questions include: how pillar scores correlate with observed continuity
 of analytics performance during leadership and staff turnover; whether
 HITL-KG mediated natural language to SQL workflows reduce error rates,
@@ -1277,30 +1276,19 @@ diverse organizational, regulatory, and data environments.
 
 \section{Acknowledgments}\label{acknowledgments}
 
-The author (S.T.H.) is the sole author and takes full responsibility for
-the manuscript's content. Generative AI disclosure: generative AI was
-used to assist this work, specifically Gemini CLI (Gemini 3, Google) and
-Claude Code (Claude 5, Anthropic) for manuscript editing, language
-refinement, and literature search. Generative AI was not used to
-generate research findings, data, or conclusions; the author conducted
-the research and verified all claims, citations, and AI-assisted text.
-Figures were generated using the Mermaid graph language.
+STH is the sole author and takes full responsibility for the
+manuscript's content. Generative AI was used to assist this work,
+specifically Gemini CLI (Gemini 3; Google) and Claude Code (Claude 5;
+Anthropic) for manuscript editing, language refinement, and literature
+search. Generative AI was not used to generate research findings, data,
+or conclusions; the author conducted the research and verified all
+claims, citations, and AI-assisted text. Figures were generated using
+the Mermaid graph language.
 
-\section{Author Contributions}\label{author-contributions}
+\section{Funding}\label{funding}
 
-S.T.H.: Conceptualization, Investigation, Methodology, Writing (Original
-Draft), Writing (Review and Editing), Visualization.
-
-\section{Conflicts of Interest}\label{conflicts-of-interest}
-
-The author declares the following competing interests: Samuel T Harrold
-is a contract product advisor at Yuimedi, Inc., which develops health
-care analytics software including conversational AI platforms relevant
-to this review's subject matter. The author is also employed as a Data
-Scientist at Indiana University Health. This paper presents an
-analytical framework derived from published literature and does not
-evaluate or recommend specific commercial products, including those of
-the author's affiliated organizations. The views expressed are the
+Yuimedi, Inc., provided financial support for the author's time
+researching and writing this manuscript. The views expressed are the
 author's own and do not represent the official positions of Indiana
 University Health or Yuimedi, Inc.
 
@@ -1311,29 +1299,38 @@ generated or analyzed during this study. All data cited are from
 publicly available peer-reviewed publications, industry reports, and
 academic theses referenced in the bibliography. The manuscript source,
 build pipeline, and literature review code generated for this work are
-archived on Zenodo and available at
-https://doi.org/10.5281/zenodo.18264359
+archived on Zenodo {[}\citeproc{ref-harrold2026zenodo}{85}{]}.
 
-\section{Funding}\label{funding}
+\section{Authors' Contributions}\label{authors-contributions}
 
-Yuimedi, Inc.~provided financial support for the author's time
-researching and writing this manuscript.
+Conceptualization: STH
+
+Investigation: STH
+
+Methodology: STH
+
+Visualization: STH
+
+Writing (original draft): STH
+
+Writing (review and editing): STH
+
+\section{Conflicts of Interest}\label{conflicts-of-interest}
+
+STH is a contract product advisor at Yuimedi, Inc., which develops
+health care analytics software, including conversational AI platforms
+relevant to this review's subject matter. The author is also employed as
+a data scientist at Indiana University Health. This paper presents an
+analytical framework derived from published literature and does not
+evaluate or recommend specific commercial products, including those of
+the author's affiliated organizations.
 
 \section{Abbreviations}\label{abbreviations}
 
-AACODS: Authority, Accuracy, Coverage, Objectivity, Date, Significance
-ACO: Accountable Care Organization AI: Artificial Intelligence AMAM:
-Analytics Maturity Assessment Model BI: Business Intelligence CI/CD:
-Continuous Integration and Continuous Delivery CIO: Chief Information
-Officer CMS: Centers for Medicare and Medicaid Services DIKW: Data,
-Information, Knowledge, Wisdom DSR: Design Science Research EHR:
-Electronic Health Record EMR: Electronic Medical Record EMRAM:
-Electronic Medical Record Adoption Model HIMSS: Healthcare Information
-and Management Systems Society HITL: Human-in-the-Loop HITL-KG:
-Human-in-the-Loop Knowledge Governance IT: Information Technology LLM:
-Large Language Model NL2SQL: Natural Language to SQL NLP: Natural
-Language Processing SECI: Socialization, Externalization, Combination,
-Internalization SQL: Structured Query Language
+AMAM: Analytics Maturity Assessment Model EMR: electronic medical record
+HIMSS: Healthcare Information and Management Systems Society HITL-KG:
+human-in-the-loop knowledge governance LLM: large language model NL2SQL:
+natural language to SQL
 
 \section{References}\label{references}
 
@@ -1939,6 +1936,13 @@ Published online 2021.
 Healthcare: Lessons for Radiology Learners}. \emph{Academic Radiology}.
 2021;28(7):1029-1031.
 doi:\href{https://doi.org/10.1016/j.acra.2021.03.020}{10.1016/j.acra.2021.03.020}}
+
+\bibitem[\citeproctext]{ref-harrold2026zenodo}
+\CSLLeftMargin{85. }%
+\CSLRightInline{Harrold ST. {Health care analytics challenges: a
+3-pillar framework connecting analytics maturity, workforce agility, and
+technical enablement}. Published online 2026.
+doi:\href{https://doi.org/10.5281/zenodo.18264359}{10.5281/zenodo.18264359}}
 
 \end{CSLReferences}
 

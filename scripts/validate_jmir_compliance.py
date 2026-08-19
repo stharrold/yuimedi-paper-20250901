@@ -102,7 +102,9 @@ def validate_required_sections(content: str) -> dict:
         "Funding": r"^# Funding\s*$",
         "Conflicts of Interest": r"^# Conflicts of Interest\s*$",
         "Data Availability": r"^# Data Availability\s*$",
-        "Author Contributions": r"^# Author Contributions?\s*$",
+        # i-JMR house style sets this as "Authors' Contributions" (published
+        # ms#96541); accept both that and the pre-copyedit "Author Contributions".
+        "Author Contributions": r"^# Authors?['\u2019]? Contributions?\s*$",
         "Abbreviations": r"^# Abbreviations\s*$",
     }
 
