@@ -97,6 +97,7 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - New Python files under `scripts/` need SPDX headers after the shebang (`# SPDX-FileCopyrightText: 2025 stharrold` + `# SPDX-License-Identifier: Apache-2.0`) or the spdx-headers hook rejects the commit.
 - **The whitespace hooks edit `.diff` files.** Trailing whitespace is semantically significant in a diff (context lines can legitimately end in spaces). After any commit whose hooks touched a `.diff`, re-verify with `git apply --check --reverse <file>` before re-committing.
 - **Pre-commit `ruff` creates `.ruff_cache/` inside `ARCHIVED/<package>/`** because the archived `pyproject.toml` reads as a project root, the same trap as the `.venv` one. It is gitignored so it never enters the commit, but it DOES pollute a filesystem-generated `MANIFEST.sha256`. Regenerate the manifest after the hooks run, then `--amend`.
+- **The `.venv` trap:** any `uv run` invocation with cwd inside `ARCHIVED/<package>/` creates a `.venv` there too, for the same reason. Clean it with `rm -rf ARCHIVED/<package>/.venv`, never a bare `rm -rf .venv` after `cd`-ing back out; the bare form can delete the repo ROOT's own venv if the cwd didn't fully return, breaking pre-commit/ruff/mypy with cryptic errors until `uv sync` rebuilds it.
 
 ## Writing Rules
 
@@ -215,6 +216,8 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - The copyedited proof PDF arrives as an email attachment (`96541.pdf`); the reply-with-edits is `96541_modified.pdf`. Archive both.
 - The proof's end matter carries the **planned publication date** and the assigned DOI. It is a pre-populated field, not a commitment.
 - Review the modified proof by text-diffing it against the original: `pdftotext -layout` both, flatten with `tr -s ' \n' ' '`, then grep short needles. Two-column layout interleaves columns, so long contiguous phrases produce false negatives; verify a failed match by eye before reporting it.
+- **Checking reference-list integrity (all `[N]` citations present, in numeric order) needs plain `pdftotext`, NOT `-layout`.** `-layout` interleaves the two-column reference list and breaks the line-start regex for reference numbers, producing dozens of false "cited but not listed" gaps. Use `-layout` for phrase diffing (above); use the no-flag reading-order extraction for citation-count and citation-order checks.
+- **Confirming figures are untouched across proof rounds:** `pdfimages -png <proof>.pdf out-prefix` then `shasum -a256` each PNG. Only render to PNG (`pdftoppm -png -r 150`) and inspect visually when a hash differs; rasterized figure label text never shows up in a text diff.
 - Expect "not previously stated" queries on terms that live only in the title/abstract/figures. Compression from the 12,730-word Original Paper to the ~4,500-word Viewpoint cut introducing passages while leaving downstream references intact (hit twice: "three-pillar structure", "AI query generation").
 - The copyeditor may silently correct your bibliography. Diff their reference list against `references.bib` and back-port their fixes.
 
