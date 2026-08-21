@@ -1,0 +1,89 @@
+REPLY TO AMIA MEMBER INQUIRY, AI in Medicine collaboration
+Sent 2026-08-21 06:42 EDT.
+
+To:      Mel Speisman, MD (address not recorded; inquiry arrived via an
+         AMIA members mailing, reply sent to the sender address on that mailing)
+Subject: Re: Collaboration on a research paper, the evolving role of AI in Medicine
+
+Side thread. Not related to i-JMR ms#96541 production; filed here because it
+cites the accepted paper externally and commits its DOI to an outside record.
+
+====================================================================
+INQUIRY RECEIVED
+====================================================================
+
+Dear AMIA members:
+
+We are reaching out to physicians interested in collaborating on a research
+paper focused on the evolving role of AI in Medicine with a goal of writing a
+high-quality, publishable manuscript with meaningful clinical and scientific
+impact.
+
+If you are interested in participating, please reply.
+
+Best regards,
+
+Mel Speisman, MD
+
+====================================================================
+REPLY SENT
+====================================================================
+
+Dear Dr. Speisman,
+
+I'd be happy to contribute. I'm a data scientist at Indiana University Health.
+My related work, "Health Care Analytics Challenges: A 3-Pillar Framework
+Connecting Analytics Maturity, Workforce Agility, and Technical Enablement," has
+been accepted for publication at Interact J Med Res
+(https://doi.org/10.2196/96541).
+
+One thread I'd be interested in developing further: the data foundations that AI
+depends on appear to track clinical quality independently of AI itself. Snowdon
+et al. (JMIR 2024;26:e56316, https://doi.org/10.2196/56316) found hospitals at
+the top 2 EMR adoption levels had 3.25 times higher odds of better Leapfrog
+Safety Grades. My framework argues that the organizational knowledge needed to
+sustain that foundation is exactly what erodes through staff turnover, which has
+direct implications for whether AI deployments hold up over time.
+
+Happy to discuss further whenever convenient.
+
+Best,
+Samuel Harrold
+
+====================================================================
+NOTES ON THE DRAFTING (not sent)
+====================================================================
+
+Three corrections were made to the initial draft before sending.
+
+1. ATTRIBUTION. The draft presented the data-quality-to-outcomes result as a
+   finding of the accepted paper. It is not. It comes from snowdon2024, cited at
+   paper.md:128, and is credited by name in the sent version. What the paper
+   contributes is the synthesis and the framework, not the odds ratio.
+
+2. PRECISION OF THE CLAIM. The draft said institutions that "have cleaned their
+   data" are "more likely to improve clinical outcomes." Snowdon et al. is a
+   cross-sectional observational study measuring digital and EMR adoption
+   maturity, not data cleanliness specifically, and reports odds of holding a
+   better safety grade at one point in time, not improvement over time. Both the
+   exposure variable and the temporal claim were corrected. The audience is
+   physician-researchers, who would notice.
+
+3. PUBLICATION STATUS AND LINK. The draft said "recently published." The article
+   is accepted but held at final production pending the in-house visual abstract
+   (agreed with Laura McReynolds 2026-08-11), so "accepted for publication" is
+   what is accurate as of sending.
+
+   The draft linked https://preprints.jmir.org/preprint/96541/accepted. Replaced
+   with the DOI, https://doi.org/10.2196/96541, which was verified on 2026-08-21
+   to resolve (302) to that same preprint page today and will silently begin
+   resolving to the final article once the hold lifts. Same reasoning as the
+   repo's Zenodo concept-DOI rule: cite the identifier that tracks the current
+   version, never the version-pinned URL. An email sitting in an inbox for weeks
+   is exactly the case that rule exists for.
+
+Source of record for the citation:
+  snowdon2024, references.bib
+  Snowdon A, Hussein A, Danforth M, Wright A, Oakes R. Digital maturity as a
+  predictor of quality and safety outcomes in US hospitals: cross-sectional
+  observational study. J Med Internet Res. 2024;26:e56316. doi:10.2196/56316
