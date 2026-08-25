@@ -5,7 +5,13 @@ To:      natalia.march@jmir.org (Natalia March, Author Experience Manager)
 Subject: Re: Visual abstract questionnaire 96541
 
 Thread of record: 20260825_Email_IJMR_Visual_Abstract.pdf (2 messages)
-Draft reviewed:   20260825_IJMR_Visual_Abstract.pdf
+Draft reviewed:   20260825_IJMR_Visual_Abstract.pdf (clean, as received)
+Feedback sent as: 20260825_IJMR_Visual_Abstract_commented.pdf
+                  2 PDF highlight annotations, authored 18:02 and 18:03 EDT:
+                    1. on "study"        -> replace with "viewpoint"
+                    2. after "(HITL-KG)" -> insert "framework"
+                  The optional em dash item was deliberately NOT raised, keeping
+                  the request to 2 unambiguous corrections in the single round.
 Assessment:       abstract-visual-video/20260825T200314Z_visual-abstract_critical-assessment.md
 Attachable form:  20260825_Visual-Abstract-Feedback_IJMR-96541.md
                   (same 2 requests, itemized with on-graphic locations, vendor-facing.
