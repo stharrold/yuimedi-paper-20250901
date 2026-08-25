@@ -2,7 +2,7 @@
 
 **Assessed:** 2026-08-25
 **Assessor:** Claude Opus 5 (Anthropic)
-**Document:** `ARCHIVED/20260810_IJMR-Copyediting/20260825_JMIRO_Visual_Abstract.pdf`
+**Document:** `ARCHIVED/20260810_IJMR-Copyediting/20260825_IJMR_Visual_Abstract.pdf`
 (vendor filename `JMIRO_42_3_Visual_Abstract_Aug_24_2026 (3).pdf`, 1200x900 pt, Adobe Illustrator 30.4)
 **Cover email:** `ARCHIVED/20260810_IJMR-Copyediting/20260825_Email_IJMR_Visual_Abstract.pdf`
 **Source of truth:** `paper.md` at commit b1d148a, synced 2026-08-19 to the `modified5` proof approved for publication
