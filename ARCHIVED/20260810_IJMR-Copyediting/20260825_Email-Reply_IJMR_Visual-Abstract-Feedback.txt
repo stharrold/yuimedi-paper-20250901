@@ -1,0 +1,89 @@
+REPLY TO JMIR AUTHOR EXPERIENCE MANAGER, i-JMR ms#96541
+Drafted 2026-08-25 16:03 EDT, in the "Visual abstract questionnaire 96541" thread (3rd message).
+
+To:      natalia.march@jmir.org (Natalia March, Author Experience Manager)
+Subject: Re: Visual abstract questionnaire 96541
+
+Thread of record: 20260825_Email_IJMR_Visual_Abstract.pdf (2 messages)
+Draft reviewed:   20260825_JMIRO_Visual_Abstract.pdf
+Assessment:       abstract-visual-video/20260825T200314Z_visual-abstract_critical-assessment.md
+
+CONSTRAINT: one round of author feedback only. This reply is the single consolidated
+response. Deadline 2026-08-27.
+
+NOTE: this thread runs to the gmail address, not the yuimedi address. Laura McReynolds
+(production) is on a separate thread and is not copied here by default.
+
+====================================================================
+
+Hi Natalia,
+
+Thank you, this looks great. The visual abstract captures the paper accurately, and I am
+happy with the design, the structure, and the flow.
+
+I am the sole author, so the feedback below is already consolidated and final. I have one
+correction, and both parts of it sit in the same text block, at the bottom of the first
+column under "The triple threat".
+
+Current text:
+
+  "This study calls for the Human-in-the-Loop Knowledge Governance (HITL-KG) to shift
+   knowledge from human memory to durable artifacts"
+
+Requested text:
+
+  "This viewpoint calls for the Human-in-the-Loop Knowledge Governance (HITL-KG) framework
+   to shift knowledge from human memory to durable artifacts"
+
+Two reasons, in order of importance:
+
+1. "This study" to "This viewpoint". The article is a Viewpoint and reports no primary
+   data. The manuscript reserves the word "study" for the empirical companion paper, and
+   states that "empirical validation is deferred to a companion study." "Viewpoint" avoids
+   setting an expectation of data that this article does not contain, which matters most
+   for the readers who will meet the paper through the visual abstract rather than the
+   full text.
+
+2. Adding "framework" after (HITL-KG). Without it, the sentence has no noun for "to shift"
+   to attach to. "The HITL-KG framework" is the phrasing used in the manuscript, and it
+   also matches the heading you already use on the middle panel.
+
+One optional item, entirely at your discretion: the em dash in "institutional
+amnesia"-the loss of tacit knowledge. The manuscript uses no em dashes, so a colon would
+match its style. Please treat that as a preference rather than a request, and skip it if it
+complicates the layout.
+
+Everything else I have checked against the accepted manuscript and confirmed as accurate:
+the triple threat wording, the 3 pillars, the 6 steps of the validated query cycle and
+their order, the summary line, the byline, the citation, the DOI, and the URL. No other
+changes.
+
+Thank you again for putting this together.
+
+Best,
+Samuel
+
+====================================================================
+NOTES ON THE DRAFTING (not sent)
+====================================================================
+
+Deliberately omitted from the reply:
+
+- The vendor filename is "JMIRO_42_3_Visual_Abstract_Aug_24_2026 (3).pdf". JMIRO is the
+  Journal of Medical Imaging and Radiation Oncology, volume 42 issue 3, so this is an
+  unrenamed template from an unrelated job. It did NOT reach the artwork; every journal
+  reference inside the graphic is correct. Raising it would spend goodwill in a one-round
+  review and change nothing about the published artifact.
+
+- A first pass over the extracted PDF text appeared to show the cycle steps ordered with
+  storage before validation, which would invert the framework's central claim. Rendering
+  the page and tracing the connector arrows disproved it; the visual order is correct.
+  Not raised because there is nothing to fix. Recorded in the assessment as a method note.
+
+Both defects that WERE raised fall in the single panel written in the designer's own
+connective prose. Every panel that quotes the abstract is accurate.
+
+Timing context: the draft arrived 2026-08-25, 19 days after the questionnaire was submitted
+on 2026-08-06, ahead of the 3-week estimate. The publication hold agreed with Laura
+McReynolds on 2026-08-11 is waiting on this artifact, so a fast turnaround here directly
+releases the hold and the Sponsored Tweet Campaign.
