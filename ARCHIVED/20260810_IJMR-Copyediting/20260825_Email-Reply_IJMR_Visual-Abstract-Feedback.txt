@@ -1,5 +1,7 @@
 REPLY TO JMIR AUTHOR EXPERIENCE MANAGER, i-JMR ms#96541
-Drafted 2026-08-25 16:03 EDT, in the "Visual abstract questionnaire 96541" thread (3rd message).
+Drafted 2026-08-25 16:03 EDT. SENT 2026-08-25 18:17 EDT, in the "Visual abstract
+questionnaire 96541" thread (3rd message). Sent copy of record:
+20260825_Email-Reply_IJMR_Visual_Abstract.pdf
 
 To:      natalia.march@jmir.org (Natalia March, Author Experience Manager)
 Subject: Re: Visual abstract questionnaire 96541
@@ -97,3 +99,39 @@ Timing context: the draft arrived 2026-08-25, 19 days after the questionnaire wa
 on 2026-08-06, ahead of the 3-week estimate. The publication hold agreed with Laura
 McReynolds on 2026-08-11 is waiting on this artifact, so a fast turnaround here directly
 releases the hold and the Sponsored Tweet Campaign.
+
+
+====================================================================
+AS SENT: DELTA AGAINST THE DRAFT ABOVE
+====================================================================
+
+Sent 2026-08-25 18:17 EDT, 2 days inside the 2026-08-27 deadline, with
+20260825_IJMR_Visual_Abstract_commented.pdf attached (911K as received by Gmail).
+
+KEPT: the opening approval, both corrections with their reasons, the current/requested
+text pair, and the closing. The sent version also names the attachment inline, which the
+draft did not, so the 2 comments and the annotated file are unambiguously the same
+request rather than 2 separate ones.
+
+DROPPED from the draft, both deliberate:
+
+1. "I am the sole author, so the feedback below is already consolidated and final."
+   This was the line that answered Natalia's "consolidated feedback from all authors"
+   condition head on. Low risk in practice, since ms#96541 is visibly single-author, and
+   the sent email bounds the request explicitly as "2 comments for corrections."
+
+2. The closing inventory ("Everything else I have checked ... No other changes.")
+   Its job was to signal the review was complete so the round could close. The "2
+   comments" phrasing carries most of that weight.
+
+3. The optional em dash item, already omitted from the PDF annotations.
+
+DO NOT send a follow-up to restore 1 or 2. A second email into this thread risks being
+counted as a second round of feedback against the one-round limit, which is a materially
+worse outcome than the omissions themselves. If Natalia asks whether more feedback is
+coming, answer then.
+
+NEXT: revised visual abstract from Natalia. On arrival, verify the 2 corrections landed
+and that nothing else in the graphic changed (diff the text layer, hash the images) before
+approving. That approval is what releases the publication hold agreed with Laura
+McReynolds on 2026-08-11, along with the Sponsored Tweet Campaign.
