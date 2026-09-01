@@ -78,18 +78,23 @@ page session.*
 
 **Lifelong Author Ad: live.** The page carries an anchor to `https://us.yuimedi.com/`.
 
-**PubMed Now!: deposited, but frozen at acceptance.** PMID **42497119**, PMC **PMC13528883**,
-status "PubMed - as supplied by publisher".
+**PubMed Now!: deposited; PubMed stale, PMC already corrected.**
+PMID **42497119**, PMC **PMC13528883**.
 
-| | PubMed / PMC | Article page metadata |
-|---|---|---|
-| Title | "**Healthcare** Analytics Challenges: A **Three-Pillar** Framework..." | "**Health Care** ... **3-Pillar** ..." |
-| Date | 2026 Jul 13 | `citation_date` 2026-08-31 |
-| Issue | (blank) | `citation_issue` 1 |
+| Source | Title | Date | State |
+|---|---|---|---|
+| PubMed record page | "Healthcare ... Three-Pillar" | 2026 Jul 13, "Online ahead of print" | **Stale** |
+| PMC article page | "Health Care ... 3-Pillar" | `citation_publication_date` 2026 Aug 31 | **Correct** |
+| i-JMR article page | "Health Care ... 3-Pillar" | `citation_date` 2026-08-31, issue 1 | Correct |
 
-The article page's own `citation_*` tags are all correct, so this is purely a matter of the
-PubMed deposit not having been refreshed after publication. That makes it an easy ask: the
-correct metadata already exists on JMIR's side.
+**Correction to an earlier note in this file.** A first pass reported PubMed *and* PMC as
+both stale. That was wrong about PMC. The error came from reading NCBI's `esummary` API,
+which returned the original July deposit fields and lags the rendered article record.
+Fetching the PMC page directly shows the corrected title and the 31 Aug date.
+
+Method lesson: for NCBI, `esummary` is an index and can trail the live record. Verify
+citation state on the rendered page, not only through the API. The sent email states the
+split correctly.
 
 **Not verifiable:** the sponsored tweet. It would appear on @jmirpub, and X gates
 unauthenticated access.
@@ -184,3 +189,35 @@ add-on and was absent entirely.
 Also worth recording: the article page bot-walls scripted requests (HTTP 202, empty body),
 but Playwright clears it, and `og:image` is the reliable route to the published visual
 abstract at full resolution.
+
+
+---
+
+## As sent: delta against the draft above
+
+**Sent 2026-09-01 11:14 AM EDT**, cc to the gmail address, so both addresses now see this
+thread. Sent copy of record:
+`20260901_Email-Reply_JMIR-Production_Purchased-Items-Followup.pdf` (12 messages).
+
+**Item 1 was materially improved in the sending.** Rather than asserting the record is wrong
+and asking for a refresh, the sent version quotes the exact PubMed citation line and the
+exact target string, links both PubMed and PMC, and asks "do you happen to know if [it] will
+update". That is better on 2 counts: it is a process question rather than a defect report,
+and it is precisely the framing the evidence supports, since PMC has already corrected while
+PubMed has not. It also, correctly, does not claim PMC is stale.
+
+Other changes:
+
+- **Item 2 adds a specific question** about whether the tweet comes from
+  https://x.com/jmirpub, and names LinkedIn as the amplification channel rather than the
+  vaguer "our own accounts".
+- **Dropped** "Nothing here is urgent except the PubMed metadata, which I would like to
+  correct before it spreads further." Removes the urgency framing entirely. Defensible: the
+  numbered questions carry their own weight, and PMC being already correct lowers the stakes.
+- **Dropped** the "the article page itself has all the correct metadata" line, which was
+  written to preempt the request being read as a complaint about copyediting. Not needed
+  once the item is phrased as a question.
+
+**Open items now awaiting Laura:** the PubMed refresh, the tweet schedule and account, the
+TrendMD campaign start/duration/reporting, and the process for updating the author ad's
+destination URL.
