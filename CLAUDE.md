@@ -28,11 +28,11 @@ Documentation-focused academic research repository. Primary deliverable: `paper.
 
 **Topic:** "Mitigating Institutional Amnesia" in healthcare analytics via Human-in-the-Loop Knowledge Governance (HITL-KG).
 
-**Three-paper series:** Paper 1 (Viewpoint, **ACCEPTED** at i-JMR 2026-07-13; copyediting completed 2026-08-10; publication as Interact J Med Res 2026;15:e96541, doi 10.2196/96541, HELD at final stage until the in-house visual abstract is ready, agreed 2026-08-11; the 21.Aug.2026 proof date is superseded) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
+**Three-paper series:** Paper 1 (Viewpoint, **ACCEPTED** at i-JMR 2026-07-13; copyediting completed 2026-08-10; **PUBLISHED 2026-08-31** as Interact J Med Res 2026;15:e96541, doi 10.2196/96541, https://www.i-jmr.org/2026/1/e96541/, PMID 42497119, PMC13528883. The hold agreed 2026-08-11 worked: the article went live with the visual abstract already in place as the ToC image) → Paper 2 (empirical validation, Synthea/GCP) → Paper 3 (FHIR/OMOP interoperability). GitHub issues tagged `paper-1`, `paper-2`, `paper-3`.
 
 **Paper 1 history:** Originally submitted as Original Paper (~12,730 words), rejected for length. Archived at `ARCHIVED/20260115_JMIR-Submission/paper.md`. Rewritten as Viewpoint. Desk-rejected at JMIR Medical Informatics (Decision E2, 2026-04-17), transferred to i-JMR 2026-04-22, major revision (Decision D, 2026-06-05; response at `docs/20260607_i-jmr-r1-response-to-reviewers.md`), minor revision (Decision B, 2026-07-07; response at `docs/20260710_i-jmr-r2-response-to-reviewers.md`), R2 submitted 2026-07-11, **accepted 2026-07-13 (Decision A)**. Editor Matthew Balcarras; peer reviewers Moez Hamedani and Xiaoni Zhang (neither was among the 5 nominated on the original submission form, which was desk-rejected before review). Epics #529/#551 closed; released as v4.0.0. GH#506 is retired/superseded by the i-JMR transfer.
 
-**Post-acceptance state:** the published article is the source of truth, not `paper.md`. i-JMR house style differs from this repo: numerals ("3 pillars", "6-step") and lowercase coined terms ("triple threat", "validated query triple"). The one-pass style sync of `paper.md` was completed 2026-08-19 against the `modified5` proof, the version approved for publication (commit e0f920a). This was done ahead of the original trigger (the article going live) because the proof text is final and the hold is on the visual abstract and scheduling only, not on further manuscript changes. If a later proof round changes any wording, re-diff `paper.md` against it before the next release.
+**Post-acceptance state:** the published article is the source of truth, not `paper.md`. i-JMR house style differs from this repo: numerals ("3 pillars", "6-step") and lowercase coined terms ("triple threat", "validated query triple"). The one-pass style sync of `paper.md` was completed 2026-08-19 against the `modified5` proof, the version approved for publication (commit e0f920a). This was done ahead of the original trigger (the article going live) because the proof text is final and the hold is on the visual abstract and scheduling only, not on further manuscript changes. Verified 2026-09-01 against the live article: title, citation, volume/issue, and date all match. No further proof rounds occurred, so no re-diff is outstanding.
 
 ## Essential Commands
 
@@ -130,6 +130,10 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - YouTube: `q4sE4O9F9pU` (AJE Video Bytes channel), Vimeo: `1161046047` (Password: AJE_Healthcare)
 - Contact: support@as.springernature.com (Bhavik, Darshan J)
 - In external communications (visual abstract, video byte), emphasize the framework's **descriptive** analysis of interconnected challenges; the paper's prescriptive recommendations are for the academic audience
+- **The JMIR in-house visual abstract is a DIFFERENT artifact** from the AJE one above (which was declined as a ToC image and as an appendix). Draft 1 arrived 2026-08-25, 19 days after the questionnaire; final archived at `ARCHIVED/20260810_IJMR-Copyediting/20260901_IJMR_Visual_Abstract_final.png`.
+- **A vendor's one-round review policy caps verification, not just iteration.** Natalia acknowledged both corrections but never sent a revised proof, so the corrected artwork reached production unseen. Fix for papers 2 and 3: when sending feedback, request the revised proof in the same message as confirmation-only, stated explicitly as not a new round.
+- **Defects cluster in vendor-authored connective prose.** On the 96541 graphic, every panel quoting the abstract was flawless and both defects fell in the one block the designer wrote themselves. Concentrate review there.
+- **PDF comment annotations live in `/Annots`, invisible to `pdftotext`.** Read them with `uv run --with pypdf`, resolving `IndirectObject` via `.get_object()`; `/Contents` is the comment, `/T` the author, `/M` a timezone-stamped timestamp. Highlight rects also confirm the comment landed on the intended word.
 
 ## Secrets Management
 
@@ -225,13 +229,30 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 
 - **Laura McReynolds** (laura.mcreynolds@jmir.org, Production Editor, cc production@jmir.org) owns the publication date, the ToC image, and the purchased promotion products. Thread runs to the **yuimedi** address. She is the escalation point for anything cross-team.
 - **Natalia March** (natalia.march@jmir.org, Author Experience Manager) owns the in-house visual abstract. Thread runs to the **gmail** address, so the two are separate threads and neither sees the other by default.
-- Purchased promotion products on ms#96541: **Sponsored Tweet Campaign** and **Lifelong Author Ad** (banner points to https://us.yuimedi.com/).
+- **Purchased items on ms#96541 (all 5 optional add-ons, $1,043 of a $2,631 total).** Receipts: `ARCHIVED/20260712_IJMR-Submission/20260724_IJMR_Payment_Receipt*.png` (`IJMR-96541-RCPT-001056433`) and `20260804_IJMR_Payment_Receipt_2*.png` (`IJMR-RCPT-001056626`). Read the receipts, do not trust memory: this list was 2 items long for months and silently omitted the largest add-on.
+  | Item | Amount |
+  |---|---|
+  | Article Processing Fee (less Viewpoints discount) | $1,588.00 |
+  | TrendMD Promotion | $250.00 |
+  | Sponsored Tweet Campaign | $99.00 |
+  | Lifelong Author Ad in Article (banner to https://us.yuimedi.com/) | $99.00 |
+  | PubMed Now! Ahead of Print | $50.00 |
+  | Visual Abstract (in-house, JMIR) | $545.00 |
 - Visual abstract service: **3 weeks from receipt of the completed questionnaire**, **ONE** author review round, extensive later changes may incur charges. If the article is production-ready first it publishes with a JMIR-selected standard ToC image and the graphic is swapped in later.
 - The **sponsored tweet is the timing exposure, not the ToC image.** A ToC image swaps after publication for free; a sponsored tweet is a one-shot spend that would carry the placeholder. Raise timing with Laura, not Natalia.
 - **The visual abstract cannot be expedited** (outsourced vendor, contractual minimum turnaround), but **the paper CAN be held at the final production stage** until it is ready. That hold was Laura's own recommendation and was accepted 2026-08-11: publish with the visual abstract in place and send the sponsored tweet alongside it. The proof's publication date is an estimate and is editable in the end matter.
 - **Publishing first is the irreversible branch.** If the article goes live with a standard ToC image, a *default, non-promoted* tweet may fire automatically at publication carrying that placeholder, which no later swap undoes; Laura flagged this as unconfirmed and was checking with marketing. Holding avoids it entirely and keeps the launch under her direct control. Swapping the ToC later updates the HTML article and JMIR listing pages; the PDF never carries the ToC image at all, so the PDF is not a consideration.
 - The hold as agreed has **no outside date**. If the vendor slips well past the ~3-week estimate (questionnaire submitted 2026-08-06, so a draft near 27.Aug.2026 plus one review round and a revision pass), propose a bound rather than letting it run open-ended. Mid-September still falls in volume 15 (2026), so the citation is unaffected either way.
 - The AJE-commissioned graphic **cannot be the ToC image** (JMIR policy) and was declined as a Multimedia Appendix on 2026-08-10: it carries the pre-copyediting title, never names HITL-KG, and would reintroduce superseded terminology. Rights were never the obstacle (AJE's ToS makes no copyright claim over Manuscript Services; copyright is Harrold / Yuimedi).
+
+### Post-publication verification (learned at the 96541 publication, 2026-08-31)
+
+- **The i-JMR article page bot-walls scripted requests**: `curl` returns HTTP 202 with an empty body. Playwright (`mcp__plugin_playwright_playwright__browser_navigate` then `browser_evaluate`) clears the challenge and is the way to inspect a published article.
+- **`og:image` / `twitter:image` is the published visual abstract** at full resolution (1200x900 PNG on `asset.jmir.pub`), and is also the social card the sponsored tweet carries. That makes author-side verification self-service: no need to wait for the vendor to send the final file.
+- **PubMed Now! (Ahead of Print) freezes metadata at acceptance.** The deposit fires on acceptance, so any copyedit that changes the title guarantees a divergence until someone refreshes it. At 96541 the PubMed record still read "Healthcare ... Three-Pillar" and 13 Jul weeks after publication. If this add-on is bought again, plan the post-publication check as a step rather than a discovery.
+- **NCBI `esummary` lags the rendered record.** It returns the original deposit fields, so it reported PMC as stale when the PMC page had already corrected. Verify citation state on the page, not only through the API. (Same shape as the `pdftotext` object-order trap: structured endpoints are snapshots of an index, not of the artifact.)
+- **TrendMD has 2 halves.** The widget on your own article is *inbound* (others' articles shown to your readers) and proves nothing about the purchase. The $250 buys *outbound* placement into other publishers' widgets, testable only by opening a topically close article elsewhere and checking its widget. The `rev.trendmd.com/open/...` tracking links are session-bound and return `{"message":"Invalid encrypted payload"}` to `curl`; they must be clicked in-page.
+- `git` pathspecs resolve relative to cwd, so `git checkout HEAD -- <repo-relative-path>` fails after `cd`-ing into a subdirectory. Use `git -C <repo-root>`, which also avoids leaving the shell parked somewhere a later `rm -rf` could do damage.
 
 ## CI Notes
 
@@ -295,6 +316,7 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 | `scripts/secrets_run.py` | Injects secrets from keyring before running commands |
 | `cover-letter.md` | R2 resubmission cover letter (i-JMR ms#96541, Decision B) |
 | `abstract-visual-video/` | AJE/Springer Nature deliverables: visual abstract, video byte, email correspondence, critical assessments |
+| `ARCHIVED/20260810_IJMR-Copyediting/20260901_IJMR_Visual_Abstract_final.png` | The published ToC image / social card, pulled from the live article's `og:image` |
 | `docs/plans/` | Implementation plans (created per task) |
 | `submission-checklist.md` | i-JMR R2 submission checklist (Viewpoint, ms#96541) |
 | `project-status.md` | Lightweight project status for all 3 papers |
