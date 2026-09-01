@@ -112,3 +112,34 @@ things, and the process gave no mechanism for the second.
 
 Cheap fix next time: when sending feedback, ask in the same message for the revised proof
 as confirmation only, stated explicitly as not constituting a new round.
+
+---
+
+## As sent: delta against the draft above
+
+**Sent 2026-09-01 10:16 AM EDT**, cc to the yuimedi address, which usefully bridges this
+thread and Laura's production thread for the first time. Sent copy of record:
+`20260901_Email-Reply_IJMR_Visual-Abstract-Final-Artifacts.pdf` (6 messages).
+
+**The article published on schedule.** The sent version replaces the draft's "Laura tells
+me it is going forward for publication" with the fact: "I'm glad to see that the paper has
+been published at https://www.i-jmr.org/2026/1/e96541/ with the visual abstract." The
+2026-08-11 hold arrangement did its job, and the sponsored tweet fires against the intended
+graphic rather than a placeholder.
+
+Other changes, all improvements:
+
+- **Dropped** "and it would be good to see the corrected version." Removes the last trace
+  of a verification motive, leaving a clean records request. Costs nothing, because the
+  published ToC image is now itself a verifiable copy.
+- **Reuse question sharpened** from "what use is permitted" to "are there any terms and
+  conditions I need to follow", and names Yuimedi's website explicitly rather than "our
+  organization's". A direct question is likelier to get a usable written answer.
+- "It came out beautifully" for "It came out well."
+
+## Verification: now possible without the vendor
+
+The plan below was written for whichever came first, the file or the live article. The
+article won. The published ToC image can be pulled directly from
+https://www.i-jmr.org/2026/1/e96541/ and checked against
+`20260825_IJMR_Visual_Abstract.pdf` without waiting on Natalia's reply.
