@@ -19,7 +19,7 @@ Taken from the receipts, not from memory. The project notes had recorded only 2 
 | Item | Amount | Receipt | Verified status |
 |---|---|---|---|
 | Article Processing Fee (less Viewpoints discount) | $1,588.00 | 24 Jul, `IJMR-96541-RCPT-001056433` | Published |
-| TrendMD Promotion | $250.00 | 24 Jul | **LIVE** on the article page |
+| TrendMD Promotion | $250.00 | 24 Jul | Widget live; **outbound campaign not yet observed** |
 | Sponsored Tweet Campaign | $99.00 | 24 Jul | **Unverifiable from here** |
 | Lifelong Author Ad in Article | $99.00 | 24 Jul | **LIVE**, points to us.yuimedi.com |
 | PubMed Now! Ahead of Print | $50.00 | 24 Jul | Deposited, but **record is stale** |
@@ -48,9 +48,33 @@ in `20260831_Email-Reply_IJMR_Visual-Abstract-Final-Artifacts.md` is satisfied w
 waiting on Natalia's reply. Note this image is also the social card
 (`twitter:card = summary_large_image`), so it is what the sponsored tweet will carry.
 
-**TrendMD: live.** Three scripts load from `js.trendmd.com` (`trendmd-ns.min.js`,
-`polyfills.js`, `widget.js`) and the page contains `div#trendmd-suggestions` plus a
-rendered `trendmd-links-...` container.
+**TrendMD: widget live, outbound campaign not yet visible.** Three scripts load from
+`js.trendmd.com` and the page renders `div#trendmd-suggestions` with 10 recommendations
+(5 from JMIR journals, 5 from other publishers). That is the *inbound* half: other people's
+articles shown to our readers.
+
+The $250 buys the *outbound* half, our article placed into other publishers' widgets. That
+is not visible on our own page, so it was tested directly by following a cross-link and
+checking the destination's widget:
+
+| Page checked | Topical fit | Our article present? |
+|---|---|---|
+| BMJ Innovations 8(2):129, "Healthcare's new frontier: the digital front door" (reached by clicking our own widget, landing URL carried `utm_medium=reward&utm_source=trendmd`) | adjacent | No |
+| J Med Internet Res 2024;26:e56316, Snowdon, "Digital Maturity as a Predictor of Quality and Safety Outcomes" | very close, and cited by our paper | No |
+
+The Snowdon check is the more meaningful one: its widget is populated with digital-maturity
+papers including several from JMIR journals, which is exactly the slot our article would
+compete for. It is absent.
+
+**This is not evidence of a failure.** The article published 2026-08-31, one day before the
+check. TrendMD needs to index new content, campaigns ramp, and recommendation sets rotate
+and personalize (this was a clean browser with no history). Two negative observations cannot
+prove a campaign is not running. But it is enough to ask Laura a concrete question with a
+date attached rather than a vague "any reporting?"
+
+*Note the tracking links (`rev.trendmd.com/open/...`) are session-bound and return
+`{"message":"Invalid encrypted payload"}` to `curl`. They must be clicked from within the
+page session.*
 
 **Lifelong Author Ad: live.** The page carries an anchor to `https://us.yuimedi.com/`.
 
@@ -96,8 +120,11 @@ rather than a question:
 2. Sponsored Tweet Campaign. Is this scheduled yet? I would like to amplify it from our
    own accounts when it goes out, so knowing the date would help.
 
-3. TrendMD. I can see the widget is live on the article. Is there any reporting on the
-   campaign I can expect, and does it run for a set period?
+3. TrendMD. I can see the widget is live on my article page. I have not yet seen my
+   article appear in TrendMD widgets elsewhere, including on closely related JMIR
+   articles, though I appreciate it is only a day since publication. Could you tell me
+   when the promotion campaign begins, how long it runs, and whether I can expect any
+   reporting on it?
 
 4. Lifelong Author Ad. Confirmed live and pointing to us.yuimedi.com, thank you. Given
    that it is lifelong, could you let me know the process for updating the destination
@@ -116,10 +143,12 @@ Samuel
 
 ## Notes on the drafting (not sent)
 
-**Revised after verification.** The first draft asked whether TrendMD and the author ad
-were live, and when they would begin. Both are demonstrably live, so those questions would
-have wasted her time and made the note read as inattentive. They became confirmations with a
-narrower follow-up each: reporting for TrendMD, URL updatability for the ad.
+**Revised twice after verification.** The first draft asked whether TrendMD and the author
+ad were live. Both are demonstrably live, so those questions would have wasted her time. The
+second revision then split TrendMD in half after testing the cross-network side: the widget
+being live is the inbound half, and the paid outbound placement is a separate thing that is
+not yet observable. Item 3 now asks for a start date and duration, which is answerable,
+rather than implying the service has failed, which the evidence does not support.
 
 **PubMed leads, and the ask is framed as easy.** It is the only item with a demonstrated
 defect, the only one that worsens with time, and, now that the page metadata is confirmed
