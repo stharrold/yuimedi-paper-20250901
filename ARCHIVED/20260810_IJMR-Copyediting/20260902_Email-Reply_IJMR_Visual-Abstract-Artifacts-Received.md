@@ -105,3 +105,37 @@ The remaining open items all sit with Laura McReynolds on the production thread 
 2026-09-01): the PubMed metadata refresh, the sponsored tweet schedule and account, the
 TrendMD campaign start/duration/reporting, and the process for updating the Lifelong Author
 Ad destination URL.
+
+---
+
+## As sent: delta against the draft above
+
+**Sent 2026-09-02 2:26 PM EDT**, and notably **from the yuimedi address with gmail cc'd**,
+where every prior message on this thread came from gmail. Both identities now appear on
+both this thread and Laura's, so the earlier "neither sees the other by default" split no
+longer holds. Sent copy of record:
+`20260902_Email-Reply_IJMR_Visual-Abstract-Artifacts-Received.pdf`.
+
+Cut to 2 sentences:
+
+> Thank you for the files and for the clear guidance.
+>
+> It's been a pleasure working with you on this. Thank you again for the care you and your
+> team put into it and for turning everything around so quickly.
+
+**Dropped, both fine to lose:**
+
+1. The restatement of the attribution conditions. Its purpose was to put our understanding
+   on the record, but Natalia's own message states the CC-BY terms explicitly and is
+   archived here, so the terms are on file either way, just in her words rather than
+   confirmed back in ours.
+2. The confirmation that both corrections landed. A courtesy to someone who applied them
+   unseen, not information she needs. Verified on our side regardless.
+
+**Added:** "you and your team", which credits the designer rather than only the manager.
+The designer wrote the one block both defects appeared in and also fixed it.
+
+**This thread is closed.** No follow-up. Every remaining open item sits with Laura
+McReynolds on the production thread: the PubMed metadata refresh, the sponsored tweet
+schedule and account, the TrendMD campaign start, duration and reporting, and the process
+for updating the Lifelong Author Ad destination URL.
