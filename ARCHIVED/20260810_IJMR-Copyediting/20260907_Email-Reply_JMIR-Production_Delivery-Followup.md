@@ -54,18 +54,17 @@ Hi Laura,
 
 Just checking in on these 3 items. I'd appreciate your help nudging them along:
 
-1. PubMed: The record at https://pubmed.ncbi.nlm.nih.gov/42497119/ appears to be out of sync and still shows the pre-copyediting title, the 13 July date, and "Online ahead of print." Would your team please be willing to follow up with PubMed?
+1. PubMed: The record at https://pubmed.ncbi.nlm.nih.gov/42497119/ appears to be out of sync and still shows the pre-copyediting title, the July 13 date, and "Online ahead of print." Would your team please be willing to follow up with PubMed?
 
-2. Sponsored Tweet: Checking https://www.i-jmr.org/2026/1/e96541/tweetations and https://x.com/jmirpub, it doesn't appear to have been released yet.
+2. Sponsored Tweet: I checked https://www.i-jmr.org/2026/1/e96541/tweetations , https://x.com/jmirpub , and https://bsky.app/profile/jmirpub.bsky.social , and the sponsored tweet doesn't appear to have been released yet.
 
-3. TrendMD: I'm having trouble finding the article in TrendMD widgets on related pages, including these closely matched JMIR articles:
+3. TrendMD: I'm having trouble finding the article in TrendMD widgets on related pages. I checked the following JMIR articles, but none of them linked back:
    https://www.jmir.org/2024/1/e56316/
    https://www.jmir.org/2025/1/e57858/
    https://www.jmir.org/2022/3/e32994/
    Could marketing confirm the campaign is running?
 
-No urgency on any of this. Thank you again for offering to check in with the relevant
-teams.
+No urgency on any of this. Thank you again for offering to check in with the relevant teams.
 
 Best,
 Samuel
@@ -107,3 +106,36 @@ items are late, not damaging.
 Escalate to production@jmir.org (already cc'd) rather than to marketing directly. Marketing
 has communicated only through Laura so far, so going around her would probably be slower as
 well as discourteous.
+
+---
+
+## As sent: delta against the draft above
+
+**Sent 2026-09-08 10:45 EDT** from the yuimedi address, cc gmail. Sent copy of record:
+`20260907_Email-Reply_JMIR-Production_Delivery-Followup.pdf` (15 messages).
+
+**Item 2 gained a third channel.** The sent version checks Bluesky as well:
+https://bsky.app/profile/jmirpub.bsky.social, alongside the Tweetations tab and
+https://x.com/jmirpub. Three independent channels reporting nothing is materially harder to
+wave off than one, and it forecloses "it went out on our other account."
+
+**Item 3 says "none of them linked back"** rather than the draft's vaguer "including
+closely matched JMIR articles". That is a factual report of what was observed on the pages
+listed, not a claim that the campaign is not running, and it is paired with "could
+marketing please confirm the campaign is running?" So it survives the 2026-09-08 correction
+in `20260907_Purchased-Items-Delivery-Status.md`: author-side observation cannot prove
+non-delivery, and this wording does not attempt to.
+
+**Opener changed** from "Taking you up on your offer to check in if anything slipped past
+Thursday" to "Just checking in on these 3 items." Less reliant on invoking her own
+invitation back at her. She made the offer a week ago and will remember it.
+
+**No screenshots attached**, correctly. See the correction: sponsored slots vary per
+impression, so the widget captures cannot support a non-delivery claim and would have
+misrepresented the evidence.
+
+### Now waiting on
+
+All 3 items sit with Laura and, through her, marketing. If nothing comes back within about
+a week, escalate to production@jmir.org (already cc'd) rather than approaching marketing
+directly, since marketing has communicated only through her so far.
