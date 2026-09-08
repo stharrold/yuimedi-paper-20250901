@@ -91,3 +91,51 @@ invited, and she is the stated escalation point for cross-team issues.
 Before sending, check https://x.com/jmirpub for the tweet, since that is the one item that
 can only be confirmed from a logged-in account and a positive result would remove it from
 the list.
+
+
+---
+
+## CORRECTION, 2026-09-08: the TrendMD evidence is weaker than stated above
+
+A Chrome print-to-PDF of the Snowdon page taken by the author
+(`~/Downloads/202609/2024_Snowden.pdf`, 26 pp) contains a widget item that **none of the
+Playwright captures did**:
+
+> "Mortality and transitions-of-care after COVID-19 hospitalization among US Medicare
+> patients: a retrospective claims analysis. **Brought to you by Pfizer Medical Affairs,
+> EM-USA-CVD-0102**"
+
+That is a *sponsored* placement, carrying the "Brought to you by" sponsor label, which is
+what a paid TrendMD promotion looks like from the reader's side.
+
+**Consequence:** sponsored slots vary by impression, session or viewer. The same page,
+loaded by 2 parties on the same day, served a sponsored item to one and not the other.
+Therefore the observation "our article is absent from these 3 widgets" **cannot distinguish
+between the campaign not running and the campaign running but not served in our samples.**
+The earlier framing in this file overstated it.
+
+What survives the correction:
+
+- The claim in the email, "I'm having trouble finding the article in TrendMD widgets on
+  related pages", remains accurate. It reports the author's experience, not a conclusion.
+- The organic (unsponsored) recommendation lists are stable enough to compare across dates,
+  and ours has never appeared in one. That is still suggestive, but organic placement is
+  not what the $250 buys.
+- Asking marketing to confirm the campaign is running remains the right move. It is now the
+  *only* way to settle it, since author-side observation provably cannot.
+
+**Do not attach the widget screenshots to the email as proof.** They no longer support a
+"not delivered" claim, and presenting them as such would be wrong on the facts. Keep them
+as a dated record of what the organic lists contained.
+
+### Method note for papers 2 and 3
+
+A negative observation in an ad or recommendation network is nearly worthless as evidence,
+because delivery is probabilistic per impression. Positive observation works (seeing your
+item placed proves delivery); absence does not disprove it. The reliable check is the
+campaign report from the vendor, not the rendered page.
+
+Also: the word "TrendMD" appears nowhere as text on a page carrying the widget. The
+branding is a logo image, so `grep -i trendmd` on extracted page text returns 0 on a page
+where the widget is fully rendered. Detect it by `div#trendmd-suggestions` in the DOM or by
+the "We also recommend" / "Powered by" strings instead.
