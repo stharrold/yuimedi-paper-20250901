@@ -329,7 +329,7 @@ Uses a mixed-methods research design, combining qualitative and quantitative app
     pages={294--305},
     year={2019},
     publisher={Oxford University Press},
-    file={../library/docs/2019_Yuan_JAMIA_Criteria2Query.pdf}
+    file={../library/docs/2019_Yuan_JAMIA_Criteria2Query/2019_Yuan_JAMIA_Criteria2Query.pdf}
 }
 
 @article{dadi2025natural,

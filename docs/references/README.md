@@ -43,7 +43,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   journal = {Journal of the American Medical Informatics Association},
   doi = {10.1093/jamia/ocy178},
   url = {https://academic.oup.com/jamia/article-abstract/26/4/294/5308980},
-  file = {../library/docs/2019_Yuan_JAMIA_Criteria2Query.pdf},
+  file = {../library/docs/2019_Yuan_JAMIA_Criteria2Query/2019_Yuan_JAMIA_Criteria2Query.pdf},
   note = {Original citation: [A35]},
 }
 ```
@@ -71,7 +71,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   number = {2},
   pages = {77--85},
   url = {https://onlinelibrary.wiley.com/doi/abs/10.1057/palgrave.emr.1500057},
-  file = {../library/docs/2006_Rao_European-Management-Review_Organizational-Learning-Forgetting.pdf},
+  file = {../library/docs/2006_Rao_European-Management-Review_Organizational-Learning-Forgetting/2006_Rao_European-Management-Review_Organizational-Learning-Forgetting.pdf},
   note = {Original citation: [New]}
 }
 ```
@@ -201,7 +201,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   number = {4},
   pages = {737--770},
   url = {https://www.nyulawreview.org/issues/volume-94-number-4/data-standardization/},
-  file = {../library/docs/2019_Gal_NYULawRev_Data-Standardization.pdf},
+  file = {../library/docs/2019_Gal_NYULawRev_Data-Standardization/2019_Gal_NYULawRev_Data-Standardization.pdf},
   note = {Original citation: [A109]},
 }
 ```
@@ -227,7 +227,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   booktitle = {Proceedings of The Web Conference 2020},
   doi = {10.1145/3366423.3380120},
   url = {https://arxiv.org/abs/1908.01839},
-  file = {../library/docs/2020_Wang_WebConf_Text-to-SQL-EMR.pdf},
+  file = {../library/docs/2020_Wang_WebConf_Text-to-SQL-EMR/2020_Wang_WebConf_Text-to-SQL-EMR.pdf},
   note = {Original citation: [A5]},
 }
 ```
@@ -355,7 +355,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   month = {10},
   institution = {WittKieffer},
   url = {https://api.wittkieffer.com/wp-content/uploads/2012/10/cio-insights-the-state-of-healthcare-it-leadership-wittkieffer-october-2024.pdf},
-  file = {../library/docs/2024_WittKieffer_CIO-Insights-Healthcare-IT-Leadership.pdf},
+  file = {../library/docs/2024_WittKieffer_Report_CIO-Insights-Healthcare-IT-Leadership/2024_WittKieffer_Report_CIO-Insights-Healthcare-IT-Leadership.pdf},
   note = {Original citation: [I2]},
 }
 ```
@@ -458,7 +458,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   journal = {Journal of Public Administration Research and Theory},
   year = {2025},
   url = {https://academic.oup.com/jpart/advance-article-abstract/doi/10.1093/jopart/muaf019/8162522},
-  file = {../library/docs/2025_Hong_JPART_Employee-Turnover-Organizational-Memory.pdf},
+  file = {../library/docs/2025_Hong_JPART_Employee-Turnover-Organizational-Memory/2025_Hong_JPART_Employee-Turnover-Organizational-Memory.pdf},
   note = {Original citation: [New]}
 }
 ```
