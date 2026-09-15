@@ -59,13 +59,15 @@ In a healthy organization, these 4 modes form a self-reinforcing spiral: tacit i
 
 The framework's 3 pillars name the organizational capabilities at stake in the triple threat: analytics maturity, workforce agility, and technical enablement. This structure aligns with established models across health care informatics and knowledge management (Table 1):
 
-| Pillar | HIMSS AMAM alignment | DIKW hierarchy | Knowledge management |
+| Pillar | HIMSS^a^ AMAM^b^ alignment | DIKW^c^ hierarchy | Knowledge management |
 |:---|:---|:---|:---|
 | Analytics maturity | Progression from stages 0-7 | Data → information | Organizational learning |
 | Workforce agility | Implicit in advanced stages | Knowledge (tacit) → wisdom | Tacit knowledge transfer |
 | Technical enablement | Stages 6-7 requirements | Information → knowledge | Knowledge codification |
 
 : Table 1. Framework alignment with established models. \label{tab:alignment}
+
+^a^HIMSS: Healthcare Information and Management Systems Society. ^b^AMAM: Analytics Maturity Assessment Model. ^c^DIKW: data, information, knowledge, and wisdom.
 
 The HIMSS AMAM provides organizational benchmarks but does not address workforce knowledge retention. The data, information, knowledge, and wisdom hierarchy explains progression from raw data to actionable insights but does not account for institutional memory loss. The 3-pillar framework synthesizes these perspectives, positioning workforce dynamics as the critical enabler connecting data access (analytics maturity) with organizational wisdom (knowledge preservation) [@farnese2019; @rao2006].
 
@@ -95,7 +97,7 @@ We propose *human-in-the-loop knowledge governance (HITL-KG)* as the overarching
 
 The HITL-KG architecture (Figure 1) functions as a *governance forcing function*. It inserts a mandatory validation step into the analytics workflow, preventing laundered hallucinations while capturing expert knowledge.
 
-![Figure 1. Human-in-the-loop knowledge governance architecture. NLP: natural language processing.](figures/architecture.mmd.png){width=86.5%}
+![Figure 1. Human-in-the-loop knowledge governance architecture. NLP: natural language processing.](figures/architecture.mmd.png){width=75%}
 
 A clinical user's natural language query (step 1) is translated to SQL and run against the data warehouse (steps 2-3); an expert validation gate (step 4) either returns confirmed insights (steps 5-6) or loops back for correction. Confirmed query triples enter organizational memory (step 7, dashed line), which informs future queries and curates the knowledge base (step 8), closing a continuous-learning loop in which best practices evolve rather than remain static.
 
@@ -153,11 +155,13 @@ Each indicator is scored as being of low, medium, or high strength using evidenc
 
 | Pillar | Indicators |
 |:---|:---|
-| Analytics maturity | HIMSS AMAM stage, self-service analytics, and AI and NL interface |
+| Analytics maturity | HIMSS^a^ AMAM^b^ stage, self-service analytics, and AI and NL^c^ interface |
 | Workforce agility | First-year analytics staff turnover, leadership tenure, and knowledge concentration |
 | Technical enablement | Data access, interoperability, and schema coupling |
 
 : Table 2. Three-pillar assessment rubric indicators (the full rubric with anchors can be found in Multimedia Appendix 2). \label{tab:rubric}
+
+^a^HIMSS: Healthcare Information and Management Systems Society. ^b^AMAM: Analytics Maturity Assessment Model. ^c^NL: natural language.
 
 The "schema coupling" indicator can be operationalized through *continuous analytic integration*: treating validated query triples as software assets within a continuous integration and continuous delivery pipeline that detects data and schema drift [@valiaiev2025; @mannapur2025; @battula2025]. When a data warehouse schema is updated, the system automatically reruns stored queries and flags failures, transforming institutional memory into a living test suite [@betha2023; @kottam2025].
 

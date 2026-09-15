@@ -605,6 +605,22 @@ None.
 
         assert result["Conflicts of Interest"] is False
 
+    @pytest.mark.parametrize(
+        "heading",
+        [
+            "# Authors' Contributions",  # i-JMR published form (ms#96541)
+            "# Authors’ Contributions",  # typographic apostrophe
+            "# Author Contributions",  # pre-copyedit form
+        ],
+    )
+    def test_author_contributions_heading_variants_accepted(self, heading: str):
+        """Should accept the published possessive heading and the legacy form."""
+        content = f"\n{heading}\nS.T.H. conceived and wrote the paper.\n"
+
+        result = validate_required_sections(content)
+
+        assert result["Author Contributions"] is True
+
 
 class TestValidateCslConfiguration:
     """Tests for validate_csl_configuration function."""
