@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-15
 **Tracking:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
-**Version:** 5.0.0 (released 2026-08-10; Zenodo `v5.0.0`, DOI 10.5281/zenodo.21880033)
+**Version:** 6.0.0 (released 2026-09-15; Zenodo `v6.0.0`, DOI 10.5281/zenodo.22769213; concept DOI 10.5281/zenodo.18264359)
 
 ---
 
