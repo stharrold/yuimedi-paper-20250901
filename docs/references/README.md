@@ -251,7 +251,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   title = {{The healthcare analytics adoption model: A roadmap to analytic maturity}},
   year = {2020},
   url = {https://www.healthcatalyst.com/learn/insights/healthcare-analytics-adoption-model-roadmap-analytic-maturity},
-  file = {../library/docs/2020_Health-Catalyst_Healthcare-Analytics-Adoption.pdf},
+  file = {../library/docs/2020_Health-Catalyst_Whitepaper_Healthcare-Analytics-Adoption/2020_Health-Catalyst_Whitepaper_Healthcare-Analytics-Adoption.pdf},
   note = {Original citation: [I3]},
 }
 ```
@@ -379,7 +379,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   title = {{The total economic impact of Microsoft Power Apps. Forrester Consulting}},
   year = {2024},
   url = {https://tei.forrester.com/go/microsoft/powerappstei/?lang=en-us},
-  file = {../library/docs/2024_Forrester_ROI-Microsoft-Power-Apps.pdf},
+  file = {../library/docs/2024_Forrester_Report_ROI-Microsoft-Power-Apps/2024_Forrester_Report_ROI-Microsoft-Power-Apps.pdf},
   note = {Original citation: [I5]},
 }
 ```
@@ -404,7 +404,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   year = {2024},
   institution = {NSI Nursing Solutions},
   url = {https://www.nsinursingsolutions.com/documents/library/nsi_national_health_care_retention_report.pdf},
-  file = {../library/docs/2024_NSI_National-Health-Care-Retention-Report.pdf},
+  file = {../library/docs/2024_NSI_Report_National-Health-Care-Retention/2024_NSI_Report_National-Health-Care-Retention.pdf},
   note = {Retention baseline data}
 }
 ```
