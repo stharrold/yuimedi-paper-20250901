@@ -343,7 +343,7 @@ Uses a mixed-methods research design, combining qualitative and quantitative app
   publisher={Al-Kindi Center for Research and Development},
   doi={10.32996/jcsts.2025.7.3.103},
   url={https://al-kindipublisher.com/index.php/jcsts/article/view/9694},
-  file={../library/docs/2025_Dadi_JCSTS_Natural-Language-Interfaces-Database-Management.pdf}
+  file={../library/docs/2025_Dadi_JCSTS_Natural-Language-Interfaces-Database-Management/2025_Dadi_JCSTS_Natural-Language-Interfaces-Database-Management.pdf}
 }
 
 @article{kaufman2016natural,
