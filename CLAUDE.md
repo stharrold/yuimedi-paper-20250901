@@ -134,6 +134,8 @@ Include `Closes #<issue>` to auto-close GitHub issues.
 - **The JMIR in-house visual abstract is a DIFFERENT artifact** from the AJE one above (which was declined as a ToC image and as an appendix). Draft 1 arrived 2026-08-25, 19 days after the questionnaire; final archived at `ARCHIVED/20260810_IJMR-Copyediting/20260901_IJMR_Visual_Abstract_final.png`.
 - **A vendor's one-round review policy caps verification, not just iteration.** Natalia acknowledged both corrections but never sent a revised proof, so the corrected artwork reached production unseen. Fix for papers 2 and 3: when sending feedback, request the revised proof in the same message as confirmation-only, stated explicitly as not a new round.
 - **Defects cluster in vendor-authored connective prose.** On the 96541 graphic, every panel quoting the abstract was flawless and both defects fell in the one block the designer wrote themselves. Concentrate review there.
+- **Duplicate key artifacts into every folder someone would look in (author preference).** The JMIR final visual abstract files sit in both `ARCHIVED/20260810_IJMR-Copyediting/` and `abstract-visual-video/`, and the AJE V3 JPG in both. Copy with `cp -np`, confirm with `shasum -a256`, and never dedupe.
+- **Alt text for a text-heavy visual abstract:** write it from the PDF text layer (plain `pdftotext`) in reading order, carrying the argument rather than every label. Name a stale title as such ("pre-publication title") instead of repeating it silently.
 - **PDF comment annotations live in `/Annots`, invisible to `pdftotext`.** Read them with `uv run --with pypdf`, resolving `IndirectObject` via `.get_object()`; `/Contents` is the comment, `/T` the author, `/M` a timezone-stamped timestamp. Highlight rects also confirm the comment landed on the intended word.
 
 ## Secrets Management
@@ -162,6 +164,8 @@ uv run scripts/secrets_run.py uv run pytest
 - PEP 723 inline scripts (`secrets_run.py`, `secrets_setup.py`) use `importlib.util` for sibling imports because `from scripts.X` fails when run via `uv run scripts/X.py`
 - **`secrets_run.py` prints `[INFO]`/`[OK]`/`[WARN]` banner lines to stdout**, so `gh ... --json ... | python3 -c "json.load(...)"` fails with "Extra data". Use `gh --jq` and grep the formatted line out of the banner noise instead of parsing the whole stream.
 - **Do not put `<(...)` process substitution inside a shell function** in this environment; it silently yields no matches, so a verification helper reports every check as failing. Pre-write the data to a file and grep that.
+- **zsh does not word-split unquoted variables.** `F="a.md b.md"; git add $F` passes ONE path and fails "did not match any files" (a chained `grep -c` then reports a false 0). List paths literally or use an array: `F=(a.md b.md); git add $F`.
+- **The Read tool needs a real image extension.** A JPEG saved as `.img` is dumped as binary text; copy it to `.jpg` first.
 
 ## Video Analysis
 
@@ -256,6 +260,14 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 - **In an ad or recommendation network, absence proves nothing.** Sponsored slots are served per impression: at 96541 the author's own page capture carried a Pfizer sponsored item that appeared in none of 3 Playwright captures of the same page the same day. Seeing your item placed proves delivery; not seeing it cannot distinguish "not running" from "not served in this sample". Settle it with the vendor's campaign report, never with a rendered page, and never attach widget screenshots as proof of non-delivery. This held at 96541 for both paid promotions: the TrendMD campaign and the sponsored tweet were each running while every author-side check showed nothing (2 false negatives out of 2).
 - **"TrendMD" appears nowhere as page text.** The branding is a logo image, so `grep -i trendmd` on extracted page text returns 0 on a page where the widget is fully rendered. Detect it by `div#trendmd-suggestions` in the DOM, or by the "We also recommend" and "Powered by" strings. The widget sits between the article metadata and the Introduction.
 - **The Tweetations tab (`<article-url>/tweetations`) does NOT capture JMIR's promoted posts,** and they did not surface on the @jmirpub profile timeline either. At 96541 it still read "no tweets available" (All Time) on 2026-09-15 while the sponsored tweet had run since 2026-09-01 as 5 promoted ads (152 link clicks). Zero there, on `x.com/jmirpub`, or on `bsky.app/profile/jmirpub.bsky.social` says nothing about a paid campaign; ask the Production Editor for marketing's ads dashboard and the tweet link.
+- **An X status URL renders logged out in Playwright** (text, time, views, card link), so a tweet link can be verified independently. Media downloads with `curl "https://pbs.twimg.com/media/<id>?format=jpg&name=orig"` (`format=png` returns 404). The card is a 16:9 center crop of the 4:3 visual abstract, so a pixel diff against `og:image` is meaningless; view the image instead.
+- **Gmail print-to-PDF renders times in the viewer's timezone** (CEST for this author, 6 h ahead of JMIR's EDT). Convert before recording a send or reply time.
+
+### Author-side dissemination (LinkedIn, 2026-09-15)
+
+- **Yuimedi signs off on public posts about the paper:** Gnani Palanikumar (he; leadership), cc Emiri Grimes, Abrar Madki, Tomoko Chikamatsu. No YuiQuery/YuiInsights product mention. Drafts and approvals live in `../yuimedi/20251212_Meeting_Paper-Conference-Review/`; the posted record (final text, alt text, edit log against the approved draft, capture) is `ARCHIVED/20260810_IJMR-Copyediting/20260915_LinkedIn-Post_Paper1-Publication.{md,pdf}`.
+- **Check provenance claims in public copy against git history** with `git log --all --reverse -S "<term>"`. The 3-pillar framework is in this repo from 2025-08-21, before the Nov 2025 CHIME Fall Forum; "institutional amnesia" and HITL-KG first appear 2026-01-22. So CHIME conversations "sharpened" the idea; they did not originate it.
+- **Verify a posted LinkedIn capture from its link annotations** (`uv run --with pypdf`, `/Annots` then `/A` then `/URI`, run from outside `ARCHIVED/`): real tags resolve to `linkedin.com/company/<slug>` or `/in/<slug>`, hashtags to `search/results/...%23<tag>`. Alt text is not visible in a capture. Resolve an `lnkd.in/p/...` share link with `curl -s -o /dev/null -w '%{redirect_url}'` and drop the per-account `rcm=` parameter before recording it.
 - `git` pathspecs resolve relative to cwd, so `git checkout HEAD -- <repo-relative-path>` fails after `cd`-ing into a subdirectory. Use `git -C <repo-root>`, which also avoids leaving the shell parked somewhere a later `rm -rf` could do damage.
 
 ## CI Notes
@@ -320,7 +332,8 @@ Applied bundles: `git`, `secrets`, `ci` (from `.tmp/stharrold-templates/`).
 | `scripts/secrets_run.py` | Injects secrets from keyring before running commands |
 | `cover-letter.md` | R2 resubmission cover letter (i-JMR ms#96541, Decision B) |
 | `abstract-visual-video/` | AJE/Springer Nature deliverables: visual abstract, video byte, email correspondence, critical assessments |
-| `ARCHIVED/20260810_IJMR-Copyediting/20260901_IJMR_Visual_Abstract_final.png` | The published ToC image / social card, pulled from the live article's `og:image` |
+| `ARCHIVED/20260810_IJMR-Copyediting/20260901_IJMR_Visual_Abstract_final.png` | The published ToC image / social card, pulled from the live article's `og:image` (also copied to `abstract-visual-video/`) |
+| `ARCHIVED/20260810_IJMR-Copyediting/20260915_LinkedIn-Post_Paper1-Publication.md` | Posted LinkedIn announcement: final text, alt text, edits vs the Yuimedi-approved draft, share link, capture `.pdf` |
 | `docs/plans/` | Implementation plans (created per task) |
 | `submission-checklist.md` | i-JMR R2 submission checklist (Viewpoint, ms#96541) |
 | `project-status.md` | Lightweight project status for all 3 papers |
