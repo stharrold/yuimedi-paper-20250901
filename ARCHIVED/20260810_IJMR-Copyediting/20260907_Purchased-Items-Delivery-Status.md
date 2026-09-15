@@ -5,6 +5,10 @@
 **Checked:** 2026-09-07, via Playwright (the article page and PubMed both bot-wall `curl`)
 **Prompted by:** `20260907_Email-Reply_JMIR-Production_Purchased-Items-Followup.pdf`
 
+> **SUPERSEDED 2026-09-15: all 6 items delivered.** See the RESOLUTION section at the end.
+> The body below is kept as a dated record of what was observable on 2026-09-07, and 2 of
+> its conclusions (the tweet and TrendMD rows) turned out to be wrong.
+
 ## Laura's commitments, made 2026-09-01
 
 Two messages, 12:05 PM and 2:00 PM:
@@ -139,3 +143,85 @@ Also: the word "TrendMD" appears nowhere as text on a page carrying the widget. 
 branding is a logo image, so `grep -i trendmd` on extracted page text returns 0 on a page
 where the widget is fully rendered. Detect it by `div#trendmd-suggestions` in the DOM or by
 the "We also recommend" / "Powered by" strings instead.
+
+
+---
+
+## RESOLUTION, 2026-09-15: every purchased item delivered
+
+Source: Laura McReynolds' 3 replies to the 2026-09-08 follow-up, archived in
+`20260909_Email_JMIR-Production_Delivery.pdf` (18 messages; Gmail renders times in CEST),
+plus the author's X capture `20260901_X-Twitter-JmirPublications.pdf`.
+
+| Item | Amount | Final status | Evidence |
+|---|---|---|---|
+| Article Processing Fee | $1,588.00 | Delivered | Published 2026-08-31 |
+| Visual Abstract | $545.00 | Delivered | Unchanged from above |
+| Lifelong Author Ad | $99.00 | Delivered | Unchanged from above |
+| PubMed Now! Ahead of Print | $50.00 | **Delivered, fixed 2026-09-09** | Duplicate entry merged; 42497119 redirects to **42684405** |
+| Sponsored Tweet Campaign | $99.00 | **Delivered 2026-09-01** | https://x.com/jmirpub/status/2094846699487609125, 5 promoted ads |
+| TrendMD Promotion | $250.00 | **Running** (to ~2026-12-02) | Marketing confirmation via Laura; campaign data requested from the rep |
+
+### Timeline
+
+- **Sep 8, 10:45 EDT:** follow-up sent.
+- **Sep 8, 11:39 EDT:** Laura forwards items 2 and 3 to marketing and escalates PubMed to her
+  manager, who takes it to the platform managers and PubMed.
+- **Sep 8, 16:35 EDT:** tweet link plus marketing's ads dashboard: "there are 5 ads running
+  now", 152 total link clicks. TrendMD "has started and is estimated to run until December 2";
+  marketing is asking the rep for data.
+- **Sep 9, 15:52 EDT:** PubMed resolved. "It looks like there was a duplicate entry which was
+  causing it not to refresh."
+
+### PubMed: independently verified 2026-09-15
+
+- https://pubmed.ncbi.nlm.nih.gov/42497119/ redirects to https://pubmed.ncbi.nlm.nih.gov/42684405/.
+- PMID 42684405 reads "Health Care Analytics Challenges: A 3-Pillar Framework...", cited as
+  "2026 Aug 31:15:e96541", no longer "Online ahead of print".
+- A PubMed search on the DOI returns only 42684405; `esummary` for 42497119 now errors
+  ("cannot get document summary").
+- PMC13528883's `citation_pmid` meta tag is 42684405.
+
+So the "cache or slight delay" explanation of 2026-09-01 was not the cause. The acceptance-time
+deposit and the published-version deposit had created 2 records, and the stale one was the
+one PubMed kept serving. Only a person at JMIR could have found that; no amount of waiting
+would have fixed it.
+
+**Residual (cosmetic):** the i-JMR article page and its `/citations` tab still display
+"PMID: 42497119" and link `ncbi.nlm.nih.gov/pubmed/42497119` (the page's embedded data also
+carries `pmid:42497119`). The link works through the redirect. The EndNote, BibTeX and RIS
+exports carry no PMID at all, so the retired ID does not reach reference managers.
+
+### Sponsored tweet: my 2026-09-07 "No evidence" was wrong
+
+The tweet posted 2026-09-01 (19:55 CEST, 13:55 EDT), the day marketing said it would. The
+author's capture shows 23.4K views on the organic post. The dashboard shows 5 promoted
+variants, all Active, all carrying the visual abstract as the card image:
+
+1. "Healthcare analytics has a knowledge problem."
+2. "What if your healthcare organization could preserve the expertise of every analytics..."
+3. "What if every validated query could become institutional knowledge?..."
+4. "Who validates the AI when the experts leave?..."
+5. "What happens when your healthcare analytics experts leave?..."
+
+**Why 3 channels showed nothing:** the Tweetations tab still reports "no tweets available"
+on 2026-09-15, and promoted posts did not surface on the @jmirpub profile timeline either.
+Tweetations evidently does not capture JMIR's own promoted posts. The caveat stated above
+("a *promoted* tweet may not be captured") was the true explanation, and the later claim
+that a zero there "does mean something" was wrong.
+
+### TrendMD: the 2026-09-08 correction held
+
+The campaign had started. The absence from 3 widgets was sampling, exactly as the
+correction said. The only open thread is the campaign report marketing requested.
+
+### Lessons for papers 2 and 3
+
+1. **Every "missing" paid promotion here was in fact running.** Author-side observation
+   produced 2 false negatives out of 2. For any paid placement (tweet, TrendMD), ask for
+   the vendor dashboard or report; do not infer non-delivery from any public page.
+2. **A PubMed record that will not refresh may be a duplicate, not a lag.** If the
+   Ahead-of-Print record still shows acceptance metadata a week after publication, ask
+   production to check for a duplicate entry rather than waiting.
+3. **After a PMID merge, the publisher's page keeps the old ID.** Check the article page
+   and exports for the retired PMID.
