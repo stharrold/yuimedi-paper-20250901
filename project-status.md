@@ -47,7 +47,8 @@
 **Remaining (post-publication, non-blocking):**
 - [x] Propagate the published title to `paper.md`, `metadata.yaml`, `CITATION.cff`, `.zenodo.json`, `README.md` (done in v5.0.0; the title is final in the accepted proof)
 - [x] Style sync the *body* of `paper.md` to the published version: done 2026-08-19 against the `modified5` proof (commit e0f920a), verified against the live article 2026-09-01
-- [x] Repair stale `file =` paths in `references.bib` (library reorganized to `docs/<stem>/<stem>.pdf`): all 15 resolve, #561 closed 2026-09-15 (`194eda7`); 32 docs-only stale library citations remain in #573
+- [x] Repair stale `file =` paths in `references.bib` (library reorganized to `docs/<stem>/<stem>.pdf`): all 15 resolve, #561 closed 2026-09-15 (`194eda7`)
+- [x] Repair the 28 stale library citations in research docs (21 same-stem in `e4d16d9`; 7 traced through library git history and matched by SHA-256, or linked to arXiv, in `de5705d`): #573 closed 2026-09-15, 0 stale non-archive paths remain
 - [x] JMIR visual abstract: draft 1 2026-08-25, 2 corrections requested and verified in the final files; live as the ToC image at publication. Final files in both `ARCHIVED/20260810_IJMR-Copyediting/` and `abstract-visual-video/`
 - [x] Timing conflict raised 2026-08-10: resolved by the publication hold agreed 2026-08-11, so the article and sponsored tweet launched with the visual abstract in place
 - [x] All purchased add-ons delivered (#567, closed 2026-09-15): PubMed duplicate merged, sponsored tweet live 2026-09-01, TrendMD running to ~2026-12-02
