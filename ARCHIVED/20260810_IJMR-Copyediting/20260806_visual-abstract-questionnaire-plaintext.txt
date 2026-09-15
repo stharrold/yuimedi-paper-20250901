@@ -1,0 +1,117 @@
+JMIR VISUAL ABSTRACT QUESTIONNAIRE, ms#96541
+SUBMITTED 2026-08-06. This file is the record of what was sent.
+Drafted 2026-08-06 from paper.md (accepted version, Decision A 2026-07-13).
+Google Form: "Visual Abstracts by JMIR Publications" (see 20260805_Email_IJMR_Visual_Abstract_Form.pdf)
+Requested turnaround: 2 days from 2026-08-06. Design cycle ~3 weeks. ONE author review round.
+Next: JMIR designs the visual abstract (~3 weeks, so expect a draft around late
+August 2026), then ONE round of author review. Budget real attention for that
+review; further changes after it may incur charges.
+
+Paste each block below into the matching form field. Bullets are deliberately short
+(the form asks for short bullet points, not sentences). No em-dashes.
+
+Lines beginning ">> DO NOT PASTE" are notes to the author. Everything else in a
+FIELD block is intended for the form, including the bracketed notes addressed to
+the JMIR designer.
+
+
+====================================================================
+FIELD: Email (required)
+====================================================================
+samuel.harrold@yuimedi.com
+
+>> DO NOT PASTE: this is the corresponding-author address of record on the
+>> manuscript and the address the acceptance letter went to. The visual-abstract
+>> thread arrived at the gmail address and the Google Form is signed in as gmail.
+>> Using the yuimedi address keeps the confirmation copy with the manuscript record.
+
+
+====================================================================
+FIELD: Enter JMIR manuscript ID (required)
+====================================================================
+96541
+
+
+====================================================================
+FIELD: Short Title (required)
+====================================================================
+Can Health Systems Keep Analytics Maturity When Turnover Outpaces Documentation?
+
+>> DO NOT PASTE: alternate, shorter option if the designer needs fewer characters:
+>> "When Analysts Leave, Where Does the Knowledge Go?"
+
+
+====================================================================
+FIELD: Background (required)
+====================================================================
+- Viewpoint article; no patients, no study sample, no trial
+- Narrative literature review plus Design Science Research framing
+- Literature spans analytics maturity, workforce turnover, natural language to SQL
+- Grey literature screened with the AACODS checklist
+- Problem framed as a "Triple Threat" in healthcare analytics: low analytics maturity, workforce instability, semantic gap between clinical intent and data schema
+- Context from prior published studies, not findings of this paper:
+- Prior data: only 39 organizations worldwide at the top HIMSS analytics maturity tiers as of late 2024
+- Prior data: 53% of healthcare CIOs have been in role under 3 years
+- Prior data: 55% of public health informatics specialists intend to leave
+- Combined effect: "institutional amnesia," the erasure of tacit knowledge needed to interpret complex health data
+
+
+====================================================================
+FIELD: Brief Methodology (required)
+====================================================================
+- No intervention, no randomization, no human participants
+- Narrative synthesis across three literatures, organized as three pillars
+- Root cause diagnosed with Nonaka's SECI model of knowledge creation
+- Diagnosis: "Socialization failure," turnover breaks tacit knowledge transfer between departing experts and new analysts
+- Design Science Research: build and theoretically motivate a socio-technical artifact
+- Framework proposed and motivated here; empirical testing deferred to a companion study
+
+
+====================================================================
+FIELD: Key Results (required)
+====================================================================
+[These are the framework artifacts the paper contributes, not empirical findings.
+Please do not present them as measured outcomes.]
+
+- Human-in-the-Loop Knowledge Governance (HITL-KG): moves knowledge out of volatile human memory into durable artifacts
+- Validated Query Triple: natural language intent + executable SQL + rationale metadata, captured during everyday analytics rather than as extra documentation
+- Three-Pillar Assessment Rubric: 9 indicators across 3 pillars, each scored Low, Medium, or High
+- Knowledge Ratchet: each validated query sets the current standard, so the organization cannot slide below its last confirmed state when staff leave
+
+
+====================================================================
+FIELD: Summary (required, 1 sentence)
+====================================================================
+Validated queries stored as durable artifacts decouple analytics capability from staff tenure, so maturity advances despite turnover; a companion study will test this.
+
+>> DO NOT PASTE: this field is character-capped at roughly 190. The first draft
+>> ran 245 characters and was silently truncated mid-word at 188. The text above
+>> is 167 characters. Alternates if further shortening is ever needed:
+>>   148: Capturing each validated query as a durable artifact decouples analytics
+>>        capability from staff tenure; a companion study will test this empirically.
+>>   142: HITL-KG turns each validated query into a durable artifact, decoupling
+>>        analytics capability from staff tenure; a companion study will test it.
+>> Keep the "companion study" clause in whatever version is used. It is the only
+>> guard against the graphic implying the paper measured an outcome.
+
+
+====================================================================
+FIELD: Other reference material (optional)
+====================================================================
+Figures and tables to draw from:
+- Figure 2, the six-step Validated Query Cycle: preferred layout for the graphic
+- Figure 1, the HITL-KG architecture, for the validation gate
+- Table 2, the nine Three-Pillar Assessment Rubric indicators
+- Multimedia Appendix 1, worked Validated Query Triple examples
+
+Also already on file with this submission: the Table of Contents (feature) image uploaded with the manuscript is a previously commissioned graphic showing the three pillars and the Validated Query Cycle. Please use it as a visual reference. Note that it predates the final terminology and does not name the framework.
+
+Terminology to use exactly:
+- Human-in-the-Loop Knowledge Governance (HITL-KG), spelled out on first use
+- Validated Query Triple (triple, not tuple)
+- Three-Pillar Assessment Rubric
+- SECI (Socialization, Externalization, Combination, Internalization), spelled
+  out if shown
+
+Please avoid: patient counts, effect sizes, or any framing that implies this
+paper produced original quantitative results. The contribution is a framework.

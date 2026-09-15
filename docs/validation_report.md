@@ -1,30 +1,22 @@
 # Reference Validation Report
 
-**Generated:** 2026-07-11 12:45:19 UTC
+**Generated:** 2026-08-19 14:51:25 UTC
 
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total References | 84 |
-| Academic [A*] | 78 |
+| Total References | 85 |
+| Academic [A*] | 79 |
 | Industry [I*] | 6 |
-| Total Citations | 116 |
-| Accessible URLs | 82 |
-| Broken URLs | 1 |
+| Total Citations | 117 |
+| Accessible URLs | 84 |
+| Broken URLs | 0 |
 | Missing URLs | 1 |
 | Orphaned Citations | 0 |
 | Unused References | 0 |
 
 ## Issues
-
-### Broken URLs
-
-References with inaccessible URLs:
-
-| Reference | URL | Error |
-|-----------|-----|-------|
-| [mosqueirarey2023] | https://doi.org/10.1007/s10462-022-10246-w | URL Error: _ssl.c:993: The handshake operation timed out |
 
 ### References Without URLs
 
@@ -66,6 +58,7 @@ References that don't have a URL:
 | [grossman2018] | academic | OK (200) |
 | [hackney2024] | academic | OK (200) |
 | [halbesleben2013] | academic | OK (200) |
+| [harrold2026zenodo] | academic | OK (200) |
 | [health2020] | industry | OK (200) |
 | [hendrix1978] | academic | OK (200) |
 | [himss2024] | industry | OK (200) |
@@ -94,7 +87,7 @@ References that don't have a URL:
 | [massingham2018] | academic | OK (200) |
 | [mayo2016] | academic | OK (200) |
 | [moore2018] | academic | OK (200) |
-| [mosqueirarey2023] | academic | Failed: URL Error: _ssl.c:993: The handshake operation timed out |
+| [mosqueirarey2023] | academic | OK (200) |
 | [ning2024] | academic | OK (200) |
 | [nsi2025] | academic | OK (200) |
 | [ogunwole2023] | academic | OK (200) |

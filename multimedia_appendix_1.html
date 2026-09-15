@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Samuel T Harrold, Yuimedi, Inc." />
+  <meta name="author" content="Samuel Thomas Harrold, Yuimedi, Inc." />
   <title>Multimedia Appendix</title>
   <style>
 
@@ -246,38 +246,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 <body>
 <header id="title-block-header">
 <h1 class="title">Multimedia Appendix</h1>
-<p class="author">Samuel T Harrold, Yuimedi, Inc.</p>
-<p class="date">July 2026</p>
+<p class="author">Samuel Thomas Harrold, Yuimedi, Inc.</p>
+<p class="date">August 2026</p>
 </header>
 <h1 id="multimedia-appendix-1">Multimedia Appendix 1</h1>
 <h2 id="validated-query-triple-examples-for-health-care-analytics">Validated
 Query Triple Examples for Health Care Analytics</h2>
-<p>This appendix illustrates the Validated Query Triple artifact
+<p>This appendix illustrates the validated query triple artifact
 proposed by the HITL-KG framework (see the main paper’s section “The
-Solution: Externalization via Socio-Technical Artifacts”). Each triple
-comprises three components: (1) <em>Natural Language Intent</em>, the
-clinical business question; (2) <em>Executable SQL</em>, the technical
-implementation; and (3) <em>Rationale Metadata</em>, the contextual
+Solution: Externalization via Sociotechnical Artifacts”). Each triple
+comprises 3 components: (1) <em>natural language intent</em>, the
+clinical business question; (2) <em>executable SQL</em>, the technical
+implementation; and (3) <em>rationale metadata</em>, the contextual
 “why” behind the logic. Together, these components capture not just
 <em>what</em> query was run but <em>why</em> it was constructed that
 way, preserving institutional knowledge that would otherwise be lost
 during staff turnover.</p>
 <h2 id="the-externalization-process">The Externalization Process</h2>
-<p>Each Validated Query Triple is produced through a five-step
+<p>Each validated query triple is produced through a 5-step
 externalization cycle that captures tacit knowledge as a byproduct of
-routine analytics. These steps correspond to steps 1-5 of the six-step
-Validated Query Cycle shown in the main paper’s Figure 2; the sixth
-step, Persistence, is the cumulative outcome of repeated cycles:</p>
+routine analytics. These steps correspond to steps 1-5 of the 6-step
+validated query cycle shown in the main paper’s Figure 2; the sixth
+step, persistence, is the cumulative outcome of repeated cycles:</p>
 <ol type="1">
-<li><em>Query Generation</em>: A user asks a question in natural
+<li><em>Query generation</em>: A user asks a question in natural
 language; the AI proposes candidate SQL based on schema knowledge.</li>
-<li><em>Semantic Translation</em>: The AI translates the SQL back into a
+<li><em>Semantic translation</em>: The AI translates the SQL back into a
 natural-language explanation of what it will do.</li>
-<li><em>Expert Validation</em>: The domain expert confirms or corrects
-this interpretation. This is the critical moment of Externalization,
-where the Human-in-the-Loop step transforms validation into iterative
+<li><em>Expert validation</em>: The domain expert confirms or corrects
+this interpretation. This is the critical moment of externalization,
+where the human-in-the-loop step transforms validation into iterative
 knowledge capture.</li>
-<li><em>Artifact Storage</em>: The validated triple is hashed and stored
+<li><em>Artifact storage</em>: The validated triple is hashed and stored
 in organizational memory.</li>
 <li><em>Retrieval</em>: Future queries semantically match against this
 repository first, retrieving trusted human knowledge before attempting
@@ -288,7 +288,7 @@ a synthetic database.</p>
 <hr />
 <h3 id="triple-1-diabetes-care-monitoring">Triple 1: Diabetes Care
 Monitoring</h3>
-<p><em>Natural Language Intent:</em> “Show me all diabetic patients over
+<p><em>Natural language intent:</em> “Show me all diabetic patients over
 65 who had an HbA1c test in the last 6 months”</p>
 <p><em>Executable SQL:</em></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> p.patient_id, p.age, l.test_date, l.result_value</span>
@@ -299,17 +299,17 @@ Monitoring</h3>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> p.age <span class="op">&gt;</span> <span class="dv">65</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> l.test_name <span class="op">=</span> <span class="st">&#39;HbA1c&#39;</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> l.test_date <span class="op">&gt;=</span> DATE_SUB(<span class="fu">CURRENT_DATE</span>, <span class="dt">INTERVAL</span> <span class="dv">6</span> <span class="dt">MONTH</span>)</span></code></pre></div>
-<p><em>Rationale Metadata:</em> Aligned with NCQA HEDIS measures for
+<p><em>Rationale metadata:</em> Aligned with NCQA HEDIS measures for
 Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance
-in older adult populations. Uses ICD-10 E11% for Type 2 Diabetes
-specifically (not E10% for Type 1) per the synthetic organization’s
+in older adult populations. Uses ICD-10 E11% for type 2 diabetes
+specifically (not E10% for type 1) per the synthetic organization’s
 coding convention. Six-month window matches the HEDIS reporting
 period.</p>
 <hr />
 <h3 id="triple-2-heart-failure-readmission-cohort">Triple 2: Heart
 Failure Readmission Cohort</h3>
-<p><em>Natural Language Intent:</em> “Identify patients discharged with
-Heart Failure in 2024 who had a readmission within 30 days, excluding
+<p><em>Natural language intent:</em> “Identify patients discharged with
+heart failure in 2024 who had a readmission within 30 days, excluding
 those discharged to hospice. For each, calculate their max creatinine
 levels during the index stay.”</p>
 <p><em>Executable SQL:</em></p>
@@ -349,7 +349,7 @@ levels during the index stay.”</p>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> lab_events l <span class="kw">ON</span> r.index_admission_id <span class="op">=</span> l.admission_id</span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> l.itemid <span class="kw">IN</span> (<span class="dv">50912</span>, <span class="dv">50913</span>)</span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> r.patient_id, r.index_admission_id, r.days_to_readmit;</span></code></pre></div>
-<p><em>Rationale Metadata:</em> Supports CMS Hospital Readmissions
+<p><em>Rationale metadata:</em> Supports CMS Hospital Readmissions
 Reduction Program (HRRP) tracking. Hospice exclusion per CMS 2025 rules
 (discharge disposition != ‘HOSPICE’). Creatinine unit normalization
 (mmol/L to mg/dL via /88.4) required because this synthetic lab system
@@ -359,7 +359,7 @@ implementations must map to their own lab dictionary.</p>
 <hr />
 <h3 id="triple-3-quality-metric-aggregation">Triple 3: Quality Metric
 Aggregation</h3>
-<p><em>Natural Language Intent:</em> “How many patients were readmitted
+<p><em>Natural language intent:</em> “How many patients were readmitted
 within 30 days of discharge for heart failure?”</p>
 <p><em>Executable SQL:</em></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> r.patient_id) <span class="kw">as</span> readmission_count</span>
@@ -373,7 +373,7 @@ within 30 days of discharge for heart failure?”</p>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">AND</span> DATE_ADD(a1.discharge_date, <span class="dt">INTERVAL</span> <span class="dv">30</span> <span class="dt">DAY</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">AND</span> a1.admission_id <span class="op">!=</span> a2.admission_id</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>) r</span></code></pre></div>
-<p><em>Rationale Metadata:</em> Aligned with CMS HRRP requirements for
+<p><em>Rationale metadata:</em> Aligned with CMS HRRP requirements for
 organizational quality reporting. COUNT(DISTINCT patient_id) ensures
 each patient is counted once even if they have multiple readmissions.
 This is the aggregate metric version of Triple 2; the detailed cohort
@@ -383,8 +383,8 @@ the aggregate number.</p>
 <h2 id="how-triples-preserve-institutional-knowledge">How Triples
 Preserve Institutional Knowledge</h2>
 <p>In traditional analytics workflows, only the SQL (component 2) would
-be saved, if anything. The Natural Language Intent (component 1) would
-exist only in an email or chat message. The Rationale Metadata
+be saved, if anything. The natural language intent (component 1) would
+exist only in an email or chat message. The rationale metadata
 (component 3), the most critical knowledge for institutional continuity,
 would exist only in the departing analyst’s memory.</p>
 <p>When a new analyst inherits these triples, they receive not just

@@ -1,0 +1,100 @@
+REPLY TO PRODUCTION EDITOR, i-JMR ms#96541
+DRAFTED 2026-08-19 as a fuller alternative; SUPERSEDED the same day. The
+message actually sent was shorter, authored by the user, and is archived in
+20260819_Email_JMIR-Production-Editor.pdf (sent 2026-08-19 10:43 AM, to
+laura.mcreynolds@jmir.org, cc samuel.harrold@gmail.com):
+
+    Hi Laura,
+    I just submitted my approval of the typeset proof in Kriyadocs.
+    Looking forward to reviewing the visual abstract from Natalia's team so
+    we can lift the hold on the publication.
+    Thank you again for managing this across teams.
+    Best,
+    Samuel
+
+The sent version reasserts the hold as the gate (tied to VA review, not to any
+date) and deliberately omits two items this draft raised:
+
+1. The proof's new "published 29.Aug.2026" end-matter date. Left out as
+   low-stakes: Laura already stated on 2026-08-11 that this field is an
+   estimate and editable, and the sent message makes the date moot by tying
+   release of the hold to the VA review rather than to a date.
+2. Laura's 2026-08-11 commitment to follow up "by Thursday" (13 Aug) on
+   whether an unpromoted tweet fires automatically at publication under a
+   standard ToC image. Confirmed absent from the full thread as exported
+   2026-08-19 (20260819_Email_JMIR-Production-Editor.pdf, messages through
+   2026-08-12). This is a real open item, left unresolved by choice: the hold
+   is managed manually by Laura regardless of whether that automated-tweet
+   risk is ever confirmed, so it was judged not worth raising again in this
+   message. Revisit if it becomes operationally relevant (e.g., before any
+   future publish-first decision).
+
+The original longer draft follows, for reference only; it was not sent.
+
+====================================================================
+
+Dear Laura,
+
+I have reviewed the proof, made the corrections I could make myself, entered
+queries for the rest, and approved and submitted it in Kriyadocs today.
+
+Two things I wanted to raise directly with you, since they concern the hold
+agreement rather than the proof text itself.
+
+First, the proof's end matter now reads "published 29.Aug.2026," in place of
+the earlier 21 August estimate. I want to check what that date represents. If
+it reflects your team's expectation that the visual abstract will be ready by
+then, that is good news and I would just like to confirm it. If it is a system
+default rather than a deliberate update, I would rather it stayed unset or
+matched our agreed hold than imply a date I should not plan around.
+
+Second, on 11 August you mentioned you would look into whether a default,
+unpromoted tweet fires automatically at publication if we went ahead with a
+standard ToC image, and hoped to have an answer by that Thursday. I have not
+seen a follow-up on that, and wanted to check whether marketing was able to
+confirm it either way. I ask only because it is the detail the whole hold
+decision turned on, and I would like to have it in writing for our records
+even though we are proceeding with the hold regardless.
+
+Separately, and no urgency here: the visual abstract questionnaire went in on
+6 August, and the estimate you gave was about three weeks, so we are now about
+two-thirds of the way through that window. I do not need a status check, but
+if you hear anything from Natalia's team that affects timing, I would
+appreciate knowing.
+
+Thank you again for managing this across teams.
+
+Best regards,
+Samuel
+
+====================================================================
+
+CONTEXT FOR THE RECORD (not part of the message)
+
+Read: 20260819_Email_JMIR-Production-Editor.pdf, the full "Pre-Production
+Queries" thread, 9 messages, 2026-07-28 through 2026-08-12. This is the origin
+thread for the TOC-image policy, the Lifelong Author Ad banner URL
+(https://us.yuimedi.com/), the visual abstract service purchase and invoice
+(IJMR-VISABS-0095150.pdf, paid 2026-08-04), the AJE-graphic exclusion decision,
+and the production hold itself. It predates and is distinct from the
+2026-08-13 proof-round thread (20260813_Email_JMIR-Production-Editor.pdf
+onward), though both threads share the same participants and both were used to
+verify the hold's terms.
+
+Confirmed by direct read: Laura's message of 2026-08-11 4:55 PM says "I hope to
+get back to you by Thursday with more information about the sponsored tweet
+process." The thread as exported today ends with her 2026-08-12 9:25 AM
+message ("I will be in touch soon with the Typeset proofs for review"), with no
+message in between addressing the Thursday item. Thursday was 2026-08-13. This
+may have been answered on a different thread or by phone; the letter asks
+rather than asserts it was dropped.
+
+Visual abstract timeline: questionnaire submitted 2026-08-06; ~3-week vendor
+estimate; 13 of ~21 days elapsed as of 2026-08-19; draft still expected
+2026-08-27 by the original estimate.
+
+Proof approval: modified5 (2026-08-19) reviewed and confirmed clean per
+20260813_Proof-Review_IJMR-96541_corrections.md's second-pass section, plus the
+Funding-period and reference-38-apostrophe items closed. Approved and submitted
+in Kriyadocs 2026-08-19; per the system's own rule, author access is now closed
+until the next review request, if any.

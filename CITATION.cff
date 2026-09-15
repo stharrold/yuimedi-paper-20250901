@@ -30,12 +30,12 @@ keywords:
   - organizational resilience
   - HIMSS AMAM
 license: Apache-2.0
-version: 5.0.0
-date-released: 2026-08-10
+version: 6.0.0
+date-released: 2026-09-15
 identifiers:
   - type: doi
     value: 10.5281/zenodo.18264359
     description: Zenodo concept DOI (resolves to latest version)
   - type: doi
     value: 10.2196/96541
-    description: "Published article: Interact J Med Res 2026;15:e96541 (accepted 2026-07-13, publishing 2026-08-21)"
+    description: "Published article: Interact J Med Res 2026;15:e96541 (accepted 2026-07-13; published 2026-08-31; PMID 42684405)"

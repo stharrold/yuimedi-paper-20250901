@@ -107,8 +107,8 @@ class TestLoadKnownAbbreviations:
         result = load_known_abbreviations()
 
         assert len(result) > 0
-        assert "AI" in result
-        assert result["AI"] == "Artificial Intelligence"
+        assert "HIMSS" in result
+        assert result["HIMSS"] == "Healthcare Information Management Systems Society"
 
     def test_loads_from_custom_path(self, tmp_path: Path):
         """Should load abbreviations from custom JSON file."""
@@ -135,9 +135,20 @@ class TestLoadKnownAbbreviations:
         """Default JSON should have all expected healthcare abbreviations."""
         result = load_known_abbreviations()
 
-        expected = ["HIMSS", "EHR", "NL2SQL", "AMAM", "EMRAM", "SQL", "AI", "LLM"]
+        expected = ["HIMSS", "EHR", "NL2SQL", "AMAM", "EMRAM", "LLM"]
         for abbrev in expected:
             assert abbrev in result, f"Missing expected abbreviation: {abbrev}"
+
+    def test_default_json_omits_undefined_common_terms(self):
+        """AI, IT, and SQL are deliberately not required abbreviations.
+
+        The published i-JMR article (ms#96541) uses all 3 repeatedly without
+        defining them, so the validator must not demand definitions for them.
+        """
+        result = load_known_abbreviations()
+
+        for abbrev in ["AI", "IT", "SQL"]:
+            assert abbrev not in result, f"{abbrev} should not be a required abbreviation"
 
 
 class TestExtractAbbreviations:
@@ -149,8 +160,10 @@ class TestExtractAbbreviations:
 
         assert "EHR" in result
         assert "HIMSS" in result
-        assert "AI" in result
+        assert "LLM" in result
         assert "NL2SQL" in result
+        # Present in the content but not a known abbreviation, so not extracted
+        assert "AI" not in result
 
     def test_returns_full_term_and_count(self, temp_paper_file: Path):
         """Should return tuple of (full_term, count) for each abbreviation."""
@@ -203,26 +216,9 @@ class TestExtractAbbreviations:
         """Should be able to find all known abbreviations when present."""
         result = extract_abbreviations(all_abbrevs_file)
 
-        expected_abbrevs = [
-            "AACODS",
-            "ACO",
-            "AI",
-            "AMAM",
-            "API",
-            "CPT",
-            "DAMAF",
-            "DIKW",
-            "EHR",
-            "EMRAM",
-            "HDQM2",
-            "HIMSS",
-            "ICD",
-            "IT",
-            "LLM",
-            "NL2SQL",
-            "RAG",
-            "SQL",
-        ]
+        # Derived from the JSON so the test cannot drift from the config
+        expected_abbrevs = sorted(load_known_abbreviations())
+        assert expected_abbrevs, "abbreviations.json should not be empty"
 
         for abbrev in expected_abbrevs:
             assert abbrev in result, f"Known abbreviation {abbrev} not found"
@@ -307,13 +303,11 @@ class TestWithRealPaper:
         """Should extract abbreviations from real paper."""
         result = extract_abbreviations(paper_path)
 
-        # Paper should have multiple abbreviations
-        assert len(result) > 5
-
-        # Key abbreviations should be present
-        assert "HIMSS" in result
-        assert "EHR" in result
-        assert "NL2SQL" in result
+        # The published article's Abbreviations list is AMAM, EMR, HIMSS,
+        # HITL-KG, LLM, NL2SQL. EMR and HITL-KG are not in abbreviations.json,
+        # and EHR was inlined during the style sync, so these 4 are the overlap.
+        for abbrev in ["AMAM", "HIMSS", "LLM", "NL2SQL"]:
+            assert abbrev in result, f"Published abbreviation {abbrev} not extracted"
 
     def test_real_paper_abbreviations_have_definitions(self, paper_path: Path):
         """All extracted abbreviations should have full term definitions."""

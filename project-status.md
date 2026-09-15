@@ -1,8 +1,8 @@
 # Project Status
 
-**Last updated:** 2026-08-10
+**Last updated:** 2026-09-15
 **Tracking:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
-**Version:** 5.0.0
+**Version:** 5.0.0 (released 2026-08-10; Zenodo `v5.0.0`, DOI 10.5281/zenodo.21880033)
 
 ---
 
@@ -10,7 +10,7 @@
 
 | Paper | Title | Status | Target | Issues |
 |-------|-------|--------|--------|--------|
-| **Paper 1** | Health Care Analytics Challenges (Viewpoint) | i-JMR: ACCEPTED 2026-07-13; copyedited 2026-08-10; publishing 21.Aug.2026 | 2026 | [paper-1](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-1) |
+| **Paper 1** | Health Care Analytics Challenges (Viewpoint) | i-JMR: PUBLISHED 2026-08-31 (Interact J Med Res 2026;15:e96541); announced on LinkedIn 2026-09-15 | 2026 | [paper-1](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-1) |
 | **Paper 2** | Empirical Validation of HITL-KG (Synthea/GCP) | Not started | TBD | [paper-2](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-2) |
 | **Paper 3** | FHIR/OMOP Interoperability + Safety | Not started | TBD | [paper-3](https://github.com/stharrold/yuimedi-paper-20250901/labels/paper-3) |
 
@@ -18,9 +18,9 @@
 
 ## Paper 1: Viewpoint (Interactive Journal of Medical Research, i-JMR)
 
-**Status:** ACCEPTED 2026-07-13 (Decision A). Copyediting completed and approved 2026-08-10. **Publication scheduled 21.Aug.2026.**
+**Status:** **PUBLISHED 2026-08-31**, with the JMIR visual abstract in place as the ToC image. Accepted 2026-07-13 (Decision A); copyediting approved 2026-08-10.
 **Manuscript ID:** ms#96541 (transferred from JMIR Medical Informatics)
-**Citation:** Interact J Med Res 2026;15:e96541 | doi [10.2196/96541](https://doi.org/10.2196/96541) | https://www.i-jmr.org/2026/1/e96541
+**Citation:** Interact J Med Res 2026;15:e96541 | doi [10.2196/96541](https://doi.org/10.2196/96541) | https://www.i-jmr.org/2026/1/e96541 | PMID 42684405 (duplicate 42497119 merged 2026-09-09) | PMC13528883
 **Editor:** Matthew Balcarras | **Peer reviewers:** Moez Hamedani, Xiaoni Zhang
 **Tracking:** [#551 epic](https://github.com/stharrold/yuimedi-paper-20250901/issues/551) (closed), milestone "i-JMR R2" (closed)
 
@@ -46,9 +46,14 @@
 
 **Remaining (post-publication, non-blocking):**
 - [x] Propagate the published title to `paper.md`, `metadata.yaml`, `CITATION.cff`, `.zenodo.json`, `README.md` (done in v5.0.0; the title is final in the accepted proof)
-- [ ] Style sync the *body* of `paper.md` to the published version after 2026-08-21: numerals ("3 pillars", "6-step") and lowercase coined terms ("triple threat", "validated query triple"). The title already uses the numeral form, so the source is intentionally mixed until this runs (#561)
-- [ ] Repair 11 stale `file =` paths in `references.bib` (library reorganized its directory naming)
-- [ ] JMIR visual abstract: draft expected late Aug 2026, ONE author review round
+- [x] Style sync the *body* of `paper.md` to the published version: done 2026-08-19 against the `modified5` proof (commit e0f920a), verified against the live article 2026-09-01
+- [ ] Repair 11 stale `file =` paths in `references.bib` (library reorganized its directory naming) (#561)
+- [x] JMIR visual abstract: draft 1 2026-08-25, 2 corrections requested and verified in the final files; live as the ToC image at publication. Final files in both `ARCHIVED/20260810_IJMR-Copyediting/` and `abstract-visual-video/`
+- [x] Timing conflict raised 2026-08-10: resolved by the publication hold agreed 2026-08-11, so the article and sponsored tweet launched with the visual abstract in place
+- [x] All purchased add-ons delivered (#567, closed 2026-09-15): PubMed duplicate merged, sponsored tweet live 2026-09-01, TrendMD running to ~2026-12-02
+- [x] LinkedIn announcement posted 2026-09-15 (https://lnkd.in/p/ecbMFxk8; record `ARCHIVED/20260810_IJMR-Copyediting/20260915_LinkedIn-Post_Paper1-Publication.{md,pdf}`)
+- [ ] Follow-ups: TrendMD campaign report, retired PMID still displayed on the article page, final post text to Gnani Palanikumar (#568)
+- [x] AJE-commissioned graphic declined as a Multimedia Appendix (superseded title, does not name HITL-KG)
 
 **R2 revision status (all Decision-B items resolved and submitted):**
 - [x] Editor: length (5,430 -> 4,990 under JMIR's counting method; rubric to Appendix 2)
