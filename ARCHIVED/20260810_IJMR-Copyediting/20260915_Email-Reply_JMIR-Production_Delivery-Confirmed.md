@@ -81,3 +81,25 @@ gives Laura something to pass along.
 ### After this
 
 Nothing further is owed on this thread. File the TrendMD report here when it arrives.
+
+---
+
+## As sent: identical to the draft above
+
+**Sent 2026-09-15 11:09 CEST (05:09 EDT)** from the yuimedi address to Laura, cc the gmail
+address only; production@jmir.org, listed in this file's header, was not copied. Sent copy
+of record: `20260915_Email-Reply_JMIR-Production_Delivery-Confirmed.pdf` (19 messages).
+
+The message text went out verbatim, including "I've confirmed everything on my end". After
+drafting, the tweet was verified independently (public status page, card link to the
+article, card image is the corrected visual abstract), so that sentence is accurate for the
+2 items it names, PubMed and the tweet. TrendMD remains unverified from our side, but the
+same message asks for its campaign data, so nothing was claimed that the thread does not
+itself leave open.
+
+### Now waiting on
+
+- The TrendMD campaign report (via Laura, from marketing's rep).
+- The PMID on the article page changing from 42497119 to 42684405. Re-check the displayed
+  `[data-test="article-pmid"]` link when she replies; it is cosmetic, so no chase if it
+  never changes.

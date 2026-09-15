@@ -206,7 +206,15 @@ variants, all Active, all carrying the visual abstract as the card image:
 
 **Why 3 channels showed nothing:** the Tweetations tab still reports "no tweets available"
 on 2026-09-15, and promoted posts did not surface on the @jmirpub profile timeline either.
-Tweetations evidently does not capture JMIR's own promoted posts. The caveat stated above
+Tweetations evidently does not capture JMIR's own promoted posts.
+
+**Independently verified 2026-09-15** (Playwright, logged out): the status URL is publicly
+viewable, shows "7:55 PM · Sep 1, 2026" and 23.4K views, and its card ("Read the full
+article!", "From i-jmr.org") links to https://www.i-jmr.org/2026/1/e96541/. The card image
+(`pbs.twimg.com/media/HRJhxZeXEAEh70J`, 1561x877) is the corrected visual abstract
+center-cropped to 16:9, with "This viewpoint calls for the ... (HITL-KG) framework" legible.
+**Not independently verifiable:** the 5 promoted variants, their Active status, and the 152
+link clicks, which rest on marketing's dashboard image alone. The caveat stated above
 ("a *promoted* tweet may not be captured") was the true explanation, and the later claim
 that a zero there "does mean something" was wrong.
 
