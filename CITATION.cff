@@ -38,4 +38,4 @@ identifiers:
     description: Zenodo concept DOI (resolves to latest version)
   - type: doi
     value: 10.2196/96541
-    description: "Published article: Interact J Med Res 2026;15:e96541 (accepted 2026-07-13, publishing 2026-08-21)"
+    description: "Published article: Interact J Med Res 2026;15:e96541 (accepted 2026-07-13; publication held at final production stage until the in-house visual abstract is ready, agreed 2026-08-11)"

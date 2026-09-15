@@ -19,6 +19,14 @@ package follows that precedent.
 |:---|:---|
 | `20260810_Email_IJMR-96541_Copyediting.pdf` | Request to review the copyedited manuscript, 2026-08-10 05:47, from donotreply@exeterpremedia.com (Editage for JMIR). Reply-to copyedit@editage.com, copyediting@jmir.org. |
 | `96541.pdf` | **The copyedited proof.** 14 pages, typeset in i-JMR house style by Antenna House. This is the document the copyeditor's queries refer to. Scanned clean of active content and injection phrases 2026-08-10. |
+| `96541_modified.pdf` | The proof after the author's Kriyadocs edits, reviewed before Approve and Submit. |
+| `20260810_Email-Reply_IJMR-96541_Copyediting.txt` | Reply to the copyeditor confirming approval and how each query was handled. |
+| `20260728_Email_JMIR-Production-Editor.pdf` | Production thread with Laura McReynolds (Production Editor): pre-production queries, the AJE-as-ToC policy, the Lifelong Author Ad URL, and the purchase of the in-house visual abstract service. |
+| `20260805_Email_IJMR_Visual_Abstract*.pdf` | Natalia March's visual abstract questionnaire request, the service overview, and the form. States the 3-week turnaround, the single author review round, and the standard-ToC-then-swap fallback. |
+| `20260806_visual-abstract-questionnaire-plaintext.txt` | The questionnaire answers as submitted 2026-08-06. |
+| `20260810_Email_JMIR-Production-Editor.pdf` | The same production thread after the author's 2026-08-10 reply raising the publication-vs-visual-abstract timing conflict (6 messages). |
+| `20260810_Email-Reply_JMIR-Production_Visual-Abstract-Timing.txt` | That reply as sent, with the timing arithmetic and the reasoning for declining the AJE graphic as a Multimedia Appendix. |
+| `20260810_JMIR_Data-Sharing-Policy.pdf` | The KB page whose template 4 the data availability statement now uses. |
 
 The proof carries the assigned publication details:
 

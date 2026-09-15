@@ -1,0 +1,94 @@
+REPLY TO JMIR PRODUCTION EDITOR, i-JMR ms#96541
+Sent 2026-08-10 20:45 EDT, in the "Pre-Production Queries" thread (6th message).
+
+To:      laura.mcreynolds@jmir.org (Laura McReynolds, Production Editor)
+Cc:      production@jmir.org, samuel.harrold@gmail.com
+Subject: Re: JMIR Interactive Journal of Medical Research Manuscript #96541 - Pre-Production Queries
+
+Thread of record: 20260810_Email_JMIR-Production-Editor.pdf (4 pp, 6 messages)
+
+====================================================================
+
+Hi Laura,
+
+Copyediting is complete. I approved the copyedited manuscript on 10 August, and
+the proof gives a publication date of 21 August 2026.
+
+That creates a timing problem I would appreciate your help coordinating, since
+it spans production and the author experience team.
+
+I submitted the visual abstract questionnaire on 6 August, the same day I
+received it. Natalia's note said the process typically takes three weeks from
+receipt of the completed questionnaire, which puts the visual abstract around 27
+August, roughly six days after the article appears, and that is before the
+single round of author review.
+
+The reason this matters beyond the ToC image: as I mentioned on 2 August, I
+purchased the in-house visual abstract service specifically so it could serve as
+both the ToC image and the graphic in the Sponsored Tweet Campaign. If the
+sponsored tweet goes out at publication on 21 August, it will carry the standard
+ToC image instead, which undercuts the purpose of both purchases.
+
+Could you please help with either of the following:
+
+1. Expedite the visual abstract so the draft reaches me by about 18 August. I
+   will review and approve it the same day I receive it, including over a
+   weekend, so that my side is never the constraint.
+
+2. Failing that, schedule the Sponsored Tweet Campaign to run once the visual
+   abstract is live, rather than at publication. I would much rather the paper
+   be promoted once with the intended graphic than promoted on 21 August with a
+   placeholder.
+
+I am otherwise content to publish with the standard ToC image and have it
+swapped afterwards, as Natalia described. Two clarifications on that: does the
+swap update the article landing page, the journal table of contents, and the
+article PDF, or does the PDF retain the image published on 21 August?
+
+On your earlier question about including the previously commissioned graphic as
+a Multimedia Appendix: I would prefer to leave it out. It carries the
+pre-copyediting title ("Healthcare ... Three-Pillar") and does not name the
+HITL-KG framework, so it would be inconsistent with the published article. The
+in-house visual abstract will cover this need.
+
+Thank you,
+Samuel
+
+====================================================================
+
+CONTEXT FOR THE RECORD (not part of the message)
+
+The timing arithmetic:
+  2026-08-06  questionnaire submitted (same day received)
+  + 3 weeks   Natalia's stated typical turnaround
+  = 2026-08-27  visual abstract ready, BEFORE the one author review round
+  vs 2026-08-21  scheduled publication
+
+Why the sponsored tweet is the real exposure, not the ToC image: the author's
+2026-08-02 message in this thread states the rationale for buying the in-house
+service was that it "serve as both the TOC image and the tweeted graphic." The
+ToC image is swappable after publication at no cost; a Sponsored Tweet Campaign
+is a one-shot spend that cannot be re-run, so a tweet firing on 21 August would
+carry a stock placeholder.
+
+Why the AJE graphic was declined as a Multimedia Appendix (Laura's item 1, open
+since 2026-07-28 and never answered in the 2026-08-02 reply): the delivered
+graphic's banner reads "Healthcare Analytics Challenges: A Three-Pillar
+Framework ...", i.e. both defects the copyediting round corrected, repeats
+"healthcare" three more times in the body, never names HITL-KG (it labels the
+framework only "The Three-Pillar Framework"), and its cycle steps appear to read
+"(6,0) Persistence" where the others are single numerals. Publishing it would
+have reintroduced the superseded terminology into the article of record.
+Rights were not the obstacle: AJE's Terms of Service make no copyright claim
+over Manuscript Services, and the R2 package records copyright as Harrold /
+Yuimedi with invoice SL73WR5YH as proof.
+
+Natalia March was NOT copied on this message. Her thread is on the author's
+gmail address; this thread is on the yuimedi address. Laura offered on
+2026-08-06 to "connect with other members of the team," so the coordination is
+expected to route through her.
+
+Open items awaiting JMIR:
+  - Whether the visual abstract can reach the author by ~2026-08-18
+  - Whether the Sponsored Tweet Campaign can be deferred until the VA is live
+  - What the post-publication ToC swap updates (landing page / TOC / PDF)

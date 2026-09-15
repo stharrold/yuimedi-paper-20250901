@@ -2,16 +2,16 @@
 
 ## Validated Query Triple Examples for Health Care Analytics
 
-This appendix illustrates the Validated Query Triple artifact proposed by the HITL-KG framework (see the main paper's section "The Solution: Externalization via Socio-Technical Artifacts"). Each triple comprises three components: (1) *Natural Language Intent*, the clinical business question; (2) *Executable SQL*, the technical implementation; and (3) *Rationale Metadata*, the contextual "why" behind the logic. Together, these components capture not just *what* query was run but *why* it was constructed that way, preserving institutional knowledge that would otherwise be lost during staff turnover.
+This appendix illustrates the validated query triple artifact proposed by the HITL-KG framework (see the main paper's section "The Solution: Externalization via Sociotechnical Artifacts"). Each triple comprises 3 components: (1) *natural language intent*, the clinical business question; (2) *executable SQL*, the technical implementation; and (3) *rationale metadata*, the contextual "why" behind the logic. Together, these components capture not just *what* query was run but *why* it was constructed that way, preserving institutional knowledge that would otherwise be lost during staff turnover.
 
 ## The Externalization Process
 
-Each Validated Query Triple is produced through a five-step externalization cycle that captures tacit knowledge as a byproduct of routine analytics. These steps correspond to steps 1-5 of the six-step Validated Query Cycle shown in the main paper's Figure 2; the sixth step, Persistence, is the cumulative outcome of repeated cycles:
+Each validated query triple is produced through a 5-step externalization cycle that captures tacit knowledge as a byproduct of routine analytics. These steps correspond to steps 1-5 of the 6-step validated query cycle shown in the main paper's Figure 2; the sixth step, persistence, is the cumulative outcome of repeated cycles:
 
-1. *Query Generation*: A user asks a question in natural language; the AI proposes candidate SQL based on schema knowledge.
-2. *Semantic Translation*: The AI translates the SQL back into a natural-language explanation of what it will do.
-3. *Expert Validation*: The domain expert confirms or corrects this interpretation. This is the critical moment of Externalization, where the Human-in-the-Loop step transforms validation into iterative knowledge capture.
-4. *Artifact Storage*: The validated triple is hashed and stored in organizational memory.
+1. *Query generation*: A user asks a question in natural language; the AI proposes candidate SQL based on schema knowledge.
+2. *Semantic translation*: The AI translates the SQL back into a natural-language explanation of what it will do.
+3. *Expert validation*: The domain expert confirms or corrects this interpretation. This is the critical moment of externalization, where the human-in-the-loop step transforms validation into iterative knowledge capture.
+4. *Artifact storage*: The validated triple is hashed and stored in organizational memory.
 5. *Retrieval*: Future queries semantically match against this repository first, retrieving trusted human knowledge before attempting probabilistic generation.
 
 The worked examples below show the artifacts this process produces on a synthetic database.
@@ -20,7 +20,7 @@ The worked examples below show the artifacts this process produces on a syntheti
 
 ### Triple 1: Diabetes Care Monitoring
 
-*Natural Language Intent:* "Show me all diabetic patients over 65 who had an HbA1c test in the last 6 months"
+*Natural language intent:* "Show me all diabetic patients over 65 who had an HbA1c test in the last 6 months"
 
 *Executable SQL:*
 ```sql
@@ -34,13 +34,13 @@ WHERE d.icd10_code LIKE 'E11%'  -- Type 2 Diabetes
   AND l.test_date >= DATE_SUB(CURRENT_DATE, INTERVAL 6 MONTH)
 ```
 
-*Rationale Metadata:* Aligned with NCQA HEDIS measures for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult populations. Uses ICD-10 E11% for Type 2 Diabetes specifically (not E10% for Type 1) per the synthetic organization's coding convention. Six-month window matches the HEDIS reporting period.
+*Rationale metadata:* Aligned with NCQA HEDIS measures for Comprehensive Diabetes Care (CDC), monitoring HbA1c testing compliance in older adult populations. Uses ICD-10 E11% for type 2 diabetes specifically (not E10% for type 1) per the synthetic organization's coding convention. Six-month window matches the HEDIS reporting period.
 
 ---
 
 ### Triple 2: Heart Failure Readmission Cohort
 
-*Natural Language Intent:* "Identify patients discharged with Heart Failure in 2024 who had a readmission within 30 days, excluding those discharged to hospice. For each, calculate their max creatinine levels during the index stay."
+*Natural language intent:* "Identify patients discharged with heart failure in 2024 who had a readmission within 30 days, excluding those discharged to hospice. For each, calculate their max creatinine levels during the index stay."
 
 *Executable SQL:*
 ```sql
@@ -82,13 +82,13 @@ WHERE l.itemid IN (50912, 50913)
 GROUP BY r.patient_id, r.index_admission_id, r.days_to_readmit;
 ```
 
-*Rationale Metadata:* Supports CMS Hospital Readmissions Reduction Program (HRRP) tracking. Hospice exclusion per CMS 2025 rules (discharge disposition != 'HOSPICE'). Creatinine unit normalization (mmol/L to mg/dL via /88.4) required because this synthetic lab system stores results in mixed units depending on the originating facility. Lab item IDs 50912 and 50913 are MIMIC-III creatinine codes; local implementations must map to their own lab dictionary.
+*Rationale metadata:* Supports CMS Hospital Readmissions Reduction Program (HRRP) tracking. Hospice exclusion per CMS 2025 rules (discharge disposition != 'HOSPICE'). Creatinine unit normalization (mmol/L to mg/dL via /88.4) required because this synthetic lab system stores results in mixed units depending on the originating facility. Lab item IDs 50912 and 50913 are MIMIC-III creatinine codes; local implementations must map to their own lab dictionary.
 
 ---
 
 ### Triple 3: Quality Metric Aggregation
 
-*Natural Language Intent:* "How many patients were readmitted within 30 days of discharge for heart failure?"
+*Natural language intent:* "How many patients were readmitted within 30 days of discharge for heart failure?"
 
 *Executable SQL:*
 ```sql
@@ -105,13 +105,13 @@ FROM (
 ) r
 ```
 
-*Rationale Metadata:* Aligned with CMS HRRP requirements for organizational quality reporting. COUNT(DISTINCT patient_id) ensures each patient is counted once even if they have multiple readmissions. This is the aggregate metric version of Triple 2; the detailed cohort query should be run first to validate individual cases before reporting the aggregate number.
+*Rationale metadata:* Aligned with CMS HRRP requirements for organizational quality reporting. COUNT(DISTINCT patient_id) ensures each patient is counted once even if they have multiple readmissions. This is the aggregate metric version of Triple 2; the detailed cohort query should be run first to validate individual cases before reporting the aggregate number.
 
 ---
 
 ## How Triples Preserve Institutional Knowledge
 
-In traditional analytics workflows, only the SQL (component 2) would be saved, if anything. The Natural Language Intent (component 1) would exist only in an email or chat message. The Rationale Metadata (component 3), the most critical knowledge for institutional continuity, would exist only in the departing analyst's memory.
+In traditional analytics workflows, only the SQL (component 2) would be saved, if anything. The natural language intent (component 1) would exist only in an email or chat message. The rationale metadata (component 3), the most critical knowledge for institutional continuity, would exist only in the departing analyst's memory.
 
 When a new analyst inherits these triples, they receive not just executable code but the clinical reasoning, regulatory context, and institutional conventions that informed the query's construction. This is the mechanism by which HITL-KG converts ephemeral analytical work into durable organizational memory.
 
