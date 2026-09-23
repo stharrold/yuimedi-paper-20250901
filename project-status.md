@@ -1,6 +1,6 @@
 # Project Status
 
-**Last updated:** 2026-09-15
+**Last updated:** 2026-09-23
 **Tracking:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
 **Version:** 6.0.0 (released 2026-09-15; Zenodo `v6.0.0`, DOI 10.5281/zenodo.22769213; concept DOI 10.5281/zenodo.18264359)
 
@@ -53,7 +53,8 @@
 - [x] Timing conflict raised 2026-08-10: resolved by the publication hold agreed 2026-08-11, so the article and sponsored tweet launched with the visual abstract in place
 - [x] All purchased add-ons delivered (#567, closed 2026-09-15): PubMed duplicate merged, sponsored tweet live 2026-09-01, TrendMD running to ~2026-12-02
 - [x] LinkedIn announcement posted 2026-09-15 (https://lnkd.in/p/ecbMFxk8; record `ARCHIVED/20260810_IJMR-Copyediting/20260915_LinkedIn-Post_Paper1-Publication.{md,pdf}`)
-- [ ] Follow-ups: TrendMD campaign report, retired PMID still displayed on the article page, final post text to Gnani Palanikumar (#568)
+- [x] Article-page PMID fixed (42684405, verified 2026-09-23); final post text sent to Gnani Palanikumar 2026-09-15
+- [ ] TrendMD (#568): campaign `6nFy9EFs` observed running 2026-09-23 via the recommendation API, but the listing carries the pre-copyedit title, another article's first author (Adebamowo) as byline, and no journal name; the Sep 10 report was labeled with that other article. Reply to Laura drafted: `ARCHIVED/20260810_IJMR-Copyediting/20260923_Email-Reply_JMIR-Production_TrendMD-Campaign.md`
 - [x] AJE-commissioned graphic declined as a Multimedia Appendix (superseded title, does not name HITL-KG)
 
 **R2 revision status (all Decision-B items resolved and submitted):**

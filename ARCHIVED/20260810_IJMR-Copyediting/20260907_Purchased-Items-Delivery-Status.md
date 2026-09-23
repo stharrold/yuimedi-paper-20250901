@@ -233,3 +233,72 @@ correction said. The only open thread is the campaign report marketing requested
    production to check for a duplicate entry rather than waiting.
 3. **After a PMID merge, the publisher's page keeps the old ID.** Check the article page
    and exports for the retired PMID.
+
+
+---
+
+## UPDATE, 2026-09-23: TrendMD campaign observed directly, and misconfigured
+
+Source: Laura's 2026-09-15 3:53 PM reply (`20260916_Email_JMIR-Production_Metrics.pdf`),
+plus direct sampling of the TrendMD recommendation API.
+
+### Laura's reply
+
+- **PMID fixed.** Verified 2026-09-23 on the article page: it shows PMID 42684405, links
+  `ncbi.nlm.nih.gov/pubmed/42684405`, and the retired 42497119 appears nowhere in the HTML.
+- **TrendMD data (from marketing, 2026-09-10)** is a table headed **"The Continuity Trap in
+  Data Science Health Research"**: 56,661 inbound sponsored impressions, 25 clicks (0.04% CTR),
+  $1.00 CPC, $25.00 spent. That title is a different Viewpoint: Adebamowo C et al.,
+  J Med Internet Res 2026;e98699, doi 10.2196/98699 (PMID 42616578), published 2026-08-19.
+  No author in common with ours.
+
+### Direct observation: the campaign is running
+
+TrendMD's widget fetches its list with
+`POST https://rev.trendmd.com/ad-slots/<slot-id>/recommendations`, body
+`{"npis":[],"doctorSpecialties":[],"sourceMetadata":{"title":...,"doi":...},"startTime":<ms>}`
+and headers `x-revops-version`, `x-revops-source-type: 2`, `x-revops-session-id` (any UUID),
+`x-revops-source-url`. It returns 10 items; `linkingType: 0` is the host publisher's own
+(organic) content, `linkingType: 1` is another publisher's paid campaign, each with a
+`campaignId`. Replaying that request from a BMJ Innovations page (slot
+`d4a1ec99-9e42-40c8-b978-0900a2367aae`) with varied topical host titles, 89 calls, no clicks:
+
+| Host titles | Our item served |
+|---|---|
+| Digital health, analytics maturity, informatics (2 runs) | 11/48, 4/21 |
+| Research ethics, secondary data use | 14/20 |
+
+**Our article is promoted as campaign `6nFy9EFs`.** Delivery is now positively observed,
+which author-side widget checks could never establish.
+
+### The creative is wrong
+
+The served item (id `3406cbc2-fcac-4d2f-9020-a724e9c8d115`, publicationId
+`62573720-f78a-42f8-8292-b255f2d682ca`):
+
+- `title`: "Healthcare Analytics Challenges: A Three-Pillar Framework..." (the **pre-copyedit**
+  title, the same stale acceptance-time metadata PubMed carried)
+- `subtitle` (byline): **"Clement Adebamowo"**, the first author of the Continuity Trap paper
+- `publicationName` / `publicationAbbreviatedName`: the article title, not the journal;
+  `authors` empty; `publicationDate` null
+- Served far more often beside research-ethics hosts than beside our own topic, which
+  suggests targeting keyed to the Continuity Trap paper (small sample; suggestive only)
+
+Reading: one campaign mixing the two articles. The Sep 10 report may be this campaign under
+the other article's label, or a different campaign entirely; only marketing can say.
+
+**Not verified:** the click destination. The `clickUrl` is a session-bound
+`rev.trendmd.com/open/...` token and following it registers a real $1 click against the
+campaign, so it was deliberately not followed. Ask marketing instead.
+
+**Serving stopped later the same morning.** At 2026-09-23 13:10 UTC the same API replay returned our item 0 of 10 times (it had been 14 of 20 about 20 minutes earlier with the same host titles), and 21 reloads of the real BMJ Innovations page (https://innovations.bmj.com/content/8/2/129) never served it; that page renders exactly the items the API returns, so the item was not served rather than hidden. Cause unknown: daily budget pacing, a frequency cap on this browser after sampling, or a campaign change. The hit responses above were not saved, and they came from replayed requests with synthetic host titles, so they are not reader-facing evidence.
+
+**Evidence standard before emailing marketing:** a screenshot of a real publisher page rendering the listing, with the page URL, UTC time, and the matching recommendations response. Captured by `20260923_trendmd_evidence_capture.py` (this folder) into `20260923_TrendMD-Evidence/`. Hold the reply to Laura until it exists.
+
+**Capture run started 2026-09-23 13:37 UTC** (detached, `caffeinate -i`, PID in `20260923_TrendMD-Evidence/run.pid`): up to 48 h, stops after 3 captures across 2 or more host pages. Hosts are 8 real article pages verified to carry the widget (4 BMJ Innovations, 3 BMJ Open, 1 JAMIA Open); every load is logged to `attempts.jsonl`, so the log also records how often the listing is served. The capture path was tested on another publisher's item before launch (all 8 artifacts written; the test output was discarded).
+
+### Next
+
+Reply drafted: `20260923_Email-Reply_JMIR-Production_TrendMD-Campaign.md`. Asks marketing
+to confirm the article campaign `6nFy9EFs` links to, correct the title, byline, and journal
+fields, and confirm whether the Sep 10 report is this campaign.
