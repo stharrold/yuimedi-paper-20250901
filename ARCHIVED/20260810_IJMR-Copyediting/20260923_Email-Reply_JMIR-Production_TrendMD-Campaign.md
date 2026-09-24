@@ -79,3 +79,24 @@ Samuel
   Accurate, but it would read as building a case. Recorded in the status file.
 - **Not claimed:** where either listing's click leads. Following a tracking link bills a
   $1 click, so it was not tested; the first ask covers it.
+
+---
+
+## As sent: identical text, attachments corrected in a follow-up
+
+**Sent 2026-09-24 10:25 AM EDT** from the yuimedi address to Laura, cc gmail. Sent copy of
+record: `20260924_Email-Reply_JMIR-Production_TrendMD-Campaign.pdf` (22 messages; this PDF
+renders times in EDT, unlike the earlier CEST captures).
+
+The message text went out verbatim. **Attachments:** the 10:25 message carried
+`20260924_TrendMD-Listing_BMJ-Open_item.png` twice and no widget image; a 10:28 AM follow-up,
+"Full widget screenshot now attached", added `20260924_TrendMD-Listing_BMJ-Open_widget.png`.
+Laura therefore has both images: the close-up of our listing and the full widget showing
+both swapped bylines.
+
+### Now waiting on
+
+Laura, and through her marketing, to: confirm where campaign `6nFy9EFs` links; correct both
+listings' bylines, our title, and the journal fields; send `6nFy9EFs`'s own performance
+data. Re-check the listing with the capture script after marketing replies (run it across a
+UTC midnight); a corrected listing should show our published title and name.
