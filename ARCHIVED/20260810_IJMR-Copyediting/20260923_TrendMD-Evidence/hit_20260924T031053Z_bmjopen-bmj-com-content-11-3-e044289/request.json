@@ -1,0 +1,30 @@
+{
+  "url": "https://rev.trendmd.com/ad-slots/c218d225-ea19-495e-9a5e-e692fc2deb19/recommendations",
+  "method": "POST",
+  "headers": {
+    ":authority": "rev.trendmd.com",
+    ":method": "POST",
+    ":path": "/ad-slots/c218d225-ea19-495e-9a5e-e692fc2deb19/recommendations",
+    ":scheme": "https",
+    "accept": "*/*",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "en-US",
+    "content-length": "303",
+    "content-type": "application/json",
+    "origin": "https://bmjopen.bmj.com",
+    "priority": "u=1, i",
+    "referer": "https://bmjopen.bmj.com/",
+    "sec-ch-ua": "\"Google Chrome\";v=\"153\", \"Not_A Brand\";v=\"8\", \"Chromium\";v=\"153\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site",
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "x-revops-session-id": "2f2f4c78-b295-4eed-bf07-a9a5530caf68",
+    "x-revops-source-type": "2",
+    "x-revops-source-url": "https://bmjopen.bmj.com/content/11/3/e044289",
+    "x-revops-version": "0.634.0"
+  },
+  "post_data": "{\"npis\":[],\"doctorSpecialties\":[],\"sourceMetadata\":{\"title\":\"Public and patient involvement in health data governance (DATAGov): protocol of a people-centred, mixed-methods study on data use and sharing for rare diseases care and research\",\"doi\":\"10.1136/bmjopen-2020-044289\"},\"startTime\":1790219456000}"
+}

@@ -43,7 +43,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   journal = {Journal of the American Medical Informatics Association},
   doi = {10.1093/jamia/ocy178},
   url = {https://academic.oup.com/jamia/article-abstract/26/4/294/5308980},
-  file = {../library/docs/2019_Yuan_JAMIA_Criteria2Query.pdf},
+  file = {../library/docs/2019_Yuan_JAMIA_Criteria2Query/2019_Yuan_JAMIA_Criteria2Query.pdf},
   note = {Original citation: [A35]},
 }
 ```
@@ -71,7 +71,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   number = {2},
   pages = {77--85},
   url = {https://onlinelibrary.wiley.com/doi/abs/10.1057/palgrave.emr.1500057},
-  file = {../library/docs/2006_Rao_European-Management-Review_Organizational-Learning-Forgetting.pdf},
+  file = {../library/docs/2006_Rao_European-Management-Review_Organizational-Learning-Forgetting/2006_Rao_European-Management-Review_Organizational-Learning-Forgetting.pdf},
   note = {Original citation: [New]}
 }
 ```
@@ -97,7 +97,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   journal = {Journal of the American Medical Informatics Association},
   doi = {10.1197/jamia.M2470},
   url = {https://academic.oup.com/jamia/article/14/6/687/750453},
-  file = {../library/docs/2007_Richesson_JAMIA_Data-Standards-Clinical-Research.pdf},
+  file = {../library/docs/2007_Richesson_JAMIA_Data-Standards-Clinical-Research/2007_Richesson_JAMIA_Data-Standards-Clinical-Research.pdf},
   note = {Original citation: [A26]},
 }
 ```
@@ -123,7 +123,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   journal = {Methods of Information in Medicine},
   doi = {10.3414/ME5119},
   url = {https://pubmed.ncbi.nlm.nih.gov/20054502/},
-  file = {../library/docs/2010_Mantas_Methods-Informatics-Medicine_IMIA-Health-Informatics-Education.pdf},
+  file = {../library/docs/2010_Mantas_Methods-Informatics-Medicine_IMIA-Health-Informatics-Education/2010_Mantas_Methods-Informatics-Medicine_IMIA-Health-Informatics-Education.pdf},
   note = {Original citation: [A12]},
 }
 ```
@@ -149,7 +149,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   journal = {Human Resources for Health},
   doi = {10.1186/1478-4491-11-35},
   url = {https://human-resources-health.biomedcentral.com/articles/10.1186/1478-4491-11-35},
-  file = {../library/docs/2013_Ledikwe_HR-For-Health_Health-Information-Workforce.pdf},
+  file = {../library/docs/2013_Ledikwe_HR-For-Health_Health-Information-Workforce/2013_Ledikwe_HR-For-Health_Health-Information-Workforce.pdf},
   note = {Original citation: [A11]},
 }
 ```
@@ -173,7 +173,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   title = {{Understanding analytical capability in health care: Do we have more data than insight? The Health Foundation}},
   year = {2016},
   url = {https://www.health.org.uk/publications/understanding-analytical-capability-in-health-care},
-  file = {../library/docs/2016_Bardsley_Health-Foundation_Understanding-Analytical-Capability.pdf},
+  file = {../library/docs/2016_Bardsley_Health-Foundation_Understanding-Analytical-Capability/2016_Bardsley_Health-Foundation_Understanding-Analytical-Capability.pdf},
   note = {Original citation: [A15]},
 }
 ```
@@ -201,7 +201,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   number = {4},
   pages = {737--770},
   url = {https://www.nyulawreview.org/issues/volume-94-number-4/data-standardization/},
-  file = {../library/docs/2019_Gal_NYULawRev_Data-Standardization.pdf},
+  file = {../library/docs/2019_Gal_NYULawRev_Data-Standardization/2019_Gal_NYULawRev_Data-Standardization.pdf},
   note = {Original citation: [A109]},
 }
 ```
@@ -227,7 +227,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   booktitle = {Proceedings of The Web Conference 2020},
   doi = {10.1145/3366423.3380120},
   url = {https://arxiv.org/abs/1908.01839},
-  file = {../library/docs/2020_Wang_WebConf_Text-to-SQL-EMR.pdf},
+  file = {../library/docs/2020_Wang_WebConf_Text-to-SQL-EMR/2020_Wang_WebConf_Text-to-SQL-EMR.pdf},
   note = {Original citation: [A5]},
 }
 ```
@@ -251,7 +251,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   title = {{The healthcare analytics adoption model: A roadmap to analytic maturity}},
   year = {2020},
   url = {https://www.healthcatalyst.com/learn/insights/healthcare-analytics-adoption-model-roadmap-analytic-maturity},
-  file = {../library/docs/2020_Health-Catalyst_Healthcare-Analytics-Adoption.pdf},
+  file = {../library/docs/2020_Health-Catalyst_Whitepaper_Healthcare-Analytics-Adoption/2020_Health-Catalyst_Whitepaper_Healthcare-Analytics-Adoption.pdf},
   note = {Original citation: [I3]},
 }
 ```
@@ -277,7 +277,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   journal = {Journal of Medical Systems},
   doi = {10.1007/s10916-020-01665-9},
   url = {https://link.springer.com/article/10.1007/s10916-020-01665-9},
-  file = {../library/docs/2020_Pesqueira_J-Med-Syst_Big-Data-Skills-Healthcare.pdf},
+  file = {../library/docs/2020_Pesqueira_J-Med-Syst_Big-Data-Skills-Healthcare/2020_Pesqueira_J-Med-Syst_Big-Data-Skills-Healthcare.pdf},
   note = {Original citation: [A16]},
 }
 ```
@@ -303,7 +303,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   journal = {{JMIR} Medical Informatics},
   doi = {10.2196/32875},
   url = {https://medinform.jmir.org/2022/2/e32875},
-  file = {../library/docs/2022_Sezgin_JMIR-Med-Inform_Operationalizing-AI-in-US-Healthcare.pdf},
+  file = {../library/docs/2022_Sezgin_JMIR-Med-Inform_Operationalizing-AI-in-US-Healthcare/2022_Sezgin_JMIR-Med-Inform_Operationalizing-AI-in-US-Healthcare.pdf},
   note = {Original citation: [A19]},
 }
 ```
@@ -329,7 +329,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   journal = {{IEEE} Access},
   doi = {10.1109/ACCESS.2023.3327905},
   url = {https://ieeexplore.ieee.org/document/10297311},
-  file = {../library/docs/2023_Jiao_IEEE-Access_Economic-Value-AI-Healthcare.pdf},
+  file = {../library/docs/2023_Jiao_IEEE-Access_Economic-Value-AI-Healthcare/2023_Jiao_IEEE-Access_Economic-Value-AI-Healthcare.pdf},
   note = {Original citation: [A20]},
 }
 ```
@@ -355,7 +355,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   month = {10},
   institution = {WittKieffer},
   url = {https://api.wittkieffer.com/wp-content/uploads/2012/10/cio-insights-the-state-of-healthcare-it-leadership-wittkieffer-october-2024.pdf},
-  file = {../library/docs/2024_WittKieffer_CIO-Insights-Healthcare-IT-Leadership.pdf},
+  file = {../library/docs/2024_WittKieffer_Report_CIO-Insights-Healthcare-IT-Leadership/2024_WittKieffer_Report_CIO-Insights-Healthcare-IT-Leadership.pdf},
   note = {Original citation: [I2]},
 }
 ```
@@ -379,7 +379,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   title = {{The total economic impact of Microsoft Power Apps. Forrester Consulting}},
   year = {2024},
   url = {https://tei.forrester.com/go/microsoft/powerappstei/?lang=en-us},
-  file = {../library/docs/2024_Forrester_ROI-Microsoft-Power-Apps.pdf},
+  file = {../library/docs/2024_Forrester_Report_ROI-Microsoft-Power-Apps/2024_Forrester_Report_ROI-Microsoft-Power-Apps.pdf},
   note = {Original citation: [I5]},
 }
 ```
@@ -404,7 +404,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   year = {2024},
   institution = {NSI Nursing Solutions},
   url = {https://www.nsinursingsolutions.com/documents/library/nsi_national_health_care_retention_report.pdf},
-  file = {../library/docs/2024_NSI_National-Health-Care-Retention-Report.pdf},
+  file = {../library/docs/2024_NSI_Report_National-Health-Care-Retention/2024_NSI_Report_National-Health-Care-Retention.pdf},
   note = {Retention baseline data}
 }
 ```
@@ -433,7 +433,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   pages = {927--933},
   doi = {10.32996/jcsts.2025.7.3.103},
   url = {https://al-kindipublisher.com/index.php/jcsts/article/view/9694},
-  file = {../library/docs/2025_Dadi_JCSTS_Natural-Language-Interfaces-Database-Management.pdf},
+  file = {../library/docs/2025_Dadi_JCSTS_Natural-Language-Interfaces-Database-Management/2025_Dadi_JCSTS_Natural-Language-Interfaces-Database-Management.pdf},
   note = {Original citation: [A36]},
 }
 ```
@@ -458,7 +458,7 @@ Request the git-crypt key from the repository owner. Without it, PDF files appea
   journal = {Journal of Public Administration Research and Theory},
   year = {2025},
   url = {https://academic.oup.com/jpart/advance-article-abstract/doi/10.1093/jopart/muaf019/8162522},
-  file = {../library/docs/2025_Hong_JPART_Employee-Turnover-Organizational-Memory.pdf},
+  file = {../library/docs/2025_Hong_JPART_Employee-Turnover-Organizational-Memory/2025_Hong_JPART_Employee-Turnover-Organizational-Memory.pdf},
   note = {Original citation: [New]}
 }
 ```
