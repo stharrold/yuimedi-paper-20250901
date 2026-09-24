@@ -54,7 +54,7 @@
 - [x] All purchased add-ons delivered (#567, closed 2026-09-15): PubMed duplicate merged, sponsored tweet live 2026-09-01, TrendMD running to ~2026-12-02
 - [x] LinkedIn announcement posted 2026-09-15 (https://lnkd.in/p/ecbMFxk8; record `ARCHIVED/20260810_IJMR-Copyediting/20260915_LinkedIn-Post_Paper1-Publication.{md,pdf}`)
 - [x] Article-page PMID fixed (42684405, verified 2026-09-23); final post text sent to Gnani Palanikumar 2026-09-15
-- [ ] TrendMD (#568): campaign `6nFy9EFs` observed running 2026-09-23 via the recommendation API, but the listing carries the pre-copyedit title, another article's first author (Adebamowo) as byline, and no journal name; the Sep 10 report was labeled with that other article. Reply to Laura drafted: `ARCHIVED/20260810_IJMR-Copyediting/20260923_Email-Reply_JMIR-Production_TrendMD-Campaign.md`
+- [ ] TrendMD (#568): our campaign `6nFy9EFs` and the Continuity Trap campaign `MJ6iVWT7` have swapped bylines (ours shows Clement Adebamowo, theirs shows Samuel Harrold), and ours carries the pre-copyedit title. Captured on a real BMJ Open page 2026-09-24 03:10 UTC (`ARCHIVED/20260810_IJMR-Copyediting/20260923_TrendMD-Evidence/`). Reply to Laura with URL and screenshots ready to send: `ARCHIVED/20260810_IJMR-Copyediting/20260923_Email-Reply_JMIR-Production_TrendMD-Campaign.md`
 - [x] AJE-commissioned graphic declined as a Multimedia Appendix (superseded title, does not name HITL-KG)
 
 **R2 revision status (all Decision-B items resolved and submitted):**

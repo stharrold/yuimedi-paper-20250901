@@ -302,3 +302,47 @@ campaign, so it was deliberately not followed. Ask marketing instead.
 Reply drafted: `20260923_Email-Reply_JMIR-Production_TrendMD-Campaign.md`. Asks marketing
 to confirm the article campaign `6nFy9EFs` links to, correct the title, byline, and journal
 fields, and confirm whether the Sep 10 report is this campaign.
+
+
+---
+
+## EVIDENCE CAPTURED, 2026-09-24: the two campaigns' bylines are swapped
+
+**Capture:** 2026-09-24 03:10:53 UTC, on a real, unmodified BMJ Open article page,
+https://bmjopen.bmj.com/content/11/3/e044289 ("Public and patient involvement in health data
+governance (DATAGov)..."). No clicks. Artifacts:
+`20260923_TrendMD-Evidence/hit_20260924T031053Z_bmjopen-bmj-com-content-11-3-e044289/`
+(widget, item, viewport, and full-page PNGs; the rendered response; request; meta).
+Attachment copies (byte-identical): `20260924_TrendMD-Listing_BMJ-Open_widget.png` and
+`20260924_TrendMD-Listing_BMJ-Open_item.png`.
+
+The same rendered widget shows both campaigns, side by side, with each other's byline:
+
+| Campaign | Position | Title shown | Byline shown |
+|---|---|---|---|
+| `6nFy9EFs` (ours) | 6 of 10 | Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement (pre-copyedit title) | Clement Adebamowo |
+| `MJ6iVWT7` | 8 of 10 | The Continuity Trap in Data Science Health Research | Samuel Harrold |
+
+Both records also carry the article title in `publicationName` (no journal) and no date.
+So the fault is a swap between the two JMIR campaigns set up around the same time, plus the
+stale acceptance-time title on ours. The Sep 10 report, labeled "The Continuity Trap", is
+plausibly `MJ6iVWT7`, not ours.
+
+**Run summary** (`20260923_TrendMD-Evidence/attempts.jsonl`, stopped once this capture
+existed): 519 loads, 2026-09-23 13:37 UTC to 2026-09-24 12:32 UTC; 490 succeeded (29
+timeouts); 342 carried other publishers' paid items, 176 distinct campaigns. Hosts: BMJ
+Innovations 256, BMJ Open 189, JAMIA Open 45.
+
+| Campaign | Served in successful loads | When |
+|---|---|---|
+| `6nFy9EFs` (ours) | 1 of 490 | 2026-09-24 03:10 UTC |
+| `MJ6iVWT7` (Continuity Trap) | 8 of 490 | 2026-09-24 00:02 to 03:42 UTC, on 2 BMJ Open pages and BMJ Innovations |
+
+Both served only in a window just after 00:00 UTC, consistent with daily budget pacing
+(nothing in the 10.5 h before). Only ours triggered screenshots; the other campaign's 7
+further sightings are logged by campaign ID only.
+
+**Still not verified:** where each listing's click goes. Asked of marketing in the reply.
+
+**Next:** reply to Laura updated with the URL, time, and attached screenshots:
+`20260923_Email-Reply_JMIR-Production_TrendMD-Campaign.md`.
