@@ -350,3 +350,10 @@ further sightings are logged by campaign ID only.
 **Reply sent 2026-09-24 10:25 AM EDT** with the page URL, capture time, both campaign IDs,
 and the screenshots (the widget image followed at 10:28 after being omitted from the first
 message). Sent copy: `20260924_Email-Reply_JMIR-Production_TrendMD-Campaign.pdf`.
+
+**Forwarded to marketing, 2026-09-28** (`20261005_Email_JMIR-Marketing_TrendMD-Forwarded.pdf`,
+24 messages): Laura forwarded the reply and both screenshots to Jane Kelly (Integrated
+Marketing Manager, jane.kelly@jmir.org) at 10:19 AM EDT; Jane replied at 1:50 PM EDT, "I will
+send your inquiry to TrendMD." No answer from TrendMD as of 2026-10-05. Jane is now the
+direct contact (cc Laura). Next: re-capture across a UTC midnight to see whether the listing
+was corrected, then follow up with Jane.
