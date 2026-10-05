@@ -174,3 +174,16 @@ i-JMR rule that still applies to Papers 2 and 3.
 ```bash
 cd <this-dir> && shasum -a 256 -c MANIFEST.sha256
 ```
+
+**Later changes to the manifest (content unchanged):**
+
+- 2026-09-15, release v6.0.0 (`33d7942`): the 2 proof entries were renamed to match
+  commit `f1bd5a6` (2026-08-19), which had given the files a date prefix:
+  `96541.pdf` to `20260810_96541.pdf` and `96541_modified.pdf` to
+  `20260810_96541_modified.pdf`. Their hashes are unchanged, and all 67 entries verify.
+- Files added to this directory after the copyediting round (post-publication
+  correspondence, visual abstract artifacts, the LinkedIn record) are **not** in the
+  manifest, which remains the integrity record of the copyediting build snapshot.
+- The repo-root `paper.*` artifacts released as v6.0.0 differ from this snapshot's
+  build: they include the post-publication style sync and the Table 1 and Table 2
+  abbreviation footnotes. This package documents the 2026-08-10 build only.

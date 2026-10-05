@@ -1,8 +1,8 @@
 # Project Status
 
-**Last updated:** 2026-09-15
+**Last updated:** 2026-09-23
 **Tracking:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
-**Version:** 5.0.0 (released 2026-08-10; Zenodo `v5.0.0`, DOI 10.5281/zenodo.21880033)
+**Version:** 6.0.0 (released 2026-09-15; Zenodo `v6.0.0`, DOI 10.5281/zenodo.22769213; concept DOI 10.5281/zenodo.18264359)
 
 ---
 
@@ -47,12 +47,14 @@
 **Remaining (post-publication, non-blocking):**
 - [x] Propagate the published title to `paper.md`, `metadata.yaml`, `CITATION.cff`, `.zenodo.json`, `README.md` (done in v5.0.0; the title is final in the accepted proof)
 - [x] Style sync the *body* of `paper.md` to the published version: done 2026-08-19 against the `modified5` proof (commit e0f920a), verified against the live article 2026-09-01
-- [ ] Repair 11 stale `file =` paths in `references.bib` (library reorganized its directory naming) (#561)
+- [x] Repair stale `file =` paths in `references.bib` (library reorganized to `docs/<stem>/<stem>.pdf`): all 15 resolve, #561 closed 2026-09-15 (`194eda7`)
+- [x] Repair the 28 stale library citations in research docs (21 same-stem in `e4d16d9`; 7 traced through library git history and matched by SHA-256, or linked to arXiv, in `de5705d`): #573 closed 2026-09-15, 0 stale non-archive paths remain
 - [x] JMIR visual abstract: draft 1 2026-08-25, 2 corrections requested and verified in the final files; live as the ToC image at publication. Final files in both `ARCHIVED/20260810_IJMR-Copyediting/` and `abstract-visual-video/`
 - [x] Timing conflict raised 2026-08-10: resolved by the publication hold agreed 2026-08-11, so the article and sponsored tweet launched with the visual abstract in place
 - [x] All purchased add-ons delivered (#567, closed 2026-09-15): PubMed duplicate merged, sponsored tweet live 2026-09-01, TrendMD running to ~2026-12-02
 - [x] LinkedIn announcement posted 2026-09-15 (https://lnkd.in/p/ecbMFxk8; record `ARCHIVED/20260810_IJMR-Copyediting/20260915_LinkedIn-Post_Paper1-Publication.{md,pdf}`)
-- [ ] Follow-ups: TrendMD campaign report, retired PMID still displayed on the article page, final post text to Gnani Palanikumar (#568)
+- [x] Article-page PMID fixed (42684405, verified 2026-09-23); final post text sent to Gnani Palanikumar 2026-09-15
+- [ ] TrendMD (#568): our campaign `6nFy9EFs` and the Continuity Trap campaign `MJ6iVWT7` have swapped bylines (ours shows Clement Adebamowo, theirs shows Samuel Harrold), and ours carries the pre-copyedit title. Captured on a real BMJ Open page 2026-09-24 03:10 UTC (`ARCHIVED/20260810_IJMR-Copyediting/20260923_TrendMD-Evidence/`). Reply with URL and screenshots sent to Laura 2026-09-24 10:25 AM EDT (`ARCHIVED/20260810_IJMR-Copyediting/20260924_Email-Reply_JMIR-Production_TrendMD-Campaign.pdf`); awaiting marketing
 - [x] AJE-commissioned graphic declined as a Multimedia Appendix (superseded title, does not name HITL-KG)
 
 **R2 revision status (all Decision-B items resolved and submitted):**

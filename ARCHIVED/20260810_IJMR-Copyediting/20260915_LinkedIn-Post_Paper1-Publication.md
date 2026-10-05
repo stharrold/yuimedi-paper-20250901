@@ -192,6 +192,8 @@ Verified from the capture's text layer, link annotations, and a render of page 2
 
 ### Still to do
 
-- **Gnani:** send the final text or the post link, as promised in the 2026-08-26 reply.
+- ~~**Gnani:** send the final text or the post link, as promised in the 2026-08-26 reply.~~
+  Done 2026-09-15 2:02 PM (link, final text, both visual abstracts attached); record in
+  `yuimedi/20251212_Meeting_Paper-Conference-Review/20260915_Email_Harrold-Yuimedi_LinkedIn-Post-Published.{md,pdf}`.
 - **X (optional):** repost or quote https://x.com/jmirpub/status/2094846699487609125 from
   the author's own account.

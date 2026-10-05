@@ -43,7 +43,7 @@ This algorithm captures the semi-automated workflow for answering research quest
 
 ### 5. Artifact Retrieval (Automated Script)
 *   **Download:** Iterates through source URLs.
-*   **Save:** Downloads accessible PDFs to `../library/docs/YYYY_Author_Journal_Title.pdf`.
+*   **Save:** Downloads accessible PDFs to `../library/docs/YYYY_Author_Venue_Title/YYYY_Author_Venue_Title.pdf` (one directory per document; the library may insert a document type such as `Report` or `Whitepaper` after the author, and adds `page_NNN.md` chunks on ingestion).
 *   **Log:** Records success/failure for each download.
 
 ## Scripts
