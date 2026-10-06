@@ -402,3 +402,7 @@ screenshots were never affected.
 **Link destination still unconfirmed.** The corrected listing's text is verified; where a
 click lands is not (testing it bills a $1 click). The reply to Jane asks TrendMD to confirm
 it, restoring the question from the 2026-09-24 email.
+
+**Reply sent to Jane 2026-10-06 6:38 AM EDT** (cc Laura), with both corrected-listing images:
+confirmation of the click destination, journal name and year, and performance data for both
+campaign IDs. Sent copy: `20261006_Email-Reply_JMIR-Marketing_TrendMD-Corrected.pdf`.

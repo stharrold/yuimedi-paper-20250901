@@ -65,3 +65,21 @@ Samuel
   by a side review: the earlier draft of this reply had dropped the Sep 24 link question.)
 - **Not mentioned:** the capture method, or how often the listing is served (8 of 255 loads
   overnight, all 00:07 to 04:18 UTC). Recorded in the status file.
+
+---
+
+## As sent: identical text, both images attached
+
+**Sent 2026-10-06 6:38 AM EDT** from the yuimedi address to Jane Kelly, cc Laura McReynolds
+and the gmail address. Sent copy of record:
+`20261006_Email-Reply_JMIR-Marketing_TrendMD-Corrected.pdf` (25 messages).
+
+The message text went out verbatim. Attachments: both
+`20261006_TrendMD-Listing_BMJ-Open_corrected.png` (one-screen capture) and
+`20261006_TrendMD-Listing_BMJ-Open_corrected_item.png` (close-up).
+
+### Now waiting on
+
+TrendMD, via Jane: (1) confirmation that clicking the listing opens the article, (2) the
+journal name and year added to the listing, (3) performance data for both 6nFy9EFs and
+wLf4ILep. Close #568 when (1) and (3) arrive; re-capture across a UTC midnight if (2) is done.
