@@ -9,14 +9,14 @@
 
 Loads real non-JMIR article pages that carry the TrendMD widget, each in a fresh
 browser context, and reads the widget's own recommendations response. When a
-watched campaign is served (ours, 6nFy9EFs, or the Continuity Trap campaign,
-MJ6iVWT7, whose bylines were swapped with ours on 2026-09-24), it saves:
+watched article is listed (ours, or the Continuity Trap paper whose byline was swapped
+with ours on 2026-09-24), matched by campaign ID or title, it saves:
 
   browser_widget.png  one-screen (1440x900 @2x) view with the widget centred, under a
                       capture header showing the full URL and UTC time
   browser_top.png     the same for the top of the page (article title, journal)
   widget.png          element screenshot of the rendered #trendmd-suggestions widget
-  item_<cid>.png      element screenshot of each watched listing
+  item_<article>.png  element screenshot of each watched listing
   page.mhtml          full-page archive (Chrome MHTML snapshot)
   widget.html         outerHTML of the rendered widget
   response.json       the recommendations response the widget rendered from
@@ -61,12 +61,27 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 from playwright.async_api import async_playwright
 
-OUR_CAMPAIGN = "6nFy9EFs"
-WATCH = {
-    OUR_CAMPAIGN: "Health Care Analytics Challenges (Harrold, i-JMR 2026;15:e96541)",
-    "MJ6iVWT7": "The Continuity Trap in Data Science Health Research (Adebamowo et al., JMIR 2026;e98699)",
+# Listings are identified by article, not campaign ID: TrendMD replaced both campaigns
+# when it corrected the swapped bylines (2026-09-24 6nFy9EFs/MJ6iVWT7, by 2026-10-06
+# wLf4ILep/f6Fwvcbs), and a title match catches any future replacement.
+ARTICLES = {
+    "ours": {
+        "label": "Health Care Analytics Challenges (Harrold, Interact J Med Res 2026;15:e96541)",
+        "campaigns": {"6nFy9EFs", "wLf4ILep"},
+        "title_re": re.compile(
+            r"Health ?care Analytics Challenges|(3|Three)-Pillar Framework", re.I
+        ),
+        "byline": "Harrold",
+        "title_ok": re.compile(r"Health Care Analytics Challenges: A 3-Pillar"),
+    },
+    "continuity_trap": {
+        "label": "The Continuity Trap in Data Science Health Research (Adebamowo et al., J Med Internet Res 2026;e98699)",
+        "campaigns": {"MJ6iVWT7", "f6Fwvcbs"},
+        "title_re": re.compile(r"Continuity Trap", re.I),
+        "byline": "Adebamowo",
+        "title_ok": None,
+    },
 }
-TITLE_RE = re.compile(r"Health ?care Analytics Challenges|(3|Three)-Pillar Framework", re.I)
 RECS_RE = re.compile(r"rev\.trendmd\.com/ad-slots/[^/]+/recommendations")
 
 # Non-JMIR article pages that carry the TrendMD widget (verified 2026-09-23; BMJ Health &
@@ -117,17 +132,16 @@ def sha256_file(path: Path) -> str:
     return sha256_bytes(path.read_bytes())
 
 
-def watched(item: dict) -> str | None:
-    """Return the watch key for an item, or None."""
+def article_of(item: dict) -> str | None:
+    """Return the watched article ('ours', 'continuity_trap', 'test') an item lists, or None."""
+    cid, title = item.get("campaignId"), item.get("title") or ""
     if TEST_CAMPAIGN:
-        if TEST_CAMPAIGN == "*" and item.get("linkingType") == 1:
-            return item.get("campaignId")
-        return item.get("campaignId") if item.get("campaignId") == TEST_CAMPAIGN else None
-    cid = item.get("campaignId")
-    if cid in WATCH:
-        return cid
-    if TITLE_RE.search(item.get("title") or ""):
-        return cid or OUR_CAMPAIGN
+        if (TEST_CAMPAIGN == "*" and item.get("linkingType") == 1) or cid == TEST_CAMPAIGN:
+            return "test"
+        return None
+    for key, art in ARTICLES.items():
+        if cid in art["campaigns"] or art["title_re"].search(title):
+            return key
     return None
 
 
@@ -136,20 +150,18 @@ def byline(item: dict) -> str:
     return (sub.get("content") if isinstance(sub, dict) else "") or item.get("authors") or ""
 
 
-def listing_status(cid: str, item: dict) -> str:
+def listing_status(article: str, item: dict) -> str:
     """Classify a watched listing as 'correct' or a description of what is wrong."""
     title, by = item.get("title") or "", byline(item)
+    art = ARTICLES.get(article)
     problems = []
-    if cid == OUR_CAMPAIGN:
-        if not re.search(r"Health Care Analytics Challenges: A 3-Pillar", title):
+    if art:
+        if art["title_ok"] and not art["title_ok"].search(title):
             problems.append("pre-copyedit title")
-        if "Harrold" not in by:
-            problems.append(f"byline '{by}'")
-    elif cid == "MJ6iVWT7":
-        if "Adebamowo" not in by:
+        if art["byline"] not in by:
             problems.append(f"byline '{by}'")
     if (item.get("publicationName") or "") == title:
-        problems.append("journal field holds the title")
+        problems.append("journal field holds the title (no journal or year shown)")
     return "correct" if not problems else "; ".join(problems)
 
 
@@ -273,18 +285,19 @@ async def capture(page, context, resp, items: list, hits: dict[str, dict], ts: d
         "items_in_response": len(items),
         "cookie_banner": cookie,
         "watched": {
-            cid: {
-                "label": WATCH.get(cid, "test campaign"),
+            article: {
+                "label": ARTICLES[article]["label"] if article in ARTICLES else "test campaign",
+                "campaignId": item.get("campaignId"),
                 "position": items.index(item) + 1,
                 "title": item.get("title"),
                 "byline": byline(item),
                 "publicationName": item.get("publicationName"),
-                "status": listing_status(cid, item),
+                "status": listing_status(article, item),
                 "record": {
                     k: v for k, v in item.items() if k not in ("clickUrl", "url", "impressionUrl")
                 },
             }
-            for cid, item in hits.items()
+            for article, item in hits.items()
         },
         "note": "No clicks were made; tracking URLs omitted because requesting them bills a click. "
         "The capture header on browser_*.png is drawn after capture.",
@@ -329,10 +342,13 @@ async def load_once(browser, host: str, run_id: str, n: int) -> dict:
         )
         hits = {}
         for i in items:
-            key = watched(i)
+            key = article_of(i)
             if key and key not in hits:
                 hits[key] = i
-        rec["watched"] = {cid: listing_status(cid, i) for cid, i in hits.items()}
+        rec["watched"] = {
+            a: {"campaignId": i.get("campaignId"), "status": listing_status(a, i)}
+            for a, i in hits.items()
+        }
         if hits:
             rec["hit_dir"] = (await capture(page, context, resp, items, hits, ts)).name
         return rec
@@ -428,7 +444,10 @@ async def main() -> None:
             "started_utc": started.isoformat(timespec="seconds"),
             "args": vars(args),
             "hosts": HOSTS,
-            "watch": WATCH,
+            "articles": {
+                k: {"label": v["label"], "campaigns": sorted(v["campaigns"])}
+                for k, v in ARTICLES.items()
+            },
             "script": str(Path(__file__).resolve().relative_to(HERE.parent.parent)),
             "script_sha256": sha256_file(Path(__file__).resolve()),
             "git_head": git_head(),
@@ -480,7 +499,7 @@ async def main() -> None:
                     if rec.get("hit_dir"):
                         stats["captures"] += 1
                         stats["our_hits"] += int(
-                            OUR_CAMPAIGN in rec.get("watched", {}) or bool(TEST_CAMPAIGN)
+                            bool({"ours", "test"} & set(rec.get("watched", {})))
                         )
                     print(
                         json.dumps(

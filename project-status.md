@@ -1,6 +1,6 @@
 # Project Status
 
-**Last updated:** 2026-09-23
+**Last updated:** 2026-10-06
 **Tracking:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
 **Version:** 6.0.0 (released 2026-09-15; Zenodo `v6.0.0`, DOI 10.5281/zenodo.22769213; concept DOI 10.5281/zenodo.18264359)
 
@@ -54,7 +54,7 @@
 - [x] All purchased add-ons delivered (#567, closed 2026-09-15): PubMed duplicate merged, sponsored tweet live 2026-09-01, TrendMD running to ~2026-12-02
 - [x] LinkedIn announcement posted 2026-09-15 (https://lnkd.in/p/ecbMFxk8; record `ARCHIVED/20260810_IJMR-Copyediting/20260915_LinkedIn-Post_Paper1-Publication.{md,pdf}`)
 - [x] Article-page PMID fixed (42684405, verified 2026-09-23); final post text sent to Gnani Palanikumar 2026-09-15
-- [ ] TrendMD (#568): our campaign `6nFy9EFs` and the Continuity Trap campaign `MJ6iVWT7` have swapped bylines (ours shows Clement Adebamowo, theirs shows Samuel Harrold), and ours carries the pre-copyedit title. Captured on a real BMJ Open page 2026-09-24 03:10 UTC (`ARCHIVED/20260810_IJMR-Copyediting/20260923_TrendMD-Evidence/`). Reply with URL and screenshots sent to Laura 2026-09-24 10:25 AM EDT; forwarded to Jane Kelly (marketing) 2026-09-28, who sent it on to TrendMD (`ARCHIVED/20260810_IJMR-Copyediting/20261005_Email_JMIR-Marketing_TrendMD-Forwarded.pdf`); awaiting TrendMD
+- [ ] TrendMD (#568): listings corrected by 2026-10-06 (new campaign `wLf4ILep` with the published title and correct byline; the Continuity Trap campaign fixed too), verified in 8 captures (`ARCHIVED/20260810_IJMR-Copyediting/20261005_TrendMD-Evidence/`). Remaining: journal name and year missing from the listing, and the campaign performance data. Reply to Jane Kelly drafted: `ARCHIVED/20260810_IJMR-Copyediting/20261006_Email-Reply_JMIR-Marketing_TrendMD-Corrected.md`
 - [x] AJE-commissioned graphic declined as a Multimedia Appendix (superseded title, does not name HITL-KG)
 
 **R2 revision status (all Decision-B items resolved and submitted):**

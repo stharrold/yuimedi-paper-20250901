@@ -357,3 +357,33 @@ Marketing Manager, jane.kelly@jmir.org) at 10:19 AM EDT; Jane replied at 1:50 PM
 send your inquiry to TrendMD." No answer from TrendMD as of 2026-10-05. Jane is now the
 direct contact (cc Laura). Next: re-capture across a UTC midnight to see whether the listing
 was corrected, then follow up with Jane.
+
+---
+
+## CORRECTED, 2026-10-06: both campaigns replaced, bylines and title fixed
+
+**Capture run** `364ef1dec814` (`20261005_TrendMD-Evidence/`): 2026-10-05 20:33 UTC to
+2026-10-06 05:00 UTC, 270 loads (255 ok, 14 Cloudflare challenges, 1 error), 134 distinct
+external campaigns. 8 captures of our listing on 4 host pages (BMJ Open e044289, e117423,
+e065803; BMJ Innovations 8/2/129), all between 00:07 and 04:18 UTC; every capture's
+`MANIFEST.sha256` verifies.
+
+| Article | 2026-09-24 | 2026-10-06 |
+|---|---|---|
+| Ours | `6nFy9EFs`: pre-copyedit title, byline Clement Adebamowo | **`wLf4ILep`**: "Health Care Analytics Challenges: A 3-Pillar Framework...", byline **Samuel Harrold** |
+| Continuity Trap | `MJ6iVWT7`: byline Samuel Harrold | **`f6Fwvcbs`**: byline **Clement Adebamowo** (served 3 times) |
+
+Neither old campaign was served once in 255 successful loads: they were replaced, not edited.
+No reply from TrendMD or marketing preceded the fix (last message: Jane, 2026-09-28).
+
+**Remaining, cosmetic:** our record still has the article title in `publicationName` and no
+`publicationDate`, so the rendered listing shows "Samuel Harrold" with no journal or year,
+where other sponsored listings read "Author, Journal, Year".
+
+**Attachment copies** (byte-identical to the 01:51:25 UTC capture on the same BMJ Open page
+as the 2026-09-24 evidence): `20261006_TrendMD-Listing_BMJ-Open_corrected.png` (one-screen,
+URL and time in the header) and `..._corrected_item.png` (close-up).
+
+**Next:** reply to Jane drafted, `20261006_Email-Reply_JMIR-Marketing_TrendMD-Corrected.md`:
+thanks, the journal-name request, and performance data for both campaign IDs. Close #568 when
+the data arrives.

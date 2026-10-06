@@ -1,0 +1,30 @@
+{
+  "url": "https://rev.trendmd.com/ad-slots/d4a1ec99-9e42-40c8-b978-0900a2367aae/recommendations",
+  "method": "POST",
+  "headers": {
+    ":authority": "rev.trendmd.com",
+    ":method": "POST",
+    ":path": "/ad-slots/d4a1ec99-9e42-40c8-b978-0900a2367aae/recommendations",
+    ":scheme": "https",
+    "accept": "*/*",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "en-US",
+    "content-length": "178",
+    "content-type": "application/json",
+    "origin": "https://innovations.bmj.com",
+    "priority": "u=1, i",
+    "referer": "https://innovations.bmj.com/",
+    "sec-ch-ua": "\"Chromium\";v=\"154\", \"Google Chrome\";v=\"154\", \"Not A(Brand\";v=\"99\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site",
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "x-revops-session-id": "abf56dc5-fecd-4a8d-bdb7-e8becfb4906c",
+    "x-revops-source-type": "2",
+    "x-revops-source-url": "https://innovations.bmj.com/content/8/2/129",
+    "x-revops-version": "0.635.0"
+  },
+  "post_data": "{\"npis\":[],\"doctorSpecialties\":[],\"sourceMetadata\":{\"title\":\"Healthcare\u2019s new frontier: the digital front door\",\"doi\":\"10.1136/bmjinnov-2021-000874\"},\"startTime\":1791251344000}"
+}

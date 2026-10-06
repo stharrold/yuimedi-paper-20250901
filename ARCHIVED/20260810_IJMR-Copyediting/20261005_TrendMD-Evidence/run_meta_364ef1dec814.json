@@ -1,0 +1,44 @@
+{
+  "run_id": "364ef1dec814",
+  "started_utc": "2026-10-05T20:33:28+00:00",
+  "args": {
+    "hours": 8.44,
+    "window": null,
+    "target_hits": 2,
+    "min_gap": 60.0,
+    "max_gap": 150.0,
+    "max_loads": 0,
+    "restart_every": 40,
+    "headed": false,
+    "test_campaign": null,
+    "out": null
+  },
+  "hosts": [
+    "https://innovations.bmj.com/content/8/2/129",
+    "https://innovations.bmj.com/content/7/2/414",
+    "https://innovations.bmj.com/content/12/2/126",
+    "https://innovations.bmj.com/content/11/4/207",
+    "https://bmjopen.bmj.com/content/11/3/e044289",
+    "https://doi.org/10.1136/bmjopen-2022-065803",
+    "https://bmjopen.bmj.com/content/16/7/e117423",
+    "https://academic.oup.com/jamiaopen/article/doi/10.1093/jamiaopen/ooaf167/8415655"
+  ],
+  "watch": {
+    "6nFy9EFs": "Health Care Analytics Challenges (Harrold, i-JMR 2026;15:e96541)",
+    "MJ6iVWT7": "The Continuity Trap in Data Science Health Research (Adebamowo et al., JMIR 2026;e98699)"
+  },
+  "script": "ARCHIVED/20260810_IJMR-Copyediting/20260923_trendmd_evidence_capture.py",
+  "script_sha256": "49271b748026ba3ec242acd1524ed49b8fe6598eb3c3c6c44d0ab65e4bfa9839",
+  "git_head": "eda85d064728f819854d523d4ffd578430223237",
+  "browser_version": "154.0.8037.98",
+  "playwright_version": "1.63.0",
+  "pillow_version": "12.3.0",
+  "python": "3.12.11",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "device_scale_factor": 2
+}

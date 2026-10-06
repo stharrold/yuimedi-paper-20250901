@@ -1,0 +1,11 @@
+{
+  "run_id": "364ef1dec814",
+  "started_utc": "2026-10-05T20:33:28+00:00",
+  "ended_utc": "2026-10-06T05:01:44+00:00",
+  "loads": 270,
+  "ok": 255,
+  "challenge": 14,
+  "error": 1,
+  "our_hits": 0,
+  "captures": 8
+}
