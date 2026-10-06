@@ -31,11 +31,13 @@ Hi Jane,
 Thank you for passing this on to TrendMD. It looks like it has been fixed: my article now appears in TrendMD recommendations with the correct published title and my name (new campaign ID wLf4ILep), and the Continuity Trap article shows its own author again. The attached screenshot is from the same BMJ Open page as before, captured on Oct 6 at 01:51 UTC:
 https://bmjopen.bmj.com/content/11/3/e044289
 
-Two small follow-ups, whenever convenient:
+Three small follow-ups, whenever convenient:
 
-1. The listing shows my name but no journal name or year, unlike the other sponsored listings (for example "Author, Journal, 2024"). Could TrendMD add "Interactive Journal of Medical Research, 2026"?
+1. Could TrendMD confirm that clicking the new listing opens my article (https://www.i-jmr.org/2026/1/e96541/)? I can see the title and name are right, but not where the link goes, and given the earlier mix-up I want to be sure readers land on the right paper.
 
-2. Could you send the performance data (impressions, clicks, and spend) for my campaign, including the earlier campaign ID 6nFy9EFs as well as wLf4ILep? The Sep 10 report Laura forwarded was for the Continuity Trap article.
+2. The listing shows my name but no journal name or year, unlike the other sponsored listings (for example "Author, Journal, 2024"). Could TrendMD add "Interactive Journal of Medical Research, 2026"?
+
+3. Could you send the performance data (impressions, clicks, and spend) for my campaign, including the earlier campaign ID 6nFy9EFs as well as wLf4ILep? The Sep 10 report Laura forwarded was for the Continuity Trap article.
 
 Thank you again, and thanks to Laura for connecting us.
 
@@ -57,5 +59,9 @@ Samuel
   example rather than as a defect report.
 - **Asks for data on both campaign IDs,** because the $250 budget ran under 6nFy9EFs until the
   swap and under wLf4ILep since; a report on only one would undercount.
+- **The link destination is asked, not tested.** The screenshots show the listing text only.
+  Following the tracking link would bill a $1 click and the 2026-09-24 swap makes the
+  destination a real question, so asking costs nothing and settles it in writing. (Flagged
+  by a side review: the earlier draft of this reply had dropped the Sep 24 link question.)
 - **Not mentioned:** the capture method, or how often the listing is served (8 of 255 loads
   overnight, all 00:07 to 04:18 UTC). Recorded in the status file.

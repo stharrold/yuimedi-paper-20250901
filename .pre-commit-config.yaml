@@ -7,8 +7,11 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
+      # Captured web evidence must stay byte-identical to its MANIFEST.sha256
       - id: trailing-whitespace
+        exclude: _TrendMD-Evidence/
       - id: end-of-file-fixer
+        exclude: _TrendMD-Evidence/
       - id: check-yaml
       - id: check-json
       - id: check-added-large-files

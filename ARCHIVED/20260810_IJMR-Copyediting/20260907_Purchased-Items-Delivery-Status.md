@@ -387,3 +387,18 @@ URL and time in the header) and `..._corrected_item.png` (close-up).
 **Next:** reply to Jane drafted, `20261006_Email-Reply_JMIR-Marketing_TrendMD-Corrected.md`:
 thanks, the journal-name request, and performance data for both campaign IDs. Close #568 when
 the data arrives.
+
+**Evidence integrity, 2026-10-06.** The pre-commit `trailing-whitespace` and
+`end-of-file-fixer` hooks rewrote captured text files on commit: in `712e8e2` they stripped
+trailing spaces from all 8 `widget.html` files (manifests then failed 8 of 8), and in
+`09617c9` they appended a final newline to the 2026-09-24 capture's `meta.json`,
+`request.json`, `response.json`, and `widget.html`. Every original was recovered byte-exact
+from the unreachable blobs the first `git add` had written before the hooks ran (matched by
+the manifest SHA-256 for the 8, and by "hook normalisation of the blob equals the committed
+file" for the 4), restored, and re-committed. Both hooks now exclude `_TrendMD-Evidence/`.
+The 2026-09-24 capture gained a `MANIFEST.sha256` on 2026-10-06, after restoration; the
+screenshots were never affected.
+
+**Link destination still unconfirmed.** The corrected listing's text is verified; where a
+click lands is not (testing it bills a $1 click). The reply to Jane asks TrendMD to confirm
+it, restoring the question from the 2026-09-24 email.
