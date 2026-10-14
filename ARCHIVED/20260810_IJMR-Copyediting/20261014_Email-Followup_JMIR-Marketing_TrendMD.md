@@ -1,4 +1,4 @@
-# Follow-up to JMIR Marketing: TrendMD Data and Link Destination
+# Follow-up to JMIR Marketing: TrendMD Performance Data
 
 **Manuscript:** i-JMR ms#96541, Interact J Med Res 2026;15:e96541, doi:10.2196/96541
 **Drafted:** 2026-10-14
@@ -19,7 +19,8 @@
 
 No reply in the 8 days since 2026-10-06. A re-capture overnight (2026-10-13/14) shows the
 listing is still correct, and that the missing journal and year apply to every JMIR campaign,
-so that request is withdrawn as a defect and left only as an optional change.
+so that request is withdrawn. The click-destination question is dropped too; the only ask left
+is the performance data.
 
 ---
 
@@ -31,13 +32,9 @@ Hi Jane,
 I'm following up on my Oct 6 message in case it got buried. I checked again overnight, and my TrendMD listing still looks right, with the correct title and my name. The attached screenshot is from this BMJ Open page, captured on Oct 14 at 00:47 UTC:
 https://bmjopen.bmj.com/content/13/6/e065803
 
-Two things are still outstanding, whenever TrendMD can provide them:
+The one thing still outstanding is the performance data (impressions, clicks, and spend) for my campaign. Could TrendMD send it for both campaign IDs, 6nFy9EFs (the original) and wLf4ILep (the replacement)?
 
-1. Confirmation that clicking the listing opens my article (https://www.i-jmr.org/2026/1/e96541/).
-
-2. The performance data (impressions, clicks, and spend) for my campaign, covering both campaign IDs, 6nFy9EFs (the original) and wLf4ILep (the replacement).
-
-On the journal name I asked about: I can now see that the other JMIR listings in the same widget also show only the author's name, so it looks like a JMIR-wide setting rather than anything specific to mine. Please disregard that one unless it is an easy change.
+You can disregard my other two questions. On the journal name, I can now see that the other JMIR listings in the same widget also show only the author's name, so it looks like a JMIR-wide setting rather than anything specific to mine.
 
 Thank you,
 Samuel
@@ -47,9 +44,11 @@ Samuel
 
 ## Notes on the drafting (not sent)
 
-- **Short, and only the 2 asks that matter.** The data is what the $250 bought a record of;
-  the link destination is the one property of the corrected listing that cannot be verified
-  from outside without billing a click.
+- **One ask: the performance data.** Revised 2026-10-14 at the author's direction: the
+  click-destination question is dropped (not needed), and the journal-name request is
+  withdrawn. Both are closed explicitly in one sentence so marketing does not chase them.
+  The link destination therefore stays unverified on record; it was never tested because
+  following the tracking link bills a $1 click.
 - **The attachment is the 00:47:56 UTC capture** (byte-identical copy of
   `hit_20261014T004756Z_.../browser_widget.png`, SHA-256 `546003d5...`). It was chosen over
   the other 2 because the same widget shows the other JMIR listings (Hartman, Adebamowo x2,

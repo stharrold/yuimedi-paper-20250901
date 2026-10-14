@@ -433,3 +433,8 @@ optional, not as an error in our listing.
 
 **Unchanged:** click destination unconfirmed (not tested, $1 per click); performance data for
 `6nFy9EFs` and `wLf4ILep` not received. #568 stays open.
+
+**Follow-up drafted 2026-10-14** (`20261014_Email-Followup_JMIR-Marketing_TrendMD.md`), asking
+only for the performance data on both campaign IDs. The author dropped the click-destination
+question as not needed, and the journal request is withdrawn as JMIR-wide. #568 now closes on
+receipt of the data alone.
