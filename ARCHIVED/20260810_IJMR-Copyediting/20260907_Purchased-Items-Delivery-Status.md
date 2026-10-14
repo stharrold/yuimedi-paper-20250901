@@ -438,3 +438,8 @@ optional, not as an error in our listing.
 only for the performance data on both campaign IDs. The author dropped the click-destination
 question as not needed, and the journal request is withdrawn as JMIR-wide. #568 now closes on
 receipt of the data alone.
+
+**Follow-up sent 2026-10-14 11:23 AM EDT** to Jane (cc Laura), with the 00:47 UTC capture:
+performance data only, the other 2 questions withdrawn. Sent copy:
+`20261014_Email-Followup_JMIR-Marketing_TrendMD.pdf`. If no reply by about 2026-10-21, ask
+Laura directly.

@@ -64,3 +64,31 @@ Samuel
   after 00:00 UTC). Recorded in the status file.
 - **If no reply by about 2026-10-21,** ask Laura directly (she is the escalation point), since
   marketing has not answered on this thread since 2026-09-28.
+
+---
+
+## As sent: author's revised text
+
+**Sent 2026-10-14 11:23 AM EDT** from the yuimedi address to Jane Kelly, cc Laura McReynolds
+and the gmail address, as a reply on the 2026-10-06 message. Sent copy of record:
+`20261014_Email-Followup_JMIR-Marketing_TrendMD.pdf` (26 messages; no reply between
+2026-10-06 and this message). Attachment: `20261014_TrendMD-Listing_BMJ-Open_recheck.png`.
+
+The author shortened the draft: the BMJ Open URL and capture time are left to the
+screenshot's own header, and the screenshot is introduced as evidence for the journal point.
+
+```text
+Hi Jane,
+
+I'd like to follow up on my Oct 6 message. My listing still looks correct, so the only outstanding item is the performance data (impressions, clicks, and spend) for my campaign. Could TrendMD please send it for both campaign IDs, 6nFy9EFs (the original) and wLf4ILep (the replacement)?
+
+You can disregard my other two questions. Regarding the journal name, the attached screenshot shows that other JMIR listings in the same widget also display only the author's name. This suggests it's a JMIR-wide setting rather than something specific to my listing.
+
+Thank you,
+Samuel
+```
+
+### Now waiting on
+
+Marketing (via TrendMD): performance data for `6nFy9EFs` and `wLf4ILep`. Close #568 when it
+arrives. If no reply by about 2026-10-21, ask Laura directly.
