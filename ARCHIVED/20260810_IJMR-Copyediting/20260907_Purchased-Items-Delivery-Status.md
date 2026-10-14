@@ -406,3 +406,30 @@ it, restoring the question from the 2026-09-24 email.
 **Reply sent to Jane 2026-10-06 6:38 AM EDT** (cc Laura), with both corrected-listing images:
 confirmation of the click destination, journal name and year, and performance data for both
 campaign IDs. Sent copy: `20261006_Email-Reply_JMIR-Marketing_TrendMD-Corrected.pdf`.
+
+## RE-CHECKED, 2026-10-14: listing still correct; no journal or year, as on every JMIR campaign
+
+No reply to the 2026-10-06 message after a week, so the listing was re-captured across a UTC
+midnight: run `dd62e2eaa271`, `20261013_TrendMD-Evidence/`, 131 loads 2026-10-13 20:56 to
+2026-10-14 01:08 UTC (120 ok, 11 Cloudflare challenges on JAMIA Open), stopped at the target
+of 3 captures. All 3 manifests verify on the committed bytes (`ba68a75`).
+
+| UTC | Page | Ours (`wLf4ILep`) | Continuity Trap |
+|---|---|---|---|
+| 00:32:33 | bmjopen 16/7/e117423 | published title, Samuel Harrold, no journal or year | not served |
+| 00:47:56 | bmjopen 13/6/e065803 | same | `f6Fwvcbs`, Clement Adebamowo, correct |
+| 01:07:37 | bmjopen 16/7/e117423 | same | not served |
+
+Again served only after 00:00 UTC (first capture 00:32, none in the 3.5 h before).
+
+**The missing journal and year is not specific to our listing.** Every JMIR campaign seen in
+the 3 runs carries its own title in `publicationName` (`wLf4ILep`, `f6Fwvcbs`, `MJ6iVWT7`,
+`pZ2kA2RW`, `XqMWyuDS` Hartman, `De73SWTJ`, `y5gUGxHO`), and the widget then shows the byline
+alone. Other publishers' campaigns put the journal there ("Precision Clinical Medicine",
+"Cell Discovery", "Journal of Applied Physiology"). So it is how JMIR's campaigns are set up,
+and the 2026-10-06 ask ("unlike the other sponsored listings") compared us with other
+publishers, not with JMIR. A follow-up should frame it as a JMIR-side template setting,
+optional, not as an error in our listing.
+
+**Unchanged:** click destination unconfirmed (not tested, $1 per click); performance data for
+`6nFy9EFs` and `wLf4ILep` not received. #568 stays open.
