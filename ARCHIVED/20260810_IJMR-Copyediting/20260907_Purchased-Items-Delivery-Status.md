@@ -443,3 +443,42 @@ receipt of the data alone.
 performance data only, the other 2 questions withdrawn. Sent copy:
 `20261014_Email-Followup_JMIR-Marketing_TrendMD.pdf`. If no reply by about 2026-10-21, ask
 Laura directly.
+
+## PERFORMANCE DATA RECEIVED, 2026-10-20
+
+Jane was on vacation; Laura chased it (2026-10-15) and forwarded the request to another
+marketing representative (2026-10-19). Laura, 2026-10-20 10:39 AM EDT, attached the TrendMD
+report and relayed: "the 86 clicks from the original campaign (ID: 6nFy9EFs) will be
+redirected to the replacement campaign (ID: wLf4ILep)". Thread of record:
+`20261020_Email-Followup_JMIR-Marketing_TrendMD.pdf`. Report:
+`20261020_Health Care Analytics Challenges, Samuel Harrold report __ TrendMD 2026.xlsx`
+(SHA-256 `353c688a...`), 2 sheets, $1 CPC throughout.
+
+| Campaign | Sheet header | Period | Impressions | Clicks | CTR | Spent |
+|---|---|---|---|---|---|---|
+| `6nFy9EFs` (original, crossed listing) | "The Continuity Trap in Data Science Health Research; https://www.i-jmr.org/2026/1/e96541" | Sep 2026 | 169,210 | 86 | 0.051% | $86 |
+| `wLf4ILep` (replacement, correct listing) | our published title; our URL | Sep 2026 | 7,422 | 3 | 0.040% | $3 |
+| | | Oct 2026 MTD | 96,829 | 62 | 0.064% | $62 |
+| | | Total | 104,251 | 65 | 0.062% | $65 |
+| Both | | | 273,461 | 151 | | $151 of $250 |
+
+**The Sep 10 report was ours after all, under the wrong label.** The original campaign's
+sheet pairs the Continuity Trap *title* with *our* article URL, the same crossing the
+2026-09-24 capture showed in the listing. The Sep 10 table (headed "The Continuity Trap",
+56,661 impressions, 25 clicks) fits as an early snapshot of this same September campaign
+(169,210 and 86 by month end). The 2026-09-23 reading that it was "plausibly `MJ6iVWT7`,
+not ours" is withdrawn; the other reading recorded then ("this campaign under the other
+article's label") was right.
+
+**Make-good.** The 86 clicks ($86) spent while the listing carried the wrong byline and the
+pre-copyedit title are to be "redirected" to the replacement. Read as a credit, the correct
+listing gets the full $250 ($65 delivered, $185 to go); read literally as reattribution, it
+gets $164. The wording does not settle which. At the October pace (62 clicks in about 19
+days) $185 runs to roughly mid-December, close to the "until December 2" estimate given at
+launch.
+
+**Report quirks, not errors in the data:** the per-month "Widget performance" CTR rows are
+100x the totals (percent vs fraction), and internal rows marked "Orange values to be updated
+(rows to be hidden when sending report)" were left visible.
+
+**#568 closes:** the only open ask, the performance data for both campaign IDs, is answered.
