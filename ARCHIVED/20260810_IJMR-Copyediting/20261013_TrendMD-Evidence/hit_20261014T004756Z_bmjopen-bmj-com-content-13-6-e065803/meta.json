@@ -1,0 +1,60 @@
+{
+  "captured_utc": "2026-10-14T00:47:56+00:00",
+  "page_url": "https://bmjopen.bmj.com/content/13/6/e065803",
+  "page_title": "Use of locum doctors in NHS trusts in England: analysis of routinely collected workforce data 2019\u20132021 | BMJ Open",
+  "items_in_response": 10,
+  "cookie_banner": "rejected (#onetrust-reject-all-handler)",
+  "watched": {
+    "ours": {
+      "label": "Health Care Analytics Challenges (Harrold, Interact J Med Res 2026;15:e96541)",
+      "campaignId": "wLf4ILep",
+      "position": 7,
+      "title": "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+      "byline": "Samuel Harrold",
+      "publicationName": "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+      "status": "journal field holds the title (no journal or year shown)",
+      "record": {
+        "id": "ad8f4cac-d0be-419e-9ba2-303311eb27f9",
+        "linkingType": 1,
+        "publicationName": "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+        "publicationAbbreviatedName": "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+        "authors": "",
+        "title": "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+        "subtitle": {
+          "type": 2,
+          "content": "Samuel Harrold"
+        },
+        "campaignId": "wLf4ILep",
+        "publicationId": "1299b711-7a26-4293-ba53-c3c25604b1ad",
+        "publicationDate": null,
+        "creativeType": 0
+      }
+    },
+    "continuity_trap": {
+      "label": "The Continuity Trap in Data Science Health Research (Adebamowo et al., J Med Internet Res 2026;e98699)",
+      "campaignId": "f6Fwvcbs",
+      "position": 9,
+      "title": "The Continuity Trap in Data Science Health Research",
+      "byline": "Clement Adebamowo",
+      "publicationName": "The Continuity Trap in Data Science Health Research 2",
+      "status": "correct",
+      "record": {
+        "id": "c4f20a19-3d98-43e2-a0d8-91b8060e1079",
+        "linkingType": 1,
+        "publicationName": "The Continuity Trap in Data Science Health Research 2",
+        "publicationAbbreviatedName": "The Continuity Trap in Data Science Health Research 2",
+        "authors": "",
+        "title": "The Continuity Trap in Data Science Health Research",
+        "subtitle": {
+          "type": 2,
+          "content": "Clement Adebamowo"
+        },
+        "campaignId": "f6Fwvcbs",
+        "publicationId": "13e7f2b7-0656-49b9-91c7-45781d276144",
+        "publicationDate": null,
+        "creativeType": 0
+      }
+    }
+  },
+  "note": "No clicks were made; tracking URLs omitted because requesting them bills a click. The capture header on browser_*.png is drawn after capture."
+}

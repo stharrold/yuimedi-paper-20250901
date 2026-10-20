@@ -1,0 +1,34 @@
+{
+  "captured_utc": "2026-10-06T01:01:41+00:00",
+  "page_url": "https://innovations.bmj.com/content/8/2/129",
+  "page_title": "Healthcare\u2019s new frontier: the digital front door | BMJ Innovations",
+  "items_in_response": 10,
+  "cookie_banner": "rejected (#onetrust-reject-all-handler)",
+  "watched": {
+    "wLf4ILep": {
+      "label": "test campaign",
+      "position": 10,
+      "title": "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+      "byline": "Samuel Harrold",
+      "publicationName": "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+      "status": "journal field holds the title",
+      "record": {
+        "id": "ad8f4cac-d0be-419e-9ba2-303311eb27f9",
+        "linkingType": 1,
+        "publicationName": "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+        "publicationAbbreviatedName": "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+        "authors": "",
+        "title": "Health Care Analytics Challenges: A 3-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement",
+        "subtitle": {
+          "type": 2,
+          "content": "Samuel Harrold"
+        },
+        "campaignId": "wLf4ILep",
+        "publicationId": "1299b711-7a26-4293-ba53-c3c25604b1ad",
+        "publicationDate": null,
+        "creativeType": 0
+      }
+    }
+  },
+  "note": "No clicks were made; tracking URLs omitted because requesting them bills a click. The capture header on browser_*.png is drawn after capture."
+}

@@ -1,0 +1,30 @@
+{
+  "url": "https://rev.trendmd.com/ad-slots/c218d225-ea19-495e-9a5e-e692fc2deb19/recommendations",
+  "method": "POST",
+  "headers": {
+    ":authority": "rev.trendmd.com",
+    ":method": "POST",
+    ":path": "/ad-slots/c218d225-ea19-495e-9a5e-e692fc2deb19/recommendations",
+    ":scheme": "https",
+    "accept": "*/*",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "accept-language": "en-US",
+    "content-length": "223",
+    "content-type": "application/json",
+    "origin": "https://bmjopen.bmj.com",
+    "priority": "u=1, i",
+    "referer": "https://bmjopen.bmj.com/",
+    "sec-ch-ua": "\"Chromium\";v=\"154\", \"Google Chrome\";v=\"154\", \"Not A(Brand\";v=\"99\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site",
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+    "x-revops-session-id": "eeede5fb-2725-4ca9-ac75-e0a75e99aa5f",
+    "x-revops-source-type": "2",
+    "x-revops-source-url": "https://bmjopen.bmj.com/content/16/7/e117423",
+    "x-revops-version": "0.635.0"
+  },
+  "post_data": "{\"npis\":[],\"doctorSpecialties\":[],\"sourceMetadata\":{\"title\":\"Workforce shortages and supported access to medical care for hospital employees: a scoping review\",\"doi\":\"10.1136/bmjopen-2026-117423\"},\"startTime\":1791245277000}"
+}
