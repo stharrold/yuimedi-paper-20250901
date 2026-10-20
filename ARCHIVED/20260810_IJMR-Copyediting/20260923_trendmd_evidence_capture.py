@@ -202,7 +202,7 @@ def add_capture_header(png: Path, url: str, captured: datetime, note: str) -> No
     while d.textlength(text, font=f_url) > max_w and len(text) > 20:
         text = text[:-2]
     if text != url:
-        text = text[:-1] + "…"
+        text = text[:-1] + "\u2026"
     d.text((field[0] + pad, bar_h // 2), text, font=f_url, fill=(32, 33, 36), anchor="lm")
     d.text((w - pad, bar_h // 2), right, font=f_right, fill=(80, 84, 90), anchor="rm")
     d.line([(0, bar_h - 1), (w, bar_h - 1)], fill=(180, 184, 190), width=SCALE)
@@ -245,12 +245,12 @@ async def capture(page, context, resp, items: list, hits: dict[str, dict], ts: d
     await widget.screenshot(path=str(hit_dir / "widget.png"))
     (hit_dir / "widget.html").write_text(await widget.evaluate("el => el.outerHTML"))
 
-    for cid, item in hits.items():
+    for article, item in hits.items():
         anchor = widget.locator("a", has_text=(item.get("title") or "")[:50]).first
         if await anchor.count():
             card = anchor.locator("xpath=ancestor::*[self::li or self::div][1]")
             target = card if await card.count() else anchor
-            await target.screenshot(path=str(hit_dir / f"item_{cid}.png"))
+            await target.screenshot(path=str(hit_dir / f"item_{article}.png"))
 
     await page.evaluate("window.scrollTo(0, 0)")
     await page.wait_for_timeout(800)
