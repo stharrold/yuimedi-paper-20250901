@@ -233,3 +233,256 @@ correction said. The only open thread is the campaign report marketing requested
    production to check for a duplicate entry rather than waiting.
 3. **After a PMID merge, the publisher's page keeps the old ID.** Check the article page
    and exports for the retired PMID.
+
+
+---
+
+## UPDATE, 2026-09-23: TrendMD campaign observed directly, and misconfigured
+
+Source: Laura's 2026-09-15 3:53 PM reply (`20260916_Email_JMIR-Production_Metrics.pdf`),
+plus direct sampling of the TrendMD recommendation API.
+
+### Laura's reply
+
+- **PMID fixed.** Verified 2026-09-23 on the article page: it shows PMID 42684405, links
+  `ncbi.nlm.nih.gov/pubmed/42684405`, and the retired 42497119 appears nowhere in the HTML.
+- **TrendMD data (from marketing, 2026-09-10)** is a table headed **"The Continuity Trap in
+  Data Science Health Research"**: 56,661 inbound sponsored impressions, 25 clicks (0.04% CTR),
+  $1.00 CPC, $25.00 spent. That title is a different Viewpoint: Adebamowo C et al.,
+  J Med Internet Res 2026;e98699, doi 10.2196/98699 (PMID 42616578), published 2026-08-19.
+  No author in common with ours.
+
+### Direct observation: the campaign is running
+
+TrendMD's widget fetches its list with
+`POST https://rev.trendmd.com/ad-slots/<slot-id>/recommendations`, body
+`{"npis":[],"doctorSpecialties":[],"sourceMetadata":{"title":...,"doi":...},"startTime":<ms>}`
+and headers `x-revops-version`, `x-revops-source-type: 2`, `x-revops-session-id` (any UUID),
+`x-revops-source-url`. It returns 10 items; `linkingType: 0` is the host publisher's own
+(organic) content, `linkingType: 1` is another publisher's paid campaign, each with a
+`campaignId`. Replaying that request from a BMJ Innovations page (slot
+`d4a1ec99-9e42-40c8-b978-0900a2367aae`) with varied topical host titles, 89 calls, no clicks:
+
+| Host titles | Our item served |
+|---|---|
+| Digital health, analytics maturity, informatics (2 runs) | 11/48, 4/21 |
+| Research ethics, secondary data use | 14/20 |
+
+**Our article is promoted as campaign `6nFy9EFs`.** Delivery is now positively observed,
+which author-side widget checks could never establish.
+
+### The creative is wrong
+
+The served item (id `3406cbc2-fcac-4d2f-9020-a724e9c8d115`, publicationId
+`62573720-f78a-42f8-8292-b255f2d682ca`):
+
+- `title`: "Healthcare Analytics Challenges: A Three-Pillar Framework..." (the **pre-copyedit**
+  title, the same stale acceptance-time metadata PubMed carried)
+- `subtitle` (byline): **"Clement Adebamowo"**, the first author of the Continuity Trap paper
+- `publicationName` / `publicationAbbreviatedName`: the article title, not the journal;
+  `authors` empty; `publicationDate` null
+- Served far more often beside research-ethics hosts than beside our own topic, which
+  suggests targeting keyed to the Continuity Trap paper (small sample; suggestive only)
+
+Reading: one campaign mixing the two articles. The Sep 10 report may be this campaign under
+the other article's label, or a different campaign entirely; only marketing can say.
+
+**Not verified:** the click destination. The `clickUrl` is a session-bound
+`rev.trendmd.com/open/...` token and following it registers a real $1 click against the
+campaign, so it was deliberately not followed. Ask marketing instead.
+
+**Serving stopped later the same morning.** At 2026-09-23 13:10 UTC the same API replay returned our item 0 of 10 times (it had been 14 of 20 about 20 minutes earlier with the same host titles), and 21 reloads of the real BMJ Innovations page (https://innovations.bmj.com/content/8/2/129) never served it; that page renders exactly the items the API returns, so the item was not served rather than hidden. Cause unknown: daily budget pacing, a frequency cap on this browser after sampling, or a campaign change. The hit responses above were not saved, and they came from replayed requests with synthetic host titles, so they are not reader-facing evidence.
+
+**Evidence standard before emailing marketing:** a screenshot of a real publisher page rendering the listing, with the page URL, UTC time, and the matching recommendations response. Captured by `20260923_trendmd_evidence_capture.py` (this folder) into `20260923_TrendMD-Evidence/`. Hold the reply to Laura until it exists.
+
+**Capture run started 2026-09-23 13:37 UTC** (detached, `caffeinate -i`, PID in `20260923_TrendMD-Evidence/run.pid`): up to 48 h, stops after 3 captures across 2 or more host pages. Hosts are 8 real article pages verified to carry the widget (4 BMJ Innovations, 3 BMJ Open, 1 JAMIA Open); every load is logged to `attempts.jsonl`, so the log also records how often the listing is served. The capture path was tested on another publisher's item before launch (all 8 artifacts written; the test output was discarded).
+
+### Next
+
+Reply drafted: `20260923_Email-Reply_JMIR-Production_TrendMD-Campaign.md`. Asks marketing
+to confirm the article campaign `6nFy9EFs` links to, correct the title, byline, and journal
+fields, and confirm whether the Sep 10 report is this campaign.
+
+
+---
+
+## EVIDENCE CAPTURED, 2026-09-24: the two campaigns' bylines are swapped
+
+**Capture:** 2026-09-24 03:10:53 UTC, on a real, unmodified BMJ Open article page,
+https://bmjopen.bmj.com/content/11/3/e044289 ("Public and patient involvement in health data
+governance (DATAGov)..."). No clicks. Artifacts:
+`20260923_TrendMD-Evidence/hit_20260924T031053Z_bmjopen-bmj-com-content-11-3-e044289/`
+(widget, item, viewport, and full-page PNGs; the rendered response; request; meta).
+Attachment copies (byte-identical): `20260924_TrendMD-Listing_BMJ-Open_widget.png` and
+`20260924_TrendMD-Listing_BMJ-Open_item.png`.
+
+The same rendered widget shows both campaigns, side by side, with each other's byline:
+
+| Campaign | Position | Title shown | Byline shown |
+|---|---|---|---|
+| `6nFy9EFs` (ours) | 6 of 10 | Healthcare Analytics Challenges: A Three-Pillar Framework Connecting Analytics Maturity, Workforce Agility, and Technical Enablement (pre-copyedit title) | Clement Adebamowo |
+| `MJ6iVWT7` | 8 of 10 | The Continuity Trap in Data Science Health Research | Samuel Harrold |
+
+Both records also carry the article title in `publicationName` (no journal) and no date.
+So the fault is a swap between the two JMIR campaigns set up around the same time, plus the
+stale acceptance-time title on ours. The Sep 10 report, labeled "The Continuity Trap", is
+plausibly `MJ6iVWT7`, not ours.
+
+**Run summary** (`20260923_TrendMD-Evidence/attempts.jsonl`, stopped once this capture
+existed): 519 loads, 2026-09-23 13:37 UTC to 2026-09-24 12:32 UTC; 490 succeeded (29
+timeouts); 342 carried other publishers' paid items, 176 distinct campaigns. Hosts: BMJ
+Innovations 256, BMJ Open 189, JAMIA Open 45.
+
+| Campaign | Served in successful loads | When |
+|---|---|---|
+| `6nFy9EFs` (ours) | 1 of 490 | 2026-09-24 03:10 UTC |
+| `MJ6iVWT7` (Continuity Trap) | 8 of 490 | 2026-09-24 00:02 to 03:42 UTC, on 2 BMJ Open pages and BMJ Innovations |
+
+Both served only in a window just after 00:00 UTC, consistent with daily budget pacing
+(nothing in the 10.5 h before). Only ours triggered screenshots; the other campaign's 7
+further sightings are logged by campaign ID only.
+
+**Still not verified:** where each listing's click goes. Asked of marketing in the reply.
+
+**Next:** reply to Laura updated with the URL, time, and attached screenshots:
+`20260923_Email-Reply_JMIR-Production_TrendMD-Campaign.md`.
+
+**Reply sent 2026-09-24 10:25 AM EDT** with the page URL, capture time, both campaign IDs,
+and the screenshots (the widget image followed at 10:28 after being omitted from the first
+message). Sent copy: `20260924_Email-Reply_JMIR-Production_TrendMD-Campaign.pdf`.
+
+**Forwarded to marketing, 2026-09-28** (`20261005_Email_JMIR-Marketing_TrendMD-Forwarded.pdf`,
+24 messages): Laura forwarded the reply and both screenshots to Jane Kelly (Integrated
+Marketing Manager, jane.kelly@jmir.org) at 10:19 AM EDT; Jane replied at 1:50 PM EDT, "I will
+send your inquiry to TrendMD." No answer from TrendMD as of 2026-10-05. Jane is now the
+direct contact (cc Laura). Next: re-capture across a UTC midnight to see whether the listing
+was corrected, then follow up with Jane.
+
+---
+
+## CORRECTED, 2026-10-06: both campaigns replaced, bylines and title fixed
+
+**Capture run** `364ef1dec814` (`20261005_TrendMD-Evidence/`): 2026-10-05 20:33 UTC to
+2026-10-06 05:00 UTC, 270 loads (255 ok, 14 Cloudflare challenges, 1 error), 134 distinct
+external campaigns. 8 captures of our listing on 4 host pages (BMJ Open e044289, e117423,
+e065803; BMJ Innovations 8/2/129), all between 00:07 and 04:18 UTC; every capture's
+`MANIFEST.sha256` verifies.
+
+| Article | 2026-09-24 | 2026-10-06 |
+|---|---|---|
+| Ours | `6nFy9EFs`: pre-copyedit title, byline Clement Adebamowo | **`wLf4ILep`**: "Health Care Analytics Challenges: A 3-Pillar Framework...", byline **Samuel Harrold** |
+| Continuity Trap | `MJ6iVWT7`: byline Samuel Harrold | **`f6Fwvcbs`**: byline **Clement Adebamowo** (served 3 times) |
+
+Neither old campaign was served once in 255 successful loads: they were replaced, not edited.
+No reply from TrendMD or marketing preceded the fix (last message: Jane, 2026-09-28).
+
+**Remaining, cosmetic:** our record still has the article title in `publicationName` and no
+`publicationDate`, so the rendered listing shows "Samuel Harrold" with no journal or year,
+where other sponsored listings read "Author, Journal, Year".
+
+**Attachment copies** (byte-identical to the 01:51:25 UTC capture on the same BMJ Open page
+as the 2026-09-24 evidence): `20261006_TrendMD-Listing_BMJ-Open_corrected.png` (one-screen,
+URL and time in the header) and `..._corrected_item.png` (close-up).
+
+**Next:** reply to Jane drafted, `20261006_Email-Reply_JMIR-Marketing_TrendMD-Corrected.md`:
+thanks, the journal-name request, and performance data for both campaign IDs. Close #568 when
+the data arrives.
+
+**Evidence integrity, 2026-10-06.** The pre-commit `trailing-whitespace` and
+`end-of-file-fixer` hooks rewrote captured text files on commit: in `712e8e2` they stripped
+trailing spaces from all 8 `widget.html` files (manifests then failed 8 of 8), and in
+`09617c9` they appended a final newline to the 2026-09-24 capture's `meta.json`,
+`request.json`, `response.json`, and `widget.html`. Every original was recovered byte-exact
+from the unreachable blobs the first `git add` had written before the hooks ran (matched by
+the manifest SHA-256 for the 8, and by "hook normalisation of the blob equals the committed
+file" for the 4), restored, and re-committed. Both hooks now exclude `_TrendMD-Evidence/`.
+The 2026-09-24 capture gained a `MANIFEST.sha256` on 2026-10-06, after restoration; the
+screenshots were never affected.
+
+**Link destination still unconfirmed.** The corrected listing's text is verified; where a
+click lands is not (testing it bills a $1 click). The reply to Jane asks TrendMD to confirm
+it, restoring the question from the 2026-09-24 email.
+
+**Reply sent to Jane 2026-10-06 6:38 AM EDT** (cc Laura), with both corrected-listing images:
+confirmation of the click destination, journal name and year, and performance data for both
+campaign IDs. Sent copy: `20261006_Email-Reply_JMIR-Marketing_TrendMD-Corrected.pdf`.
+
+## RE-CHECKED, 2026-10-14: listing still correct; no journal or year, as on every JMIR campaign
+
+No reply to the 2026-10-06 message after a week, so the listing was re-captured across a UTC
+midnight: run `dd62e2eaa271`, `20261013_TrendMD-Evidence/`, 131 loads 2026-10-13 20:56 to
+2026-10-14 01:08 UTC (120 ok, 11 Cloudflare challenges on JAMIA Open), stopped at the target
+of 3 captures. All 3 manifests verify on the committed bytes (`ba68a75`).
+
+| UTC | Page | Ours (`wLf4ILep`) | Continuity Trap |
+|---|---|---|---|
+| 00:32:33 | bmjopen 16/7/e117423 | published title, Samuel Harrold, no journal or year | not served |
+| 00:47:56 | bmjopen 13/6/e065803 | same | `f6Fwvcbs`, Clement Adebamowo, correct |
+| 01:07:37 | bmjopen 16/7/e117423 | same | not served |
+
+Again served only after 00:00 UTC (first capture 00:32, none in the 3.5 h before).
+
+**The missing journal and year is not specific to our listing.** Every JMIR campaign seen in
+the 3 runs carries its own title in `publicationName` (`wLf4ILep`, `f6Fwvcbs`, `MJ6iVWT7`,
+`pZ2kA2RW`, `XqMWyuDS` Hartman, `De73SWTJ`, `y5gUGxHO`), and the widget then shows the byline
+alone. Other publishers' campaigns put the journal there ("Precision Clinical Medicine",
+"Cell Discovery", "Journal of Applied Physiology"). So it is how JMIR's campaigns are set up,
+and the 2026-10-06 ask ("unlike the other sponsored listings") compared us with other
+publishers, not with JMIR. A follow-up should frame it as a JMIR-side template setting,
+optional, not as an error in our listing.
+
+**Unchanged:** click destination unconfirmed (not tested, $1 per click); performance data for
+`6nFy9EFs` and `wLf4ILep` not received. #568 stays open.
+
+**Follow-up drafted 2026-10-14** (`20261014_Email-Followup_JMIR-Marketing_TrendMD.md`), asking
+only for the performance data on both campaign IDs. The author dropped the click-destination
+question as not needed, and the journal request is withdrawn as JMIR-wide. #568 now closes on
+receipt of the data alone.
+
+**Follow-up sent 2026-10-14 11:23 AM EDT** to Jane (cc Laura), with the 00:47 UTC capture:
+performance data only, the other 2 questions withdrawn. Sent copy:
+`20261014_Email-Followup_JMIR-Marketing_TrendMD.pdf`. If no reply by about 2026-10-21, ask
+Laura directly.
+
+## PERFORMANCE DATA RECEIVED, 2026-10-20
+
+Jane was on vacation; Laura chased it (2026-10-15) and forwarded the request to another
+marketing representative (2026-10-19). Laura, 2026-10-20 10:39 AM EDT, attached the TrendMD
+report and relayed: "the 86 clicks from the original campaign (ID: 6nFy9EFs) will be
+redirected to the replacement campaign (ID: wLf4ILep)". Thread of record:
+`20261020_Email-Followup_JMIR-Marketing_TrendMD.pdf`. Report:
+`20261020_Health Care Analytics Challenges, Samuel Harrold report __ TrendMD 2026.xlsx`
+(SHA-256 `353c688a...`), 2 sheets, $1 CPC throughout.
+
+| Campaign | Sheet header | Period | Impressions | Clicks | CTR | Spent |
+|---|---|---|---|---|---|---|
+| `6nFy9EFs` (original, crossed listing) | "The Continuity Trap in Data Science Health Research; https://www.i-jmr.org/2026/1/e96541" | Sep 2026 | 169,210 | 86 | 0.051% | $86 |
+| `wLf4ILep` (replacement, correct listing) | our published title; our URL | Sep 2026 | 7,422 | 3 | 0.040% | $3 |
+| | | Oct 2026 MTD | 96,829 | 62 | 0.064% | $62 |
+| | | Total | 104,251 | 65 | 0.062% | $65 |
+| Both | | | 273,461 | 151 | | $151 of $250 |
+
+**The Sep 10 report was ours after all, under the wrong label.** The original campaign's
+sheet pairs the Continuity Trap *title* with *our* article URL, the same crossing the
+2026-09-24 capture showed in the listing. The Sep 10 table (headed "The Continuity Trap",
+56,661 impressions, 25 clicks) fits as an early snapshot of this same September campaign
+(169,210 and 86 by month end). The 2026-09-23 reading that it was "plausibly `MJ6iVWT7`,
+not ours" is withdrawn; the other reading recorded then ("this campaign under the other
+article's label") was right.
+
+**Make-good.** The 86 clicks ($86) spent while the listing carried the wrong byline and the
+pre-copyedit title are to be "redirected" to the replacement. Read as a credit, the correct
+listing gets the full $250 ($65 delivered, $185 to go); read literally as reattribution, it
+gets $164. The wording does not settle which. At the October pace (62 clicks in about 19
+days) $185 runs to roughly mid-December, close to the "until December 2" estimate given at
+launch.
+
+**Report quirks, not errors in the data:** the per-month "Widget performance" CTR rows are
+100x the totals (percent vs fraction), and internal rows marked "Orange values to be updated
+(rows to be hidden when sending report)" were left visible.
+
+**#568 closes:** the only open ask, the performance data for both campaign IDs, is answered.
+
+**Thread closed 2026-10-20 2:02 PM EDT:** thank-you sent to Laura, stating that this resolves
+everything on the author's end (no credit question asked). Sent copy:
+`20261020_Email-Reply_JMIR-Production_TrendMD-Report-Thanks.pdf`.

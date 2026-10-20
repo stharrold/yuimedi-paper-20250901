@@ -1,8 +1,8 @@
 # Project Status
 
-**Last updated:** 2026-09-15
+**Last updated:** 2026-10-20
 **Tracking:** [GitHub Issues](https://github.com/stharrold/yuimedi-paper-20250901/issues)
-**Version:** 5.0.0 (released 2026-08-10; Zenodo `v5.0.0`, DOI 10.5281/zenodo.21880033)
+**Version:** 6.0.0 (released 2026-09-15; Zenodo `v6.0.0`, DOI 10.5281/zenodo.22769213; concept DOI 10.5281/zenodo.18264359); next: v6.0.1 (#575, confirmed, not yet cut)
 
 ---
 
@@ -47,12 +47,14 @@
 **Remaining (post-publication, non-blocking):**
 - [x] Propagate the published title to `paper.md`, `metadata.yaml`, `CITATION.cff`, `.zenodo.json`, `README.md` (done in v5.0.0; the title is final in the accepted proof)
 - [x] Style sync the *body* of `paper.md` to the published version: done 2026-08-19 against the `modified5` proof (commit e0f920a), verified against the live article 2026-09-01
-- [ ] Repair 11 stale `file =` paths in `references.bib` (library reorganized its directory naming) (#561)
+- [x] Repair stale `file =` paths in `references.bib` (library reorganized to `docs/<stem>/<stem>.pdf`): all 15 resolve, #561 closed 2026-09-15 (`194eda7`)
+- [x] Repair the 28 stale library citations in research docs (21 same-stem in `e4d16d9`; 7 traced through library git history and matched by SHA-256, or linked to arXiv, in `de5705d`): #573 closed 2026-09-15, 0 stale non-archive paths remain
 - [x] JMIR visual abstract: draft 1 2026-08-25, 2 corrections requested and verified in the final files; live as the ToC image at publication. Final files in both `ARCHIVED/20260810_IJMR-Copyediting/` and `abstract-visual-video/`
 - [x] Timing conflict raised 2026-08-10: resolved by the publication hold agreed 2026-08-11, so the article and sponsored tweet launched with the visual abstract in place
 - [x] All purchased add-ons delivered (#567, closed 2026-09-15): PubMed duplicate merged, sponsored tweet live 2026-09-01, TrendMD running to ~2026-12-02
 - [x] LinkedIn announcement posted 2026-09-15 (https://lnkd.in/p/ecbMFxk8; record `ARCHIVED/20260810_IJMR-Copyediting/20260915_LinkedIn-Post_Paper1-Publication.{md,pdf}`)
-- [ ] Follow-ups: TrendMD campaign report, retired PMID still displayed on the article page, final post text to Gnani Palanikumar (#568)
+- [x] Article-page PMID fixed (42684405, verified 2026-09-23); final post text sent to Gnani Palanikumar 2026-09-15
+- [x] TrendMD (#568, closed 2026-10-20): listings corrected by 2026-10-06 (new campaign `wLf4ILep` with the published title and correct byline; the Continuity Trap campaign fixed too), verified in 8 captures (`ARCHIVED/20260810_IJMR-Copyediting/20261005_TrendMD-Evidence/`). Remaining: journal name and year missing from the listing, and the campaign performance data. Reply sent to Jane Kelly 2026-10-06 6:38 AM EDT asking TrendMD to confirm the click destination, add the journal and year, and send data for both campaign IDs (`ARCHIVED/20260810_IJMR-Copyediting/20261006_Email-Reply_JMIR-Marketing_TrendMD-Corrected.pdf`); awaiting TrendMD. Re-checked 2026-10-14 with no reply (3 captures, `20261013_TrendMD-Evidence/`): still correct; the missing journal and year turns out to be on every JMIR campaign, not ours alone. Follow-up sent 2026-10-14 asking only for the performance data (`20261014_Email-Followup_JMIR-Marketing_TrendMD.pdf`). **Performance data received 2026-10-20** (`20261020_Health Care Analytics Challenges, Samuel Harrold report __ TrendMD 2026.xlsx`): original `6nFy9EFs` 169,210 impressions, 86 clicks, $86 (Sep); replacement `wLf4ILep` 104,251 impressions, 65 clicks, $65 to date; TrendMD is redirecting the original 86 clicks to the replacement
 - [x] AJE-commissioned graphic declined as a Multimedia Appendix (superseded title, does not name HITL-KG)
 
 **R2 revision status (all Decision-B items resolved and submitted):**
