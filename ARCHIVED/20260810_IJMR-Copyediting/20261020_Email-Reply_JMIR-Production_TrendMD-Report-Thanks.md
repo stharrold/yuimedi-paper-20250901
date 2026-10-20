@@ -50,5 +50,5 @@ Sent copy of record: `20261020_Email-Reply_JMIR-Production_TrendMD-Report-Thanks
 (32 messages). One edit from the draft: "The report covers both campaigns, and" was cut, so
 the second sentence reads "The note about the original campaign's clicks is very helpful."
 
-Nothing further is expected on this thread. TrendMD runs to about mid-December on the
-remaining budget.
+Nothing further is expected on this thread. If the 86 clicks are credited back, TrendMD runs to
+about mid-December on the remaining $185; that reading was not confirmed.
