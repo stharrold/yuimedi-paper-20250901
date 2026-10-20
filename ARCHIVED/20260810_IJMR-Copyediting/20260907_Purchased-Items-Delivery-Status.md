@@ -482,3 +482,7 @@ launch.
 (rows to be hidden when sending report)" were left visible.
 
 **#568 closes:** the only open ask, the performance data for both campaign IDs, is answered.
+
+**Thread closed 2026-10-20 2:02 PM EDT:** thank-you sent to Laura, stating that this resolves
+everything on the author's end (no credit question asked). Sent copy:
+`20261020_Email-Reply_JMIR-Production_TrendMD-Report-Thanks.pdf`.

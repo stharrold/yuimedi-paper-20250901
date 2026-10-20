@@ -40,3 +40,15 @@ Samuel
   unconfirmed; recorded as such in the status file.
 - **Thanks marketing through Laura,** since the representative who supplied the report is
   not named and Jane is on vacation.
+
+---
+
+## As sent
+
+**Sent 2026-10-20 2:02 PM EDT** from the yuimedi address to Laura, cc the gmail address.
+Sent copy of record: `20261020_Email-Reply_JMIR-Production_TrendMD-Report-Thanks.pdf`
+(32 messages). One edit from the draft: "The report covers both campaigns, and" was cut, so
+the second sentence reads "The note about the original campaign's clicks is very helpful."
+
+Nothing further is expected on this thread. TrendMD runs to about mid-December on the
+remaining budget.
